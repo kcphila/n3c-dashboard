@@ -448,12 +448,12 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 				});
 				
 				$(rows).eq(idx).before(
-					'<tr class="group" style="background: lightgray; font-weight: bold">' + 
-					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13">'+race+'</td>'+
-					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+non_sum+'</td>'+
-					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+hisp_sum+'</td>'+
-					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+unk_sum+'</td>'+
-					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+sum+'</td></tr>'
+					'<tr class="group" style="background: #D2E5FA; font-weight: bold">' + 
+					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13">'+race+'</td>'+
+					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13" data-t="n">'+non_sum+'</td>'+
+					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13" data-t="n">'+hisp_sum+'</td>'+
+					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13" data-t="n">'+unk_sum+'</td>'+
+					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13" data-t="n">'+sum+'</td></tr>'
 				);    
             };
         }
