@@ -105,7 +105,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 	th2.setAttribute('data-b-a-s', 'medium'); 
 	th2.setAttribute('data-b-a-c', 'ffffff'); 
 	th2.style.textAlign = 'Center';
-	th2.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Ethnic Categories</span>';
+	th2.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Ethnic/Gender Categories</span>';
 	header_row1.appendChild(th2);
 	
 	var th3 = document.createElement("th");
