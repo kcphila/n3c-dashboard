@@ -131,7 +131,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 		// set table export style attributes
 		th.setAttribute("data-a-h", "center");
 		th.setAttribute("data-fill-color", "e3efff");
-		th.setAttribute("data-f-sz", "16");
+		th.setAttribute("data-f-sz", "14");
 		th.setAttribute('data-b-a-s', 'medium'); 
 		th.setAttribute('data-b-a-c', 'ffffff'); 
 		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + ethnicity_vals[i] + '</span>';
@@ -143,7 +143,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 			// set table export style attributes
 			th.setAttribute("data-a-h", "center");
 			th.setAttribute("data-fill-color", "e3efff");
-			th.setAttribute("data-f-sz", "16");
+			th.setAttribute("data-f-sz", "14");
 			th.setAttribute('data-b-a-s', 'medium'); 
 			th.setAttribute('data-b-a-c', 'ffffff'); 
 			th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + gender_vals[i] + '</span>';
