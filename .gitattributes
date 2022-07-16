@@ -190,6 +190,7 @@ WebContent/new_ph/block.jsp -text
 WebContent/new_ph/block2.jsp -text
 WebContent/new_ph/cumulative/cumulative_1.jsp -text
 WebContent/new_ph/cumulative/feeds/cumulative_summary.jsp -text
+WebContent/new_ph/cumulative/feeds/cumulative_summary2.jsp -text
 WebContent/new_ph/cumulative/kpis.jsp -text
 WebContent/new_ph/cumulative/panel.jsp -text
 WebContent/new_ph/cumulative/tables/cumulative_table.jsp -text
@@ -690,7 +691,6 @@ WebContent/resources/DataTables/js/dataTables.semanticui.js -text
 WebContent/resources/DataTables/js/dataTables.semanticui.min.js -text
 WebContent/resources/DataTables/js/jquery.dataTables.js -text
 WebContent/resources/DataTables/js/jquery.dataTables.min.js -text
-WebContent/resources/TableExport.js -text
 WebContent/resources/anime.min.js -text
 WebContent/resources/auth.js -text
 WebContent/resources/bootstrap/.DS_Store -text
@@ -742,12 +742,12 @@ WebContent/resources/d3-scale-radial.js -text
 WebContent/resources/d3-tip.js -text
 WebContent/resources/d3.hive.min.js -text
 WebContent/resources/d3.v4.min.js -text
-WebContent/resources/filesaver.js -text
 WebContent/resources/jquery-colorize.js -text
 WebContent/resources/jquery.hottie.js -text
 WebContent/resources/main_style.css -text
 WebContent/resources/n3c_login_style.css -text
 WebContent/resources/select2_search.js -text
+WebContent/resources/tableToExcel.js -text
 WebContent/tables/domain_team_roster.jsp -text
 WebContent/tables/project_roster_styled.jsp -text
 WebContent/tables/publications_styled.jsp -text

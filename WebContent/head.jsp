@@ -27,11 +27,8 @@
 	<script>$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {    options.async = true; });</script>	
 	
 	<!-- table to excel for cumulative table -->
-	<script src="https://cdn.sheetjs.com/xlsx-0.18.9/package/dist/xlsx.full.min.js"></script>
-	<script src="<util:applicationRoot/>/resources/filesaver.js"></script>
-	<script src="<util:applicationRoot/>/resources/TableExport.js"></script>
-	
-	
+	<script type="text/javascript" src="<util:applicationRoot/>/resources/tableToExcel.js"></script>
+<!-- 	<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script> -->
 	
 	<!-- bootstrap Latest compiled JavaScript -->
 	<script type='text/javascript' src='<util:applicationRoot/>/resources/bootstrap/js/bootstrap.bundle.min.js '></script>

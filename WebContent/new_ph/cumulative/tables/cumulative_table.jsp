@@ -2,6 +2,8 @@
 
 <div id="cumulative_1_cumulative_table" class="dash_viz" style="margin-top:20px;"></div>
 
+<div id="cumulative_1_cumulative_table_hidden" class="dash_viz" style="margin-top:20px; display:none;"></div>
+
 <script>
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#cumulative_1_cumulative_table-table').DataTable();
@@ -56,6 +58,197 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 } );
 
 var ${param.block}_datatable = null;
+var ${param.block}_datatable2 = null;
+
+$.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.jsp", function(data){
+	
+	var json = $.parseJSON(JSON.stringify(data));
+
+	var col = [];
+	
+	
+
+	var table = document.createElement("table");
+	table.className = 'table table-hover compact site-wrapper';
+	table.style.width = '100%';
+	table.setAttribute("data-cols-width", "45,14,14,14,14,14,14,14,14,14,14,14,14,15");
+	table.id="cumulative_1_cumulative_table_hidden-table";
+
+	var header= table.createTHead();
+	var footer= table.createTFoot();
+
+    var header_row1 = header.insertRow(); 
+	var header_row2 = header.insertRow(); 
+	var header_row3 = header.insertRow(); 
+	
+	var th1 = document.createElement("th");
+	th1.setAttribute("rowspan", "3");
+	th1.setAttribute("colspan", "1");
+	// set table export style attributes
+	th1.setAttribute("data-a-h", "center");
+	th1.setAttribute("data-f-bold", "true");
+	th1.setAttribute("data-f-sz", "16");
+	th1.setAttribute("data-fill-color", "e3efff");
+	th1.setAttribute('data-b-a-s', 'medium'); 
+	th1.setAttribute('data-b-a-c', 'ffffff'); 
+	th1.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Racial Categories</span>';
+	header_row1.appendChild(th1);
+	
+	var th2 = document.createElement("th");
+	th2.setAttribute("colspan", "12");
+	th2.setAttribute("rowspan", "1");
+	// set table export style attributes
+	th2.setAttribute("data-a-h", "center");
+	th2.setAttribute("data-f-bold", "true");
+	th2.setAttribute("data-f-sz", "16");
+	th2.setAttribute("data-fill-color", "e3efff");
+	th2.setAttribute('data-b-a-s', 'medium'); 
+	th2.setAttribute('data-b-a-c', 'ffffff'); 
+	th2.style.textAlign = 'Center';
+	th2.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Ethnic Categories</span>';
+	header_row1.appendChild(th2);
+	
+	var th3 = document.createElement("th");
+	th3.setAttribute("rowspan", "3");
+	th3.setAttribute("colspan", "1");
+	// set table export style attributes
+	th3.setAttribute("data-a-h", "center");
+	th3.setAttribute("data-f-bold", "true");
+	th3.setAttribute("data-f-sz", "16");
+	th3.setAttribute("data-fill-color", "e6e9eb");
+	th3.setAttribute('data-b-a-s', 'medium'); 
+	th3.setAttribute('data-b-a-c', 'ffffff'); 
+	th3.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Total</span>';
+	header_row1.appendChild(th3);
+
+	var ethnicity_vals = ['Non-Hispanic or Latino', 'Hispanic or Latino', 'Unknown or Not Reported Ethnicity'];
+	var gender_vals = ['Female', 'Male', 'Other', 'Unknown'];
+
+	for (i in ethnicity_vals) {
+		var th = document.createElement("th");
+		th.setAttribute("colspan", "4");
+		th.setAttribute("rowspan", "1");
+		// set table export style attributes
+		th.setAttribute("data-a-h", "center");
+		th.setAttribute("data-fill-color", "e3efff");
+		th.setAttribute("data-f-sz", "16");
+		th.setAttribute('data-b-a-s', 'medium'); 
+		th.setAttribute('data-b-a-c', 'ffffff'); 
+		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + ethnicity_vals[i] + '</span>';
+		header_row2.appendChild(th);
+		for (i in gender_vals){
+			var th = document.createElement("th");
+			th.setAttribute("colspan", "1");
+			th.setAttribute("rowspan", "1");
+			// set table export style attributes
+			th.setAttribute("data-a-h", "center");
+			th.setAttribute("data-fill-color", "e3efff");
+			th.setAttribute("data-f-sz", "16");
+			th.setAttribute('data-b-a-s', 'medium'); 
+			th.setAttribute('data-b-a-c', 'ffffff'); 
+			th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + gender_vals[i] + '</span>';
+			header_row3.appendChild(th);
+		}
+	};
+
+	var divContainer = document.getElementById("cumulative_1_cumulative_table_hidden");
+	divContainer.appendChild(table);
+
+	var data = json['rows'];
+
+	${param.block}_datatable2 = $('#cumulative_1_cumulative_table_hidden-table').DataTable( {
+		data: data,
+    	dom: 'lr<"datatable_overflow"t>ip',
+       	paging: false,
+    	order: [[0, 'asc']],
+    	columnDefs: [
+    	     {
+    	        'targets': [1,2,3,4, 5, 6, 7, 8, 9, 10, 11, 12],
+    	        'createdCell':  function (td) {
+    	           $(td).attr('data-t', 'n'); 
+    	           $(td).attr('data-f-sz', '11'); 
+    	           $(td).attr('data-b-a-s', 'medium'); 
+    	           $(td).attr('data-b-a-c', 'ffffff'); 
+    	           $(td).attr('data-fill-color', 'f0f2f2');
+    	        }, 
+    	        'className': 'sum'
+    	     },{
+    	    	 'targets': [13],
+    	    	 'createdCell':  function (td) {
+      	         	$(td).attr('data-t', 'n'); 
+      	         	$(td).attr('data-f-sz', '13'); 
+      	         	$(td).attr('data-b-a-s', 'medium'); 
+     	           	$(td).attr('data-b-a-c', 'ffffff'); 
+      	         	$(td).attr('data-f-bold', 'true'); 
+      	         	$(td).attr('data-fill-color', 'e6e9eb');
+      	        }, 
+    	        'className': 'sum'
+    	     },
+    	     {
+    	    	 'targets': [0],
+    	    	 'createdCell':  function (td) {
+      	         	$(td).attr('data-f-sz', '14'); 
+      	         	$(td).attr('data-b-a-s', 'medium'); 
+     	           	$(td).attr('data-b-a-c', 'ffffff'); 
+      	         	$(td).attr('data-fill-color', 'e3efff');
+      	        }
+    	     }
+    	],
+     	columns: [
+        	{ data: 'race', visible: true, orderable: false },
+        	{ data: 'count_non_hispanic_female', visible: true, orderable: false },
+        	{ data: 'count_non_hispanic_male', visible: true, orderable: false },
+        	{ data: 'count_non_hispanic_other', visible: true, orderable: false },
+        	{ data: 'count_non_hispanic_unknown', visible: true, orderable: false },
+        	{ data: 'count_hispanic_female', visible: true, orderable: false },
+        	{ data: 'count_hispanic_male', visible: true, orderable: false },
+        	{ data: 'count_hispanic_other', visible: true, orderable: false },
+        	{ data: 'count_hispanic_unknown', visible: true, orderable: false },
+        	{ data: 'count_ethnicity_unknown_female', visible: true, orderable: false },
+        	{ data: 'count_ethnicity_unknown_male', visible: true, orderable: false},
+        	{ data: 'count_ethnicity_unknown_other', visible: true, orderable: false},
+        	{ data: 'count_ethnicity_unknown_unknown', visible: true, orderable: false},
+        	{ data: 'total', visible: true, orderable: false }
+    	],
+    	drawCallback: function ( settings ) {    	
+			var table = $('#cumulative_1_cumulative_table_hidden-table').DataTable();
+			var rows = table.rows().nodes();
+			var table_length = table.data().count();
+			var values =[0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+			table.columns( '.sum' ).every( function (i) {
+				var sum = this
+					.data()
+					.reduce( function (a,b) {
+					return a + b;
+					});
+				values[i-1] = sum;
+			});
+			
+			$(rows).eq(table_length-1).after(
+					'<tr class="group" style="background: lightgray; font-weight: bold">' + 
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="16">'+'Total'+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[0]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[1]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[2]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[3]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[4]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[5]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[6]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[7]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[8]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[9]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[10]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[11]+'</td>'+
+					'<td data-b-a-s="medium" data-b-a-c="ffffff" data-fill-color="e6e9eb" data-f-bold="true" data-f-sz="13" data-t="n">'+values[12]+'</td></tr>'
+			);   
+        }
+	} );
+	
+
+
+	
+});
 
 $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.jsp", function(data){
 		
@@ -70,6 +263,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 	var table = document.createElement("table");
 	table.className = 'table table-hover compact site-wrapper';
 	table.style.width = '100%';
+	table.setAttribute("data-cols-width", "45,32,32,32,10");
 	table.id="cumulative_1_cumulative_table-table";
 
 	var header= table.createTHead();
@@ -79,22 +273,43 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 	
 	var th1 = document.createElement("th");
 	th1.setAttribute("rowspan", "2");
+	th1.setAttribute("colspan", "1");
+	// set table export style attributes
+	th1.setAttribute("data-a-h", "center");
+	th1.setAttribute("data-f-bold", "true");
+	th1.setAttribute("data-f-sz", "16");
 	th1.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Racial Categories & Gender</span>';
 	header_row1.appendChild(th1);
 	var th2 = document.createElement("th");
 	th2.setAttribute("colspan", "4");
+	th2.setAttribute("rowspan", "1");
+	// set table export style attributes
+	th2.setAttribute("data-a-h", "center");
+	th2.setAttribute("data-f-bold", "true");
+	th2.setAttribute("data-f-sz", "16");
 	th2.style.textAlign = 'Center';
 	th2.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Ethnic Categories</span>';
 	header_row1.appendChild(th2);
 	var th3 = document.createElement("th");
 	th3.setAttribute("rowspan", "2");
+	th3.setAttribute("colspan", "1");
+	// set table export style attributes
+	th3.setAttribute("data-a-h", "center");
+	th3.setAttribute("data-f-bold", "true");
+	th3.setAttribute("data-f-sz", "16");
 	th3.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Total</span>';
 	header_row1.appendChild(th3);
 
-	var other_vals = ['Non-Hispanic or Latino', 'Hispanic or Latino', 'Unknown/Not Reported', 'Race']
+	var other_vals = ['Non-Hispanic or Latino', 'Hispanic or Latino', 'Unknown or Not Reported', 'Race']
 
 	for (i in other_vals) {
 		var th = document.createElement("th");
+		th.setAttribute("colspan", "1");
+		th.setAttribute("rowspan", "1");
+		// set table export style attributes
+		th.setAttribute("data-a-h", "center");
+		th.setAttribute("data-f-bold", "true");
+		th.setAttribute("data-f-sz", "16");
 		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + other_vals[i] + '</span>';
 		header_row2.appendChild(th);
 	}
@@ -117,20 +332,57 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
     	    buttons: [{
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'Excel export.',
-    	      text: 'Excel',
+    	      text: 'Data in View (Excel)',
 			  action: function ( e, dt, node, config ) {
-			  	var table = $("#cumulative_1_cumulative_table-table").tableExport({
-			  		formats: ["xlsx"],
-			  		exportButtons: false
-			  	});
-			  	var exportData = table.getExportData(); 
-			  	var xlsxData = exportData['cumulative_1_cumulative_table-table'].xlsx; 
-			  	table.export2file(xlsxData.data, xlsxData.mimeType, xlsxData.filename, xlsxData.fileExtension, xlsxData.merges, xlsxData.RTL, xlsxData.sheetname)
+				  let table = $("#cumulative_1_cumulative_table-table");
+			        TableToExcel.convert(table[0], {
+			           name: 'N3C_Enclave_Demographics.xlsx' 
+			        });
+              }
+    	    },
+    	    {
+  	      		extend: 'csv',
+  	      		exportOptions: {
+	  	          	format: {
+	  	            	header: function(content, index) {
+	  	            		if(index === 0){
+	  	            			return "Gender"
+	  	            		} else if (index === 1 || index === 2 || index === 3){
+	  	            			return "Eth: " + content.replace(/(<([^>]+)>)/gi, "");
+	  	            		} else {
+	  	            			return content.replace(/(<([^>]+)>)/gi, "");
+	  	            		};
+	  	           		}
+	  	          	}
+  	      		},
+	      		className: 'btn btn-sm btn-light',
+	     		titleAttr: 'CSV export.',
+	      		text: 'Data in View (CSV)',
+	      		filename: 'N3C_Enclave_Demographics',
+	      		extension: '.csv'
+	    
+      	    }, {
+    	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'Excel export.',
+    	      text: 'Full Enclave Data (Excel)',
+			  action: function ( e, dt, node, config ) {
+				  let table = $("#cumulative_1_cumulative_table_hidden-table");
+			        TableToExcel.convert(table[0], {
+			           name: 'N3C_Enclave_Demographics_Full.xlsx' 
+			        });
               }
     	    }]
     	},
        	paging: false,
     	order: [[4, 'asc']],
+    	columnDefs: [
+    	     {
+    	        'targets': [1,2,3,5],
+    	        'createdCell':  function (td, cellData, rowData, row, col) {
+    	           $(td).attr('data-t', 'n'); 
+    	        }
+    	     }
+    	],
      	columns: [
         	{ data: 'gender', visible: true, orderable: false },
         	{ data: 'count_non_hispanic', visible: true, orderable: false },
@@ -196,17 +448,18 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 				});
 				
 				$(rows).eq(idx).before(
-					'<tr class="group" style="background: lightgray; font-weight: bold"><td>'+race+'</td>'+
-					'<td>'+non_sum+'</td>'+
-					'<td>'+hisp_sum+'</td>'+
-					'<td>'+unk_sum+'</td>'+
-					'<td>'+sum+'</td></tr>'
+					'<tr class="group" style="background: lightgray; font-weight: bold">' + 
+					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13">'+race+'</td>'+
+					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+non_sum+'</td>'+
+					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+hisp_sum+'</td>'+
+					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+unk_sum+'</td>'+
+					'<td data-fill-color="ced4d6" data-f-bold="true" data-f-sz="13" data-t="n">'+sum+'</td></tr>'
 				);    
             };
         }
 	} );
-
-	
 });
+
+
 
 </script>
