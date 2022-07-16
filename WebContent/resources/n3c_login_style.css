@@ -325,6 +325,17 @@ a:hover, .btn-link:hover{
   color:white;
 }
 
+.btn-dash{
+  border: none;
+  background: #007bff;
+  color: white;
+}
+
+.btn-dash:hover{
+  background: #0069d9;
+  color:white;
+}
+
 .btn-light{
 	border-color: #cfcfcf;
 }

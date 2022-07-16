@@ -321,7 +321,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 
 	${param.block}_datatable = $('#cumulative_1_cumulative_table-table').DataTable( {
 		data: data,
-    	dom: 'lr<"datatable_overflow"t>Bip',
+    	dom: '<"mb-2 d-flex"B>lr<"datatable_overflow"t>ip',
     	buttons: {
     	    dom: {
     	      button: {
@@ -330,6 +330,16 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
     	      }
     	    },
     	    buttons: [{
+    	      className: 'btn btn-dash',
+    	      titleAttr: 'Excel export.',
+    	      text: 'Full Enclave Data (Excel)',
+			  action: function ( e, dt, node, config ) {
+				  let table = $("#cumulative_1_cumulative_table_hidden-table");
+			        TableToExcel.convert(table[0], {
+			           name: 'N3C_Enclave_Demographics_Full.xlsx' 
+			        });
+              }
+    	    },{
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'Excel export.',
     	      text: 'Data in View (Excel)',
@@ -361,17 +371,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 	      		filename: 'N3C_Enclave_Demographics',
 	      		extension: '.csv'
 	    
-      	    }, {
-    	      className: 'btn btn-sm btn-light',
-    	      titleAttr: 'Excel export.',
-    	      text: 'Full Enclave Data (Excel)',
-			  action: function ( e, dt, node, config ) {
-				  let table = $("#cumulative_1_cumulative_table_hidden-table");
-			        TableToExcel.convert(table[0], {
-			           name: 'N3C_Enclave_Demographics_Full.xlsx' 
-			        });
-              }
-    	    }]
+      	    }]
     	},
        	paging: false,
     	order: [[4, 'asc']],
