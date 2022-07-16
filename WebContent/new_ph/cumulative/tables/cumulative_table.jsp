@@ -332,7 +332,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
     	    buttons: [{
     	      className: 'btn btn-dash',
     	      titleAttr: 'Excel export.',
-    	      text: '<i class="fas fa-download"></i> Full Enclave Data (Excel)',
+    	      text: '<i class="fas fa-download"></i> Download Full Data (Excel)',
 			  action: function ( e, dt, node, config ) {
 				  let table = $("#cumulative_1_cumulative_table_hidden-table");
 			        TableToExcel.convert(table[0], {
