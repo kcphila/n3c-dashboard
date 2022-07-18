@@ -138,6 +138,10 @@ d3.json("../feeds/hive_data.jsp", function(error, data) {
 	  .enter()
 	  .append("circle")
 	  .attr("class", "node")
+	  .on("click", function(d) {
+		  console.log("click", d);
+		  window.open("/n3c-dashboard/public-health/SummaryDataAllAges/1/2", "_self");
+		})
 	  .on("mouseover", nodeMouseover)
 	  .on("mouseout", mouseout)
 	  .attr("transform", function(d) {
@@ -152,7 +156,7 @@ d3.json("../feeds/hive_data.jsp", function(error, data) {
 	  .style("fill", function(d) {
 	    return color(d.x);
 	  })
-			.on('mouseover.tooltip', function(d) {console.log(d)
+			.on('mouseover.tooltip', function(d) {console.log(d, d3.event.pageX, d3.event.pageYz)
       			tooltip.transition()
         			.duration(300)
         			.style("opacity", .8);

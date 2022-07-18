@@ -28,5 +28,6 @@
 	<jsp:param name="datatable_kpis" value="patient_count" />
 </jsp:include>
 <script>
+	console.log("argument", '${param.tertiary_tab}')
 	all_summary_1_toggle("severity");
 </script>

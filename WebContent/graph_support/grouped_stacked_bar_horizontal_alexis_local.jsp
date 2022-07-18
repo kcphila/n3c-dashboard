@@ -19,8 +19,8 @@
 // margin = array: [top, bottom, left, right]
 
 
-function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary, count, stack_group, xaxis_label, legend_label, colorscale, label1, label2) {
-	var margin = {top: 100, right: 100, bottom: 50, left: 400},
+function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary, count, stack_group, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
+	var margin = {top: 100, right: 100, bottom: 50, left: offset},
 		width = 1200 - margin.left - margin.right,
 		height = 1500 - margin.top - margin.bottom;
 

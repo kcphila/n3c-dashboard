@@ -17,10 +17,10 @@ function ${param.block}_constrain_table(filter, constraint) {
 		break;
 	}
 	
-//	var kpis = '${param.target_kpis}'.split(',');
-//	for (var a in kpis) {
-//		${param.block}_updateKPI(table, kpis[a])
-//	}
+	var kpis = '${param.target_kpis}'.split(',');
+	for (var a in kpis) {
+		${param.block}_updateKPI(table, kpis[a])
+	}
 	
 //	var kpis2 = '${param.target_kpis2}'.split(',');
 //	for (var a in kpis2) {
@@ -30,13 +30,9 @@ function ${param.block}_constrain_table(filter, constraint) {
 
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
-	var data_total = table.rows({search:'applied'}).data();
-	var filtered = data_total.filter(function (el) {
-		  return el.observation == "has disease";
-		});
+	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
 	
-	var sum = filtered.pluck(column).sum();
-	
+	console.log(column, sum)
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {

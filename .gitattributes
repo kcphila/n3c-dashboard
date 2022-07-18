@@ -327,6 +327,9 @@ WebContent/new_ph/kpis/block2_kpis/long_total_before.jsp -text
 WebContent/new_ph/kpis/block2_kpis/long_total_before_after.jsp -text
 WebContent/new_ph/kpis/block2_kpis/long_total_grouped.jsp -text
 WebContent/new_ph/kpis/block2_kpis/long_total_ungrouped.jsp -text
+WebContent/new_ph/kpis/block2_kpis/medication_class_count.jsp -text
+WebContent/new_ph/kpis/block2_kpis/medication_count.jsp -text
+WebContent/new_ph/kpis/block2_kpis/medication_patients.jsp -text
 WebContent/new_ph/kpis/block2_kpis/medication_sotrovimab.jsp -text
 WebContent/new_ph/kpis/block2_kpis/mortality.jsp -text
 WebContent/new_ph/kpis/block2_kpis/not_positive.jsp -text

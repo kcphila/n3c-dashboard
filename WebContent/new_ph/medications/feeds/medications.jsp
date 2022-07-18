@@ -3,19 +3,21 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select drug_domain, concept_set_name, age_bin as age, patient_display, patient_count, total_count, age_abbrev, age_seq
-			from (select
+	from (select drug_domain, medication as concept_set_name, age_bin as age, case when patient_count = 0 then '<20' else patient_count||'' end as patient_display, patient_count, total_count, age_abbrev, age_seq
+			from (select drug_domain,medication,age_bin,max(patient_count) as patient_count,total_count from (
+				select
 					drug_domain,
 					concept_set_name,
+					medication,
 					age_bin,
-					num_patients as patient_display,
 					case
 						when (num_patients = '<20' or num_patients is null) then 0
 						else num_patients::int
 					end as patient_count,
 					total_patients as total_count
-				  from n3c_questions.covid_patients_demographics_censored
+				  from n3c_questions.covid_patients_demographics_censored natural join n3c_dashboard.medication_map
 				  where concept_set_name != 'Available, in progress'
+				  order by drug_domain, medication) as bar group by 1,2,3,5 order by 1,2,3
 		  	) as foo
 		  	natural join n3c_dashboard.age_map4
 		  )as done ;
