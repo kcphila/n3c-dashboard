@@ -1,7 +1,9 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<div id="cumulative_1_cumulative_table" class="dash_viz" style="margin-top:20px;"></div>
+<style>
 
+</style>
+<div id="cumulative_1_cumulative_table" class="dash_viz" style="margin-top:20px;"></div>
 <div id="cumulative_1_cumulative_table_hidden" class="dash_viz" style="margin-top:20px; display:none;"></div>
 
 <script>
@@ -65,9 +67,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 	var json = $.parseJSON(JSON.stringify(data));
 
 	var col = [];
-	
-	
-
 	var table = document.createElement("table");
 	table.className = 'table table-hover compact site-wrapper';
 	table.style.width = '100%';
@@ -448,7 +447,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 				});
 				
 				$(rows).eq(idx).before(
-					'<tr class="group" style="background: #D2E5FA; font-weight: bold">' + 
+					'<tr class="table_group" style="background: #D2E5FA; font-weight: bold;">' + 
 					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13">'+race+'</td>'+
 					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13" data-t="n">'+non_sum+'</td>'+
 					'<td data-fill-color="D2E5FA" data-f-bold="true" data-f-sz="13" data-t="n">'+hisp_sum+'</td>'+
