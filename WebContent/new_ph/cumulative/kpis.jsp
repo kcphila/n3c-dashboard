@@ -21,8 +21,12 @@
 		</jsp:include>
 	</c:when>
 	<c:when test="${param.block == 'cumulative_2' }">
-	</c:when>
-	<c:when test="${param.block == 'cumulative_3' }">
+		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+		<jsp:include page="../kpis/block2_kpis/cumulative_total2.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
 	</c:when>
 </c:choose>
 

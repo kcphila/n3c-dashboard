@@ -23,8 +23,6 @@ font-size: 14px;
 <script>
 
 function localHorizontalStackedBarChart(data, domName, barLabelWidth, legend_data, secondary_range = categorical, legend_label, min_height, nofilter, ordered) {
-
-	console.log(data);
 	
 	var add_filter_text = 1;
 	var filter_icon = " &#xf0b0";

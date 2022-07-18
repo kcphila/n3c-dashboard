@@ -5,17 +5,14 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
 	<select id="selectMe">
-		<optgroup label="Enclave Data Overview">
-			<option value="cumulative_1">Enclave Cumulative Participant Information</option>
-			<option value="cumulative_2">Patient Distribution by Race and Ethnicity</option>
-			<option value="cumulative_3">Patient Distribution by Race and Gender</option>
-		</optgroup>
+		<option value="cumulative_1">Enclave Cumulative Participant Information</option>
+		<option value="cumulative_2">Patient Distribution</option>
+		<option disabled hidden="hidden">Veryveryverylongtextverylongtextverylongtext</option>
 	</select>
 </div>
 <div id="frame">
 	<div id="cumulative_1" class="group"></div>
 	<div id="cumulative_2" class="group"></div>
-	<div id="cumulative_3" class="group"></div>
 </div>
 
 <script>
