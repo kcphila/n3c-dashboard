@@ -15,7 +15,7 @@ const auth = async () => {
   
   
   async function handleAutomaticLogin() {
-    const token = await (await fetch("https://a90tcl01g8.execute-api.us-east-1.amazonaws.com/Test/qlik-update-ip", {
+    const token = await (await fetch("https://cawvous306.execute-api.us-east-1.amazonaws.com/qlik/qlik-jwt-update", {
       method: "GET",
       mode: "cors"
     }).then(resp => resp.json().then(data => data.body))); 
@@ -62,7 +62,7 @@ const auth2 = async () => {
     qlikWebIntegrationId: "F7FFR6c76j--BIS-D_ANmsEPU1-VIiXF",
     tenantDomain: "bpvjpykbczgl7xl.us.qlikcloud.com",
     appId: "196803b0-33c2-4492-ac3b-77f6318bce47",
-    jwtUrl: "https://a90tcl01g8.execute-api.us-east-1.amazonaws.com/Test/qlik-update-ip",
+    jwtUrl: "https://cawvous306.execute-api.us-east-1.amazonaws.com/qlik/qlik-jwt-update",
     jwtUrl2: "https://utuwtwnthj.execute-api.us-east-1.amazonaws.com/Cores-test/qlik-test-api"
   };
 
