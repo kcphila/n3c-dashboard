@@ -2,7 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<h2>Our apologies - this dashboard is currently unavailable.</h2>
+<div class="alert alert-warning" role="alert">
+  Our apologies - this dashboard is currently unavailable.
+</div>
 <script>
 	console.log("loaded ${param.info}");
 </script>
