@@ -5,7 +5,7 @@
   						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 					</a>
 				</span>&nbsp;in the N3C Data Enclave whose patient records included Sotrovimab on any date included 
-				within the Enclave. Data aggregated by  aggregated by Vaccination Status and Severity. Medications were aggregated based on ingredient included in the medication. 
+				within the Enclave. Data aggregated by Vaccination Status and Severity. Medications were aggregated based on ingredient included in the medication. 
 				Vaccination data comes only from EHR vaccination events recorded by N3C partner sites. This means that if a 
 				patient received their vaccination from a site that does not automatically link to their EHR (ex. local 
 				pharmacy, doctor's office, or state/federal vaccination site), their vaccination will not be represented 
