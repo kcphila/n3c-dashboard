@@ -42,8 +42,8 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 	draw();
 	
 	function draw() {
-
-		var barPadding = 0;
+console.log(domName,height,data.length,data)
+		var barPadding = 20;
 
 		var x = d3.scaleLinear()
 			.rangeRound([0, width]);
@@ -162,7 +162,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 		var y_defect = d3.scaleBand().domain(rangeBands).range([0, height]).padding(0.1);
 		var y_category_domain = y_defect.bandwidth() * rangeBands.length;
 		y_category.domain([0, y_category_domain]);
-
+console.log("y_defect",y_category(y_defect.bandwidth()))
 
 		var svg = d3.select("#"+domName).append("svg")
 			.attr("width", width + margin.left + margin.right)
@@ -266,14 +266,14 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 		
 		categories.append("rect")
 			.attr("transform", function(d) {
-				var h = (d.values[0].length) * (y_category(y_defect.bandwidth() - barPadding));
+				var h = (d.values[0].length) * (y_category(y_defect.bandwidth()));
     			return "translate("+ -margin.left +", " + 0 + ")";
   			})
   			.style("fill", function(d){
 				return bar_color(d.key);
 			})
   			.attr("height", function(d){
-  				return (d.values[0].length) * (y_category(y_defect.bandwidth() - barPadding));
+  				return (d.values[0].length) * (y_category(y_defect.bandwidth()));
   			})
   			.attr("width", width + margin.left);
 		
@@ -286,7 +286,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.style("fill", "black")
 			.style("text-anchor", "start")
 			.attr("transform", function(d) {
-				var h = (d.values[0].length) * (y_category(y_defect.bandwidth() - barPadding));
+				var h = (d.values[0].length) * (y_category(y_defect.bandwidth()));
     			return "translate(" + -(margin.left) + " , " + ((h/2)+5) + ")";
   			})
   			.on("mouseover", function(d, i) {
