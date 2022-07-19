@@ -11,6 +11,8 @@
 	<jsp:param name="kpis" value="medications/kpis.jsp" />
 
 	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="medication_filter" value="true" />
+	<jsp:param name="medication_class_filter" value="true" />
 
 	<jsp:param name="simple_panel" value="medications/medications.jsp" />
 
