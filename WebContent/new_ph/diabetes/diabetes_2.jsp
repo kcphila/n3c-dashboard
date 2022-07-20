@@ -5,14 +5,17 @@
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="diabetes_2" />
 	<jsp:param name="block_header" value="Diabetes Mellitus Type 1" />
+	<jsp:param name="topic_description" value="secondary_2" />
 
 	<jsp:param name="kpis" value="diabetes/kpis.jsp" />
 
 	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="gender_filter" value="true" />
 
 	<jsp:param name="simple_panel" value="diabetes/type_1.jsp" />
 
 	<jsp:param name="datatable" value="diabetes/diabetes_table.jsp" />
 	<jsp:param name="datatable_div" value="diabetes_type1" />
 	<jsp:param name="datatable_feed" value="diabetes/feeds/t1_summary.jsp" />
+	<jsp:param name="datatable_kpis" value="diabetes,diabetes_covid,diabetes_before,diabetes_after,diabetes_thirty" />
 </jsp:include>

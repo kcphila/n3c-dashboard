@@ -229,6 +229,8 @@ WebContent/new_ph/diabetes/feeds/t2_summary.jsp -text
 WebContent/new_ph/diabetes/kpis.jsp -text
 WebContent/new_ph/diabetes/panel.jsp -text
 WebContent/new_ph/diabetes/panel2.jsp -text
+WebContent/new_ph/diabetes/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/diabetes/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/diabetes/type_1.jsp -text
 WebContent/new_ph/diabetes/type_1_detailed.jsp -text
 WebContent/new_ph/diabetes/type_2.jsp -text
@@ -320,6 +322,16 @@ WebContent/new_ph/kpis/block2_kpis/cumulative_non.jsp -text
 WebContent/new_ph/kpis/block2_kpis/cumulative_total.jsp -text
 WebContent/new_ph/kpis/block2_kpis/cumulative_total2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/cumulative_unkn.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes1.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes1_after.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes1_before.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes1_covid.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes1_thirty.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes2.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes2_after.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes2_before.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes2_covid.jsp -text
+WebContent/new_ph/kpis/block2_kpis/diabetes2_thirty.jsp -text
 WebContent/new_ph/kpis/block2_kpis/long_concept.jsp -text
 WebContent/new_ph/kpis/block2_kpis/long_icd.jsp -text
 WebContent/new_ph/kpis/block2_kpis/long_icd_summary.jsp -text

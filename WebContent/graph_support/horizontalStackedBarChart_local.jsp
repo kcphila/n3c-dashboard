@@ -16,7 +16,7 @@ rect{
 	pointer-events:none;
 }
 .axis{
-font-size: 14px;
+	font-size: 14px;
 }
 
 </style>
@@ -399,21 +399,20 @@ function localHorizontalStackedBarChart(data, domName, barLabelWidth, legend_dat
     		.attr("font-weight", "bold");
   		
   		if ((nofilter == undefined) || (nofilter == 0) ){
-
-  		// Legend Tooltip ////// 
-		var tooltip2 = svg.append("g")
-    		.attr("class", "graph_tooltip")
-    		.style("display", "none")
-    		.attr("transform", "translate(" + ((width + margin.left + margin.right)-40) + "," + 10 + ")")
-
-  		tooltip2.append("text")
-    		.attr("x", 30)
-    		.attr("dy", "1.2em")
-    		.style("text-anchor", "end")
-    		.style("fill", "#0d6efd")
-    		.attr("font-size", "12px")
-    		.attr("font-weight", "bold")
-    		.text("Click to add/remove filter");
+	  		// Legend Tooltip ////// 
+			var tooltip2 = svg.append("g")
+	    		.attr("class", "graph_tooltip")
+	    		.style("display", "none")
+	    		.attr("transform", "translate(" + ((width + margin.left + margin.right)-40) + "," + 10 + ")")
+	
+	  		tooltip2.append("text")
+	    		.attr("x", 30)
+	    		.attr("dy", "1.2em")
+	    		.style("text-anchor", "end")
+	    		.style("fill", "#0d6efd")
+	    		.attr("font-size", "12px")
+	    		.attr("font-weight", "bold")
+	    		.text("Click to add/remove filter");
   		}
   		
   	// Y axis Tooltip ////// 

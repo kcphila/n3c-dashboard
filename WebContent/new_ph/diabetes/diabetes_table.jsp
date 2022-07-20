@@ -3,19 +3,94 @@
 
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
-	console.log("${param.block}", filter, constraint)
 	switch (filter) {
 	case 'age':
 	    table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'ethnicity':
+	case 'gender':
 	    table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'observation':
 	    table.column(2).search(constraint, true, false, true).draw();	
 		break;
 	}
+	
+	var kpis = '${param.target_kpis}'.split(',');
+	for (var a in kpis) {
+		${param.block}_updateKPI(table, kpis[a])
+	}
 }
+
+function ${param.block}_updateKPI(table, column) {
+	var sum_string = '';
+	var sum = 0;
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'diabetes'){
+			if (data['observation'].replace(/[0-9]/g, '') == 'Has Type  Diabetes'){
+				console.log('reached');
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'diabetes_covid'){
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes and covid positive'){
+				console.log('reached');
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'diabetes_before'){
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes conditon before covid'){
+				console.log('reached');
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'diabetes_after'){
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes conditon after covid'){
+				console.log('reached');
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'diabetes_thirty'){
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes condition  days after covid'){
+				console.log('reached');
+				sum += data['patient_count'];
+			};
+		};
+		
+	} );
+
+	
+	if (sum < 1000) {
+		sumString = sum+'';
+	} else if (sum < 1000000) {
+		sum = sum / 1000.0;
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k"
+	} else {
+		sum = sum / 1000000.0;
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
+	
+	}
+	//console.log(sum);
+	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
+}
+
+jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+	return this.flatten().reduce( function ( a, b ) {
+		if ( typeof a === 'string' ) {
+			a = a.replace(/[^\d.-]/g, '') * 1;
+		}
+		if ( typeof b === 'string' ) {
+			b = b.replace(/[^\d.-]/g, '') * 1;
+		}
+
+		return a + b;
+	}, 0 );
+} );
 
 var ${param.block}_datatable = null;
 
@@ -74,11 +149,15 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	    }]
     	},
        	paging: true,
+       	snapshot: null,
+       	initComplete: function( settings, json ) {
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-         	{ data: 'age', visible: true, orderable: true },
+         	{ data: 'age', visible: true, orderable: true,  orderData: [6] },
         	{ data: 'gender', visible: true, orderable: true },
         	{ data: 'observation', visible: true, orderable: true },
            	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
@@ -91,16 +170,27 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	]
 	} );
 
+	// table search logic that distinguishes sort/filter 
 	${param.block}_datatable.on( 'search.dt', function () {
-		console.log('${param.target_div}-table search', ${param.block}_datatable.search());
-		${param.block}_refreshHistograms();
-		$('#${param.block}_btn_clear').removeClass("no_clear");
-		$('#${param.block}_btn_clear').addClass("show_clear");
+		var snapshot = ${param.block}_datatable
+	     .rows({ search: 'applied', order: 'index'})
+	     .data()
+	     .toArray()
+	     .toString();
+
+	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
+
+	  	if (currentSnapshot != snapshot) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("no_clear");
+	   		$('#${param.block}_btn_clear').addClass("show_clear");
+	  	}
 	} );
 
 	// this is necessary to populate the histograms for the panel's initial D3 rendering
 	${param.block}_refreshHistograms();
-	${param.block}_refresh();
 	
 });
 

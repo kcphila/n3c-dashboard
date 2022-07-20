@@ -12,6 +12,7 @@
 	pointer-events:none;
 }
 </style>
+
 <script>
 
 
@@ -21,6 +22,8 @@
 
 function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary, count, stack_group, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
 	
+	
+	var filter_icon = " &#xf0b0";
 	var setup_data = d3.nest()
 		.key(function (d) { return d[stack_group]; })
 		.entries(data);
@@ -44,9 +47,9 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 	var barPadding = 3;
 	var barHeight = 20;
 	
-	var margin = {top: 100, right: 100, bottom: 50, left: offset},
+	var margin = {top: 100, right: 120, bottom: 50, left: offset},
 		width = $("#"+domName).width() - margin.left - margin.right,
-		height = (secondary_list.length*barHeight)+100 - margin.top - margin.bottom;
+		height = (secondary_list.length*barHeight);
 	
 
 	function drawgraphnew(){
@@ -54,7 +57,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 		if (newWidth > 0) {
 			d3.select("#"+domName).select("svg").remove();
 			width = newWidth - margin.left - margin.right;
-			height = (secondary_list.length*barHeight)+100 - margin.top - margin.bottom;
+			height = (secondary_list.length*barHeight);
 			draw();
 		}
 	}
@@ -195,24 +198,27 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("dx", "0.32em")
 			.attr("fill", "#000")
 			.attr("font-weight", "bold")
-			.attr("text-anchor", "start")
+			.attr("text-anchor", "start");
 
-		
 		// Legend ////////////////////	
-		var legend_text = g.append("g")
-			.attr("transform", "translate(" + (margin.right) + " ," + (0) + " )")
+		var legend_text = svg.append("g")
+			.attr("transform", "translate(" + 0 + " ," + 30 + " )")
 			.attr("font-family", "sans-serif")
-			.attr("font-size", 11)
+			.attr("font-size", '14px')
 			.attr("font-weight", "bold")
-			.attr("text-anchor", "start")
+			.attr("text-anchor", "end")
 			.append("text")
-			.attr("x", width - 24)
+			.attr("x", width+margin.right+margin.left)
 			.attr("y", 9.5)
 			.attr("dy", "0.32em")
-			.text(xaxis_label);
+			.text(xaxis_label)
+			.append("tspan")
+			.attr('font-family', 'FontAwesome')
+			.attr("class", "fa")
+			.html(filter_icon);
 			
-		var legend = g.append("g")
-			.attr("transform", "translate(" + (margin.right) + " ," + (20) + " )")
+		var legend = svg.append("g")
+			.attr("transform", "translate(" + (margin.right+margin.left) + " ," + (50) + " )")
 			.attr("font-family", "sans-serif")
 			.attr("font-size", ".8rem")
 			.attr("text-anchor", "end")
@@ -221,25 +227,23 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.enter().append("g")
 			.attr("transform", function(d, i) {
 				return "translate(0," + i * 20 + ")";
-			})
-// 			.attr("class", function(d){
-// 				return "secondary lab" + d.replace(/[^A-Z0-9]/ig, "")}
-// 			)
-// 			.on("mouseover", function(d, i) {
-// 				svg.selectAll(".secondary:not(.lab" + d.replace(/[^A-Z0-9]/ig, "") + ")").style("opacity", "0.05");
-// 			})
-// 			.on("mouseout", function(d, i) {
-//   				svg.selectAll(".secondary").style("opacity", "1");
-// 			})
-			;
+			});
 
 		legend.append("rect")
 			.attr("x", width - 19)
 			.attr("width", 19)
 			.attr("height", 19)
 			.attr("fill", function(d, i) { return colorscale[i]; })
-			.on("click", function(d, i){ console.log(i,legend_label[i].secondary_name)
-				window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](d, xaxis_label); 
+			.on("click", function(d, i){
+				window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](d, xaxis_label.replace(/\s/g, "")); 
+			})
+			.on("mouseover", function(d, i) {
+				svg.selectAll(".secondary:not(.lab" + d.secondary.replace(/[^A-Z0-9]/ig, "") + ")").style("opacity", "0.05");
+				tooltip2.style("display", null);
+			})
+			.on("mouseout", function(d, i) {
+  				svg.selectAll(".secondary").style("opacity", "1");
+  				tooltip2.style("display", "none");
 			});
 
 		legend.append("text")
@@ -415,7 +419,22 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
     		.attr("dy", "1.2em")
     		.style("text-anchor", "middle")
     		.attr("font-size", "12px")
-    		.attr("font-weight", "bold");		
+    		.attr("font-weight", "bold");	
+		
+		// Legend Tooltip ////// 
+		var tooltip2 = svg.append("g")
+    		.attr("class", "graph_tooltip")
+    		.style("display", "none")
+    		.attr("transform", "translate(" + ((width + margin.left + margin.right)-40) + "," + 10 + ")")
+
+  		tooltip2.append("text")
+    		.attr("x", 30)
+    		.attr("dy", "1.2em")
+    		.style("text-anchor", "end")
+    		.style("fill", "#0d6efd")
+    		.attr("font-size", "12px")
+    		.attr("font-weight", "bold")
+    		.text("Click to add/remove filter");
 		
 	}
 };

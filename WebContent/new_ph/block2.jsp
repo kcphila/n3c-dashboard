@@ -410,9 +410,6 @@
 	
 
 	function ${param.block}_viz_constrain(element, elementParent) {
-		console.log("element", element);
-		console.log("parent", elementParent);
-		
 		var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
         var selected = [];
         

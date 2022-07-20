@@ -30,10 +30,10 @@ function ${param.block}_updateKPI(table, column) {
 	if (column == 'patient_count'){
 		sum = table.rows({search:'applied'}).data().pluck(column).sum();
 	};
-	if (column === 'medication_count'){
+	if (column == 'medication_count'){
 		var sum = table.column(1, { search:'applied' }).data().unique().length;
 	};
-	if (column === 'medication_class_count'){
+	if (column == 'medication_class_count'){
 		var sum = table.column(0,  { search:'applied' }).data().unique().length;
 	}
 	

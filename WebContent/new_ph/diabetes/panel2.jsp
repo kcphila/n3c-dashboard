@@ -5,13 +5,9 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.5rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
-		<option value="diabetes_1">Type 2</option>
-		<option value="diabetes_2">Type 1</option>
-		<option value="diabetes_3">Type 1 Diabetes Under the Age of 18</option>
-		<option value="diabetes_4">Type 2 Diabetes Under the Age of 18</option>
-		<option value="diabetes_5">Type 1 Diabetes Over the Age of 18</option>
-		<option value="diabetes_6">Type 2 Diabetes Over the Age of 18</option>
-		<option disabled hidden="hidden">COVID+ and Hospitalization+++++++++++++</option>
+		<option value="diabetes_1">Diabetes Mellitus Type 2</option>
+		<option value="diabetes_2">Diabetes Mellitus Type 1</option>
+		<option disabled hidden="hidden">Diabetes Mellitus Type 1+++++++++++++</option>
 	</select>
 </div>
 <div id="frame">
@@ -56,68 +52,16 @@ function frame_load(selection) {
 };
 
 $(document).ready(function () {
-	  $('#selectMe').change(function () {
+	$('#selectMe').change(function () {
 		frame_load($(this).val());
 	    $('.group').hide();
-	    $('#'+$(this).val()).show();
-	  })
-	});
-	
-function modelMatcher (params, data) {
-	  data.parentText = data.parentText || "";
-
-	  // Always return the object if there is nothing to compare
-	  if ($.trim(params.term) === '') {
-	    return data;
-	  }
-
-	  // Do a recursive check for options with children
-	  if (data.children && data.children.length > 0) {
-	    // Clone the data object if there are children
-	    // This is required as we modify the object to remove any non-matches
-	    var match = $.extend(true, {}, data);
-
-	    // Check each child of the option
-	    for (var c = data.children.length - 1; c >= 0; c--) {
-	      var child = data.children[c];
-	      child.parentText += data.parentText + " " + data.text;
-
-	      var matches = modelMatcher(params, child);
-
-	      // If there wasn't a match, remove the object in the array
-	      if (matches == null) {
-	        match.children.splice(c, 1);
-	      }
-	    }
-
-	    // If any children matched, return the new object
-	    if (match.children.length > 0) {
-	      return match;
-	    }
-
-	    // If there were no matching children, check just the plain object
-	    return modelMatcher(params, match);
-	  }
-
-	  // If the typed-in term matches the text of this term, or the text from any
-	  // parent term, then it's a match.
-	  var original = (data.parentText + ' ' + data.text).toUpperCase();
-	  var term = params.term.toUpperCase();
-
-
-	  // Check if the text contains the term
-	  if (original.indexOf(term) > -1) {
-	    return data;
-	  }
-
-	  // If it doesn't contain the term, don't return anything
-	  return null;
-}
+		$('#'+$(this).val()).show();
+	})
+});
 
 $(document).ready(function() {
     $('#selectMe').select2({
-		matcher: modelMatcher,
-		searchInputPlaceholder: 'Search Topics...'
+    	minimumResultsForSearch: Infinity
     });
 });
 
