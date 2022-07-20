@@ -22,7 +22,7 @@
 </sql:query>
 {
     "headers": [
-        {"value":"age_bin", "label":"Age"},
+        {"value":"age", "label":"Age"},
         {"value":"gender", "label":"Gender"},
         {"value":"observation", "label":"Observation"},
         {"value":"patient_display", "label":"Patient Count"},

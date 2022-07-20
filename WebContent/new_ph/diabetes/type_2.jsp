@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div id="${param.block}_diabetes_t2_viz" class="col-lg-10 dash_viz"></div>
-<p>Sample text.</p>
+
 <script>
 
 function ${param.block}_refresh() {

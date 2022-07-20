@@ -237,7 +237,10 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("x", width - 19)
 			.attr("width", 19)
 			.attr("height", 19)
-			.attr("fill", function(d, i) { return colorscale[i]; });
+			.attr("fill", function(d, i) { return colorscale[i]; })
+			.on("click", function(d, i){ console.log(i,legend_label[i].secondary_name)
+				window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](d, xaxis_label); 
+			});
 
 		legend.append("text")
 			.attr("x", width - 24)

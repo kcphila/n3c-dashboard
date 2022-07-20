@@ -4,7 +4,7 @@
 
 
 <div id="${param.block}_medication_viz" class="dash_viz"></div>
-<p>Sample text.</p>
+
 <script>
 
 function ${param.block}_medication_refresh() {
