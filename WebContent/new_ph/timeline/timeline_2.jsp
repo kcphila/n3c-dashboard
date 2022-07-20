@@ -5,6 +5,8 @@
 	<jsp:param name="topic_title" value="COVID+ Patients: Cumulative and 7-Day Rolling Average Counts" />
 
 
+	<jsp:param name="kpis" value="timeline/kpis_2.jsp" />
+
 	<jsp:param name="simple_panel" value="timeline/cumulative.jsp" />
 
 	<jsp:param name="datatable" value="timeline/positive_cases_by_date.jsp" />

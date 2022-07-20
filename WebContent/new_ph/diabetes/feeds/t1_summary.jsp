@@ -2,7 +2,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
-	select jsonb_pretty(jsonb_agg(done))
+	select jsonb_pretty(jsonb_agg(done order by observation_seq,gender_seq))
 	from (select age_bin as age, gender_abbrev as gender, observation, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev, gender_seq, observation_seq
 			from (select
 					age_bracket as age_bin,

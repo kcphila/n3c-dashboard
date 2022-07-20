@@ -4,6 +4,7 @@
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="topic_title" value="COVID+ Patients: Daily Patient Counts and 7-Day Rolling Averages" />
 
+	<jsp:param name="kpis" value="timeline/kpis_1.jsp" />
 
 	<jsp:param name="simple_panel" value="timeline/daily.jsp" />
 
