@@ -12,11 +12,11 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Medication Class Count *</td>
+							<td>Medication Class Count*</td>
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><span id="${param.block}_medication_class_count_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-capsules"></i> <span id="${param.block}_medication_class_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

@@ -19,5 +19,5 @@
 	<jsp:param name="datatable" value="medications/medications_table.jsp" />
 	<jsp:param name="datatable_div" value="medications_medications" />
 	<jsp:param name="datatable_feed" value="medications/feeds/medications.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count" />
+	<jsp:param name="datatable_kpis" value="patient_count,medication_count,medication_class_count" />
 </jsp:include>

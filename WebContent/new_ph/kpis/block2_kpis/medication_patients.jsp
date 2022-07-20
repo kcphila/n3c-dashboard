@@ -18,7 +18,7 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Patients Taking Medications *</td>
+							<td>Patients Taking Medications*</td>
 						</tr>
 					</table>
 				</div>

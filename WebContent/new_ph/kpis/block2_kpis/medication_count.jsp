@@ -3,7 +3,8 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
- 	select count(distinct medication) from n3c_dashboard.medication_map;
+ 	select count(distinct medication) from n3c_dashboard.medication_map
+ 	where medication != 'Available, in progress';
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">
@@ -12,11 +13,11 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Medication Count *</td>
+							<td>Medication Count*</td>
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><span id="${param.block}_medication_count_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-capsules"></i> <span id="${param.block}_medication_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>
