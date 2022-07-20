@@ -20,6 +20,7 @@
 <script>
 
 function ${param.block}_age_refresh() {
+	console.log('reached age refresh');
    	d3.select("#${param.block}_age_viz").select("svg").remove();
 	localHorizontalGroupedStackedBarChart(${param.block}_AgeGenderArray,"${param.block}_age_viz", "observation", "age", "patient_count", "gender", "Gender", gender_legend, gender_range, "Observation", "Age", 250);	
 }

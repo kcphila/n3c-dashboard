@@ -5,7 +5,7 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (select observation, age_abbrev as age, gender_abbrev as gender, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev, gender_seq, observation_seq
 			from (select
-					observation,
+					INITCAP(observation) as observation,
 					coalesce(age_bracket, 'Unknown') as age_bin,
 					case
 					when (gender_concept_name = 'UNKNOWN') THEN 'Unknown'

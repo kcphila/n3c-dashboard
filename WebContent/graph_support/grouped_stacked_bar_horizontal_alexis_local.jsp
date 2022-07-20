@@ -22,7 +22,6 @@
 
 function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary, count, stack_group, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
 	
-	
 	var filter_icon = " &#xf0b0";
 	
 	var setup_data = d3.nest()
@@ -35,15 +34,13 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 		setup_data.forEach(function(test) {
 			var unique = [];
 			test.values.forEach(function(vals){
-				if (!unique.includes(vals.age)){
-					unique.push(vals.age);
+				if (!unique.includes(vals[secondary])){
+					unique.push(vals[secondary]);
 				};
 			})
 			secondary_list = secondary_list.concat(unique);
 		});
 	};
-	
-	
 	
 	var barPadding = 3;
 	var barHeight = 20;
@@ -161,15 +158,13 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 		 
 		var y_category = d3.scaleLinear().range([0, height]);
 
-
 		var svg = d3.select("#"+domName).append("svg")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom);
 			
-		
 		var g = svg.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-			.attr("id", "svg_g");
+			.attr("id", "svg_g"+domName);
 		
 		g.append("text")
 			.attr("y", 0 - (margin.top/2))
@@ -327,8 +322,12 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.on("mouseover", function() { tooltip.style("display", null); })
 		    .on("mouseout", function() { tooltip.style("display", "none"); })
 		    .on("mousemove", function(d) {
-		     	var yPosition = d3.mouse(document.getElementById("svg_g"))[1];
-		     	var xPosition = d3.mouse(document.getElementById("svg_g"))[0];
+		    	//var xPosition = d3.mouse(this)[0];
+		     	//var yPosition = d3.mouse(this)[1];
+		     	var yPosition = d3.mouse(document.getElementById("svg_g"+domName))[1];
+		     	var xPosition = d3.mouse(document.getElementById("svg_g"+domName))[0];
+		     	console.log(yPosition);
+		     	console.log(xPosition);
 		     	var count2 = d[1]-d[0];
 		     	var total = d.data.total;
 		     	var label = '';
@@ -347,7 +346,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
   					.attr('dy', 10)
   					.attr('fill', function(d){return z(label)})
 		     		.append("tspan")
-		     		.text(count2)
+		     		.text(count2.toLocaleString())
 		     		.attr('fill', 'black')
 		     		.attr('x', 30)
   					.attr('dy', 20)

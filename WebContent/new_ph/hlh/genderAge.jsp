@@ -7,7 +7,7 @@
 
 <c:if test="${not empty param.topic_description}">
 	<div id="viz_caption">
-		<jsp:include page="../hlh/secondary_text/${param.topic_description}.jsp"/>
+		<jsp:include page="../hlh/secondary_text/${param.topic_description}.jsp?symptom=${param.symptom}"/>
 	</div>
 </c:if>
 				
@@ -20,7 +20,7 @@
 <script>
 
 function ${param.block}_gender_refresh() {
-	console.log("gender graph", "${param.block}_gender_viz", ${param.block}_GenderAgeArray)
+	console.log('reached gender refresh');
    	d3.select("#${param.block}_gender_viz").select("svg").remove();
 	localHorizontalGroupedStackedBarChart(${param.block}_GenderAgeArray,"${param.block}_gender_viz", "observation", "gender", "patient_count", "age", "Age", age_legend_4, age_range, "Observation", "Gender", 250);	
 }

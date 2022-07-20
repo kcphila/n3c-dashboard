@@ -7,7 +7,7 @@
 			from (select
 					age_bracket as age_bin,
 					gender_concept_name as gender,
-					observation,
+					INITCAP(observation) as observation,
 					n_observation as observation_seq,
 					count as patient_display,
 					case

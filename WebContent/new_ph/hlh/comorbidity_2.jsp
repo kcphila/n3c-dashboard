@@ -4,9 +4,9 @@
 
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="hlh_2" />
-	<jsp:param name="block_header" value="Cancer" />
-	<jsp:param name="topic_description2" value="secondary_1" />
-	<jsp:param name="topic_title" value="Demographics of Patients With Diagnosed Long COVID (U09.9)" />
+	<jsp:param name="block_header" value="Congestive%20Heart%20Failure" />
+	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_disease" value="Congestive%20Heart%20Failure" />
 	
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="chf" />

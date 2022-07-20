@@ -313,7 +313,7 @@
 					</div>
 				</c:if>
 				<c:if test="${not empty param.age_panel}">
-					<div id="${param.block}-age" class="" style="display: none;" src="${param.age_panel}?panel=${param.age_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.age_labelwidth}">&label_width=${param.age_labelwidth}</c:if><c:if test="${not empty param.age_height}">&viz_height=${param.age_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
+					<div id="${param.block}-age" class="" style="display: none;" src="${param.age_panel}?panel=${param.age_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.age_labelwidth}">&label_width=${param.age_labelwidth}</c:if><c:if test="${not empty param.age_height}">&viz_height=${param.age_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if><c:if test="${not empty param.topic_disease}">&topic_disease=${param.topic_disease}</c:if>">
 					</div>
 				</c:if>
 				<c:if test="${not empty param.race_panel}">
@@ -321,7 +321,7 @@
 					</div>
 				</c:if>
 				<c:if test="${not empty param.gender_panel}">
-					<div id="${param.block}-gender" class="" style="display: none;" src="${param.gender_panel}?panel=${param.gender_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.gender_labelwidth}">&label_width=${param.gender_labelwidth}</c:if><c:if test="${not empty param.gender_height}">&viz_height=${param.gender_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
+					<div id="${param.block}-gender" class="" style="display: none;" src="${param.gender_panel}?panel=${param.gender_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.gender_labelwidth}">&label_width=${param.gender_labelwidth}</c:if><c:if test="${not empty param.gender_height}">&viz_height=${param.gender_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if><c:if test="${not empty param.topic_disease}">&topic_disease=${param.topic_disease}</c:if>">
 					</div>
 				</c:if>
 				<c:if test="${not empty param.ethnicity_panel}">

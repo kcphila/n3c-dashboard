@@ -14,7 +14,7 @@
 		<option value="comorbidity_7">HLH</option>
 		<option value="comorbidity_8">Liver Disease Mild</option>
 		<option value="comorbidity_9">Liver Disease Severe</option>
-		<option value="comorbidity_10">Metastatis</option>
+		<option value="comorbidity_10">Metastasis</option>
 		<option value="comorbidity_11">Myocardial Infarction</option>
 		<option value="comorbidity_12">Paralysis</option>
 		<option value="comorbidity_13">Peptic Ulcer Disease</option>

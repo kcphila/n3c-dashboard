@@ -30,7 +30,7 @@ function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var data_total = table.rows({search:'applied'}).data();
 	var filtered = data_total.filter(function (el) {
-		  return el.observation == "has disease";
+		  return el.observation == "Has Disease";
 		});
 	
 	var sum = filtered.pluck(column).sum();
@@ -52,7 +52,7 @@ function ${param.block}_updateKPI2(table, column) {
 	var sum_string = '';
 	var data_total = table.rows({search:'applied'}).data();
 	var filtered = data_total.filter(function (el) {
-		  return el.observation == "has disease";
+		  return el.observation == "Has Disease";
 		});
 	
 	var peds = filtered.filter(function (el) {
@@ -180,7 +180,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
-    	order: [[0, 'asc']],
+    	order: [[9, 'asc']],
      	columns: [
         	{ data: 'observation', visible: true, orderable: true },
         	{ data: 'age', visible: true, orderable: true },
@@ -216,6 +216,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	// this is necessary to populate the histograms for the panel's initial D3 rendering
 	${param.block}_refreshHistograms();
+	${param.block}_age_refresh();
 
 	
 });

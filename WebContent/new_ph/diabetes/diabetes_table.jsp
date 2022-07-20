@@ -29,35 +29,30 @@ function ${param.block}_updateKPI(table, column) {
 		var data = this.data();
 		if (column == 'diabetes'){
 			if (data['observation'].replace(/[0-9]/g, '') == 'Has Type  Diabetes'){
-				console.log('reached');
 				sum += data['patient_count'];
 			};
 		};
 		
 		if (column == 'diabetes_covid'){
-			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes and covid positive'){
-				console.log('reached');
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes And Covid Positive'){
 				sum += data['patient_count'];
 			};
 		};
 		
 		if (column == 'diabetes_before'){
-			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes conditon before covid'){
-				console.log('reached');
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes Conditon Before Covid'){
 				sum += data['patient_count'];
 			};
 		};
 		
 		if (column == 'diabetes_after'){
-			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes conditon after covid'){
-				console.log('reached');
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes Conditon After Covid'){
 				sum += data['patient_count'];
 			};
 		};
 		
 		if (column == 'diabetes_thirty'){
-			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes condition  days after covid'){
-				console.log('reached');
+			if (data['observation'].replace(/[0-9]/g, '') == 'Type  Diabetes Condition  Days After Covid'){
 				sum += data['patient_count'];
 			};
 		};
@@ -155,7 +150,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
-    	order: [[0, 'asc']],
+    	order: [[9, 'asc']],
      	columns: [
          	{ data: 'age', visible: true, orderable: true,  orderData: [6] },
         	{ data: 'gender', visible: true, orderable: true },
