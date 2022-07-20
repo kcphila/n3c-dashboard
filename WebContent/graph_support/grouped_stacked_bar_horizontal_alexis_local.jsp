@@ -24,27 +24,23 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 	
 	
 	var filter_icon = " &#xf0b0";
+	
 	var setup_data = d3.nest()
-		.key(function (d) { return d[stack_group]; })
+		.key(function (d) { return d[primary]; })
 		.entries(data);
 	
-	var max = -1;
-	var index = -1;
 	var secondary_list = [];
-	
-	console.log(setup_data);
+
 	if (setup_data.length > 0){
-		setup_data.forEach(function(test, i) {
-			var length = test.values.length;
-			if (length > max){
-				index = i;
-				max = length;
-			};
+		setup_data.forEach(function(test) {
+			var unique = [];
+			test.values.forEach(function(vals){
+				if (!unique.includes(vals.age)){
+					unique.push(vals.age);
+				};
+			})
+			secondary_list = secondary_list.concat(unique);
 		});
-		
-		for (i in setup_data[index].values){
-			secondary_list.push(setup_data[index].values[i][secondary]);
-		}
 	};
 	
 	

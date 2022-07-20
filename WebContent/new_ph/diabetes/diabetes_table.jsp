@@ -139,7 +139,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'CSV export.',
     	      text: 'CSV',
-    	      filename: 'severity_csv_export',
+    	      filename: 'diabetes_csv_export',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',

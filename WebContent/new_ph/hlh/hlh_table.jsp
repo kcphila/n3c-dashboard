@@ -45,7 +45,6 @@ function ${param.block}_updateKPI(table, column) {
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
 		
 	}
-	console.log("kpi", '${param.block}', column)
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
 }
 
@@ -60,12 +59,8 @@ function ${param.block}_updateKPI2(table, column) {
 		  return el.age == "<18";
 		});
 	
-	
 	var sum = peds.pluck('patient_count').sum();
 	
-	console.log(sum);
-	
-	console.log(sum);
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -152,6 +147,37 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	    }]
     	},
        	paging: true,
+       	buttons: {
+    	    dom: {
+    	      button: {
+    	        tag: 'button',
+    	        className: ''
+    	      }
+    	    },
+    	    buttons: [{
+    	      extend: 'csv',
+    	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
+    	      text: 'CSV',
+    	      filename: 'diseases_csv_export',
+    	      extension: '.csv'
+    	    }, {
+    	      extend: 'copy',
+    	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
+    	      titleAttr: 'Copy table data.',
+    	      text: 'Copy'
+    	    }]
+    	},
+       	snapshot: null,
+    	initComplete: function( settings, json ) {
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
@@ -169,11 +195,23 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	]
 	} );
 
+	// table search logic that distinguishes sort/filter 
 	${param.block}_datatable.on( 'search.dt', function () {
-		console.log('${param.target_div}-table search', ${param.block}_datatable.search());
-		${param.block}_refreshHistograms();
-		$('#${param.block}_btn_clear').removeClass("no_clear");
-		$('#${param.block}_btn_clear').addClass("show_clear");
+		var snapshot = ${param.block}_datatable
+	     .rows({ search: 'applied', order: 'index'})
+	     .data()
+	     .toArray()
+	     .toString();
+
+	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
+
+	  	if (currentSnapshot != snapshot) {
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	   		$('#${param.block}_btn_clear').removeClass("no_clear");
+	   		$('#${param.block}_btn_clear').addClass("show_clear");
+	  	}
 	} );
 
 	// this is necessary to populate the histograms for the panel's initial D3 rendering

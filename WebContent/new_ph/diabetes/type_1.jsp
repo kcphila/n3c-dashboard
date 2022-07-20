@@ -10,6 +10,12 @@
 	</div>
 </c:if>
 
+<div id="${param.block}_diabetest1_save_viz"> 
+	<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_diabetest1_viz', '${param.block}_diabetes_t1.svg');">Save as SVG</button>
+	<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_diabetest1_viz', '${param.block}_diabetes_t1.png');">Save as PNG</button>
+	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_diabetest1_viz', '${param.block}_diabetes_t1.jpg');">Save as JPEG</button>
+</div>
+
 <script>
 function ${param.block}_refresh() {
    	d3.select("#${param.block}_diabetest1_viz").select("svg").remove();
