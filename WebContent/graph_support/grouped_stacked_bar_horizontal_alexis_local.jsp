@@ -20,52 +20,62 @@
 
 
 function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary, count, stack_group, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
-	var margin = {top: 100, right: 100, bottom: 50, left: offset},
-		width = 1200 - margin.left - margin.right,
-		height = 1500 - margin.top - margin.bottom;
-
-	var myObserver = new ResizeObserver(entries => {
-		entries.forEach(entry => {
-			var newWidth = Math.floor(entry.contentRect.width);
-			if (newWidth > 0) {
-				d3.select("#"+domName).select("svg").remove();
-				width = newWidth - margin.left - margin.right;
-				height = Math.max(width, data.length * 4) * 1.2;
-				draw();
-			}
-		});
+	
+	var setup_data = d3.nest()
+		.key(function (d) { return d[stack_group]; })
+		.entries(data);
+	
+	var max = -1;
+	var index = -1;
+	var secondary_list = [];
+	
+	setup_data.forEach(function(test, i) {
+		var length = test.values.length;
+		if (length > max){
+			index = i;
+			max = length;
+		}
 	});
 	
+	for (i in setup_data[index].values){
+		secondary_list.push(setup_data[index].values[i][secondary]);
+	}
 	
-	myObserver.observe(d3.select("#"+domName).node());
+	var barPadding = 3;
+	var barHeight = 20;
+	
+	var margin = {top: 100, right: 100, bottom: 50, left: offset},
+		width = $("#"+domName).width() - margin.left - margin.right,
+		height = (secondary_list.length*barHeight)+100 - margin.top - margin.bottom;
+	
+
+	function drawgraphnew(){
+		var newWidth = $("#"+domName).width();
+		if (newWidth > 0) {
+			d3.select("#"+domName).select("svg").remove();
+			width = newWidth - margin.left - margin.right;
+			height = (secondary_list.length*barHeight)+100 - margin.top - margin.bottom;
+			draw();
+		}
+	}
+	
+	d3.select("#"+domName).select("svg").remove();
+
+ 	window.onresize = drawgraphnew;
 	
 	draw();
 	
 	function draw() {
-console.log(domName,height,data.length,data)
-		var barPadding = 20;
 
 		var x = d3.scaleLinear()
 			.rangeRound([0, width]);
-
 		var x1 = d3.scaleBand()		
-
-		data.forEach(function(d){
-    		d.count = +d.count;
-		})
-  	
 		var z = d3.scaleOrdinal();
 		
 		// get all key values
 		var keys_all = data.map(function(d){ 
 			return d[stack_group]; 
 		});
-		
-		var keys_secondary = data.map(function(d){ 
-			return d[secondary]; 
-		});
-		
-		var keys_sec = [... new Set(keys_secondary)];
 		
 		var keys = [... new Set(keys_all)];
 
@@ -111,7 +121,6 @@ console.log(domName,height,data.length,data)
 			.entries(data)
 			.map(function(d){ return d.value; });
 		
-	
 		x.domain([0, d3.max(groupData, function(d) { return d.total; })]).nice();
 
 		var groupedData = d3.nest()
@@ -125,28 +134,17 @@ console.log(domName,height,data.length,data)
 			sub_labels.push(string);
 		});
 		
+		// need this here because editing array later
 		var sub_labels2 = sub_labels;
 	
 		var category_labels = [];
 		var cummulative = 0;
-		var rangeBands = [];
-		var rangeBands2 = [];
-		
-		
 		groupedData.forEach(function(d, i) {
 			d.values = d3.stack().keys(keys)(d.values);
-			d.values2 = d3.stack().keys(keys_sec)(d.values);
 			d.cummulative = cummulative;
 			cummulative += d.values[0].length;
 			category_labels.push(d.key);
-			d.values.forEach(function(e) {
-			    rangeBands.push(i);
-			 })
-			 d.values2.forEach(function(e) {
-			    rangeBands2.push(i);
-			 })
 		});
-		
 		
 		var axis_color = d3.scaleOrdinal()
 			.range(["#000000", "#7f7e80"])
@@ -155,14 +153,10 @@ console.log(domName,height,data.length,data)
 		var bar_color = d3.scaleOrdinal()
 			.range(["#EEEEEE", "white"])
 			.domain(category_labels);
-		 
 		
 		 
 		var y_category = d3.scaleLinear().range([0, height]);
-		var y_defect = d3.scaleBand().domain(rangeBands).range([0, height]).padding(0.1);
-		var y_category_domain = y_defect.bandwidth() * rangeBands.length;
-		y_category.domain([0, y_category_domain]);
-console.log("y_defect",y_category(y_defect.bandwidth()))
+
 
 		var svg = d3.select("#"+domName).append("svg")
 			.attr("width", width + margin.left + margin.right)
@@ -261,19 +255,18 @@ console.log("y_defect",y_category(y_defect.bandwidth()))
     			return 'category category-' + d.key.replace(/\s+/g, '');
   			})
   			.attr("transform", function(d) {
-    			return "translate(0, " + y_category(( d.cummulative * y_defect.bandwidth() )) + ")";
+    			return "translate(0, " + ( d.cummulative * barHeight ) + ")";
   			});
 		
 		categories.append("rect")
 			.attr("transform", function(d) {
-				var h = (d.values[0].length) * (y_category(y_defect.bandwidth()));
     			return "translate("+ -margin.left +", " + 0 + ")";
   			})
   			.style("fill", function(d){
 				return bar_color(d.key);
 			})
   			.attr("height", function(d){
-  				return (d.values[0].length) * (y_category(y_defect.bandwidth()));
+  				return (d.values[0].length * barHeight);
   			})
   			.attr("width", width + margin.left);
 		
@@ -286,7 +279,7 @@ console.log("y_defect",y_category(y_defect.bandwidth()))
 			.style("fill", "black")
 			.style("text-anchor", "start")
 			.attr("transform", function(d) {
-				var h = (d.values[0].length) * (y_category(y_defect.bandwidth()));
+				var h = (d.values[0].length * barHeight);
     			return "translate(" + -(margin.left) + " , " + ((h/2)+5) + ")";
   			})
   			.on("mouseover", function(d, i) {
@@ -316,11 +309,12 @@ console.log("y_defect",y_category(y_defect.bandwidth()))
 		     	};
 				return "serie-rect secondary lab" + label.replace(/[^A-Z0-9]/ig, "");
 			})
-			.attr("transform", function(d, i) {return "translate(0, " + y_category((i * y_defect.bandwidth())) + ")"; })
+			.attr("transform", function(d, i) {
+				return "translate(0, " + (i * barHeight) + ")"; })
 			.attr("y", function(d) { return y_category(0); })
 			.attr("x", function(d) { return x(d[0]); })
 			.attr("width", function(d) { return Math.max(1,x(d[1]) - x(d[0])); })
-			.attr("height",  y_category(y_defect.bandwidth() - barPadding))
+			.attr("height",  (barHeight- barPadding))
 			.on("click", function(d, i){ console.log("serie-rect click d", i, d); })
 			.on("mouseover", function() { tooltip.style("display", null); })
 		    .on("mouseout", function() { tooltip.style("display", "none"); })
@@ -365,7 +359,7 @@ console.log("y_defect",y_category(y_defect.bandwidth()))
 			.attr("class", "secondary")
 			.style("text-anchor", "start")
 			.style("font-size", ".8rem")
-			.attr("transform", function(d, i) {return "translate(0, " + (y_category(( (i * y_defect.bandwidth())+y_defect.bandwidth()/2)+15    )) + ")"; })
+			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })
 			.attr("y", function(d) { 
 				return y_category(0); 
 			})
@@ -384,7 +378,7 @@ console.log("y_defect",y_category(y_defect.bandwidth()))
 			.style("fill", "black")
 			.style("text-anchor", "end")
 			.style("font-size", ".8rem")
-			.attr("transform", function(d, i) {return "translate(0, " + (y_category(( (i * y_defect.bandwidth())+y_defect.bandwidth()/2)+15    )) + ")"; })
+			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })
 			.attr("class", function(d){return "text_color " + d.data.primary.replace(/\s/g,''); })
 			.attr("y", function(d) { return y_category(0); })
 			.attr("x", function(d) { return x1(d[0]); })
