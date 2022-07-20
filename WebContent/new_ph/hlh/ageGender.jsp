@@ -21,7 +21,7 @@
 
 function ${param.block}_age_refresh() {
    	d3.select("#${param.block}_age_viz").select("svg").remove();
-	localHorizontalGroupedStackedBarChart(${param.block}_AgeGenderArray,"${param.block}_age_viz", "observation", "age", "patient_count", "gender", "Gender", gender_legend, gender_range_no_other, "Observation", "Age", 250);	
+	localHorizontalGroupedStackedBarChart(${param.block}_AgeGenderArray,"${param.block}_age_viz", "observation", "age", "patient_count", "gender", "Gender", gender_legend, gender_range, "Observation", "Age", 250);	
 }
 
 ${param.block}_age_refresh();

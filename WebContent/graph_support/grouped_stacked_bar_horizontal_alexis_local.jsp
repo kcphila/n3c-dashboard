@@ -32,17 +32,22 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 	var index = -1;
 	var secondary_list = [];
 	
-	setup_data.forEach(function(test, i) {
-		var length = test.values.length;
-		if (length > max){
-			index = i;
-			max = length;
+	console.log(setup_data);
+	if (setup_data.length > 0){
+		setup_data.forEach(function(test, i) {
+			var length = test.values.length;
+			if (length > max){
+				index = i;
+				max = length;
+			};
+		});
+		
+		for (i in setup_data[index].values){
+			secondary_list.push(setup_data[index].values[i][secondary]);
 		}
-	});
+	};
 	
-	for (i in setup_data[index].values){
-		secondary_list.push(setup_data[index].values[i][secondary]);
-	}
+	
 	
 	var barPadding = 3;
 	var barHeight = 20;
