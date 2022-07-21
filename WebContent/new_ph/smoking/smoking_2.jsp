@@ -19,3 +19,6 @@
 
 </jsp:include>
 
+<script>
+	smoking_2_toggle("severity");
+</script>
