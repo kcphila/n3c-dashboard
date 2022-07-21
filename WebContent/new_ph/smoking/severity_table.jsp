@@ -47,6 +47,34 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
     	data: data,
+    	dom: 'lfr<"datatable_overflow"t>Bip',
+    	buttons: {
+    	    dom: {
+    	      button: {
+    	        tag: 'button',
+    	        className: ''
+    	      }
+    	    },
+    	    buttons: [{
+    	      extend: 'csv',
+    	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
+    	      text: 'CSV',
+    	      filename: 'smoking_csv_export',
+    	      extension: '.csv'
+    	    }, {
+    	      extend: 'copy',
+    	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
+    	      titleAttr: 'Copy table data.',
+    	      text: 'Copy'
+    	    }]
+    	},
        	paging: true,
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
