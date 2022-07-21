@@ -7,7 +7,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'severity':
 	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'smoking_status':
+	case 'smokingstatus':
 	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
 		break;
 	}
@@ -60,6 +60,25 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
            	{ data: 'smoking_status_abbrev', visible: false },
         	{ data: 'smoking_status_seq', visible: false }
     	]
+	} );
+
+	// table search logic that distinguishes sort/filter 
+	${param.block}_datatable.on( 'search.dt', function () {
+		var snapshot = ${param.block}_datatable
+	     .rows({ search: 'applied', order: 'index'})
+	     .data()
+	     .toArray()
+	     .toString();
+
+	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
+
+	  	if (currentSnapshot != snapshot) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("no_clear");
+	   		$('#${param.block}_btn_clear').addClass("show_clear");
+	  	}
 	} );
 
 	// this is necessary to populate the histograms for the panel's initial D3 rendering

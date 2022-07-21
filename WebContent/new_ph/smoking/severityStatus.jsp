@@ -22,7 +22,7 @@
 function ${param.block}_severity_refresh() {
 	console.log("reached");
    	d3.select("#${param.block}_severity_viz").select("svg").remove(); console.log(smoking_2_SeverityStatusArray)
-	localHorizontalStackedBarChart(smoking_2_SeverityStatusArray,"${param.block}_severity_viz", 120, status_legend, status_range, "Status");	
+	localHorizontalStackedBarChart(smoking_2_SeverityStatusArray,"${param.block}_severity_viz", 120, status_legend, status_range, "Smoking Status");	
 }
 
 ${param.block}_severity_refresh();
