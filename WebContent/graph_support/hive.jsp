@@ -156,7 +156,7 @@ d3.json("../feeds/hive_data.jsp", function(error, data) {
 	  .style("fill", function(d) {
 	    return color(d.x);
 	  })
-			.on('mouseover.tooltip', function(d) {console.log(d, d3.event.pageX, d3.event.pageYz)
+			.on('mouseover.tooltip', function(d) {console.log(d, d3.event.pageX, d3.event.pageY)
       			tooltip.transition()
         			.duration(300)
         			.style("opacity", .8);
