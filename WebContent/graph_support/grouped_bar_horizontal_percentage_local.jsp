@@ -20,7 +20,7 @@
 // margin = array: [top, bottom, left, right]
 
 
-function localHorizontalGroupedBarChart(data, domName, primary, secondary, count, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
+function localHorizontalGroupedPercentageBarChart(data, domName, primary, secondary, count, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
 	
 	var filter_icon = " &#xf0b0";
 	
@@ -68,6 +68,7 @@ function localHorizontalGroupedBarChart(data, domName, primary, secondary, count
 	
 	function draw() {
 		
+		console.log(data);
 		var sequence = secondary + '_seq';
 		var prime_seq = primary + '_seq';
 		data.sort(function (x, y) { return x[prime_seq] - y[prime_seq] || x[sequence] - y[sequence]; });
@@ -93,8 +94,6 @@ function localHorizontalGroupedBarChart(data, domName, primary, secondary, count
  		.map(data);
 		
 		
-		var max_count = 0;
-		
 		var groupedData = d3.nest()
      		.key(function (d) { return d[primary]; })
      		.key(function (d) { return d[secondary]; })
@@ -106,15 +105,12 @@ function localHorizontalGroupedBarChart(data, domName, primary, secondary, count
      				count2 += v[i][count];
      				seq = v[i][sequence];
      				total = totalsGrouped.get(v[i][secondary]).total;
-     				if (max_count < count2){ 
-     					max_count = count2;
-     				};
      			}
      			return {count: count2, seq: seq, total: total};
 			})
      		.entries(data);
 		
-		x.domain([0, max_count]).nice();
+		x.domain([0, 100]).nice();
 		
 		var category_labels = [];
 		var cummulative = 0;
@@ -150,7 +146,7 @@ function localHorizontalGroupedBarChart(data, domName, primary, secondary, count
 		
 		g.append("g")
 			.attr("class", "axis")
-			.call(d3.axisTop(x).ticks(null, "s"))
+			.call(d3.axisTop(x).ticks(Math.round(width/100), "s").tickFormat(function(d) {  return  d + "%" }))
 			.append("text")
 			.attr("y", 2)
 			.attr("x", x(x.ticks().pop()) + 0.5)
@@ -264,8 +260,8 @@ function localHorizontalGroupedBarChart(data, domName, primary, secondary, count
 			.attr("y", function(d) { 
 				return (y_category(0) + 15); 
 			})
-			.attr("x", function(d) { return (x(d.value.count)) + 5; })
-			.text(function(d){return d.value.count.toLocaleString()});
+			.attr("x", function(d) { return (x((d.value.count/d.value.total)*100) + 5); })
+			.text(function(d){return ((d.value.count/d.value.total)*100).toFixed(2) + "%"});
 		
 		serie.selectAll("rect")
 			.data(function(d) {return d.values; })
@@ -273,7 +269,7 @@ function localHorizontalGroupedBarChart(data, domName, primary, secondary, count
 			.attr("class", function(d) {
 				return 'secondary lab' + d.key.replace(/[^A-Z0-9]/ig, "");
 			})
-			.attr("width", function(d) {return Math.max(1, x(d.value.count)); })
+			.attr("width", function(d) {console.log(d); console.log((d.value.count/d.value.total)*100); return Math.max(1, x((d.value.count/d.value.total)*100)); })
 			.attr("height",  (barHeight- barPadding))
 			.attr("fill", function(d){ return colorscale[(d.value.seq-1)]; })
 			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })

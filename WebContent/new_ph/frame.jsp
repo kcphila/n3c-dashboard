@@ -13,9 +13,11 @@
 <jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/>
 <jsp:include page="../graph_support/horizontalGroupedStackedBarChart_local.jsp"/>
 
+
 <jsp:include page="../graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp"/>
 
 <jsp:include page="../graph_support/grouped_bar_horizontal_local.jsp"/>
+<jsp:include page="../graph_support/grouped_bar_horizontal_percentage_local.jsp"/>
 
 <jsp:include page="../graph_support/verticalBarChart_local.jsp"/>
 <jsp:include page="../graph_support/mortalityBarChart_local.jsp"/>
