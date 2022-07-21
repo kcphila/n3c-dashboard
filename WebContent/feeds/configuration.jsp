@@ -208,9 +208,12 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 
 <sql:query var="statuses" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select distinct smoking_status as secondary
-		  from n3c_questions.covid_smoking_demographics_censored order by smoking_status
-		  ) as done;
+	from (select smoking_status as secondary, 
+		smoking_status as secondary_name, 
+		smoking_status_seq as secondary_seq
+		from n3c_dashboard.status_map
+		order by smoking_status_seq
+	) as done;
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	var status_legend = ${row.jsonb_pretty};

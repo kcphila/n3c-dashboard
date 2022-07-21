@@ -20,7 +20,7 @@
 // margin = array: [top, bottom, left, right]
 
 
-function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary, count, stack_group, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
+function localHorizontalGroupedBarChart(data, domName, primary, secondary, count, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
 	
 	var filter_icon = " &#xf0b0";
 	
@@ -45,7 +45,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 	var barPadding = 3;
 	var barHeight = 20;
 	
-	var margin = {top: 100, right: 120, bottom: 50, left: offset},
+	var margin = {top: 100, right: 100, bottom: 50, left: offset},
 		width = $("#"+domName).width() - margin.left - margin.right,
 		height = (secondary_list.length*barHeight);
 	
@@ -67,96 +67,73 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 	draw();
 	
 	function draw() {
+		
+		console.log(data);
+		var sequence = secondary + '_seq';
+		var prime_seq = primary + '_seq';
+		data.sort(function (x, y) { return x[prime_seq] - y[prime_seq] || x[sequence] - y[sequence]; });
+		
 
 		var x = d3.scaleLinear()
+			.rangeRound([0, width-margin.right]);
+		var x2 = d3.scaleLinear()
 			.rangeRound([0, width]);
 		var x1 = d3.scaleBand()		
 		var z = d3.scaleOrdinal();
 		
-		// get all key values
-		var keys_all = data.map(function(d){ 
-			return d[stack_group]; 
-		});
 		
-		var keys = [... new Set(keys_all)];
-
-		var legend_map = d3.map(legend_label, function(d) { return d.secondary_name; });
+		var totalsGrouped = d3.nest()
+ 		.key(function (d) { return d[secondary]; })
+ 		.rollup(function(v) { 
+ 			var count2 = 0;
+ 			for (i in v){
+ 				count2 += v[i][count];
+ 			}
+ 			return {total: count2};
+		})
+ 		.map(data);
 		
-		if (stack_group == "age"){
-			function hasNumber(myString) {
-				return /\d/.test(myString);
-			};
-			function hasDash(myString) {
-				return /(-)/.test(myString);
-			};
-			function eval(myString){
-				if(!hasNumber(myString)){
-					return '1000';
-				} else if(hasDash(myString)){
-					 return myString.substring(myString.indexOf('-') + 1);
-				} else {
-					return myString.replace(/\D/g,'');
-				};
-			};
-			
-			keys = keys.sort(function(x, y){
-				return Number(eval(x)) - Number(eval(y));
-			});
-		} else {
-			keys = keys.sort();
-		};
-
-		z.domain(keys);
-		z.range(colorscale);
 		
-		var groupData = d3.nest()
-			.key(function(d) { return d[secondary] + d[primary]; })
-			.rollup(function(d, i){
-				var d2 = {secondary: d[0][secondary], primary: d[0][primary], total: 0};
-				d.forEach(function(d){
-					d2[d[stack_group]] = d[count];
-					d2.total += d[count];
-				})
-				return d2;
-			})
-			.entries(data)
-			.map(function(d){ return d.value; });
+		var max_count = 0;
 		
-		x.domain([0, d3.max(groupData, function(d) { return d.total; })]).nice();
-
 		var groupedData = d3.nest()
-			.key(function (d) { return d.primary; })
-            .entries(groupData);
-
-		var sub_labels  = [];
-
-		groupData.forEach(function(d) {
-			var string = '' + d.secondary + d.primary;
-			sub_labels.push(string);
-		});
+     		.key(function (d) { return d[primary]; })
+     		.key(function (d) { return d[secondary]; })
+     		.rollup(function(v) { 
+     			var count2 = 0;
+     			var seq = 0;
+     			var total = 0;
+     			for (i in v){
+     				count2 += v[i][count];
+     				seq = v[i][sequence];
+     				total = totalsGrouped.get(v[i][secondary]).total;
+     				if (max_count < count2){ 
+     					max_count = count2;
+     				};
+     			}
+     			return {count: count2, seq: seq, total: total};
+			})
+     		.entries(data);
 		
-		// need this here because editing array later
-		var sub_labels2 = sub_labels;
-	
+		x.domain([0, max_count]).nice();
+		
 		var category_labels = [];
 		var cummulative = 0;
 		groupedData.forEach(function(d, i) {
-			d.values = d3.stack().keys(keys)(d.values);
 			d.cummulative = cummulative;
-			cummulative += d.values[0].length;
+			cummulative += d.values.length;
 			category_labels.push(d.key);
 		});
 		
+		
+		var y_category = d3.scaleLinear().range([0, height]);
 		var axis_color = d3.scaleOrdinal()
 			.range(["#000000", "#7f7e80"])
 			.domain(category_labels);
-		
+	
 		var bar_color = d3.scaleOrdinal()
 			.range(["#EEEEEE", "white"])
 			.domain(category_labels);
-		
-		 
-		var y_category = d3.scaleLinear().range([0, height]);
 
 		var svg = d3.select("#"+domName).append("svg")
 			.attr("width", width + margin.left + margin.right)
@@ -172,19 +149,6 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("dy", "1em")
 			.text(xaxis_label); 
 		
-		g.append("text")
-			.attr("y", 0 - (margin.top/2))
-			.attr("x", 0)
-			.attr("dy", "1em")
-			.attr("text-anchor", "end")
-			.text(label2); 
-		
-		g.append("text")
-			.attr("y", 0 - (margin.top/2))
-			.attr("x", -margin.left)
-			.attr("dy", "1em")
-			.text(label1); 
-		
 		g.append("g")
 			.attr("class", "axis")
 			.call(d3.axisTop(x).ticks(null, "s"))
@@ -195,7 +159,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("fill", "#000")
 			.attr("font-weight", "bold")
 			.attr("text-anchor", "start");
-
+		
 		// Legend ////////////////////	
 		var legend_text = svg.append("g")
 			.attr("transform", "translate(" + 0 + " ," + 30 + " )")
@@ -207,7 +171,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("x", width+margin.right+margin.left)
 			.attr("y", 9.5)
 			.attr("dy", "0.32em")
-			.text(xaxis_label)
+			.text(label2)
 			.append("tspan")
 			.attr('font-family', 'FontAwesome')
 			.attr("class", "fa")
@@ -231,7 +195,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("height", 19)
 			.attr("fill", function(d, i) { return colorscale[i]; })
 			.on("click", function(d, i){
-				window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](d, xaxis_label.replace(/\s/g, "")); 
+				window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](d, label2.replace(/\s/g, "")); 
 			})
 			.on("mouseover", function(d, i) {
 				svg.selectAll(".secondary:not(.lab" + d.secondary.replace(/[^A-Z0-9]/ig, "") + ")").style("opacity", "0.05");
@@ -250,7 +214,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 				return d.secondary;
 		});
 		
-		// Bars ///////////////
+		//////// Bars ///////////////
 		var categories = g.selectAll(".categories")
 			.data(groupedData)
   			.enter().append("g")
@@ -265,14 +229,13 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("transform", function(d) {
     			return "translate("+ -margin.left +", " + 0 + ")";
   			})
-  			.style("fill", function(d){
+			.style("fill", function(d){
 				return bar_color(d.key);
 			})
-  			.attr("height", function(d){
-  				return (d.values[0].length * barHeight);
-  			})
-  			.attr("width", width + margin.left);
-		
+			.attr("height", function(d){
+				return ( d.values.length * barHeight);
+			})
+			.attr("width", width + margin.left);
 		
 		categories
 			.append("text")
@@ -282,85 +245,17 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.style("fill", "black")
 			.style("text-anchor", "start")
 			.attr("transform", function(d) {
-				var h = (d.values[0].length * barHeight);
+				var h = (d.values.length * barHeight);
     			return "translate(" + -(margin.left) + " , " + ((h/2)+5) + ")";
-  			})
-  			.on("mouseover", function(d, i) {
-				svg.selectAll(".text_color:not(." + d.key.replace(/\s/g,'') + ")").style("opacity", "0.05");
-			})
-			.on("mouseout", function(d, i) {
-  				svg.selectAll(".text_color").style("opacity", "1");
+  			});
+			
+		var serie = categories.append("g")
+			.attr("transform", function(d) {
+				return "translate("+ 0 +", " + -13 + ")";
 			});
-			
-			
-		var serie = categories.selectAll(".serie")
-			.data(function(d) {return d.values;})
-			.enter().append("g")
-			.attr("class",function(d) { return "serie ${param.namespace}" + d.key.replace(/[^A-Za-z0-9]/g, ""); })
-			.attr("fill", function(d) { return colorscale[legend_map.get(d.key).secondary_seq - 1]; });
-		
-		serie.selectAll("rect")
-			.data(function(d) {return d; })
-			.enter().append("rect")
-			.attr("class", function(d){
-				var count = d[1]-d[0];
-				var label = '';
-		     	for (var i in d.data){
-		     		if (d.data[i] == count){
-		     			label = i;
-		     		}
-		     	};
-				return "serie-rect secondary lab" + label.replace(/[^A-Z0-9]/ig, "");
-			})
-			.attr("transform", function(d, i) {
-				return "translate(0, " + (i * barHeight) + ")"; })
-			.attr("y", function(d) { return y_category(0); })
-			.attr("x", function(d) { return x(d[0]); })
-			.attr("width", function(d) { return Math.max(1, x(d[1]) - x(d[0])); })
-			.attr("height",  (barHeight- barPadding))
-			.on("click", function(d, i){ console.log("serie-rect click d", i, d); })
-			.on("mouseover", function() { tooltip.style("display", null); })
-		    .on("mouseout", function() { tooltip.style("display", "none"); })
-		    .on("mousemove", function(d) {
-		    	//var xPosition = d3.mouse(this)[0];
-		     	//var yPosition = d3.mouse(this)[1];
-		     	var yPosition = d3.mouse(document.getElementById("svg_g"+domName))[1];
-		     	var xPosition = d3.mouse(document.getElementById("svg_g"+domName))[0];
-		     	console.log(yPosition);
-		     	console.log(xPosition);
-		     	var count2 = d[1]-d[0];
-		     	var total = d.data.total;
-		     	var label = '';
-		     	for (var i in d.data){
-		     		if (d.data[i] == count2){
-		     			label = i;
-		     		}
-		     	}
-		     	tooltip.selectAll("tspan").remove();
-		     	tooltip
-		     		.attr("transform", "translate(" + xPosition + "," +  yPosition + ")")
-		     		.selectAll("text")
-		     		.append("tspan")
-		     		.text(label)
-		     		.attr('x', 30)
-  					.attr('dy', 10)
-  					.attr('fill', function(d){return z(label)})
-		     		.append("tspan")
-		     		.text(count2.toLocaleString())
-		     		.attr('fill', 'black')
-		     		.attr('x', 30)
-  					.attr('dy', 20)
-		     		.append("tspan")
-	     			.text(function(){
-	     				return  ((count2/total) * 100).toFixed(2) + "%";
-	     			})
-	     			.attr('fill', 'black')
-	     			.attr('x', 30)
-					.attr('dy', 21);
-		   	 	});
 		
 		serie.selectAll("g")
-			.data(function(d) {return d; })
+			.data(function(d) {return d.values; })
 			.enter().append("text")
 			.style("fill", "#a5a2a2")
 			.attr("class", "secondary")
@@ -368,40 +263,54 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.style("font-size", ".8rem")
 			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })
 			.attr("y", function(d) { 
-				return y_category(0); 
+				return (y_category(0) + 15); 
 			})
-			.attr("x", function(d) { return (x(d.data.total)) + 5; })
-			.text(function(d) {
-				var string = '' + d.data.secondary + d.data.primary;
-				if ( sub_labels2.includes(string) ){
-					sub_labels2 = sub_labels2.filter(function(e) { return e !== string });
-					return d.data.total;
-				}
-			});
+			.attr("x", function(d) { return (x(d.value.count)) + 5; })
+			.text(function(d){return d.value.count.toLocaleString()});
 		
-		serie.selectAll("text2")
-			.data(function(d) {return d; })
-			.enter().append("text")
-			.style("fill", "black")
-			.style("text-anchor", "end")
-			.style("font-size", ".8rem")
+		serie.selectAll("rect")
+			.data(function(d) {return d.values; })
+			.enter().append("rect")
+			.attr("class", function(d) {
+				return 'secondary lab' + d.key.replace(/[^A-Z0-9]/ig, "");
+			})
+			.attr("width", function(d) {return Math.max(1, x(d.value.count)); })
+			.attr("height",  (barHeight- barPadding))
+			.attr("fill", function(d){ return colorscale[(d.value.seq-1)]; })
 			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })
-			.attr("class", function(d){return "text_color " + d.data.primary.replace(/\s/g,''); })
-			.attr("y", function(d) { return y_category(0); })
-			.attr("x", function(d) { return x1(d[0]); })
-			.text(function(d) {
-				var string = '' + d.data.secondary + d.data.primary;
-				if ( sub_labels.includes(string) ){
-					sub_labels = sub_labels.filter(function(e) { return e !== string });
-					return d.data.secondary;
-				}
-			})
-			.on("mouseover", function(d, i) {
-				svg.selectAll(".text_color:not(." + d.data.primary.replace(/\s/g,'') + ")").style("opacity", "0.05");
-			})
-			.on("mouseout", function(d, i) {
-  				svg.selectAll(".text_color").style("opacity", "1");
-			});;
+			.on("mouseover", function() { tooltip.style("display", null); })
+		    .on("mouseout", function() { tooltip.style("display", "none"); })
+		    .on("mousemove", function(d) {
+		     	var yPosition = d3.mouse(document.getElementById("svg_g"+domName))[1];
+		     	var xPosition = d3.mouse(document.getElementById("svg_g"+domName))[0];
+		     	var count2 = d.value.count;
+		     	var total = d.value.total;
+		     	var label = d.key;
+		     	var seq = d.value.seq;
+		     	tooltip.selectAll("tspan").remove();
+		     	tooltip
+		     		.attr("transform", "translate(" + xPosition + "," +  yPosition + ")")
+		     		.selectAll("text")
+		     		.append("tspan")
+		     		.text(label)
+		     		.attr('x', 10)
+  					.attr('dy', 10)
+  					.attr('fill', function(d){return colorscale[(seq-1)]; })
+  					.style('text-anchor', 'start')
+		     		.append("tspan")
+		     		.text(count2.toLocaleString())
+		     		.attr('fill', 'black')
+		     		.attr('x', 10)
+  					.attr('dy', 20)
+		     		.append("tspan")
+	     			.text(function(){
+	     				return  ((count2/total) * 100).toFixed(2) + "%";
+	     			})
+	     			.attr('fill', 'black')
+	     			.attr('x', 10)
+					.attr('dy', 21);
+		   	 	});
+
 		
 		// Tooltip ////// 
 		var tooltip = g.append("g")
@@ -409,7 +318,7 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
     		.style("display", "none");
       
   		tooltip.append("rect")
-    		.attr("width", 60)
+    		.attr("width", 120)
     		.attr("height", 53)
     		.attr("fill", "white")
     		.style("opacity", 0.8);
@@ -435,7 +344,6 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
     		.attr("font-size", "12px")
     		.attr("font-weight", "bold")
     		.text("Click to add/remove filter");
-		
 	}
 };
 

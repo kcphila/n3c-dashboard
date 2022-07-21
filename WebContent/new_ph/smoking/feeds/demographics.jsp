@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by age_seq))
-	from (select age_bin as age,smoking_status,race,gender,patient_display,patient_count,age_abbrev,age_seq,race_abbrev,race_seq,gender_abbrev,gender_seq, smoking_status_abbrev, smoking_status_seq
+	from (select age_bin as age,smoking_status,race,gender_abbrev as gender,patient_display,patient_count,age_abbrev,age_seq,race_abbrev,race_seq,gender_abbrev,gender_seq, smoking_status_abbrev, smoking_status_seq
 			from (select
 					age_bin,
 					smoking_status,

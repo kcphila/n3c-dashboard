@@ -46,6 +46,7 @@ WebContent/feeds/us-states.json -text
 WebContent/footer.jsp -text
 WebContent/graph_support/forcePhoto.jsp -text
 WebContent/graph_support/graphic_save.jsp -text
+WebContent/graph_support/grouped_bar_horizontal_local.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal_alexis.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp -text
@@ -263,6 +264,7 @@ WebContent/new_ph/filters/observation.jsp -text
 WebContent/new_ph/filters/race.jsp -text
 WebContent/new_ph/filters/result.jsp -text
 WebContent/new_ph/filters/severity.jsp -text
+WebContent/new_ph/filters/smoking.jsp -text
 WebContent/new_ph/filters/sotrovimab_meds.jsp -text
 WebContent/new_ph/filters/symptom.jsp -text
 WebContent/new_ph/filters/vaccinated.jsp -text
@@ -631,16 +633,21 @@ WebContent/new_ph/severity_region/kpis.jsp -text
 WebContent/new_ph/severity_region/map.jsp -text
 WebContent/new_ph/severity_region/panel.jsp -text
 WebContent/new_ph/singleHistogram.jsp -text
+WebContent/new_ph/smoking/age.jsp -text
 WebContent/new_ph/smoking/ageStatus.jsp -text
 WebContent/new_ph/smoking/demographics_table.jsp -text
 WebContent/new_ph/smoking/feeds/demographics.jsp -text
 WebContent/new_ph/smoking/feeds/severity.jsp -text
+WebContent/new_ph/smoking/gender.jsp -text
 WebContent/new_ph/smoking/genderStatus.jsp -text
 WebContent/new_ph/smoking/kpis.jsp -text
 WebContent/new_ph/smoking/panel.jsp -text
+WebContent/new_ph/smoking/race.jsp -text
 WebContent/new_ph/smoking/raceStatus.jsp -text
 WebContent/new_ph/smoking/severityStatus.jsp -text
 WebContent/new_ph/smoking/severity_table.jsp -text
+WebContent/new_ph/smoking/smoking_1.jsp -text
+WebContent/new_ph/smoking/smoking_2.jsp -text
 WebContent/new_ph/sotrovimab/demographics_table.jsp -text
 WebContent/new_ph/sotrovimab/feeds/demographics.jsp -text
 WebContent/new_ph/sotrovimab/kpis.jsp -text

@@ -15,6 +15,8 @@
 
 <jsp:include page="../graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp"/>
 
+<jsp:include page="../graph_support/grouped_bar_horizontal_local.jsp"/>
+
 <jsp:include page="../graph_support/verticalBarChart_local.jsp"/>
 <jsp:include page="../graph_support/mortalityBarChart_local.jsp"/>
 <jsp:include page="../graph_support/graphic_save.jsp"/>
@@ -42,7 +44,7 @@
 		<jsp:include page="diabetes/panel2.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'smoking'}">
-		<jsp:include page="unavailable_panel.jsp"/>
+		<jsp:include page="smoking/panel.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'hlh'}">
 		<jsp:include page="hlh/panel2.jsp"/>

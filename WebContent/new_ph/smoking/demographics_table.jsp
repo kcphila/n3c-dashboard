@@ -4,10 +4,10 @@
 function ${param.block}_constrain_table(filter, constraint) {
 	console.log("${param.block}", filter, constraint)
 	switch (filter) {
-	case 'age_bin':
+	case 'age':
 	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'smoking_status':
+	case 'smokingstatus':
 	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'race':
@@ -53,7 +53,39 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
     	data: data,
+    	dom: 'lfr<"datatable_overflow"t>Bip',
+    	buttons: {
+    	    dom: {
+    	      button: {
+    	        tag: 'button',
+    	        className: ''
+    	      }
+    	    },
+    	    buttons: [{
+    	      extend: 'csv',
+    	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
+    	      text: 'CSV',
+    	      filename: 'smoking_csv_export',
+    	      extension: '.csv'
+    	    }, {
+    	      extend: 'copy',
+    	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
+    	      titleAttr: 'Copy table data.',
+    	      text: 'Copy'
+    	    }]
+    	},
        	paging: true,
+       	snapshot: null,
+       	initComplete: function( settings, json ) {
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
@@ -73,6 +105,25 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'smoking_status_abbrev', visible: false },
         	{ data: 'smoking_status_seq', visible: false }
     	]
+	} );
+	
+	// table search logic that distinguishes sort/filter 
+	${param.block}_datatable.on( 'search.dt', function () {
+		var snapshot = ${param.block}_datatable
+	     .rows({ search: 'applied', order: 'index'})
+	     .data()
+	     .toArray()
+	     .toString();
+
+	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
+
+	  	if (currentSnapshot != snapshot) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("no_clear");
+	   		$('#${param.block}_btn_clear').addClass("show_clear");
+	  	}
 	} );
 
 	// this is necessary to populate the histograms for the panel's initial D3 rendering

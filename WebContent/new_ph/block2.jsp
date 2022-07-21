@@ -295,6 +295,9 @@
 										<c:if test="${param.medication_class_filter}">
 											<jsp:include page="filters/medication_class.jsp"/>
 										</c:if>
+										<c:if test="${param.smoking_filter}">
+											<jsp:include page="filters/smoking.jsp"/>
+										</c:if>
 									</div>
 			  					</div>
 							</div>
@@ -410,6 +413,9 @@
 	
 
 	function ${param.block}_viz_constrain(element, elementParent) {
+		console.log(element);
+		console.log(elementParent);
+		console.log("#${param.block}-"+elementParent.toLowerCase()+"-select");
 		var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
         var selected = [];
         
@@ -676,6 +682,17 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
+		$('#${param.block}-smokingstatus-select').multiselect({
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-smokingstatus-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("smokingstatus",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
 	
 		var mut = new MutationObserver(function(mutations, mut){
 			if($('#${param.block}-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length !== 0){
@@ -769,13 +786,17 @@
 			${param.block}_constrain("medications", '');
 		</c:if>
 		<c:if test="${param.medication_filter}">
-		$('#${param.block}-medication-select').multiselect('clearSelection');
-		${param.block}_constrain("concept_set_name", '');
-	</c:if>
-	<c:if test="${param.medication_class_filter}">
-	$('#${param.block}-medication-class-select').multiselect('clearSelection');
-	${param.block}_constrain("drug_domain", '');
-</c:if>
+			$('#${param.block}-medication-select').multiselect('clearSelection');
+			${param.block}_constrain("concept_set_name", '');
+		</c:if>
+		<c:if test="${param.medication_class_filter}">
+			$('#${param.block}-medication-class-select').multiselect('clearSelection');
+			${param.block}_constrain("drug_domain", '');
+		</c:if>
+		<c:if test="${param.smoking_filter}">
+			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("smokingstatus", '');
+		</c:if>
 
 		
 		
@@ -881,9 +902,7 @@
 	    	${param.block}_refreshGenderAgeArray(data2);
 	    
 	    	${param.block}_refreshSeverityStatusArray(data);
-	    	${param.block}_refreshAgeStatusArray(data);
-	    	${param.block}_refreshRaceStatusArray(data);
-	    	${param.block}_refreshGenderStatusArray(data);
+	    	${param.block}_refreshstatusArray(data);
 	    
 	    	${param.block}_refreshAgeResultArray(data);
 	    	${param.block}_refreshGenderResultArray(data);
@@ -1412,26 +1431,36 @@
 	<jsp:param name="secondary" value="smoking_status"/>
 </jsp:include>
 
-<jsp:include page="doubleHistogram.jsp">
+<jsp:include page="tripleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AgeStatusArray"/>
-	<jsp:param name="primary" value="age"/>
-	<jsp:param name="secondary" value="smoking_status"/>
+	<jsp:param name="array" value="statusArray"/>
+	<jsp:param name="wrap" value="no"/>
+	<jsp:param name="primary" value="observation"/>
+	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="tertiary" value="age"/>
 </jsp:include>
 
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="RaceStatusArray"/>
-	<jsp:param name="primary" value="race"/>
-	<jsp:param name="secondary" value="smoking_status"/>
-</jsp:include>
+<%-- <jsp:include page="doubleHistogram.jsp"> --%>
+<%-- 	<jsp:param name="block" value="${param.block}"/> --%>
+<%-- 	<jsp:param name="datatable_div" value="${param.datatable_div}"/> --%>
+<%-- 	<jsp:param name="array" value="AgeStatusArray"/> --%>
+<%-- 	<jsp:param name="primary" value="age"/> --%>
+<%-- 	<jsp:param name="secondary" value="smoking_status"/> --%>
+<%-- </jsp:include> --%>
 
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="GenderStatusArray"/>
-	<jsp:param name="primary" value="gender"/>
-	<jsp:param name="secondary" value="smoking_status"/>
-</jsp:include>
+<%-- <jsp:include page="doubleHistogram.jsp"> --%>
+<%-- 	<jsp:param name="block" value="${param.block}"/> --%>
+<%-- 	<jsp:param name="datatable_div" value="${param.datatable_div}"/> --%>
+<%-- 	<jsp:param name="array" value="RaceStatusArray"/> --%>
+<%-- 	<jsp:param name="primary" value="race"/> --%>
+<%-- 	<jsp:param name="secondary" value="smoking_status"/> --%>
+<%-- </jsp:include> --%>
+
+<%-- <jsp:include page="doubleHistogram.jsp"> --%>
+<%-- 	<jsp:param name="block" value="${param.block}"/> --%>
+<%-- 	<jsp:param name="datatable_div" value="${param.datatable_div}"/> --%>
+<%-- 	<jsp:param name="array" value="GenderStatusArray"/> --%>
+<%-- 	<jsp:param name="primary" value="gender"/> --%>
+<%-- 	<jsp:param name="secondary" value="smoking_status"/> --%>
+<%-- </jsp:include> --%>

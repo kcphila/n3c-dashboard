@@ -2,37 +2,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<!-- covid_smoking_demographics_censored (2022-03-31 04:54) -->
-<!-- covid_smoking_severity_censored (2022-03-31 04:54) -->
+<div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
+	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
+	<select id="selectMe">
+		<option value="smoking_1">Smoking: Demographics</option>
+		<option value="smoking_2">Smoking: COVID Severity</option>
+		<option disabled hidden="hidden">COVID+ and Hospitalization++++++++</option>
+	</select>
+</div>
 
-<jsp:include page="../block2.jsp">
-	<jsp:param name="block" value="smoking_1" />
-	<jsp:param name="block_header" value="Demographics: COVID+ and Smoking Status" />
+<div id="frame">
+	<div id="smoking_1" class="group"></div>
+	<div id="smoking_2" class="group"></div>
+</div>
 
-	<jsp:param name="kpis" value="smoking/kpis.jsp" />
-
-	<jsp:param name="severity_filter" value="true" />
-	<jsp:param name="age_filter" value="true" />
-	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
-
-	<jsp:param name="severity_panel" value="smoking/severityStatus.jsp" />
-	<jsp:param name="age_panel" value="smoking/ageStatus.jsp" />
-	<jsp:param name="race_panel" value="smoking/raceStatus.jsp" />
-	<jsp:param name="gender_panel" value="smoking/genderStatus.jsp" />
-
-	<jsp:param name="datatable" value="smoking/demographics_table.jsp" />
-	<jsp:param name="datatable_div" value="smoking_demographics" />
-	<jsp:param name="datatable_feed" value="smoking/feeds/demographics.jsp" />
-
-</jsp:include>
-<jsp:include page="../block2.jsp">
-	<jsp:param name="block" value="smoking_2" />
-	<jsp:param name="datatable" value="smoking/severity_table.jsp" />
-	<jsp:param name="datatable_div" value="smoking_severity" />
-	<jsp:param name="datatable_feed" value="smoking/feeds/severity.jsp" />
-
-</jsp:include>
 <script>
-	smoking_1_toggle("severity");
+function url_map(selection) {
+	return selection.substring(selection.lastIndexOf("_")+1);
+}
+
+function url_unmap(selector) {
+	return 'smoking_'+selector;
+}
+
+var frame_crumbs = [];
+
+<c:choose>
+	<c:when test="${empty param.tertiary_tab || param.tertiary_tab == 'undefined'}">
+		frame_load('smoking_1');
+	</c:when>
+	<c:otherwise>
+		$('#selectMe').val(url_unmap('${param.tertiary_tab}'));
+		frame_load(url_unmap('${param.tertiary_tab}'));
+	</c:otherwise>
+</c:choose>
+
+
+function frame_load(selection) {
+	var $this = $("#"+selection);
+
+	if (!frame_crumbs.includes(selection)) {
+		$this.load("<util:applicationRoot/>/new_ph/smoking/"+selection+".jsp");
+		frame_crumbs.push(selection);
+	}
+	cache_browser_history("public-health", "public-health/smoking/"+url_map(selection));
+};
+
+$(document).ready(function () {
+	  $('#selectMe').change(function () {
+		frame_load($(this).val());
+	    $('.group').hide();
+	    $('#'+$(this).val()).show();
+	  })
+	});
+	
+$(document).ready(function() {
+    $('#selectMe').select2({
+    	minimumResultsForSearch: Infinity
+    });
+});
+
 </script>

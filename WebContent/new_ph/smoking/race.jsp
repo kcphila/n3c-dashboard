@@ -20,9 +20,8 @@
 <script>
 
 function ${param.block}_race_refresh() {
-	console.log("reached");
-   	d3.select("#${param.block}_race_viz").select("svg").remove(); console.log(${param.block}_RaceStatusArray)
-	localHorizontalStackedBarChart(${param.block}_RaceStatusArray,"${param.block}_race_viz", 120, status_legend, status_range, "Smoking Status");	
+   	d3.select("#${param.block}_race_viz").select("svg").remove(); console.log(${param.block}_RaceStatusArray);
+   	localHorizontalGroupedBarChart(${param.block}_statusArray,"${param.block}_race_viz", "race", "smoking_status", "patient_count", "Count", status_legend, status_range, "Race", "Smoking Status", 260);	
 }
 
 ${param.block}_race_refresh();
