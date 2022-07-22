@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <!-- /* Code adapted from https://bost.ocks.org/mike/hive/ 's simple example- for use with d3v4' */ -->
 
 <style>
@@ -158,7 +160,7 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 				//    $('#'+url_unmap('1')).show();
 				//	$("#all_summary_1-severity").css('display', 'none');
 				//	$("#all_summary_1-age").css('display', 'block');
-				  window.open("/n3c-dashboard/public-health/SummaryDataAllAges/1", "_self");
+				  window.open("<util:applicationRoot/>/public-health/SummaryDataAllAges/1", "_self");
 				})
 			  .on("mouseover", function(d){
 				  console.log(d);
