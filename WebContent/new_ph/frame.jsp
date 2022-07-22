@@ -64,7 +64,7 @@
 		<jsp:include page="unavailable_panel.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'SummaryDataAllAges'}">
-		<jsp:include page="all_summary/panel.jsp?tertiary_tab=${param.secondary_tab}"/>
+		<jsp:include page="all_summary/panel.jsp?tertiary_tab=${param.tertiary_tab}"/>
 	</c:when>
 	<c:when test="${param.frame == 'MedicationsSnapshots'}">
 		<jsp:include page="medication_snapshot/panel.jsp"/>
