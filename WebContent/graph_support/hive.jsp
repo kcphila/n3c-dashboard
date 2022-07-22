@@ -30,13 +30,9 @@
 div.tooltip {
     position: absolute;
     background-color: white;
-    max-width; 200px;
+    opacity: 0.8;
     height: auto;
     padding: 1px;
-    border-style: solid;
-    border-radius: 4px;
-    border-width: 1px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, .5);
     pointer-events: none;
   }
 </style>
@@ -76,11 +72,6 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 		
 		
 		function draw() { console.log("drawing", width)
-			var tooltip = d3.select("${param.dom_element}")
-				.append("div")
-				.attr("class", "tooltip")
-				.style("opacity", 0);
-		
 			
 			var nodes = data.nodes;
 			var node_map = d3.map(nodes, d => d.mapping);
@@ -163,8 +154,24 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 				  console.log("click", d);
 				  window.open("/n3c-dashboard/public-health/SummaryDataAllAges/1", "_self");
 				})
-			  .on("mouseover", nodeMouseover)
-			  .on("mouseout", mouseout)
+			  .on("mouseover", function(d){
+				  console.log(d);
+				  d3.select("body").append("div")
+					.attr("class", "tooltip")
+					.style("opacity", 1)
+					.style("left", (d3.event.pageX + 5) + "px")
+    				.style("top", (d3.event.pageY - 28) + "px")
+    				.html(d.label + "<br/>" + d.weight.toLocaleString());
+		     		
+				svg.selectAll(".link").classed("active", function(p) {
+					return p.source === d.mapping || p.target === d.mapping;
+				});
+				d3.select(this).classed("active", true);
+			  })
+			  .on("mouseout", function(d){
+				  svg.selectAll(".active").classed("active", false);
+				  d3.selectAll(".tooltip").remove(); 
+			  })
 			  .attr("transform", function(d) {
 			    return "rotate(" + degrees(angle(d.x)) + ")";
 			  })
@@ -177,21 +184,8 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 			  .style("fill", function(d) {
 			    return color(d.x);
 			  })
-					.on('mouseover.tooltip', function(d) {console.log(d, d3.event.pageX, d3.event.pageY)
-		      			tooltip.transition()
-		        			.duration(300)
-		        			.style("opacity", .8);
-		      			tooltip.html("<p>x</p>")
-		        			.style("left", (d3.event.pageX) + "px")
-		        			.style("top", (d3.event.pageY + 10) + "px");
-		    			})
-		    		.on("mouseout.tooltip", function() {
-		        		tooltip.transition()
-			        		.duration(100)
-			        		.style("opacity", 0);
-			    		})
-				;	
-			
+			;	
+		
 			var legend_text = svg
 			.selectAll("labels")
 			  .data(d3.range(groupings))
@@ -200,8 +194,8 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 			.attr("transform", function(d) {
 			    return "rotate(" + degrees(angle(d)) + ") translate(" + radius(1.2) + ",0)";
 			  })
-			  .attr("x1", radius.range()[0])
-			  .attr("x2", radius.range()[1])
+			.attr("x1", radius.range()[0])
+			.attr("x2", radius.range()[1])
 			.attr("font-family", "sans-serif")
 			.attr("font-size", '24px')
 			.attr("font-weight", "bold")
@@ -239,21 +233,6 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 			    svg.selectAll(".active").classed("active", false);
 			  }
 		
-			  // Tooltip ////// 
-				var tooltip = svg.append("g")
-		  		.attr("class", "graph_tooltip")
-		  		.style("display", "none");
-		    
-				tooltip.append("rect")
-		  		.attr("width", 10 + word_length * 7)
-		  		.attr("height", 60)
-		  		.attr("fill", "white")
-		  		.style("opacity", 0.7);
-		
-				tooltip.append("text")
-		  		.style("text-anchor", "start")
-		  		.attr("font-size", "12px")
-		  		.attr("font-weight", "bold");
 		};
 
 	});
