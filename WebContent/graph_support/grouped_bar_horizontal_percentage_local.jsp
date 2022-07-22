@@ -230,7 +230,7 @@ function localHorizontalGroupedPercentageBarChart(data, domName, primary, second
 			.attr("height", function(d){
 				return ( d.values.length * barHeight);
 			})
-			.attr("width", width + margin.left);
+			.attr("width", x(100)+margin.left);
 		
 		categories
 			.append("text")

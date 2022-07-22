@@ -2,16 +2,67 @@
 <script>
 
 function ${param.block}_constrain_table(filter, constraint) {
-	console.log("${param.block}", filter, constraint)
+	var table = $('#${param.target_div}-table').DataTable();
 	switch (filter) {
 	case 'severity':
-	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	
+	    table.column(0).search(constraint, true, false, true).draw();	
 		break;
 	case 'smokingstatus':
-	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
+	    table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	}
+	
+	var kpis = '${param.target_kpis}'.split(',');
+	for (var a in kpis) {
+		${param.block}_updateKPI(table, kpis[a]);
+	}
 }
+
+function ${param.block}_updateKPI(table, column) {
+	var sum_string = '';
+	var sum = 0;
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'smoking'){
+			if (data['smoking_status'] == 'Current or Former'){
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'smokingnot'){
+			if (data['smoking_status'] == 'Never'){
+				sum += data['patient_count'];
+			};
+		};
+	});	
+	
+	if (sum < 1000) {
+		sumString = sum+'';
+	} else if (sum < 1000000) {
+		sum = sum / 1000.0;
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
+	} else {
+		sum = sum / 1000000.0;
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
+		
+	}
+	console.log(column);
+	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
+}
+
+jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+	return this.flatten().reduce( function ( a, b ) {
+		if ( typeof a === 'string' ) {
+			a = a.replace(/[^\d.-]/g, '') * 1;
+		}
+		if ( typeof b === 'string' ) {
+			b = b.replace(/[^\d.-]/g, '') * 1;
+		}
+
+		return a + b;
+	}, 0 );
+} );
 
 var ${param.block}_datatable = null;
 

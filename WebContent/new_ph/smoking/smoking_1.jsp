@@ -5,6 +5,7 @@
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="smoking_1" />
 	<jsp:param name="block_header" value="Demographics: COVID+ and Smoking Status" />
+	<jsp:param name="topic_description" value="secondary_1" />
 
 	<jsp:param name="kpis" value="smoking/kpis.jsp" />
 	
@@ -20,6 +21,7 @@
 	<jsp:param name="datatable" value="smoking/demographics_table.jsp" />
 	<jsp:param name="datatable_div" value="smoking_demographics" />
 	<jsp:param name="datatable_feed" value="smoking/feeds/demographics.jsp" />
+	<jsp:param name="datatable_kpis" value="smoking,smokingnot" />
 
 </jsp:include>
 

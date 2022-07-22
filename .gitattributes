@@ -369,6 +369,10 @@ WebContent/new_ph/kpis/block2_kpis/peds_unknown_vaccinated.jsp -text
 WebContent/new_ph/kpis/block2_kpis/peds_vaccinated.jsp -text
 WebContent/new_ph/kpis/block2_kpis/peds_vaccinated_comorbidities.jsp -text
 WebContent/new_ph/kpis/block2_kpis/reinfection_30day.jsp -text
+WebContent/new_ph/kpis/block2_kpis/smoking.jsp -text
+WebContent/new_ph/kpis/block2_kpis/smoking2.jsp -text
+WebContent/new_ph/kpis/block2_kpis/smokingnot.jsp -text
+WebContent/new_ph/kpis/block2_kpis/smokingnot2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/total_w_symptoms_clean.jsp -text
 WebContent/new_ph/kpis/covid_first_diagnosis.jsp -text
 WebContent/new_ph/kpis/covid_positive.jsp -text
@@ -647,6 +651,9 @@ WebContent/new_ph/smoking/kpis.jsp -text
 WebContent/new_ph/smoking/panel.jsp -text
 WebContent/new_ph/smoking/race.jsp -text
 WebContent/new_ph/smoking/raceStatus.jsp -text
+WebContent/new_ph/smoking/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/smoking/secondary_text/secondary_2.jsp -text
+WebContent/new_ph/smoking/severity.jsp -text
 WebContent/new_ph/smoking/severityStatus.jsp -text
 WebContent/new_ph/smoking/severity_table.jsp -text
 WebContent/new_ph/smoking/smoking_1.jsp -text

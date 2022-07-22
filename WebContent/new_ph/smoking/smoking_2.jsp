@@ -5,17 +5,19 @@
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="smoking_2" />
 	<jsp:param name="block_header" value="Demographics: COVID+ and Smoking Status" />
+	<jsp:param name="topic_description" value="secondary_2" />
 
 	<jsp:param name="kpis" value="smoking/kpis.jsp" />
 
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="smoking_filter" value="true" />
 	
-	<jsp:param name="simple_panel" value="smoking/severityStatus.jsp" />
+	<jsp:param name="simple_panel" value="smoking/severity.jsp" />
 	
 	<jsp:param name="datatable" value="smoking/severity_table.jsp" />
 	<jsp:param name="datatable_div" value="smoking_severity" />
 	<jsp:param name="datatable_feed" value="smoking/feeds/severity.jsp" />
+	<jsp:param name="datatable_kpis" value="smoking,smokingnot" />
 
 </jsp:include>
 

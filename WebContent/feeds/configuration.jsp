@@ -24,8 +24,8 @@ var age_range_adult2 = ["#762AC6", "#6512BD", "#4C1EA5", "#33298D"];
 var age_range_peds1 = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE", "#a6a6a6", "#a6a6a6","#a6a6a6","#a6a6a6"];
 var age_range_peds2 = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE"];
 
-<!-- This don't seem correct as far as colors go, seems to be the old colors-->
-var status_range = ["#455098", "#CD4682", "#a6a6a6"];
+
+var status_range = ["#4833B2", "#AD1181", "#a6a6a6"];
 
 var result_range = ["#4833B2", "#AD1181", "#a6a6a6"];
 
