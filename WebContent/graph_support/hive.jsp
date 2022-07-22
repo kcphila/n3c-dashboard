@@ -151,7 +151,13 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 			  .append("circle")
 			  .attr("class", "node")
 			  .on("click", function(d) {
-				  console.log("click", d);
+				  console.log("click", d,url_unmap('1'));
+				//	$('#selectMe').val(url_unmap('1'));
+				//	frame_load(url_unmap('1'));
+				//    $('.group').hide();
+				//    $('#'+url_unmap('1')).show();
+				//	$("#all_summary_1-severity").css('display', 'none');
+				//	$("#all_summary_1-age").css('display', 'block');
 				  window.open("/n3c-dashboard/public-health/SummaryDataAllAges/1", "_self");
 				})
 			  .on("mouseover", function(d){
