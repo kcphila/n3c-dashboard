@@ -10,7 +10,7 @@
 
 	<jsp:param name="kpis" value="reinfection_time_series/kpis.jsp" />
 
-	<jsp:param name="simple_panel" value="test_panel.jsp" />
+	<jsp:param name="simple_panel" value="reinfection_time_series/reinfection.jsp" />
 
 	<jsp:param name="datatable" value="reinfection_time_series/reinfection_table.jsp" />
 	<jsp:param name="datatable_div" value="reinfections-by-date" />

@@ -1,28 +1,18 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <script>
 
-var ${param.block}_constraint_begin = null,
-    ${param.block}_constraint_end = null;
-
-function ${param.block}_constraint(begin, end) {
-	console.log("constraint", begin, end)
-	${param.block}_constraint_begin = begin;
-	${param.block}_constraint_end = end;
+function ${param.block}_constrain_table(filter, constraint) {
+	console.log("timeline constraint", filter, constraint);
 	var table = $('#${param.target_div}-table').DataTable();
-	table.draw();
+	
+	switch (filter) {
+	case 'subsequent_infection':
+		table.column(1).search(constraint, true, false, true).draw();	
+		break;
+	}
 }
 
 $(document).ready( function () {
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		    	if (${param.block}_constraint_begin == null)
-		    		return true;
-		    	if (${param.block}_constraint_begin <= searchData[0] && searchData[0] <= ${param.block}_constraint_end)
-		    		return true;
-		    	
-		    	return false;
-		    }
-		);
 		 
 	$.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 			

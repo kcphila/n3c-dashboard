@@ -68,6 +68,7 @@ WebContent/graph_support/site_map.jsp -text
 WebContent/graph_support/stacked_bar_horizontal_2.jsp -text
 WebContent/graph_support/temp.js -text
 WebContent/graph_support/time_line_2_column.jsp -text
+WebContent/graph_support/time_slider.jsp -text
 WebContent/graph_support/us-states.json -text
 WebContent/graph_support/verticalBarChart_local.jsp -text
 WebContent/head.jsp -text
@@ -639,6 +640,7 @@ WebContent/new_ph/reinfection_time_series/feeds/timeline.jsp -text
 WebContent/new_ph/reinfection_time_series/interval_table.jsp -text
 WebContent/new_ph/reinfection_time_series/kpis.jsp -text
 WebContent/new_ph/reinfection_time_series/panel.jsp -text
+WebContent/new_ph/reinfection_time_series/reinfection.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_table.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_1.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_2.jsp -text
