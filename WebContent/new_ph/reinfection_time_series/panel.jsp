@@ -2,18 +2,68 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<!-- positive_cases_by_day_cumsum_censored (2022-03-31 05:01) -->
+<style>
+#d3viz .dataTables_filter{
+    display: none;
+}
+</style>
 
-<jsp:include page="../block.jsp">
-	<jsp:param name="block" value="reinfection_ts_1" />
-	<jsp:param name="block_header" value="Reinfection Time Series" />
+<div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
+	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
+	<select id="selectMe">
+		<option value="reinfection_time_series_1">Reinfection Time Series</option>
+		<option value="reinfection_time_series_2">Interval Between Initial and Reinfection Dates</option>
+		<option disabled hidden="hidden">First Diagnosis Versus Reinfected Patients Per COVID+ Cohort++++++++</option>	
+	</select>
+</div>
+<div id="frame">
+	<div id="reinfection_time_series_1" class="group"></div>
+	<div id="reinfection_time_series_2" class="group"></div>
+</div>
 
-	<jsp:param name="kpis" value="reinfection_time_series/kpis.jsp" />
+<script>
 
-	<jsp:param name="age_filter" value="true" />
 
-	<jsp:param name="simple_panel" value="test_panel.jsp" />
 
-	<jsp:param name="datatable" value="../modules/reinfections_by_date.jsp" />
-	<jsp:param name="datatable_div" value="reinfections-by-date" />
-</jsp:include>
+function url_map(selection) {
+	return selection.substring(selection.lastIndexOf("_")+1);
+}
+
+function url_unmap(selector) {
+	return 'reinfection_time_series_'+selector;
+}
+
+var frame_crumbs = '';
+
+<c:choose>
+	<c:when test="${empty param.tertiary_tab || param.tertiary_tab == 'undefined'}">
+		frame_load('reinfection_time_series_1');
+	</c:when>
+	<c:otherwise>
+		$('#selectMe').val(url_unmap('${param.tertiary_tab}'));
+		frame_load(url_unmap('${param.tertiary_tab}'));
+	</c:otherwise>
+</c:choose>
+
+function frame_load(selection) {
+	var $this = $("#"+selection);
+
+	if (!frame_crumbs.includes(selection)) {
+		$this.load("<util:applicationRoot/>/new_ph/reinfection_time_series/"+selection+".jsp");
+		frame_crumbs = frame_crumbs + selection;
+	}
+	cache_browser_history("public-health", "public-health/reinfection-time-series/"+url_map(selection));
+};
+
+$(document).ready(function() {
+    $('#selectMe').select2({
+    	minimumResultsForSearch: Infinity
+    });
+    $('#selectMe').change(function () {
+		frame_load($(this).val());
+	    $('.group').hide();
+	    $('#'+$(this).val()).show();
+	});
+});
+
+</script>

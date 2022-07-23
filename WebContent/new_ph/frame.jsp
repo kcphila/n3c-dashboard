@@ -63,9 +63,7 @@
 		<jsp:include page="mortality/panel.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'reinfection-time-series'}">
-		<jsp:include page="panel_qlik.jsp">
-			<jsp:param name="iframe" value="reinfection-time-series" />
-		</jsp:include>
+		<jsp:include page="reinfection_time_series/panel.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'SummaryDataAllAges'}">
 		<jsp:include page="all_summary/panel.jsp?tertiary_tab=${param.tertiary_tab}"/>
