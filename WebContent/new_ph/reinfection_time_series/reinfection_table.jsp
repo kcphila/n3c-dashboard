@@ -10,6 +10,9 @@ function ${param.block}_constrain_table(filter, constraint) {
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	}
+	
+	${param.block}_refreshHistograms();
+	${param.block}_age_refresh();
 }
 
 $(document).ready( function () {
@@ -86,8 +89,11 @@ $(document).ready( function () {
 	    		{ targets: 3, render: $.fn.dataTable.render.number(',', '.', 0, '') },   		
 	    	]
 		} );
-	
 		
 	});
+	
+
+	// this is necessary to populate the histograms for the panel's initial D3 rendering
+	${param.block}_refreshHistograms();
 });
 </script>

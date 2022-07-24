@@ -857,6 +857,8 @@
 	var ${param.block}_EthnicityResultArray = new Array();
 	var ${param.block}_CategoryResultArray = new Array();
 
+	var ${param.block}_InitialCountSevenArray = new Array();
+
 	function ${param.block}_refreshHistograms(just_viz) {
 	    if (typeof just_viz === 'undefined'){
 	    	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
@@ -909,6 +911,8 @@
 	    	${param.block}_refreshRaceResultArray(data);
 	    	${param.block}_refreshEthnicityResultArray(data);
 	    	${param.block}_refreshCategoryResultArray(data);
+
+	    	${param.block}_refreshInitialCountSevenArray(data);
 	    };
     	
 	    
@@ -1439,6 +1443,12 @@
 	<jsp:param name="primary" value="observation"/>
 	<jsp:param name="secondary" value="gender"/>
 	<jsp:param name="tertiary" value="age"/>
+</jsp:include>
+
+<jsp:include page="timeline2Histogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="InitialCountSevenArray"/>
 </jsp:include>
 
 <%-- <jsp:include page="doubleHistogram.jsp"> --%>
