@@ -645,9 +645,11 @@ WebContent/new_ph/reinfection_time_series/reinfection.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_table.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_1.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_2.jsp -text
+WebContent/new_ph/severity_region/feeds/regional.jsp -text
 WebContent/new_ph/severity_region/kpis.jsp -text
 WebContent/new_ph/severity_region/map.jsp -text
 WebContent/new_ph/severity_region/panel.jsp -text
+WebContent/new_ph/severity_region/regional_table.jsp -text
 WebContent/new_ph/singleHistogram.jsp -text
 WebContent/new_ph/smoking/age.jsp -text
 WebContent/new_ph/smoking/ageStatus.jsp -text

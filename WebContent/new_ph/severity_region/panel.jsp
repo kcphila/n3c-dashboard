@@ -10,5 +10,7 @@
 
 	<jsp:param name="kpis" value="severity_region/kpis.jsp" />
 
-	<jsp:param name="simple_panel" value="severity_region/map.jsp" />
+	<jsp:param name="datatable" value="severity_region/regional_table.jsp" />
+	<jsp:param name="datatable_div" value="severity-region" />
+	<jsp:param name="datatable_feed" value="severity_region/feeds/regional.jsp" />
 </jsp:include>

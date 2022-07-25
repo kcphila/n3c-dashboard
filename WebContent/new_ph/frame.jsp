@@ -41,9 +41,7 @@
 		<jsp:include page="timeline/panel2.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'severity-region'}">
-		<jsp:include page="panel_qlik.jsp">
-			<jsp:param name="iframe" value="severity-region" />
-		</jsp:include>
+		<jsp:include page="severity_region/panel.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'diabetes-mellitus'}">
 		<jsp:include page="diabetes/panel2.jsp"/>
