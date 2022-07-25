@@ -22,17 +22,31 @@ function ${param.block}_constrain_table(filter, constraint) {
 
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
-	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	console.log(sum);
-	if (sum < 1000) {
-		sumString = sum+'';
-	} else if (sum < 1000000) {
-		sum = sum / 1000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
+	var sumString = '';
+	console.log(column);
+	if (column != 'region_seq'){	
+		var sum = table.rows({search:'applied'}).data().pluck(column).sum();
+		if (sum < 1000) {
+			sumString = sum+'';
+		} else if (sum < 1000000) {
+			sum = sum / 1000.0;
+			sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
+		} else {
+			sum = sum / 1000000.0;
+			sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
+		}
 	} else {
-		sum = sum / 1000000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
-		
+		var sum = 0;
+		var data = table.rows({search:'applied'}).data().toArray();
+		var unique = [];
+		for (i in data){
+			if (unique.indexOf(data[i].region) === -1){
+				unique.push(data[i].region);
+				sum += data[i].region_seq;
+			}
+		}
+		//var number = table.$('tr', {"filter":"applied"}).length;
+		sumString = sum + '' ;
 	}
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
 }
@@ -119,7 +133,8 @@ $(document).ready( function () {
 	     	columns: [
 	        	{ data: 'region', visible: true, orderable: true },
 	        	{ data: 'severity', visible: true, orderable: true },
-	        	{ data: 'patient_count', visible: true, orderable: true }
+	        	{ data: 'patient_count', visible: true, orderable: true },
+	        	{ data: 'region_seq', visible: true, orderable: true }
 	    	]
 		} );
 		

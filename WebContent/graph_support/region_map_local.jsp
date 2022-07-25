@@ -126,6 +126,7 @@ function regionalMap(data, domName) {
 	    			newelement["name"] = data[i].element;
 	    			newelement["count"] = data[i].count;
 	    			newelement["contains"] = regions[x].contains;
+	    			newelement["site_count"] = data[i].seq;
 	    			regions_filtered.push(newelement);
 	    		}
 	    	}    
@@ -215,6 +216,11 @@ function regionalMap(data, domName) {
 			.attr("stroke","white")
 			.attr("stroke-width",1)
 			.attr("class", "region")
+			.on("click", function(d){
+				var push_data = {};
+				push_data['secondary_name'] = d.name;
+				push_data['secondary'] = d.name;
+				window[domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](push_data, 'region'); })
 			.on('mousemove', function(d){
 				d3.selectAll(".tooltip").remove(); 
 				d3.select("body").append("div")
@@ -222,7 +228,7 @@ function regionalMap(data, domName) {
 				.style("opacity", 0.8)
 				.style("left", (d3.event.pageX + 5) + "px")
 				.style("top", (d3.event.pageY - 28) + "px")
-				.html("<strong>Region:</strong> " + d.name + "<br/><strong>Total:</strong> " + d.count.toLocaleString() + "<br/><strong>Contains:</strong> " + d.contains.join(', '));
+				.html("<strong>Region:</strong> " + d.name + "<br/><strong>Total:</strong> " + d.count.toLocaleString() + "<br/><strong># Providers:</strong> " + d.site_count + "<br/><strong>Contains:</strong> " + d.contains.join(', '));
 			})
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 
@@ -249,7 +255,6 @@ function regionalMap(data, domName) {
 				return path.centroid(feature2)[1];
 			})
 			.text(function(d){
-       			console.log(d);
        			return d.name;
        		});
 				
@@ -273,7 +278,6 @@ function regionalMap(data, domName) {
         	.attr("font-size", "12px")
         	.attr("stroke", "none")
 			.text(function(d){
-				console.log(d);
 				return d.name;
 			});
 

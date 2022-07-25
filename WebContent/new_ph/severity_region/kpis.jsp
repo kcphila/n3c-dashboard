@@ -11,4 +11,7 @@
 <jsp:include page="../kpis/block2_kpis/regions2.jsp" >
 	<jsp:param name="block" value="${param.block}"/>
 </jsp:include>
+<jsp:include page="../kpis/block2_kpis/regions3.jsp" >
+	<jsp:param name="block" value="${param.block}"/>
+</jsp:include>
 
