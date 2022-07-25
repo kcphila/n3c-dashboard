@@ -14,12 +14,17 @@ div.region.tooltip {
 	padding: 1px;
   	pointer-events: none;
 }
+
+@media (max-width: 980px) {
+  .region_text {
+    display: none;
+  }
+}
+
 </style>
 
 <script>
 function regionalMap(data, domName) {
-	
-	console.log(data);
 	
 	var margin = {top: 10, right: 100, bottom: 10, left: 0},
 	width = $(domName).width() - margin.left - margin.right,
@@ -106,6 +111,7 @@ function regionalMap(data, domName) {
 	    var regions_filtered = [];
 	    var max_count = 0;
 	    var min_count = 100000000;
+
 	    
 	    for (i in data){
 	    	if (data[i].count > max_count){
@@ -124,8 +130,6 @@ function regionalMap(data, domName) {
 	    		}
 	    	}    
 	    }
-	    
-	    
 	    
 	    var middle = (max_count+min_count)/2;
 	    var step = ((max_count+middle)/2)-middle;
@@ -188,7 +192,6 @@ function regionalMap(data, domName) {
 			.enter().append("text")
 			.attr("x", width - 17)
 			.attr("y", function(d){
-				console.log(d);
 				return color_legend(d);
 			})
 			.attr("dy", "0.32em")
@@ -224,7 +227,57 @@ function regionalMap(data, domName) {
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 
 			});
+	    
+	    var region_text = g.selectAll(".region_text")
+			.data(regions_filtered)
+	    	.enter().append("text")
+	    	.attr("class", "region_text")
+	    	.attr("text-anchor", "middle")
+        	.attr("font-size", "12px")
+        	.attr("stroke", "white")
+        	.attr("stroke-width", 3)
+	    	.attr("x", function(data) {
+				var feature2 = topojson.merge(states, states.objects.states_20m_2017.geometries.filter(function(state) { 
+					return data.contains.indexOf(state.properties.STUSPS) > -1; 
+				}))
+				return path.centroid(feature2)[0];
+			})
+			.attr("y", function(data) {
+				var feature2 = topojson.merge(states, states.objects.states_20m_2017.geometries.filter(function(state) { 
+					return data.contains.indexOf(state.properties.STUSPS) > -1; 
+				}))
+				return path.centroid(feature2)[1];
+			})
+			.text(function(d){
+       			console.log(d);
+       			return d.name;
+       		});
+				
+        g.selectAll("text.region_text")
+			.append("tspan")
+			.text('test')
+			.attr("class", "region_text")
+			.attr("x", function(data) {
+				var feature2 = topojson.merge(states, states.objects.states_20m_2017.geometries.filter(function(state) { 
+					return data.contains.indexOf(state.properties.STUSPS) > -1; 
+				}))
+				return path.centroid(feature2)[0];
+			})
+			.attr("y", function(data) {
+				var feature2 = topojson.merge(states, states.objects.states_20m_2017.geometries.filter(function(state) { 
+					return data.contains.indexOf(state.properties.STUSPS) > -1; 
+				}))
+				return path.centroid(feature2)[1];
+			})
+			.attr("text-anchor", "middle")
+        	.attr("font-size", "12px")
+        	.attr("stroke", "none")
+			.text(function(d){
+				console.log(d);
+				return d.name;
+			});
 
+        		
 		
 	}
 

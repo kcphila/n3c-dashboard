@@ -23,7 +23,7 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Patients in Multiple States (Not On Map)</td>
+							<td>Patients in Multiple States<br/>(Not On Map)</td>
 						</tr>
 					</table>
 				</div>

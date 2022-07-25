@@ -658,6 +658,7 @@ WebContent/new_ph/severity_region/panel.jsp -text
 WebContent/new_ph/severity_region/panel2.jsp -text
 WebContent/new_ph/severity_region/region_table.jsp -text
 WebContent/new_ph/severity_region/regional_table.jsp -text
+WebContent/new_ph/severity_region/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/severity_region/states.js -text
 WebContent/new_ph/singleHistogram.jsp -text
 WebContent/new_ph/smoking/age.jsp -text
