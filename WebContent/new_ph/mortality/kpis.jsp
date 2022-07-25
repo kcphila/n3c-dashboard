@@ -15,7 +15,10 @@
 		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
 			<jsp:param name="block" value="${param.block}" />
 		</jsp:include>
-		<jsp:include page="../kpis/block2_kpis/mortality.jsp">
+		<jsp:include page="../kpis/block2_kpis/mortality3.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+		<jsp:include page="../kpis/block2_kpis/mortality2.jsp">
 			<jsp:param name="block" value="${param.block}" />
 		</jsp:include>
 	</c:when>

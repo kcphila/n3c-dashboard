@@ -19,7 +19,7 @@
     "headers": [
         {"value":"datediff_bw_death_and_hos", "label":"Days After Discharge"},
         {"value":"patient_display", "label":"Mortality Count"},
-        {"value":"patient_count", "label":"Mortality actual"},
+        {"value":"patient_count2", "label":"Mortality actual"},
         {"value":"diff_seq", "label":"dummy1"}
     ],
     "rows" : 
