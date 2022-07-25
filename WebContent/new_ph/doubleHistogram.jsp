@@ -2,6 +2,8 @@
 <script>
 
 function ${param.block}_refresh${param.array}(data) {
+	
+	
 	var aData = new Object;
 	var bData = new Object;
 	var cData = new Object;

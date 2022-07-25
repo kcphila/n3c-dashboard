@@ -63,6 +63,7 @@ WebContent/graph_support/percentage_bar_local.jsp -text
 WebContent/graph_support/pieChart_local.jsp -text
 WebContent/graph_support/radialStackedBarChart.jsp -text
 WebContent/graph_support/radial_data.csv -text
+WebContent/graph_support/region_map_local.jsp -text
 WebContent/graph_support/reinfection_bar.jsp -text
 WebContent/graph_support/site_map.jsp -text
 WebContent/graph_support/stacked_bar_horizontal_2.jsp -text
@@ -267,6 +268,7 @@ WebContent/new_ph/filters/medication.jsp -text
 WebContent/new_ph/filters/medication_class.jsp -text
 WebContent/new_ph/filters/observation.jsp -text
 WebContent/new_ph/filters/race.jsp -text
+WebContent/new_ph/filters/region.jsp -text
 WebContent/new_ph/filters/result.jsp -text
 WebContent/new_ph/filters/severity.jsp -text
 WebContent/new_ph/filters/smoking.jsp -text
@@ -370,6 +372,8 @@ WebContent/new_ph/kpis/block2_kpis/peds_ungrouped.jsp -text
 WebContent/new_ph/kpis/block2_kpis/peds_unknown_vaccinated.jsp -text
 WebContent/new_ph/kpis/block2_kpis/peds_vaccinated.jsp -text
 WebContent/new_ph/kpis/block2_kpis/peds_vaccinated_comorbidities.jsp -text
+WebContent/new_ph/kpis/block2_kpis/regions.jsp -text
+WebContent/new_ph/kpis/block2_kpis/regions2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/reinfection_30day.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smoking.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smoking2.jsp -text
@@ -645,11 +649,16 @@ WebContent/new_ph/reinfection_time_series/reinfection.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_table.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_1.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_2.jsp -text
+WebContent/new_ph/severity_region/albers-usa-pr.js -text
 WebContent/new_ph/severity_region/feeds/regional.jsp -text
+WebContent/new_ph/severity_region/feeds/regions.jsp -text
 WebContent/new_ph/severity_region/kpis.jsp -text
 WebContent/new_ph/severity_region/map.jsp -text
 WebContent/new_ph/severity_region/panel.jsp -text
+WebContent/new_ph/severity_region/panel2.jsp -text
+WebContent/new_ph/severity_region/region_table.jsp -text
 WebContent/new_ph/severity_region/regional_table.jsp -text
+WebContent/new_ph/severity_region/states.js -text
 WebContent/new_ph/singleHistogram.jsp -text
 WebContent/new_ph/smoking/age.jsp -text
 WebContent/new_ph/smoking/ageStatus.jsp -text
@@ -804,6 +813,7 @@ WebContent/resources/main_style.css -text
 WebContent/resources/n3c_login_style.css -text
 WebContent/resources/select2_search.js -text
 WebContent/resources/tableToExcel.js -text
+WebContent/resources/topojson.js -text
 WebContent/tables/domain_team_roster.jsp -text
 WebContent/tables/project_roster_styled.jsp -text
 WebContent/tables/publications_styled.jsp -text

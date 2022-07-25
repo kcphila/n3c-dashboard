@@ -20,6 +20,8 @@
 <jsp:include page="../graph_support/grouped_bar_horizontal_local.jsp"/>
 <jsp:include page="../graph_support/grouped_bar_horizontal_percentage_local.jsp"/>
 
+<jsp:include page="../graph_support/region_map_local.jsp"/>
+
 <jsp:include page="../graph_support/verticalBarChart_local.jsp"/>
 <jsp:include page="../graph_support/mortalityBarChart_local.jsp"/>
 <jsp:include page="../graph_support/graphic_save.jsp"/>
@@ -41,7 +43,7 @@
 		<jsp:include page="timeline/panel2.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'severity-region'}">
-		<jsp:include page="severity_region/panel.jsp"/>
+		<jsp:include page="severity_region/panel2.jsp"/>
 	</c:when>
 	<c:when test="${param.frame == 'diabetes-mellitus'}">
 		<jsp:include page="diabetes/panel2.jsp"/>

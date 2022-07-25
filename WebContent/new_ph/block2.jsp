@@ -298,6 +298,9 @@
 										<c:if test="${param.smoking_filter}">
 											<jsp:include page="filters/smoking.jsp"/>
 										</c:if>
+										<c:if test="${param.region_filter}">
+											<jsp:include page="filters/region.jsp"/>
+										</c:if>
 									</div>
 			  					</div>
 							</div>
@@ -693,6 +696,19 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
+		
+		$('#${param.block}-region-select').multiselect({
+			numberDisplayed: 1,
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-region-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("region",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
 	
 		var mut = new MutationObserver(function(mutations, mut){
 			if($('#${param.block}-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length !== 0){
@@ -797,6 +813,10 @@
 			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("smokingstatus", '');
 		</c:if>
+		<c:if test="${param.region_filter}">
+		$('#${param.block}-region-select').multiselect('clearSelection');
+		${param.block}_constrain("region", '');
+	</c:if>
 
 		
 		
@@ -828,6 +848,9 @@
 	var ${param.block}_GenderSeverityArray = new Array();
 	var ${param.block}_SeverityGenderArray = new Array();
 	
+
+	var ${param.block}_SeverityRegionArray = new Array();
+	
 	var ${param.block}_ObservationAgeArray = new Array();
 	var ${param.block}_ObservationGenderArray = new Array();
 	var ${param.block}_ObservationRaceArray = new Array();
@@ -858,8 +881,10 @@
 	var ${param.block}_CategoryResultArray = new Array();
 
 	var ${param.block}_InitialCountSevenArray = new Array();
+	
 
 	function ${param.block}_refreshHistograms(just_viz) {
+		
 	    if (typeof just_viz === 'undefined'){
 	    	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
 	 	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
@@ -890,6 +915,8 @@
 	    	${param.block}_refreshObservationGenderArray(data);
 	    	${param.block}_refreshObservationRaceArray(data);
 	    	${param.block}_refreshObservationEthnicityArray(data);
+	    	
+	    	${param.block}_refreshSeverityRegionArray(data);
 
 	    	${param.block}_refreshSymptomAgeArray(data);
 	    	${param.block}_refreshSymptomGenderArray(data);
@@ -975,6 +1002,9 @@
 	    }
 	    if ('${param.block}' === "diabetes_1" || '${param.block}' === "diabetes_2") {
 	    	${param.block}_refresh();
+	    }
+	    if ('${param.block}' === "severity_region_1") {
+	    	${param.block}_region_refresh();
 	    }
 	  }
 	
@@ -1273,6 +1303,13 @@
 	<jsp:param name="primary" value="severity"/>
 	<jsp:param name="primary_abbrev" value="severity_abbrev"/>
 	<jsp:param name="secondary" value="gender"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityRegionArray"/>
+	<jsp:param name="primary" value="region"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
