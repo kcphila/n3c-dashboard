@@ -8,6 +8,7 @@
 		<sql:query var="cases" dataSource="jdbc/N3CPublic">
 			select distinct datediff_bw_death_and_hos as date, split_part(datediff_bw_death_and_hos, '-', 1)::int 
 			from n3c_questions.binned_diff_bw_death_and_hospital_visit 
+			where substring(datediff_bw_death_and_hos from '^[0-9]*')::int <= 28470
 			order by split_part(datediff_bw_death_and_hos, '-', 1)::int;
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">

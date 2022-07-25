@@ -12,6 +12,7 @@
 					end as patient_count,
 					substring(datediff_bw_death_and_hos from '^[0-9]*')::int as diff_seq
 				  from n3c_questions.binned_diff_bw_death_and_hospital_visit
+				  where substring(datediff_bw_death_and_hos from '^[0-9]*')::int <= 28470
 		  ) as done;
 </sql:query>
 {
