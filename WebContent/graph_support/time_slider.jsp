@@ -160,9 +160,20 @@ var label = slider.append("text")
     console.log("Slider moving: " + moving);
   })
 
+function monthDiff(d1, d2) {
+    var months;
+    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+    months -= d1.getMonth();
+    months += d2.getMonth();
+    return months <= 0 ? 0 : months;
+}
+
+var stepnumber = monthDiff(startDate, endDate);
+console.log(stepnumber);
+
 function step() {
   update(x.invert(currentValue));
-  currentValue = currentValue + (targetValue/151);
+  currentValue = currentValue + (targetValue/stepnumber);
   if (currentValue > targetValue) {
     moving = false;
     currentValue = 0;
