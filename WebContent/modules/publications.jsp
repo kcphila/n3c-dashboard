@@ -59,6 +59,34 @@ $.getJSON("<util:applicationRoot/>/feeds/publications.jsp", function(data){
 	$('#publications_table').DataTable( {
     	data: data,
        	paging: true,
+       	dom: 'lfr<"datatable_overflow"t>Bip',
+    	buttons: {
+    	    dom: {
+    	      button: {
+    	        tag: 'button',
+    	        className: ''
+    	      }
+    	    },
+    	    buttons: [{
+    	      extend: 'csv',
+    	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+    	    	  columns: ':not(.noExport)'
+              },
+    	      text: 'CSV',
+    	      filename: 'severity_csv_export',
+    	      extension: '.csv'
+    	    }, {
+    	      extend: 'copy',
+    	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+    	    	  columns: ':not(.noExport)'
+              },
+    	      titleAttr: 'Copy table data.',
+    	      text: 'Copy'
+    	    }]
+    	},
        	language: {
             searchPlaceholder: "title, author, journal ..."
         },
@@ -67,12 +95,13 @@ $.getJSON("<util:applicationRoot/>/feeds/publications.jsp", function(data){
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[5, 'desc']],
      	columns: [
-     		{ data: 'title', 
-     			orderable: false, 
+     		{ data: 'id', 
+     			orderable: false,
+     			className: 'noExport',
      			render: function ( data, type, row ) {
      				var id = row.id;
         			var title = row.title;
-        			var type = row.type
+        			var type = row.type;
         			var url = row.url;
         			var outlet = row.outlet;
         			var date = row.date;
@@ -95,8 +124,8 @@ $.getJSON("<util:applicationRoot/>/feeds/publications.jsp", function(data){
         				+ '</div></div></div></div>';
              		return combo; }
      		},
+        	{ data: 'title', visible: false },
         	{ data: 'type', visible: false },
-        	{ data: 'id', visible: false },
         	{ data: 'url', visible: false },
         	{ data: 'outlet', visible: false },
         	{ data: 'date', visible: false },
@@ -117,7 +146,7 @@ $(document).ready( function () {
 		   
 			if (positions.length === 0) {
 				return true;
-			} else if (positions.indexOf(searchData[1]) !== -1) {
+			} else if (positions.indexOf(searchData[2]) !== -1) {
 				return true;
 			} else {
 				return false;
