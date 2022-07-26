@@ -318,7 +318,19 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 			.attr("x", function(d) { return x(d[0]); })
 			.attr("width", function(d) { return Math.max(1, x(d[1]) - x(d[0])); })
 			.attr("height",  (barHeight- barPadding))
-			.on("click", function(d, i){ console.log("serie-rect click d", i, d); })
+			.on("click", function(d, i){
+				//console.log("serie-rect click d", i, d,groupedData[i].values);
+				for (var i in groupedData) {
+					for (var j in groupedData[i].values) {
+						for (var k in groupedData[i].values[j]) {
+							if (groupedData[i].values[j][k] == d) {
+								//console.log(i,j,k,groupedData[i].values[j][k],groupedData[i].values[j][k] == d);
+								window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](legend_label[j], xaxis_label.replace(/\s/g, "")); 
+							}
+						}
+					}
+				}
+				})
 			.on("mouseover", function() { tooltip.style("display", null); })
 		    .on("mouseout", function() { tooltip.style("display", "none"); })
 		    .on("mousemove", function(d) {
@@ -326,8 +338,8 @@ function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary
 		     	//var yPosition = d3.mouse(this)[1];
 		     	var yPosition = d3.mouse(document.getElementById("svg_g"+domName))[1];
 		     	var xPosition = d3.mouse(document.getElementById("svg_g"+domName))[0];
-		     	console.log(yPosition);
-		     	console.log(xPosition);
+		     	//console.log(yPosition);
+		     	//console.log(xPosition);
 		     	var count2 = d[1]-d[0];
 		     	var total = d.data.total;
 		     	var label = '';
