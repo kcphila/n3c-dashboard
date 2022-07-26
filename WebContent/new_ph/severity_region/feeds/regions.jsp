@@ -16,6 +16,7 @@ from (select
           left join (select count(site) as site_count, n3c_dashboard.state_map.division_name from n3c_maps.sites 
                left join ror.address on n3c_maps.sites.id = ror.address.id
                left join n3c_dashboard.state_map on n3c_dashboard.state_map.state = ror.address.state
+               where status = 'available'
                group by n3c_dashboard.state_map.division_name) n2
           on n2.division_name = state_map.division_name
           group by n2.division_name, severity_abbrev

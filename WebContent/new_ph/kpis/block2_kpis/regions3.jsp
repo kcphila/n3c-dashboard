@@ -5,7 +5,7 @@
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
  	select count(*) as count from n3c_maps.sites 
 	left join ror.address on n3c_maps.sites.id = ror.address.id
-	where ror.address.state is not null;
+	where ror.address.state is not null and status = 'available';
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">
