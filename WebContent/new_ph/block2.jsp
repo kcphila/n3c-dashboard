@@ -406,6 +406,9 @@
 				});
 				
 			};
+			if ('${param.block}' === 'reinfection_ts_1') {
+				update(new Date('Feb 1 2022 1:00:00 CST'));
+			};
 	    }, 1000);
 	})
 	
@@ -881,10 +884,10 @@
 	var ${param.block}_CategoryResultArray = new Array();
 
 	var ${param.block}_InitialCountSevenArray = new Array();
+	var ${param.block}_IntervalBinArray = new Array();
 	
 
 	function ${param.block}_refreshHistograms(just_viz) {
-		
 	    if (typeof just_viz === 'undefined'){
 	    	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
 	 	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
@@ -940,6 +943,7 @@
 	    	${param.block}_refreshCategoryResultArray(data);
 
 	    	${param.block}_refreshInitialCountSevenArray(data);
+	    	${param.block}_refreshIntervalBinArray(data);
 	    };
     	
 	    
@@ -1170,6 +1174,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="AgeArray"/>
 	<jsp:param name="primary" value="age"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
@@ -1177,6 +1182,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="RaceArray"/>
 	<jsp:param name="primary" value="race"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
@@ -1184,6 +1190,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="GenderArray"/>
 	<jsp:param name="primary" value="gender"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
@@ -1191,6 +1198,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="EthnicityArray"/>
 	<jsp:param name="primary" value="ethnicity"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
@@ -1198,6 +1206,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="SeverityArray"/>
 	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
@@ -1205,6 +1214,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="DelayArray"/>
 	<jsp:param name="primary" value="datediff_bw_death_and_hos"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
@@ -1285,6 +1295,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="comorbidityArray"/>
 	<jsp:param name="primary" value="comorbidity"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
@@ -1310,6 +1321,7 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="SeverityRegionArray"/>
 	<jsp:param name="primary" value="region"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
@@ -1486,6 +1498,14 @@
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="InitialCountSevenArray"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="IntervalBinArray"/>
+	<jsp:param name="primary" value="interval_bin"/>
+	<jsp:param name="count" value="actual_count"/>
 </jsp:include>
 
 <%-- <jsp:include page="doubleHistogram.jsp"> --%>

@@ -8,7 +8,7 @@ function ${param.block}_refresh${param.array}(data) {
 	$("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().each( function ( group, i ) {
     	var obj = new Object();
     	Object.defineProperty(obj, 'date', {
-    		  value: new Date(data[i].initial + "-01")
+    		  value: new Date(data[i].initial + "-02") // the -02 is to fake out the timezone calculations in D3
     		});
     	Object.defineProperty(obj, 'column1', {
   		  value: data[i].actual_count

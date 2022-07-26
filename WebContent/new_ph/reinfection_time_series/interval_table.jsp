@@ -1,29 +1,22 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <script>
 
-var ${param.block}_constraint_begin = null,
-    ${param.block}_constraint_end = null;
-
-function ${param.block}_constraint(begin, end) {
-	console.log("constraint", begin, end)
-	${param.block}_constraint_begin = begin;
-	${param.block}_constraint_end = end;
+function ${param.block}_constrain_table(filter, constraint) {
+	console.log("timeline constraint", filter, constraint);
 	var table = $('#${param.target_div}-table').DataTable();
-	table.draw();
+	
+	switch (filter) {
+	case 'subsequent_infection':
+		table.column(1).search(constraint, true, false, true).draw();	
+		break;
+	}
+	
+	${param.block}_refreshHistograms();
+	${param.block}_interval_refresh();
 }
 
 $(document).ready( function () {
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		    	if (${param.block}_constraint_begin == null)
-		    		return true;
-		    	if (${param.block}_constraint_begin <= searchData[0] && searchData[0] <= ${param.block}_constraint_end)
-		    		return true;
-		    	
-		    	return false;
-		    }
-		);
-		 
+
 	$.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 			
 		var json = $.parseJSON(JSON.stringify(data));
@@ -86,19 +79,20 @@ $(document).ready( function () {
 	        	{ data: 'initial_infection', visible: true, orderable: true, className: 'text-center', orderData: [6] },
 	        	{ data: 'subsequent_infection', visible: true, orderable: true, className: 'text-center', orderData: [7] },
 	        	{ data: 'interval', visible: true, orderable: true, className: 'text-right' },
-	        	{ data: 'interval_bin', visible: true, orderable: true, className: 'text-center', orderData: [2] },
+	        	{ data: 'interval_bin', visible: true, orderable: true, className: 'text-center', orderData: [8] },
 	        	{ data: 'count', visible: true, orderable: true, className: 'text-right', orderData: [5] },
 	        	{ data: 'actual_count', visible: false, orderable: true, className: 'text-right' },
 	        	{ data: 'initial', visible: false, orderable: true, className: 'text-right' },
-	        	{ data: 'subsequent', visible: false, orderable: true, className: 'text-right' }
+	        	{ data: 'subsequent', visible: false, orderable: true, className: 'text-right' },
+	        	{ data: 'interval_bin_seq', visible: false, orderable: true, className: 'text-right' }
 	    	],
 	    	columnDefs: [
 	    		{ targets: 2, render: $.fn.dataTable.render.number(',', '.', 0, '') },    		
 	    		{ targets: 4, render: $.fn.dataTable.render.number(',', '.', 0, '') }
 	    	]
 		} );
-	
-		
+		${param.block}_refreshHistograms();
+		${param.block}_interval_refresh();
 	});
 });
 </script>

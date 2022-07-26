@@ -11,7 +11,8 @@ from (select
 		count,
 		actual_count,
 		initial,
-		subsequent
+		subsequent,
+		interval / 30 as interval_bin_seq
 	from (select
 	 	to_char(initial_month,'FM00')||'/'||initial_year as initial_infection,
 	 	to_char(subsequent_month, 'FM00')||'/'||subsequent_year as subsequent_infection,
@@ -39,7 +40,8 @@ from (select
         {"value":"count", "label":"Number of Reinfected Patients"},
         {"value":"actual_count", "label":"Actual Count"},
         {"value":"initial", "label":"Actual initial"},
-        {"value":"subsequent", "label":"Actual subsequent"}
+        {"value":"subsequent", "label":"Actual subsequent"},
+        {"value":"interval_bin_seq", "label":"Actual interval bin"}
     ],
     "rows" : 
 <c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">

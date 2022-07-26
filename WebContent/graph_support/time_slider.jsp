@@ -1,10 +1,6 @@
-   <script src="https://d3js.org/d3.v4.min.js"></script>
  <style>
 
     #play-button {
-      position: absolute;
-      top: 140px;
-      left: 50px;
       background: #f08080;
       padding-right: 26px;
       border-radius: 3px;
@@ -57,8 +53,10 @@
     }
   </style>
 
+<div id="vis-button">
+  <button id="play-button" title="Click to play/pause automatic stepping through subsequent infection dates">Play</button>
+</div>
 <div id="vis">
-  <button id="play-button">Play</button>
 </div>
 <script>
 
@@ -70,8 +68,8 @@ var startDate = new Date("2020-01-01"),
     endDate = new Date("2022-08-01");
 
 var margin = {top:50, right:50, bottom:0, left:50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 860 - margin.left - margin.right,
+    height = 120 - margin.top - margin.bottom;
 
 var svg = d3.select("#vis")
     .append("svg")
@@ -175,5 +173,4 @@ function update(h) {
 
   ${param.block}_constrain_table("subsequent_infection", formatDate(h));
 }
-
 </script>

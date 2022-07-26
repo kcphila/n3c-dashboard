@@ -645,6 +645,7 @@ WebContent/new_ph/reinfection/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/reinfection/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/reinfection_time_series/feeds/interval.jsp -text
 WebContent/new_ph/reinfection_time_series/feeds/timeline.jsp -text
+WebContent/new_ph/reinfection_time_series/interval.jsp -text
 WebContent/new_ph/reinfection_time_series/interval_table.jsp -text
 WebContent/new_ph/reinfection_time_series/kpis.jsp -text
 WebContent/new_ph/reinfection_time_series/panel.jsp -text

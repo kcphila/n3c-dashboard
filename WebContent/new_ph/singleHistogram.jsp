@@ -6,9 +6,7 @@ function ${param.block}_refresh${param.array}(data) {
 	var aData = new Object;
 	var bData = new Object;
 	var cData = new Object;
-	
 	$("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().each( function ( group, i ) {
-		
 		<c:choose>
 			<c:when test="${empty param.primary_abbrev}">
     			var group = data[i].${param.primary};
@@ -24,7 +22,7 @@ function ${param.block}_refresh${param.array}(data) {
 			cData[group] = data[i].${param.primary};
 		};
     	var seq = data[i].${param.primary}_seq;
-    	var count = data[i].patient_count;
+    	var count = data[i].${param.count};
         if (typeof aData[group] == 'undefined') {
             aData[group] = count;
             bData[group] = seq;

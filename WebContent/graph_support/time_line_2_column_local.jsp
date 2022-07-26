@@ -66,12 +66,12 @@
     path.duas,
     rect.duas{
     	stroke: ${column1_color} ;
-    	stroke-width:2.8px;
+    	stroke-width:3.8px;
     }
     path.dtas,
     rect.dtas{
     	stroke: ${column2_color} ;
-    	stroke-width:2.8px;
+    	stroke-width:3.8px;
     }
     
     .tooltip-dtas, text.dtas{
@@ -115,7 +115,7 @@ function TimeLine2ColumnChart(data, domName, barLabelWidth) {
 	    height = 600 - margin.top - margin.bottom;
 	
 		var column1_label = "Reinfected Patient Count";
-		var column2_label = "Seven Day Rolling Average";
+		var column2_label = "Monthly Max of Seven Day Rolling Average";
 		var column1_tip_offset = 120;
 		var column2_tip_offset = 120;
 		var column1_tip = "reinfection count";
@@ -281,7 +281,7 @@ function TimeLine2ColumnChart(data, domName, barLabelWidth) {
 				      .attr("transform",
 				            "translate(" + (width/2) + " ," + (height + 60) + ")")
 				      .style("text-anchor", "middle")
-				      .text("Date")
+				      .text("Initial Infection Date")
 				      .attr("font-size", '14px')
 					  .attr("font-weight", "bold");
 
@@ -391,7 +391,7 @@ function TimeLine2ColumnChart(data, domName, barLabelWidth) {
 					bisectDate_dua_dta = d3.bisector(function(d) { return d.date; }).left,
 					formatValue1 = d3.format(","),
 					formatValue2 = d3.format(",.2f"),
-					dateFormatter = d3.timeFormat("%m/%d/%y"),
+					dateFormatter = d3.timeFormat("%m/%y"),
 					dateFormatter2 = d3.timeFormat("%Y-%m-%d");
 				
 				
