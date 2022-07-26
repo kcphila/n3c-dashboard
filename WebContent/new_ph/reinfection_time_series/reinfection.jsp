@@ -10,6 +10,7 @@
 		</jsp:include>
 	</div>
 	
+	<h5>1st Infection Counts By Date for Patients Reinfected in <span id="current_date">Month, Year</span></h5>
 	<div id="${param.block}_timeline_viz" class="col-12 dash_viz"></div>
 
 	<div id="reinfection1_graph_save_viz"> 

@@ -35,7 +35,7 @@
 				</select>
 			</div>
 			<div id="drugs_viz"></div>
-			<div id="drugs_viz_table" style="display: none;"></div>
+			<div id="drugs_viz_table" style="display: block;"></div>
 			<jsp:include page="viz_tables/drugs_viz_table.jsp">
 				<jsp:param name="domName" value='drugs_viz' />
 				<jsp:param name="feed" value="topten_drugs_long.jsp" />
@@ -72,7 +72,7 @@ $('#drugs_viz-testresult-select').multiselect({
         $(options).each(function(){
             selected.push($(this).val());
         });
-		${param.block}_constrain("result",  selected[0].join('|'));
+		drugconstrain("result",  selected[0].join('|'));
     }
 });
 </script>

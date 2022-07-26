@@ -331,14 +331,11 @@ function drawthesebars(datatable_data){
 				.attr("height", 19)
 				.attr("fill", function(d, i) { return z[i]; })
 				.on("click", function(d, i){
-					console.log(d);
 					var options = $("#${param.domName}-testresult-select");
 			        var selected = [];
 			        $(options).each(function(){
 			            selected.push($(this).val());
 			        });
-				        
-			        console.log(selected);
 			        
 					if (selected[0].includes( d.secondary)){
 						$("#${param.domName}-testresult-select").multiselect('deselect', $("#${param.domName}-testresult-select option[value='" + d.secondary + "']").val(), true);

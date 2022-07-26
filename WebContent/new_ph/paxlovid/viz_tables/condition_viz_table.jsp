@@ -14,16 +14,16 @@
 
 <script>
 
-function drugconstrain(filter, constraint) {
-	var table1 = $('#drugs_viz_table-table').DataTable();
+function conditionconstrain(filter, constraint) {
+	var table = $('#condition_viz_any_table-table').DataTable();
 	switch (filter) {
 	case 'result':
-	    table1.column(1).search(constraint, true, false, true).draw();	
+	    table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	}
 }
 
-$.getJSON("<util:applicationRoot/>/new_ph/paxlovid/feeds/topten_drugs_long.jsp", function(data){
+$.getJSON("<util:applicationRoot/>/new_ph/paxlovid/feeds/topten_condition_long.jsp", function(data){
 	
 	
 	var json = $.parseJSON(JSON.stringify(data));
@@ -54,7 +54,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/paxlovid/feeds/topten_drugs_long.jsp",
 
 	var data = json['rows'];
 
-	drugdatatable2 = $('#drugs_viz_table-table').DataTable( {
+	conditiondatatable2 = $('#condition_viz_any_table-table').DataTable( {
     	data: data,
     	dom: 'lfr<"datatable_overflow"t>Bip',
        	paging: true,
@@ -62,24 +62,21 @@ $.getJSON("<util:applicationRoot/>/new_ph/paxlovid/feeds/topten_drugs_long.jsp",
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'medication', visible: true, orderable: true },
+        	{ data: 'condition', visible: true, orderable: true },
         	{ data: 'values', visible: true, orderable: true},
         	{ data: 'count', visible: true, orderable: true}
     	]
 	} );
 	
 	// table search logic that distinguishes sort/filter 
-	drugdatatable2.on( 'search.dt', function () {
-		var data = drugdatatable2.rows({ search: 'applied', order: 'index'}).data().toArray();
-		$('#drugs_viz').find('svg').remove();
+	conditiondatatable2.on( 'search.dt', function () {
+		var data = conditiondatatable2.rows({ search: 'applied', order: 'index'}).data().toArray();
+		$('#condition_viz_any').find('svg').remove();
 		drawthesebars(clean_data(data));
 	} );
 	
 	
 	function clean_data(data_rows){
-		if (data_rows.length == 0){
-			return [];
-		}
 		var data = [];
 		var med = '';
 		var total = 0;
@@ -92,7 +89,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/paxlovid/feeds/topten_drugs_long.jsp",
 		var row_med = '';
 		for (i in data_rows){
 			row = data_rows[i];
-			row_med = row.${param.primary};
+			row_med = row['${param.primary}'];
 			if (row_med != med){
 				group = row_med;
 				if (i != 0){

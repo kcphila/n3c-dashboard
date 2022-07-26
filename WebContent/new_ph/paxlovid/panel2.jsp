@@ -80,6 +80,7 @@ $(document).ready(function () {
 		frame_load($(this).val());
 	    $('.group').hide();
 	    $('#'+$(this).val()).show();
+	    location.reload();
 	  })
 	});
 	

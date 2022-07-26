@@ -146,7 +146,6 @@ var label = slider.append("text")
   playButton
     .on("click", function() {
     var button = d3.select(this);
-    console.log(button.html());
     if (button.html() == '<i class="fas fa-pause-circle" aria-hidden="true"></i>') {
       moving = false;
       clearInterval(timer);
@@ -154,7 +153,7 @@ var label = slider.append("text")
       button.html('<i class="fas fa-play-circle"></i>');
     } else {
       moving = true;
-      timer = setInterval(step, 100);
+      timer = setInterval(step, 800);
       button.html('<i class="fas fa-pause-circle"></i>');
     }
     console.log("Slider moving: " + moving);
@@ -169,7 +168,6 @@ function monthDiff(d1, d2) {
 }
 
 var stepnumber = monthDiff(startDate, endDate);
-console.log(stepnumber);
 
 function step() {
   update(x.invert(currentValue));
@@ -179,13 +177,13 @@ function step() {
     currentValue = 0;
     clearInterval(timer);
     // timer = 0;
-    playButton.text("Play");
+    playButton.html('<i class="fas fa-pause-circle" aria-hidden="true"></i>');
     console.log("Slider moving: " + moving);
   }
 }
 
 function update(h) {
-	console.log("update", h, formatDate(h))
+  $('#current_date').html(formatDate(h));
   // update position and text of label according to slider scale
   handle.attr("cx", x(h));
   label

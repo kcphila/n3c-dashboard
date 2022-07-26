@@ -29,10 +29,24 @@
 				<option value="renal">Renal</option>
 			</select>
 			
+			<div class="panel-body" style="text-align:center;">
+				<h6 style="color:#3F50B0;"><i class="fas fa-filter"></i> COVID Status</h6>
+				<select id="condition_viz_any-testresult-select" multiple="multiple">
+				<sql:query var="cases" dataSource="jdbc/N3CPublic">
+					select distinct result_abbrev, result_seq from n3c_dashboard.result_map order by result_seq;
+				</sql:query>
+				<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
+					<option value="${row.result_abbrev}">${row.result_abbrev}</option>
+				</c:forEach>
+				</select>
+			</div>
+			
 			<div id="condition_viz_any" style="display: block;"></div>
-			<jsp:include page="vizs/stacked_bar.jsp">
+			<div id="condition_viz_any_table" style="display: block;"></div>
+			<jsp:include page="viz_tables/condition_viz_table.jsp">
 				<jsp:param name="domName" value='condition_viz_any' />
-				<jsp:param name="feed" value="topten_condition.jsp" />
+				<jsp:param name="feed" value="topten_condition_long.jsp" />
+				<jsp:param name="table" value="condition_viz_any_table" />
 				<jsp:param name="primary" value="condition" />
 				<jsp:param name="secondary" value="result" />
 				<jsp:param name="textmargin" value="220" />
@@ -81,6 +95,17 @@ $(document).ready(function () {
 		  document.getElementById("condition_viz_pulmonary").style.display = "none";
 		  document.getElementById("condition_viz_renal").style.display = "none";
 		  document.getElementById("condition_viz_"+$(this).val()).style.display = "block";
-	  })
-	});
+	  });
+});
+
+$('#condition_viz_any-testresult-select').multiselect({	
+  	onChange: function(option, checked, select) {
+  		var options = $('#condition_viz_any-testresult-select');
+          var selected = [];
+          $(options).each(function(){
+              selected.push($(this).val());
+          });
+  		conditionconstrain("result",  selected[0].join('|'));
+      }
+  });
 </script>

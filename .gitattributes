@@ -554,6 +554,7 @@ WebContent/new_ph/paxlovid/feeds/less20_condition.jsp -text
 WebContent/new_ph/paxlovid/feeds/less20_drugs.jsp -text
 WebContent/new_ph/paxlovid/feeds/topten_condition.jsp -text
 WebContent/new_ph/paxlovid/feeds/topten_condition_by_category.jsp -text
+WebContent/new_ph/paxlovid/feeds/topten_condition_long.jsp -text
 WebContent/new_ph/paxlovid/feeds/topten_drugs.jsp -text
 WebContent/new_ph/paxlovid/feeds/topten_drugs_long.jsp -text
 WebContent/new_ph/paxlovid/feeds/visits.jsp -text
@@ -583,6 +584,7 @@ WebContent/new_ph/paxlovid/tables/top10_drugs_table.jsp -text
 WebContent/new_ph/paxlovid/tables/top10_table.jsp -text
 WebContent/new_ph/paxlovid/visits.jsp -text
 WebContent/new_ph/paxlovid/visits_table.jsp -text
+WebContent/new_ph/paxlovid/viz_tables/condition_viz_table.jsp -text
 WebContent/new_ph/paxlovid/viz_tables/drugs_viz_table.jsp -text
 WebContent/new_ph/paxlovid/vizs/long_bar.jsp -text
 WebContent/new_ph/paxlovid/vizs/stacked_bar.jsp -text

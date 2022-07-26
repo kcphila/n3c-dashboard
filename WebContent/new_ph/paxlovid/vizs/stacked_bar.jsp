@@ -80,7 +80,6 @@ d3.json("<util:applicationRoot/>/new_ph/paxlovid/feeds/${param.feed}", function(
 
 		for (i in data_rows){
 			
-			console.log(JSON.stringify(data_rows[i]));
 			var negativecount = data_rows[i].KnownNegative;
 			var positivecount = data_rows[i].KnownPositive;
 			var unknowncount = data_rows[i].UnknownCovidTestStatus;
