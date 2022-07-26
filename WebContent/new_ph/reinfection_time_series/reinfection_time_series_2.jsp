@@ -8,7 +8,7 @@
 	<jsp:param name="block" value="reinfection_ts_2" />
 	<jsp:param name="block_header" value="Reinfection Time Series" />
 
-	<jsp:param name="kpis" value="reinfection_time_series/kpis.jsp" />
+	<jsp:param name="kpis" value="reinfection_time_series/kpis_2.jsp" />
 
 	<jsp:param name="simple_panel" value="reinfection_time_series/interval.jsp" />
 

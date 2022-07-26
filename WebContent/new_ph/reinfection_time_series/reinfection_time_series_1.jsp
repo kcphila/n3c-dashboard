@@ -8,11 +8,12 @@
 	<jsp:param name="block" value="reinfection_ts_1" />
 	<jsp:param name="block_header" value="Reinfection Time Series" />
 
-	<jsp:param name="kpis" value="reinfection_time_series/kpis.jsp" />
+	<jsp:param name="kpis" value="reinfection_time_series/kpis_1.jsp" />
 
 	<jsp:param name="simple_panel" value="reinfection_time_series/reinfection.jsp" />
 
 	<jsp:param name="datatable" value="reinfection_time_series/reinfection_table.jsp" />
 	<jsp:param name="datatable_div" value="reinfections-by-date" />
 	<jsp:param name="datatable_feed" value="reinfection_time_series/feeds/timeline.jsp" />
+	<jsp:param name="datatable_kpis" value="count" />
 </jsp:include>

@@ -378,6 +378,9 @@ WebContent/new_ph/kpis/block2_kpis/regions.jsp -text
 WebContent/new_ph/kpis/block2_kpis/regions2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/regions3.jsp -text
 WebContent/new_ph/kpis/block2_kpis/reinfection_30day.jsp -text
+WebContent/new_ph/kpis/block2_kpis/reinfection_by_date.jsp -text
+WebContent/new_ph/kpis/block2_kpis/reinfection_rolling_by_date.jsp -text
+WebContent/new_ph/kpis/block2_kpis/reinfection_total.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smoking.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smoking2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smokingnot.jsp -text
@@ -647,7 +650,8 @@ WebContent/new_ph/reinfection_time_series/feeds/interval.jsp -text
 WebContent/new_ph/reinfection_time_series/feeds/timeline.jsp -text
 WebContent/new_ph/reinfection_time_series/interval.jsp -text
 WebContent/new_ph/reinfection_time_series/interval_table.jsp -text
-WebContent/new_ph/reinfection_time_series/kpis.jsp -text
+WebContent/new_ph/reinfection_time_series/kpis_1.jsp -text
+WebContent/new_ph/reinfection_time_series/kpis_2.jsp -text
 WebContent/new_ph/reinfection_time_series/panel.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_table.jsp -text
