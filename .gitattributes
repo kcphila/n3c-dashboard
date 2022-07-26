@@ -514,7 +514,11 @@ WebContent/new_ph/medications/feeds/medications.jsp -text
 WebContent/new_ph/medications/feeds/medications_raw.jsp -text
 WebContent/new_ph/medications/kpis.jsp -text
 WebContent/new_ph/medications/medications.jsp -text
+WebContent/new_ph/medications/medications_1.jsp -text
+WebContent/new_ph/medications/medications_2.jsp -text
+WebContent/new_ph/medications/medications_frequency.jsp -text
 WebContent/new_ph/medications/medications_table.jsp -text
+WebContent/new_ph/medications/medications_table2.jsp -text
 WebContent/new_ph/medications/panel.jsp -text
 WebContent/new_ph/mortality/age.jsp -text
 WebContent/new_ph/mortality/delay.jsp -text

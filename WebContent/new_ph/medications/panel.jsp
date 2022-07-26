@@ -2,22 +2,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<!-- covid_patients_demographics_censored (2022-03-31 05:01) -->
+<div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
+	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
+	<select id="selectMe">
+		<option value="medications_1">Medications by Frequency</option>
+		<option value="medications_2">Medications by Class</option>
+	</select>
+</div>
 
-<jsp:include page="../block2.jsp">
-	<jsp:param name="block" value="medications_1" />
-	<jsp:param name="block_header" value="COVID+ Patients Distribution by Medication" />
+<div id="frame">
+	<div id="medications_1" class="group"></div>
+	<div id="medications_2" class="group"></div>
+</div>
 
-	<jsp:param name="kpis" value="medications/kpis.jsp" />
+<script>
+function url_map(selection) {
+	return selection.substring(selection.lastIndexOf("_")+1);
+}
 
-	<jsp:param name="age_filter4" value="true" />
-	<jsp:param name="medication_filter" value="true" />
-	<jsp:param name="medication_class_filter" value="true" />
+function url_unmap(selector) {
+	return 'medications_'+selector;
+}
 
-	<jsp:param name="simple_panel" value="medications/medications.jsp" />
+var frame_crumbs = [];
 
-	<jsp:param name="datatable" value="medications/medications_table.jsp" />
-	<jsp:param name="datatable_div" value="medications_medications" />
-	<jsp:param name="datatable_feed" value="medications/feeds/medications.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count,medication_count,medication_class_count" />
-</jsp:include>
+<c:choose>
+	<c:when test="${empty param.tertiary_tab || param.tertiary_tab == 'undefined'}">
+		frame_load('medications_1');
+	</c:when>
+	<c:otherwise>
+		$('#selectMe').val(url_unmap('${param.tertiary_tab}'));
+		frame_load(url_unmap('${param.tertiary_tab}'));
+	</c:otherwise>
+</c:choose>
+
+
+function frame_load(selection) {
+	var $this = $("#"+selection);
+
+	if (!frame_crumbs.includes(selection)) {
+		$this.load("<util:applicationRoot/>/new_ph/medications/"+selection+".jsp");
+		frame_crumbs.push(selection);
+	}
+	cache_browser_history("public-health", "public-health/medications/"+url_map(selection));
+};
+
+$(document).ready(function () {
+	  $('#selectMe').change(function () {
+		frame_load($(this).val());
+	    $('.group').hide();
+	    $('#'+$(this).val()).show();
+	  })
+	});
+	
+$(document).ready(function() {
+    $('#selectMe').select2({
+		searchInputPlaceholder: 'Search Topics...'
+    });
+});
+
+</script>

@@ -62,7 +62,17 @@ function ${param.block}_refresh${param.array}(data) {
   		});
     	${param.block}_${param.array}.push(obj);
     }
-    ${param.block}_${param.array}.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+	<c:choose>
+		<c:when test="${not empty param.sort}">
+		    ${param.block}_${param.array}.sort((a,b) => (a.${param.sort} > b.${param.sort}) ? 1 : ((b.${param.sort} > a.${param.sort}) ? -1 : 0));
+		</c:when>
+		<c:when test="${not empty param.sort_desc}">
+	    	${param.block}_${param.array}.sort((a,b) => (a.${param.sort_desc} < b.${param.sort_desc}) ? 1 : ((b.${param.sort_desc} < a.${param.sort_desc}) ? -1 : 0));
+		</c:when>
+		<c:otherwise>
+		    ${param.block}_${param.array}.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+		</c:otherwise>
+	</c:choose>
     //console.log("refreshed ${param.array}", ${param.block}_${param.array});
 }
 

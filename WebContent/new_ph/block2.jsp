@@ -867,6 +867,7 @@
 	
 
 	var ${param.block}_MedicationArray = new Array();
+	var ${param.block}_MedicationAgeArray = new Array();
 	var ${param.block}_DiabetesArray = new Array();
 
 	var ${param.block}_AgeGenderArray = new Array();
@@ -928,6 +929,7 @@
 	    	${param.block}_refreshSymptomObservationArray(data);
 	    
 	    	${param.block}_refreshMedicationArray(data2);
+	    	${param.block}_refreshMedicationAgeArray(data);
 	    	${param.block}_refreshDiabetesArray(data2);
 	    
 	    	${param.block}_refreshAgeGenderArray(data2);
@@ -966,6 +968,9 @@
 	    	${param.block}_ethnicity_refresh();
 	    }
 	    if ('${param.block}' === "medications_1") {
+	    	${param.block}_medication_refresh();
+	    }
+	    if ('${param.block}' === "medications_2") {
 	    	${param.block}_medication_refresh();
 	    }
 	    if (${param.block}_loaded("raceseverity")) {
@@ -1445,6 +1450,15 @@
 	<jsp:param name="primary" value="drug_domain"/>
 	<jsp:param name="secondary" value="concept_set_name"/>
 	<jsp:param name="tertiary" value="age"/>
+</jsp:include>
+
+<jsp:include page="doubleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MedicationAgeArray"/>
+	<jsp:param name="primary" value="concept_set_name"/>
+	<jsp:param name="secondary" value="age"/>
+	<jsp:param name="sort_desc" value="count"/>
 </jsp:include>
 
 <jsp:include page="tripleHistogram.jsp">
