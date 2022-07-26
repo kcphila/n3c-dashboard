@@ -26,22 +26,21 @@
 			
 {
     "headers": [
+     	{"value":"task_team", "label":"Task Team?"},
         {"value":"title", "label":"Title"},
-        {"value":"id", "label":"ID"},
         {"value":"description", "label":"Research Statement"},
         {"value":"pi_name", "label":"Lead Investigator"},
         {"value":"accessing_institution", "label":"Accessing Institution"},
-        {"value":"task_team", "label":"Task Team?"}
+        {"value":"id", "label":"ID"}  
     ],
     "rows" : [
     <c:forEach items="${projects.rows}" var="row" varStatus="rowCounter">
-	    {
+	    {	"task_team":"${row.task_team}",
 	    	"title":${row.title},
-	    	"id":${row.id},
 	    	"description":${row.research_statement},
 	    	"pi_name":${row.lead_investigator},
 	    	"accessing_institution":${row.accessing_institution},
-	        "task_team":"${row.task_team}"
+	    	"id":${row.id}
 	    }<c:if test="${!rowCounter.last}">,</c:if>
 </c:forEach>
     ]

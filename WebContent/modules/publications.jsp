@@ -75,7 +75,7 @@ $.getJSON("<util:applicationRoot/>/feeds/publications.jsp", function(data){
     	    	  columns: ':not(.noExport)'
               },
     	      text: 'CSV',
-    	      filename: 'severity_csv_export',
+    	      filename: 'N3C_publications_csv_export',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',

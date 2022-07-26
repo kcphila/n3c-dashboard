@@ -38,6 +38,34 @@ $.getJSON("<util:applicationRoot/>/feeds/project_roster.jsp", function(data){
 	$('#project-table').DataTable( {
     	data: data,
        	paging: true,
+       	dom: 'lfr<"datatable_overflow"t>Bip',
+    	buttons: {
+    	    dom: {
+    	      button: {
+    	        tag: 'button',
+    	        className: ''
+    	      }
+    	    },
+    	    buttons: [{
+    	      extend: 'csv',
+    	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+    	    	  columns: ':not(.noExport)'
+              },
+    	      text: 'CSV',
+    	      filename: 'N3C_projects_csv_export',
+    	      extension: '.csv'
+    	    }, {
+    	      extend: 'copy',
+    	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+    	    	  columns: ':not(.noExport)'
+              },
+    	      titleAttr: 'Copy table data.',
+    	      text: 'Copy'
+    	    }]
+    	},
        	language: {
             searchPlaceholder: "title, researcher, institution ..."
         },
@@ -46,8 +74,9 @@ $.getJSON("<util:applicationRoot/>/feeds/project_roster.jsp", function(data){
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
     	columns: [
-        	{   data: 'title',
+        	{   data: 'task_team',
         		orderable: false,
+        		className: 'noExport',
         		render: function ( data, type, row ) {
         			var title = row.title;
         			var id = row.id;
@@ -70,11 +99,11 @@ $.getJSON("<util:applicationRoot/>/feeds/project_roster.jsp", function(data){
         				+ '</div></div></div></div>';
              		return combo; }
              },
+            { data: 'title', visible: false },
         	{ data: 'description', visible: false },
         	{ data: 'pi_name', visible: false },
-        	{ data: 'id', visible:false},
         	{ data: 'accessing_institution', visible: false},
-        	{ data: 'task_team', visible: false}
+        	{ data: 'id', visible: false}
     	]
 	} );
 

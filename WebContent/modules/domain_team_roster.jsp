@@ -39,6 +39,34 @@ $.getJSON("<util:applicationRoot/>/feeds/domain_team_roster.jsp", function(data)
 	$('#domain-team-table').DataTable( {
 		data: data,
 		paging: true,
+		dom: 'lfr<"datatable_overflow"t>Bip',
+    	buttons: {
+    	    dom: {
+    	      button: {
+    	        tag: 'button',
+    	        className: ''
+    	      }
+    	    },
+    	    buttons: [{
+    	      extend: 'csv',
+    	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+    	    	  columns: ':not(.noExport)'
+              },
+    	      text: 'CSV',
+    	      filename: 'N3C_domain_teams_csv_export',
+    	      extension: '.csv'
+    	    }, {
+    	      extend: 'copy',
+    	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+    	    	  columns: ':not(.noExport)'
+              },
+    	      titleAttr: 'Copy table data.',
+    	      text: 'Copy'
+    	    }]
+    	},
 		drawCallback: function( settings ) {$("#domain-team-table thead").remove(); } ,
 		language: {
             searchPlaceholder: "title, description, ..."
@@ -47,8 +75,9 @@ $.getJSON("<util:applicationRoot/>/feeds/domain_team_roster.jsp", function(data)
 		lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
 		order: [[0, 'asc']],
 		columns: [
-			{ data: 'title',
+			{ data: 'nid',
 			orderable: false,
+			class: 'noExport',
 			render: function ( data, type, row ) {
 				var id = 'domain' + row.nid;
 				var title = row.title;
@@ -77,8 +106,8 @@ $.getJSON("<util:applicationRoot/>/feeds/domain_team_roster.jsp", function(data)
     				+ '</div></div></div></div>';
          		return combo; }
         	  },
+        	  { data: 'title', visible: false },
         	  { data: 'description', visible: false },
-        	  { data: 'nid', visible: false },
         	  { data: 'cross_cutting', visible:false},
         	  { data: 'created', visible: false}
     	]

@@ -9,7 +9,7 @@ function init() {
 	$.getJSON("<util:applicationRoot/>/feeds/siteLocations.jsp", function(data){
 		var json = $.parseJSON(JSON.stringify(data));
 		var col = [];
-		var hard_headers = ["Site", "Type", "Data Status", "Data Model"] ;
+		var hard_headers = ["Site", "Type", "Data Status", "Data Model", "URL"] ;
 		var table = document.createElement("table");
 			table.className = 'table table-hover compact site-wrapper';
 			table.style.width = '100%';
@@ -27,6 +27,28 @@ function init() {
 		const table2 = $('#site-table').DataTable( {
 	    	data: data,
 	       	paging: true,
+	       	dom: 'lfr<"datatable_overflow"t>Bip',
+	    	buttons: {
+	    	    dom: {
+	    	      button: {
+	    	        tag: 'button',
+	    	        className: ''
+	    	      }
+	    	    },
+	    	    buttons: [{
+	    	      extend: 'csv',
+	    	      className: 'btn btn-sm btn-light',
+	    	      titleAttr: 'CSV export.',
+	    	      text: 'CSV',
+	    	      filename: 'N3C_sites_csv_export',
+	    	      extension: '.csv'
+	    	    }, {
+	    	      extend: 'copy',
+	    	      className: 'btn btn-sm btn-light',
+	    	      titleAttr: 'Copy table data.',
+	    	      text: 'Copy'
+	    	    }]
+	    	},
 	    	pageLength: 5,
 	    	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
 	    	order: [[0, 'asc']],
@@ -38,7 +60,8 @@ function init() {
 	        		},
 	        	{ data: 'type', visible: true, orderable: true },
 	        	{ data: 'status', visible: true, orderable: true },
-	        	{ data: 'data_model', visible: true, orderable: true }
+	        	{ data: 'data_model', visible: true, orderable: true },
+	        	{ data: 'url', visible: false}
 	    	]
 		} );
 		const tableData = getTableData(table2);
