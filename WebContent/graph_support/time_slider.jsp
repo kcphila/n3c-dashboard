@@ -1,21 +1,21 @@
  <style>
 
-    #play-button {
-      background: #f08080;
-      padding-right: 26px;
-      border-radius: 3px;
-      border: none;
-      color: white;
-      margin: 0;
-      padding: 0 12px;
-      width: 60px;
-      cursor: pointer;
-      height: 30px;
-    }
+/*     #play-button { */
+/*       background: #f08080; */
+/*       padding-right: 26px; */
+/*       border-radius: 3px; */
+/*       border: none; */
+/*       color: white; */
+/*       margin: 0; */
+/*       padding: 0 12px; */
+/*       width: 60px; */
+/*       cursor: pointer; */
+/*       height: 30px; */
+/*     } */
 
-    #play-button:hover {
-      background-color: #696969;
-    }    
+/*     #play-button:hover { */
+/*       background-color: #696969; */
+/*     }     */
     
     .ticks {
       font-size: 10px;
@@ -54,7 +54,7 @@
   </style>
 
 <div id="vis-button">
-  <button id="play-button" title="Click to play/pause automatic stepping through subsequent infection dates">Play</button>
+  
 </div>
 <div id="vis">
 </div>
@@ -64,12 +64,20 @@ var formatDateIntoYear = d3.timeFormat("%Y");
 var formatDate = d3.timeFormat("%m/%Y");
 var parseDate = d3.timeParse("%m/%d/%y");
 
+var formatTick = function(date){
+	if (d3.timeYear(date) < date) {
+        return d3.timeFormat('%b')(date);
+      } else {
+        return d3.timeFormat('%Y')(date);
+      }
+   };
+
 var startDate = new Date("2020-01-01"),
     endDate = new Date("2022-08-01");
 
-var margin = {top:50, right:50, bottom:0, left:50},
+var margin = {top:0, right:50, bottom:0, left:50},
     width = 860 - margin.left - margin.right,
-    height = 120 - margin.top - margin.bottom;
+    height = 50 - margin.top - margin.bottom;
 
 var svg = d3.select("#vis")
     .append("svg")
@@ -113,13 +121,14 @@ slider.insert("g", ".track-overlay")
     .attr("class", "ticks")
     .attr("transform", "translate(0," + 18 + ")")
   .selectAll("text")
-    .data(x.ticks(10))
+    .data(x.ticks(d3.timeMonth.every(1)))
     .enter()
     .append("text")
     .attr("x", x)
     .attr("y", 10)
     .attr("text-anchor", "middle")
-    .text(function(d) { return formatDateIntoYear(d); });
+    .text(function(d) { return formatTick(d); });
+    
 
 var handle = slider.insert("circle", ".track-overlay")
     .attr("class", "handle")
@@ -137,15 +146,16 @@ var label = slider.append("text")
   playButton
     .on("click", function() {
     var button = d3.select(this);
-    if (button.text() == "Pause") {
+    console.log(button.html());
+    if (button.html() == '<i class="fas fa-pause-circle" aria-hidden="true"></i>') {
       moving = false;
       clearInterval(timer);
       // timer = 0;
-      button.text("Play");
+      button.html('<i class="fas fa-play-circle"></i>');
     } else {
       moving = true;
       timer = setInterval(step, 100);
-      button.text("Pause");
+      button.html('<i class="fas fa-pause-circle"></i>');
     }
     console.log("Slider moving: " + moving);
   })

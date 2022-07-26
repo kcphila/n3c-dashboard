@@ -3,12 +3,13 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div id="reinfection1">
-	<h2>Select a Subsequent Infection Date</h2>
-	<jsp:include page="../../graph_support/time_slider.jsp">
-		<jsp:param name="block" value="${param.block}" />		
-	</jsp:include>
+	<div class="text-center">
+		<h4 style="font-size:1.2rem;">Select a Reinfection Month or <button class="btn btn-dash" id="play-button" title="Click to play/pause automatic stepping through subsequent infection dates"><i class="fas fa-play-circle"></i></button></h4>
+		<jsp:include page="../../graph_support/time_slider.jsp">
+			<jsp:param name="block" value="${param.block}" />		
+		</jsp:include>
+	</div>
 	
-	<h2>Reinfected Patient Counts and the Seven Day Rolling Average</h2>
 	<div id="${param.block}_timeline_viz" class="col-12 dash_viz"></div>
 
 	<div id="reinfection1_graph_save_viz"> 
@@ -23,7 +24,7 @@
 
 function ${param.block}_age_refresh() {
    	d3.select("#${param.block}_timeline_viz").select("svg").remove();
-	TimeLine2ColumnChart(${param.block}_InitialCountSevenArray,"${param.block}_timeline_viz", 120);	
+	TimeLine2ColumnChart2(${param.block}_InitialCountSevenArray,"${param.block}_timeline_viz", 120);	
 }
 
 ${param.block}_age_refresh();

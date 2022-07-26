@@ -70,6 +70,7 @@ WebContent/graph_support/stacked_bar_horizontal_2.jsp -text
 WebContent/graph_support/temp.js -text
 WebContent/graph_support/time_line_2_column.jsp -text
 WebContent/graph_support/time_line_2_column_local.jsp -text
+WebContent/graph_support/time_line_2_column_local2.jsp -text
 WebContent/graph_support/time_slider.jsp -text
 WebContent/graph_support/us-states.json -text
 WebContent/graph_support/verticalBarChart_local.jsp -text

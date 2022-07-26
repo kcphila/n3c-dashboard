@@ -11,9 +11,9 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
 	<select id="selectMe">
-		<option value="reinfection_time_series_1">Reinfection Time Series</option>
+		<option value="reinfection_time_series_1">Time Series: Reinfected Patient Count and 7-Day Rolling Average</option>
 		<option value="reinfection_time_series_2">Interval Between Initial and Reinfection Dates</option>
-		<option disabled hidden="hidden">First Diagnosis Versus Reinfected Patients Per COVID+ Cohort++++++++</option>	
+		<option disabled hidden="hidden">Time Series: Reinfected Patient Count and 7-Day Rolling Average++++++++</option>	
 	</select>
 </div>
 <div id="frame">
