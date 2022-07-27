@@ -160,21 +160,10 @@ div.tooltip {
 					.attr("class", "node")
 					.on("click", function(d) {
 						console.log("click", d, url_unmap('1'), data.axes[d.x]);
-						$('#selectMe').val(url_unmap('1'));
-						frame_load(url_unmap('1'));
-						$('.group').hide();
-						$('#'+url_unmap('1')).show();
-					    $('#selectMe').select2({
-							searchInputPlaceholder: 'Search Topics...'
-					    });
-						setTimeout(() => {
-							$('#all_summary_1_toggle_viz_select').val(data.axes[d.x].toLowerCase());
-							all_summary_1_toggle(data.axes[d.x].toLowerCase());
-						    $('#all_summary_1_toggle_viz_select').select2({
-								searchInputPlaceholder: 'Search Topics...'
-						    });
+						$('#selectMe').val(url_unmap('1')).trigger('change');
+						setTimeout(() => { // need to wait for the dust to settle before targeting the sub-select
+							$('#all_summary_1toggle_viz_select').val(data.axes[d.x].toLowerCase()).trigger('change');
 						}, 1000);
-						//	window.open("<util:applicationRoot/>/public-health/SummaryDataAllAges/1", "_self");
 					})
 					.on("mouseover", function(d) {
 						console.log(d);
