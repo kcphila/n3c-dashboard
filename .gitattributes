@@ -180,6 +180,7 @@ WebContent/new_ph/all_summary/feeds/unknown_vaccination.jsp -text
 WebContent/new_ph/all_summary/feeds/vaccinated.jsp -text
 WebContent/new_ph/all_summary/feeds/vaccinated_comorbidities.jsp -text
 WebContent/new_ph/all_summary/gender.jsp -text
+WebContent/new_ph/all_summary/hive.jsp -text
 WebContent/new_ph/all_summary/kpis.jsp -text
 WebContent/new_ph/all_summary/panel.jsp -text
 WebContent/new_ph/all_summary/race.jsp -text
