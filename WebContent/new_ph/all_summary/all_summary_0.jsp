@@ -9,7 +9,19 @@
 	<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('all_summary_0', 'hive.png');">Save as PNG</button>
 	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('all_summary_0', 'hive.jpg');">Save as JPEG</button>
 </div>
-<jsp:include page="../../graph_support/hive.jsp">
-	<jsp:param name="dom_element" value="#all_summary_0" />
-</jsp:include>
 
+<script>
+
+function ${param.block}_hive_refresh() {
+	var properties = {
+		feed_path: "../../feeds/hive_data.jsp",
+		domName: "all_summary_0",
+		color: [ age_range_all, severity_range, gender_range, race_range, ethnicity_range ]
+	};
+	
+	d3.select("#${param.block}_hive_viz").select("svg").remove();
+	localHiveChart(properties);
+}
+
+${param.block}_hive_refresh();
+</script>
