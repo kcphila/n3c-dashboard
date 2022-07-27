@@ -19,6 +19,7 @@
 
 var formatDateIntoYear = d3.timeFormat("%Y");
 var formatDate = d3.timeFormat("%m/%Y");
+var formatDate2 = d3.timeFormat("%B %Y");
 var parseDate = d3.timeParse("%m/%d/%y");
 var current_date_value =  0;
 
@@ -141,7 +142,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	}
 	
 	function update(h) {
-	  $('#current_date').html(formatDate(h));
+	  $('#current_date').html(formatDate2(h));
 	  ${param.block}_constrain_table("subsequent_infection", formatDate(h));
 	}
 	
@@ -291,7 +292,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			}
 			
 			function update(h) {
-			  $('#current_date').html(formatDate(h));
+			  $('#current_date').html(formatDate2(h));
 			  ${param.block}_constrain_table("subsequent_infection", formatDate(h));
 			}
 			
