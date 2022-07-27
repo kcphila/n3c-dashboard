@@ -16,6 +16,7 @@ function ${param.block}_hive_refresh() {
 	var properties = {
 		feed_path: "../../feeds/hive_data.jsp",
 		domName: "all_summary_0",
+		domTarget: "all_summary_1",
 		color: [ age_range_all, severity_range, gender_range, race_range, ethnicity_range ]
 	};
 	

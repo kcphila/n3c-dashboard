@@ -4,7 +4,7 @@
 
 <style>
 
-	.axis {
+	.axis_line {
 	  stroke: #000;
 	  stroke-width: 1.5px;
 	}
@@ -115,7 +115,7 @@ div.tooltip {
 					.data(d3.range(groupings))
 					.enter()
 					.append("line")
-					.attr("class", "axis")
+					.attr("class", "axis_line")
 					.attr("transform", function(d) {
 						return "rotate(" + degrees(angle(d)) + ")";
 					})
@@ -159,10 +159,10 @@ div.tooltip {
 					.append("circle")
 					.attr("class", "node")
 					.on("click", function(d) {
-						console.log("click", d, url_unmap('1'), data.axes[d.x]);
-						$('#selectMe').val(url_unmap('1')).trigger('change');
+						console.log("click", d, properties.domTarget, data.axes[d.x]);
+						$('#selectMe').val(properties.domTarget).trigger('change');
 						setTimeout(() => { // need to wait for the dust to settle before targeting the sub-select
-							$('#all_summary_1toggle_viz_select').val(data.axes[d.x].toLowerCase()).trigger('change');
+							$('#'+properties.domTarget+'toggle_viz_select').val(data.axes[d.x].toLowerCase()).trigger('change');
 						}, 1000);
 					})
 					.on("mouseover", function(d) {
