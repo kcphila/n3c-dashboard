@@ -154,8 +154,8 @@ var margin = {top:0, right:50, bottom:0, left:50},
 		if (newWidth2 > 0) {
 			d3.select(domName).select("svg").remove();
 			width2 = newWidth2 - margin.left - margin.right;
-			resize();
 			current_date_value = sliderTime.value();
+			resize();
 			update(current_date_value);
 		}
 	};
