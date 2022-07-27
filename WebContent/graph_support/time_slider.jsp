@@ -20,6 +20,7 @@
 var formatDateIntoYear = d3.timeFormat("%Y");
 var formatDate = d3.timeFormat("%m/%Y");
 var parseDate = d3.timeParse("%m/%d/%y");
+var current_date_value =  0;
 
 var domName = '#vis';
 
@@ -77,6 +78,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 		})
 		.tickValues(dataMonths)
 		.on('onchange',function(d) {
+			current_date_value = sliderTime.value();
 		    update(d); 
 		})
 		.on("drag", function (val) {
@@ -127,7 +129,8 @@ var margin = {top:0, right:50, bottom:0, left:50},
 		var current_date = sliderTime.value();
 		var stepday = daysInMonth(current_date.getMonth(), current_date.getYear());
 		var result = current_date.setDate(current_date.getDate() + stepday);
-		if(result.valueOf() > maxDate.valueOf()) {
+		var maxDate2 = maxDate.setDate(maxDate.getDate() + 1);
+		if(result.valueOf() > maxDate2.valueOf()) {
 			resetTimer();
 		}else{
 			sliderTime.value(result.valueOf());
@@ -148,13 +151,12 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	
 	
 	////////////////////////////// resize ///////////////////////////////////////////////////////////////////////////
-	var current_date_value = minDate;
+	
 	function drawgraphnew2(){
 		var newWidth2 = $('#reinfection1').width();
 		if (newWidth2 > 0) {
 			d3.select(domName).select("svg").remove();
 			width2 = newWidth2 - margin.left - margin.right;
-			current_date_value = sliderTime.value();
 			resize();
 			update(current_date_value);
 		}
@@ -222,6 +224,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 				})
 				.tickValues(dataMonths)
 				.on('onchange',function(d) {
+					current_date_value = sliderTime.value();
 				    update(d); 
 				})
 				.on("drag", function (val) {
@@ -275,7 +278,8 @@ var margin = {top:0, right:50, bottom:0, left:50},
 				var current_date = sliderTime.value();
 				var stepday = daysInMonth(current_date.getMonth(), current_date.getYear());
 				var result = current_date.setDate(current_date.getDate() + stepday);
-				if(result.valueOf() > maxDate.valueOf()) {
+				var maxDate2 = maxDate.setDate(maxDate.getDate() + 1);
+				if(result.valueOf() > maxDate2.valueOf()) {
 					resetTimer();
 				}else{
 					sliderTime.value(result.valueOf());
