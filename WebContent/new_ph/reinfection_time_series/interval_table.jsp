@@ -62,7 +62,7 @@ $(document).ready( function () {
 	    	      className: 'btn btn-sm btn-light',
 	    	      titleAttr: 'CSV export.',
 	    	      text: 'CSV',
-	    	      filename: 'symptom_before_after_covid_csv_export',
+	    	      filename: 'reinfection_intervals_csv_export',
 	    	      extension: '.csv'
 	    	    }, {
 	    	      extend: 'copy',

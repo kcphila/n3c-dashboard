@@ -7,9 +7,9 @@
 	<div id="${param.block}_timeline_viz" class="col-12 dash_viz"></div>
 
 	<div id="reinfection2_graph_save_viz"> 
-		<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('reinfection2_graph', 'reinfection2_graph.svg');">Save as SVG</button>
-		<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('reinfection2_graph', 'reinfection2_graph.png');">Save as PNG</button>
-		<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('reinfection2_graph', 'reinfection2_graph.jpg');">Save as JPEG</button>
+		<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_timeline_viz', '${param.block}_graph.svg');">Save as SVG</button>
+		<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_timeline_viz', '${param.block}_graph.png');">Save as PNG</button>
+		<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_timeline_viz', '${param.block}_graph.jpg');">Save as JPEG</button>
 	</div>
 	
 </div>

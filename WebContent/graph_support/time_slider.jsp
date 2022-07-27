@@ -149,13 +149,15 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	
 	
 	////////////////////////////// resize ///////////////////////////////////////////////////////////////////////////
+	var current_date_value = minDate;
 	function drawgraphnew2(){
 		var newWidth2 = $('#reinfection1').width();
 		if (newWidth2 > 0) {
 			d3.select(domName).select("svg").remove();
 			width2 = newWidth2 - margin.left - margin.right;
 			resize();
-			update(minDate);
+			current_date_value = sliderTime.value()
+			update(current_date_value);
 		}
 	};
 	window.onresize = drawgraphnew2;
@@ -201,8 +203,6 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			  }
 			}
 			
-			console.log(dataMonths);
-			
 			var sliderTime = d3
 				.sliderBottom()
 				.min(d3.min(dataMonths))
@@ -226,6 +226,9 @@ var margin = {top:0, right:50, bottom:0, left:50},
 				    resetTimer();
 				})
 				.handle(d3.symbol().type(d3.symbolCircle).size(200)());
+		
+			console.log(current_date_value);
+			sliderTime.value(current_date_value.valueOf());
 			  
 			var gTime =  svg.append("g")
 				.attr('width', width)
@@ -288,6 +291,8 @@ var margin = {top:0, right:50, bottom:0, left:50},
 				clearInterval(timer);
 				playButton.html('<i class="fas fa-play-circle"></i>');
 			}
+			
+			
 	}
 
 

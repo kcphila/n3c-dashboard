@@ -65,6 +65,25 @@ function localVerticalBarChart(data, properties) {
 			  .append("g")
 			    .attr("transform", 
 			          "translate(" + margin.left + "," + margin.top + ")");
+			
+			var svgDefs = svg.append('defs');
+
+	        var mainGradient = svgDefs.append('linearGradient')
+	            .attr('id', 'mainGradient')
+	            .attr('x1', '0%')
+	  			.attr('x2', '0%')
+	  			.attr('y1', '100%')
+	  			.attr('y2', '0%');
+
+	        // Create the stops of the main gradient.
+	        mainGradient.append('stop')
+	            .style('stop-color', "#33298D")
+	            .attr('offset', '0');
+
+	        mainGradient.append('stop')
+	            .style('stop-color', "#3F50B0")
+	            .attr('offset', '99%');
+	        
 
 			  // Scale the range of the data in the domains
 			  x.domain(data.map(function(d) { return d.element; }));
@@ -75,7 +94,7 @@ function localVerticalBarChart(data, properties) {
 			      .data(data)
 			    .enter().append("rect")
 			      .attr("class", "bar")
-			      .attr('fill', '#376076')
+			      .attr("fill", "url(#mainGradient)")
 			      .attr("x", function(d) { return x(d.element); })
 			      .attr("width", x.bandwidth())
 			      .attr("y", function(d) { return y(d.count); })
