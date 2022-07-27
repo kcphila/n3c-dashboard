@@ -40,26 +40,37 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	var targetValue = width;
 	var timer;
 	
-	var minDate = new Date('2020-1-01'),
+	var minDate = new Date('2020-01-01'),
 	      maxDate = new Date('2022-08-01'),
-	      startDate = new Date("2022-2-1"),
-	      interval = maxDate.getFullYear() - minDate.getFullYear() + 1,
-	      startYear = minDate.getFullYear();
-	let dataMonths = [];
+	      startDate = new Date("2022-02-01");
+	var interval = maxDate.getFullYear() - minDate.getFullYear() + 1;
+	var startYear = minDate.getFullYear();
+	var dataMonths = [];
 	
-	console.log(startDate);
+// 	console.log(minDate);
+	console.log(maxDate);
+// 	console.log(startDate);
+// 	console.log('interval ' + interval);
+// 	console.log(interval);
 	
 	for (let year = 0; year < interval; year++) {
+		console.log('reachedyear');
 	  for (let month = 0; month < 12; month++) {
 		  if (month <= maxDate.getMonth() || year < 2){
 			  	var year2 = startYear + year;
 			  	var month2 = month +1;
-	    		dataMonths.push(new Date(year2 +"-"+ month2 +"-"+ 1));
+			  	var length = month2.toString().length;
+				if (length == 1){
+	    			dataMonths.push(new Date(year2 +"-0"+ month2 +"-01"));
+				} else {
+					dataMonths.push(new Date(year2 +"-"+ month2 +"-01"));
+				}
 		  }
 	  }
 	}
 	
-	console.log(dataMonths);
+	console.log('datamonths ' + dataMonths);
+	console.log('reached');
 	
 	var sliderTime = d3
 		.sliderBottom()
@@ -74,7 +85,6 @@ var margin = {top:0, right:50, bottom:0, left:50},
 		      } else {
 		        return d3.timeFormat('%Y')(d);
 		      }
-			formatTick(d);
 		})
 		.tickValues(dataMonths)
 		.on('onchange',function(d) {
