@@ -1,57 +1,14 @@
+
  <style>
-
-/*     #play-button { */
-/*       background: #f08080; */
-/*       padding-right: 26px; */
-/*       border-radius: 3px; */
-/*       border: none; */
-/*       color: white; */
-/*       margin: 0; */
-/*       padding: 0 12px; */
-/*       width: 60px; */
-/*       cursor: pointer; */
-/*       height: 30px; */
-/*     } */
-
-/*     #play-button:hover { */
-/*       background-color: #696969; */
-/*     }     */
     
-    .ticks {
-      font-size: 10px;
-    }
+.tick{
+	font-size: 10px;
+}
 
-    .track,
-    .track-inset,
-    .track-overlay {
-      stroke-linecap: round;
-    }
-
-    .track {
-      stroke: #000;
-      stroke-opacity: 0.3;
-      stroke-width: 10px;
-    }
-
-    .track-inset {
-      stroke: #dcdcdc;
-      stroke-width: 8px;
-    }
-
-    .track-overlay {
-      pointer-events: stroke;
-      stroke-width: 50px;
-      stroke: transparent;
-      cursor: crosshair;
-    }
-
-    .handle {
-      fill: #fff;
-      stroke: #000;
-      stroke-opacity: 0.5;
-      stroke-width: 1.25px;
-    }
-  </style>
+.slider {
+  cursor: pointer;
+}
+</style>
 
 <div id="vis-button">
   
@@ -64,132 +21,123 @@ var formatDateIntoYear = d3.timeFormat("%Y");
 var formatDate = d3.timeFormat("%m/%Y");
 var parseDate = d3.timeParse("%m/%d/%y");
 
-var formatTick = function(date){
-	if (d3.timeYear(date) < date) {
-        return d3.timeFormat('%b')(date);
-      } else {
-        return d3.timeFormat('%Y')(date);
-      }
-   };
-
-var startDate = new Date("2020-01-01"),
-    endDate = new Date("2022-08-01");
 
 var margin = {top:0, right:50, bottom:0, left:50},
     width = 860 - margin.left - margin.right,
-    height = 50 - margin.top - margin.bottom;
+    height = 80 - margin.top - margin.bottom;
 
 var svg = d3.select("#vis")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom);  
-
-////////// slider //////////
-
+ 
+//////////slider //////////
+// Time
 var moving = false;
 var currentValue = 0;
 var targetValue = width;
+var timer;
 
-var playButton = d3.select("#play-button");
-    
-var x = d3.scaleTime()
-    .domain([startDate, endDate])
-    .range([0, targetValue])
-    .clamp(true);
+var minDate = new Date('2020-1-01'),
+      maxDate = new Date('2022-08-01'),
+      startDate = new Date("2022-2-1"),
+      interval = maxDate.getFullYear() - minDate.getFullYear() + 1,
+      startYear = minDate.getFullYear();
+let dataMonths = [];
 
-var slider = svg.append("g")
-    .attr("class", "slider")
-    .attr("transform", "translate(" + margin.left + "," + height/5 + ")");
+console.log(startDate);
 
-slider.append("line")
-    .attr("class", "track")
-    .attr("x1", x.range()[0])
-    .attr("x2", x.range()[1])
-  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-    .attr("class", "track-inset")
-  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-    .attr("class", "track-overlay")
-    .call(d3.drag()
-        .on("start.interrupt", function() { slider.interrupt(); })
-        .on("start drag", function() {
-          currentValue = d3.event.x;
-          update(x.invert(currentValue)); 
-        })
-    );
-
-slider.insert("g", ".track-overlay")
-    .attr("class", "ticks")
-    .attr("transform", "translate(0," + 18 + ")")
-  .selectAll("text")
-    .data(x.ticks(d3.timeMonth.every(1)))
-    .enter()
-    .append("text")
-    .attr("x", x)
-    .attr("y", 10)
-    .attr("text-anchor", "middle")
-    .text(function(d) { return formatTick(d); });
-    
-
-var handle = slider.insert("circle", ".track-overlay")
-    .attr("class", "handle")
-    .attr("r", 9);
-
-var label = slider.append("text")  
-    .attr("class", "label")
-    .attr("text-anchor", "middle")
-    .text(formatDate(startDate))
-    .attr("transform", "translate(0," + (-25) + ")")
-
- 
-////////// plot //////////
-
-  playButton
-    .on("click", function() {
-    var button = d3.select(this);
-    if (button.html() == '<i class="fas fa-pause-circle" aria-hidden="true"></i>') {
-      moving = false;
-      clearInterval(timer);
-      // timer = 0;
-      button.html('<i class="fas fa-play-circle"></i>');
-    } else {
-      moving = true;
-      timer = setInterval(step, 800);
-      button.html('<i class="fas fa-pause-circle"></i>');
-    }
-    console.log("Slider moving: " + moving);
-  })
-
-function monthDiff(d1, d2) {
-    var months;
-    months = (d2.getFullYear() - d1.getFullYear()) * 12;
-    months -= d1.getMonth();
-    months += d2.getMonth();
-    return months <= 0 ? 0 : months;
+for (let year = 0; year < interval; year++) {
+  for (let month = 0; month < 12; month++) {
+	  if (month <= maxDate.getMonth() || year < 2){
+		  	var year2 = startYear + year;
+		  	var month2 = month +1;
+    		dataMonths.push(new Date(year2 +"-"+ month2 +"-"+ 1));
+	  }
+  }
 }
 
-var stepnumber = monthDiff(startDate, endDate);
+console.log(dataMonths);
 
-function step() {
-  update(x.invert(currentValue));
-  currentValue = currentValue + (targetValue/stepnumber);
-  if (currentValue > targetValue) {
-    moving = false;
-    currentValue = 0;
-    clearInterval(timer);
-    // timer = 0;
-    playButton.html('<i class="fas fa-pause-circle" aria-hidden="true"></i>');
-    console.log("Slider moving: " + moving);
-  }
+var sliderTime = d3
+	.sliderBottom()
+	.min(d3.min(dataMonths))
+	.max(d3.max(dataMonths))
+	.marks(dataMonths)
+	.width(width)
+	.displayValue(false)
+	.tickFormat(function(d){
+		if (d3.timeYear(d) < d) {
+	        return d3.timeFormat('%b')(d);
+	      } else {
+	        return d3.timeFormat('%Y')(d);
+	      }
+		formatTick(d);
+	})
+	.tickValues(dataMonths)
+	.on('onchange',function(d) {
+	    update(d); 
+	})
+	.on("drag", function (val) {
+	    resetTimer();
+	})
+	.handle(d3.symbol().type(d3.symbolCircle).size(200)());
+  
+  var gTime =  svg.append("g")
+    .attr('width', width)
+    .attr('height', 100)
+    .attr('transform', 'translate(30,30)');
+
+  gTime.call(sliderTime);
+ 
+  d3.select(".parameter-value text").attr("y", "-29");
+
+var playButton = d3.select("#play-button");
+
+////////// plot //////////
+
+
+playButton
+    .on("click", function() {
+    	var button = d3.select(this);
+    	if (button.html() == '<i class="fas fa-pause-circle" aria-hidden="true"></i>') {
+      		moving = false;
+      		clearInterval(timer);
+      		resetTimer();
+      		// timer = 0;
+      		button.html('<i class="fas fa-play-circle"></i>');
+    	} else {
+      		moving = true;
+      		timer = setInterval(update2, 1000);
+      		button.html('<i class="fas fa-pause-circle"></i>');
+    	}
+  });
+
+//var stepnumber = monthDiff(startDate, endDate);
+function daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+}
+
+function update2() {
+	var current_date = sliderTime.value();
+	var stepday = daysInMonth(current_date.getMonth(), current_date.getYear());
+	var result = current_date.setDate(current_date.getDate() + stepday);
+	if(result.valueOf() > maxDate.valueOf()) {
+		resetTimer();
+	}else{
+		sliderTime.value(result.valueOf());
+		update(result.valueOf());
+	}
 }
 
 function update(h) {
   $('#current_date').html(formatDate(h));
-  // update position and text of label according to slider scale
-  handle.attr("cx", x(h));
-  label
-    .attr("x", x(h))
-    .text(formatDate(h));
-
   ${param.block}_constrain_table("subsequent_infection", formatDate(h));
+}
+
+function resetTimer() {
+	moving = false;
+	clearInterval(timer);
+	playButton.html('<i class="fas fa-play-circle"></i>');
 }
 </script>

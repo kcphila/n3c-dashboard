@@ -828,6 +828,7 @@ WebContent/resources/jquery.hottie.js -text
 WebContent/resources/main_style.css -text
 WebContent/resources/n3c_login_style.css -text
 WebContent/resources/select2_search.js -text
+WebContent/resources/slider.min.js -text
 WebContent/resources/tableToExcel.js -text
 WebContent/resources/topojson.js -text
 WebContent/tables/domain_team_roster.jsp -text

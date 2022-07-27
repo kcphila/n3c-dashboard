@@ -65,11 +65,13 @@
 	<script src="<util:applicationRoot/>/resources/d3.v4.min.js"></script>
 	<script src="<util:applicationRoot/>/resources/d3-tip.js"></script>
 	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+	<script src="<util:applicationRoot/>/resources/slider.min.js"></script>
 	
 	<!-- Map Viz -->
 	<script src="<util:applicationRoot/>/resources/topojson.js"></script>
 	<script src="<util:applicationRoot/>/new_ph/severity_region/albers-usa-pr.js"></script>
 	<script src="<util:applicationRoot/>/new_ph/severity_region/states.js"></script>
+	
 
 
 	 <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>

@@ -408,6 +408,7 @@
 			};
 			if ('${param.block}' === 'reinfection_ts_1') {
 				update(new Date('Feb 1 2022 1:00:00 CST'));
+				sliderTime.value(new Date('Feb 1 2022 1:00:00 CST').valueOf());
 			};
 	    }, 1000);
 	})
