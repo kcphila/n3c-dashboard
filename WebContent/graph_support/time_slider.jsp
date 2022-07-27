@@ -40,37 +40,26 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	var targetValue = width;
 	var timer;
 	
-	var minDate = new Date('2020-01-01'),
-	      maxDate = new Date('2022-08-01'),
-	      startDate = new Date("2022-02-01");
+	var minDate = new Date('Jan 01 2020'),
+	      maxDate = new Date('Jul 01 2022'),
+	      startDate = new Date("Feb 01 2022");
 	var interval = maxDate.getFullYear() - minDate.getFullYear() + 1;
 	var startYear = minDate.getFullYear();
 	var dataMonths = [];
 	
-// 	console.log(minDate);
-	console.log(maxDate);
-// 	console.log(startDate);
-// 	console.log('interval ' + interval);
-// 	console.log(interval);
 	
+	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 	for (let year = 0; year < interval; year++) {
-		console.log('reachedyear');
 	  for (let month = 0; month < 12; month++) {
 		  if (month <= maxDate.getMonth() || year < 2){
 			  	var year2 = startYear + year;
-			  	var month2 = month +1;
-			  	var length = month2.toString().length;
-				if (length == 1){
-	    			dataMonths.push(new Date(year2 +"-0"+ month2 +"-01"));
-				} else {
-					dataMonths.push(new Date(year2 +"-"+ month2 +"-01"));
-				}
+			  	console.log(monthNames[month] + ' 01 ' + year2);
+				dataMonths.push(new Date(monthNames[month] + " 01 " + year2));
 		  }
 	  }
 	}
 	
-	console.log('datamonths ' + dataMonths);
-	console.log('reached');
 	
 	var sliderTime = d3
 		.sliderBottom()
@@ -166,7 +155,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			d3.select(domName).select("svg").remove();
 			width2 = newWidth2 - margin.left - margin.right;
 			resize();
-			current_date_value = sliderTime.value()
+			current_date_value = sliderTime.value();
 			update(current_date_value);
 		}
 	};
@@ -196,19 +185,22 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			var targetValue = width;
 			var timer;
 			
-			var minDate = new Date('2020-1-01'),
-			      maxDate = new Date('2022-08-01'),
-			      startDate = new Date("2022-2-1"),
-			      interval = maxDate.getFullYear() - minDate.getFullYear() + 1,
-			      startYear = minDate.getFullYear();
-			let dataMonths = [];
+			var minDate = new Date('Jan 01 2020'),
+		      maxDate = new Date('Jul 01 2022'),
+		      startDate = new Date("Feb 01 2022");
+			var interval = maxDate.getFullYear() - minDate.getFullYear() + 1;
+			var startYear = minDate.getFullYear();
+			var dataMonths = [];
 			
+			
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	
 			for (let year = 0; year < interval; year++) {
 			  for (let month = 0; month < 12; month++) {
 				  if (month <= maxDate.getMonth() || year < 2){
 					  	var year2 = startYear + year;
-					  	var month2 = month +1;
-			    		dataMonths.push(new Date(year2 +"-"+ month2 +"-"+ 1));
+					  	console.log(monthNames[month] + ' 01 ' + year2);
+						dataMonths.push(new Date(monthNames[month] + " 01 " + year2));
 				  }
 			  }
 			}
