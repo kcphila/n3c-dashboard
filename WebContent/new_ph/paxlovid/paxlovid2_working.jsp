@@ -20,17 +20,32 @@
 		<div class="col-12 mx-auto mt-2 mb-2 text-center">
 			<h4>Top 20 Most Frequent Medications Seen Between 6 to 27 Days After Paxlovid Treatment</h4>
 		</div>
-		<div class="col-12 col-md-6 viz" id="drugs_viz_1">
+		
+		
+		<div class="col-12 col-lg-6 viz kpi_section" id="drugs_viz_1">
+			<div class="panel-body" style="text-align:center;">
+				<h6 style="color:#3F50B0;"><i class="fas fa-filter"></i> COVID Status</h6>
+				<select id="drugs_viz-testresult-select" multiple="multiple">
+				<sql:query var="cases" dataSource="jdbc/N3CPublic">
+					select distinct result_abbrev, result_seq from n3c_dashboard.result_map order by result_seq;
+				</sql:query>
+				<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
+					<option value="${row.result_abbrev}">${row.result_abbrev}</option>
+				</c:forEach>
+				</select>
+			</div>
 			<div id="drugs_viz"></div>
-			<jsp:include page="vizs/stacked_bar.jsp">
+			<div id="drugs_viz_table" style="display: block;"></div>
+			<jsp:include page="viz_tables/drugs_viz_table.jsp">
 				<jsp:param name="domName" value='drugs_viz' />
- 				<jsp:param name="feed" value="topten_drugs.jsp" />
+				<jsp:param name="feed" value="topten_drugs_long.jsp" />
+				<jsp:param name="table" value="drugs_viz_table" />
 				<jsp:param name="primary" value="medication" />
 				<jsp:param name="secondary" value="result" />
-				<jsp:param name="textmargin" value="260" />
+				<jsp:param name="textmargin" value="220" />
 			</jsp:include>
 		</div>
-		<div class="col-12 col-md-6 viz-table" id="drugs_table_1">
+		<div class="col-12 col-lg-6 viz-table" id="drugs_table_1">
 			<jsp:include page="tables/top10_drugs_table.jsp" flush="true"/>
 		</div>
 	</div>
@@ -38,11 +53,11 @@
 		<div class="col-12 mx-auto mt-2 mb-2 text-center">
 			<h4>All Medications Seen Between 6 to 27 Days After Paxlovid Treatment </h4>
 		</div>
-		<div class="col-12 col-md-6 viz-table" id="drugs_table_2">
+		<div class="col-12 col-lg-6 viz-table" id="drugs_table_2">
 			<h5 class="text-center">Total Occurrences Greater Than 20</h5>
 			<jsp:include page="tables/greater_drugs_table.jsp" flush="true"/>
 		</div>
-		<div class="col-12 col-md-6 viz-table" id="drugs_table_3">
+		<div class="col-12 col-lg-6 viz-table" id="drugs_table_3">
 			<h5 class="text-center">Total Occurrences Less Than 20</h5>
 			<jsp:include page="tables/less20_drugs_table.jsp" flush="true"/>
 		</div>
@@ -57,8 +72,7 @@ $('#drugs_viz-testresult-select').multiselect({
         $(options).each(function(){
             selected.push($(this).val());
         });
-		${param.block}_constrain("result",  selected[0].join('|'));
+		drugconstrain("result",  selected[0].join('|'));
     }
 });
 </script>
-	

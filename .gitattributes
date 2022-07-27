@@ -568,6 +568,8 @@ WebContent/new_ph/paxlovid/kpis2.jsp -text
 WebContent/new_ph/paxlovid/outcomes.jsp -text
 WebContent/new_ph/paxlovid/panel.jsp -text
 WebContent/new_ph/paxlovid/panel2.jsp -text
+WebContent/new_ph/paxlovid/paxlovid1_working.jsp -text
+WebContent/new_ph/paxlovid/paxlovid2_working.jsp -text
 WebContent/new_ph/paxlovid/paxlovid_1.jsp -text
 WebContent/new_ph/paxlovid/paxlovid_2.jsp -text
 WebContent/new_ph/paxlovid/paxlovid_3.jsp -text
@@ -829,6 +831,10 @@ WebContent/resources/jquery-colorize.js -text
 WebContent/resources/jquery.hottie.js -text
 WebContent/resources/main_style.css -text
 WebContent/resources/n3c_login_style.css -text
+WebContent/resources/select2/select2.js -text
+WebContent/resources/select2/select2.min.css -text
+WebContent/resources/select2/select2.min.js -text
+WebContent/resources/select2/select2_search.js -text
 WebContent/resources/select2_search.js -text
 WebContent/resources/slider.min.js -text
 WebContent/resources/tableToExcel.js -text
