@@ -120,21 +120,23 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	    	}
 	  });
 	
-	//var stepnumber = monthDiff(startDate, endDate);
+
 	function daysInMonth (month, year) {
-	    return new Date(year, month, 0).getDate();
+		var test = new Date(year, month+1, 0);
+	    console.log(test);
+	    console.log(test.getDate());
+	    return test.getDate(); 
 	}
 	
 	function update2() {
 		var current_date = sliderTime.value();
-		var stepday = daysInMonth(current_date.getMonth(), current_date.getYear());
-		var result = current_date.setDate(current_date.getDate() + stepday);
-		var maxDate2 = maxDate.setDate(maxDate.getDate() + 1);
-		if(result.valueOf() > maxDate2.valueOf()) {
+		var stepday = daysInMonth(current_date.getMonth(), current_date.getFullYear());
+		current_date.setDate(current_date.getDate() + (stepday));
+		if(current_date.valueOf() > maxDate.valueOf()) {
 			resetTimer();
 		}else{
-			sliderTime.value(result.valueOf());
-			update(result.valueOf());
+			sliderTime.value(current_date.valueOf());
+			update(current_date.valueOf());
 		}
 	}
 	
@@ -269,21 +271,22 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			    	}
 			  });
 			
-			//var stepnumber = monthDiff(startDate, endDate);
 			function daysInMonth (month, year) {
-			    return new Date(year, month, 0).getDate();
+				var test = new Date(year, month+1, 0);
+			    console.log(test);
+			    console.log(test.getDate());
+			    return test.getDate(); 
 			}
 			
 			function update2() {
 				var current_date = sliderTime.value();
-				var stepday = daysInMonth(current_date.getMonth(), current_date.getYear());
-				var result = current_date.setDate(current_date.getDate() + stepday);
-				var maxDate2 = maxDate.setDate(maxDate.getDate() + 1);
-				if(result.valueOf() > maxDate2.valueOf()) {
+				var stepday = daysInMonth(current_date.getMonth(), current_date.getFullYear());
+				current_date.setDate(current_date.getDate() + (stepday));
+				if(current_date.valueOf() > maxDate.valueOf()) {
 					resetTimer();
 				}else{
-					sliderTime.value(result.valueOf());
-					update(result.valueOf());
+					sliderTime.value(current_date.valueOf());
+					update(current_date.valueOf());
 				}
 			}
 			
