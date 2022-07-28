@@ -20,8 +20,18 @@
 <script>
 
 function ${param.block}_age_refresh() {
+	var properties = {
+			domName: '${param.block}_paxlovid_viz',
+			barLabelWidth: 120,
+			legend_data: result_legend2,
+			secondary_range: result_range,
+			legend_label: 'Test Result',
+			min_height: 200,
+			nofilter: 1
+		}
+
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_AgeResultArray,"${param.block}_paxlovid_viz", 120, result_legend2, result_range, "Test Result", 200, 1);	
+	localHorizontalStackedBarChart(${param.block}_AgeResultArray, properties);	
 }
 
 ${param.block}_age_refresh();

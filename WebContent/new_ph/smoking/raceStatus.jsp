@@ -20,9 +20,17 @@
 <script>
 
 function ${param.block}_race_refresh() {
+	var properties = {
+			domName: '${param.block}_race_viz',
+			barLabelWidth: 120,
+			legend_data: status_legend,
+			secondary_range: status_range,
+			legend_label: 'Smoking Status'
+		}
+
 	console.log("reached");
    	d3.select("#${param.block}_race_viz").select("svg").remove(); console.log(${param.block}_RaceStatusArray)
-	localHorizontalStackedBarChart(${param.block}_RaceStatusArray,"${param.block}_race_viz", 120, status_legend, status_range, "Smoking Status");	
+	localHorizontalStackedBarChart(${param.block}_RaceStatusArray, properties);	
 }
 
 ${param.block}_race_refresh();

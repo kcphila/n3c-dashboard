@@ -1,6 +1,6 @@
 <script>
 
-function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height, ordered, colorscale, legend_label, legend_data) {
+function localHorizontalBarChart_legend(data, properties) {
 	
 	var filter_icon = " &#xf0b0";
 	
@@ -21,30 +21,28 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 	var barLabelPadding = 5; // padding between bar and bar labels (left)
 	var gridLabelHeight = 0; // space reserved for gridline labels
 	var gridChartOffset = 3; // space between start of grid and first bar
-	var maxBarWidth = width - barLabelWidth - barLabelPadding - valueLabelWidth;
+	var maxBarWidth = width - properties.barLabelWidth - barLabelPadding - valueLabelWidth;
 	var paddingInside = 0.5
 	
-	if (min_height === undefined){
-		min_height = 300;
-	}
+	var min_height = (properties.min_height === undefined ? 200 : properties.min_height);
 	
-	if ((ordered != undefined) && (ordered == 1) ){
+	if ((properties.ordered != undefined) && (properties.ordered == 1) ){
 		data.sort(function(a, b) {
 		    return parseFloat(b.count) - parseFloat(a.count);
 		});
 	}
 	
-	var margin = { top: 40, right: 100, bottom: 30, left: barLabelWidth },
-		width = $(domName).width() - margin.left - margin.right,
+	var margin = { top: 40, right: 100, bottom: 30, left: properties.barLabelWidth },
+		width = $(properties.domName).width() - margin.left - margin.right,
 		height = width/3;
 	
 	//accessor functions
 	var barValue = function(d) { return parseFloat(d.count); };
 	
 	function drawgraphnew(){
-		var newWidth = $(domName).width();
+		var newWidth = $(properties.domName).width();
 		if (newWidth > 0) {
-			d3.select(domName).select("svg").remove();
+			d3.select(properties.domName).select("svg").remove();
 			width = newWidth - margin.left - margin.right;
 			height = width/3;
 			if (height > min_height){
@@ -54,7 +52,7 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 		}
 	}
 	
-	d3.select(domName).select("svg").remove();
+	d3.select(properties.domName).select("svg").remove();
 
 	
  	window.onresize = drawgraphnew;
@@ -74,14 +72,14 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 			.domain([0, d3.max(data, function(d){ return d.count; })])
 			.range([0, width - margin.right]);
 		
-		var svg = d3.select(domName).append("svg")
+		var svg = d3.select(properties.domName).append("svg")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", Number(height) + margin.top + margin.bottom);
 		
 		var svgDefs = svg.append('defs');
 
         var mainGradient = svgDefs.append('linearGradient')
-            .attr('id', domName.replace('#', '') + 'mainGradient');
+            .attr('id', (properties.domName).replace('#', '') + 'mainGradient');
 
         // Create the stops of the main gradient.
         mainGradient.append('stop')
@@ -124,7 +122,7 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 
 		// axis labels & ticks
 		var axisContainer = g.append('g')
-			.attr("class", "axis xaxis " + legend_label)
+			.attr("class", "axis xaxis " + properties.legend_label)
 			.attr("transform", "translate(0," + (height-margin.bottom) + ")")				
 			.call(d3.axisBottom(x).ticks(Math.round(width/100), "s"))
 			.append("text")										
@@ -134,7 +132,7 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 			.text("Patient Count")
 			.attr("transform", "translate(" + ((width/2)- margin.right) + "," + 40 + ")"); 
 		
-		d3.selectAll("g.xaxis." + legend_label + " g.tick")
+		d3.selectAll("g.xaxis." + properties.legend_label + " g.tick")
 	    	.append("line")
 	    	.attr("class", "gridline")
 	    	.attr("x1", 0)
@@ -153,10 +151,10 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 			.attr('width', function(d) { return x(d.count); })
 			.attr('stroke', 'white')
 			.attr('fill', function(d){
-				if (colorscale != undefined){
-					return colorscale[(d.seq-1)];
+				if (properties.colorscale != undefined){
+					return properties.colorscale[(d.seq-1)];
 				}else{
-					return 'url(' + domName +'mainGradient)';
+					return 'url(' + properties.domName +'mainGradient)';
 				}
 			})
 			.on("mouseover", function() { 
@@ -223,7 +221,7 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 			.attr("x", width)
 			.attr("y", 9.5)
 			.attr("dy", "5px")
-			.text(legend_label)
+			.text(properties.legend_label)
 			.append("tspan")
 			.attr('font-family', 'FontAwesome')
 			.attr("class", "fa")
@@ -235,7 +233,7 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 			.attr("font-size", '14px')
 			.attr("text-anchor", "end")
 			.selectAll("g")
-				.data(legend_data)
+				.data(properties.legend_data)
 				.enter().append("g")
 				.attr("transform", function(d, i) {
 					return "translate(0," + i * 20 + ")";
@@ -245,14 +243,14 @@ function localHorizontalBarChart_legend(data, domName, barLabelWidth, min_height
 			.attr("x", width-19)
 			.attr("width", 19)
 			.attr("height", 19)
-			.attr("fill", function(d, i) { return colorscale[i]; })
+			.attr("fill", function(d, i) { return properties.colorscale[i]; })
 			.on("mouseover", function(d, i) {
 				tooltip2.style("display", null);
 			})
 			.on("mouseout", function(d, i) {
 					tooltip2.style("display", "none");
 			})
-			.on("click", function(d, i){window[domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, legend_label.replace(/\s/g, "")); });
+			.on("click", function(d, i){window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, properties.legend_label.replace(/\s/g, "")); });
 		
 		legend.append("text")
 			.attr("x", width - 24)

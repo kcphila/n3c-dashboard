@@ -30,6 +30,16 @@
 <script>
 
 function ${param.block}_ethnicity_refresh() {
+	var properties = {
+			domName: '#${param.block}_ethnicity_viz',
+			barLabelWidth: 150,
+			min_height: 300,
+			ordered: 0,
+			colorscale: ethnicity_range,
+			legend_lable: 'Ethnicity',
+			legend_data: ethnicity_legend
+		}
+
 	var id = $("#${param.block}-ethnicity-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];

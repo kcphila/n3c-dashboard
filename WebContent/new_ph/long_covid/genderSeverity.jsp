@@ -20,9 +20,17 @@
 <script>
 
 function ${param.block}_gender_refresh() {
+	var properties = {
+			domName: '${param.block}_gender_viz',
+			barLabelWidth: 120,
+			legend_data: severity_legend,
+			secondary_range: severity_range,
+			legend_label: 'Severity'
+		}
+
 	console.log("gender graph", "${param.block}_gender_viz", ${param.block}_GenderSeverityArray)
    	d3.select("#${param.block}_gender_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_GenderSeverityArray,"${param.block}_gender_viz", 120, severity_legend, severity_range, "Severity");	
+	localHorizontalStackedBarChart(${param.block}_GenderSeverityArray, properties);	
 }
 
 ${param.block}_gender_refresh();

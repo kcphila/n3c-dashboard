@@ -20,8 +20,16 @@
 <script>
 
 function ${param.block}_racegender_refresh() {
+	var properties = {
+			domName: '${param.block}_racegender_viz',
+			barLabelWidth: 120,
+			legend_data: gender_legend,
+			secondary_range: gender_range,
+			legend_label: 'Gender'
+		}
+
 	d3.select("#${param.block}_racegender_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_raceGenderArray,"${param.block}_racegender_viz", 120, gender_legend, gender_range, "Gender");
+	localHorizontalStackedBarChart(${param.block}_raceGenderArray, properties);
 }
 
 ${param.block}_racegender_refresh();

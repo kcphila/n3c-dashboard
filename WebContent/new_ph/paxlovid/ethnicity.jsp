@@ -20,9 +20,17 @@
 <script>
 
 function ${param.block}_ethnicity_refresh() {
+	var properties = {
+			domName: '${param.block}_paxlovid_viz',
+			barLabelWidth: 220,
+			legend_data: result_legend2,
+			secondary_range: result_range,
+			legend_label: 'Test Result'
+		}
+
 	console.log("reached");
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_EthnicityResultArray,"${param.block}_paxlovid_viz", 220, result_legend2, result_range, "Test Result");	
+	localHorizontalStackedBarChart(${param.block}_EthnicityResultArray, properties);	
 }
 
 ${param.block}_ethnicity_refresh();

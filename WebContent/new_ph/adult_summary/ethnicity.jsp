@@ -29,6 +29,16 @@
 <script>
 
 function ${param.block}_ethnicity_refresh() {
+	var properties = {
+			domName: '@${param.block}_ethnicity_viz',
+			barLabelWidth: 150,
+			min_height: 300,
+			ordered: 0,
+			colorscale: ethnicity_range,
+			legend_lable: 'Ethnicity',
+			legend_data: ethnicity_legend
+		}
+
 	var id = $("#${param.block}-ethnicity-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
@@ -38,7 +48,7 @@ function ${param.block}_ethnicity_refresh() {
 	if (mode =='pie'){		
 		localPieChart(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", ethnicity_legend, ethnicity_range, 0.5, "Ethnicity");
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", 150, 300, 0, ethnicity_range, "Ethnicity", ethnicity_legend);
+		localHorizontalBarChart_legend(${param.block}_EthnicityArray, properties);
 	} else {
 		localPercentageBarChart(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", 150, ethnicity_range, 0, "Ethnicity", ethnicity_legend);
 	};

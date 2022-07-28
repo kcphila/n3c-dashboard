@@ -20,9 +20,17 @@
 <script>
 
 function ${param.block}_age_refresh() {
+	var properties = {
+			domName: '${param.block}_age_viz',
+			barLabelWidth: 120,
+			legend_data: status_legend,
+			secondary_range: status_range,
+			legend_label: 'Status'
+		}
+
 	console.log("reached");
    	d3.select("#${param.block}_age_viz").select("svg").remove(); console.log(${param.block}_AgeStatusArray)
-	localHorizontalStackedBarChart(${param.block}_AgeStatusArray,"${param.block}_age_viz", 120, status_legend, status_range, "Status");	
+	localHorizontalStackedBarChart(${param.block}_AgeStatusArray, properties);	
 }
 
 ${param.block}_age_refresh();

@@ -19,8 +19,16 @@
 <script>
 
 function ${param.block}_sotrovimab1_refresh() {
+	var properties = {
+			domName: '${param.block}_sotrovimab1_viz',
+			barLabelWidth: 120,
+			legend_data: sotrovimaboccurrence_legend,
+			secondary_range: categorical,
+			legend_label: 'Sotrovimab Occurrence'
+		}
+
 	d3.select("#${param.block}_sotrovimab1_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_medsSeverityArray,"${param.block}_sotrovimab1_viz", 120, sotrovimaboccurrence_legend, categorical, "Sotrovimab Occurrence");
+	localHorizontalStackedBarChart(${param.block}_medsSeverityArray, properties);
 	
 }
 

@@ -29,6 +29,16 @@
 <script>
 
 function ${param.block}_race_refresh() {
+	var properties = {
+			domName: '#${param.block}_race_viz',
+			barLabelWidth: 120,
+			min_height: 300,
+			ordered: 0,
+			colorscale: race_range,
+			legend_lable: 'Race',
+			legend_data: race_legend
+		}
+
 	var id = $("#${param.block}-race-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
@@ -38,7 +48,7 @@ function ${param.block}_race_refresh() {
 	if (mode =='pie'){		
 		localPieChart(${param.block}_RaceArray,"#${param.block}_race_viz", race_legend, race_range, 0.5, "Race");
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_RaceArray,"#${param.block}_race_viz", 120, 300, 0, race_range, "Race", race_legend);
+		localHorizontalBarChart_legend(${param.block}_RaceArray, properties);
 	} else {
 		localPercentageBarChart(${param.block}_RaceArray,"#${param.block}_race_viz", 120, race_range, 0, "Race", race_legend);
 	};

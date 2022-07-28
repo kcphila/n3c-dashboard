@@ -20,8 +20,19 @@
 <script>
 
 function ${param.block}_before_refresh() {
+	var properties = {
+			domName: '${param.block}_beforeafter_viz',
+			barLabelWidth: 160,
+			legend_data: before_after_legend,
+			secondary_range: categorical,
+			legend_label: 'Symptom Occurrence',
+			min_height: 200,
+			nofilter: 0,
+			ordered: 1
+		}
+
    	d3.select("#${param.block}_beforeafter_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_BeforeAfterArray,"${param.block}_beforeafter_viz", 160, before_after_legend, categorical, "Symptom Occurrence", 200, 0, 1);	
+	localHorizontalStackedBarChart(${param.block}_BeforeAfterArray, properties);	
 }
 
 ${param.block}_before_refresh();

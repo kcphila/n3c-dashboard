@@ -19,8 +19,16 @@
 <script>
 
 function ${param.block}_severitycomorbidity_refresh() {
+	var properties = {
+			domName: '${param.block}_severitycomorbidity_viz',
+			barLabelWidth: 120,
+			legend_data: comorbidity_number_legend,
+			secondary_range: comorbidity_number_range,
+			legend_label: 'Number of Comorbidities'
+		}
+
 	d3.select("#${param.block}_severitycomorbidity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_comorbiditySeverityArray,"${param.block}_severitycomorbidity_viz", 120, comorbidity_number_legend, comorbidity_number_range, "Number of Comorbidities");
+	localHorizontalStackedBarChart(${param.block}_comorbiditySeverityArray, properties);
 }
 
 ${param.block}_severitycomorbidity_refresh();

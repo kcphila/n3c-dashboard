@@ -107,7 +107,7 @@
 <script>
 
 
-function TimeLine2ColumnChart2(data, domName, barLabelWidth) {
+function TimeLine2ColumnChart2(data, properties) {
 
 	// set the dimensions and margins of the graph
 	var margin = {top: 0, right: 100, bottom: 140, left: 100},
@@ -134,7 +134,7 @@ function TimeLine2ColumnChart2(data, domName, barLabelWidth) {
 			entries.forEach(entry => {
 				var newWidth = Math.floor(entry.contentRect.width);
 				if (newWidth > 0) {
-					d3.select("#"+domName).select("svg").remove();
+					d3.select("#"+properties.domName).select("svg").remove();
 					width = newWidth - margin.left - margin.right;
 					if ((width/2 - margin.top - margin.bottom) > 200){
 						height = width/2 - margin.top - margin.bottom;
@@ -146,7 +146,7 @@ function TimeLine2ColumnChart2(data, domName, barLabelWidth) {
 			});
 		});
 		
-		${param.block}myObserver.observe(d3.select("#"+domName).node());
+		${param.block}myObserver.observe(d3.select("#"+properties.domName).node());
 		
 		draw();
 		
@@ -163,7 +163,7 @@ function TimeLine2ColumnChart2(data, domName, barLabelWidth) {
 			// append the svg obgect to the body of the page
 			// appends a 'group' element to 'svg'
 			// moves the 'group' element to the top left margin
-			var svg = d3.select("#"+domName).append("svg")
+			var svg = d3.select("#"+properties.domName).append("svg")
 				.attr("class", "clear_target")
 				.attr("width", width + margin.left + margin.right)
 				.attr("height", height + margin.top + margin.bottom)
@@ -480,9 +480,9 @@ function TimeLine2ColumnChart2(data, domName, barLabelWidth) {
 				        	graph.select(".brush").call(brush.move, null); // This remove the grey brush area as soon as the selection has been done
 				      	}
 				      		
-					      console.log(domName);
+					      console.log(properties.domName);
 				      	// redraw axis
-				      	d3.selectAll('#' + domName + ' .xaxis').remove();
+				      	d3.selectAll('#' + properties.domName + ' .xaxis').remove();
 				      	svg.append("g")
 						.attr("transform", "translate(0," + height + ")")
 						.attr("class", "xaxis")
@@ -539,7 +539,7 @@ function TimeLine2ColumnChart2(data, domName, barLabelWidth) {
 					x.domain(d3.extent(data, function(d) {return d.date; }));
 					
 					
-					d3.select(domName + " ${param.dom_element}_graph .xaxis")
+					d3.select(properties.domName + " ${param.dom_element}_graph .xaxis")
 			        	.transition()
 			        	.call(d3.axisBottom(x)
 			        	.tickFormat(function(date){
@@ -571,11 +571,11 @@ function TimeLine2ColumnChart2(data, domName, barLabelWidth) {
 					
 				};
 				
-				d3.select(domName + " ${param.dom_element}_graph .clear_target")
+				d3.select(properties.domName + " ${param.dom_element}_graph .clear_target")
 					.on("dblclick", time_line_clear);
 				
 				$("${param.dom_element}_btn").off().on("click", function(){
-					d3.select(domName + " ${param.dom_element}_graph .clear_target").dispatch("dblclick");
+					d3.select(properties.domName + " ${param.dom_element}_graph .clear_target").dispatch("dblclick");
 				});
 				
 			};

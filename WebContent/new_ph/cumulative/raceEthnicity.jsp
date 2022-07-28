@@ -20,8 +20,16 @@
 <script>
 
 function ${param.block}_raceethnicity_refresh() {
+	var properties = {
+			domName: '${param.block}_raceethnicity_viz',
+			barLabelWidth: 120,
+			legend_data: ethnicity_legend,
+			secondary_range: ethnicity_range,
+			legend_label: 'Ethnicity'
+		};
+
 	d3.select("#${param.block}_raceethnicity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_raceEthnicityArray,"${param.block}_raceethnicity_viz", 120, ethnicity_legend, ethnicity_range, "Ethnicity");
+	localHorizontalStackedBarChart(${param.block}_raceEthnicityArray, properties);
 }
 
 ${param.block}_raceethnicity_refresh();

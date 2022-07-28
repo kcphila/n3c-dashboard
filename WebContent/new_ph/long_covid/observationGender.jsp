@@ -39,9 +39,20 @@ if (labeltest.length != 0){
 };
 
 function ${param.block}_gender_refresh() {
+	var properties = {
+			domName: '${param.block}_gender_viz',
+			barLabelWidth: labelWidth,
+			legend_data: gender_legend,
+			secondary_range: gender_range,
+			legend_label: 'Gender',
+			min_height: 200,
+			nofilter: 0,
+			ordered: 1
+		}
+
 	console.log("gender graph", "${param.block}_gender_viz", ${param.block}_ObservationGenderArray)
    	d3.select("#${param.block}_gender_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_ObservationGenderArray,"${param.block}_gender_viz", labelWidth, gender_legend, gender_range, "Gender", 200, 0, 1);	
+	localHorizontalStackedBarChart(${param.block}_ObservationGenderArray, properties);	
 }
 
 ${param.block}_gender_refresh();

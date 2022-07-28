@@ -24,8 +24,11 @@
 <script>
 
 function ${param.block}_age_refresh() {
+	var properties = {
+		domName: "${param.block}_timeline_viz"
+	}
    	d3.select("#${param.block}_timeline_viz").select("svg").remove();
-	TimeLine2ColumnChart2(${param.block}_InitialCountSevenArray,"${param.block}_timeline_viz", 120);	
+	TimeLine2ColumnChart2(${param.block}_InitialCountSevenArray, properties);	
 }
 
 ${param.block}_age_refresh();

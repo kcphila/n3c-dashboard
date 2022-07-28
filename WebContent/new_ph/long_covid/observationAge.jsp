@@ -39,9 +39,20 @@ if (labeltest.length != 0){
 
 
 function ${param.block}_age_refresh() {
+	var properties = {
+			domName: '${param.block}_age_viz',
+			barLabelWidth: labelWidth,
+			legend_data: age_legend_4,
+			secondary_range: age_range,
+			legend_label: 'Age',
+			min_height: 100,
+			nofilter: 0,
+			ordered: 1
+		}
+
 	console.log("age graph", "${param.block}_age_viz", ${param.block}_ObservationAgeArray)
    	d3.select("#${param.block}_age_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_ObservationAgeArray,"${param.block}_age_viz", labelWidth, age_legend_4, age_range, "Age", 200, 0, 1);	
+	localHorizontalStackedBarChart(${param.block}_ObservationAgeArray, properties);	
 }
 
 ${param.block}_age_refresh();

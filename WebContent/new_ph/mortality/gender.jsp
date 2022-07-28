@@ -29,6 +29,16 @@
 <script>
 
 function ${param.block}_gender_refresh() {
+	var properties = {
+			domName: '#${param.block}_gender_viz',
+			barLabelWidth: 140,
+			min_height: 300,
+			ordered: 0,
+			colorscale: gender_range,
+			legend_lable: 'Gender',
+			legend_data: gender_legend
+		}
+
 	var id = $("#${param.block}-gender-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
@@ -38,7 +48,7 @@ function ${param.block}_gender_refresh() {
 	if (mode =='pie'){		
 		localPieChart(${param.block}_GenderArray,"#${param.block}_gender_viz", gender_legend, gender_range, 0.5, "Gender");
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_GenderArray,"#${param.block}_gender_viz", 140, 300, 0, gender_range, "Gender", gender_legend);
+		localHorizontalBarChart_legend(${param.block}_GenderArray, properties);
 	} else {
 		localPercentageBarChart(${param.block}_GenderArray,"#${param.block}_gender_viz", 140, gender_range, 0, "Gender", gender_legend);
 	};

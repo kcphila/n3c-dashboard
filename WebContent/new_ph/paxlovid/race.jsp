@@ -20,9 +20,19 @@
 <script>
 
 function ${param.block}_race_refresh() {
+	var properties = {
+			domName: '${param.block}_paxlovid_viz',
+			barLabelWidth: 220,
+			legend_data: result_legend2,
+			secondary_range: result_range,
+			legend_label: 'Test Result',
+			min_height: 200,
+			nofilter: 1
+		}
+
 	console.log("reached");
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_RaceResultArray,"${param.block}_paxlovid_viz", 220, result_legend2, result_range, "Test Result", 200, 1);	
+	localHorizontalStackedBarChart(${param.block}_RaceResultArray, properties);	
 }
 
 ${param.block}_race_refresh();

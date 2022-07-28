@@ -23,9 +23,17 @@
 <script>
 
 function ${param.block}_severity_refresh() {
+	var properties = {
+			domName: '${param.block}_severity_viz',
+			barLabelWidth: 120,
+			legend_data: gender_legend,
+			secondary_range: gender_range,
+			legend_label: 'Gender'
+		}
+
 	console.log("reached");
    	d3.select("#${param.block}_severity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SeverityGenderArray,"${param.block}_severity_viz", 120, gender_legend, gender_range, "Gender");	
+	localHorizontalStackedBarChart(${param.block}_SeverityGenderArray, properties);	
 }
 
 ${param.block}_severity_refresh();

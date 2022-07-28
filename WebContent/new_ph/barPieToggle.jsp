@@ -36,6 +36,15 @@ $('#${param.block}-${param.dimension}-mode-barpercent').on('click', function() {
 });
 
 $('#${param.block}-${param.dimension}-mode-bar').on('click', function() {
+	var properties = {
+			domName: '#${param.block}_${param.dimension}_viz',
+			barLabelWidth: 120,
+			min_height: ${param.dimension_minheight},
+			ordered: 0,
+			colorscale: ${param.dimension_range},
+			legend_lable: '${param.dimension_name}',
+			legend_data: ${param.dimension_legend}
+		}
 	
 	if (!document.getElementById("${param.block}-${param.dimension}-mode-bar").classList.contains("text-primary")) {
 		document.getElementById("${param.block}-${param.dimension}-mode-bar").classList.add("text-primary");
@@ -44,7 +53,7 @@ $('#${param.block}-${param.dimension}-mode-bar').on('click', function() {
 	document.getElementById("${param.block}-${param.dimension}-mode-barpercent").classList.remove("text-primary");
 	$("#${param.block}_${param.dimension}_viz svg").remove();
 	$("#${param.block}_${param.dimension}_viz .pie-tool").remove();
-	localHorizontalBarChart_legend(${param.block}_${param.dimension_name}Array,"#${param.block}_${param.dimension}_viz", 120, ${param.dimension_minheight}, 0, ${param.dimension_range}, "${param.dimension_name}", ${param.dimension_legend});
+	localHorizontalBarChart_legend(${param.block}_${param.dimension_name}Array, properties);
 });
 
 $('#${param.block}-${param.dimension}-mode-pie').on('click', function() {

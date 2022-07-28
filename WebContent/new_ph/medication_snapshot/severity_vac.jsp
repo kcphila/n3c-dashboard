@@ -19,8 +19,16 @@
 <script>
 
 function ${param.block}_severityvaccinated_refresh() {
+	var properties = {
+			domName: '${param.block}_severityvaccinated_viz',
+			barLabelWidth: 120,
+			legend_data: vaccinated_legend,
+			secondary_range: vaccinated_range,
+			legend_label: 'Vaccination Status'
+		}
+
 	d3.select("#${param.block}_severityvaccinated_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_vaccinatedSeverityArray,"${param.block}_severityvaccinated_viz", 120, vaccinated_legend, vaccinated_range, "Vaccination Status");
+	localHorizontalStackedBarChart(${param.block}_vaccinatedSeverityArray, properties);
 }
 
 ${param.block}_severityvaccinated_refresh();

@@ -27,9 +27,20 @@ if (labeltest.length != 0){
 };
 
 function ${param.block}_ethnicity_refresh() {
+	var properties = {
+			domName: '${param.block}_ethnicity_viz',
+			barLabelWidth: labelWidth,
+			legend_data: ethnicity_legend,
+			secondary_range: ethnicity_range,
+			legend_label: 'Ethnicity',
+			min_height: "${param.viz_height}",
+			nofilter: 0,
+			ordered: 1
+		}
+
 	console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_SymptomEthnicityArray)
    	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SymptomEthnicityArray,"${param.block}_ethnicity_viz", labelWidth, ethnicity_legend, ethnicity_range, "Ethnicity" ,"${param.viz_height}", 0, 1);	
+	localHorizontalStackedBarChart(${param.block}_SymptomEthnicityArray, properties);	
 }
 
 ${param.block}_ethnicity_refresh();

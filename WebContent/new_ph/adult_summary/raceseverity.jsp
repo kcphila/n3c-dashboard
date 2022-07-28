@@ -20,8 +20,16 @@
 <script>
 
 function ${param.block}_raceseverity_refresh() {
+	var properties = {
+			domName: '${param.block}_raceseverity_viz',
+			barLabelWidth: 120,
+			legend_data: severity_legend,
+			secondary_range: severity_range,
+			legend_label: 'Severity'
+		}
+
 	d3.select("#${param.block}_raceseverity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_raceSeverityArray,"${param.block}_raceseverity_viz", 120, severity_legend, severity_range, "Severity");
+	localHorizontalStackedBarChart(${param.block}_raceSeverityArray, properties);
 }
 
 ${param.block}_raceseverity_refresh();

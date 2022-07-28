@@ -26,9 +26,20 @@ if (labeltest.length != 0){
 };
 
 function ${param.block}_race_refresh() {
+	var properties = {
+			domName: '${param.block}_race_viz',
+			barLabelWidth: labelWidth,
+			legend_data: race_legend,
+			secondary_range: race_range,
+			legend_label: 'Race',
+			min_height: "${param.viz_height}",
+			nofilter: 0,
+			ordered: 1
+		}
+
 	console.log("race graph", "${param.block}_race_viz", ${param.block}_SymptomRaceArray)
    	d3.select("#${param.block}_race_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SymptomRaceArray,"${param.block}_race_viz", labelWidth, race_legend, race_range, "Race", "${param.viz_height}", 0, 1);	
+	localHorizontalStackedBarChart(${param.block}_SymptomRaceArray, properties);	
 }
 
 ${param.block}_race_refresh();

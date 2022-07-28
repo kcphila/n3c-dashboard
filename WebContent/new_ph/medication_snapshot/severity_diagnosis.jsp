@@ -19,8 +19,16 @@
 <script>
 
 function ${param.block}_severitydiagnosis_refresh() {
+	var properties = {
+			domName: '${param.block}_severitydiagnosis_viz',
+			barLabelWidth: 120,
+			legend_data: diagnosis_legend,
+			secondary_range: diagnosis_range,
+			legend_label: 'Diagnosis'
+		}
+
 	d3.select("#${param.block}_severitydiagnosis_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_diagnosisSeverityArray,"${param.block}_severitydiagnosis_viz", 120, diagnosis_legend, diagnosis_range, "Diagnosis");
+	localHorizontalStackedBarChart(${param.block}_diagnosisSeverityArray, properties);
 }
 
 ${param.block}_severitydiagnosis_refresh();

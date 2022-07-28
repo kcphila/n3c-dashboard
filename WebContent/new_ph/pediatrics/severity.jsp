@@ -29,6 +29,16 @@
 <script>
 
 function ${param.block}_severity_refresh() {
+	var properties = {
+			domName: '#${param.block}_severity_viz',
+			barLabelWidth: 120,
+			min_height: 300,
+			ordered: 0,
+			colorscale: severity_range,
+			legend_lable: 'Severity',
+			legend_data: severity_legend
+		}
+
 	var id = $("#${param.block}-severity-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
@@ -38,7 +48,7 @@ function ${param.block}_severity_refresh() {
 	if (mode =='pie'){		
 		localPieChart(${param.block}_SeverityArray,"#${param.block}_severity_viz", severity_legend, severity_range, 0.5, "Severity");
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_SeverityArray,"#${param.block}_severity_viz", 120, 300, 0, severity_range, "Severity", severity_legend);
+		localHorizontalBarChart_legend(${param.block}_SeverityArray, properties);
 	} else {
 		localPercentageBarChart(${param.block}_SeverityArray,"#${param.block}_severity_viz", 120, severity_range, 0, "Severity", severity_legend);
 	};

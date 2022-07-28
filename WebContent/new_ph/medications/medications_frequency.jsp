@@ -14,9 +14,18 @@
 <script>
 
 function ${param.block}_medication_refresh() {
+	var properties = {
+			domName: '${param.block}_medication_viz',
+			barLabelWidth: 190,
+			legend_data: age_legend_4,
+			secondary_range: age_range,
+			legend_label: 'Age',
+			min_height: 900
+		}
+
 	console.log("medication graph", "${param.block}_medication_viz", ${param.block}_MedicationAgeArray);
    	d3.select("#${param.block}_medication_viz").select("svg").remove(); 
-	localHorizontalStackedBarChart(${param.block}_MedicationAgeArray,"${param.block}_medication_viz", 190, age_legend_4, age_range, "Age", 900);
+	localHorizontalStackedBarChart(${param.block}_MedicationAgeArray, properties);
 }
 
 </script>

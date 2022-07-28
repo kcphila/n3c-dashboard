@@ -10,12 +10,11 @@
 <jsp:include page="../graph_support/percentage_bar_local.jsp"/>
 <jsp:include page="../graph_support/horizontalBarChart_local.jsp"/>
 <jsp:include page="../graph_support/horizontalBarChart_local2.jsp"/>
-<jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/>
-<jsp:include page="../graph_support/horizontalGroupedStackedBarChart_local.jsp"/>
-<jsp:include page="../graph_support/time_line_2_column_local.jsp"/>
-<jsp:include page="../graph_support/time_line_2_column_local2.jsp"/>
-<jsp:include page="../graph_support/hive_local.jsp"/>
-
+<jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/> <!-- done -->
+<%-- <jsp:include page="../graph_support/horizontalGroupedStackedBarChart_local.jsp"/> --%>
+<%-- <jsp:include page="../graph_support/time_line_2_column_local.jsp"/> --%>
+<jsp:include page="../graph_support/time_line_2_column_local2.jsp"/> <!-- done -->
+<jsp:include page="../graph_support/hive_local.jsp"/> <!-- done -->
 
 <jsp:include page="../graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp"/>
 
@@ -24,7 +23,7 @@
 
 <jsp:include page="../graph_support/region_map_local.jsp"/>
 
-<jsp:include page="../graph_support/verticalBarChart_local.jsp"/>
+<jsp:include page="../graph_support/verticalBarChart_local.jsp"/> <!-- done -->
 <jsp:include page="../graph_support/mortalityBarChart_local.jsp"/>
 <jsp:include page="../graph_support/graphic_save.jsp"/>
 

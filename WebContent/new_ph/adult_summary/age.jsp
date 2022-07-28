@@ -29,6 +29,15 @@
 <script>
 
 function ${param.block}_age_refresh() {
+	var properties = {
+			domName: '#${param.block}_age_viz',
+			barLabelWidth: 120,
+			min_height: 300,
+			colorscale: age_range_adult2,
+			legend_lable: 'Age',
+			legend_data: age_legend_2
+		}
+	
 	var id = $("#${param.block}-age-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
@@ -38,7 +47,7 @@ function ${param.block}_age_refresh() {
 	if (mode =='pie'){		
 		localPieChart(${param.block}_AgeArray,"#${param.block}_age_viz", age_legend_2, age_range_adult2, 0.5, "Age");
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_AgeArray,"#${param.block}_age_viz", 120, 300, 0, age_range_adult2, "Age", age_legend_2);
+		localHorizontalBarChart_legend(${param.block}_AgeArray, properties);
 	} else {
 		localPercentageBarChart(${param.block}_AgeArray,"#${param.block}_age_viz", 120, age_range_adult2, 0, "Age", age_legend_2);
 	};
