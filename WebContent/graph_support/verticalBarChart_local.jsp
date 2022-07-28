@@ -14,7 +14,7 @@ function localVerticalBarChart(data, properties) {
 
 		data.forEach(function(node) {
 			barLabelWidth = Math.max(barLabelWidth,node.element.length * 8);
-		    //console.log(node.element + "  " + node.element.length*7. );
+		    //// console.log(node.element + "  " + node.element.length*7. );
 		});
 		
 		var myObserver = new ResizeObserver(entries => {
@@ -22,7 +22,7 @@ function localVerticalBarChart(data, properties) {
 				var newWidth = Math.floor(entry.contentRect.width);
 				if (newWidth > 0) {
 					d3.select("#"+properties.domName).select("svg").remove();
-					//console.log('${param.dom_element} width '+newWidth);
+					//// console.log('${param.dom_element} width '+newWidth);
 					maxBarWidth = newWidth;
 					draw();
 				}
@@ -176,7 +176,7 @@ function localVerticalBarChart(data, properties) {
     		.attr("font-size", "12px")
     		.attr("font-weight", "bold");
   		
-  		if ((nofilter == undefined) || (nofilter == 0) ){
+  		if ((properties.nofilter == undefined) || (properties.nofilter == 0) ){
 	  		// Legend Tooltip ////// 
 			var tooltip2 = svg.append("g")
 	    		.attr("class", "graph_tooltip")
