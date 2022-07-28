@@ -8,8 +8,8 @@
 
 <jsp:include page="../graph_support/pieChart_local.jsp"/>
 <jsp:include page="../graph_support/percentage_bar_local.jsp"/>
-<jsp:include page="../graph_support/horizontalBarChart_local.jsp"/>
-<jsp:include page="../graph_support/horizontalBarChart_local2.jsp"/>
+<jsp:include page="../graph_support/horizontalBarChart_local.jsp"/> <!-- done -->
+<jsp:include page="../graph_support/horizontalBarChart_local2.jsp"/> <!-- done -->
 <jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/> <!-- done -->
 <%-- <jsp:include page="../graph_support/horizontalGroupedStackedBarChart_local.jsp"/> --%>
 <%-- <jsp:include page="../graph_support/time_line_2_column_local.jsp"/> --%>

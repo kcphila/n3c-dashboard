@@ -20,9 +20,15 @@
 <script>
 
 function ${param.block}_age_refresh() {
+	var properties = {
+			domName: '#${param.block}_age_viz',
+			barLabelWidth: 120,
+			colorscale: categorical
+	}
+
 	//console.log("age graph", "${param.block}_age_viz", ${param.block}_AgeArray)
 	d3.select("#${param.block}_age_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_AgeArray,"#${param.block}_age_viz", 120);
+	localHorizontalBarChart(${param.block}_AgeArray, properties);
 }
 
 ${param.block}_age_refresh();

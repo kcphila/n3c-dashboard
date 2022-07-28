@@ -21,9 +21,17 @@
 <script>
 
 function ${param.block}_ethnicity_refresh() {
+	var properties = {
+			domName: '#${param.block}_ethnicity_viz',
+			barLabelWidth: 160,
+			min_height: 300,
+			ordered: 1,
+			colorscale: ethnicity_range
+	}
+
 	console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_EthnicityArray)
 	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", 160, 300, 1, ethnicity_range);
+	localHorizontalBarChart(${param.block}_EthnicityArray, properties);
 }
 
 ${param.block}_ethnicity_refresh();

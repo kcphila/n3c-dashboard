@@ -20,9 +20,17 @@
 <script>
 
 function ${param.block}_race_refresh() {
+	var properties = {
+			domName: '#${param.block}_race_viz',
+			barLabelWidth: 70,
+			min_height: 300,
+			ordered: 0,
+			colorscale: race_range
+	}
+
 	console.log("race graph", "${param.block}_gender_viz", ${param.block}_RaceArray)
 	d3.select("#${param.block}_race_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_RaceArray,"#${param.block}_race_viz", 70, 300, 0, race_range);
+	localHorizontalBarChart(${param.block}_RaceArray, properties);
 }
 
 ${param.block}_race_refresh();

@@ -17,25 +17,33 @@ rect{
 </style>
 
 <script>
+var properties = {
+		domName: 'xxx',
+		barLabelWidth: 90,
+		ordered: 1,
+		colorscale: categorical,
+		legend_label: xxx,
+		legend_data: xxx
+}
 
-function localPercentageBarChart(data, domName, barLabelWidth, colorscale, ordered, legend_label, legend_data) {
+function localPercentageBarChart(data, domName, properties) {
 	
 	var filter_icon = " &#xf0b0";
 	
-	var margin = {top: 40, right: 100, bottom: 50, left: barLabelWidth},
-	width = $(domName).width() - margin.left - margin.right,
+	var margin = {top: 40, right: 100, bottom: 50, left: properties.barLabelWidth},
+	width = $(properties.domName).width() - margin.left - margin.right,
 	height = width/3;
 	
-	if ((ordered != undefined) && (ordered == 1) ){
+	if ((properties.ordered != undefined) && (properties.ordered == 1) ){
 		data.sort(function(a, b) {
 		    return parseFloat(b.count) - parseFloat(a.count);
 		});
 	}
 	
 	function drawgraphnew(){
-		var newWidth = $(domName).width();
+		var newWidth = $(properties.domName).width();
 		if (newWidth > 0) {
-			d3.select(domName).select("svg").remove();
+			d3.select(properties.domName).select("svg").remove();
 			width = newWidth - margin.left - margin.right;;
 			height = width/3;
 			if (height > 300){
@@ -45,7 +53,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 		}
 	}
 	
-	d3.select(domName).select("svg").remove();
+	d3.select(properties.domName).select("svg").remove();
 
  	window.onresize = drawgraphnew;
 	
@@ -67,7 +75,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 		var barHeight = 25;      
 		
 		//Appends the svg to the chart-container div
-		var svg = d3.select(domName).append("svg")
+		var svg = d3.select(properties.domName).append("svg")
 		  .attr("width", width + margin.left + margin.right)
 		  .attr("height", height + margin.top + margin.bottom)
 		  .append("g")
@@ -76,7 +84,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 		var svgDefs = svg.append('defs');
 
         var mainGradient = svgDefs.append('linearGradient')
-            .attr('id', domName.replace('#', '') + 'mainGradient');
+            .attr('id', properties.domName.replace('#', '') + 'mainGradient');
 
         // Create the stops of the main gradient.
         mainGradient.append('stop')
@@ -155,7 +163,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 			
 		// axis labels & ticks
 			var axisContainer = svg.append('g')
-				.attr("class", "axis xaxis " + legend_label)
+				.attr("class", "axis xaxis " + properties.legend_label)
 				.attr("transform", "translate(0," + (height) + ")")				
 				.call(d3.axisBottom(xScale).ticks(Math.round(width/100), "s").tickFormat(function(d) {  return  d + "%" }))
 				.append("text")										
@@ -165,7 +173,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 				.text("Percent of Total")
 				.attr("transform", "translate(" + ((width/2)- margin.right) + "," + 40 + ")"); 
 			
-			d3.selectAll("g.xaxis." + legend_label + " g.tick")
+			d3.selectAll("g.xaxis." + properties.legend_label + " g.tick")
 		    	.append("line")
 		    	.attr("class", "gridline")
 		    	.attr("x1", 0)
@@ -174,11 +182,11 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 		    	.attr("y2", 0);
 		
 		  //Binds the data to the bars      
-		  var categoryGroup = svg.selectAll(".g-category-group " + legend_label)
+		  var categoryGroup = svg.selectAll(".g-category-group " + properties.legend_label)
 		    .data(data)
 		    .enter()
 		    .append("g")
-		    .attr("class", "g-category-group " + legend_label)
+		    .attr("class", "g-category-group " + properties.legend_label)
 		    .attr("transform", function(d) {
 		    	return "translate(0," + (y0(d.abbrev)) + " )";
 		    });
@@ -194,12 +202,12 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 		  var bars = categoryGroup.append("rect")
 		    .attr("width", function(d) { return xScale(d.num); })
 		    .attr("height", y0.bandwidth())
-		    .attr("class", "g-num " + legend_label)
+		    .attr("class", "g-num " + properties.legend_label)
 		    .attr('fill', function(d){
-				if (colorscale != undefined){
-					return colorscale[(d.seq-1)];
+				if (properties.colorscale != undefined){
+					return properties.colorscale[(d.seq-1)];
 				}else{
-					return 'url(' + domName +'mainGradient)';
+					return 'url(' + properties.domName +'mainGradient)';
 				}
 			})
 		    .on("mouseover", function() { tooltip.style("display", null); })
@@ -228,7 +236,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 		    });
 		  
 		  //Binds data to labels
-		  var labelGroup = svg.selectAll("g-num " + legend_label)
+		  var labelGroup = svg.selectAll("g-num " + properties.legend_label)
 		    .data(data)
 		    .enter()
 		    .append("g")
@@ -260,7 +268,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 				.attr("x", width)
 				.attr("y", 9.5)
 				.attr("dy", "5px")
-				.text(legend_label)
+				.text(properties.legend_label)
 				.append("tspan")
 				.attr('font-family', 'FontAwesome')
 				.attr("class", "fa")
@@ -272,7 +280,7 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 				.attr("font-size", '14px')
 				.attr("text-anchor", "end")
 				.selectAll("g")
-					.data(legend_data)
+					.data(properties.legend_data)
 					.enter().append("g")
 					.attr("transform", function(d, i) {
 						return "translate(0," + i * 20 + ")";
@@ -282,14 +290,14 @@ function localPercentageBarChart(data, domName, barLabelWidth, colorscale, order
 				.attr("x", width-19)
 				.attr("width", 19)
 				.attr("height", 19)
-				.attr("fill", function(d, i) { return colorscale[i]; })
+				.attr("fill", function(d, i) { return properties.colorscale[i]; })
 				.on("mouseover", function(d, i) {
 					tooltip2.style("display", null);
 				})
 				.on("mouseout", function(d, i) {
   					tooltip2.style("display", "none");
 				})
-				.on("click", function(d, i){window[domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, legend_label.replace(/\s/g, "")); });
+				.on("click", function(d, i){window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, properties.legend_label.replace(/\s/g, "")); });
 			
 			legend.append("text")
 				.attr("x", width - 24)

@@ -1,6 +1,6 @@
 <script>
 
-function localHorizontalBarChart(data, domName, barLabelWidth, min_height, ordered, colorscale, noseq) {
+function localHorizontalBarChart(data, properties) {
 
 	var word_length = 3;
 	
@@ -22,18 +22,16 @@ function localHorizontalBarChart(data, domName, barLabelWidth, min_height, order
 	var maxBarWidth = 280; // width of the bar with the max value
 	var paddingInside = 0.5
 	
-	if (min_height === undefined){
-		min_height = 300;
-	}
+	var min_height = (properties.min_height === undefined ? 200 : properties.min_height);
 	
-	if ((ordered != undefined) && (ordered == 1) ){
+	if ((properties.ordered != undefined) && (properties.ordered == 1) ){
 		data.sort(function(a, b) {
 			console.log(a);
 		    return parseFloat(b.count) - parseFloat(a.count);
 		});
 	}
 	
-	var margin = { top: 40, right: 50, bottom: 30, left: barLabelWidth },
+	var margin = { top: 40, right: 50, bottom: 30, left: properties.barLabelWidth },
 		width = 1200 - margin.left - margin.right,
 		height = width/3 - margin.top - margin.bottom;
 
@@ -45,10 +43,10 @@ function localHorizontalBarChart(data, domName, barLabelWidth, min_height, order
 		entries.forEach(entry => {
 			var newWidth = Math.floor(entry.contentRect.width);
 			if (newWidth > 0) {
-				d3.select(domName).select("svg").remove();
+				d3.select(properties.domName).select("svg").remove();
 				width = newWidth - margin.left - margin.right;
 				height = width/3;
-				maxBarWidth = width - barLabelWidth - barLabelPadding - valueLabelWidth;
+				maxBarWidth = width - properties.barLabelWidth - barLabelPadding - valueLabelWidth;
 				if (height < min_height) {
 					height = min_height;
 				};
@@ -57,7 +55,7 @@ function localHorizontalBarChart(data, domName, barLabelWidth, min_height, order
 		});
 	});
 	
-	myObserver.observe(d3.select(domName).node());
+	myObserver.observe(d3.select(properties.domName).node());
 
 	draw();
 
@@ -75,14 +73,14 @@ function localHorizontalBarChart(data, domName, barLabelWidth, min_height, order
 			.domain([0, d3.max(data, function(d){ return d.count; })])
 			.range([0, width - margin.right]);
 		
-		var svg = d3.select(domName).append("svg")
+		var svg = d3.select(properties.domName).append("svg")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", Number(height) + margin.top + margin.bottom);
 		
 		var svgDefs = svg.append('defs');
 
         var mainGradient = svgDefs.append('linearGradient')
-            .attr('id', domName.replace('#', '') + 'mainGradient');
+            .attr('id', properties.domName.replace('#', '') + 'mainGradient');
 
         // Create the stops of the main gradient.
         mainGradient.append('stop')
@@ -152,14 +150,14 @@ function localHorizontalBarChart(data, domName, barLabelWidth, min_height, order
 			.attr('width', function(d) { return x(d.count); })
 			.attr('stroke', 'white')
 			.attr('fill', function(d, i){
-				if (colorscale != undefined){
-					if (noseq != 1){
-						return colorscale[(d.seq-1)];
+				if (properties.colorscale != undefined){
+					if (properties.noseq != 1){
+						return properties.colorscale[(d.seq-1)];
 					} else {
-						return colorscale[i];
+						return properties.colorscale[i];
 					}
 				}else{
-					return 'url(' + domName +'mainGradient)';
+					return 'url(' + properties.domName +'mainGradient)';
 				}
 			})
 			.on("mouseover", function() { 

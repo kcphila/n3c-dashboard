@@ -20,9 +20,15 @@
 <script>
 
 function ${param.block}_ethnicity_refresh() {
+	var properties = {
+			domName: '#${param.block}_ethnicity_viz',
+			barLabelWidth: 120,
+			colorscale: categorical
+	}
+
 	//console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_EthnicityArray)
 	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", 120);
+	localHorizontalBarChart(${param.block}_EthnicityArray, properties);
 }
 
 ${param.block}_ethnicity_refresh();

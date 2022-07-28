@@ -15,9 +15,15 @@
 <script>
 
 function ${param.block}_severity_refresh() {
+	var properties = {
+			domName: '#${param.block}_severity_viz',
+			barLabelWidth: 120,
+			colorscale: severity_range
+	}
+
 	console.log("severity graph", "${param.block}_severity_viz", ${param.block}_SeverityArray)
 	d3.select("#${param.block}_severity_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_SeverityArray,"#${param.block}_severity_viz", 120);
+	localHorizontalBarChart(${param.block}_SeverityArray, properties);
 }
 
 </script>

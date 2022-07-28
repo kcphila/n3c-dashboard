@@ -20,9 +20,17 @@
 <script>
 
 function ${param.block}_gender_refresh() {
+	var properties = {
+			domName: '#${param.block}_gender_viz',
+			barLabelWidth: 70,
+			min_height: 300,
+			ordered: 1,
+			colorscale: gender_range
+	}
+
 	console.log("gender graph", "${param.block}_gender_viz", ${param.block}_GenderArray)
 	d3.select("#${param.block}_gender_viz").select("svg").remove();
-    localHorizontalBarChart(${param.block}_GenderArray,"#${param.block}_gender_viz", 70, 300, 1, gender_range);
+    localHorizontalBarChart(${param.block}_GenderArray, properties);
 }
 
 ${param.block}_gender_refresh();

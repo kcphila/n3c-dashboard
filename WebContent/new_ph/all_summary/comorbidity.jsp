@@ -20,8 +20,17 @@
 <script>
 
 function ${param.block}_comorbidity_refresh() {
+	var properties = {
+			domName: '#${param.block}_comorbidity_viz',
+			barLabelWidth: 90,
+			min_height: 600,
+			ordered: 1,
+			colorscale: categorical,
+			noseq: 1
+	}
+
 	d3.select("#${param.block}_comorbidity_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_comorbidityArray,"#${param.block}_comorbidity_viz", 90, 600,  1, categorical2, 1);
+	localHorizontalBarChart(${param.block}_comorbidityArray, properties);
 }
 
 ${param.block}_comorbidity_refresh();
