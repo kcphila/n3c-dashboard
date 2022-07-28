@@ -76,7 +76,7 @@
 <script>
 $(document).ready(function () {
 	  $('#selectCat').change(function () {
-		  console.log("selected", $(this).val())
+		  // console.log("selected", $(this).val())
 		  document.getElementById("condition_viz_any").style.display = "none";
 		  document.getElementById("condition_viz_pulmonary").style.display = "none";
 		  document.getElementById("condition_viz_renal").style.display = "none";

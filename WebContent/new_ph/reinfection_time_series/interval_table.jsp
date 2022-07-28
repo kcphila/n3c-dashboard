@@ -2,7 +2,7 @@
 <script>
 
 function ${param.block}_constrain_table(filter, constraint) {
-	console.log("timeline constraint", filter, constraint);
+	// console.log("timeline constraint", filter, constraint);
 	var table = $('#${param.target_div}-table').DataTable();
 	
 	switch (filter) {

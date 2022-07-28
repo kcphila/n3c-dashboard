@@ -6,6 +6,6 @@
   Our apologies - this dashboard is currently unavailable.
 </div>
 <script>
-	console.log("loaded ${param.info}");
+	// console.log("loaded ${param.info}");
 </script>
 <util:Log message="x" page="y" level="INFO"/>

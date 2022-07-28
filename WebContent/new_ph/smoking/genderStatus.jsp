@@ -28,8 +28,8 @@ function ${param.block}_gender_refresh() {
 			legend_label: 'Status'
 		}
 
-	console.log("reached");
-   	d3.select("#${param.block}_gender_viz").select("svg").remove(); console.log(${param.block}_GenderStatusArray)
+	// console.log("reached");
+   	d3.select("#${param.block}_gender_viz").select("svg").remove(); // console.log(${param.block}_GenderStatusArray)
 	localHorizontalStackedBarChart(${param.block}_GenderStatusArray, properties);	
 }
 

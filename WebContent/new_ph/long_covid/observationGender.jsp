@@ -50,7 +50,7 @@ function ${param.block}_gender_refresh() {
 			ordered: 1
 		}
 
-	console.log("gender graph", "${param.block}_gender_viz", ${param.block}_ObservationGenderArray)
+	// console.log("gender graph", "${param.block}_gender_viz", ${param.block}_ObservationGenderArray)
    	d3.select("#${param.block}_gender_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_ObservationGenderArray, properties);	
 }

@@ -23,7 +23,7 @@ function ${param.block}_medication_refresh() {
 			min_height: 900
 		}
 
-	console.log("medication graph", "${param.block}_medication_viz", ${param.block}_MedicationAgeArray);
+	// console.log("medication graph", "${param.block}_medication_viz", ${param.block}_MedicationAgeArray);
    	d3.select("#${param.block}_medication_viz").select("svg").remove(); 
 	localHorizontalStackedBarChart(${param.block}_MedicationAgeArray, properties);
 }

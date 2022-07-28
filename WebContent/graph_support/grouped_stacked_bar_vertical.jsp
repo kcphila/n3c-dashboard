@@ -103,7 +103,7 @@ d3.json("${param.data_page}", function(error, data) {
 			.attr("y", function(d) { return y(d[1]); })
 			.attr("height", function(d) { return y(d[0]) - y(d[1]); })
 			.attr("width", x1.bandwidth())
-			.on("click", function(d, i){ console.log("serie-rect click d", i, d); })
+			.on("click", function(d, i){ // console.log("serie-rect click d", i, d); })
 			.on("mouseover", function() { tooltip.style("display", null); })
 			.on("mouseout", function() { tooltip.style("display", "none"); })
 			.on("mousemove", function(d) {

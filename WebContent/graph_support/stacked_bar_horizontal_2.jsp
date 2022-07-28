@@ -185,7 +185,7 @@ d3.json("${param.data_page}", function(error, data) {
 			.attr("x", function(d) { return x(d[0]); })
 			.attr("width", function(d) { return x(d[1]) - x(d[0]); })
 			.attr("height", y0.bandwidth())
-			.on("click", function(d, i){ console.log("${param.namespace}-rect click d", i, d); })
+			.on("click", function(d, i){ // console.log("${param.namespace}-rect click d", i, d); })
 			.on("mouseover", function() { 
 				tooltip.style("display", null); 
 			    // Reduce opacity of all rect to 0.2

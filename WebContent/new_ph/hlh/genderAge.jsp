@@ -34,7 +34,7 @@ function ${param.block}_gender_refresh() {
 			offset: 250
 	}
 
-	console.log('reached gender refresh');
+	// console.log('reached gender refresh');
    	d3.select("#${param.block}_gender_viz").select("svg").remove();
 	localHorizontalGroupedStackedBarChart(${param.block}_GenderAgeArray, properties);	
 }

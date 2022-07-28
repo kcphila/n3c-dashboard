@@ -28,8 +28,8 @@ function ${param.block}_age_refresh() {
 			legend_label: 'Status'
 		}
 
-	console.log("reached");
-   	d3.select("#${param.block}_age_viz").select("svg").remove(); console.log(${param.block}_AgeStatusArray)
+	// console.log("reached");
+   	d3.select("#${param.block}_age_viz").select("svg").remove(); // console.log(${param.block}_AgeStatusArray)
 	localHorizontalStackedBarChart(${param.block}_AgeStatusArray, properties);	
 }
 

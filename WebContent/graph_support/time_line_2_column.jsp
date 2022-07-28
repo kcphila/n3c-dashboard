@@ -149,7 +149,7 @@
 					}
 					draw();
 					
-					console.log('${param.block}');
+					// console.log('${param.block}');
 					
 				}
 			});

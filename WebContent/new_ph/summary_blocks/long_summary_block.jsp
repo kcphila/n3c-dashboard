@@ -159,11 +159,11 @@
 		var $this = $("#${param.block}-"+selection);
 		var which = $this.attr('src');
 
-		//console.log("in main click", "${param.block}-"+selection, "which", which)
+		//// console.log("in main click", "${param.block}-"+selection, "which", which)
 		if (!${param.block}_crumbs.includes(selection)) {
 			$this.load("<util:applicationRoot/>/new_ph/"+which);
 			${param.block}_crumbs = ${param.block}_crumbs + selection;
-			//console.log({
+			//// console.log({
 			//	which : which
 			//});
 		}

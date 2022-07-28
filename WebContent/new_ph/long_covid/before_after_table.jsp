@@ -3,8 +3,8 @@
 
 function ${param.block}_constrain_table(filter, constraint) {
 
-	console.log(filter);
-	console.log(constraint);
+	// console.log(filter);
+	// console.log(constraint);
 	switch (filter) {
 	case 'symptom':
 	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	

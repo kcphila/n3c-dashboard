@@ -3,9 +3,9 @@
 <script>
 
 function saveVisualization(domName, fileName) {
-	console.log("saving", domName, fileName)
+	// console.log("saving", domName, fileName)
 	var svgNode = d3.select("#"+domName).select("svg").node();
-	console.log("node", svgNode);
+	// console.log("node", svgNode);
 	var svgString = getSVGString(svgNode);
 	
 	if (fileName.endsWith("svg")) {		
@@ -14,7 +14,7 @@ function saveVisualization(domName, fileName) {
 	} else {
 		var width = d3.select("#"+domName).select("svg").style("width").match('[0-9.]*')[0];
 		var height = d3.select("#"+domName).select("svg").style("height").match('[0-9.]*')[0];
-		console.log("svgString", width, height, svgString);
+		// console.log("svgString", width, height, svgString);
 		if (fileName.endsWith("png"))
 			svgString2Image( svgString, width, height, 'png', save ); // passes Blob and filesize String to the callback
 		else

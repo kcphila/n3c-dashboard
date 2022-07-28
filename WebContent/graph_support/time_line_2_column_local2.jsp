@@ -480,7 +480,7 @@ function TimeLine2ColumnChart2(data, properties) {
 				        	graph.select(".brush").call(brush.move, null); // This remove the grey brush area as soon as the selection has been done
 				      	}
 				      		
-					      console.log(properties.domName);
+					      // console.log(properties.domName);
 				      	// redraw axis
 				      	d3.selectAll('#' + properties.domName + ' .xaxis').remove();
 				      	svg.append("g")

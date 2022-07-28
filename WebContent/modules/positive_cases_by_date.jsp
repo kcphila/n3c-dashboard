@@ -5,7 +5,7 @@ var constraint_begin = null,
 	constraint_end = null;
 	
 function constraint(begin, end) {
-	console.log("constraint", begin, end)
+	// console.log("constraint", begin, end)
 	constraint_begin = begin;
 	constraint_end = end;
 	var table = $('#positives-by-date-table').DataTable();

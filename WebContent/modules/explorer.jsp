@@ -222,7 +222,7 @@ $('#age-select').multiselect({
             selected.push($(this).val());
         });
 
-        console.log(selected[0].join("|"));
+        // console.log(selected[0].join("|"));
         var table = $('#aggregated-table').DataTable();
         table.column(2).search(selected[0].join("|"), true, false, true).draw();
         
@@ -424,7 +424,7 @@ $(document).ready( function () {
 		} );
 		
 		aggregated_datatable.on( 'search.dt', function () {
-			console.log('reached');
+			// console.log('reached');
 			var snapshot = aggregated_datatable
 		     .rows({ search: 'applied', order: 'index'})
 		     .data()

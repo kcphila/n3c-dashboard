@@ -26,7 +26,7 @@ function ${param.block}_refresh${param.array}(data) {
 	});
 
     ${param.block}_${param.array}.sort((a,b) => (a.initial > b.initial) ? 1 : ((b.initial > a.initial) ? -1 : 0));
-//    console.log("refreshed ${param.array}", ${param.block}_${param.array});
+//    // console.log("refreshed ${param.array}", ${param.block}_${param.array});
 }
 
 </script>

@@ -5,7 +5,7 @@ var constraint_begin = null,
 constraint_end = null;
 
 function constraint(begin, end) {
-	console.log("constraint", begin, end)
+	// console.log("constraint", begin, end)
 	constraint_begin = begin;
 	constraint_end = end;
 	var table = $('#reinfections-by-date-table').DataTable();
@@ -17,7 +17,7 @@ function constraint(begin, end) {
 function updateKPI(table, column) {
 	var sum_string = '';
 	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	console.log(sum, table.rows({search:'applied'}).data().pluck(column))
+	// console.log(sum, table.rows({search:'applied'}).data().pluck(column))
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -28,7 +28,7 @@ function updateKPI(table, column) {
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
 		
 	}
-	console.log(column, sumString)
+	// console.log(column, sumString)
 	document.getElementById(column+'_kpi').innerHTML = sumString
 }
 

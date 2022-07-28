@@ -129,7 +129,7 @@ function frame_render(question, tertiary) {
 		</div>'
 	;
 		
-	console.log("url: " + "<util:applicationRoot/>/new_ph/frame.jsp?frame="+question.iframe_info+"&tertiary_tab="+tertiary_check)
+	// console.log("url: " + "<util:applicationRoot/>/new_ph/frame.jsp?frame="+question.iframe_info+"&tertiary_tab="+tertiary_check)
 	$("#d3viz").load("<util:applicationRoot/>/new_ph/frame.jsp?frame="+question.iframe_info+"&tertiary_tab="+tertiary_check);
 	
 		

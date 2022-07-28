@@ -81,7 +81,7 @@ function localHorizontalGroupedPercentageBarChart(data, properties) {
 	
 	function draw() {
 		
-		console.log(data);
+		// console.log(data);
 		var sequence = secondary + '_seq';
 		var prime_seq = primary + '_seq';
 		data.sort(function (x, y) { return x[prime_seq] - y[prime_seq] || x[sequence] - y[sequence]; });
@@ -282,7 +282,7 @@ function localHorizontalGroupedPercentageBarChart(data, properties) {
 			.attr("class", function(d) {
 				return 'secondary lab' + d.key.replace(/[^A-Z0-9]/ig, "");
 			})
-			.attr("width", function(d) {console.log(d); console.log((d.value.count/d.value.total)*100); return Math.max(1, x((d.value.count/d.value.total)*100)); })
+			.attr("width", function(d) {// console.log(d); // console.log((d.value.count/d.value.total)*100); return Math.max(1, x((d.value.count/d.value.total)*100)); })
 			.attr("height",  (barHeight- barPadding))
 			.attr("fill", function(d){ return colorscale[(d.value.seq-1)]; })
 			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })

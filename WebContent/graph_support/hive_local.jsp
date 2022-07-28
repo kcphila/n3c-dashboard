@@ -41,7 +41,7 @@ div.tooltip {
 <script src="../resources/d3.hive.min.js"></script>
 <script>
 	function localHiveChart(properties) {
-		console.log("properties", properties);
+		// console.log("properties", properties);
 	
 		d3.json(properties.feed_path, function(error, data) {
 			if (error) throw error;
@@ -64,7 +64,7 @@ div.tooltip {
 						innerRadius = outerRadius / 10;
 						draw();
 		
-						console.log('width', width);
+						// console.log('width', width);
 		
 					}
 				});
@@ -76,12 +76,12 @@ div.tooltip {
 		
 		
 			function draw() {
-				console.log("drawing", width)
+				// console.log("drawing", width)
 		
 				var nodes = data.nodes;
 				var node_map = d3.map(nodes, d => d.mapping);
-				console.log("nodes", nodes);
-				console.log("map", node_map.get("0-1"));
+				// console.log("nodes", nodes);
+				// console.log("map", node_map.get("0-1"));
 		
 				var links = data.edges;
 		
@@ -159,14 +159,14 @@ div.tooltip {
 					.append("circle")
 					.attr("class", "node")
 					.on("click", function(d) {
-						console.log("click", d, properties.domTarget, data.axes[d.x]);
+						// console.log("click", d, properties.domTarget, data.axes[d.x]);
 						$('#selectMe').val(properties.domTarget).trigger('change');
 						setTimeout(() => { // need to wait for the dust to settle before targeting the sub-select
 							$('#'+properties.domTarget+'toggle_viz_select').val(data.axes[d.x].toLowerCase()).trigger('change');
 						}, 1000);
 					})
 					.on("mouseover", function(d) {
-						console.log(d);
+						// console.log(d);
 						d3.select("body").append("div")
 							.attr("class", "tooltip")
 							.style("opacity", 1)

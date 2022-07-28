@@ -160,7 +160,7 @@
 <script>
 
 	function ${param.block}_constrain(filter, selection) {
-		//console.log("selection", selection)
+		//// console.log("selection", selection)
 		var selected = selection;
 		if (selected != undefined && selected.length > 0)
 			selected = "^" + selected + "$";
@@ -245,12 +245,12 @@
 
 	function ${param.block}_refreshHistograms() {
 	    var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
-	    console.log(data);
+	    // console.log(data);
 	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
 	    
 	    
 	    
-	    //console.log('${param.block}', "table data", data)
+	    //// console.log('${param.block}', "table data", data)
 	    ${param.block}_refreshAgeArray(data);
 	    ${param.block}_refreshRaceArray(data);
 	    ${param.block}_refreshEthnicityArray(data);
@@ -383,11 +383,11 @@
 		var $this = $("#${param.block}-"+selection);
 		var which = $this.attr('src');
 
-		//console.log("in main click", "${param.block}-"+selection, "which", which)
+		//// console.log("in main click", "${param.block}-"+selection, "which", which)
 		if (!${param.block}_crumbs.includes(selection)) {
 			$this.load("<util:applicationRoot/>/new_ph/"+which);
 			${param.block}_crumbs = ${param.block}_crumbs + selection;
-			//console.log({
+			//// console.log({
 			//	which : which
 			//});
 		}

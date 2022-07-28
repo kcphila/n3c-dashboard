@@ -37,7 +37,7 @@ function ${param.block}_race_refresh() {
 			ordered: 1
 		}
 
-	console.log("race graph", "${param.block}_race_viz", ${param.block}_SymptomRaceArray)
+	// console.log("race graph", "${param.block}_race_viz", ${param.block}_SymptomRaceArray)
    	d3.select("#${param.block}_race_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_SymptomRaceArray, properties);	
 }

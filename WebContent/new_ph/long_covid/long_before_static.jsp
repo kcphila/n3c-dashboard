@@ -11,7 +11,7 @@
 <script>
 
 
-console.log('${param.symptom}');
+// console.log('${param.symptom}');
 
 // set the dimensions and margins of the graph
 var ${param.block}_long_margin = {top: 20, right: 90, bottom: 30, left: 210},
@@ -32,8 +32,8 @@ var ${param.block}_long_barValue = function(d) { return parseFloat(d.patient_cou
 d3.json("<util:applicationRoot/>/new_ph/long_covid/feeds/before_after.jsp?symptom=${param.symptom}", function(error, data) {
 	if (error) throw error;
 	
-	console.log(data);
-	console.log('${param.symptom}');
+	// console.log(data);
+	// console.log('${param.symptom}');
 	
 	
 	var data = data.rows; 

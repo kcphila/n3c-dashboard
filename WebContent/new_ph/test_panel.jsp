@@ -7,6 +7,6 @@
 <p>datatable_div: ${param.datatable_div}</p>
 
 <script>
-	console.log("loaded ${param.info}");
+	// console.log("loaded ${param.info}");
 </script>
 <util:Log message="x" page="y" level="INFO"/>

@@ -56,7 +56,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	  for (let month = 0; month < 12; month++) {
 		  if (month <= maxDate.getMonth() || year < 2){
 			  	var year2 = startYear + year;
-			  	console.log(monthNames[month] + ' 01 ' + year2);
+			  	// console.log(monthNames[month] + ' 01 ' + year2);
 				dataMonths.push(new Date(monthNames[month] + " 01 " + year2));
 		  }
 	  }
@@ -124,8 +124,8 @@ var margin = {top:0, right:50, bottom:0, left:50},
 
 	function daysInMonth (month, year) {
 		var test = new Date(year, month+1, 0);
-	    console.log(test);
-	    console.log(test.getDate());
+	    // console.log(test);
+	    // console.log(test.getDate());
 	    return test.getDate(); 
 	}
 	
@@ -204,7 +204,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			  for (let month = 0; month < 12; month++) {
 				  if (month <= maxDate.getMonth() || year < 2){
 					  	var year2 = startYear + year;
-					  	console.log(monthNames[month] + ' 01 ' + year2);
+					  	// console.log(monthNames[month] + ' 01 ' + year2);
 						dataMonths.push(new Date(monthNames[month] + " 01 " + year2));
 				  }
 			  }
@@ -235,7 +235,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 				})
 				.handle(d3.symbol().type(d3.symbolCircle).size(200)());
 		
-			console.log(current_date_value);
+			// console.log(current_date_value);
 			sliderTime.value(current_date_value.valueOf());
 			  
 			var gTime =  svg.append("g")
@@ -274,8 +274,8 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			
 			function daysInMonth (month, year) {
 				var test = new Date(year, month+1, 0);
-			    console.log(test);
-			    console.log(test.getDate());
+			    // console.log(test);
+			    // console.log(test.getDate());
 			    return test.getDate(); 
 			}
 			

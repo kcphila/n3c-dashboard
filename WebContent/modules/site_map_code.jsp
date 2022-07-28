@@ -7,7 +7,7 @@ init();
 
 function init() {
 	$.getJSON("<util:applicationRoot/>/feeds/siteLocations.jsp", function(data){
-		console.log(data);
+		// console.log(data);
 		
 		var json = $.parseJSON(JSON.stringify(data));
 		var col = [];
@@ -103,7 +103,7 @@ function createD3Chart(sites_data){
 		var myObserver = new ResizeObserver(entries => {
 			entries.forEach(entry => {
 				var newWidth = Math.floor(entry.contentRect.width);
-				// console.log('body width '+newWidth);
+				// // console.log('body width '+newWidth);
 				if (newWidth > 0) {
 					d3.select("#graph").select("svg").remove();
 					width = newWidth;

@@ -5,7 +5,7 @@ var ${param.block}_constraint_begin = null,
     ${param.block}_constraint_end = null;
 
 function ${param.block}_constraint(begin, end) {
-	console.log("constraint", begin, end)
+	// console.log("constraint", begin, end)
 	${param.block}_constraint_begin = begin;
 	${param.block}_constraint_end = end;
 	var table = $('#${param.target_div}-table').DataTable();

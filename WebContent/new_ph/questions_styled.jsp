@@ -195,7 +195,7 @@ $.getJSON("<util:applicationRoot/>/feeds/questions.jsp", function(data){
 	    		</c:if>
 	    		if (index <  0)
 	    			index = 0;
-	    		console.log("initial index", index)
+	    		// console.log("initial index", index)
 	    		$('#question-table2 tbody tr:eq('+index+')').addClass('row_selected');},
 	    	lengthMenu: [ 15, 25, 50, 75, 100 ],
 	    	order: [[7, 'asc']],
@@ -314,7 +314,7 @@ function question_detail_toggle() {
 
 
 function frame_render(question, description, asked, limitations, iframe) {
-	console.log("iframe", iframe)
+	// console.log("iframe", iframe)
 	cache_browser_history("public-health", "public-health/"+iframe)
 	var divContainer = document.getElementById("question-tile");
 	divContainer.innerHTML = 

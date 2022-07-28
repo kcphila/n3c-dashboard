@@ -33,7 +33,7 @@ function ${param.block}_age_refresh() {
 			label2: 'Age',
 			offset: 250
 	}
-	console.log('reached age refresh');
+	// console.log('reached age refresh');
    	d3.select("#${param.block}_age_viz").select("svg").remove();
 	localHorizontalGroupedStackedBarChart(${param.block}_AgeGenderArray, properties);	
 }

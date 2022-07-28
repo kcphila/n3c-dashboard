@@ -2,7 +2,7 @@
 <script>
 
 function ${param.block}_constrain_table(filter, constraint) {
-	console.log("timeline constraint", filter, constraint);
+	// console.log("timeline constraint", filter, constraint);
 	var table = $('#${param.target_div}-table').DataTable();
 	
 	switch (filter) {
@@ -23,7 +23,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sumString = '';
-	console.log(column);
+	// console.log(column);
 	if (column != 'region_seq'){	
 		var sum = table.rows({search:'applied'}).data().pluck(column).sum();
 		if (sum < 1000) {

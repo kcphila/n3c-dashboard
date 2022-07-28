@@ -50,7 +50,7 @@ function ${param.block}_ethnicity_refresh() {
 			ordered: 1
 		}
 
-	console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_ObservationEthnicityArray)
+	// console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_ObservationEthnicityArray)
    	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_ObservationEthnicityArray, properties);	
 }

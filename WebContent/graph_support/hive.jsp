@@ -42,7 +42,7 @@ div.tooltip {
 <script>
 d3.json("../../feeds/hive_data.jsp", function(error, data) {	
 	if (error) throw error;
-	console.log(data);
+	// console.log(data);
 	
 	var margin = { top: 20, right: 140, bottom: 20, left: 20 };
 	var width = window.innerWidth,
@@ -62,7 +62,7 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 					innerRadius = outerRadius / 10;
 					draw();
 					
-					console.log('width', width);
+					// console.log('width', width);
 					
 				}
 			});
@@ -73,12 +73,12 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 		draw();
 		
 		
-		function draw() { console.log("drawing", width)
+		function draw() { // console.log("drawing", width)
 			
 			var nodes = data.nodes;
 			var node_map = d3.map(nodes, d => d.mapping);
-			console.log("nodes", nodes);
-			console.log("map", node_map.get("0-1"));
+			// console.log("nodes", nodes);
+			// console.log("map", node_map.get("0-1"));
 			
 			var links = data.edges;
 			
@@ -153,7 +153,7 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 			  .append("circle")
 			  .attr("class", "node")
 			  .on("click", function(d) {
-				  console.log("click", d,url_unmap('1'));
+				  // console.log("click", d,url_unmap('1'));
 				//	$('#selectMe').val(url_unmap('1'));
 				//	frame_load(url_unmap('1'));
 				//    $('.group').hide();
@@ -163,7 +163,7 @@ d3.json("../../feeds/hive_data.jsp", function(error, data) {
 				  window.open("<util:applicationRoot/>/public-health/SummaryDataAllAges/1", "_self");
 				})
 			  .on("mouseover", function(d){
-				  console.log(d);
+				  // console.log(d);
 				  d3.select("body").append("div")
 					.attr("class", "tooltip")
 					.style("opacity", 1)

@@ -28,7 +28,7 @@ function ${param.block}_medication_refresh() {
 			offset: 300
 	}
 
-	console.log("medication graph", "${param.block}_medication_viz", ${param.block}_MedicationArray);
+	// console.log("medication graph", "${param.block}_medication_viz", ${param.block}_MedicationArray);
    	d3.select("#${param.block}_medication_viz").select("svg").remove(); 
 	localHorizontalGroupedStackedBarChart(${param.block}_MedicationArray, properties);	
 }

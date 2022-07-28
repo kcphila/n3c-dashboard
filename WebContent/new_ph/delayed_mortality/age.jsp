@@ -26,7 +26,7 @@ function ${param.block}_age_refresh() {
 			colorscale: categorical
 	}
 
-	//console.log("age graph", "${param.block}_age_viz", ${param.block}_AgeArray)
+	//// console.log("age graph", "${param.block}_age_viz", ${param.block}_AgeArray)
 	d3.select("#${param.block}_age_viz").select("svg").remove();
 	localHorizontalBarChart(${param.block}_AgeArray, properties);
 }

@@ -28,8 +28,8 @@ function ${param.block}_severity_refresh() {
 			legend_label: 'Smoking Status'
 		}
 
-	console.log("reached");
-   	d3.select("#${param.block}_severity_viz").select("svg").remove(); console.log(smoking_2_SeverityStatusArray)
+	// console.log("reached");
+   	d3.select("#${param.block}_severity_viz").select("svg").remove(); // console.log(smoking_2_SeverityStatusArray)
 	localHorizontalStackedBarChart(smoking_2_SeverityStatusArray, properties);	
 }
 

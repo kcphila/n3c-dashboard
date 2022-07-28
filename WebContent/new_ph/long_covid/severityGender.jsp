@@ -31,7 +31,7 @@ function ${param.block}_severity_refresh() {
 			legend_label: 'Gender'
 		}
 
-	console.log("reached");
+	// console.log("reached");
    	d3.select("#${param.block}_severity_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_SeverityGenderArray, properties);	
 }

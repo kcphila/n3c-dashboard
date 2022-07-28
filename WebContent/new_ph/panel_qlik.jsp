@@ -30,8 +30,8 @@
 		
 		const { config, csrfTokenInfo } = await auth2();
 		
-		console.log("iframe", "${param.iframe}", "content", "${iframe_content}");
-		console.log(csrfTokenInfo);
+		// console.log("iframe", "${param.iframe}", "content", "${iframe_content}");
+		// console.log(csrfTokenInfo);
 		
 		$("body").css("cursor", "default");
 
@@ -52,7 +52,7 @@
 
 function iframe_render(tenant, appID, content, integrationID, token, style, iframe) {
 	var divContainer = document.getElementById("question-tile-iframe");
-	console.log("iframe", iframe)
+	// console.log("iframe", iframe)
 	cache_browser_history("public-health", "public-health/${param.iframe}");
 		divContainer.innerHTML = 
 			'<div id="d3viz"></div>'

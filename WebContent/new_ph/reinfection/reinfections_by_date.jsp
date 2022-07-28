@@ -5,7 +5,7 @@ var ${param.block}_constraint_begin = null,
     ${param.block}_constraint_end = null;
 
 function ${param.block}_constraint(begin, end) {
-	console.log("constraint", begin, end)
+	// console.log("constraint", begin, end)
 	${param.block}_constraint_begin = begin;
 	${param.block}_constraint_end = end;
 	var table = $('#${param.target_div}-table').DataTable();
@@ -13,7 +13,7 @@ function ${param.block}_constraint(begin, end) {
 	
 	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
-		console.log(kpis[a]);
+		// console.log(kpis[a]);
 		${param.block}_updateKPI(table, kpis[a])
 	}
 }
@@ -21,7 +21,7 @@ function ${param.block}_constraint(begin, end) {
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	console.log(sum, table.rows({search:'applied'}).data().pluck(column))
+	// console.log(sum, table.rows({search:'applied'}).data().pluck(column))
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -32,7 +32,7 @@ function ${param.block}_updateKPI(table, column) {
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
 		
 	}
-	console.log('${param.block}', column, sumString)
+	// console.log('${param.block}', column, sumString)
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
 }
 

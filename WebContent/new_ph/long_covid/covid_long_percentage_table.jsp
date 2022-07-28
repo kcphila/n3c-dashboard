@@ -3,7 +3,7 @@
 
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
-	console.log("${param.block}", filter, constraint)
+	// console.log("${param.block}", filter, constraint)
 	switch (filter) {
 	case 'age':
 		table.column(0).search(constraint, true, false, true).draw();	
@@ -25,19 +25,19 @@ function ${param.block}_constrain_table(filter, constraint) {
 		break;
 	}
 	
-	console.log('${param.target_kpis}')
+	// console.log('${param.target_kpis}')
 	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
-		console.log(kpis[a]);
+		// console.log(kpis[a]);
 		${param.block}_updateKPI(table, kpis[a])
 	}
 	
-	console.log('${param.target_filtered_kpis}')
+	// console.log('${param.target_filtered_kpis}')
 	var kpis = '${param.target_filtered_kpis}'.split(',');
 	for (var a in kpis) {
-		console.log('filtered', kpis[a]);
+		// console.log('filtered', kpis[a]);
 		var components = kpis[a].split('|');
-		console.log('filtered', components);
+		// console.log('filtered', components);
 		${param.block}_updateFilteredKPI(components[0], components[1], table, components[3], components[2])
 	}
 }
@@ -45,7 +45,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	console.log(sum, table.rows({search:'applied'}).data().pluck(column))
+	// console.log(sum, table.rows({search:'applied'}).data().pluck(column))
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -56,7 +56,7 @@ function ${param.block}_updateKPI(table, column) {
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
 		
 	}
-	console.log('${param.block}', column, sumString)
+	// console.log('${param.block}', column, sumString)
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
 }
 
@@ -69,7 +69,7 @@ function ${param.block}_updateFilteredKPI(filter_column, filter_value, table, co
         return filter_value === table.row(value).data()[filter_column];
       } );
 	var sum = table.rows(indexes).data().pluck(column).sum();
-	console.log('filtered', sum, table.rows(indexes).data().pluck(column).sum())
+	// console.log('filtered', sum, table.rows(indexes).data().pluck(column).sum())
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -80,7 +80,7 @@ function ${param.block}_updateFilteredKPI(filter_column, filter_value, table, co
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
 		
 	}
-	console.log('${param.block}', column, sumString)
+	// console.log('${param.block}', column, sumString)
 	document.getElementById('${param.block}'+'_'+kpi_label+'_kpi').innerHTML = sumString
 }
 

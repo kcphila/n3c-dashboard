@@ -10,7 +10,7 @@
 		var myObserver = new ResizeObserver(entries => {
 			entries.forEach(entry => {
 				var newWidth = Math.floor(entry.contentRect.width);
-				// console.log('body width '+newWidth);
+				// // console.log('body width '+newWidth);
 				if (newWidth > 0) {
 					d3.select("${param.dom_element}").select("svg").remove();
 					width = newWidth;

@@ -28,7 +28,7 @@ function ${param.block}_gender_refresh() {
 			legend_label: 'Severity'
 		}
 
-	console.log("gender graph", "${param.block}_gender_viz", ${param.block}_GenderSeverityArray)
+	// console.log("gender graph", "${param.block}_gender_viz", ${param.block}_GenderSeverityArray)
    	d3.select("#${param.block}_gender_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_GenderSeverityArray, properties);	
 }

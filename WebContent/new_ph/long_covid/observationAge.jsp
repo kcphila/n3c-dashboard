@@ -50,7 +50,7 @@ function ${param.block}_age_refresh() {
 			ordered: 1
 		}
 
-	console.log("age graph", "${param.block}_age_viz", ${param.block}_ObservationAgeArray)
+	// console.log("age graph", "${param.block}_age_viz", ${param.block}_ObservationAgeArray)
    	d3.select("#${param.block}_age_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_ObservationAgeArray, properties);	
 }

@@ -49,7 +49,7 @@ function ${param.block}_race_refresh() {
 			ordered: 1
 		}
 
-	console.log("race graph", "${param.block}_race_viz", ${param.block}_ObservationRaceArray)
+	// console.log("race graph", "${param.block}_race_viz", ${param.block}_ObservationRaceArray)
    	d3.select("#${param.block}_race_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_ObservationRaceArray, properties);	
 }

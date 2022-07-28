@@ -420,9 +420,9 @@
 	
 
 	function ${param.block}_viz_constrain(element, elementParent) {
-		console.log(element);
-		console.log(elementParent);
-		console.log("#${param.block}-"+elementParent.toLowerCase()+"-select");
+		// console.log(element);
+		// console.log(elementParent);
+		// console.log("#${param.block}-"+elementParent.toLowerCase()+"-select");
 		var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
         var selected = [];
         
@@ -430,7 +430,7 @@
             selected.push($(this).val());
         });
 	        
-        console.log("selected", selected);
+        // console.log("selected", selected);
 		if (selected[0].includes( element.secondary_name)){
 			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('deselect', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
 		} else {
@@ -720,7 +720,7 @@
 				$('#${param.block}_btn_clear').addClass("show_clear");
 			} else if ($('#${param.datatable_div}-table').DataTable().search().length > 0){
 				// leave things alone, there's an active search
-				console.log("active search box", $('#${param.datatable_div}-table').DataTable().search())
+				// console.log("active search box", $('#${param.datatable_div}-table').DataTable().search())
 			} else {
 				$('#${param.block}_btn_clear').removeClass("show_clear");
 				$('#${param.block}_btn_clear').addClass("no_clear");
@@ -1163,7 +1163,7 @@
 		var $this = $("#${param.block}-"+selection);
 		var which = $this.attr('src');
 
-		//console.log("in main click", "${param.block}-"+selection, "which", which)
+		//// console.log("in main click", "${param.block}-"+selection, "which", which)
 		if (!${param.block}_crumbs.includes(selection)) {
 			$this.load("<util:applicationRoot/>/new_ph/"+which);
 			${param.block}_crumbs.push(selection);

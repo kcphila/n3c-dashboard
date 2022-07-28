@@ -27,7 +27,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 
 function ${param.block}_updateKPI(table, column) {
 	
-	console.log(column);
+	// console.log(column);
 	
 	var sum_string = '';
 	var sum = table.rows({search:'applied'}).data().pluck(column).sum();

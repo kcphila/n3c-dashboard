@@ -35,7 +35,7 @@ var gap = 4;
 d3.json("<util:applicationRoot/>/new_ph/paxlovid/feeds/${param.feed}", function(error, data) {
 	if (error) throw error;
 	
-	console.log(data);
+	// console.log(data);
 	
 	var data = data.rows; 
 	

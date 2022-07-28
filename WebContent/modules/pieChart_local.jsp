@@ -21,7 +21,7 @@ function localPieChart(data, domName) {
 			var newWidth = Math.floor(entry.contentRect.width);
 			if (newWidth > 0) {
 				d3.select(domName).select("svg").remove();
-				//console.log('${param.dom_element} width '+newWidth);
+				//// console.log('${param.dom_element} width '+newWidth);
 				width = newWidth;
 				height = newWidth;
 				draw();

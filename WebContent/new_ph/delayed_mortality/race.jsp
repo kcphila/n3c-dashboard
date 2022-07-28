@@ -26,7 +26,7 @@ function ${param.block}_race_refresh() {
 			colorscale: categorical
 	}
 
-	//console.log("race graph", "${param.block}_race_viz", ${param.block}_RaceArray)
+	//// console.log("race graph", "${param.block}_race_viz", ${param.block}_RaceArray)
 	d3.select("#${param.block}_race_viz").select("svg").remove();
 	localHorizontalBarChart(${param.block}_RaceArray,"#${param.block}_race_viz", 120);
 }

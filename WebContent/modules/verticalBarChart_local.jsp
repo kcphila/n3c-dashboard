@@ -19,7 +19,7 @@ function localBarChart(data, domName, barLabelWidth) {
 
 //	data.forEach(function(node) {
 //		barLabelWidth = Math.max(barLabelWidth,node.element.length * 8);
-	    //console.log(node.element + "  " + node.element.length*7. );
+	    //// console.log(node.element + "  " + node.element.length*7. );
 //	});
 	
 	var myObserver = new ResizeObserver(entries => {

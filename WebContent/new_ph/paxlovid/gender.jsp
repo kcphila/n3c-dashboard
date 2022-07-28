@@ -30,7 +30,7 @@ function ${param.block}_gender_refresh() {
 			nofilter: 1
 		}
 
-	console.log("reached");
+	// console.log("reached");
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_GenderResultArray, properties);
 }

@@ -71,7 +71,7 @@ function ${param.block}_updateKPI2(table, column) {
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
 		
 	}
-	console.log('${param.block}'+'_'+column+'_kpi');
+	// console.log('${param.block}'+'_'+column+'_kpi');
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
 }
 

@@ -28,7 +28,7 @@ function ${param.block}_ethnicity_refresh() {
 			legend_label: 'Test Result'
 		}
 
-	console.log("reached");
+	// console.log("reached");
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_EthnicityResultArray, properties);	
 }

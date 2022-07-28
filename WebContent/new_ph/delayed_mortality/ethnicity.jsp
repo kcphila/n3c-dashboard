@@ -26,7 +26,7 @@ function ${param.block}_ethnicity_refresh() {
 			colorscale: categorical
 	}
 
-	//console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_EthnicityArray)
+	//// console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_EthnicityArray)
 	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
 	localHorizontalBarChart(${param.block}_EthnicityArray, properties);
 }

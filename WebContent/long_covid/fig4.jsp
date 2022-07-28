@@ -84,7 +84,7 @@
             let v = cell.getValue()
             let max = formatterParams.max
             let percentage = (v * 100) / max;
-            // console.log(`${v} of ${max} = ${percentage}`)
+            // // console.log(`${v} of ${max} = ${percentage}`)
             if (cell.getValue() !== "*") {
                 var width = 100;
                 var height = 20;
@@ -113,7 +113,7 @@
 
         var d3_dot = function(cell, formatterParams, onRendered){
             let v = cell.getValue()
-            // console.log(`${v} values`)
+            // // console.log(`${v} values`)
             if (!v.includes('see discussion')) {
                 var width = 150;
                 var height = 20;
@@ -377,8 +377,8 @@
             boxConfig['all_odds_ratio__95__ci_']= {max: 0, min: 0}
             boxConfig['all_odds_ratio__95__ci_'].max = Math.max.apply(Math, allOddsNumbers)
             boxConfig['all_odds_ratio__95__ci_'].min = Math.min.apply(Math, allOddsNumbers)
-            // console.log('nonHospOddsNumbers', nonHospOddsNumbers)
-            // console.log('CONFIG', JSON.stringify(boxConfig, null, 2))
+            // // console.log('nonHospOddsNumbers', nonHospOddsNumbers)
+            // // console.log('CONFIG', JSON.stringify(boxConfig, null, 2))
 
             tableData = data.map((obj) => {
                 

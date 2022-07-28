@@ -129,7 +129,7 @@
 		}
 		
 		function set_browser_history(tabname) {
-			console.log("tab_cache", tabname, tab_cache, secondary_tab_cache)
+			// console.log("tab_cache", tabname, tab_cache, secondary_tab_cache)
 			var index = tab_cache.findIndex(entry => {
 				return entry.tabname === tabname;
 			});
@@ -137,13 +137,13 @@
 			if (index == -1) {
 				history.pushState(null, '', '<util:applicationRoot/>/'+tabname)
 			} else {
-				console.log("cache hit", tab_cache[index].pathname)
+				// console.log("cache hit", tab_cache[index].pathname)
 				if ((tab_cache[index].pathname.match(/\//g) || []).length > 0) {
 					//need to check the secondary cache
 					var secondary_index = secondary_tab_cache.findIndex(entry => {
 						return entry.tabname === tab_cache[index].pathname;
 					});
-					console.log("secondary index", secondary_index)
+					// console.log("secondary index", secondary_index)
 					if (secondary_index == -1) {
 						history.pushState(null, '', '<util:applicationRoot/>/'+tab_cache[index].pathname)
 					} else {

@@ -28,8 +28,8 @@ function ${param.block}_race_refresh() {
 			legend_label: 'Smoking Status'
 		}
 
-	console.log("reached");
-   	d3.select("#${param.block}_race_viz").select("svg").remove(); console.log(${param.block}_RaceStatusArray)
+	// console.log("reached");
+   	d3.select("#${param.block}_race_viz").select("svg").remove(); // console.log(${param.block}_RaceStatusArray)
 	localHorizontalStackedBarChart(${param.block}_RaceStatusArray, properties);	
 }
 

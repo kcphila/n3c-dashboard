@@ -25,7 +25,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	console.log(sum);
+	// console.log(sum);
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -36,8 +36,8 @@ function ${param.block}_updateKPI(table, column) {
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
 		
 	}
-	console.log(sumString);
-	console.log(column);
+	// console.log(sumString);
+	// console.log(column);
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
 }
 

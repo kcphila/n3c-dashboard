@@ -26,7 +26,7 @@ function localHorizontalBarChart(data, properties) {
 	
 	if ((properties.ordered != undefined) && (properties.ordered == 1) ){
 		data.sort(function(a, b) {
-			console.log(a);
+			// console.log(a);
 		    return parseFloat(b.count) - parseFloat(a.count);
 		});
 	}
