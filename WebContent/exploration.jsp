@@ -163,7 +163,6 @@
 
 	<jsp:include page="footer.jsp" flush="true" />
 	
-	<c:import url="modules/scroll_down.jsp"/>
 	<c:import url="modules/popover_init.jsp"/>
 	
 </body>

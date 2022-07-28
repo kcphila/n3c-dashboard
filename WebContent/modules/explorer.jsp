@@ -33,99 +33,125 @@
 	#mode-table{
 		cursor: pointer;
 	}
+	
+	.no_clear{
+		display:none;
+	}
+	
+	.viz-mode .fas{
+		cursor: pointer;
+		color: #bae4ea;
+	}
+
+	.viz-mode .fas:hover{
+		color: #117a8b;
+	}
+	.viz-mode .text-success{
+		color: #117a8b !important;
+	}
+	
+	.dash-filter-btn2{
+		color: #117a8b;
+	}
+	
+	.dash-filter-btn2:hover{
+		color: #0b525d;
+	}
+	
+	.col-left{
+			text-align: left;
+			margin-left: auto
+		}
+		.col-right{
+			text-align: right;
+			margin-right: auto
+		}
+
+	
+	@media (max-width: 992px){
+		.col-left, .col-right{
+			text-align: center;
+			margin: auto
+		}
+	}
 </style>
 
 <div class="row">
 	<div class="col-12">
 		<div class="row" style="text-align:center;">
-			<div class="col-12 col-md-6">
+			<div class="col-12 col-md-4 col-left">
 				<div class="selection-section">
-					<div id="mode" class="panel-heading">
-						<h4>Display:
+					<div id="mode" class="panel-heading viz-mode">
+						<h5>Display:
 							<i id="mode-pie" class="fas fa-chart-pie fa-lg" style="display:none;"></i> 
 							<i id="mode-bar" class="fas fa-chart-bar fa-lg text-success"></i> 
 							<i id="mode-table" class="fas fa-table fa-lg"></i>
-						</h4>
+						</h5>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-md-6">
-				<div class="selection-section">
-					<button class="btn btn-secondary" onclick="uncheckAll();"><i class="fas fa-filter"></i> Reset Filters</button>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row" id="explore_filters">
-			<div class="col-6 col-md-6">
-				<div class="selection-section">
-					<div class=" panel-primary">
-						<div class="panel-body">
-							<h4 id="age"><i class="fas fa-chevron-right"></i> Age</h4>
-							<div id="age_panel" class="panel-options" style="display:none;">
-								<sql:query var="ages" dataSource="jdbc/N3CPublic">
-									select age_bin,sum(patient_count) from n3c_dashboard.aggregated group by 1 order by 1;
-								</sql:query>
-								<c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
-									<c:if test="${!rowCounter.first}"><br></c:if>
-									<input type="checkbox" name="age_bin" value="${row.age_bin}" > ${row.age_bin}
-								</c:forEach>
+			<div class="col-12 col-right col-md-4 filter_button_container" style="text-align:right;">
+				<button id="table_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="clear_search();"><i class="fas fa-times-circle"></i> Clear Filters</button>
+				<div class="dropdown" style="display: inline-block;">
+					<button data-bs-auto-close="false" class="btn btn-primary dropdown-toggle mt-0 show_filt" type="button" id="dropdownMenuButton" data-toggle="" aria-haspopup="true" aria-expanded="false">Chart/Table Filters</button>
+					<div id="filter_options_drop" class="dropdown-menu dropdown-menu-right drop_filter" aria-labelledby="dropdownMenuButton">
+						<div class="kpi_section" style="text-align:center;">	
+							<div class="panel-body">
+								<h6>Age</h6>
+								<select id="age-select" multiple="multiple">
+									<sql:query var="ages" dataSource="jdbc/N3CPublic">
+										select age_bin,sum(patient_count) from n3c_dashboard.aggregated group by 1 order by 1;
+									</sql:query>
+									<c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
+										<option value="${row.age_bin}">${row.age_bin}</option>
+									</c:forEach>
+								</select>
 							</div>
-						</div>
-						<div class="panel-body">
-							<h4 id="race"><i class="fas fa-chevron-right"></i> Race</h4>
-							<div id="race_panel" class="panel-options" style="display:none;">
-								<sql:query var="races" dataSource="jdbc/N3CPublic">
-									select race,race_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.race_map group by 1,2,race_seq order by race_seq;
-								</sql:query>
-								<c:forEach items="${races.rows}" var="row" varStatus="rowCounter">
-									<c:if test="${!rowCounter.first}"><br></c:if>
-									<input type="checkbox" name="race" value="${row.race}" > ${row.race_abbrev}
-								</c:forEach>
+							<div class="panel-body">
+								<h6>Gender</h6>
+								<select id="gender-select" multiple="multiple">
+									<sql:query var="gender" dataSource="jdbc/N3CPublic">
+										select gender_abbrev as gender, gender_abbrev, sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.gender_map group by 1, gender_seq order by gender_seq;
+									</sql:query>
+									<c:forEach items="${gender.rows}" var="row" varStatus="rowCounter">
+										<option value="${row.gender}">${row.gender_abbrev}</option>
+									</c:forEach>
+								</select>
 							</div>
-						</div>
-						<div class="panel-body">
-							<h4 id="ethnicity"><i class="fas fa-chevron-right"></i> Ethnicity</h4>
-							<div id="ethnicity_panel" class="panel-options" style="display:none;">
-								<sql:query var="ethnicities" dataSource="jdbc/N3CPublic">
-									select aggregated.ethnicity,ethnicity_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.ethnicity_map group by 1,2,ethnicity_seq order by ethnicity_seq;
-								</sql:query>
-								<c:forEach items="${ethnicities.rows}" var="row" varStatus="rowCounter">
-									<c:if test="${!rowCounter.first}"><br></c:if>
-									<input type="checkbox" name="ethnicity" value="${row.ethnicity}" > ${row.ethnicity_abbrev}
-								</c:forEach>
+							<div class="panel-body">
+								<h6>Race</h6>
+								<select id="race-select" multiple="multiple">
+									<sql:query var="race" dataSource="jdbc/N3CPublic">
+										select race,race_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.race_map group by 1,2,race_seq order by race_seq;
+									</sql:query>
+									<c:forEach items="${race.rows}" var="row" varStatus="rowCounter">
+										<option value="${row.race}">${row.race_abbrev}</option>
+									</c:forEach>
+								</select>
 							</div>
+							<div class="panel-body">
+								<h6>Ethnicity</h6>
+								<select id="ethnicity-select" multiple="multiple">
+									<sql:query var="ethnicity" dataSource="jdbc/N3CPublic">
+										select aggregated.ethnicity,ethnicity_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.ethnicity_map group by 1,2,ethnicity_seq order by ethnicity_seq;
+									</sql:query>
+									<c:forEach items="${ethnicity.rows}" var="row" varStatus="rowCounter">
+										<option value="${row.ethnicity}">${row.ethnicity_abbrev}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="panel-body">
+								<h6>Severity</h6>
+								<select id="severity-select" multiple="multiple">
+									<sql:query var="severity" dataSource="jdbc/N3CPublic">
+										select severity,severity_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.severity_map group by 1,2,severity_seq order by severity_seq;
+									</sql:query>
+									<c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">
+										<option value="${row.severity_abbrev}">${row.severity_abbrev}</option>
+									</c:forEach>
+								</select>
+							</div>	
 						</div>
-					</div>		
-				</div>
-			</div>
-			<div class="col-6 col-md-6">
-				<div class="selection-section">
-					<div class="panel-body">
-						<h4 id="gender"><i class="fas fa-chevron-right"></i> Gender</h4>
-						<div id="gender_panel" class="panel-options" style="display:none;">
-							<sql:query var="genders" dataSource="jdbc/N3CPublic">
-								select gender_abbrev as gender, gender_abbrev, sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.gender_map group by 1, gender_seq order by gender_seq;
-							</sql:query>
-							<c:forEach items="${genders.rows}" var="row" varStatus="rowCounter">
-								<c:if test="${!rowCounter.first}"><br></c:if>
-								<c:if test="${row.sum > 0}">
-									<input type="checkbox" name="gender" value="${row.gender}" > ${row.gender_abbrev} 
-								</c:if>
-							</c:forEach>
-						</div>
-					</div>
-					<div class="panel-body">
-						<h4 id="severity"><i class="fas fa-chevron-right"></i> Severity</h4>
-						<div id="severity_panel" class="panel-options" style="display:none;">
-							<sql:query var="severities" dataSource="jdbc/N3CPublic">
-								select severity,severity_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.severity_map group by 1,2,severity_seq order by severity_seq;
-							</sql:query>
-							<c:forEach items="${severities.rows}" var="row" varStatus="rowCounter">
-								<c:if test="${!rowCounter.first}"><br></c:if>
-								<input type="checkbox" name="severity" value="${row.severity}" > ${row.severity_abbrev} 
-							</c:forEach>
-						</div>						
 					</div>
 				</div>
 			</div>
@@ -133,7 +159,7 @@
 	</div>
 
 	<div class="col-12">
-		<div id="display-d3">
+		<div id="display-d3" class="mx-auto" style="max-width: 950px;">
 		<div class="row">
 			<div class="col-12 col-lg-6 viz_section">
 				<h5 class="text-center strong">Age</h5>
@@ -171,7 +197,7 @@
 			</div>
 		</div>
 		</div>
-		<div id="display-table" style="display:none; width:100%; overflow:scroll;" class="panel panel-primary">
+		<div id="display-table" style="display:none; width:100%; overflow:scroll;" class="panel panel-primary text-max mx-auto">
 			<div class="panel-heading">Aggregated Data</div>
 			<div class="panel-body">
 				<div id="aggregated"></div>
@@ -182,6 +208,123 @@
 <jsp:include page="../modules/verticalBarChart_local.jsp"/>
 <jsp:include page="../modules/pieChart_local.jsp"/>
 <script>
+
+$('#dropdownMenuButton').on('click', function() {
+	$("#filter_options_drop").toggleClass('show');
+	$(this).toggleClass('show_filt hide_filt');
+});
+
+$('#age-select').multiselect({
+ 	onChange: function(option, checked, select) {
+		var options = $('#age-select');
+		var selected = [];
+        $(options).each(function(){
+            selected.push($(this).val());
+        });
+
+        console.log(selected[0].join("|"));
+        var table = $('#aggregated-table').DataTable();
+        table.column(2).search(selected[0].join("|"), true, false, true).draw();
+        
+		aggregated_datatable.draw();
+	    refreshHistograms();
+     }
+});
+
+$('#gender-select').multiselect({
+ 	onChange: function(option, checked, select) {
+		var options = $('#gender-select');
+		var selected = [];
+        $(options).each(function(){
+            selected.push($(this).val());
+        });
+        
+        for (i in selected[0]){
+        	selected[0][i] = "^" + selected[0][i] + "$";
+        }
+
+        var table = $('#aggregated-table').DataTable();
+        table.column(3).search(selected[0].join("|"), true, false, true).draw();
+        
+		aggregated_datatable.draw();
+	    refreshHistograms();
+     }
+});
+
+$('#race-select').multiselect({
+ 	onChange: function(option, checked, select) {
+		var options = $('#race-select');
+		var selected = [];
+        $(options).each(function(){
+            selected.push($(this).val());
+        });
+
+        var table = $('#aggregated-table').DataTable();
+        table.column(0).search(selected[0].join("|"), true, false, true).draw();
+        
+		aggregated_datatable.draw();
+	    refreshHistograms();
+     }
+});
+
+$('#ethnicity-select').multiselect({
+ 	onChange: function(option, checked, select) {
+		var options = $('#ethnicity-select');
+		var selected = [];
+        $(options).each(function(){
+            selected.push($(this).val());
+        });
+
+        var table = $('#aggregated-table').DataTable();
+        table.column(1).search(selected[0].join("|"), true, false, true).draw();
+        
+		aggregated_datatable.draw();
+	    refreshHistograms();
+     }
+});
+
+$('#severity-select').multiselect({
+ 	onChange: function(option, checked, select) {
+ 		var options = $('#severity-select');
+		var selected = [];
+        $(options).each(function(){
+            selected.push($(this).val());
+        });
+        
+        for (i in selected[0]){
+        	selected[0][i] = "^" + selected[0][i] + "$";
+        }
+        
+        var table = $('#aggregated-table').DataTable();
+        table.column(14).search(selected[0].join("|"), true, false, true).draw();
+        
+		aggregated_datatable.draw();
+	    refreshHistograms();
+     }
+});
+
+function clear_search(){
+	
+	$('#table_clear').removeClass("show_clear");
+	$('#table_clear').addClass("no_clear");
+	
+	$('#age-select').multiselect('clearSelection');
+	$('#gender-select').multiselect('clearSelection');
+	$('#race-select').multiselect('clearSelection');
+	$('#ethnicity-select').multiselect('clearSelection');
+	$('#severity-select').multiselect('clearSelection');
+	
+	var table = $('#aggregated-table').DataTable();
+	table.column(2).search("", true, false, true).draw();
+	table.column(3).search("", true, false, true).draw();
+	table.column(0).search("", true, false, true).draw();
+	table.column(1).search("", true, false, true).draw();
+	table.column(14).search("", true, false, true).draw();
+	
+	aggregated_datatable.draw();
+    refreshHistograms();
+};
+	
 var aggregated_datatable = null;
 var ageArray = new Array();
 var raceArray = new Array();
@@ -190,95 +333,6 @@ var genderArray = new Array();
 var severityArray = new Array();
 
 $(document).ready( function () {
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="race"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[0]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
-	
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="ethnicity"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[1]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
-
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="age_bin"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[2]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
-
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="gender"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[3]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
-
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="severity"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[4]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
 	
 	$.getJSON("feeds/aggregated.jsp", function(data){
 			
@@ -310,9 +364,42 @@ $(document).ready( function () {
 		var data = json['rows'];
 	
 		aggregated_datatable = $('#aggregated-table').DataTable( {
-			"dom": '<l<t>ip>',
+			"dom": '<l<t>Bip>',
 	    	data: data,
 	       	paging: true,
+	       	buttons: {
+	    	    dom: {
+	    	      button: {
+	    	        tag: 'button',
+	    	        className: ''
+	    	      }
+	    	    },
+	    	    buttons: [{
+	    	      extend: 'csv',
+	    	      className: 'btn btn-sm btn-light',
+	    	      titleAttr: 'CSV export.',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
+	    	      text: 'CSV',
+	    	      filename: 'enclave_overview',
+	    	      extension: '.csv'
+	    	    }, {
+	    	      extend: 'copy',
+	    	      className: 'btn btn-sm btn-light',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
+	    	      titleAttr: 'Copy table data.',
+	    	      text: 'Copy'
+	    	    }]
+	    	},
+	       	snapshot: null,
+	       	snapshot2: null,
+	       	initComplete: function( settings, json ) {
+	       	 	settings.oInit.snapshot = $('#aggregated-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+	       	 	settings.oInit.snapshot2 = $('#aggregated-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+	       	},
 	    	pageLength: 10,
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
 	    	order: [[0, 'asc']],
@@ -335,14 +422,30 @@ $(document).ready( function () {
 	        	{ data: 'severity_seq', visible: false }
 	    	]
 		} );
+		
+		aggregated_datatable.on( 'search.dt', function () {
+			console.log('reached');
+			var snapshot = aggregated_datatable
+		     .rows({ search: 'applied', order: 'index'})
+		     .data()
+		     .toArray()
+		     .toString();
+
+		  	var currentSnapshot =  aggregated_datatable.settings().init().snapshot;
+
+		  	if (currentSnapshot != snapshot) {
+		   		$('#table_clear').removeClass("no_clear");
+		   		$('#table_clear').addClass("show_clear");
+		  	}
+		  	
+		  	if (snapshot == aggregated_datatable.settings().init().snapshot2) {
+		   		$('#table_clear').removeClass("show_clear");
+		   		$('#table_clear').addClass("no_clear");
+		  	}
+		} );
 	
 		refreshHistograms();
 	});
-	
-	$('input:checkbox').on('change', function () {
-	    aggregated_datatable.draw();
-	    refreshHistograms();
-	 });
 } );
 
 function refreshHistograms() {
@@ -630,54 +733,4 @@ $('#mode-table').on('click', function(element) {
 	document.getElementById("display-d3").style.display = "none";
 });
 
-$('#age').on('click', function() {
-	var panel = document.getElementById("age_panel");
-	if (panel.style.display === "none") {
-		this.innerHTML = "<i class='fas fa-chevron-down'></i> Age";
-		panel.style.display = "block";
-	} else {
-		this.innerHTML = "<i class='fas fa-chevron-right'></i> Age";
-		panel.style.display = "none";
-	}
-});
-$('#race').on('click', function() {
-	var panel = document.getElementById("race_panel");
-	if (panel.style.display === "none") {
-		this.innerHTML = "<i class='fas fa-chevron-down'></i> Race";
-		panel.style.display = "block";
-	} else {
-		this.innerHTML = "<i class='fas fa-chevron-right'></i> Race";
-		panel.style.display = "none";
-	}
-});
-$('#ethnicity').on('click', function() {
-	var panel = document.getElementById("ethnicity_panel");
-	if (panel.style.display === "none") {
-		this.innerHTML = "<i class='fas fa-chevron-down'></i> Ethnicity";
-		panel.style.display = "block";
-	} else {
-		this.innerHTML = "<i class='fas fa-chevron-right'></i> Ethnicity";
-		panel.style.display = "none";
-	}
-});
-$('#gender').on('click', function() {
-	var panel = document.getElementById("gender_panel");
-	if (panel.style.display === "none") {
-		this.innerHTML = "<i class='fas fa-chevron-down'></i> Gender";
-		panel.style.display = "block";
-	} else {
-		this.innerHTML = "<i class='fas fa-chevron-right'></i> Gender";
-		panel.style.display = "none";
-	}
-});
-$('#severity').on('click', function() {
-	var panel = document.getElementById("severity_panel");
-	if (panel.style.display === "none") {
-		this.innerHTML = "<i class='fas fa-chevron-down'></i> Severity";
-		panel.style.display = "block";
-	} else {
-		this.innerHTML = "<i class='fas fa-chevron-right'></i> Severity";
-		panel.style.display = "none";
-	}
-});
 </script>

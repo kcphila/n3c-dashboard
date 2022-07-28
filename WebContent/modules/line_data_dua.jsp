@@ -39,14 +39,14 @@
     	stroke-width:2.8px;
     }
     path.dtas{
-    	stroke: #4B6169;
+    	stroke: #117a8b;
     	stroke-width:2.8px;
     }
     
     
     .tooltip-dtas, 
     text.dtas{
-    	fill: #4B6169;
+    	fill: #117a8b;
     }
     
     .dua_dta_focus text{

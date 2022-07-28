@@ -5,7 +5,7 @@ function localBarChart(data, domName) {
 }
 
 function localBarChart(data, domName, barLabelWidth) {
-	var valueLabelWidth = 100; // space reserved for value labels (right)
+	var valueLabelWidth = 70; // space reserved for value labels (right)
 	var barHeight = 20; // height of one bar
 //	var barLabelWidth = 50; // space reserved for bar labels
 	var barLabelPadding = 5; // padding between bar and bar labels (left)
@@ -52,6 +52,29 @@ function localBarChart(data, domName, barLabelWidth) {
 		// grid line labels
 		var gridContainer = chart.append('g')
 			.attr('transform', 'translate(' + barLabelWidth + ',' + gridLabelHeight + ')');
+		
+		var svgDefs = chart.append('defs');
+
+        var mainGradient = svgDefs.append('linearGradient')
+            .attr('id', 'mainGradient')
+            .attr('x1', '0%')
+  			.attr('x2', '100%')
+  			.attr('y1', '0%')
+  			.attr('y2', '0%');
+
+        // Create the stops of the main gradient.
+        mainGradient.append('stop')
+            .style('stop-color', "#642a6b")
+            .attr('offset', '0%');
+        
+        mainGradient.append('stop')
+        	.style('stop-color', "#613764")
+        	.attr('offset', '70%');
+
+//         mainGradient.append('stop')
+//             .style('stop-color', "#464777")
+//             .attr('offset', '99%'); 
+        
 		// vertical grid lines
 // 		gridContainer.selectAll("line").data(x.ticks(10)).enter().append("line")
 // 			.attr("x1", x)
@@ -77,7 +100,7 @@ function localBarChart(data, domName, barLabelWidth) {
 			.attr('height', yScale.bandwidth())
 			.attr('width', function(d) { return x(barValue(d)); })
 			.attr('stroke', 'white')
-			.attr('fill', '#4B6169');
+			.attr('fill', "url(#mainGradient)");
 		// bar value labels
 		barsContainer.selectAll("text").data(data).enter().append("text")
 			.attr("x", function(d) { return x(barValue(d)); })
@@ -85,9 +108,9 @@ function localBarChart(data, domName, barLabelWidth) {
 			.attr("dx", 3) // padding-left
 			.attr("dy", ".35em") // vertical-align: middle
 			.attr("text-anchor", "start") // text-align: right
-			.attr("fill", "black")
+			.attr("fill", "#696969")
 			.attr("stroke", "none")
-			.text(function(d) { return barValue(d); });
+			.text(function(d) { return barValue(d).toLocaleString(); });
 		// start line
 		barsContainer.append("line")
 			.attr("y1", -gridChartOffset)

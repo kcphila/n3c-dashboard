@@ -190,6 +190,5 @@
 	<jsp:include page="footer.jsp" flush="true" />	
 	
 	<jsp:include page="modules/fade_animation_init.jsp" flush="true" />
-	<jsp:include page="modules/scroll_down.jsp" flush="true" />
 </body>
 </html>
