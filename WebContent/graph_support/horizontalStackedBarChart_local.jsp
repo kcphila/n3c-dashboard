@@ -353,13 +353,13 @@ function localHorizontalStackedBarChart(data, properties) {
 			})
 			.on("mouseover", function(d, i) {
 				svg.selectAll(".serie:not(.color-" + z[i].substring(1) + ")").style("opacity", "0.2");
-				if ((nofilter == undefined) || (nofilter == 0) ){
+				if ((properties.nofilter == undefined) || (properties.nofilter == 0) ){
 					tooltip2.style("display", null);
 				}
 			})
 			.on("mouseout", function(d, i) {
   				svg.selectAll(".serie").style("opacity", "1");
-  				if ((nofilter == undefined) || (nofilter == 0) ){
+  				if ((properties.nofilter == undefined) || (properties.nofilter == 0) ){
   					tooltip2.style("display", "none");
   				}
 			});
@@ -394,7 +394,7 @@ function localHorizontalStackedBarChart(data, properties) {
     		.attr("font-size", "12px")
     		.attr("font-weight", "bold");
   		
-  		if ((nofilter == undefined) || (nofilter == 0) ){
+  		if ((properties.nofilter == undefined) || (properties.nofilter == 0) ){
 	  		// Legend Tooltip ////// 
 			var tooltip2 = svg.append("g")
 	    		.attr("class", "graph_tooltip")
