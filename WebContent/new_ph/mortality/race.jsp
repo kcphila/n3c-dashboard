@@ -36,7 +36,8 @@ function ${param.block}_race_refresh() {
 			ordered: 0,
 			colorscale: race_range,
 			legend_lable: 'Race',
-			legend_data: race_legend
+			legend_data: race_legend,
+			donutRatio: 0.5
 		}
 
 	var id = $("#${param.block}-race-mode").find('.text-primary').attr('id');
@@ -46,11 +47,11 @@ function ${param.block}_race_refresh() {
 	d3.select("#${param.block}_race_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart(${param.block}_RaceArray,"#${param.block}_race_viz", race_legend, race_range, 0.5, "Race");
+		localPieChart(${param.block}_RaceArray, properties);
 	} else if (mode == 'bar'){
 		localHorizontalBarChart_legend(${param.block}_RaceArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_RaceArray,"#${param.block}_race_viz", 120, race_range, 0, "Race", race_legend);
+		localPercentageBarChart(${param.block}_RaceArray, properties);
 	};
 }
 

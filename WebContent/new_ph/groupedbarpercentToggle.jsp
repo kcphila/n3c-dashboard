@@ -22,6 +22,19 @@ $('#${param.block}-${param.dimension}-mode-barpercent').tooltip();
 $('#${param.block}-${param.dimension}-mode-bar').tooltip();
 
 $('#${param.block}-${param.dimension}-mode-barpercent').on('click', function() {
+	var properties = {
+			domName: "${param.block}_${param.dimension}_viz",
+			primary: "${param.primary}",
+			secondary: "${param.secondary}",
+			count: "${param.count}",
+			xaxis_label: "${param.percent_label}",
+			legend_label: ${param.legend},
+			colorscale: ${param.range},
+			label1: "${param.label1}",
+			label2: "${param.label2}",
+			offset: ${param.left}
+	}
+
 	
 	if (!document.getElementById("${param.block}-${param.dimension}-mode-barpercent").classList.contains("text-primary")) {
 		document.getElementById("${param.block}-${param.dimension}-mode-barpercent").classList.add("text-primary");
@@ -31,10 +44,23 @@ $('#${param.block}-${param.dimension}-mode-barpercent').on('click', function() {
 	$("#${param.block}_${param.dimension}_viz svg").remove();
 	$("#${param.block}_${param.dimension}_viz .pie-tool").remove();
 
-	localHorizontalGroupedPercentageBarChart(${param.block}_${param.array},"${param.block}_${param.dimension}_viz", "${param.primary}", "${param.secondary}", "${param.count}", "${param.percent_label}", ${param.legend}, ${param.range}, "${param.label1}", "${param.label2}", ${param.left});	
+	localHorizontalGroupedPercentageBarChart(${param.block}_${param.array}, properties);	
 });
 
 $('#${param.block}-${param.dimension}-mode-bar').on('click', function() {
+	var properties = {
+			domName: "${param.block}_${param.dimension}_viz",
+			primary: "${param.primary}",
+			secondary: "${param.secondary}",
+			count: "${param.count}",
+			xaxis_label: "${param.count_label}",
+			legend_label: ${param.legend},
+			colorscale: ${param.range},
+			label1: "${param.label1}",
+			label2: "${param.label2}",
+			offset: ${param.left}
+	}
+
 	
 	if (!document.getElementById("${param.block}-${param.dimension}-mode-bar").classList.contains("text-primary")) {
 		document.getElementById("${param.block}-${param.dimension}-mode-bar").classList.add("text-primary");
@@ -43,7 +69,7 @@ $('#${param.block}-${param.dimension}-mode-bar').on('click', function() {
 	
 	$("#${param.block}_${param.dimension}_viz svg").remove();
 	$("#${param.block}_${param.dimension}_viz .pie-tool").remove();
-	localHorizontalGroupedBarChart(${param.block}_${param.array},"${param.block}_${param.dimension}_viz", "${param.primary}", "${param.secondary}", "${param.count}", "${param.count_label}", ${param.legend}, ${param.range}, "${param.label1}", "${param.label2}", ${param.left});	
+	localHorizontalGroupedBarChart(${param.block}_${param.array}, properties);	
 });
 
 

@@ -35,7 +35,8 @@ function ${param.block}_severity_refresh() {
 			ordered: 0,
 			colorscale: severity_range,
 			legend_lable: 'Severity',
-			legend_data: severity_legend
+			legend_data: severity_legend,
+			donutRatio: 0.5
 		}
 
 	var id = $("#${param.block}-severity-mode").find('.text-primary').attr('id');
@@ -45,11 +46,11 @@ function ${param.block}_severity_refresh() {
 	d3.select("#${param.block}_severity_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart(${param.block}_SeverityArray,"#${param.block}_severity_viz", severity_legend, severity_range, 0.5, "Severity");
+		localPieChart(${param.block}_SeverityArray, properties);
 	} else if (mode == 'bar'){
 		localHorizontalBarChart_legend(${param.block}_SeverityArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_SeverityArray,"#${param.block}_severity_viz", 120, severity_range, 0, "Severity", severity_legend);
+		localPercentageBarChart(${param.block}_SeverityArray, properties);
 	};
 }
 

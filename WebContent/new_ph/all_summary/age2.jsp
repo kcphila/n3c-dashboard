@@ -36,7 +36,8 @@ function ${param.block}_age_refresh() {
 			ordered: 0,
 			colorscale: age_range_all2,
 			legend_lable: 'Age',
-			legend_data: age_legend_7
+			legend_data: age_legend_7,
+			donutRatio: 0.5
 		}
 
 	var id = $("#${param.block}-age-mode").find('.text-primary').attr('id');
@@ -46,11 +47,11 @@ function ${param.block}_age_refresh() {
 	d3.select("#${param.block}_age_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart(${param.block}_AgeArray,"#${param.block}_age_viz", age_legend_7, age_range_all2, 0.5, "Age");
+		localPieChart(${param.block}_AgeArray, properties);
 	} else if (mode == 'bar'){
 		localHorizontalBarChart_legend(${param.block}_AgeArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_AgeArray,"#${param.block}_age_viz", 120, age_range_all2, 0, "Age", age_legend_7);
+		localPercentageBarChart(${param.block}_AgeArray, properties);
 	};
 
 	

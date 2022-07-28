@@ -14,9 +14,23 @@
 <script>
 
 function ${param.block}_medication_refresh() {
+	var properties = {
+			domName: '${param.block}_medication_viz',
+			primary: 'drug_domain',
+			secondary: 'concept_set_name',
+			count: 'patient_count',
+			stack_group: 'age',
+			xaxis_label: 'Age',
+			legend_label: age_legend_4,
+			colorscale: age_range,
+			label1: 'Drug Class',
+			label2: 'Medications',
+			offset: 300
+	}
+
 	console.log("medication graph", "${param.block}_medication_viz", ${param.block}_MedicationArray);
    	d3.select("#${param.block}_medication_viz").select("svg").remove(); 
-	localHorizontalGroupedStackedBarChart(${param.block}_MedicationArray,"${param.block}_medication_viz", "drug_domain", "concept_set_name", "patient_count", 'age', "Age", age_legend_4, age_range, "Drug Class", "Medications", 300);	
+	localHorizontalGroupedStackedBarChart(${param.block}_MedicationArray, properties);	
 }
 
 </script>

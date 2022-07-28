@@ -20,7 +20,21 @@
 // margin = array: [top, bottom, left, right]
 
 
-function localHorizontalGroupedStackedBarChart(data, domName, primary, secondary, count, stack_group, xaxis_label, legend_label, colorscale, label1, label2, offset=400) {
+function localHorizontalGroupedStackedBarChart(data, properties) {
+	//
+	// some of the logic for this one is syntactically messy, so we'll just stage things here...
+	//
+	var domName = properties.domName;
+	var primary = properties.primary;
+	var secondary = properties.secondary;
+	var count = properties.count;
+	var stack_group = properties.stack_group;
+	var xaxis_label = properties.xaxis_label;
+	var legend_label = properties.legend_label;
+	var colorscale = properties.colorscale;
+	var label1 = properties.label1;
+	var label2 = properties.label2;
+	var offset = properties.offset;
 	
 	var filter_icon = " &#xf0b0";
 	

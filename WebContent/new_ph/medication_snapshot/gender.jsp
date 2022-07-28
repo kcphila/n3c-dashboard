@@ -36,7 +36,8 @@ function ${param.block}_gender_refresh() {
 			ordered: 0,
 			colorscale: gender_range,
 			legend_lable: 'Gender',
-			legend_data: gender_legend
+			legend_data: gender_legend,
+			donutRatio: 0.5
 		}
 
 	var id = $("#${param.block}-gender-mode").find('.text-primary').attr('id');
@@ -46,11 +47,11 @@ function ${param.block}_gender_refresh() {
 	d3.select("#${param.block}_gender_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart(${param.block}_GenderArray,"#${param.block}_gender_viz", gender_legend, gender_range, 0.5, "Gender");
+		localPieChart(${param.block}_GenderArray, properties);
 	} else if (mode == 'bar'){
 		localHorizontalBarChart_legend(${param.block}_GenderArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_GenderArray,"#${param.block}_gender_viz", 140, gender_range, 0, "Gender", gender_legend);
+		localPercentageBarChart(${param.block}_GenderArray, properties);
 	};
     
 }

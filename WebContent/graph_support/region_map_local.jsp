@@ -24,25 +24,25 @@ div.region.tooltip {
 </style>
 
 <script>
-function regionalMap(data, domName) {
+function regionalMap(data, properties) {
 	
 	var margin = {top: 10, right: 100, bottom: 10, left: 0},
-	width = $(domName).width() - margin.left - margin.right,
+	width = $(properties.domName).width() - margin.left - margin.right,
 	height = width;
     var projection = d3.geoAlbersUsaPr(), path = d3.geoPath().projection(projection);
     var aspect_ratio = 0.582,width,height;
     
     function drawgraphnew(){
-		var newWidth = $(domName).width();
+		var newWidth = $(properties.domName).width();
 		if (newWidth > 0) {
-			d3.select(domName).select("svg").remove();
+			d3.select(properties.domName).select("svg").remove();
 			width = newWidth - margin.left - margin.right;
 			height = width;
 			draw();
 		}
 	}
 	
-	d3.select(domName).select("svg").remove();
+	d3.select(properties.domName).select("svg").remove();
 
  	window.onresize = drawgraphnew;
  	
@@ -72,7 +72,7 @@ function regionalMap(data, domName) {
 		}
 		var feature = topojson.feature(states, states.objects.states_20m_2017);
 		
-		var container = d3.select(domName);
+		var container = d3.select(properties.domName);
 	    
 	    
 	    var svg = container.append("svg")
@@ -81,7 +81,7 @@ function regionalMap(data, domName) {
 	    
 	    var g = svg.append("g")
 	    	.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-	    	.attr("id", "svg_g"+domName)
+	    	.attr("id", "svg_g"+properties.domName)
 	    	.attr("width", width);
 	    
 	 
@@ -220,7 +220,7 @@ function regionalMap(data, domName) {
 				var push_data = {};
 				push_data['secondary_name'] = d.name;
 				push_data['secondary'] = d.name;
-				window[domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](push_data, 'region'); })
+				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](push_data, 'region'); })
 			.on('mousemove', function(d){
 				d3.selectAll(".tooltip").remove(); 
 				d3.select("body").append("div")

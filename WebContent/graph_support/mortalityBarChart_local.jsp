@@ -1,6 +1,8 @@
 <script>
 
-function mortalityVerticalBarChart(data, domName, barLabelWidth) {
+function mortalityVerticalBarChart(data, properties) {
+	var domName = properties.domName;
+	var barLabelWidth = properties.barLabelWidth;
 	
 	var barLabel = function(d) { return d.element; };
 	var barValue = function(d) { return parseFloat(d.count); };

@@ -20,9 +20,13 @@
 <script>
 
 function ${param.block}_delay_refresh() {
+	var properties = {
+			domName: '#${param.block}_delay_viz',
+			barLabelWidth: 120
+	}
 	//console.log("delay graph", "${param.block}_delay_viz", ${param.block}_DelayArray)
 	d3.select("#${param.block}_delay_viz").select("svg").remove();
-	mortalityVerticalBarChart(${param.block}_DelayArray,"#${param.block}_delay_viz", 120);
+	mortalityVerticalBarChart(${param.block}_DelayArray, properties);
 }
 
 ${param.block}_delay_refresh();

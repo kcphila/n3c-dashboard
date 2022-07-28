@@ -20,8 +20,12 @@
 <script>
 
 function ${param.block}_region_refresh() {
+	var properties = {
+			domName: '#${param.block}_region_viz'
+	}
+
    	d3.select("#${param.block}_region_viz").select("svg").remove();
-   	regionalMap(${param.block}_SeverityRegionArray, "#${param.block}_region_viz")
+   	regionalMap(${param.block}_SeverityRegionArray, properties)
 }
 
 ${param.block}_region_refresh();

@@ -37,7 +37,8 @@ function ${param.block}_ethnicity_refresh() {
 			ordered: 0,
 			colorscale: ethnicity_range,
 			legend_lable: 'Ethnicity',
-			legend_data: ethnicity_legend
+			legend_data: ethnicity_legend,
+			donutRatio: 0.5
 		}
 
 	var id = $("#${param.block}-ethnicity-mode").find('.text-primary').attr('id');
@@ -47,11 +48,11 @@ function ${param.block}_ethnicity_refresh() {
 	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", ethnicity_legend, ethnicity_range, 0.5, "Ethnicity");
+		localPieChart(${param.block}_EthnicityArray, properties);
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", 150, 300, 0, ethnicity_range, "Ethnicity", ethnicity_legend);
+		localHorizontalBarChart_legend(${param.block}_EthnicityArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_EthnicityArray,"#${param.block}_ethnicity_viz", 150, ethnicity_range, 0, "Ethnicity", ethnicity_legend);
+		localPercentageBarChart(${param.block}_EthnicityArray, properties);
 	};
 	
 	

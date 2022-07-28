@@ -11,9 +11,9 @@ chart {
 
 <script>
 
-function localPieChart(data, domName, legend_data, range, donutRatio, legend_label) {
+function localPieChart(data, properties) {
 	
-	var full_width = $(domName).width(), 
+	var full_width = $(properties.domName).width(), 
 		width = full_width/2,
 		height = width/1.3,
 		border = 0;
@@ -22,10 +22,10 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 	var filter_icon = " &#xf0b0";
 	
 	function drawgraphnew(){
-		var newWidth = ($(domName).width())/2;
-		var newFull = $(domName).width();
+		var newWidth = ($(properties.domName).width())/2;
+		var newFull = $(properties.domName).width();
 		if (newWidth > 0) {
-			d3.select(domName).select("svg").remove();
+			d3.select(properties.domName).select("svg").remove();
 			width = newWidth;
 			height = newWidth/1.3;
 			full_width = newFull;
@@ -33,7 +33,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 		}
 	}
 	
-	d3.select(domName).select("svg").remove();
+	d3.select(properties.domName).select("svg").remove();
 	draw();
 	
  	window.onresize = drawgraphnew;
@@ -64,7 +64,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 
 		var arc = d3.arc()
 			.outerRadius(radius * 0.8)
-			.innerRadius(radius * donutRatio);
+			.innerRadius(radius * properties.donutRatio);
 		
 		var outerArc = d3.arc()
 		  .innerRadius(radius * 0.85)
@@ -77,7 +77,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 		var piedata = [];
 		var piedata = pie(data);
 
-		var svg = d3.select(domName).append("svg")
+		var svg = d3.select(properties.domName).append("svg")
 			.attr("width", full_width)
 			.attr("height", height)
 			
@@ -192,7 +192,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 		// add the arcs
 		var path = arcs.append("path")
 			.attr("d", arc)
-			.style("fill", function(d) { return range[d.data.seq-1]; })
+			.style("fill", function(d) { return properties.colorscale[d.data.seq-1]; })
 			.on('mouseover', function(d) {
 				var total = d3.sum(data.map(function(d) {
 					return d.count;
@@ -224,7 +224,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 				.attr("x", width)
 				.attr("y", 9.5)
 				.attr("dy", "5px")
-				.text(legend_label)
+				.text(properties.legend_label)
 				.append("tspan")
 					.attr('font-family', 'FontAwesome')
 					.attr("class", "fa")
@@ -236,7 +236,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 			.attr("font-size", '14px')
 			.attr("text-anchor", "end")
 			.selectAll("g")
-				.data(legend_data)
+				.data(properties.legend_data)
 				.enter().append("g")
 				.attr("transform", function(d, i) {
 					return "translate(0," + i * 20 + ")";
@@ -246,7 +246,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 			.attr("x", width-19)
 			.attr("width", 19)
 			.attr("height", 19)
-			.attr("fill", function(d, i) { return range[i]; })
+			.attr("fill", function(d, i) { return properties.colorscale[i]; })
 			.on("mouseover", function(d, i) {
 				tooltip2.style("display", null);
 			})
@@ -254,7 +254,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
 					tooltip2.style("display", "none");
 			})
 			.on("click", function(d, i){
-				window[domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, legend_label.replace(/\s/g, "")); 
+				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, properties.legend_label.replace(/\s/g, "")); 
 				});
 		
 		legend.append("text")
@@ -279,7 +279,7 @@ function localPieChart(data, domName, legend_data, range, donutRatio, legend_lab
     		.text("Click to add/remove filter");
 	
 		// add the tooltip for the chart
-		var tooltip = d3.select(domName)
+		var tooltip = d3.select(properties.domName)
 			.append('div')
 			.attr('class', 'tooltip pie-tool')
 			.style('background-color', 'rgba(255, 255, 255, 0.5)');

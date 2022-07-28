@@ -20,9 +20,23 @@
 <script>
 
 function ${param.block}_gender_refresh() {
+	var properties = {
+			domName: '${param.block}_gender_viz',
+			primary: 'observation',
+			secondary: 'gender',
+			count: 'patient_count',
+			stack_group: 'age',
+			xaxis_label: 'Age',
+			legend_label: age_legend_4,
+			colorscale: age_range,
+			label1: 'Observation',
+			label2: 'Gender',
+			offset: 250
+	}
+
 	console.log('reached gender refresh');
    	d3.select("#${param.block}_gender_viz").select("svg").remove();
-	localHorizontalGroupedStackedBarChart(${param.block}_GenderAgeArray,"${param.block}_gender_viz", "observation", "gender", "patient_count", "age", "Age", age_legend_4, age_range, "Observation", "Gender", 250);	
+	localHorizontalGroupedStackedBarChart(${param.block}_GenderAgeArray, properties);	
 }
 
 ${param.block}_gender_refresh();

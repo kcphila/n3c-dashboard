@@ -44,9 +44,35 @@ function ${param.block}_severity_refresh() {
 	d3.select("#${param.block}_severity_viz").select("svg").remove();
 	
 	if (mode == 'bar'){
+		var properties = {
+				domName: '${param.block}_severity_viz',
+				primary: 'severity',
+				secondary: 'smoking_status',
+				count: 'patient_count',
+				xaxis_label: 'Count',
+				legend_label: status_legend,
+				colorscale: status_range,
+				label1: 'Severity',
+				label2: 'Smoking Status',
+				offset: 80
+		}
+
 		localHorizontalGroupedBarChart(${param.block}_statusArray,"${param.block}_severity_viz", "severity", "smoking_status", "patient_count", "Count", status_legend, status_range, "Severity", "Smoking Status", 80);	
 	} else if (mode == 'barpercent'){
-		localHorizontalGroupedPercentageBarChart(${param.block}_statusArray,"${param.block}_severity_viz", "severity", "smoking_status", "patient_count", "Percent", status_legend, status_range, "Severity", "Smoking Status", 80);	
+		var properties = {
+				domName: '${param.block}_severity_viz',
+				primary: 'severity',
+				secondary: 'smoking_status',
+				count: 'patient_count',
+				xaxis_label: 'Percent',
+				legend_label: status_legend,
+				colorscale: status_range,
+				label1: 'Severity',
+				label2: 'Smoking Status',
+				offset: 80
+		}
+
+		localHorizontalGroupedPercentageBarChart(${param.block}_statusArray, properties);	
 	};
    	
 }

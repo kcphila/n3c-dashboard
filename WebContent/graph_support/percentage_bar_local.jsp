@@ -17,16 +17,8 @@ rect{
 </style>
 
 <script>
-var properties = {
-		domName: 'xxx',
-		barLabelWidth: 90,
-		ordered: 1,
-		colorscale: categorical,
-		legend_label: xxx,
-		legend_data: xxx
-}
 
-function localPercentageBarChart(data, domName, properties) {
+function localPercentageBarChart(data, properties) {
 	
 	var filter_icon = " &#xf0b0";
 	
