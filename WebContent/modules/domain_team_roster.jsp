@@ -82,6 +82,7 @@ $.getJSON("<util:applicationRoot/>/feeds/domain_team_roster.jsp", function(data)
 				var id = 'domain' + row.nid;
 				var title = row.title;
 				var desc = row.description;
+				var url = row.url;
 				
 				var cross = "";
 				if (row.cross_cutting){
@@ -103,13 +104,15 @@ $.getJSON("<util:applicationRoot/>/feeds/domain_team_roster.jsp", function(data)
     				+ id + '_description' +
     				'" class="panel-collapse collapse"><div class="panel-body" style="border:none;">'
     				+ desc + '<\/p>' + '<strong>' + cross + '<\/strong> <br> <strong>Created: ' + created + '<\/strong>'
+    				+ '<br> <a href="' + url + '" alt="Domain Team Page on N3C">Learn More</a>' 
     				+ '</div></div></div></div>';
          		return combo; }
         	  },
         	  { data: 'title', visible: false },
         	  { data: 'description', visible: false },
         	  { data: 'cross_cutting', visible:false},
-        	  { data: 'created', visible: false}
+        	  { data: 'created', visible: false},
+        	  { data: 'url', visible: false}
     	]
 	} );
 });

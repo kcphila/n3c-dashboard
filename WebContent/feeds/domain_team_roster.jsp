@@ -6,7 +6,11 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select nid ,title,regexp_replace(regexp_replace(summary,'[\r\n]+','','g'),'["]','&quot;','g') as description,cross_cutting::boolean, DATE(created) as created from n3c_admin.domain_team order by title) as foo;
+     (select nid ,title,
+     regexp_replace(regexp_replace(summary,'[\r\n]+','','g'),'["]','&quot;','g') as description,
+     cross_cutting::boolean, DATE(created) as created, 
+     concat('https://covid.cd2h.org/node/', nid::text) as url
+     from n3c_admin.domain_team order by title) as foo;
 </sql:query>
 
 {
@@ -15,7 +19,8 @@ from
         {"value":"title", "label":"Title"},
         {"value":"description", "label":"Description"},
         {"value":"cross_cutting", "label":"Cross Cutting"},
-        {"value":"created", "label":"Created"}
+        {"value":"created", "label":"Created"}, 
+        {"value":"url", "label":"URL"}
     ],
     "rows" :
     <c:forEach items="${team.rows}" var="row" varStatus="rowCounter">
