@@ -100,6 +100,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
     	data: data,
        	paging: true,
+       	dom: 'lfr<"datatable_overflow"t>Bip',
        	buttons: {
     	    dom: {
     	      button: {
@@ -115,7 +116,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'medications_csv_export',
+    	      filename: 'medications',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',

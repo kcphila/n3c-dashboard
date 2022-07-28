@@ -111,12 +111,18 @@ $(document).ready( function () {
 	    	      className: 'btn btn-sm btn-light',
 	    	      titleAttr: 'CSV export.',
 	    	      text: 'CSV',
-	    	      filename: 'severity_csv_export',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
+	    	      filename: 'regional_distribution',
 	    	      extension: '.csv'
 	    	    }, {
 	    	      extend: 'copy',
 	    	      className: 'btn btn-sm btn-light',
 	    	      titleAttr: 'Copy table data.',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
 	    	      text: 'Copy'
 	    	    }]
 	    	},

@@ -154,7 +154,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	data: data,
        	paging: true,
        	dom: 'lfr<"datatable_overflow"t>Bip',
-       	buttons: {
+    	buttons: {
     	    dom: {
     	      button: {
     	        tag: 'button',
@@ -165,12 +165,18 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      extend: 'csv',
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      text: 'CSV',
     	      filename: 'mental_health_condition_csv_export',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
     	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      titleAttr: 'Copy table data.',
     	      text: 'Copy'
     	    }]

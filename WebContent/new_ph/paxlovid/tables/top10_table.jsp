@@ -45,12 +45,18 @@ $.getJSON("<util:applicationRoot/>/new_ph/paxlovid/feeds/topten_condition.jsp", 
     	      extend: 'csv',
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      text: 'CSV',
-    	      filename: 'severity_csv_export',
+    	      filename: 'paxlovid_conditions',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
     	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      titleAttr: 'Copy table data.',
     	      text: 'Copy'
     	    }]

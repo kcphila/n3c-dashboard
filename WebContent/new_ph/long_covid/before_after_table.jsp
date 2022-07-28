@@ -63,11 +63,17 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      titleAttr: 'CSV export.',
     	      text: 'CSV',
     	      filename: 'symptom_before_after_covid_csv_export',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'Copy table data.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      text: 'Copy'
     	    }]
     	},

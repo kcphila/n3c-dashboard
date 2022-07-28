@@ -135,45 +135,25 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	    buttons: [{
     	      extend: 'csv',
     	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      titleAttr: 'CSV export.',
     	      text: 'CSV',
-    	      filename: 'severity_csv_export',
+    	      filename: 'diseases',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
     	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      titleAttr: 'Copy table data.',
     	      text: 'Copy'
     	    }]
     	},
+
        	paging: true,
-       	buttons: {
-    	    dom: {
-    	      button: {
-    	        tag: 'button',
-    	        className: ''
-    	      }
-    	    },
-    	    buttons: [{
-    	      extend: 'csv',
-    	      className: 'btn btn-sm btn-light',
-    	      titleAttr: 'CSV export.',
-    	      exportOptions: {
-                  columns: ':visible'
-              },
-    	      text: 'CSV',
-    	      filename: 'diseases_csv_export',
-    	      extension: '.csv'
-    	    }, {
-    	      extend: 'copy',
-    	      className: 'btn btn-sm btn-light',
-    	      exportOptions: {
-                  columns: ':visible'
-              },
-    	      titleAttr: 'Copy table data.',
-    	      text: 'Copy'
-    	    }]
-    	},
        	snapshot: null,
     	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();

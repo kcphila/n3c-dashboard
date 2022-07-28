@@ -7,6 +7,7 @@
 	<select id="selectMe">
 		<option value="medications_1">Medications by Frequency</option>
 		<option value="medications_2">Medications by Class</option>
+		<option disabled hidden="hidden">Medications by Frequency++++++++</option>
 	</select>
 </div>
 
@@ -57,7 +58,7 @@ $(document).ready(function () {
 	
 $(document).ready(function() {
     $('#selectMe').select2({
-		searchInputPlaceholder: 'Search Topics...'
+    	minimumResultsForSearch: Infinity
     });
 });
 

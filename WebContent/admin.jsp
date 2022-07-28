@@ -118,11 +118,11 @@
 			</div>
 		</div>
 
-<!-- 		<div class="row mb-5"> -->
-<!-- 			<div class="col-12"> -->
-<%-- 				<c:import url="modules/collaboration_networks.jsp"/> --%>
-<!-- 			</div> -->
-<!-- 		</div> -->
+		<div class="row mb-5">
+			<div class="col-12">
+				<c:import url="modules/collaboration_networks.jsp"/>
+			</div>
+		</div>
 	</div>
 
 	<jsp:include page="footer.jsp" flush="true" />

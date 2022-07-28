@@ -96,6 +96,9 @@ $(document).ready( function () {
 	    	    buttons: [{
 	    	      extend: 'csv',
 	    	      className: 'btn btn-sm btn-light',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
 	    	      titleAttr: 'CSV export.',
 	    	      text: 'CSV',
 	    	      filename: 'reinfections_csv_export',
@@ -103,6 +106,9 @@ $(document).ready( function () {
 	    	    }, {
 	    	      extend: 'copy',
 	    	      className: 'btn btn-sm btn-light',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
 	    	      titleAttr: 'Copy table data.',
 	    	      text: 'Copy'
 	    	    }]

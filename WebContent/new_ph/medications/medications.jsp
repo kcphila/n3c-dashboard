@@ -5,6 +5,12 @@
 
 <div id="${param.block}_medication_viz" class="dash_viz"></div>
 
+<div id="${param.block}_medication_save_viz"> 
+	<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_viz', '${param.block}_medication.svg');">Save as SVG</button>
+	<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_viz', '${param.block}_medication.png');">Save as PNG</button>
+	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_viz', '${param.block}_medication.jpg');">Save as JPEG</button>
+</div>
+
 <script>
 
 function ${param.block}_medication_refresh() {

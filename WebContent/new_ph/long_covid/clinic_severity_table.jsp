@@ -96,6 +96,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	    buttons: [{
     	      extend: 'csv',
     	      className: 'btn btn-sm btn-light',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      titleAttr: 'CSV export.',
     	      text: 'CSV',
     	      filename: 'clinic_severity_csv_export',
@@ -104,6 +107,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      extend: 'copy',
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'Copy table data.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      text: 'Copy'
     	    }]
     	},

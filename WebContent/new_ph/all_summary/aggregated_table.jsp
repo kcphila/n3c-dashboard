@@ -105,13 +105,19 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      extend: 'csv',
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'CSV export.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      text: 'CSV',
-    	      filename: 'severity_csv_export',
+    	      filename: 'demographics',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
     	      className: 'btn btn-sm btn-light',
     	      titleAttr: 'Copy table data.',
+    	      exportOptions: {
+                  columns: ':visible'
+              },
     	      text: 'Copy'
     	    }]
     	},

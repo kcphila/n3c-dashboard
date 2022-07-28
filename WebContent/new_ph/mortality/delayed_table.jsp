@@ -121,7 +121,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'severity_csv_export',
+    	      filename: 'delayed_mortality',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
