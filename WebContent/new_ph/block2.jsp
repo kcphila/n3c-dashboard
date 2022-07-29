@@ -566,6 +566,8 @@
 		});
 		
 		$('#${param.block}-comorbidities-select').multiselect({	
+			maxHeight: 300,
+			enableCaseInsensitiveFiltering: true,
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-comorbidities-select');
 		        var selected = [];
@@ -666,6 +668,7 @@
 		$('#${param.block}-medication-select').multiselect({	
 			maxHeight: 300,
 			numberDisplayed: 1,
+			enableCaseInsensitiveFiltering: true,
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-medication-select');
 		        var selected = [];
@@ -679,6 +682,7 @@
 		$('#${param.block}-medication-class-select').multiselect({	
 			maxHeight: 300,
 			numberDisplayed: 1,
+			enableCaseInsensitiveFiltering: true,
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-medication-class-select');
 		        var selected = [];

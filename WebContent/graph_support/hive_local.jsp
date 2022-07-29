@@ -145,7 +145,7 @@ div.tooltip {
 						var split = d.source.split("-");
 						var dimension =  parseInt(split[0]);
 						var value = parseInt(split[1]);
-						return properties.color[dimension][value];
+						return properties.color[dimension][value-1];
 					})
 					.style("stroke-opacity", function(d) {
 						return linkScale(d.weight);
@@ -196,7 +196,7 @@ div.tooltip {
 						var split = d.mapping.split("-");
 						var dimension =  parseInt(split[0]);
 						var value = parseInt(split[1]);
-						return properties.color[dimension][value];
+						return properties.color[dimension][value-1];
 					})
 					;
 		
