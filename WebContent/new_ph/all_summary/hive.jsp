@@ -10,7 +10,10 @@
 	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_hive_viz', 'hive.jpg');">Save as JPEG</button>
 </div>
 
-<p>This is a test.</p>
+<p>Nodes here are values from each demographic dimension, scaled by patient counts.
+Edges indicate the degree of connection between values in pairs of dimensions, scaled by shared patient counts.
+Hover over a node or edge to highlight the respective connections.
+Click on a node to display the cumulative summary graph for that dimension.</p>
 
 <script>
 

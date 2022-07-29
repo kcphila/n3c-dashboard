@@ -5,7 +5,7 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
 	<select id="selectMe">
-  		<option value="all_summary_0">Hive</option>
+  		<option value="all_summary_0">Multi-dimensional Summary</option>
 		<option value="all_summary_1">Demographics of COVID+ Patients</option>
 		<optgroup label="Demographics of COVID+ Patients Filterable By:">
 		<option value="all_summary_2">Vaccination Status</option>
