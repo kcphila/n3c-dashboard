@@ -296,6 +296,7 @@
 	    }
 	    if (${param.block}_loaded("medication")) {
 	    	${param.block}_medication_refresh();
+	    	${param.block}_class_refresh();
 	    }
 	  }
 	

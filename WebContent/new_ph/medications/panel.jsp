@@ -6,7 +6,8 @@
 	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
 	<select id="selectMe">
 		<option value="medications_1">Medications by Frequency</option>
-		<option value="medications_2">Medications by Class</option>
+		<option value="medications_2">Classes by Frequency</option>
+		<option value="medications_3">Medications by Class</option>
 		<option disabled hidden="hidden">Medications by Frequency++++++++</option>
 	</select>
 </div>
@@ -14,6 +15,7 @@
 <div id="frame">
 	<div id="medications_1" class="group"></div>
 	<div id="medications_2" class="group"></div>
+	<div id="medications_3" class="group"></div>
 </div>
 
 <script>
