@@ -3,12 +3,15 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <jsp:include page="../block2.jsp">
-	<jsp:param name="block" value="diabetes_7" />
-	<jsp:param name="block_header" value="Type-1 Diabetes Over the Age of 18" />
+	<jsp:param name="block" value="diabetes_3" />
+	<jsp:param name="block_header" value="Diabetes Mellitus Type 1" />
+	<jsp:param name="topic_description" value="secondary_3" />
 
 	<jsp:param name="kpis" value="diabetes/kpis.jsp" />
 
-	<jsp:param name="age_filter" value="true" />
+	<jsp:param name="simple_panel" value="diabetes/type_1_under.jsp" />
 
-	<jsp:param name="simple_panel" value="test_panel.jsp" />
+	<jsp:param name="datatable" value="diabetes/diabetes_table1_under.jsp" />
+	<jsp:param name="datatable_div" value="diabetes_type1_under" />
+	<jsp:param name="datatable_feed" value="diabetes/feeds/t1_under.jsp" />
 </jsp:include>

@@ -37,5 +37,37 @@
 			<jsp:param name="block" value="${param.block}" />
 		</jsp:include>
 	</c:when>
+	<c:when test="${param.block == 'diabetes_3' }">
+		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+		<jsp:include page="../kpis/block2_kpis/diabetes1.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+	</c:when>
+	<c:when test="${param.block == 'diabetes_4' }">
+		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+		<jsp:include page="../kpis/block2_kpis/diabetes2.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+	</c:when>
+	<c:when test="${param.block == 'diabetes_5' }">
+		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+		<jsp:include page="../kpis/block2_kpis/diabetes1.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+	</c:when>
+	<c:when test="${param.block == 'diabetes_6' }">
+		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+		<jsp:include page="../kpis/block2_kpis/diabetes2.jsp">
+			<jsp:param name="block" value="${param.block}" />
+		</jsp:include>
+	</c:when>
 </c:choose>
 

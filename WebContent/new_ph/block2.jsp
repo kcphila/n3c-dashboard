@@ -851,6 +851,8 @@
 	
 	var ${param.block}_comorbidityArray = new Array();
 	
+	var ${param.block}_ObservationArray = new Array();
+	
 	var ${param.block}_BeforeAfterArray = new Array();
 
 	var ${param.block}_GenderSeverityArray = new Array();
@@ -917,6 +919,8 @@
 
 	    	${param.block}_refreshcomorbidityArray(data);
 	    
+	    	${param.block}_refreshObservationArray(data);
+		    
 	    	${param.block}_refreshBeforeAfterArray(data);
 	    
 	    	${param.block}_refreshGenderSeverityArray(data);
@@ -958,6 +962,9 @@
 	    
 	    if ('${param.block}' === 'long_covid_6') {
 	    	${param.block}_before_refresh();
+	    }
+	    if (${param.block}_loaded("observation")) {
+	    	${param.block}_observation_refresh();
 	    }
 	    if (${param.block}_loaded("severity")) {
 	    	${param.block}_severity_refresh();
@@ -1310,6 +1317,14 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="comorbidityArray"/>
 	<jsp:param name="primary" value="comorbidity"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="ObservationArray"/>
+	<jsp:param name="primary" value="observation"/>
 	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 

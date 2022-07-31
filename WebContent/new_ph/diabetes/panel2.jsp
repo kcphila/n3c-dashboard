@@ -7,6 +7,10 @@
 	<select id="selectMe">
 		<option value="diabetes_1">Diabetes Mellitus Type 2</option>
 		<option value="diabetes_2">Diabetes Mellitus Type 1</option>
+		<option value="diabetes_3">Type 1 Under the Age of 18</option>
+		<option value="diabetes_4">Type 2 Under the Age of 18</option>
+		<option value="diabetes_5">Type 1 Over the Age of 18</option>
+		<option value="diabetes_6">Type 2 Over the Age of 18</option>
 		<option disabled hidden="hidden">Diabetes Mellitus Type 1+++++++++++++</option>
 	</select>
 </div>
