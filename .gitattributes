@@ -284,6 +284,7 @@ WebContent/new_ph/filters/medication_class.jsp -text
 WebContent/new_ph/filters/observation.jsp -text
 WebContent/new_ph/filters/race.jsp -text
 WebContent/new_ph/filters/region.jsp -text
+WebContent/new_ph/filters/reinfection_interval.jsp -text
 WebContent/new_ph/filters/result.jsp -text
 WebContent/new_ph/filters/severity.jsp -text
 WebContent/new_ph/filters/smoking.jsp -text

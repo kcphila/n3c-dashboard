@@ -37,6 +37,9 @@ function localVerticalBarChart(data, properties) {
 			var margin = {top: 20, right: 20, bottom: 120, left: 80},
 			    width = maxBarWidth - margin.left - margin.right,
 			    height = 500 - margin.top - margin.bottom;
+			
+			// set the max width for each individual bar
+			var barwidthmax = width/5;
 
 			var word_length = 60;
 			
@@ -95,10 +98,29 @@ function localVerticalBarChart(data, properties) {
 			    .enter().append("rect")
 			      .attr("class", "bar")
 			      .attr("fill", "url(#mainGradient)")
-			      .attr("x", function(d) { return x(d.element); })
-			      .attr("width", x.bandwidth())
+			       .attr("x", function(d) { 
+			    	  var barwidth = x.bandwidth();
+			    	  if (barwidth > barwidthmax){
+			    		  return x(d.element)+ ((barwidth - barwidthmax)/2);
+			    	  }else{
+			    		  return x(d.element); 
+			    	  }
+			      })
+			      .attr("width", function(d){
+			    	  var barwidth = x.bandwidth();
+			    	  if (barwidth > barwidthmax){
+			    		  return barwidthmax;
+			    	  }else{
+			    		  return barwidth;
+			    	  }
+			      })
 			      .attr("y", function(d) { return y(d.count); })
 			      .attr("height", function(d) { return height - y(d.count); })
+			      .on("click", function(d, i){
+			    	  var format = {};
+			    	  format['secondary_name'] = d.element;
+			    	  window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, properties.filter_type); 
+				  })
 				.on("mouseover", function() { 
 					tooltip.style("display", null); 
 				})

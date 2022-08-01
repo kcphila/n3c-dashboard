@@ -16,7 +16,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_reinfected_total_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_actual_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

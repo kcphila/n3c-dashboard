@@ -9,10 +9,13 @@
 	<jsp:param name="block_header" value="Reinfection Time Series" />
 
 	<jsp:param name="kpis" value="reinfection_time_series/kpis_2.jsp" />
+	
+	<jsp:param name="reinfectionbin_filter" value="true" />
 
 	<jsp:param name="simple_panel" value="reinfection_time_series/interval.jsp" />
 
 	<jsp:param name="datatable" value="reinfection_time_series/interval_table.jsp" />
 	<jsp:param name="datatable_div" value="reinfections-by-interval" />
 	<jsp:param name="datatable_feed" value="reinfection_time_series/feeds/interval.jsp" />
+	<jsp:param name="datatable_kpis" value="actual_count" />
 </jsp:include>

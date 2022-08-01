@@ -22,7 +22,8 @@ function ${param.block}_interval_refresh() {
 			xaxis_label: "Interval Bin",
 			yaxis_label: "Patient Count",
 			tooltip_x_label: "Interval Bin: ",
-			tooltip_y_label: "Patient Count: "
+			tooltip_y_label: "Patient Count: ",
+			filter_type: "intervalbin"
 			};
 	
 	${param.block}_refreshHistograms();
