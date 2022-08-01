@@ -14,7 +14,8 @@ function mortalityVerticalBarChart(data, properties) {
 		var gridLabelHeight = 10; // space reserved for gridline labels
 		var gridChartOffset = 3; // space between start of grid and first bar
 		var maxBarWidth = 280; // width of the bar with the max value
-
+		
+		
 		data.forEach(function(node) {
 			barLabelWidth = Math.max(barLabelWidth,node.element.length * 8);
 		});
@@ -38,7 +39,10 @@ function mortalityVerticalBarChart(data, properties) {
 			var margin = {top: 20, right: 20, bottom: 110, left: 60},
 			    width = maxBarWidth - margin.left - margin.right,
 			    height = 500 - margin.top - margin.bottom;
-
+			
+			// set the max width for each individual bar
+			var barwidthmax = width/5;
+			
 			// set the ranges
 			var x = d3.scaleBand()
 			          .range([0, width])
@@ -85,10 +89,30 @@ function mortalityVerticalBarChart(data, properties) {
 			    .enter().append("rect")
 			      .attr("class", "bar")
 			      .attr("fill", "url(#mainGradient)")
-			      .attr("x", function(d) { return x(d.element); })
-			      .attr("width", x.bandwidth())
+			      .attr("x", function(d) { 
+			    	  var barwidth = x.bandwidth();
+			    	  if (barwidth > barwidthmax){
+			    		  return x(d.element)+ ((barwidth - barwidthmax)/2);
+			    	  }else{
+			    		  return x(d.element); 
+			    	  }
+			      })
+			      .attr("width", function(d){
+			    	  var barwidth = x.bandwidth();
+			    	  if (barwidth > barwidthmax){
+			    		  return barwidthmax;
+			    	  }else{
+			    		  return barwidth;
+			    	  }
+			      })
+			      //.attr("width", x.bandwidth())
 			      .attr("y", function(d) { return y(d.count); })
 			      .attr("height", function(d) { return height - y(d.count); })
+			      .on("click", function(d, i){
+			    	  var format = {};
+			    	  format['secondary_name'] = d.element;
+					 window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, 'delay'); 
+				  })
 			      .on("mouseover", function() { tooltip.style("display", null); })
 				  .on("mouseout", function() { tooltip.style("display", "none"); })
 				  .on("mousemove", function(d) {
