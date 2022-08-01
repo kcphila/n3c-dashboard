@@ -23,8 +23,4 @@ function ${param.block}_refresh() {
 	localHorizontalBarChart(${param.block}_ObservationArray, properties);	
 }
 
-setTimeout(() => { // need to wait for the dust to settle before targeting the array
-	${param.block}_refresh();
-}, 1000);
-
 </script>
