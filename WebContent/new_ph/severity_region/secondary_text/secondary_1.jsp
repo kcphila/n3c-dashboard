@@ -7,7 +7,9 @@
 				</span>&nbsp;in the N3C Data Enclave. Regions are colored by the total number of patients associated with providers 
 				located in that region, as patient location is frequently missing. In most states, only one hospital system 
 				is represented. This does not constitute a representative sample of any geographic region and cannot be used to 
-				calculate the rate of infection for that region.</p>
+				calculate the rate of infection for that region. Several sites contributing data to the Enclave are not represented 
+				on this map. This is either a result of the site contributing data pertaining to multiple states or because 
+				the site is still in the process of being mapped.</p>
 </div>
 
 
