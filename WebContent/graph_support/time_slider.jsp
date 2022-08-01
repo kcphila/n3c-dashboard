@@ -8,6 +8,11 @@
 .slider {
   cursor: pointer;
 }
+
+#slider-svg .axis text {
+  fill: black;
+}
+
 </style>
 
 <div id="vis-button">

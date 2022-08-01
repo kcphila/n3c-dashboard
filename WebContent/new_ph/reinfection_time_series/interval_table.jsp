@@ -83,7 +83,7 @@ $(document).ready( function () {
 	
 		var data = json['rows'];
 	
-		$('#${param.target_div}-table').DataTable( {
+		var ${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
 	    	data: data,
 	    	dom: 'lfr<"datatable_overflow"t>Bip',
 	    	buttons: {
@@ -114,6 +114,10 @@ $(document).ready( function () {
 	    	    }]
 	    	},
 	       	paging: true,
+	    	snapshot: null,
+	       	initComplete: function( settings, json ) {
+	       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+	       	  },
 	    	pageLength: 10,
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
 	    	order: [[0, 'asc']],
@@ -133,6 +137,28 @@ $(document).ready( function () {
 	    		{ targets: 4, render: $.fn.dataTable.render.number(',', '.', 0, '') }
 	    	]
 		} );
+		
+		// table search logic that distinguishes sort/filter 
+		${param.block}_datatable.on( 'search.dt', function () {
+			var snapshot = ${param.block}_datatable
+		     .rows({ search: 'applied', order: 'index'})
+		     .data()
+		     .toArray()
+		     .toString();
+
+		  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
+
+		  	if (currentSnapshot != snapshot) {
+		  		${param.block}_datatable.settings().init().snapshot = snapshot;
+		  		${param.block}_refreshHistograms();
+				${param.block}_constrain_table();
+		   		$('#${param.block}_btn_clear').removeClass("no_clear");
+		   		$('#${param.block}_btn_clear').addClass("show_clear");
+		  	}
+		} );
+		
+		
+		
 		${param.block}_refreshHistograms();
 		${param.block}_interval_refresh();
 	});

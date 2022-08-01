@@ -5,6 +5,7 @@
 <div id="reinfection1">
 	<div class="text-center">
 		<h4 style="font-size:1.2rem;">Select a Reinfection Month or <button class="btn btn-dash" id="play-button" title="Click to play/pause automatic stepping through subsequent infection dates"><i class="fas fa-play-circle"></i></button></h4>
+		<small>Select Any Month on the Slider and Click Play to Start at that Date</small>
 		<jsp:include page="../../graph_support/time_slider.jsp">
 			<jsp:param name="block" value="${param.block}" />		
 		</jsp:include>

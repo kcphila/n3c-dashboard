@@ -209,12 +209,15 @@ function TimeLine2ColumnChart2(data, properties) {
 			  
 				// X & Y 
 				var valueline = d3.line()
+					.curve(d3.curveBasis)
 					.x(function(d) { return x(d.date); })
 					.y(function(d) { return y1(d.column1); });
 				var valueline2 = d3.line()
+					.curve(d3.curveBasis)
 					.x(function(d) { return x(d.date); })
 					.y(function(d) { return y2(d.column2); });
 				var valueline3 = d3.area()
+					.curve(d3.curveBasis)
 					.x(function(d) { return x(d.date); })
 					.y0(y1(0))
 					.y1(function(d) { return y1(d.column1); });

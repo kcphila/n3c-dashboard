@@ -85,7 +85,7 @@ $(document).ready( function () {
 	
 		$('#${param.target_div}-table').DataTable( {
 	    	data: data,
-	    	dom: 'lfr<"datatable_overflow"t>Bip',
+	    	dom: 'lr<"datatable_overflow"t>Bip',
 	    	buttons: {
 	    	    dom: {
 	    	      button: {
