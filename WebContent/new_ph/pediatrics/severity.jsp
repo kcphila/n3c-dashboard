@@ -35,7 +35,7 @@ function ${param.block}_severity_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: severity_range,
-			legend_lable: 'Severity',
+			legend_label: 'Severity',
 			legend_data: severity_legend,
 			donutRatio: 0.5
 		}

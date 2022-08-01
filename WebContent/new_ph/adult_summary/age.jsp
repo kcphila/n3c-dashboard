@@ -34,7 +34,7 @@ function ${param.block}_age_refresh() {
 			barLabelWidth: 120,
 			min_height: 300,
 			colorscale: age_range_adult2,
-			legend_lable: 'Age',
+			legend_label: 'Age',
 			legend_data: age_legend_2,
 			donutRatio: 0.5
 		}

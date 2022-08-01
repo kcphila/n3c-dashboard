@@ -25,7 +25,7 @@ var properties = {
 		min_height: ${param.dimension_minheight},
 		ordered: 0,
 		colorscale: ${param.dimension_range},
-		legend_lable: '${param.dimension_name}',
+		legend_label: '${param.dimension_name}',
 		legend_data: ${param.dimension_legend},
 		donutRatio: 0.5
 	}

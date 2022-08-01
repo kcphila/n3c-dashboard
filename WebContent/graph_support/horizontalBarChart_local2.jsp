@@ -250,7 +250,10 @@ function localHorizontalBarChart_legend(data, properties) {
 			.on("mouseout", function(d, i) {
 					tooltip2.style("display", "none");
 			})
-			.on("click", function(d, i){window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, properties.legend_label.replace(/\s/g, "")); });
+			.on("click", function(d, i){
+				// console.log("clicked",d,i,properties)
+				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](d, properties.legend_label.replace(/\s/g, ""));
+			});
 		
 		legend.append("text")
 			.attr("x", width - 24)

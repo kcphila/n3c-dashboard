@@ -35,7 +35,7 @@ function ${param.block}_gender_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: gender_range3,
-			legend_lable: 'Gender',
+			legend_label: 'Gender',
 			legend_data: gender_legend3,
 			donutRatio: 0.5
 		}

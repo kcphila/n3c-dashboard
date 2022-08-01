@@ -35,7 +35,7 @@ function ${param.block}_race_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: race_range,
-			legend_lable: 'Race',
+			legend_label: 'Race',
 			legend_data: race_legend,
 			donutRatio: 0.5
 		}

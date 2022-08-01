@@ -35,7 +35,7 @@ function ${param.block}_ethnicity_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: ethnicity_range,
-			legend_lable: 'Ethnicity',
+			legend_label: 'Ethnicity',
 			legend_data: ethnicity_legend,
 			donutRatio: 0.5
 		}

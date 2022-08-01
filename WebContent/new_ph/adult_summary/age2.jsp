@@ -36,7 +36,7 @@ function ${param.block}_age_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: age_range_adult1,
-			legend_lable: 'Age',
+			legend_label: 'Age',
 			legend_data: age_legend_6,
 			donutRatio: 0.5
 		}
