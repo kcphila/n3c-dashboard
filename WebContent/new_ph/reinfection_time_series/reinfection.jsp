@@ -3,15 +3,15 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div id="reinfection1">
-	<div class="text-center">
+	<div>
 		<h4 style="font-size:1.2rem;">Select a Reinfection Month or <button class="btn btn-dash" id="play-button" title="Click to play/pause automatic stepping through subsequent infection dates"><i class="fas fa-play-circle"></i></button></h4>
 		<small>Select Any Month on the Slider and Click Play to Start at that Date</small>
 		<jsp:include page="../../graph_support/time_slider.jsp">
 			<jsp:param name="block" value="${param.block}" />		
 		</jsp:include>
+		<h5>1st Infection Counts By Date for Patients Reinfected in <span id="current_date">Month, Year</span></h5>
 	</div>
 	
-	<h5>1st Infection Counts By Date for Patients Reinfected in <span id="current_date">Month, Year</span></h5>
 	<div id="${param.block}_timeline_viz" class="col-12 dash_viz"></div>
 
 	<div id="reinfection1_graph_save_viz"> 
