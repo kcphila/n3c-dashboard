@@ -16,7 +16,8 @@ function ${param.block}_refresh() {
 			domName: '#${param.block}_diabetest2_over_viz',
 			barLabelWidth: 250,
 			min_height: 300,
-			colorscale: categorical
+			colorscale: categorical,
+			colorIndexActual: true
 		}
 
    	d3.select("#${param.block}_diabetest2_over_viz").select("svg").remove();

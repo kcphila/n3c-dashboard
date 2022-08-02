@@ -151,7 +151,9 @@ function localHorizontalBarChart(data, properties) {
 			.attr('stroke', 'white')
 			.attr('fill', function(d, i){
 				if (properties.colorscale != undefined){
-					if (properties.noseq != 1){
+					if (properties.colorIndexActual) {
+						return properties.colorscale[d.seq];
+					} else if (properties.noseq != 1){
 						return properties.colorscale[(d.seq-1)];
 					} else {
 						return properties.colorscale[i];
