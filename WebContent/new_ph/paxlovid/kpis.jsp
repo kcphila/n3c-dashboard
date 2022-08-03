@@ -35,7 +35,7 @@
 					</table>
 				</div>
 				<div class="panel-heading kpi_num">49,055</div>
-			<p style="text-align: center">Count is current as of Aug 2, 2022 (Release Build 87).</p>
+			<p style="text-align: center"><i>Count is current as of Aug 2, 2022 (Release Build 87).</i></p>
 			</div>
 		</div>
 	</div>
@@ -60,7 +60,7 @@
 					</table>
 				</div>
 				<div id="${param.block}_patient_count_kpi" class="panel-heading kpi_num">${row.patient_count}</div>
-			<p style="text-align: center">Count is from data extracted July 22, 2022.</p>
+			<p style="text-align: center"><i>Count is from data extracted July 22, 2022.</i></p>
 			</div>
 		</div>
 	</div>
