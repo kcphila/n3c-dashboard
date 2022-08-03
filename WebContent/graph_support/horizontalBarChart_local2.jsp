@@ -157,6 +157,11 @@ function localHorizontalBarChart_legend(data, properties) {
 					return 'url(' + properties.domName +'mainGradient)';
 				}
 			})
+			.on("click", function(d, i){
+				var format = {};
+				format['secondary_name'] = d.element;
+				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, properties.legend_label.replace(/\s/g, "")); 
+			})
 			.on("mouseover", function() { 
 				tooltip.style("display", null); 
 			})

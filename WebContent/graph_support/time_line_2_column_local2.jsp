@@ -514,6 +514,7 @@ function TimeLine2ColumnChart2(data, properties) {
 				          .transition()
 				          .duration(1000)
 				          .attr("d", d3.line()
+				            .curve(d3.curveBasis)
 				            .x(function(d) { return x(d.date); })
 				            .y(function(d) { return y1(d.column1); }));
 				      	graph
@@ -521,6 +522,7 @@ function TimeLine2ColumnChart2(data, properties) {
 				          .transition()
 				          .duration(1000)
 				          .attr("d", d3.area()
+				            .curve(d3.curveBasis)
 				            .x(function(d) { return x(d.date); })
 				            .y0(function(d) { return y1(0); })
 				            .y1(function(d) { return y1(d.column1); }));
@@ -529,6 +531,7 @@ function TimeLine2ColumnChart2(data, properties) {
 				          .transition()
 				          .duration(1000)
 				          .attr("d", d3.line()
+				            .curve(d3.curveBasis)
 				            .x(function(d) { return x(d.date); })
 				            .y(function(d) { return y2(d.column2); }));
 	

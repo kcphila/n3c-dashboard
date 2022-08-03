@@ -93,6 +93,7 @@ function localPieChart(data, properties) {
 			.data(pie(data))
 			.enter().append("g")
 			.attr("class", "arc");
+			
 		
 		// add label lines
 		var label_lines = g.selectAll('allPolylines')
@@ -203,6 +204,13 @@ function localPieChart(data, properties) {
 				tooltip.select('.percent').html(percent + '% of category');
 				tooltip.style('display', 'block');
 				tooltip.style('opacity',2);
+			})
+			.on("click", function(d, i){
+				tooltip.style('display', 'none');
+				tooltip.style('opacity',0);
+				var format = {};
+				format['secondary_name'] = d.data.element;
+				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, properties.legend_label.replace(/\s/g, "")); 
 			})
 			.on('mousemove', function(d) {
 				tooltip.style('top', (d3.event.layerY + 10) + 'px')
