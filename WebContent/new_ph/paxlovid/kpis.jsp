@@ -34,7 +34,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num">21,993</div>
+				<div class="panel-heading kpi_num">49,055</div>
 			</div>
 		</div>
 	</div>
