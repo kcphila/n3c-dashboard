@@ -194,7 +194,7 @@
 						</div>	
 						</div>
 					</c:if>
-					<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.gender_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.reinfectionbin_filter}">
+					<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.gender_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter}">
 						<div class="mt-2 ml-auto col-12 col-md-6 filter_button_container">
 							<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
 							<div class="dropdown" style="display: inline-block;">
@@ -294,6 +294,9 @@
 										</c:if>
 										<c:if test="${param.medication_class_filter}">
 											<jsp:include page="filters/medication_class.jsp"/>
+										</c:if>
+										<c:if test="${param.medications_filter}">
+											<jsp:include page="filters/medication_ts.jsp"/>
 										</c:if>
 										<c:if test="${param.smoking_filter}">
 											<jsp:include page="filters/smoking.jsp"/>
@@ -423,9 +426,9 @@
 	
 
 	function ${param.block}_viz_constrain(element, elementParent) {
-		// console.log(element);
-		// console.log(elementParent);
-		// console.log("#${param.block}-"+elementParent.toLowerCase()+"-select");
+		console.log("element",element);
+		console.log("elementParent",elementParent);
+		console.log("target","#${param.block}-"+elementParent.toLowerCase()+"-select");
 		var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
         var selected = [];
         
@@ -433,7 +436,7 @@
             selected.push($(this).val());
         });
 	        
-        // console.log("selected", selected);
+        console.log("selected", selected);
 		if (selected[0].includes( element.secondary_name)){
 			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('deselect', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
 		} else {
@@ -696,6 +699,20 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
+		$('#${param.block}-medications-select').multiselect({	
+			maxHeight: 300,
+			numberDisplayed: 1,
+			enableCaseInsensitiveFiltering: true,
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-medications-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("medication",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
 		$('#${param.block}-smokingstatus-select').multiselect({
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-smokingstatus-select');
@@ -833,6 +850,10 @@
 			$('#${param.block}-medication-class-select').multiselect('clearSelection');
 			${param.block}_constrain("drug_domain", '');
 		</c:if>
+		<c:if test="${param.medications_filter}">
+			$('#${param.block}-medications-select').multiselect('clearSelection');
+			${param.block}_constrain("medication", '');
+		</c:if>
 		<c:if test="${param.smoking_filter}">
 			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("smokingstatus", '');
@@ -915,6 +936,7 @@
 	var ${param.block}_InitialCountSevenArray = new Array();
 	var ${param.block}_IntervalBinArray = new Array();
 	
+	var ${param.block}_MedicationTSArray = new Array();
 
 	function ${param.block}_refreshHistograms(just_viz) {
 	    if (typeof just_viz === 'undefined'){
@@ -977,6 +999,8 @@
 
 	    	${param.block}_refreshInitialCountSevenArray(data);
 	    	${param.block}_refreshIntervalBinArray(data);
+
+	    	${param.block}_refreshMedicationTSArray(data);
 	    };
     	
 	    
@@ -1574,6 +1598,12 @@
 	<jsp:param name="array" value="IntervalBinArray"/>
 	<jsp:param name="primary" value="interval_bin"/>
 	<jsp:param name="count" value="actual_count"/>
+</jsp:include>
+
+<jsp:include page="timelineNHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MedicationTSArray"/>
 </jsp:include>
 
 <%-- <jsp:include page="doubleHistogram.jsp"> --%>

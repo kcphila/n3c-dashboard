@@ -14,6 +14,7 @@
 <jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/>
 <jsp:include page="../graph_support/time_line_2_column_local2.jsp"/>
 <jsp:include page="../graph_support/hive_local.jsp"/>
+<jsp:include page="../graph_support/time_line_n_column_local.jsp"/>
 
 <jsp:include page="../graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp"/>
 

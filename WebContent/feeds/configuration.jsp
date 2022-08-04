@@ -36,6 +36,7 @@ var comorbidity_number_range = ["#EADEF7", "#DECBF2", "#D1B7ED", "#C5A4E8", "#B8
 
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 var categorical2 = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
+var categorical8 = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#007BFF", "#a6a6a6"];
 
 var sequential_1_2 = ["#D6BFD9", "#4D2F50"];
 var sequential_1_3 = ["#D6BFD9", "#9a5fa0", "#4D2F50"];
@@ -269,6 +270,15 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 	var vaccinated_legend = ${row.jsonb_pretty};
 </c:forEach>
 
+var medication_legend = new Array()
+<sql:query var="statuses" dataSource="jdbc/N3CPublic">
+	select distinct drug_name
+		  from n3c_questions.drug_monthly_count_summary order by drug_name
+</sql:query>
+<c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
+	medication_legend.push("${row.drug_name}");
+</c:forEach>
+console.log(medication_legend)
 
 
 var sotrovimaboccurrence_legend = [ { "secondary": "Before Other Med", "secondary_name": "Before Other Med", "sotrovimaboccurrence_seq": 1 }, { "secondary": "After Other Med", "secondary_name": "After Other Med", "sotrovimaboccurrence_seq": 2 } ];

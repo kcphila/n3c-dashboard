@@ -72,6 +72,7 @@ WebContent/graph_support/temp.js -text
 WebContent/graph_support/time_line_2_column.jsp -text
 WebContent/graph_support/time_line_2_column_local.jsp -text
 WebContent/graph_support/time_line_2_column_local2.jsp -text
+WebContent/graph_support/time_line_n_column_local.jsp -text
 WebContent/graph_support/time_slider.jsp -text
 WebContent/graph_support/us-states.json -text
 WebContent/graph_support/verticalBarChart_local.jsp -text
@@ -281,6 +282,7 @@ WebContent/new_ph/filters/gender.jsp -text
 WebContent/new_ph/filters/gender3.jsp -text
 WebContent/new_ph/filters/medication.jsp -text
 WebContent/new_ph/filters/medication_class.jsp -text
+WebContent/new_ph/filters/medication_ts.jsp -text
 WebContent/new_ph/filters/observation.jsp -text
 WebContent/new_ph/filters/race.jsp -text
 WebContent/new_ph/filters/region.jsp -text
@@ -526,6 +528,12 @@ WebContent/new_ph/medication_snapshot/tables/comorbidity_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/diagnosis_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/meds_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/vac_table.jsp -text
+WebContent/new_ph/medication_time_series/feeds/timeline.jsp -text
+WebContent/new_ph/medication_time_series/feeds/timeline_raw.jsp -text
+WebContent/new_ph/medication_time_series/kpis.jsp -text
+WebContent/new_ph/medication_time_series/medication_table.jsp -text
+WebContent/new_ph/medication_time_series/medications.jsp -text
+WebContent/new_ph/medication_time_series/panel.jsp -text
 WebContent/new_ph/medications/classes_frequency.jsp -text
 WebContent/new_ph/medications/feeds/medications.jsp -text
 WebContent/new_ph/medications/feeds/medications_raw.jsp -text
@@ -743,6 +751,7 @@ WebContent/new_ph/timeline/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/timeline/timeline_1.jsp -text
 WebContent/new_ph/timeline/timeline_2.jsp -text
 WebContent/new_ph/timeline2Histogram.jsp -text
+WebContent/new_ph/timelineNHistogram.jsp -text
 WebContent/new_ph/tripleHistogram.jsp -text
 WebContent/new_ph/unavailable_panel.jsp -text
 WebContent/positive_timeline.jsp -text
