@@ -310,7 +310,7 @@ function TimeLineNColumnChart(data, properties) {
 			
 				dua_dta_focus.append("rect")
 			    	.attr("class", "tooltip")
-			    	.attr("height", 70)
+			    	.attr("height", 150)
 			    	.attr("x", 10)
 			    	.attr("y", -22)
 			    	.attr("rx", 4)
