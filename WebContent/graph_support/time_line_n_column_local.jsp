@@ -81,6 +81,7 @@
 
 .axis1 text{
   fill: ${column1_color} ;
+  fill: black ; 
 }
 
 .axis2 text{

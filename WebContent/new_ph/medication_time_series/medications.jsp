@@ -6,9 +6,9 @@
 	<div id="${param.block}_medication_timeline" class="col-12 dash_viz"></div>
 
 	<div id="medication_ts_1_graph_save_viz"> 
-		<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_timeline_viz', '${param.block}_graph.svg');">Save as SVG</button>
-		<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_timeline_viz', '${param.block}_graph.png');">Save as PNG</button>
-		<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_timeline_viz', '${param.block}_graph.jpg');">Save as JPEG</button>
+		<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_timeline', '${param.block}_graph.svg');">Save as SVG</button>
+		<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_timeline', '${param.block}_graph.png');">Save as PNG</button>
+		<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_medication_timeline', '${param.block}_graph.jpg');">Save as JPEG</button>
 	</div>
 	
 </div>
