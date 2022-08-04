@@ -46,7 +46,7 @@
     .dua_dta_focus .tooltip{
     	opacity: 0.7;
     	stroke:none;
-    	width:130px;
+    	width: 160px;
     }
     
     path.duas,
