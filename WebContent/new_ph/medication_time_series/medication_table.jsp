@@ -99,7 +99,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'adult_demographics',
+    	      filename: 'medication_timeseries',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -139,8 +139,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	  	if (currentSnapshot != snapshot) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
-	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
+			${param.block}_refreshHistograms();
+			${param.block}_medication_ts_refresh();
 	   		$('#${param.block}_btn_clear').removeClass("no_clear");
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
 	  	}

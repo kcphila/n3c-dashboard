@@ -184,12 +184,15 @@ function TimeLineNColumnChart(data, properties) {
 						.y(function(d) { return y(d.medications[keys[i]]); });
 					
 					graph.append("path")
-					.data([data])
-					.attr("opacity", column1_opacity)
-					.attr("class", "line_"+i)
-					.attr("stroke", categorical8[i])
-					.attr("stroke-width", '3px')
-					.attr("d", valueline);
+						.data([data])
+						.attr("opacity", column1_opacity)
+						.attr("class", "line_"+i)
+						.attr("stroke", function (d){
+							var color = properties.legend_labels.indexOf(keys[i]);
+							return categorical8[color];
+						})
+						.attr("stroke-width", '3px')
+						.attr("d", valueline);
 				}
 				
 				// Add the brushing
@@ -285,7 +288,7 @@ function TimeLineNColumnChart(data, properties) {
 				    .attr("class", function(d){return d.tag;})
 				    .attr("opacity", function(d){return d.opacity;})
 				    .attr("stroke",  function(d,i){
-				    	return categorical8[i]
+				    	return categorical8[i];
 				    })
 					.on("click", function(d, i){
 						console.log("legend click",d,i)
