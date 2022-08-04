@@ -96,7 +96,7 @@
 function TimeLineNColumnChart(data, properties) {
 
 	// set the dimensions and margins of the graph
-	var margin = {top: 0, right: 100, bottom: 240, left: 100},
+	var margin = {top: 0, right: 100, bottom: 100, left: 100},
 	    width = 960 - margin.left - margin.right,
 	    height = 600 - margin.top - margin.bottom;
 	
@@ -121,8 +121,8 @@ function TimeLineNColumnChart(data, properties) {
 				if (newWidth > 0) {
 					d3.select("#"+properties.domName).select("svg").remove();
 					width = newWidth - margin.left - margin.right;
-					if ((width/1.5 - margin.top - margin.bottom) > 200){
-						height = width/1.5 - margin.top - margin.bottom;
+					if ((width/2 - margin.top - margin.bottom) > 200){
+						height = width/2 - margin.top - margin.bottom;
 					} else { 
 						height = 200;
 					}
@@ -325,6 +325,10 @@ function TimeLineNColumnChart(data, properties) {
 					dua_dta_focus.append("text")
 				    	.attr("x", 18)
 				    	.attr("y", 18+i*15)
+				    	.attr("fill", function(d){
+				    		var color = properties.legend_labels.indexOf(keys[i]);
+							return categorical8[color];
+				    	})
 				    	.text(labelFormatter(keys[i])+":");
 					dua_dta_focus.append("text")
 			    	.attr("class", "tooltip-"+i)
@@ -378,7 +382,7 @@ function TimeLineNColumnChart(data, properties) {
 				    if (width/2 > d3.mouse(this)[0]){
 				    	dua_dta_focus.attr("transform", "translate(" + x(d.date) + "," + d3.mouse(this)[1] + ")");
 				    }else{
-				    	dua_dta_focus.attr("transform", "translate(" + ((x(d.date))-150) + "," + d3.mouse(this)[1] + ")");
+				    	dua_dta_focus.attr("transform", "translate(" + ((x(d.date))-175) + "," + d3.mouse(this)[1] + ")");
 				    };
 				   
 				    dua_dta_focus.select(".tooltip-date_dta_dua").text(dateFormatter(d.date));
