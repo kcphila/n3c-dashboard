@@ -15,4 +15,5 @@
 	<jsp:param name="datatable" value="medication_time_series/medication_table.jsp" />
 	<jsp:param name="datatable_div" value="medications-by-date" />
 	<jsp:param name="datatable_feed" value="medication_time_series/feeds/timeline.jsp" />
+	<jsp:param name="datatable_kpis" value="actual_count" />
 </jsp:include>

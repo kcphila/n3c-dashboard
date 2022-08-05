@@ -10,11 +10,10 @@ function ${param.block}_constrain_table(filter, constraint) {
 		break;
 	}
 	
-/* 	var kpis = '${param.target_kpis}'.split(',');
+ 	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
 		${param.block}_updateKPI(table, kpis[a])
 	}
- */
  
  }
 
