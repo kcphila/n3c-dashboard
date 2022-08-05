@@ -20,7 +20,8 @@ function ${param.block}_medication_ts_refresh() {
 		domName: "${param.block}_medication_timeline",
 		legend_labels: medication_legend,
 		xaxis_label: "Month",
-		yaxis_label: "Patient Count"
+		yaxis_label: "Patient Count",
+		extendXAxis: 1
 	}
    	d3.select("#${param.block}_medication_timeline").select("svg").remove();
 //	console.log(${param.block}_MedicationTSArray)

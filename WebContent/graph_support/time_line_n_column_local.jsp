@@ -139,7 +139,11 @@ function TimeLineNColumnChart(data, properties) {
 		
 		function draw() {
 			// set the ranges
-			var x = d3.scaleTime().domain(d3.extent(data, function(d) { return d.date; })).range([0, width]);
+			var startDate = data[0].date;
+			var endDate = new Date(data[data.length-1].date);
+			if (properties.extendXAxis !== undefined)
+				endDate.setMonth(endDate.getMonth() + properties.extendXAxis);
+			var x = d3.scaleTime().domain([startDate, endDate]).range([0, width]);
 			var y = d3.scaleLinear().domain([0,maxCount]).range([height, 10]);
 			var line = d3.line().x(d => x(d.date)).y(d => y(d.date));
 			
@@ -414,7 +418,7 @@ function TimeLineNColumnChart(data, properties) {
 				      	// If no selection, back to initial coordinate. Otherwise, update X axis domain
 				     	if(!extent){
 				        	if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-				        	x.domain(d3.extent(data, function(d) { return d.date; }));
+				        	x.domain([startDate, endDate]);
 				      	}else{
 				        	<c:if test="${not empty param.constraintPropagator}">
 				        		${param.block}_${param.constraintPropagator}(dateFormatter2(x.invert(extent[0])),dateFormatter2(x.invert(extent[1])))
@@ -463,7 +467,7 @@ function TimeLineNColumnChart(data, properties) {
 						${param.block}_${param.constraintPropagator}(null, null)
 		        	</c:if>
 					
-					x.domain(d3.extent(data, function(d) {return d.date; }));
+					x.domain([startDate, endDate]);
 					
 					
 					d3.select(properties.domName + " ${param.dom_element}_graph .xaxis")
