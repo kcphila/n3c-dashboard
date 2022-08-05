@@ -122,8 +122,8 @@ function TimeLineNColumnChart(data, properties) {
 				if (newWidth > 0) {
 					d3.select("#"+properties.domName).select("svg").remove();
 					width = newWidth - margin.left - margin.right;
-					if ((width/2 - margin.top - margin.bottom) > 200){
-						height = width/2 - margin.top - margin.bottom;
+					if ((width/1.75 - margin.top - margin.bottom) > 200){
+						height = width/1.75 - margin.top - margin.bottom;
 					} else { 
 						height = 200;
 					}
