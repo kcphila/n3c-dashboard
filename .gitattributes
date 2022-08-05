@@ -530,11 +530,16 @@ WebContent/new_ph/medication_snapshot/tables/comorbidity_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/diagnosis_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/meds_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/vac_table.jsp -text
+WebContent/new_ph/medication_time_series/feeds/overall.jsp -text
 WebContent/new_ph/medication_time_series/feeds/timeline.jsp -text
 WebContent/new_ph/medication_time_series/feeds/timeline_raw.jsp -text
 WebContent/new_ph/medication_time_series/kpis.jsp -text
 WebContent/new_ph/medication_time_series/medication_table.jsp -text
+WebContent/new_ph/medication_time_series/medication_ts_1.jsp -text
+WebContent/new_ph/medication_time_series/medication_ts_2.jsp -text
 WebContent/new_ph/medication_time_series/medications.jsp -text
+WebContent/new_ph/medication_time_series/overall.jsp -text
+WebContent/new_ph/medication_time_series/overall_table.jsp -text
 WebContent/new_ph/medication_time_series/panel.jsp -text
 WebContent/new_ph/medications/classes_frequency.jsp -text
 WebContent/new_ph/medications/feeds/medications.jsp -text

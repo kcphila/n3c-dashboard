@@ -937,6 +937,7 @@
 	var ${param.block}_IntervalBinArray = new Array();
 	
 	var ${param.block}_MedicationTSArray = new Array();
+	var ${param.block}_MedicationOverallArray = new Array();
 
 	function ${param.block}_refreshHistograms(just_viz) {
 	    if (typeof just_viz === 'undefined'){
@@ -1001,6 +1002,7 @@
 	    	${param.block}_refreshIntervalBinArray(data);
 
 	    	${param.block}_refreshMedicationTSArray(data);
+	    	${param.block}_refreshMedicationOverallArray(data);
 	    };
     	
 	    
@@ -1604,6 +1606,14 @@
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="MedicationTSArray"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MedicationOverallArray"/>
+	<jsp:param name="primary" value="medication"/>
+	<jsp:param name="count" value="count"/>
 </jsp:include>
 
 <%-- <jsp:include page="doubleHistogram.jsp"> --%>
