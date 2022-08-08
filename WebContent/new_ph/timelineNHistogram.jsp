@@ -20,7 +20,7 @@ function ${param.block}_refresh${param.array}(data) {
 	    Object.defineProperty(obj, 'date', {
   			value: new Date(keys[i] + "-02") // the -02 is to fake out the timezone calculations in D3
 	    });
-	    Object.defineProperty(obj, 'medications', {
+	    Object.defineProperty(obj, 'elements', {
 	    	value: aData[keys[i]]
 	    });
 	    ${param.block}_${param.array}.push(obj);

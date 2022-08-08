@@ -102,11 +102,11 @@ function TimeLineNColumnChart(data, properties) {
 	    height = 600 - margin.top - margin.bottom;
 	
 	console.log("data", data)
-	var keys =  Object.keys(data[0].medications);
+	var keys =  Object.keys(data[0].elements);
 	var maxCount = 0;
 	for (let i = 0; i < data.length; i++) {
 		for (let j = 0; j < keys.length; j++) {
-			maxCount = Math.max(maxCount, data[i].medications[keys[j]]);
+			maxCount = Math.max(maxCount, data[i].elements[keys[j]]);
 		}
 	};
 	console.log("maxCount", maxCount, "keys", keys)
@@ -186,7 +186,7 @@ function TimeLineNColumnChart(data, properties) {
 					var valueline = d3.line()
 			            .curve(d3.curveMonotoneX)
 						.x(function(d) { return x(d.date); })
-						.y(function(d) { return y(d.medications[keys[i]]); });
+						.y(function(d) { return y(d.elements[keys[i]]); });
 					
 					graph.append("path")
 						.data([data])
@@ -394,7 +394,7 @@ function TimeLineNColumnChart(data, properties) {
 				   
 				    dua_dta_focus.select(".tooltip-date_dta_dua").text(dateFormatter(d.date));
 					for (let i = 0; i < keys.length; i++) {
-					    dua_dta_focus.select(".tooltip-"+i).text(valueFormatter1(d.medications[keys[i]]));						
+					    dua_dta_focus.select(".tooltip-"+i).text(valueFormatter1(d.elements[keys[i]]));						
 					}
 
 				    tooltipLine.attr('stroke', 'black')
@@ -457,7 +457,7 @@ function TimeLineNColumnChart(data, properties) {
 					          .attr("d", d3.line()
 					            .curve(d3.curveMonotoneX)
 					            .x(function(d) { return x(d.date); })
-					            .y(function(d) { return y(d.medications[keys[i]]); }));
+					            .y(function(d) { return y(d.elements[keys[i]]); }));
 						}
 	
 				};
