@@ -43,12 +43,12 @@ p {
 
 	<div class="wrapper">
 	<sql:query var="topics" dataSource="jdbc/N3CPublic">
-		select question,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Summary' and visible order by seqnum
+		select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Summary' and visible order by seqnum
 	</sql:query>
 	<h2>Summary Data</h2>
 	<div class="outer">
 		<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-			<div class="inner">
+			<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
 				<h4>${row.question}</h4>
 				<p>${row.description}</p>
 			</div>
@@ -57,12 +57,12 @@ p {
 	</div>
 
 	<sql:query var="topics" dataSource="jdbc/N3CPublic">
-		select question,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Medication' and visible order by seqnum
+		select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Medication' and visible order by seqnum
 	</sql:query>
 	<h2>Medications</h2>
 	<div class="outer">
 		<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-			<div class="inner">
+			<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
 				<h4>${row.question}</h4>
 				<p>${row.description}</p>
 			</div>
@@ -71,12 +71,12 @@ p {
 	</div>
 
 	<sql:query var="topics" dataSource="jdbc/N3CPublic">
-		select question,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Disease' and visible order by seqnum
+		select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Disease' and visible order by seqnum
 	</sql:query>
 	<h2>Other Disease</h2>
 	<div class="outer">
 		<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-			<div class="inner">
+			<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
 				<h4>${row.question}</h4>
 				<p>${row.description}</p>
 			</div>
@@ -85,12 +85,12 @@ p {
 	</div>
 
 	<sql:query var="topics" dataSource="jdbc/N3CPublic">
-		select question,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question !~ 'Summary' and question !~ 'Medication' and question !~ 'Disease' and visible order by seqnum
+		select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question !~ 'Summary' and question !~ 'Medication' and question !~ 'Disease' and visible order by seqnum
 	</sql:query>
 	<h2>Other Aspects</h2>
 	<div class="outer">
 		<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-			<div class="inner">
+			<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
 				<h4>${row.question}</h4>
 				<p>${row.description}</p>
 			</div>
