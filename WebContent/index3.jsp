@@ -70,7 +70,19 @@
   transform: translateX(0);
 }
 
+.card-link{
+	flex-grow:1;
+}
 
+.card-link .col{
+	margin-top: auto;
+	text-align: center;
+}
+
+.card-body-links{
+	display: flex;
+	flex-direction: column;
+}
 
 </style>
 <script>
@@ -161,9 +173,26 @@
 					<div class="col-12 col-md-6 col-lg-3 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body">
-		     						<h5 class="card-title"><strong>${row.question}</strong></h5>
-		     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
+		   					<div class="card-body card-body-links">
+	     						<h5 class="card-title"><strong>${row.question}</strong></h5>
+	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
+	     						<div class='row card-link'>
+									<div class="col col-6">
+										<a href='public-health/${row.iframe_info}'>Explore&#8196;<i class="fas fa-angle-right"></i></a> 
+									</div>
+									<div class="col col-6">
+										<a tabindex="0" 
+											class="btn btn-sm btn-primary" 
+											role="button" data-html="true" 
+											data-toggle="popover" 
+											data-trigger="click" 
+											title="<b>Available Topics</b>" 
+											data-content="<a href='public-health/${row.iframe_info}/1'>COVID+ and Hospitalization</a> 
+											<br> <a href='public-health/${row.iframe_info}/2'>Delayed Mortality</a>">
+											Topics&#8196;<i class="fas fa-bars"></i>
+										</a>
+									</div>
+								</div>
 		   					</div>
 		 				</div>
 		 			</div>
