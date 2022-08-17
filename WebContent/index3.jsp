@@ -246,22 +246,6 @@
 		   					<div class="card-body card-body-links">
 	     						<h5 class="card-title"><strong>${row.question}</strong></h5>
 	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
-	     						<div class='row card-link'>
-									<div class="col col-6">
-										<a href='public-health/${row.iframe_info}'>Explore&#8196;<i class="fas fa-angle-right"></i></a> 
-									</div>
-									<div class="col col-6">
-										<a tabindex="0" 
-											class="btn btn-sm btn-primary" 
-											role="button" data-html="true" 
-											data-toggle="popover" 
-											data-trigger="click" 
-											data-content="<a href='public-health/${row.iframe_info}/1'>COVID+ and Hospitalization</a> 
-											<br> <a href='public-health/${row.iframe_info}/2'>Delayed Mortality</a>">
-											Topics&#8196;<i class="fas fa-bars"></i>
-										</a>
-									</div>
-								</div>
 		   					</div>
 		 				</div>
 		 			</div>
