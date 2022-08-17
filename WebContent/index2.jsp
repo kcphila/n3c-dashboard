@@ -12,6 +12,9 @@
 
 .hover-card:hover{
 	transform: scale(1.01);
+box-shadow: 6px 7px 29px -2px rgba(197,222,255,1);
+-webkit-box-shadow: 6px 7px 29px -2px rgba(197,222,255,1);
+-moz-box-shadow: 6px 7px 29px -2px rgba(197,222,255,1);
 }
 </style>
 <body>
