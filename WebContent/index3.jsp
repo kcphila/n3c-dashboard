@@ -8,7 +8,40 @@
 <jsp:include page="head.jsp" flush="true" />
 <style>
 
-/* Front Page style */
+/* -------------- N3C Login Overrides ---------------------  */
+a{
+	color: #007bff;
+}
+
+.btn-primary, .btn-primary:visited{
+	color: #007bff;
+	background-color: white;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: white !important;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:active {
+	color: white !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    box-shadow:none !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, 
+.btn-primary:not(:disabled):not(.disabled).active, 
+.show > .btn-primary.dropdown-toggle {
+    color: white;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+
+/* -------------- Front page style ---------------------  */
 .n3c-page-head {
 	max-width: 750px;
 	text-align:left;
@@ -215,7 +248,8 @@
 									<div class="card hover-card mb-2" onclick="location.href='public-health/${row.iframe_info}';">
 					   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
 					   					<div class="card-body">
-					     						<h5 class="card-title"><strong>${row.question}</strong></h5>
+					     						<h5 class="card-title text-center"><strong>${row.question}</strong></h5>
+					     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
 					   					</div>
 					 				</div>
 								</div>
@@ -269,7 +303,7 @@
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body">
+		   					<div class="card-body card-body-links">
 		     						<h5 class="card-title"><strong>${row.question}</strong></h5>
 		     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
 		   					</div>
@@ -291,7 +325,7 @@
 					<div class="col-12 col-md-6 col-lg-3 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body">
+		   					<div class="card-body card-body-links">
 		     						<h5 class="card-title"><strong>${row.question}</strong></h5>
 		     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
 		   					</div>
@@ -316,7 +350,7 @@
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body">
+		   					<div class="card-body card-body-links">
 		     						<h5 class="card-title"><strong>${row.question}</strong></h5>
 		     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
 		   					</div>
@@ -344,7 +378,7 @@
 								<div class="col-12 col-lg-4">
 									<div class="card hover-card mb-2" onclick="location.href='public-health/${row.iframe_info}';">
 					   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-					   					<div class="card-body">
+					   					<div class="card-body card-body-links">
 					     						<h5 class="card-title"><strong>${row.question}</strong></h5>
 					     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
 					   					</div>

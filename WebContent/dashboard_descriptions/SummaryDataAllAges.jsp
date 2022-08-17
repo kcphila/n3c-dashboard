@@ -1,7 +1,7 @@
-<p class="card-text">
-	This dashboard provides an overview of the demographics, severity, vaccination status, and 
-	comorbidities of all COVID+ patients within the Enclave. 
-</p>
+<!-- <p class="card-text"> -->
+<!-- 	This dashboard provides an overview of the demographics, severity, vaccination status, and  -->
+<!-- 	comorbidities of all COVID+ patients within the Enclave.  -->
+<!-- </p> -->
 
 <div class='row card-link'>
 	<div class="col col-6">

@@ -1,6 +1,6 @@
 <p class="card-text">
 	This dashboard provides an overview of the patients prescribed Paxlovid, including demographic information, 
-	associated medications and conditions, and outcomes.
+	associated medications, conditions, and outcomes.
 </p>
 
 <div class='row card-link'>
