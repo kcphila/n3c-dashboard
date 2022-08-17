@@ -73,6 +73,12 @@
 
 
 </style>
+<script>
+	$(function(){
+	    // Enables popover
+	    $("[data-toggle=popover]").popover();
+	});
+</script>
 <body>
 	<jsp:include page="navbar.jsp" flush="true" />
 	
@@ -153,11 +159,27 @@
 			<div class="row">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-3 d-flex">
-						<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
+						<div class="card hover-card flex-fill mb-2" >
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
 		   					<div class="card-body">
 		     						<h5 class="card-title"><strong>${row.question}</strong></h5>
 		     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
+		     						<c:choose>
+		     							<c:when test="${ row.iframe_info == 'delayed-mortality' }">
+		     								<a tabindex="0"
+											   class="btn btn-lg btn-primary" 
+											   role="button" 
+											   data-html="true" 
+											   data-toggle="popover" 
+											   data-trigger="click" 
+											   title="<b>Available Topics</b>" 
+											   data-content="
+											   	<a href='public-health/${row.iframe_info}/1'>COVID+ and Hospitalization</a>
+											   	<br>
+											   	<a href='public-health/${row.iframe_info}/2'>Delayed Mortality</a>
+											   	">Topics</a>
+		     							</c:when>
+		     						</c:choose>
 		   					</div>
 		 				</div>
 		 			</div>
