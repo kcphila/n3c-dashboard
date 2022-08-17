@@ -6,52 +6,33 @@
 <html>
 <jsp:include page="head.jsp" flush="true" />
 <style>
-.wrapper div {
-  background-color: #aaa;
+.hover-card{
+	cursor: pointer;
 }
 
-.outer{
-  width:100%;
-  height:120px;
-  white-space: nowrap;
-  position: relative;
-  overflow-x:scroll;
-  overflow-y:hidden;
-}
-
-.outer div{
-  width: 24.5%;
-  background-color: black;
-  color: yellow;
-  float: none;
-  height: 90%;
-  margin: 0 0.25%;
-  display: inline-block;
-  zoom: 1;
-}
-
-.inner div{
-  white-space: wrap;
-}
-p {
-    word-break: break-word;
-    white-space: normal;
+.hover-card:hover{
+	transform: scale(1.01);
 }
 </style>
 <body>
 	<jsp:include page="navbar.jsp" flush="true" />
 
-	<div class="wrapper">
+	<div class="container content container-large">
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Summary' and visible order by seqnum
 		</sql:query>
 		<h2>Summary Data</h2>
-		<div class="outer">
+		<div class="row">
 			<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-				<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
-					<h4>${row.question}</h4>
-					<p>${row.description}</p>
-				</div>
+				<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+	   					<div class="card-body">
+	     						<h5 class="card-title"><strong>${row.question}</strong></h5>
+	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
+	   					</div>
+	 				</div>
+	 			</div>
 			</c:forEach>
 		</div>
 	
@@ -59,38 +40,58 @@ p {
 			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Medication' and visible order by seqnum
 		</sql:query>
 		<h2>Medications</h2>
-		<div class="outer">
+		<div class="row">
 			<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-				<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
-					<h4>${row.question}</h4>
-					<p>${row.description}</p>
-				</div>
+				<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+	   					<div class="card-body">
+	     						<h5 class="card-title"><strong>${row.question}</strong></h5>
+	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
+	   					</div>
+	 				</div>
+	 			</div>
 			</c:forEach>
 		</div>
-	
+
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Disease' and visible order by seqnum
 		</sql:query>
 		<h2>Other Disease</h2>
-		<div class="outer">
+		<div class="row">
 			<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-				<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
-					<h4>${row.question}</h4>
-					<p>${row.description}</p>
-				</div>
+				<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+	   					<div class="card-body">
+	     						<h5 class="card-title"><strong>${row.question}</strong></h5>
+	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
+	   					</div>
+	 				</div>
+	 			</div>
 			</c:forEach>
 		</div>
 	
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question !~ 'Summary' and question !~ 'Medication' and question !~ 'Disease' and visible order by seqnum
+			select question,
+			iframe_info,
+			description
+			from n3c_questions.roster 
+			where question !~ 'Summary' and question !~ 'Medication' and question !~ 'Disease' and visible 
+			order by seqnum
 		</sql:query>
 		<h2>Other Aspects</h2>
-		<div class="outer">
+		<div class="row">
 			<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-				<div class="inner" onclick="location.href='public-health/${row.iframe_info}';">
-					<h4>${row.question}</h4>
-					<p>${row.description}</p>
-				</div>
+				<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='public-health/${row.iframe_info}';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+	   					<div class="card-body">
+	     						<h5 class="card-title"><strong>${row.question}</strong></h5>
+	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
+	   					</div>
+	 				</div>
+	 			</div>
 			</c:forEach>
 		</div>
 	</div>
