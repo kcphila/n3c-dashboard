@@ -24,12 +24,12 @@
 	</jsp:include>
 	
 	<div class="row page_nav">
-			<a href="#data" class="btn btn-primary" role="button">Data</a>
-			<a href="#cohort" class="btn btn-primary" role="button">Cohort</a>
-			<a href="#sites" class="btn btn-primary" role="button">Sites</a>
-			<a href="#projects" class="btn btn-primary" role="button">Projects</a>
-			<a href="#publications" class="btn btn-primary" role="button">Publications</a>
-		</div>
+		<a href="#data" class="btn btn-primary" role="button">Data</a>
+		<a href="#cohort" class="btn btn-primary" role="button">Cohort</a>
+		<a href="#sites" class="btn btn-primary" role="button">Sites</a>
+		<a href="#projects" class="btn btn-primary" role="button">Projects</a>
+		<a href="#publications" class="btn btn-primary" role="button">Publications</a>
+	</div>
 		
 	<div class="container content">
 		<div id="data" class="text-max mx-auto">
