@@ -101,6 +101,16 @@
 		</sql:query>
 		
 		<div class="dashboard-section" id="data-overview">
+			<div class="row mx-auto" style="padding: 10px; width:100%;">
+				<div class="col-12 col-md-2"></div>
+				<div class="col-12 col-md-8">
+					<h1 style="text-align: center">The National COVID Cohort Collaborative (N3C)</h1>
+					<jsp:include page="modules/fact_sheet.jsp" />
+				</div>
+			</div>
+		</div>
+
+		<div class="dashboard-section" id="data-overview">
 			<h2>Enclave Data Overview</h2>
 			
 			<div class="row">
