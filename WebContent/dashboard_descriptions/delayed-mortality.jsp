@@ -8,7 +8,7 @@
 	data-toggle="popover" 
 	data-trigger="click" 
 	title="<b>Available Topics</b>" 
-	data-content="<a href='public-health/${row.iframe_info}/1'>COVID+ and Hospitalization</a> 
-	<br> <a href='public-health/${row.iframe_info}/2'>Delayed Mortality</a>">
+	data-content="<a href='public-health/delayed-mortality/1'>COVID+ and Hospitalization</a> 
+	<br> <a href='public-health/delayed-mortality/2'>Delayed Mortality</a>">
 	Topics
 </a>
