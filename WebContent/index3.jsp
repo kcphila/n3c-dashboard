@@ -7,6 +7,26 @@
 <html>
 <jsp:include page="head.jsp" flush="true" />
 <style>
+
+/* Front Page style */
+.n3c-page-head {
+	max-width: 750px;
+	text-align:left;
+/* 	background: rgba(255, 255, 255, 0.7); */
+    padding: 20px;
+    margin: 20px;
+    color: white;
+}
+
+.n3c-page-head hr{
+	border-top: 1px solid white;
+}
+
+.n3c-page-header{
+	margin-bottom:50px;
+	justify-content:center;
+}
+
 .hover-card{
 	cursor: pointer;
 }
@@ -19,7 +39,8 @@
 }
 
 .dashboard-section{
-	margin-bottom: 40px;
+	margin-bottom: 100px;
+	margin-top: 100px;
 }
 
 .carousel-control-prev-icon {
@@ -84,6 +105,13 @@
 	flex-direction: column;
 }
 
+.nav-card{
+	width: 100%;
+	color: #007bff;
+	background: #edf6ff;
+	border: none;
+}
+
 </style>
 <script>
 	$(function(){
@@ -94,14 +122,65 @@
 <body>
 	<jsp:include page="navbar.jsp" flush="true" />
 	
-	<div class="row page_nav">
-		<a href="#data-overview" class="btn btn-primary" role="button">Enclave Overview</a>
-		<a href="#cases" class="btn btn-primary" role="button">Cases</a>
-		<a href="#medications" class="btn btn-primary" role="button">Medications</a>
-		<a href="#diseases" class="btn btn-primary" role="button">Diseases</a>
-	</div>
-
+	<div class="row" style="width:100%; margin:auto; padding-bottom:40px; background-position: bottom; background-size: cover; background-image: url('<util:applicationRoot/>/images/home/team_hero.png');">
+			<div class="head head-text col-12 col-md-10 col-lg-10 col-xl-11">
+				<div class="n3c-page-head">			
+					<h1>The National COVID Cohort Collaborative (N3C)</h1>
+					<hr>
+					<h3 class="hidden">Your Trusted Comprehensive Source for COVID&#x2011;19 Patient-Centric Data.</h3>
+					<br>
+					<a href="https://covid.cd2h.org/" role="button" class="btn btn-lg btn-n3c">Learn More</a>
+				</div>
+			</div>
+		</div>
+		
 	<div class="container content container-large">
+
+		<div class="row">
+			<div class="col-12 col-lg-7">
+				<jsp:include page="modules/fact_sheet_dashboard.jsp" />
+			</div>
+			<div class="col-12 col-lg-5" style="text-align:center; ">
+				<h3>Explore Our Dashboards:</h3>
+				<div class="row">
+					<div class="col-12 col-sm-6 d-flex">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#data-overview'">
+							<div class="card-body">
+								<h5 class="card-title">Enclave Overview</h5>
+								<h1><i class="fas fa-database"></i></h1>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-sm-6 d-flex">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#cases'">
+							<div class="card-body">
+								<h5 class="card-title">Cases</h5>
+								<h1><i class="fas fa-virus"></i></h1>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-sm-6 d-flex">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#medications'">
+							<div class="card-body">
+								<h5 class="card-title">Medications</h5>
+						     	<h1><i class="fas fa-pills"></i></h1>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-sm-6 d-flex">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#diseases'">
+							<div class="card-body">
+								<h5 class="card-title">Diseases</h5>
+								<h1><i class="fas fa-head-side-cough"></i></h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,
 			iframe_info
@@ -118,26 +197,17 @@
 			order by seqnum
 		</sql:query>
 		
-		<div class="dashboard-section" id="fact-sheet">
-			<div class="row mx-auto" style="padding: 10px; width:100%;">
-				<div class="col-12 col-md-2"></div>
-				<div class="col-12 col-md-8">
-					<h1 style="text-align: center">The National COVID Cohort Collaborative (N3C)</h1>
-					<jsp:include page="modules/fact_sheet.jsp" />
-				</div>
-			</div>
-		</div>
 
-		<div class="dashboard-section" id="data-overview">
+		<div class="dashboard-section hidden" id="data-overview">
 			<h2>Enclave Data Overview</h2>
 			
 			<div class="row">
-				<div class="col-8 my-auto">
+				<div class="col-12 col-md-8 my-auto">
 					<h4>Summary Data</h3>
 					<h5>These dashboard provides an overview of the demographics, severity, vaccination status, and comorbidities of 
 					COVID+ patients within the Enclave. You can explore the full data, or specifically target adult or pediatrics age groups.</h5>
 				</div>
-				<div class="col-4">
+				<div class="col-12 col-md-4">
 					<div id="summary_carousel" class="carousel slide" data-interval="false">
 						<div class="carousel-inner">
 							<c:forEach items="${summary.rows}" var="row" varStatus="rowCounter">
@@ -186,7 +256,6 @@
 											role="button" data-html="true" 
 											data-toggle="popover" 
 											data-trigger="click" 
-											title="<b>Available Topics</b>" 
 											data-content="<a href='public-health/${row.iframe_info}/1'>COVID+ and Hospitalization</a> 
 											<br> <a href='public-health/${row.iframe_info}/2'>Delayed Mortality</a>">
 											Topics&#8196;<i class="fas fa-bars"></i>
@@ -209,7 +278,7 @@
 			order by seqnum
 		</sql:query>
 		
-		<div class="dashboard-section" id="cases">
+		<div class="dashboard-section hidden" id="cases">
 			<h2>Cases</h2>
 			<div class="row">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
@@ -231,7 +300,7 @@
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Medication' and visible order by seqnum
 		</sql:query>
-		<div class="dashboard-section" id="medications">
+		<div class="dashboard-section hidden" id="medications">
 			<h2>Medications</h2>
 			<div class="row">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
@@ -256,7 +325,7 @@
 			order by seqnum
 		</sql:query>
 		
-		<div class="dashboard-section" id="diseases">
+		<div class="dashboard-section hidden" id="diseases">
 			<h2>Diseases</h2>
 			<div class="row">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
@@ -281,7 +350,7 @@
 			order by seqnum
 		</sql:query>
 		
-		<div class="dashboard-section" id="card-carousel">
+		<div class="dashboard-section hidden" id="card-carousel">
 			<h2>Card Carousel Example</h2>
 			<div class="row">
 				<div id="test_carousel" class="carousel slide" data-interval="false">
@@ -316,6 +385,7 @@
 	</div>
 
 	<jsp:include page="footer.jsp" flush="true" />
+	<jsp:include page="modules/fade_animation_init.jsp" flush="true" />
 </body>
 
 <script>

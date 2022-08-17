@@ -113,6 +113,8 @@ WebContent/images/dashboards/smoking.png -text
 WebContent/images/dashboards/summary.png -text
 WebContent/images/dashboards/timeline.png -text
 WebContent/images/favicon.ico -text
+WebContent/images/home/connect_hero.png -text
+WebContent/images/home/team_hero.png -text
 WebContent/images/icons/admin.png -text
 WebContent/images/icons/covid.png -text
 WebContent/images/icons/explore.png -text
@@ -141,6 +143,7 @@ WebContent/modules/collaboration_networks.jsp -text
 WebContent/modules/domain_team_roster.jsp -text
 WebContent/modules/explorer.jsp -text
 WebContent/modules/fact_sheet.jsp -text
+WebContent/modules/fact_sheet_dashboard.jsp -text
 WebContent/modules/fade_animation_init.jsp -text
 WebContent/modules/kpis/covid_first_diagnosis.jsp -text
 WebContent/modules/kpis/covid_positive.jsp -text
