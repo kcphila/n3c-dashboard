@@ -26,6 +26,9 @@
       <li class="nav-item <c:if test = "${param.page == 'recover'}"> active </c:if>">
         <a class="nav-link" href="<util:applicationRoot/>/recover">RECOVER</a>
       </li>
+      <li class="nav-item <c:if test = "${param.page == 'downloads'}"> active </c:if>">
+        <a class="nav-link" href="<util:applicationRoot/>/downloads">Downloads</a>
+      </li>
       <c:if test="${not empty admin}">
 				<li class="nav-item">
 					<a class="nav-link" href="dashboard.jsp">Dashboard</a>

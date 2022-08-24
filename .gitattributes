@@ -36,10 +36,14 @@ WebContent/dashboard_descriptions/severity-region.jsp -text
 WebContent/dashboard_descriptions/smoking.jsp -text
 WebContent/dashboard_descriptions/summary.jsp -text
 WebContent/dashboard_descriptions/timeline.jsp -text
+WebContent/downloads.jsp -text
 WebContent/exploration.jsp -text
 WebContent/feeds/aggregated.jsp -text
 WebContent/feeds/configuration.jsp -text
 WebContent/feeds/domain_team_roster.jsp -text
+WebContent/feeds/download_csv.jsp -text
+WebContent/feeds/download_json.jsp -text
+WebContent/feeds/downloads.jsp -text
 WebContent/feeds/embedded_fact_sheet.jsp -text
 WebContent/feeds/hive_data.jsp -text
 WebContent/feeds/line_dua_dta_regs.jsp -text
