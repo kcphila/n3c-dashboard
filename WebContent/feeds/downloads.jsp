@@ -31,6 +31,7 @@
 			from palantir.other_feed_file
 		  ) as done;
 </sql:query>
+
 {
     "headers": [
         {"value":"category", "label":"Category"},
