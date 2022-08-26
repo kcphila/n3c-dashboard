@@ -3,7 +3,8 @@
 
 <sql:query var="ages" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by file))
-	from (select
+	from (select * from
+			(select
 			'Public Health' as category,
 			file,
 			to_char(updated, 'yyyy-mm-dd HH24:MI TZ') as updated,
@@ -29,7 +30,8 @@
 			'<a href="feeds/download_json.jsp?schema=' || table_schema || '&table=' || file || '">download</a>' as json,
 			'<a href="feeds/download_csv.jsp?schema=' || table_schema || '&table=' || file || '">download</a>' as csv
 			from palantir.other_feed_file
-		  ) as done;
+		  ) as foo
+		  natural join palantir.file_row_count) as done;
 </sql:query>
 
 
@@ -38,6 +40,7 @@
         {"value":"category", "label":"Category"},
         {"value":"file", "label":"File"},
         {"value":"updated", "label":"Last Updated"},
+		{"value":"row_count", "label":"Row Count"},
         {"value":"attributes", "label":"Attributes"},
         {"value":"json", "label":"JSON"},
         {"value":"csv", "label":"CSV"}

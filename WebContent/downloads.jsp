@@ -107,7 +107,8 @@ $.getJSON("<util:applicationRoot/>/feeds/downloads.jsp", function(data){
      	columns: [
         	{ data: 'category', visible: true, orderable: true },
         	{ data: 'file', visible: true, orderable: true },
-        	{ data: 'updated', visible: true, orderable: true },
+        	{ data: 'updated', visible: true, orderable: true, className: "text-nowrap"},
+            { data: 'row_count', visible: true, orderable: true, className: "text-right", render: $.fn.dataTable.render.number(',', '.', 0, '')},
          	{ data: 'attributes', visible: true, orderable: true},
          	{ data: 'json', visible: true, orderable: false},
          	{ data: 'csv', visible: true, orderable: false}
