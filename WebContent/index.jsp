@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <!DOCTYPE html>
@@ -147,22 +148,12 @@
 					</div>
 					<h5>Content:</h5>
 					<ul class="list-group list-group-flush">
-  						<li class="list-group-item"><a href="public-health/SummaryDataAllAges">Cumulative</a>
-  							/ <a href="public-health/summary">Adult</a>
-  							/ <a href="public-health/pediatrics">Pediatrics</a> Summaries</li>
-						<li class="list-group-item"><a href="public-health/medications">Medications</a></li>
-						<li class="list-group-item"><a href="public-health/Paxlovid">Paxlovid</a></li>
-						<li class="list-group-item"><a href="public-health/long-covid">Long COVID</a></li>
-						<li class="list-group-item"><a href="public-health/timeline">Cumulative &amp; Average Cases</a></li>
-						<li class="list-group-item"><a href="public-health/reinfection">COVID+ Reinfection</a></li>
-						<li class="list-group-item"><a href="public-health/diabetes-mellitus">Diabetes Mellitus</a></li>
-						<li class="list-group-item"><a href="public-health/MedicationsSnapshots">Medication</a>
-							/ <a href="public-health/hlh">Disease</a> Snapshots</li>
-						<li class="list-group-item"><a href="public-health/smoking">Smoking</a></li>
-						<li class="list-group-item"><a href="public-health/delayed-mortality">Mortality</a></li>
-						<li class="list-group-item"><a href="public-health/hss">Cumulative Participant Data</a></li>
-						<li class="list-group-item"><a href="public-health/reinfection-time-series">Reinfection Time Series</a></li>
-						<li class="list-group-item"><a href="public-health/severity-region">Regional Patient Distribution</a></li>
+						<sql:query var="questions" dataSource="jdbc/N3CPublic">
+							select question,iframe_info from n3c_questions.roster where visible order by seqnum;
+						</sql:query>
+						<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">
+							<li class="list-group-item"><a href="public-health/${row.iframe_info}">${row.question}</a></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>		
