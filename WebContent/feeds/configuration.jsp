@@ -36,7 +36,7 @@ var comorbidity_number_range = ["#EADEF7", "#DECBF2", "#D1B7ED", "#C5A4E8", "#B8
 
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 var categorical2 = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
-var categorical8 = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#007BFF", "#a6a6a6"];
+var categorical8 = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#007BFF", "#000000", "#a6a6a6"];
 
 var sequential_1_2 = ["#D6BFD9", "#4D2F50"];
 var sequential_1_3 = ["#D6BFD9", "#9a5fa0", "#4D2F50"];
