@@ -37,6 +37,7 @@ WebContent/dashboard_descriptions/smoking.jsp -text
 WebContent/dashboard_descriptions/summary.jsp -text
 WebContent/dashboard_descriptions/timeline.jsp -text
 WebContent/downloads.jsp -text
+WebContent/embedded.jsp -text
 WebContent/exploration.jsp -text
 WebContent/feeds/aggregated.jsp -text
 WebContent/feeds/configuration.jsp -text
@@ -137,6 +138,7 @@ WebContent/images/spotlight_preview.png -text
 WebContent/index.jsp -text
 WebContent/index2.jsp -text
 WebContent/index3.jsp -text
+WebContent/index3_embedded.jsp -text
 WebContent/long_covid/data.json -text
 WebContent/long_covid/fig4.jsp -text
 WebContent/long_covid/table1.html -text

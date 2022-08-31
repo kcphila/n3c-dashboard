@@ -153,8 +153,6 @@ a{
 	});
 </script>
 <body>
-	<jsp:include page="navbar.jsp" flush="true" />
-	
 	<div class="row" style="width:100%; margin:auto; padding-bottom:40px; background-position: bottom; background-size: cover; background-image: url('<util:applicationRoot/>/images/home/team_hero.png');">
 			<div class="head head-text col-12 col-md-10 col-lg-10 col-xl-11">
 				<div class="n3c-page-head">			
@@ -402,7 +400,6 @@ a{
 		
 	</div>
 
-	<jsp:include page="footer.jsp" flush="true" />
 	<jsp:include page="modules/fade_animation_init.jsp" flush="true" />
 </body>
 
