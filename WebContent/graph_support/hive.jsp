@@ -38,9 +38,9 @@ div.tooltip {
     pointer-events: none;
   }
 </style>
-<script src="../../resources/d3.hive.min.js"></script>
+<script src="<util:applicationRoot/>/resources/d3.hive.min.js"></script>
 <script>
-d3.json("../../feeds/hive_data.jsp", function(error, data) {	
+d3.json("<util:applicationRoot/>/feeds/hive_data.jsp", function(error, data) {	
 	if (error) throw error;
 	// console.log(data);
 	

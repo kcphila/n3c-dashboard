@@ -19,7 +19,7 @@ Click on a node to display the cumulative summary graph for that dimension.</p>
 
 function ${param.block}_hive_refresh() {
 	var properties = {
-		feed_path: "../../feeds/hive_data.jsp",
+		feed_path: "<util:applicationRoot/>/feeds/hive_data.jsp",
 		scaling: 1.75,
 		domName: "${param.block}_hive_viz",
 		domTarget: "all_summary_1",

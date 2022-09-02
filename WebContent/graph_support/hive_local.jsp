@@ -38,7 +38,7 @@ div.tooltip {
     pointer-events: none;
   }
 </style>
-<script src="../resources/d3.hive.min.js"></script>
+<script src="<util:applicationRoot/>/resources/d3.hive.min.js"></script>
 <script>
 	function localHiveChart(properties) {
 		// console.log("properties", properties);

@@ -54,7 +54,8 @@ function frame_load(selection) {
 		$this.load("<util:applicationRoot/>/new_ph/reinfection/"+selection+".jsp");
 		frame_crumbs = frame_crumbs + selection;
 	}
-	cache_browser_history("public-health", "public-health/reinfection/"+url_map(selection));
+	if (typeof embedded_mode == 'undefined' || !embedded_mode)
+		cache_browser_history("public-health", "public-health/reinfection/"+url_map(selection));
 };
 
 $(document).ready(function() {

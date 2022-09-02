@@ -10,6 +10,7 @@
 <body>
 <script type="text/javascript">
 	<jsp:include page="feeds/configuration.jsp"/>
+	var embedded_mode = true;
 </script>
 
 <jsp:include page="graph_support/pieChart_local.jsp"/>
@@ -32,6 +33,6 @@
 <jsp:include page="graph_support/mortalityBarChart_local.jsp"/>
 <jsp:include page="graph_support/graphic_save.jsp"/>
 
-<jsp:include page="new_ph/all_summary/panel.jsp"/>
+<jsp:include page="new_ph/${param.panel}/panel.jsp"/>
 </body>
 </html>
