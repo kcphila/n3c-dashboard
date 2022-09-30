@@ -108,7 +108,7 @@
 								</select>
 							</div>
 							<div class="panel-body">
-								<h6>Gender</h6>
+								<h6>Sex</h6>
 								<select id="gender-select" multiple="multiple">
 									<sql:query var="gender" dataSource="jdbc/N3CPublic">
 										select gender_abbrev as gender, gender_abbrev, sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.gender_map group by 1, gender_seq order by gender_seq;
@@ -168,7 +168,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-lg-6 viz_section">
-				<h5 class="text-center strong">Gender</h5>
+				<h5 class="text-center strong">Sex</h5>
 				<div class="panel-body">
 					<div id="gender_histogram"></div>
 				</div>

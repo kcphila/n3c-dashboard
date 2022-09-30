@@ -22,7 +22,7 @@
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
         {"value":"age_bin", "label":"Age"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"gender", "label":"Sex"},
         {"value":"severity", "label":"Severity"},
         {"value":"patient_count", "label":"Patient Count"},
         {"value":"age_abbrev", "label":"dummy1"},
