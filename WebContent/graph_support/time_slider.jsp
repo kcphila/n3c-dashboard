@@ -47,8 +47,14 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	var targetValue = width;
 	var timer;
 	
+	/// get current month and year for end date
+	var current_date = new Date();
+	var current_year = current_date.getFullYear();
+	var current_month = current_date.toLocaleString('default', { month: 'short' });
+	
+	/// set timeline min, max, and start dates
 	var minDate = new Date('Jan 01 2020'),
-	      maxDate = new Date('Jul 01 2022'),
+	      maxDate = new Date(current_month + " 01 " + current_year),
 	      startDate = new Date("Feb 01 2022");
 	var interval = maxDate.getFullYear() - minDate.getFullYear() + 1;
 	var startYear = minDate.getFullYear();
@@ -135,7 +141,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	}
 	
 	function update2() {
-		var current_date = sliderTime.value();
+		var current_date = new Date(JSON.parse(JSON.stringify(sliderTime.value())));
 		var stepday = daysInMonth(current_date.getMonth(), current_date.getFullYear());
 		current_date.setDate(current_date.getDate() + (stepday));
 		if(current_date.valueOf() > maxDate.valueOf()) {
@@ -279,13 +285,11 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			
 			function daysInMonth (month, year) {
 				var test = new Date(year, month+1, 0);
-			    // console.log(test);
-			    // console.log(test.getDate());
 			    return test.getDate(); 
 			}
 			
 			function update2() {
-				var current_date = sliderTime.value();
+				var current_date = new Date(JSON.parse(JSON.stringify(sliderTime.value())));
 				var stepday = daysInMonth(current_date.getMonth(), current_date.getFullYear());
 				current_date.setDate(current_date.getDate() + (stepday));
 				if(current_date.valueOf() > maxDate.valueOf()) {
