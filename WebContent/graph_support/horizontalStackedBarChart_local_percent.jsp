@@ -233,7 +233,7 @@ function localHorizontalStackedBarChart2(data, properties) {
 	     				var primary = data[i].abbrev; 
 	     				var primary_index = totals_map.indexOf(primary);
 	     				var sum = totals[primary_index].value.total;
-	     				return  "% of Total " + primary + " Patients : " + ((count2/sum) * 100).toFixed(2) + "%";
+	     				return  "% of Total (" + primary + ") : " + ((count2/sum) * 100).toFixed(2) + "%";
 	     			})
 	     			.attr('fill', 'black')
 	     			.attr('x', 10)
@@ -241,7 +241,7 @@ function localHorizontalStackedBarChart2(data, properties) {
 					.append("tspan")
 	     			.text(function(){
 	     				var primary = data[i].abbrev; 
-	     				return  "% of Filtered " + primary + " Patients : " + ((count2/d[3]) * 100).toFixed(2) + "%";
+	     				return  "% of Filtered (" + primary + ") w/" + d[2] + ": " + ((count2/d[3]) * 100).toFixed(2) + "%";
 	     			})
 	     			.attr('fill', 'black')
 	     			.attr('x', 10)
