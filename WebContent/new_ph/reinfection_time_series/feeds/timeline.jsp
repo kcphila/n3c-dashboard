@@ -14,13 +14,13 @@ from (select initial_infection, subsequent_infection, count, seven_day_rolling_a
 		end as actual_count,
 	 	initial_year||'-'||to_char(initial_month,'FM00') as initial,
 	 	subsequent_year||'-'||to_char(subsequent_month, 'FM00') as subsequent
-	 from n3c_questions.all_tests_month_cohort
+	 from n3c_questions_new.all_tests_month_cohort_reinfection_time_series
 	 ) as foo
 	 natural join
 	(select
 		to_char(first_diagnosis_date::date, 'yyyy-mm') as initial,
 		max(seven_day_rolling_avg) as seven_day_rolling_avg
-	from n3c_questions.positive_cases_by_day_cumsum_censored
+	from n3c_questions_new.positive_cases_by_day_cumsum_censored
 	group by 1
 	) as bar
 	) as json

@@ -11,7 +11,7 @@
  		end as count from (
     	select
     	sum(case when (count_ethnicity_unknown = '<20') then 0 else COALESCE(count_ethnicity_unknown::int, 0) end) as count_ethnicity_unknown
-    	from n3c_questions.person_agg_demographic_censored
+    	from n3c_questions_new.person_agg_demographic_censored_cumulative_positive
 	) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

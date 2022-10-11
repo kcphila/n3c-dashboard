@@ -29,7 +29,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.icd10_individual_symptom_summary_counts
+				  from n3c_questions_new.icd10_individual_symptom_summary_counts_long_covid
 				  natural join n3c_dashboard.symptom_grouped_map
 				  WHERE count IS NOT NULL and count != '<20'
 		  	) as foo

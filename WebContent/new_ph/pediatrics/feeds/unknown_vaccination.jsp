@@ -18,20 +18,20 @@
             gender_map3.gender_seq,
             severity_map.severity_abbrev,
             severity_map.severity_seq
-           FROM ( SELECT covid_positive_comorbidities_demo_censored_wo_vax.severity_type AS severity,
-                    COALESCE(covid_positive_comorbidities_demo_censored_wo_vax.gender_concept_name, 'null'::text) AS gender,
-                    COALESCE(covid_positive_comorbidities_demo_censored_wo_vax.age_bin, 'null'::text) AS age_bin,
-                    covid_positive_comorbidities_demo_censored_wo_vax.race_concept_name AS race,
-                    regexp_replace(covid_positive_comorbidities_demo_censored_wo_vax.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
-                    covid_positive_comorbidities_demo_censored_wo_vax.num_patients AS patient_display,
+           FROM ( SELECT covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.severity_type AS severity,
+                    COALESCE(covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.gender_concept_name, 'null'::text) AS gender,
+                    COALESCE(covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.age_bin, 'null'::text) AS age_bin,
+                    covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.race_concept_name AS race,
+                    regexp_replace(covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
+                    covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.num_patients AS patient_display,
                         CASE
-                            WHEN covid_positive_comorbidities_demo_censored_wo_vax.num_patients = '<20'::text OR covid_positive_comorbidities_demo_censored_wo_vax.num_patients IS NULL THEN 0
-                            ELSE covid_positive_comorbidities_demo_censored_wo_vax.num_patients::integer
+                            WHEN covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.num_patients = '<20'::text OR covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.num_patients IS NULL THEN 0
+                            ELSE covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.num_patients::integer
                         END AS patient_count
-                   FROM n3c_questions.covid_positive_comorbidities_demo_censored_wo_vax
-                  WHERE covid_positive_comorbidities_demo_censored_wo_vax.num_patients IS NOT NULL 
-                  AND covid_positive_comorbidities_demo_censored_wo_vax.num_patients <> '<20'::text 
-                  AND ((covid_positive_comorbidities_demo_censored_wo_vax.age_bin in ('0-4', '5-11', '12-15', '16-<18')) )) foo
+                   FROM n3c_questions_new.covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_
+                  WHERE covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.num_patients IS NOT NULL 
+                  AND covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.num_patients <> '<20'::text 
+                  AND ((covid_positive_comorbidities_demo_censored_wo_vax_adult_ped_.age_bin in ('0-4', '5-11', '12-15', '16-<18')) )) foo
              JOIN n3c_dashboard.age_map6 USING (age_bin)
              JOIN n3c_dashboard.race_map USING (race)
              JOIN n3c_dashboard.gender_map3 USING (gender)

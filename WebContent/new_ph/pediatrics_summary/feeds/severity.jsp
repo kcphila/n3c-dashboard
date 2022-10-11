@@ -6,16 +6,16 @@
 	from (select *
 			from (select
 					severity_type as severity,
-					race_concept_name as race,
-					ethnicity_concept_name as ethnicity,
-					age_bin,
+					race,
+					ethnicity,
+					bin_age as age_bin,
 					gender_concept_name as gender,
 					num_patients as patient_display,
 					case
 						when (num_patients = '<20' or num_patients is null) then 0
 						else num_patients::int
 					end as patient_count
-				  from n3c_questions.pediatric_covid_pos_demo_censored
+				  from n3c_questions_new.pediatric_covid_pos_demo_censored_pediatric_summary
 		  	) as foo
 		  	natural join n3c_dashboard.age_map3
 		  	natural join n3c_dashboard.race_map

@@ -9,7 +9,7 @@
 				when (num_patients = '<20' or num_patients is null) then 0
 				else num_patients::int
 			end as count
-			from n3c_questions.covid_patients_demographics_censored) as foo
+			from n3c_questions_new.covid_patients_demographics_censored) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="panel-body kpi">

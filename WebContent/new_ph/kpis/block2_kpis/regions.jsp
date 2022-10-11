@@ -12,7 +12,7 @@
 			from (select sum(case
 			when (num_patients = '<20' or num_patients is null) then 0
 			else num_patients::int
-			end) as count from n3c_questions.cases_by_severity_by_state_censored
+			end) as count from n3c_questions_new.cases_by_severity_by_state_censored_regional_distribution
 			where COALESCE(state, 'test') in (select state from n3c_dashboard.state_map)
 		) as foo;
 </sql:query>

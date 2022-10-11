@@ -10,7 +10,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.icd10_symptoms_summary_counts
+				  from n3c_questions_new.icd10_individual_symptom_summary_counts_long_covid
 				  where observation = 'Has not tested positive'
 		  	) as foo
 </sql:query>

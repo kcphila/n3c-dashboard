@@ -19,7 +19,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.sotrovimab_other_meds
+				  from n3c_questions_new.sotrovimab_other_meds_updated
 		  	) as foo
 		  	natural join n3c_dashboard.severity_map
 		  	natural join n3c_dashboard.medications_map

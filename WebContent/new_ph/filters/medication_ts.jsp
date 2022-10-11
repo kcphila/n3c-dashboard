@@ -6,7 +6,7 @@
 	<h6>Medications</h6>
 	<select id="${param.block}-medications-select" multiple="multiple">
 		<sql:query var="cases" dataSource="jdbc/N3CPublic">
-			select distinct drug_name as medication from n3c_questions.drug_monthly_count_summary
+			select distinct drug_name as medication from n3c_questions_new.drug_monthly_count_summary
 			order by 1;
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">

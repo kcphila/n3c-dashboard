@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
  <sql:query var="totals" dataSource="jdbc/N3CPublic">
- 	select count(distinct concept_set_name) from n3c_questions.covid_patients_demographics_censored;
+ 	select count(distinct concept_set_name) from n3c_questions_new.covid_patients_demographics_censored;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="panel-body kpi">

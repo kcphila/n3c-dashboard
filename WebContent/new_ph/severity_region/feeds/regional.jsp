@@ -13,7 +13,7 @@ from (select severity_abbrev as severity, severity_seq, state, region_id, region
 	 	end as state,
 	 	severity_type as severity,
 	 	num_patients as state_count
-	 from n3c_questions.cases_by_severity_by_state_censored
+	 from n3c_questions_new.cases_by_severity_by_state_censored_regional_distribution
 	 ) as foo
 	 natural join
 	n3c_dashboard.severity_map
@@ -26,7 +26,7 @@ from (select severity_abbrev as severity, severity_seq, state, region_id, region
 				when (num_patients = '<20' or num_patients is null) then 0
 				else num_patients::int
 			end) as region_count
-	 from n3c_questions.cases_by_severity_by_state_censored
+	 from n3c_questions_new.cases_by_severity_by_state_censored_regional_distribution
 	 natural join n3c_dashboard.state_map
 	 group by region_id) as foo2
 	natural join
@@ -36,7 +36,7 @@ from (select severity_abbrev as severity, severity_seq, state, region_id, region
 				when (num_patients = '<20' or num_patients is null) then 0
 				else num_patients::int
 			end) as division_count
-	 from n3c_questions.cases_by_severity_by_state_censored
+	 from n3c_questions_new.cases_by_severity_by_state_censored_regional_distribution
 	 natural join n3c_dashboard.state_map
 	 group by division_id
 	) as bar

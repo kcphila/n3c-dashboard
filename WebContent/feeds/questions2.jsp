@@ -3,7 +3,7 @@
 
 <sql:query var="questions" dataSource="jdbc/N3CPublic">
 	select seqnum, jsonb_build_object('question' , question, 'asked' , asked, 'description' , description, 'limitations' , limitations, 'iframe_info' , iframe_info, 'iframe_content' , iframe_content, 'iframe_style' , iframe_style) AS data
-	from n3c_questions.roster
+	from n3c_questions_new.roster
 	order by seqnum;
 </sql:query>
 

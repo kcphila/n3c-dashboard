@@ -11,7 +11,7 @@
 			when (vaccinated = '1') then 'True'
 			else vaccinated
 			end as vaccinated
-			from (select distinct(vaccinated) from n3c_questions.covid_positive_with_vax_censored) as foo;
+			from (select distinct(vaccinated) from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum) as foo;
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
 			<option value="${row.vaccinated}">${row.vaccinated}</option>

@@ -217,7 +217,7 @@ a{
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,
 			iframe_info
-			from n3c_questions.roster 
+			from n3c_questions_new.roster 
 			where iframe_info in ('severity-region', 'hss', 'smoking', 'delayed-mortality')
 			order by seqnum
 		</sql:query>
@@ -225,7 +225,7 @@ a{
 		<sql:query var="summary" dataSource="jdbc/N3CPublic">
 			select question,
 			iframe_info
-			from n3c_questions.roster 
+			from n3c_questions_new.roster 
 			where iframe_info in ('summary', 'pediatrics', 'SummaryDataAllAges')
 			order by seqnum
 		</sql:query>
@@ -291,7 +291,7 @@ a{
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,
 			iframe_info
-			from n3c_questions.roster 
+			from n3c_questions_new.roster 
 			where iframe_info in ('timeline', 'reinfection-time-series', 'reinfection')
 			order by seqnum
 		</sql:query>
@@ -316,7 +316,7 @@ a{
 		
 	
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions.roster where question ~ 'Medication' and visible order by seqnum
+			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions_new.roster where question ~ 'Medication' and visible order by seqnum
 		</sql:query>
 		<div class="dashboard-section hidden" id="medications">
 			<h2>Medications</h2>
@@ -338,7 +338,7 @@ a{
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,
 			iframe_info
-			from n3c_questions.roster 
+			from n3c_questions_new.roster 
 			where iframe_info in ('hlh', 'diabetes-mellitus', 'long-covid')
 			order by seqnum
 		</sql:query>
@@ -363,7 +363,7 @@ a{
 		<sql:query var="topics" dataSource="jdbc/N3CPublic">
 			select question,
 			iframe_info
-			from n3c_questions.roster 
+			from n3c_questions_new.roster 
 			where iframe_info in ('hlh', 'diabetes-mellitus', 'long-covid', 'timeline', 'reinfection-time-series', 'reinfection')
 			order by seqnum
 		</sql:query>

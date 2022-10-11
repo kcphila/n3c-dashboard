@@ -12,7 +12,6 @@
 <jsp:include page="../graph_support/horizontalBarChart_local.jsp"/>
 <jsp:include page="../graph_support/horizontalBarChart_local2.jsp"/>
 <jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/>
-<jsp:include page="../graph_support/horizontalStackedBarChart_local_percent.jsp"/>
 <jsp:include page="../graph_support/time_line_2_column_local2.jsp"/>
 <jsp:include page="../graph_support/hive_local.jsp"/>
 <jsp:include page="../graph_support/time_line_n_column_local.jsp"/>
@@ -29,7 +28,7 @@
 <jsp:include page="../graph_support/graphic_save.jsp"/>
 
 <sql:query var="ages" dataSource="jdbc/N3CPublic">
-	select roster_map.* from n3c_dashboard.roster_map natural join n3c_questions.roster order by seqnum;
+	select roster_map.* from n3c_dashboard.roster_map natural join n3c_questions_new.roster order by seqnum;
 </sql:query>
 <c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
 	<c:choose>

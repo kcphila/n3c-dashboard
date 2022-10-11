@@ -8,7 +8,7 @@ select json_agg(json)
 				observation,
 				sum(count::int) as patient_count,
 				n_observation as observation_seq
-			from n3c_questions.diabetes_t1_full_censored
+			from n3c_questions_new.diabetes_t1_full_censored_diabetes_mellitus
 			where age_bracket != '<18' and count != '<20' group by 1,3
 			) as foo
 		union

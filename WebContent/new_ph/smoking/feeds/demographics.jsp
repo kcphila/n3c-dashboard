@@ -7,14 +7,14 @@
 			from (select
 					age_bin,
 					smoking_status,
-					race_concept_name as race,
+					race,
 					gender_concept_name as gender,
 					num_patients as patient_display,
 					case
 						when (num_patients = '<20' or num_patients is null) then 0
 						else num_patients::int
 					end as patient_count
-				  from n3c_questions.covid_smoking_demographics_censored
+				  from n3c_questions_new.covid_smoking_demographics_censored_smoking
 		  	) as foo
 		  	natural join n3c_dashboard.age_map4
 		  	natural join n3c_dashboard.race_map

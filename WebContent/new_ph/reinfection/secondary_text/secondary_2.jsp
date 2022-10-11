@@ -10,7 +10,7 @@
 				to_char(c_date::date, 'FMMM/FMDD/YY') as date,
 				to_char(first_diagnosis_count::int,'999,999') as first_diagnosis,
 				to_char(subsequent_test_count::int, '999,999') as subsequent
-			from n3c_questions.covid_lds_with_reinfection_date_counts_censored where c_date ='2021-09-06'
+			from n3c_questions_new.covid_lds_with_reinfection_date_counts_censored_infection_re where c_date ='2021-09-06'
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
 			The numbers indicate counts of first diagnosis and counts of reinfection for that date.

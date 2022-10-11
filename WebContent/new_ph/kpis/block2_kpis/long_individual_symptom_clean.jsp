@@ -14,7 +14,7 @@
 				when (count = '<20' or count is null) then 0
 				else count::int
 			end as count
-			from n3c_questions.icd10_individual_symptom_summary_counts_by_symptom 
+			from n3c_questions_new.icd10_individual_symptom_summary_counts_by_symptom_long_covi 
 			where (observation = 'Has not tested positive' or observation = 'Tested positive')
 			<c:if test="${not empty param.symptom}">and symptom = '${param.symptom}'</c:if>
 		) as foo

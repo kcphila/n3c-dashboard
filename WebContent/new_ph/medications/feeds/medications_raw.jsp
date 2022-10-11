@@ -13,7 +13,7 @@
 						else num_patients::int
 					end as patient_count,
 					total_patients as total_count
-				  from n3c_questions.covid_patients_demographics_censored where drug_domain != 'N/A'
+				  from n3c_questions_new.covid_patients_demographics_censored_medications where drug_domain != 'N/A'
 		  	) as foo
 		  	natural join n3c_dashboard.age_map4
 		  ) as done;

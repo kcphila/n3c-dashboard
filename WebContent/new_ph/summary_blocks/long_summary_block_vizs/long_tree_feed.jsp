@@ -23,7 +23,7 @@
 		when (symptom = 'Fatigue') then 8
 		when (symptom = 'Cognitive impairment') then 7
 		end as viz_id
-		from n3c_questions.icd10_individual_symptom_summary_counts_by_symptom 
+		from n3c_questions_new.icd10_individual_symptom_summary_counts_by_symptom_long_covi
 		group by symptom
 	) as done;
 </sql:query>

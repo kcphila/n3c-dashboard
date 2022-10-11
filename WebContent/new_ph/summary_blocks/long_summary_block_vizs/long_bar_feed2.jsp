@@ -7,12 +7,12 @@
 		select count(distinct(symptom)) as count, 
 		'Grouped Symptoms' as label, 
 		4 as viz_id
-		from n3c_questions.icd10_individual_symptom_summary_counts
+		from n3c_questions_new.icd10_individual_symptom_summary_counts_long_covid
 		UNION 
 		select count(distinct(symptom)) as count, 
 		'Individual Symptoms' as label,
 		5 as viz_id
-		from n3c_questions.icd10_individual_symptom_summary_counts_by_symptom
+		from n3c_questions_new.icd10_individual_symptom_summary_counts_by_symptom_long_covi
 	) as done;
 </sql:query>
 {"rows": 

@@ -7,8 +7,8 @@
 				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev, gender_seq, severity_abbrev, severity_seq
 			from (select
 					severity_type as severity,
-					race_concept_name as race,
-					ethnicity_concept_name as ethnicity,
+					race,
+					ethnicity,
 					COALESCE (age_bin, 'null') as age,
 					COALESCE (gender_concept_name, 'null') as gender,
 					count as patient_display,
@@ -16,7 +16,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.all_ages_covid_pos_demo_censored
+				  from n3c_questions_new.all_ages_covid_pos_demo_censored
 		  	) as foo
 		  	join n3c_dashboard.age_map8 on foo.age = age_map8.age
 		  	natural join n3c_dashboard.race_map

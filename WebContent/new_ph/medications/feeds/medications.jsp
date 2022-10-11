@@ -15,7 +15,7 @@
 						else num_patients::int
 					end as patient_count,
 					total_patients as total_count
-				  from n3c_questions.covid_patients_demographics_censored natural join n3c_dashboard.medication_map
+				  from n3c_questions_new.covid_patients_demographics_censored_medications natural join n3c_dashboard.medication_map
 				  where concept_set_name != 'Available, in progress'
 				  order by drug_domain, medication) as bar group by 1,2,3,5 order by 1,2,3
 		  	) as foo

@@ -6,7 +6,7 @@
 	from (select *
 			from (select
 					severity_type as severity,
-					race_concept_name as race,
+					race,
 					regexp_replace(condition_name,'Charlson - ','','g') as comorbidity,
 					age_bin,
 					gender_concept_name as gender,
@@ -15,7 +15,7 @@
 						when (num_patients = '<20' or num_patients is null) then 0
 						else num_patients::int
 					end as patient_count
-				  from n3c_questions.covid_positive_comorbidity_non_grouped_demo_censored
+				  from n3c_questions_new.covid_positive_comorbidity_non_grouped_demo_censored
 		  	) as foo
 		  	natural join n3c_dashboard.age_map3
 		  	natural join n3c_dashboard.race_map

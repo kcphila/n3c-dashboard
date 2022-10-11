@@ -149,7 +149,7 @@
 					<h5>Content:</h5>
 					<ul class="list-group list-group-flush">
 						<sql:query var="questions" dataSource="jdbc/N3CPublic">
-							select question,iframe_info from n3c_questions.roster where visible order by seqnum;
+							select question,iframe_info from n3c_questions_new.roster where visible order by seqnum;
 						</sql:query>
 						<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">
 							<li class="list-group-item"><a href="public-health/${row.iframe_info}">${row.question}</a></li>

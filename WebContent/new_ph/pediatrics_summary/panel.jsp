@@ -8,7 +8,7 @@
 <!-- covid_positive_comorbidities_demo_censored_wo_vax (2022-03-31 04:58) -->
 <!-- covid_positive_comorbidity_non_grouped_demo_censored (2022-03-31 05:01) -->
 <!-- covid_positive_mab_demo_censored (2022-03-31 05:01) -->
-<!-- covid_positive_with_vax_censored (2022-03-31 04:59) -->
+<!-- covid_positive_with_vax_censored_adult_ped_sum (2022-03-31 04:59) -->
 
 <jsp:include page="../block.jsp">
 	<jsp:param name="block" value="pediatrics_summary_1" />

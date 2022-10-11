@@ -9,7 +9,7 @@
 			select distinct(case
 				when (condition_after_covid_positive) then 'After COVID+'
 				else 'Before COVID+'
-				end) as condition from n3c_questions.symptom_before_or_after_covid;
+				end) as condition from n3c_questions_new.symptom_before_or_after_covid;
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
 			<option value="${row.condition}">${row.condition}</option>

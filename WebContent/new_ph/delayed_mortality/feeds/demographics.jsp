@@ -8,13 +8,13 @@
 					age_bin,
 					gender_concept_name as gender,
 					race,
-					ethnicity,
+					ethnicity_concept_name as ethnicity,
 					count as patient_display,
 					case
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.icd10_mortality_demo_grouped
+				  from n3c_questions_new.icd10_mortality_demo_grouped_updated
 		  	) as foo
 		  	natural join n3c_dashboard.age_map4
 		  	natural join n3c_dashboard.race_map

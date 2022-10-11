@@ -24,7 +24,7 @@ from (select
 		end as actual_count,
 	 	initial_year||'-'||to_char(initial_month,'FM00') as initial,
 	 	subsequent_year||'-'||to_char(subsequent_month, 'FM00') as subsequent
-	 from n3c_questions.all_tests_month_cohort
+	 from n3c_questions_new.all_tests_month_cohort_reinfection_time_series
 	) as bar
 	) as json
 ;	

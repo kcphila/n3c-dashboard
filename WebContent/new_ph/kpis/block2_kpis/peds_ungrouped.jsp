@@ -14,7 +14,7 @@
 						when (num_patients = '<20' or num_patients is null) then 0
 						else num_patients::int
 					end as count
-				  from n3c_questions.covid_positive_comorbidity_non_grouped_demo_censored
+				  from n3c_questions_new.covid_positive_comorbidity_non_grouped_demo_censored
 				  where age_bin in ('0-4', '5-11', '12-15', '16-<18')
 				) as foo;
 </sql:query>

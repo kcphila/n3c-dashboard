@@ -17,7 +17,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.${param.comorbidity}_and_covid_summary
+				  from n3c_questions_new.${param.comorbidity}_and_covid_summary_updated
 		  	) as foo
 		  	natural join n3c_dashboard.gender_map2
 		  	natural join n3c_dashboard.age_map7

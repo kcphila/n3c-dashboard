@@ -13,7 +13,7 @@
 				when (subsequent_test_count = '<20' or subsequent_test_count is null) then 0
 				else subsequent_test_count::int
 			end as subsequent_test
-			from n3c_questions.covid_lds_with_reinfection_date_counts_censored) as foo
+			from n3c_questions_new.covid_lds_with_reinfection_date_counts_censored) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="panel-body kpi">

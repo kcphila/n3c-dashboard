@@ -14,7 +14,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as count
-				  from n3c_questions.sotrovimab_demographic
+				  from n3c_questions_new.sotrovimab_demographic_updated
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

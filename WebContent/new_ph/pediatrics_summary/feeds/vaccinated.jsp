@@ -19,7 +19,7 @@
 						when (num_patients = '<20' or num_patients is null) then 0
 						else num_patients::int
 					end as patient_count
-				  from n3c_questions.covid_positive_with_vax_censored
+				  from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum_adult_ped_sum
 		  	) as foo
 		  	natural join n3c_dashboard.age_map3
 		  	natural join n3c_dashboard.race_map

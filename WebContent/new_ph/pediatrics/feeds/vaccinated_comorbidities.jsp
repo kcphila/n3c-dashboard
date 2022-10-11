@@ -22,25 +22,25 @@
             gender_map3.gender_seq,
             severity_map.severity_abbrev,
             severity_map.severity_seq
-           FROM ( SELECT covid_positive_comorbidities_demo_censored.severity_type AS severity,
-                    covid_positive_comorbidities_demo_censored.race_concept_name AS race,
-                    covid_positive_comorbidities_demo_censored.ethnicity_concept_name AS ethnicity,
-                    regexp_replace(covid_positive_comorbidities_demo_censored.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
+           FROM ( SELECT covid_positive_comorbidities_demo_censored_adult_ped_sum.severity_type AS severity,
+                    covid_positive_comorbidities_demo_censored_adult_ped_sum.race_concept_name AS race,
+                    covid_positive_comorbidities_demo_censored_adult_ped_sum.ethnicity_concept_name AS ethnicity,
+                    regexp_replace(covid_positive_comorbidities_demo_censored_adult_ped_sum.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
                         CASE
-                            WHEN covid_positive_comorbidities_demo_censored.vaccinated = '1'::text THEN 'True'::text
-                            ELSE covid_positive_comorbidities_demo_censored.vaccinated
+                            WHEN covid_positive_comorbidities_demo_censored_adult_ped_sum.vaccinated = '1'::text THEN 'True'::text
+                            ELSE covid_positive_comorbidities_demo_censored_adult_ped_sum.vaccinated
                         END AS vaccinated,
-                    COALESCE(covid_positive_comorbidities_demo_censored.age_bin, 'null'::text) AS age_bin,
-                    COALESCE(covid_positive_comorbidities_demo_censored.gender_concept_name, 'null'::text) AS gender,
-                    covid_positive_comorbidities_demo_censored.num_patients AS patient_display,
+                    COALESCE(covid_positive_comorbidities_demo_censored_adult_ped_sum.age_bin, 'null'::text) AS age_bin,
+                    COALESCE(covid_positive_comorbidities_demo_censored_adult_ped_sum.gender_concept_name, 'null'::text) AS gender,
+                    covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients AS patient_display,
                         CASE
-                            WHEN covid_positive_comorbidities_demo_censored.num_patients = '<20'::text OR covid_positive_comorbidities_demo_censored.num_patients IS NULL THEN 0
-                            ELSE covid_positive_comorbidities_demo_censored.num_patients::integer
+                            WHEN covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients = '<20'::text OR covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients IS NULL THEN 0
+                            ELSE covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients::integer
                         END AS patient_count
-                   FROM n3c_questions.covid_positive_comorbidities_demo_censored
-                  WHERE covid_positive_comorbidities_demo_censored.num_patients <> '<20'::text 
-                  AND covid_positive_comorbidities_demo_censored.num_patients IS NOT NULL 
-                  AND (covid_positive_comorbidities_demo_censored.age_bin in ('0-4', '5-11', '12-15', '16-<18') )) foo
+                   FROM n3c_questions_new.covid_positive_comorbidities_demo_censored_adult_ped_sum
+                  WHERE covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients <> '<20'::text 
+                  AND covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients IS NOT NULL 
+                  AND (covid_positive_comorbidities_demo_censored_adult_ped_sum.age_bin in ('0-4', '5-11', '12-15', '16-<18') )) foo
              JOIN n3c_dashboard.age_map6 USING (age_bin)
              JOIN n3c_dashboard.race_map USING (race)
              JOIN n3c_dashboard.ethnicity_map USING (ethnicity)

@@ -11,7 +11,7 @@
 			interval / 30 as interval_bin_seq
 	from (select
 	 	distinct((subsequent_month||'/'||'01/'||subsequent_year)::date - (initial_month||'/'||'01/'||initial_year)::date) as interval
-	 	from n3c_questions.all_tests_month_cohort
+	 	from n3c_questions_new.all_tests_month_cohort_reinfection_time_series
 	) as bar order by interval_bin_seq
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">

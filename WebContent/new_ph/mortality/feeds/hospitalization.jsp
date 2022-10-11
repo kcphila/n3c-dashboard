@@ -7,7 +7,7 @@
 				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev, gender_seq
 			from (select
 					race,
-					ethnicity,
+					ethnicity_concept_name as ethnicity,
 					COALESCE (age_bin, 'Null') as age,
 					gender_concept_name as gender,
 					count as patient_display,
@@ -15,7 +15,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.icd10_mortality_demo_grouped
+				  from n3c_questions_new.icd10_mortality_demo_grouped_updated
 		  	) as foo
 		  	natural join n3c_dashboard.age_map10
 		  	natural join n3c_dashboard.race_map

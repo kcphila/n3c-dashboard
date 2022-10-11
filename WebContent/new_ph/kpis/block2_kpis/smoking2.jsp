@@ -12,9 +12,9 @@
 			from (select
 					case
 						when (num_patients is null) then 0
-						else num_patients
+						else num_patients::int
 					end as count
-				  from n3c_questions.covid_smoking_severity_censored
+				  from n3c_questions_new.covid_smoking_severity_censored_smoking
 				  where smoking_status = 'Current or Former'
 				) as foo;
 </sql:query>

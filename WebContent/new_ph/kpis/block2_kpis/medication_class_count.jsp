@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
-	select count(distinct drug_domain) from n3c_questions.covid_patients_demographics_censored where drug_domain != 'N/A';
+	select count(distinct drug_domain) from n3c_questions_new.covid_patients_demographics_censored_medications where drug_domain != 'N/A';
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

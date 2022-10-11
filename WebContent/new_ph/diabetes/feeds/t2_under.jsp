@@ -8,15 +8,15 @@ select json_agg(json)
 				observation,
 				sum(count::int) as patient_count,
 				n_observation as observation_seq
-			from n3c_questions.diabetes_t2_full_censored
+			from n3c_questions_new.diabetes_t2_full_censored_diabetes_mellitus
 			where age_bracket = '<18' and count != '<20' group by 1,3
 			) as foo
 		union
 			select
-				covid_event_type as observation,
+				severity_type as observation,
 				count as patient_count,
 				0 as observation_seq
-			from n3c_questions.pediatric_covid_event_type order by 3,2 desc
+			from n3c_questions_new.pediatric_covid_event_type_pediatric_summary order by 3,2 desc
 		) as json
 </sql:query>
 {

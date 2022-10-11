@@ -12,7 +12,7 @@
 		) as count, 
 		'Long COVID ICD-10 (U09.9) In Record' as label, 
 		13 as viz_id
-		from n3c_questions.long_covid_icd_agg_censored 
+		from n3c_questions_new.long_covid_icd_agg_censored_long_covid_diagnosis
 		UNION 
 		select sum(
 			case
@@ -22,7 +22,7 @@
 		) as count, 
 		'Long COVID Clinic Visit' as label,
 		2 as viz_id
-		from n3c_questions.long_covid_concept_set_agg_censored
+		from n3c_questions_new.long_covid_concept_set_agg_censored_long_covid_diagnosis
 	) as done;
 </sql:query>
 {"rows": 

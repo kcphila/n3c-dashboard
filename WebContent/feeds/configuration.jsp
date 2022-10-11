@@ -273,7 +273,7 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 var medication_legend = new Array()
 <sql:query var="statuses" dataSource="jdbc/N3CPublic">
 	select distinct drug_name
-		  from n3c_questions.drug_monthly_count_summary order by drug_name
+		  from n3c_questions_new.drug_monthly_count_summary order by drug_name
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	medication_legend.push("${row.drug_name}");

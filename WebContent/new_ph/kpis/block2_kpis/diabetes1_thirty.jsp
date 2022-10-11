@@ -14,7 +14,7 @@
 				when (count = '<20' or count is null) then 0
 				else count::int
 				end as count
-			from n3c_questions.diabetes_t1_full_censored
+			from n3c_questions_new.diabetes_t1_full_censored_diabetes_mellitus
 			where observation = 'Type 1 Diabetes condition 30 days after covid'
 		) as foo;
 </sql:query>

@@ -14,7 +14,7 @@
 			positive_cases as positive_cases_display,
 			cumsum_positivecases as cumsum_positivecases_display,
 			to_char(seven_day_rolling_avg::float, '999999.99') as seven_day_rolling_avg_display
-		from n3c_questions.positive_cases_by_day_cumsum_censored where first_diagnosis_date::date < now()) as json;
+		from n3c_questions_new.positive_cases_by_day_cumsum_censored where first_diagnosis_date::date < now()) as json;
 
 </sql:query>
 

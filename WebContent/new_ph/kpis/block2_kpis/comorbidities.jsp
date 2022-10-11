@@ -14,7 +14,7 @@
 				when (count = '<20' or count is null) then 0
 				else count::int
 			end as count
-			from n3c_questions.${param.kpi_filter}_and_covid_summary
+			from n3c_questions_new.${param.kpi_filter}_and_covid_summary_updated
 			where observation = 'has disease'
 		) as foo
 </sql:query>

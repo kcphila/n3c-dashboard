@@ -12,13 +12,13 @@
         race_seq, race_abbrev, ethnicity_seq, ethnicity_abbrev, gender_seq, gender_abbrev
         from(
             select race, 'Not Hispanic or Latino' as ethnicity, gender_concept_name as gender, COALESCE(count_non_hispanic, '<20') as patient_display
-            from n3c_questions.person_agg_demographic_censored
+            from n3c_questions_new.person_agg_demographic_censored_cumulative_positive 
             UNION
             select race, 'Hispanic or Latino' as ethnicity, gender_concept_name as gender, COALESCE(count_hispanic, '<20') as patient_display
-            from n3c_questions.person_agg_demographic_censored    
+            from n3c_questions_new.person_agg_demographic_censored_cumulative_positive     
             UNION
             select race, 'Missing/Unknown' as ethnicity, gender_concept_name as gender, COALESCE(count_ethnicity_unknown, '<20') as patient_display
-            from n3c_questions.person_agg_demographic_censored
+            from n3c_questions_new.person_agg_demographic_censored_cumulative_positive 
             order by race, ethnicity
         ) as foo
         natural join n3c_dashboard.race_map

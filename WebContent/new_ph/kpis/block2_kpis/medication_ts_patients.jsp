@@ -9,7 +9,7 @@
 				when (count_per_month = '<20' or count_per_month is null) then 0
 				else count_per_month::int
 			end as count
-			from n3c_questions.drug_monthly_count_summary) as foo
+			from n3c_questions_new.drug_monthly_count_summary) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

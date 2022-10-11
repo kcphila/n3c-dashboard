@@ -22,7 +22,7 @@ button {
 </style>
 
 <sql:query var="questions" dataSource="jdbc/N3CPublic">
-	select question,description,limitations from n3c_questions.roster where iframe_info = ?;
+	select question,description,limitations from n3c_questions_new.roster where iframe_info = ?;
 	<sql:param>${param.question}</sql:param>
 </sql:query>
 <c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">

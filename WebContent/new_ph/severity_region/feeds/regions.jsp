@@ -10,9 +10,9 @@ from (select
                else num_patients::int
                end) as patient_count,
           max(site_count) as region_seq
-          from n3c_questions.cases_by_severity_by_state_censored
+          from n3c_questions_new.cases_by_severity_by_state_censored_regional_distribution
           natural join n3c_dashboard.state_map
-          left join n3c_dashboard.severity_map on n3c_questions.cases_by_severity_by_state_censored.severity_type = n3c_dashboard.severity_map.severity
+          left join n3c_dashboard.severity_map on n3c_questions_new.cases_by_severity_by_state_censored_regional_distribution.severity_type = n3c_dashboard.severity_map.severity
           left join (select count(site) as site_count, n3c_dashboard.state_map.division_name from n3c_maps.sites 
                left join ror.address on n3c_maps.sites.id = ror.address.id
                left join n3c_dashboard.state_map on n3c_dashboard.state_map.state = ror.address.state

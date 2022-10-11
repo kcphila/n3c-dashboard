@@ -7,13 +7,13 @@
 		select sum(count) as count, 
 		'Before COVID+' as label, 
 		6 as viz_id
-		from n3c_questions.symptom_before_or_after_covid
+		from n3c_questions_new.symptom_before_or_after_covid
 		where not condition_after_covid_positive
 		UNION 
 		select sum(count) as count, 
 		'After COVID+' as label, 
 		6 as viz_id
-		from n3c_questions.symptom_before_or_after_covid
+		from n3c_questions_new.symptom_before_or_after_covid
 		where condition_after_covid_positive 
 	) as done;
 </sql:query>

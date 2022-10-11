@@ -15,7 +15,7 @@
 		when (observation = 'Has not tested positive') then 12
 		when (observation = 'Has U09.9 in Record') then 3
 		end as viz_id
-		from n3c_questions.icd10_individual_symptom_summary_counts 
+		from n3c_questions_new.icd10_individual_symptom_summary_counts_long_covid 
 		where observation != 'Does not have U09.9 in Record'
 		group by observation
 		order by count

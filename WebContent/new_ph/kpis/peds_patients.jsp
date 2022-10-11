@@ -14,7 +14,7 @@
 						when (num_patients = '<20' or num_patients is null) then 0
 						else num_patients::int
 					end as count
-				  from n3c_questions.pediatric_covid_pos_demo_censored
+				  from n3c_questions_new.pediatric_covid_pos_demo_censored
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

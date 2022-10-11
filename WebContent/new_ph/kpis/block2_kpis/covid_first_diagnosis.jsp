@@ -13,7 +13,7 @@
 				when (original_infection_date_for_reinfected_count = '<20' or original_infection_date_for_reinfected_count is null) then 0
 				else original_infection_date_for_reinfected_count::int
 			end as reinfected
-			from n3c_questions.covid_lds_with_reinfection_date_counts_censored) as foo
+			from n3c_questions_new.covid_lds_with_reinfection_date_counts_censored_infection_re) as foo
 </sql:query>
 
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

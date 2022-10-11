@@ -12,7 +12,7 @@
             	else replace(condition_name, 'Charlson - ', '')
             	end) AS symptoms, 
             	(replace(condition_name, 'Charlson - ', '')) as condition_name
-			from n3c_questions.covid_positive_comorbidity_non_grouped_demo_censored
+			from n3c_questions_new.covid_positive_comorbidity_non_grouped_demo_censored
 			order by symptoms;
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">

@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
  <sql:query var="totals" dataSource="jdbc/N3CPublic">
-  	select to_char(sum(count::int)/1000.0, '999.99')||'K' count from n3c_questions.all_tests_month_cohort where count!='<20' and subsequent_month = 2 and subsequent_year = 2022;
+  	select to_char(sum(count::int)/1000.0, '999.99')||'K' count from n3c_questions_new.all_tests_month_cohort_reinfection_time_series where count!='<20' and subsequent_month = 2 and subsequent_year = 2022;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

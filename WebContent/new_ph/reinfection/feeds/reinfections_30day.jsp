@@ -11,7 +11,7 @@
 				when (count = '<20') then 0
 				else count::int
 			end as actual_count
-			from n3c_questions.reinfection_leonie_requested
+			from n3c_questions_new.reinfection_leonie_requested_reinfection_grouped_30_days
 			where test_date_diff_range not in ('0-15','15-30')
 		) as json;
 

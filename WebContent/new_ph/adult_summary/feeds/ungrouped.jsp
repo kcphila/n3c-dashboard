@@ -19,7 +19,7 @@
             severity_map.severity_abbrev,
             severity_map.severity_seq
            FROM ( SELECT covid_positive_comorbidity_non_grouped_demo_censored.severity_type AS severity,
-                    covid_positive_comorbidity_non_grouped_demo_censored.race_concept_name AS race,
+                    race,
                     regexp_replace(covid_positive_comorbidity_non_grouped_demo_censored.condition_name, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidity,
                     COALESCE(covid_positive_comorbidity_non_grouped_demo_censored.age_bin, 'null'::text) AS age_bin,
                     COALESCE(covid_positive_comorbidity_non_grouped_demo_censored.gender_concept_name, 'null'::text) AS gender,
@@ -28,7 +28,7 @@
                             WHEN covid_positive_comorbidity_non_grouped_demo_censored.num_patients = '<20'::text OR covid_positive_comorbidity_non_grouped_demo_censored.num_patients IS NULL THEN 0
                             ELSE covid_positive_comorbidity_non_grouped_demo_censored.num_patients::integer
                         END AS patient_count
-                   FROM n3c_questions.covid_positive_comorbidity_non_grouped_demo_censored
+                   FROM n3c_questions_new.covid_positive_comorbidity_non_grouped_demo_censored
                   WHERE (covid_positive_comorbidity_non_grouped_demo_censored.age_bin = ANY (ARRAY['Unknown'::text, '18-64'::text, '65+'::text])) OR covid_positive_comorbidity_non_grouped_demo_censored.age_bin IS NULL) foo
              JOIN n3c_dashboard.age_map6 USING (age_bin)
              JOIN n3c_dashboard.race_map USING (race)

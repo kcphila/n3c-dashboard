@@ -13,7 +13,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions.sotrovimab_test_type
+				  from n3c_questions_new.sotrovimab_test_type
 		  	) as foo
 		  	natural join n3c_dashboard.severity_map
 		  	left join n3c_dashboard.diagnosis_map on foo.diagnosis_type =  n3c_dashboard.diagnosis_map.diagnosis

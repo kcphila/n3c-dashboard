@@ -7,8 +7,11 @@
 			from (select
 					severity_type as severity,
 					smoking_status,
-					num_patients as patient_count
-				  from n3c_questions.covid_smoking_severity_censored
+					case
+						when (num_patients = '<20' or num_patients is null) then 0
+						else num_patients::int
+					end as patient_count
+				  from n3c_questions_new.covid_smoking_severity_censored_smoking
 		  	) as foo
 		  	natural join n3c_dashboard.severity_map
 		  	natural join n3c_dashboard.status_map

@@ -14,7 +14,7 @@
 				when (count = '<20' or count is null) then 0
 				else count::int
 			end as count
-			from n3c_questions.icd10_individual_symptom_summary_counts_by_symptom
+			from n3c_questions_new.icd10_individual_symptom_summary_counts_by_symptom
 			<c:if test="${not empty param.symptom}">where symptom = '${param.symptom}' and observation != 'Does not have U09.9 in Record'</c:if>
 		) as foo
 </sql:query>

@@ -12,7 +12,7 @@
 	​
 </style>
 <sql:query var="roster" dataSource="jdbc/N3CPublic">
-	select iframe_content from n3c_questions.roster where iframe_info = ? ;
+	select iframe_content from n3c_questions_new.roster where iframe_info = ? ;
 	<sql:param>${param.iframe}</sql:param>
 </sql:query>
 <c:forEach items="${roster.rows}" var="row" varStatus="rowCounter">
