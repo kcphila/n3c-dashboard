@@ -256,7 +256,7 @@ function localHorizontalStackedBarChart2(data, properties) {
 				.style("top", (d3.event.pageY - 28) + "px")
 				.html("<strong>" + d[2] + ": " + count2.toLocaleString() + "</strong>" +
 						"<div class='tool_line tool_nofilt_text'><strong>" + ((count2/sum) * 100).toFixed(2) + "%</strong> of COVID+ " + primary + " patients are in the " + d[2] + " category</div>" +
-						"<div class='tool_line tool_filter_text_sev'><strong>" + ((count2/sum) * 100).toFixed(2) + "%</strong> of COVID+ " + primary + " patients meet the fltered criteria and are in the " + d[2] + " category</div>" +
+						"<div class='tool_line tool_filter_text_sev'><strong>" + ((count2/sum) * 100).toFixed(2) + "%</strong> of COVID+ " + primary + " patients meet the filter criteria and are in the " + d[2] + " category</div>" +
 						"<div class='tool_line tool_filter_text'><strong>" + ((count2/sum) * 100).toFixed(2) + "%</strong> of COVID+ " + primary + " patients meet the filter criteria and are in the " +  d[2] +  " category. <p class='tool_line'> Of the " + primary + " patients that meet the filter criteria, <strong>" + ((count2/d[3]) * 100).toFixed(2) + "%</strong> are in the " + d[2] + " category</p></div>"
 						// "<div class='tool_line'><strong>Total COVID+ " + primary + " Patients in Enclave: </strong>" + sum.toLocaleString() + "</div>" +	
 				);
