@@ -471,27 +471,44 @@ function localHorizontalStackedBarChart2(data, properties) {
 	}
 	
 	
+	// update the tooltip text type based on filtered values
 	var raceseverity_mut = new MutationObserver(function(mutations, mut){
 		let root = document.documentElement;
+		
 		function containsNumbers(str) {
 			  return /\,|[0-9]/.test(str);
 		}
-		if($('#' + properties.dataName + '-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length !== 1
-				&& $('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[0].getAttribute('title') != 'None selected'){
-			if (containsNumbers($('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[0].getAttribute('title'))){
+		
+		var filter_list_length = $('#' + properties.dataName + '-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length;
+		var severity_title = $('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[0].getAttribute('title');
+		var race_title = $('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[2].getAttribute('title');
+		
+		if(filter_list_length > 1 && severity_title != 'None selected'){
+			if (filter_list_length == 2 && race_title != 'None selected'){
+				root.style.setProperty('--tool-filt', 'none');
+				root.style.setProperty('--tool-nofilt', 'block');
+				root.style.setProperty('--tool-filtsev', 'none');
+			} else {
+				if (containsNumbers(severity_title)){
+					root.style.setProperty('--tool-filt', 'block');
+					root.style.setProperty('--tool-nofilt', 'none');
+					root.style.setProperty('--tool-filtsev', 'none');
+				} else{
+					root.style.setProperty('--tool-filt', 'none');
+					root.style.setProperty('--tool-nofilt', 'none');
+					root.style.setProperty('--tool-filtsev', 'block');
+				}
+			}
+		} else if (filter_list_length !== 0 && severity_title == 'None selected') {
+			if (filter_list_length == 1 && race_title != 'None selected'){
+				root.style.setProperty('--tool-filt', 'none');
+				root.style.setProperty('--tool-nofilt', 'block');
+				root.style.setProperty('--tool-filtsev', 'none');
+			} else {
 				root.style.setProperty('--tool-filt', 'block');
 				root.style.setProperty('--tool-nofilt', 'none');
 				root.style.setProperty('--tool-filtsev', 'none');
-			} else{
-				root.style.setProperty('--tool-filt', 'none');
-				root.style.setProperty('--tool-nofilt', 'none');
-				root.style.setProperty('--tool-filtsev', 'block');
 			}
-		} else if ($('#' + properties.dataName + '-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length !== 0
-				&& $('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[0].getAttribute('title') == 'None selected') {
-			root.style.setProperty('--tool-filt', 'block');
-			root.style.setProperty('--tool-nofilt', 'none');
-			root.style.setProperty('--tool-filtsev', 'none');
 		} else {
 			root.style.setProperty('--tool-filt', 'none');
 			root.style.setProperty('--tool-nofilt', 'block');
