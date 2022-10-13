@@ -1,5 +1,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
+:root {
+  --tool-filt: none;
+  --tool-nofilt: block;
+  --tool-filtsev: none;
+}
+
+.tool_filter_text{
+	display: var(--tool-filt);
+}
+
+.tool_nofilt_text{
+	display: var(--tool-nofilt);
+}
+
+.tool_filter_text_sev{
+	display: var(--tool-filtsev);
+}
+
 .axis .domain {
 	display: none;
 }
@@ -17,6 +35,21 @@ rect{
 }
 .axis{
 	font-size: 14px;
+}
+
+div.severity.tooltip {
+	position: absolute;
+	background-color: white;
+  	opacity: 0.9;
+  	height: auto;
+	padding: 1px;
+  	pointer-events: none;
+  	max-width: 250px;
+  	padding-left: 10px;
+}
+
+.tool_line{
+	margin-top: 7px;
 }
 
 </style>
@@ -198,7 +231,6 @@ function localHorizontalStackedBarChart2(data, properties) {
 				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](legend_map.get(d[2]), legend_label.replace(/\s/g, "")); 
 			})
 			.on("mouseover", function() { 
-				tooltip.style("display", null); 
 			    // Reduce opacity of all rect to 0.2
 			    d3.selectAll("."+properties.domName+"-rect").style("opacity", 0.2)
 			    // Highlight all rects of this subgroup with opacity 1.
@@ -206,48 +238,29 @@ function localHorizontalStackedBarChart2(data, properties) {
 			      .style("opacity", 1);
 			})
 			.on("mouseout", function() {
-				tooltip.style("display", "none");
+				 d3.selectAll(".tooltip").remove(); 
 			    // Back to normal opacity: 1
 			    d3.selectAll("."+properties.domName+"-rect")
 			      .style("opacity",1);
 			})
-			.on("mousemove", function(d,i) {	
-				tooltip.selectAll("tspan").remove();
+			.on('mousemove', function(d, i){
+				var count2 = d[1]-d[0];
+				var primary = data[i].abbrev; 
+				var primary_index = totals_map.indexOf(primary);
+				var sum = totals[primary_index].value.total;
 				
-				var xPosition = d3.mouse(this)[0];
-		     	var yPosition = d3.mouse(this)[1];
-		     	var count2 = d[1]-d[0];
-		     	tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")")
-		     	.selectAll("text")
-		     		.append("tspan")
-		     		.text(d[2])
-		     		.attr('x', 10)
-  					.attr('dy', 13)
-		     		.append("tspan")
-		     		.text(count2.toLocaleString())
-		     		.attr('fill', 'black')
-		     		.attr('x', 10)
-  					.attr('dy', 20)
-					.append("tspan")
-	     			.text(function(){
-	     				var primary = data[i].abbrev; 
-	     				var primary_index = totals_map.indexOf(primary);
-	     				var sum = totals[primary_index].value.total;
-	     				return  "% of Total (" + primary + ") : " + ((count2/sum) * 100).toFixed(2) + "%";
-	     			})
-	     			.attr('fill', 'black')
-	     			.attr('x', 10)
-					.attr('dy', 20)
-					.append("tspan")
-	     			.text(function(){
-	     				var primary = data[i].abbrev; 
-	     				return  "% of Filtered (" + primary + ") w/" + d[2] + ": " + ((count2/d[3]) * 100).toFixed(2) + "%";
-	     			})
-	     			.attr('fill', 'black')
-	     			.attr('x', 10)
-					.attr('dy', 20);
+				d3.selectAll(".tooltip").remove(); 
+				d3.select("body").append("div")
+				.attr("class", "severity tooltip")
+				.style("left", (d3.event.pageX + 5) + "px")
+				.style("top", (d3.event.pageY - 28) + "px")
+				.html("<strong>" + d[2] + ": " + count2.toLocaleString() + "</strong>" +
+						"<div class='tool_line tool_nofilt_text'><strong>" + ((count2/sum) * 100).toFixed(2) + "%</strong> of COVID+ " + primary + " patients are " + d[2] + "</div>" +
+						"<div class='tool_line tool_filter_text_sev'><strong>" + ((count2/sum) * 100).toFixed(2) + "%</strong> of COVID+ " + primary + " patients that meet the fltered criteria are " + d[2] + "</div>" +
+						"<div class='tool_line tool_filter_text'><strong>" + ((count2/sum) * 100).toFixed(2) + "%</strong> of COVID+ " + primary + " patients meet the filter criteria, and of those patients, <strong>" + ((count2/d[3]) * 100).toFixed(2) + "%</strong> are " + d[2] + "</div>"
+						// "<div class='tool_line'><strong>Total COVID+ " + primary + " Patients in Enclave: </strong>" + sum.toLocaleString() + "</div>" +	
+				);
 			});
-
 		
 		function nFormatter(num, digits) {
 			  const lookup = [
@@ -395,29 +408,6 @@ function localHorizontalStackedBarChart2(data, properties) {
 			.attr("dy", "5px")
 			.text(function(d) {	return d.secondary; });
 			
-		// Tooltip ////// 
-		var tooltip = g.append("g")
-    		.attr("class", "graph_tooltip")
-    		.style("display", "none");
-      
-  		tooltip.append("rect")
-    		.attr("width", function(d){
-    			var cal_width = 10 + word_length * 7;
-    			var min_width = 230;
-    			if (cal_width > min_width){
-    				return cal_width;
-    			}else{
-    				return min_width;
-    			}
-    		})
-    		.attr("height", 75)
-    		.attr("fill", "white")
-    		.style("opacity", 0.7);
-
-  		tooltip.append("text")
-    		.style("text-anchor", "start")
-    		.attr("font-size", "12px")
-    		.attr("font-weight", "bold");
   		
   		if ((properties.nofilter == undefined) || (properties.nofilter == 0) ){
 	  		// Legend Tooltip ////// 
@@ -479,6 +469,42 @@ function localHorizontalStackedBarChart2(data, properties) {
 		}
 		return result;
 	}
+	
+	
+	var raceseverity_mut = new MutationObserver(function(mutations, mut){
+		let root = document.documentElement;
+		function containsNumbers(str) {
+			  return /\,|[0-9]/.test(str);
+		}
+		if($('#' + properties.dataName + '-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length !== 1
+				&& $('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[0].getAttribute('title') != 'None selected'){
+			if (containsNumbers($('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[0].getAttribute('title'))){
+				root.style.setProperty('--tool-filt', 'block');
+				root.style.setProperty('--tool-nofilt', 'none');
+				root.style.setProperty('--tool-filtsev', 'none');
+			} else{
+				root.style.setProperty('--tool-filt', 'none');
+				root.style.setProperty('--tool-nofilt', 'none');
+				root.style.setProperty('--tool-filtsev', 'block');
+			}
+		} else if ($('#' + properties.dataName + '-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length !== 0
+				&& $('#' + properties.dataName + '-block-kpi .multiselect.dropdown-toggle')[0].getAttribute('title') == 'None selected') {
+			root.style.setProperty('--tool-filt', 'block');
+			root.style.setProperty('--tool-nofilt', 'none');
+			root.style.setProperty('--tool-filtsev', 'none');
+		} else {
+			root.style.setProperty('--tool-filt', 'none');
+			root.style.setProperty('--tool-nofilt', 'block');
+			root.style.setProperty('--tool-filtsev', 'none');
+		}
+	});
+	
+	$( '#' + properties.dataName + '-block-kpi .multiselect').each(function() {
+		raceseverity_mut.observe(this,{
+			'attributes': true,
+			attributeFilter: ['title']
+		});
+	});
 
 }
 </script>
