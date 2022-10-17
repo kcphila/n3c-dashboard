@@ -133,8 +133,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	},
        	paging: true,
        	snapshot: null,
+    	totals: null,
        	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	 	settings.oInit.totals = $('#${param.target_div}-table').DataTable().rows().data().toArray();
        	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],

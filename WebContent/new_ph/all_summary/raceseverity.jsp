@@ -25,11 +25,12 @@ function ${param.block}_raceseverity_refresh() {
 			barLabelWidth: 120,
 			legend_data: severity_legend,
 			secondary_range: severity_range,
-			legend_label: 'Severity'
+			legend_label: 'Severity',
+			dataName: '${param.block}'
 		};
 	
 	d3.select("#${param.block}_raceseverity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_raceSeverityArray, properties);
+	localHorizontalStackedBarChart2(${param.block}_raceSeverityArray, properties);
 }
 
 ${param.block}_raceseverity_refresh();
