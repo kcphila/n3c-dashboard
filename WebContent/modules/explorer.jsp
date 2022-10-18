@@ -100,7 +100,9 @@
 								<h6>Age</h6>
 								<select id="age-select" multiple="multiple">
 									<sql:query var="ages" dataSource="jdbc/N3CPublic">
-										select age_bin,sum(patient_count) from n3c_dashboard.aggregated group by 1 order by 1;
+										select age_bin,sum(count::int)
+										from n3c_questions_new.all_ages_covid_pos_demo_censored,n3c_dashboard.age_map8
+										where age_bin=age and count!='<20' group by 1,age_seq order by age_seq;
 									</sql:query>
 									<c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
 										<option value="${row.age_bin}">${row.age_bin}</option>
@@ -111,10 +113,12 @@
 								<h6>Sex</h6>
 								<select id="gender-select" multiple="multiple">
 									<sql:query var="gender" dataSource="jdbc/N3CPublic">
-										select gender_abbrev as gender, gender_abbrev, sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.gender_map group by 1, gender_seq order by gender_seq;
+										select gender_abbrev as gender,sum(case when (count = '<20' or count is null) then 0 else count::int end)
+										from n3c_questions_new.all_ages_covid_pos_demo_censored,n3c_dashboard.gender_map3
+										where gender_concept_name=gender group by 1,gender_seq order by gender_seq;
 									</sql:query>
 									<c:forEach items="${gender.rows}" var="row" varStatus="rowCounter">
-										<option value="${row.gender}">${row.gender_abbrev}</option>
+										<option value="${row.gender}">${row.gender}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -122,10 +126,12 @@
 								<h6>Race</h6>
 								<select id="race-select" multiple="multiple">
 									<sql:query var="race" dataSource="jdbc/N3CPublic">
-										select race,race_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.race_map group by 1,2,race_seq order by race_seq;
+										select race_abbrev,sum(case when (count = '<20' or count is null) then 0 else count::int end)
+										from n3c_questions_new.all_ages_covid_pos_demo_censored natural join n3c_dashboard.race_map
+										group by 1,race_seq order by race_seq;
 									</sql:query>
 									<c:forEach items="${race.rows}" var="row" varStatus="rowCounter">
-										<option value="${row.race}">${row.race_abbrev}</option>
+										<option value="${row.race_abbrev}">${row.race_abbrev}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -133,7 +139,9 @@
 								<h6>Ethnicity</h6>
 								<select id="ethnicity-select" multiple="multiple">
 									<sql:query var="ethnicity" dataSource="jdbc/N3CPublic">
-										select aggregated.ethnicity,ethnicity_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.ethnicity_map group by 1,2,ethnicity_seq order by ethnicity_seq;
+										select all_ages_covid_pos_demo_censored.ethnicity,ethnicity_abbrev,sum(case when (count = '<20' or count is null) then 0 else count::int end)
+										from n3c_questions_new.all_ages_covid_pos_demo_censored natural join n3c_dashboard.ethnicity_map
+										group by 1,2,ethnicity_seq order by ethnicity_seq;
 									</sql:query>
 									<c:forEach items="${ethnicity.rows}" var="row" varStatus="rowCounter">
 										<option value="${row.ethnicity}">${row.ethnicity_abbrev}</option>
@@ -144,7 +152,10 @@
 								<h6>Severity</h6>
 								<select id="severity-select" multiple="multiple">
 									<sql:query var="severity" dataSource="jdbc/N3CPublic">
-										select severity,severity_abbrev,sum(patient_count) from n3c_dashboard.aggregated natural join n3c_dashboard.severity_map group by 1,2,severity_seq order by severity_seq;
+										select severity_abbrev,sum(case when (count = '<20' or count is null) then 0 else count::int end)
+										from n3c_questions_new.all_ages_covid_pos_demo_censored,n3c_dashboard.severity_map
+										where severity_type = severity
+										group by 1,severity_seq order by severity_seq;
 									</sql:query>
 									<c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">
 										<option value="${row.severity_abbrev}">${row.severity_abbrev}</option>
@@ -222,7 +233,11 @@ $('#age-select').multiselect({
             selected.push($(this).val());
         });
 
-        // console.log(selected[0].join("|"));
+        for (i in selected[0]){
+        	selected[0][i] = "^" + selected[0][i] + "$";
+        }
+
+       // console.log(selected[0].join("|"));
         var table = $('#aggregated-table').DataTable();
         table.column(2).search(selected[0].join("|"), true, false, true).draw();
         
@@ -493,11 +508,14 @@ function refreshHistograms() {
 
 function refreshAgeArray(data) {
 	var aData = new Object;
+	var bData = new Object;
 	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
     	var group = data[i].age_bin;
+    	var seq = data[i].age_seq;
     	var count = data[i].patient_count;
         if (typeof aData[group] == 'undefined') {
             aData[group] = count;
+            bData[group] = seq;
          } else
         	 aData[group] += count;
 	});
@@ -511,9 +529,12 @@ function refreshAgeArray(data) {
     	Object.defineProperty(obj, 'count', {
   		  value: aData[i]
   		});
+    	Object.defineProperty(obj, 'seq', {
+  		  value: bData[i]
+  		});
     	ageArray.push(obj);
     }
-    ageArray.sort((a,b) => (a.element > b.element) ? 1 : ((b.element > a.element) ? -1 : 0));
+    ageArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
 }
 
 function refreshRaceArray(data) {
