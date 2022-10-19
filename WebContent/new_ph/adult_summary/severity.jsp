@@ -37,7 +37,8 @@ function ${param.block}_severity_refresh() {
 			colorscale: severity_range,
 			legend_label: 'Severity',
 			legend_data: severity_legend,
-			donutRatio: 0.5
+			donutRatio: 0.5,
+			dataName: '${param.block}'
 		}
 
 	var id = $("#${param.block}-severity-mode").find('.text-primary').attr('id');
@@ -51,7 +52,7 @@ function ${param.block}_severity_refresh() {
 	} else if (mode == 'bar'){
 		localHorizontalBarChart_legend(${param.block}_SeverityArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_SeverityArray, properties);
+		localPercentageBarChart2(${param.block}_SeverityArray, properties);
 	};
 }
 

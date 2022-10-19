@@ -18,10 +18,14 @@ rect{
 
 <script>
 
-function localPercentageBarChart(data, properties) {
+function localPercentageBarChart2(data, properties) {
 	
-	console.log(data);
-	console.log(properties);
+	var dom_table = eval(properties.dataName + "_datatable.settings().init().totals");	
+	var total = d3.sum(dom_table, d => d.patient_count);
+	
+	console.log(total);
+		
+		
 	
 	var filter_icon = " &#xf0b0";
 	
@@ -127,11 +131,13 @@ function localPercentageBarChart(data, properties) {
   					.attr('dy', 13);
 		    });
 
-		
-		var sumelement = 0;
-		for (i in data){
-			sumelement = sumelement+data[i].count;
-		}
+		// set all to be divided by the total number of patients in the enclave
+		var sumelement = total;
+//		set all to be divided by the total number of patients in the filtered cohort
+//		var sumelement = 0;
+// 		for (i in data){
+// 			sumelement = sumelement+data[i].count;
+// 		}
 		
 		function round(value, decimals) {
 			 return Number(Math.round(value+'e'+decimals)+'e-'+decimals);

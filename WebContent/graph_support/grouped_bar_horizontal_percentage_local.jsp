@@ -15,7 +15,6 @@
 
 <script>
 
-console.log('reached');
 // not implemented
 // margin = array: [top, bottom, left, right]
 

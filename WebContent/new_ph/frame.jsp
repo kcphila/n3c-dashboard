@@ -9,6 +9,8 @@
 
 <jsp:include page="../graph_support/pieChart_local.jsp"/>
 <jsp:include page="../graph_support/percentage_bar_local.jsp"/>
+<!-- this one divides by all covid+ patients -->
+<jsp:include page="../graph_support/percentage_bar_local2.jsp"/>
 <jsp:include page="../graph_support/horizontalBarChart_local.jsp"/>
 <jsp:include page="../graph_support/horizontalBarChart_local2.jsp"/>
 <jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/>
