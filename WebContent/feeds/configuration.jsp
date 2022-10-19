@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
-
 var gender_range = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6"];
 var gender_range3 = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6", "#8B8B8B"];
 var gender_range_no_other = ["#4833B2", "#ffa600", "#a6a6a6"];
