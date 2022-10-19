@@ -130,6 +130,7 @@ function localHorizontalStackedBarChart2(data, properties) {
 
 	myObserver.observe(d3.select("#"+properties.domName).node());
 
+	updatetooltip();
 	draw();
 
 	function draw() {
@@ -470,9 +471,7 @@ function localHorizontalStackedBarChart2(data, properties) {
 		return result;
 	}
 	
-	
-	// update the tooltip text type based on filtered values
-	var raceseverity_mut = new MutationObserver(function(mutations, mut){
+	function updatetooltip(){
 		let root = document.documentElement;
 		
 		function containsNumbers(str) {
@@ -514,6 +513,11 @@ function localHorizontalStackedBarChart2(data, properties) {
 			root.style.setProperty('--tool-nofilt', 'block');
 			root.style.setProperty('--tool-filtsev', 'none');
 		}
+	};
+	
+	// update the tooltip text type based on filtered values
+	var raceseverity_mut = new MutationObserver(function(mutations, mut){
+		updatetooltip();
 	});
 	
 	$( '#' + properties.dataName + '-block-kpi .multiselect').each(function() {
