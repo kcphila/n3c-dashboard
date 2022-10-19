@@ -11,8 +11,8 @@ var severity_range3 = ["#FFC1DC", "#F584B5", "#CE4682", "#9D285B", "#6C0934", "#
 var severity_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941", "#a6a6a6"];
 
 
-var race_range2 =  ["#3B59C7", "#AD1181", "#7602EB", "#A8F0D8", "#86CBF3", "#a6a6a6"];
-var race_range = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#a6a6a6"];
+var race_range2 =  ["#3B59C7", "#AD1181", "#7602EB", "#A8F0D8", "#86CBF3", "#a6a6a6", "#8B8B8B"];
+var race_range = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#a6a6a6", "#8B8B8B"];
 
 var ethnicity_range = ["#332380", "#B6AAF3", "#a6a6a6", "#8B8B8B"];
 
