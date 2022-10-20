@@ -7,16 +7,16 @@
 				severity_abbrev, severity_seq, diagnosis_abbrev, diagnosis_seq as diagnosis_seq
 			from (select
 					severity_type as severity,
-					covid_event_type as diagnosis_type,
+					ll_status as diagnosis_type,
 					count as patient_display,
 					case
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions_new.sotrovimab_test_type
+				  from n3c_questions_new.sotrovimab_test_type_updated
 		  	) as foo
-		  	natural join n3c_dashboard.severity_map
-		  	left join n3c_dashboard.diagnosis_map on foo.diagnosis_type =  n3c_dashboard.diagnosis_map.diagnosis
+		  	natural join n3c_dashboard.severity_map2
+		  	left join n3c_dashboard.diagnosis_map2 on foo.diagnosis_type =  n3c_dashboard.diagnosis_map2.diagnosis
 		  ) as done;
 </sql:query>
 {

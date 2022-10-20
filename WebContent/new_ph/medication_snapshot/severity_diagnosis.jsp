@@ -22,7 +22,7 @@ function ${param.block}_severitydiagnosis_refresh() {
 	var properties = {
 			domName: '${param.block}_severitydiagnosis_viz',
 			barLabelWidth: 120,
-			legend_data: diagnosis_legend,
+			legend_data: diagnosis_legend2,
 			secondary_range: diagnosis_range,
 			legend_label: 'Diagnosis'
 		}

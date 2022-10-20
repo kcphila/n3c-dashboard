@@ -84,6 +84,16 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 	var severity_legend = ${row.jsonb_pretty};
 </c:forEach>
 
+<sql:query var="severities" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct severity_abbrev as secondary, severity_seq as secondary_seq, severity_abbrev as secondary_name
+		  from n3c_dashboard.severity_map2
+		  ) as done;
+</sql:query>
+<c:forEach items="${severities.rows}" var="row" varStatus="rowCounter">
+	var severity_legend2 = ${row.jsonb_pretty};
+</c:forEach>
+
 <sql:query var="races" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
 	from (select distinct race_abbrev as secondary, race_seq as secondary_seq, race as secondary_name
@@ -247,6 +257,16 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	var diagnosis_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="statuses" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select distinct diagnosis_abbrev as secondary, diagnosis_abbrev as secondary_name, diagnosis_seq
+		  from n3c_dashboard.diagnosis_map2 order by diagnosis_seq
+		  ) as done;
+</sql:query>
+<c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
+	var diagnosis_legend2 = ${row.jsonb_pretty};
 </c:forEach>
 
 <sql:query var="statuses" dataSource="jdbc/N3CPublic">
