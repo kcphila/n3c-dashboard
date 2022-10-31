@@ -33,6 +33,7 @@
 }
 
 
+
 </style>
 
 <div class="row stats">
@@ -63,30 +64,45 @@
 				<div class="col col-12 col-md-6 viz-section">
 					<h4 class="viz-demo">Severity</h4>
 					<div class="panel-body">
+						<div class="loading">
+							<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+						</div>
 						<div id="severity_histogram"></div>
 					</div>
 				</div>
 				<div class="col col-12 col-md-6 viz-section">
 					<h4 class="viz-demo">Age</h4>
-					<div class="panel-heading">
+					<div class="panel-body">
+						<div class="loading">
+							<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+						</div>
 						<div id="age_histogram"></div>
 					</div>
 				</div>
 				<div class="col col-12 col-md-6 viz-section">
 					<h4 class="viz-demo">Race</h4>
 					<div class="panel-body">
+						<div class="loading">
+							<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+						</div>
 						<div id="race_histogram"></div>
 					</div>
 				</div>
 				<div class="col col-12 col-md-6 viz-section">
 					<h4 class="viz-demo">Sex</h4>
 					<div class="panel-body">
+						<div class="loading">
+							<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+						</div>
 						<div id="sex_histogram"></div>
 					</div>
 				</div>
 				<div class="col col-12 col-md-6 viz-section">
 					<h4 class="viz-demo">Ethnicity</h4>
-					<div class="panel-heading">
+					<div class="panel-body">
+						<div class="loading">
+							<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+						</div>
 						<div id="ethnicity_histogram"></div>
 					</div>
 				</div>
@@ -113,6 +129,10 @@
 <jsp:include page="horizontalBarChart_local.jsp"/>
 <jsp:include page="pieChart_local.jsp"/>
 <script>
+
+jQuery(document).ready(function() {
+    jQuery('.loading').fadeOut(3000);
+});
 
 function limitlink(){
 	$('#limitcollapseOne').collapse('show');
