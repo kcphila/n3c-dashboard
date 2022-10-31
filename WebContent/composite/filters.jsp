@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-	<div class="col-xs-2 ">
+	<div class="col col-12 col-md-2 ">
 		<a onclick="uncheckAll();">Reset Filters</a>
 		<div id="mode" class="panel-heading">
 			Display: <i id="mode-pie" class="fas fa-chart-pie fa-lg"></i> <i id="mode-bar" class="fas fa-chart-bar fa-lg text-success"></i> <i id="mode-table" class="fas fa-table fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

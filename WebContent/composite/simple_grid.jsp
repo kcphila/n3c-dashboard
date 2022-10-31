@@ -2,44 +2,78 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+<style>
+.kpi-section{
+    background: #edf6ff;
+/*     color: #007bff; */
+	font-weight: 600;
+	padding: 15px;
+}
+
+.kpi_num{
+	color: #007bff;
+	font-weight: 400;
+}
+
+.kpi-row{
+	text-align:center;
+}
+
+.viz-section{
+	margin-bottom: 20px;
+}
+</style>
+
 <div class="row stats">
 	<jsp:include page="filters.jsp"/>
 
-	<div class="col-xs-10">
+	<div class="col col-12 col-md-10">
 		<div id="display-d3">
 		<div class="row stats">
-			<div class="col-xs-6 ">
-				<h5>Age</h5>
-				<div class="panel-heading">
-					<div id="age_histogram"></div>
+			<div class="col col-12 col-md-6 viz-section">
+				<div class="panel-body kpi-section">
+					<div class="row kpi-row">
+						<div class="col col-5 m-auto">
+							Total COVID+ Patients*
+							<div class="kpi_num"><i class="fas fa-user-plus" aria-hidden="true"></i>    6.25M</div>
+						</div>
+						<div class="col col-7" style="border-left: 2px solid #d0e3f6;">
+							Patients in View*
+							<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   6.26M</div>
+							% of Total COVID+</br> Patients in View*
+							<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   100%</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-6 ">
-				<h5>Sex</h5>
+			<div class="col col-12 col-md-6 viz-section">
+				<h5>Severity</h5>
 				<div class="panel-body">
-					<div id="gender_histogram"></div>
+					<div id="severity_histogram"></div>
 				</div>
 			</div>
-		</div>
-		<div class="row stats">
-			<div class="col-xs-6 ">
+			<div class="col col-12 col-md-6 viz-section">
 				<h5>Race</h5>
 				<div class="panel-body">
 					<div id="race_histogram"></div>
 				</div>
 			</div>
-			<div class="col-xs-6 ">
+			<div class="col col-12 col-md-6 viz-section">
+				<h5>Age</h5>
+				<div class="panel-heading">
+					<div id="age_histogram"></div>
+				</div>
+			</div>
+			<div class="col col-12 col-md-6 viz-section">
+				<h5>Sex</h5>
+				<div class="panel-body">
+					<div id="gender_histogram"></div>
+				</div>
+			</div>
+			<div class="col col-12 col-md-6 viz-section">
 				<h5>Ethnicity</h5>
 				<div class="panel-heading">
 					<div id="ethnicity_histogram"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row stats">
-			<div class="col-xs-6 ">
-				<h5>Severity</h5>
-				<div class="panel-body">
-					<div id="severity_histogram"></div>
 				</div>
 			</div>
 		</div>
