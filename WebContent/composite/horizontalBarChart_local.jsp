@@ -33,9 +33,9 @@ function localBarChart(data, domName, barLabelWidth, colorgroup) {
 			}
 		});
 	});
-	console.log(domName);
-	console.log(d3.select(domName));
-	console.log(d3.select(domName).node());
+// 	console.log(domName);
+// 	console.log(d3.select(domName));
+// 	console.log(d3.select(domName).node());
 	myObserver.observe(d3.select(domName).node());
 
 	draw();
@@ -77,6 +77,7 @@ function localBarChart(data, domName, barLabelWidth, colorgroup) {
 			.attr('transform', 'translate(' + barLabelWidth + ',' + (gridLabelHeight + gridChartOffset) + ')');
 		barsContainer.selectAll("rect").data(data).enter().append("rect")
 			.attr('y', y)
+			.attr('rx', 2)
 			.attr('height', yScale.bandwidth())
 			.attr('width', function(d) { return x(barValue(d)); })
 			.attr('stroke', 'white')
@@ -92,10 +93,10 @@ function localBarChart(data, domName, barLabelWidth, colorgroup) {
 			.attr("stroke", "none")
 			.text(function(d) { return barValue(d).toLocaleString(); });
 		// start line
-		barsContainer.append("line")
-			.attr("y1", -gridChartOffset)
-			.attr("y2", yScale.range()[1] + gridChartOffset)
-			.style("stroke", "#000");
+// 		barsContainer.append("line")
+// 			.attr("y1", -gridChartOffset)
+// 			.attr("y2", yScale.range()[1] + gridChartOffset)
+// 			.style("stroke", "#000");
 	}
 }
 </script>

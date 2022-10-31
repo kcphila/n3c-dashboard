@@ -5,7 +5,6 @@
 <style>
 .kpi-section{
     background: #edf6ff;
-/*     color: #007bff; */
 	font-weight: 600;
 	padding: 15px;
 }
@@ -270,7 +269,7 @@ function refreshHistograms() {
     refreshSeverityArray(data);
     
     var doBar = false;
-    if (document.getElementById("mode-bar").classList.contains("text-success")) {
+    if (document.getElementById("mode-bar").classList.contains("active-display")) {
     	doBar = true;
     }
     d3.select("#age_histogram").select("svg").remove();
@@ -333,7 +332,7 @@ function refreshAgeArray(data) {
     	ageArray.push(obj);
     }
     ageArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
-    console.log(ageArray);
+//     console.log(ageArray);
 }
 
 function refreshRaceArray(data) {
@@ -385,7 +384,7 @@ function refreshRaceArray(data) {
     	raceArray.push(obj);
     }
     raceArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
-    console.log(raceArray);
+//     console.log(raceArray);
 }
 
 function refreshEthnicityArray(data) {
@@ -417,7 +416,7 @@ function refreshEthnicityArray(data) {
     	ethnicityArray.push(obj);
     }
     ethnicityArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
-    console.log(ethnicityArray);
+//     console.log(ethnicityArray);
 }
 
 function refreshSexArray(data) {
@@ -469,7 +468,7 @@ function refreshSexArray(data) {
     	sexArray.push(obj);
     }
     sexArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
-    console.log(sexArray);
+//     console.log(sexArray);
 }
 
 function refreshSeverityArray(data) {
@@ -518,7 +517,7 @@ function refreshSeverityArray(data) {
     	severityArray.push(obj);
     }
     severityArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
-    console.log(severityArray);
+//     console.log(severityArray);
 }
 
 function uncheckAll(){
@@ -528,31 +527,31 @@ function uncheckAll(){
 }
 
 $('#mode-bar').on('click', function(element) {
-	if (!document.getElementById("mode-bar").classList.contains("text-success")) {
-		document.getElementById("mode-bar").classList.add("text-success");
+	if (!document.getElementById("mode-bar").classList.contains("active-display")) {
+		document.getElementById("mode-bar").classList.add("active-display");
 	}
-	document.getElementById("mode-pie").classList.remove("text-success");
-	document.getElementById("mode-table").classList.remove("text-success");
+	document.getElementById("mode-pie").classList.remove("active-display");
+	document.getElementById("mode-table").classList.remove("active-display");
 	document.getElementById("display-table").style.display = "none";
 	document.getElementById("display-d3").style.display = "block";
 	refreshHistograms();
 });
 $('#mode-pie').on('click', function(element) {
-	if (!document.getElementById("mode-pie").classList.contains("text-success")) {
-		document.getElementById("mode-pie").classList.add("text-success");
+	if (!document.getElementById("mode-pie").classList.contains("active-display")) {
+		document.getElementById("mode-pie").classList.add("active-display");
 	}
-	document.getElementById("mode-bar").classList.remove("text-success");
-	document.getElementById("mode-table").classList.remove("text-success");
+	document.getElementById("mode-bar").classList.remove("active-display");
+	document.getElementById("mode-table").classList.remove("active-display");
 	document.getElementById("display-table").style.display = "none";
 	document.getElementById("display-d3").style.display = "block";
 	refreshHistograms();
 });
 $('#mode-table').on('click', function(element) {
-	if (!document.getElementById("mode-table").classList.contains("text-success")) {
-		document.getElementById("mode-table").classList.add("text-success");
+	if (!document.getElementById("mode-table").classList.contains("active-display")) {
+		document.getElementById("mode-table").classList.add("active-display");
 	}
-	document.getElementById("mode-bar").classList.remove("text-success");
-	document.getElementById("mode-pie").classList.remove("text-success");
+	document.getElementById("mode-bar").classList.remove("active-display");
+	document.getElementById("mode-pie").classList.remove("active-display");
 	document.getElementById("display-table").style.display = "block";
 	document.getElementById("display-d3").style.display = "none";
 });

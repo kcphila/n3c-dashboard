@@ -25,6 +25,28 @@
 	margin-bottom: 30px;
 	text-align: center;
 }
+
+.display_toggles{
+	color: #b6d9ff;
+}
+
+.display_toggles .fas{
+	cursor: pointer;
+	color: #b6d9ff;
+}
+
+.display_toggles .fas:hover{
+	color: #007bff;
+}
+
+.display_toggles .active-display{
+	color: #007bff!important;
+}
+
+.filter-section{
+	margin-top:20px;
+}
+
 </style>
 
 <jsp:include page="head.jsp" flush="true" />
