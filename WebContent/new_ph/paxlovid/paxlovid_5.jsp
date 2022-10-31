@@ -16,15 +16,15 @@
 	
 	<jsp:param name="result_filter" value="true" />
 
-	<jsp:param name="simple_panel" value="paxlovid/gender.jsp" />
+	<jsp:param name="simple_panel" value="paxlovid/sex.jsp" />
 
-	<jsp:param name="datatable" value="paxlovid/demographics_gender_table.jsp" />
-	<jsp:param name="datatable_div" value="paxlovid_paxlovid_gender" />
-	<jsp:param name="datatable_feed" value="paxlovid/feeds/demographics_gender.jsp" />
+	<jsp:param name="datatable" value="paxlovid/demographics_sex_table.jsp" />
+	<jsp:param name="datatable_div" value="paxlovid_paxlovid_sex" />
+	<jsp:param name="datatable_feed" value="paxlovid/feeds/demographics_sex.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
 	<jsp:param name="datatable_filtered_kpis" value="patient_count" />
 </jsp:include>
 
 <script>
-	paxlovid_5_toggle("gender");
+	paxlovid_5_toggle("sex");
 </script>

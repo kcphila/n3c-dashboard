@@ -9,7 +9,7 @@
 
 	<jsp:param name="kpis" value="cumulative/kpis.jsp" />
 
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
 
 	<jsp:param name="simple_panel" value="cumulative/tables/cumulative_table.jsp" />

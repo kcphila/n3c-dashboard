@@ -11,12 +11,12 @@
 
 	<jsp:param name="age_filter10" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 
 	<jsp:param name="age_panel" value="mortality/age.jsp" />
 	<jsp:param name="race_panel" value="mortality/race.jsp" />
-	<jsp:param name="gender_panel" value="mortality/gender.jsp" />
+	<jsp:param name="sex_panel" value="mortality/sex.jsp" />
 	<jsp:param name="ethnicity_panel" value="mortality/ethnicity.jsp" />
 
 	<jsp:param name="datatable" value="mortality/hospitalization_table.jsp" />

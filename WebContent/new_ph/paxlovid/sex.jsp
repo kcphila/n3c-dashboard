@@ -19,7 +19,7 @@
 
 <script>
 
-function ${param.block}_gender_refresh() {
+function ${param.block}_sex_refresh() {
 	var properties = {
 			domName: '${param.block}_paxlovid_viz',
 			barLabelWidth: 120,
@@ -32,8 +32,8 @@ function ${param.block}_gender_refresh() {
 
 	// console.log("reached");
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_GenderResultArray, properties);
+	localHorizontalStackedBarChart(${param.block}_SexResultArray, properties);
 }
 
-${param.block}_gender_refresh();
+${param.block}_sex_refresh();
 </script>

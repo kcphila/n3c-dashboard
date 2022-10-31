@@ -5,7 +5,7 @@
   						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 					</a>
 				</span>&nbsp;in the N3C Data Enclave under the age of 18. 
-				Data aggregated by Age, Race, Ethnicity, Gender, and Severity.</p>
+				Data aggregated by Age, Race, Ethnicity, Sex, and Severity.</p>
 </div>
 
 

@@ -49,11 +49,11 @@
 
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="test_panel.jsp" />
 	<jsp:param name="age_panel" value="test_panel.jsp" />
-	<jsp:param name="gender_panel" value="test_panel.jsp" />
+	<jsp:param name="sex_panel" value="test_panel.jsp" />
 
 	<jsp:param name="datatable" value="sotrovimab/demographics_table.jsp" />
 	<jsp:param name="datatable_div" value="sotrovimab_demographics" />

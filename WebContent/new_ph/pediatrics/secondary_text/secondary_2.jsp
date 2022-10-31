@@ -4,7 +4,7 @@
   						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
   						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 					</a>
-				</span>&nbsp;in the N3C Data Enclave under the age of 18. Data aggregated by Age, Race, Gender, Severity, 
+				</span>&nbsp;in the N3C Data Enclave under the age of 18. Data aggregated by Age, Race, Sex, Severity, 
 				and COVID-19 Vaccination status. Vaccination data comes only from EHR vaccination events recorded 
 				by N3C partner sites. This means that if a patient received their vaccination from a site that does not 
 				automatically link to their EHR (ex. local pharmacy, doctor's office, or state/federal vaccination site), 

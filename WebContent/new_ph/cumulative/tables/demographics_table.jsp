@@ -11,7 +11,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'ethnicity':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'gender':
+	case 'sex':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
 	}
@@ -127,15 +127,15 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
      	columns: [
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'gender', visible: true, orderable: true },
+        	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'race_abbrev', visible: false },
         	{ data: 'race_seq', visible: false },
         	{ data: 'ethnicity_abbrev', visible: false },
         	{ data: 'ethnicity_seq', visible: false },
-        	{ data: 'gender_abbrev', visible: false },
-        	{ data: 'gender_seq', visible: false }
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false }
     	]
 	} );
 

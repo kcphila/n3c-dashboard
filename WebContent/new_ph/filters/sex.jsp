@@ -3,13 +3,13 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div class="panel-body">
-	<h6>Gender</h6>
-	<select id="${param.block}-gender-select" multiple="multiple">
+	<h6>Sex</h6>
+	<select id="${param.block}-sex-select" multiple="multiple">
 		<sql:query var="cases" dataSource="jdbc/N3CPublic">
-			select distinct gender_abbrev,gender_seq from n3c_dashboard.gender_map3 order by gender_seq;
+			select distinct gender_abbrev as sex_abbrev,gender_seq as sex_seq from n3c_dashboard.gender_map order by sex_seq;
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
-			<option value="${row.gender_abbrev}">${row.gender_abbrev}</option>
+			<option value="${row.sex_abbrev}">${row.sex_abbrev}</option>
 		</c:forEach>
 	</select>
 </div>

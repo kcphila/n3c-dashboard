@@ -4,20 +4,20 @@
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (
-		select race, ethnicity, gender_abbrev as gender, patient_display,
+		select race, ethnicity, gender_abbrev as sex, patient_display,
         case
             when (patient_display = '<20') then 0
             else patient_display::int
         end as patient_count,
-        race_seq, race_abbrev, ethnicity_seq, ethnicity_abbrev, gender_seq, gender_abbrev
+        race_seq, race_abbrev, ethnicity_seq, ethnicity_abbrev, gender_seq as sex_seq, gender_abbrev as sex_abbrev
         from(
-            select race, 'Not Hispanic or Latino' as ethnicity, gender_concept_name as gender, COALESCE(count_non_hispanic, '<20') as patient_display
+            select race, 'Not Hispanic or Latino' as ethnicity, gender_concept_name as sex, COALESCE(count_non_hispanic, '<20') as patient_display
             from n3c_questions_new.person_agg_demographic_censored_cumulative_positive 
             UNION
-            select race, 'Hispanic or Latino' as ethnicity, gender_concept_name as gender, COALESCE(count_hispanic, '<20') as patient_display
+            select race, 'Hispanic or Latino' as ethnicity, gender_concept_name as sex, COALESCE(count_hispanic, '<20') as patient_display
             from n3c_questions_new.person_agg_demographic_censored_cumulative_positive     
             UNION
-            select race, 'Missing/Unknown' as ethnicity, gender_concept_name as gender, COALESCE(count_ethnicity_unknown, '<20') as patient_display
+            select race, 'Missing/Unknown' as ethnicity, gender_concept_name as sex, COALESCE(count_ethnicity_unknown, '<20') as patient_display
             from n3c_questions_new.person_agg_demographic_censored_cumulative_positive 
             order by race, ethnicity
         ) as foo
@@ -30,15 +30,15 @@
     "headers": [
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient Actual"},
         {"value":"race_seq", "label":"dummy1"},
         {"value":"race_abbrev", "label":"dummy2"},
         {"value":"ethnicity_seq", "label":"dummy3"},
         {"value":"ethnicity_abbrev", "label":"dummy4"},
-        {"value":"gender_seq", "label":"dummy5"},
-        {"value":"gender_abbrev", "label":"dummy6"}
+        {"value":"sex_seq", "label":"dummy5"},
+        {"value":"sex_abbrev", "label":"dummy6"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

@@ -12,10 +12,10 @@
 	<jsp:param name="kpi_filter" value="hlh" />
 	
 	<jsp:param name="age_filter7" value="true" />
-	<jsp:param name="gender_filter3" value="true" />
+	<jsp:param name="sex_filter3" value="true" />
 	
-	<jsp:param name="age_panel" value="hlh/ageGender.jsp" />
-	<jsp:param name="gender_panel" value="hlh/genderAge.jsp" />
+	<jsp:param name="age_panel" value="hlh/ageSex.jsp" />
+	<jsp:param name="sex_panel" value="hlh/sexAge.jsp" />
 
 	<jsp:param name="datatable" value="hlh/hlh_table.jsp" />
 	<jsp:param name="datatable_div" value="hlh_data_7" />

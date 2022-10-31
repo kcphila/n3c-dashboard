@@ -5,7 +5,7 @@
 	select json_agg(json order by 5,4,2,1)
 	from (select
 			age_bracket,
-			gender_concept_name,
+			gender_concept_name as sex_concept_name,
 			case
 				when (count = '<20' or count is null) then 0
 				else count::int

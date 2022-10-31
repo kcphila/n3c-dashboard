@@ -133,7 +133,7 @@ d3.json("${param.data_page}", function(error, data) {
   
 		var legend = serie.append("g")
 			.attr("class", "legend")
-			.attr("transform", function(d) { var d = d[d.length - 1]; return "translate(" + (x0(d.data.${param.primary_group}) + x1(d.data.gender_concept_name) + x1.bandwidth()) + "," + ((y(d[0]) + y(d[1])) / 2) + ")"; });
+			.attr("transform", function(d) { var d = d[d.length - 1]; return "translate(" + (x0(d.data.${param.primary_group}) + x1(d.data.sex_concept_name) + x1.bandwidth()) + "," + ((y(d[0]) + y(d[1])) / 2) + ")"; });
 
 		legend.append("line")
 			.attr("x1", -6)

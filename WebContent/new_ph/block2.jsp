@@ -151,7 +151,7 @@
 				
 				<div class="row">
 					
-					<c:if test="${not empty param.severity_panel || not empty param.age_panel || not empty param.gender_panel || not empty param.ethnicity_panel || not empty param.sotrovimab_panel1 || not empty param.raceethncity_panel}">
+					<c:if test="${not empty param.severity_panel || not empty param.age_panel || not empty param.sex_panel || not empty param.ethnicity_panel || not empty param.sotrovimab_panel1 || not empty param.raceethncity_panel}">
 						<div class="mt-2 col-12 col-md-6">
 						<div class="viz_options_dropdown">
 							<span class="align-middle">Explore Topic By </span>
@@ -165,8 +165,8 @@
 								<c:if test="${not empty param.race_panel}">
 									<option value="race">Race</option>
 								</c:if>
-								<c:if test="${not empty param.gender_panel}">
-									<option value="gender">Gender</option>
+								<c:if test="${not empty param.sex_panel}">
+									<option value="sex">Sex</option>
 								</c:if>
 								<c:if test="${not empty param.ethnicity_panel}">
 									<option value="ethnicity">Ethnicity</option>
@@ -186,15 +186,15 @@
 								<c:if test="${not empty param.raceethncity_panel}">
 									<option value="raceethnicity">Race & Ethnicity</option>
 								</c:if>
-								<c:if test="${not empty param.racegender_panel}">
-									<option value="racegender">Race & Gender</option>
+								<c:if test="${not empty param.racesex_panel}">
+									<option value="racesex">Race & Sex</option>
 								</c:if>
 									<option hidden value="verylongtextverylongtext">verylongtextverylongtext</option>
 							</select>
 						</div>	
 						</div>
 					</c:if>
-					<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.gender_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter}">
+					<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter}">
 						<div class="mt-2 ml-auto col-12 col-md-6 filter_button_container">
 							<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
 							<div class="dropdown" style="display: inline-block;">
@@ -244,11 +244,11 @@
 										<c:if test="${param.race_filter}">
 											<jsp:include page="filters/race.jsp"/>
 										</c:if>
-										<c:if test="${param.gender_filter}">
-											<jsp:include page="filters/gender.jsp"/>
+										<c:if test="${param.sex_filter}">
+											<jsp:include page="filters/sex.jsp"/>
 										</c:if>
-										<c:if test="${param.gender_filter3}">
-											<jsp:include page="filters/gender3.jsp"/>
+										<c:if test="${param.sex_filter3}">
+											<jsp:include page="filters/sex3.jsp"/>
 										</c:if>
 										<c:if test="${param.ethnicity_filter}">
 											<jsp:include page="filters/ethnicity.jsp"/>
@@ -332,8 +332,8 @@
 					<div id="${param.block}-race" class="" style="display: none;" src="${param.race_panel}?panel=${param.race_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.race_labelwidth}">&label_width=${param.race_labelwidth}</c:if><c:if test="${not empty param.race_height}">&viz_height=${param.race_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
 					</div>
 				</c:if>
-				<c:if test="${not empty param.gender_panel}">
-					<div id="${param.block}-gender" class="" style="display: none;" src="${param.gender_panel}?panel=${param.gender_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.gender_labelwidth}">&label_width=${param.gender_labelwidth}</c:if><c:if test="${not empty param.gender_height}">&viz_height=${param.gender_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if><c:if test="${not empty param.topic_disease}">&topic_disease=${param.topic_disease}</c:if>">
+				<c:if test="${not empty param.sex_panel}">
+					<div id="${param.block}-sex" class="" style="display: none;" src="${param.sex_panel}?panel=${param.sex_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.sex_labelwidth}">&label_width=${param.sex_labelwidth}</c:if><c:if test="${not empty param.sex_height}">&viz_height=${param.sex_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if><c:if test="${not empty param.topic_disease}">&topic_disease=${param.topic_disease}</c:if>">
 					</div>
 				</c:if>
 				<c:if test="${not empty param.ethnicity_panel}">
@@ -360,8 +360,8 @@
 					<div id="${param.block}-raceethnicity" class="" style="display: none;" src="${param.raceethncity_panel}?panel=${param.raceethncity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
 					</div>
 				</c:if>
-				<c:if test="${not empty param.racegender_panel}">
-					<div id="${param.block}-racegender" class="" style="display: none;" src="${param.racegender_panel}?panel=${param.racegender_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
+				<c:if test="${not empty param.racesex_panel}">
+					<div id="${param.block}-racesex" class="" style="display: none;" src="${param.racesex_panel}?panel=${param.racesex_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
 					</div>
 				</c:if>
 			</div>
@@ -505,15 +505,15 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
-		$('#${param.block}-gender-select').multiselect({	
+		$('#${param.block}-sex-select').multiselect({	
 			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-gender-select');
+				var options = $('#${param.block}-sex-select');
 		        var selected = [];
 		        $(options).each(function(){
 		            selected.push($(this).val());
 		        });
 		        
-				${param.block}_constrain("gender",  selected[0].join('|'));
+				${param.block}_constrain("sex",  selected[0].join('|'));
 			    ${param.block}_refreshHistograms();
 
             }
@@ -790,9 +790,9 @@
 			$('#${param.block}-race-select').multiselect('clearSelection');
 			${param.block}_constrain("race", '');
 		</c:if>
-		<c:if test="${param.gender_filter3 || param.gender_filter}">
-			$('#${param.block}-gender-select').multiselect('clearSelection');
-			${param.block}_constrain("gender", '');
+		<c:if test="${param.sex_filter3 || param.sex_filter}">
+			$('#${param.block}-sex-select').multiselect('clearSelection');
+			${param.block}_constrain("sex", '');
 		</c:if>
 		<c:if test="${param.ethnicity_filter}">
 			$('#${param.block}-ethnicity-select').multiselect('clearSelection');
@@ -877,7 +877,7 @@
 	var ${param.block}_AgeArray = new Array();
 	var ${param.block}_RaceArray = new Array();
 	var ${param.block}_EthnicityArray = new Array();
-	var ${param.block}_GenderArray = new Array();
+	var ${param.block}_SexArray = new Array();
 	var ${param.block}_SeverityArray = new Array();
 	var ${param.block}_DelayArray = new Array();
 	
@@ -888,7 +888,7 @@
 	var ${param.block}_medsSeverityArray = new Array();
 	var ${param.block}_sotrovimabMedsArray = new Array();
 	var ${param.block}_raceEthnicityArray = new Array();
-	var ${param.block}_raceGenderArray = new Array();
+	var ${param.block}_raceSexArray = new Array();
 	
 	var ${param.block}_comorbidityArray = new Array();
 	
@@ -896,19 +896,19 @@
 	
 	var ${param.block}_BeforeAfterArray = new Array();
 
-	var ${param.block}_GenderSeverityArray = new Array();
-	var ${param.block}_SeverityGenderArray = new Array();
+	var ${param.block}_SexSeverityArray = new Array();
+	var ${param.block}_SeveritySexArray = new Array();
 	
 
 	var ${param.block}_SeverityRegionArray = new Array();
 	
 	var ${param.block}_ObservationAgeArray = new Array();
-	var ${param.block}_ObservationGenderArray = new Array();
+	var ${param.block}_ObservationSexArray = new Array();
 	var ${param.block}_ObservationRaceArray = new Array();
 	var ${param.block}_IbservationEthnicityArray = new Array();
 	
 	var ${param.block}_SymptomAgeArray = new Array();
-	var ${param.block}_SymptomGenderArray = new Array();
+	var ${param.block}_SymptomSexArray = new Array();
 	var ${param.block}_SymptomRaceArray = new Array();
 	var ${param.block}_SymptomEthnicityArray = new Array();
 	var ${param.block}_SymptomObservationArray = new Array();
@@ -919,16 +919,16 @@
 	var ${param.block}_ClassAgeArray = new Array();
 	var ${param.block}_DiabetesArray = new Array();
 
-	var ${param.block}_AgeGenderArray = new Array();
-	var ${param.block}_GenderAgeArray = new Array();
+	var ${param.block}_AgeSexArray = new Array();
+	var ${param.block}_SexAgeArray = new Array();
 
 	var ${param.block}_SeverityStatusArray = new Array();
 	var ${param.block}_AgeStatusArray = new Array();
 	var ${param.block}_RaceStatusArray = new Array();
-	var ${param.block}_GenderStatusArray = new Array();
+	var ${param.block}_SexStatusArray = new Array();
 
 	var ${param.block}_AgeResultArray = new Array();
-	var ${param.block}_GenderResultArray = new Array();
+	var ${param.block}_SexResultArray = new Array();
 	var ${param.block}_RaceResultArray = new Array();
 	var ${param.block}_EthnicityResultArray = new Array();
 	var ${param.block}_CategoryResultArray = new Array();
@@ -947,7 +947,7 @@
 	    	${param.block}_refreshAgeArray(data);
 	    	${param.block}_refreshRaceArray(data);
 	    	${param.block}_refreshEthnicityArray(data);
-	    	${param.block}_refreshGenderArray(data);
+	    	${param.block}_refreshSexArray(data);
 	    	${param.block}_refreshSeverityArray(data);
 	    	${param.block}_refreshDelayArray(data);
 	    
@@ -958,7 +958,7 @@
 	    	${param.block}_refreshmedsSeverityArray(data);
 	    	${param.block}_refreshsotrovimabMedsArray(data);
 	    	${param.block}_refreshraceEthnicityArray(data);
-	    	${param.block}_refreshraceGenderArray(data);
+	    	${param.block}_refreshraceSexArray(data);
 
 	    	${param.block}_refreshcomorbidityArray(data);
 	    
@@ -966,17 +966,17 @@
 		    
 	    	${param.block}_refreshBeforeAfterArray(data);
 	    
-	    	${param.block}_refreshGenderSeverityArray(data);
-	    	${param.block}_refreshSeverityGenderArray(data);
+	    	${param.block}_refreshSexSeverityArray(data);
+	    	${param.block}_refreshSeveritySexArray(data);
 	    	${param.block}_refreshObservationAgeArray(data);
-	    	${param.block}_refreshObservationGenderArray(data);
+	    	${param.block}_refreshObservationSexArray(data);
 	    	${param.block}_refreshObservationRaceArray(data);
 	    	${param.block}_refreshObservationEthnicityArray(data);
 	    	
 	    	${param.block}_refreshSeverityRegionArray(data);
 
 	    	${param.block}_refreshSymptomAgeArray(data);
-	    	${param.block}_refreshSymptomGenderArray(data);
+	    	${param.block}_refreshSymptomSexArray(data);
 	    	${param.block}_refreshSymptomRaceArray(data);
 	    	${param.block}_refreshSymptomEthnicityArray(data);
 	    	${param.block}_refreshSymptomObservationArray(data);
@@ -986,14 +986,14 @@
 	    	${param.block}_refreshClassAgeArray(data);
 	    	${param.block}_refreshDiabetesArray(data2);
 	    
-	    	${param.block}_refreshAgeGenderArray(data2);
-	    	${param.block}_refreshGenderAgeArray(data2);
+	    	${param.block}_refreshAgeSexArray(data2);
+	    	${param.block}_refreshSexAgeArray(data2);
 	    
 	    	${param.block}_refreshSeverityStatusArray(data);
 	    	${param.block}_refreshstatusArray(data);
 	    
 	    	${param.block}_refreshAgeResultArray(data);
-	    	${param.block}_refreshGenderResultArray(data);
+	    	${param.block}_refreshSexResultArray(data);
 	    	${param.block}_refreshRaceResultArray(data);
 	    	${param.block}_refreshEthnicityResultArray(data);
 	    	${param.block}_refreshCategoryResultArray(data);
@@ -1021,8 +1021,8 @@
 	    if (${param.block}_loaded("race")) {
 	    	${param.block}_race_refresh();
 	    }
-	    if (${param.block}_loaded("gender")) {
-	    	${param.block}_gender_refresh();
+	    if (${param.block}_loaded("sex")) {
+	    	${param.block}_sex_refresh();
 	    }
 	    if (${param.block}_loaded("ethnicity")) {
 	    	${param.block}_ethnicity_refresh();
@@ -1045,8 +1045,8 @@
 	    if (${param.block}_loaded("raceethnicity")) {
 	    	${param.block}_raceethnicity_refresh();
 	    }  
-	    if (${param.block}_loaded("racegender")) {
-	    	${param.block}_racegender_refresh();
+	    if (${param.block}_loaded("racesex")) {
+	    	${param.block}_racesex_refresh();
 	    }  
 	    if (${param.block}_loaded("result")) {
 	    	${param.block}_result_refresh();
@@ -1085,108 +1085,108 @@
 			$("#${param.block}-severity").css('display', 'block');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
 		if (selection == "age") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'block');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
 		if (selection == "race") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'block');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
-		if (selection == "gender") {
+		if (selection == "sex") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'block');
+			$("#${param.block}-sex").css('display', 'block');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
 		if (selection == "ethnicity") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'block');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
 		if (selection == "raceseverity") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'block');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
 		if (selection == "comorbidity") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'block');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
 		if (selection == "raceethnicity") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'block');
-			$("#${param.block}-racegender").css('display', 'none');
+			$("#${param.block}-racesex").css('display', 'none');
 //			cache_browser_history("admin", "admin/institutions")
 		}
-		if (selection == "racegender") {
+		if (selection == "racesex") {
 			$("#${param.block}-severity").css('display', 'none');
 			$("#${param.block}-age").css('display', 'none');
 			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-gender").css('display', 'none');
+			$("#${param.block}-sex").css('display', 'none');
 			$("#${param.block}-ethnicity").css('display', 'none');
 			$("#${param.block}-raceseverity").css('display', 'none');
 			$("#${param.block}-comorbidity").css('display', 'none');
 			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racegender").css('display', 'block');
+			$("#${param.block}-racesex").css('display', 'block');
 //			cache_browser_history("admin", "admin/institutions")
 		}
 		
@@ -1256,8 +1256,8 @@
 <jsp:include page="singleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="GenderArray"/>
-	<jsp:param name="primary" value="gender"/>
+	<jsp:param name="array" value="SexArray"/>
+	<jsp:param name="primary" value="sex"/>
 	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 
@@ -1312,9 +1312,9 @@
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="raceGenderArray"/>
+	<jsp:param name="array" value="raceSexArray"/>
 	<jsp:param name="primary" value="race"/>
-	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="secondary" value="sex"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
@@ -1377,19 +1377,19 @@
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="GenderSeverityArray"/>
-	<jsp:param name="primary" value="gender"/>
-	<jsp:param name="primary_abbrev" value="gender_abbrev"/>
+	<jsp:param name="array" value="SexSeverityArray"/>
+	<jsp:param name="primary" value="sex"/>
+	<jsp:param name="primary_abbrev" value="sex_abbrev"/>
 	<jsp:param name="secondary" value="severity"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityGenderArray"/>
+	<jsp:param name="array" value="SeveritySexArray"/>
 	<jsp:param name="primary" value="severity"/>
 	<jsp:param name="primary_abbrev" value="severity_abbrev"/>
-	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="secondary" value="sex"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
@@ -1411,9 +1411,9 @@
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ObservationGenderArray"/>
+	<jsp:param name="array" value="ObservationSexArray"/>
 	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="secondary" value="sex"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
@@ -1444,9 +1444,9 @@
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SymptomGenderArray"/>
+	<jsp:param name="array" value="SymptomSexArray"/>
 	<jsp:param name="primary" value="symptom"/>
-	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="secondary" value="sex"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
@@ -1484,8 +1484,8 @@
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="GenderResultArray"/>
-	<jsp:param name="primary" value="gender"/>
+	<jsp:param name="array" value="SexResultArray"/>
+	<jsp:param name="primary" value="sex"/>
 	<jsp:param name="secondary" value="result"/>
 </jsp:include>
 
@@ -1546,27 +1546,27 @@
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="DiabetesArray"/>
 	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="secondary" value="sex"/>
 	<jsp:param name="tertiary" value="age"/>
 </jsp:include>
 
 <jsp:include page="tripleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AgeGenderArray"/>
+	<jsp:param name="array" value="AgeSexArray"/>
 	<jsp:param name="wrap" value="no"/>
 	<jsp:param name="primary" value="observation"/>
 	<jsp:param name="secondary" value="age"/>
-	<jsp:param name="tertiary" value="gender"/>
+	<jsp:param name="tertiary" value="sex"/>
 </jsp:include>
 
 <jsp:include page="tripleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="GenderAgeArray"/>
+	<jsp:param name="array" value="SexAgeArray"/>
 	<jsp:param name="wrap" value="no"/>
 	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="secondary" value="sex"/>
 	<jsp:param name="tertiary" value="age"/>
 </jsp:include>
 
@@ -1584,7 +1584,7 @@
 	<jsp:param name="array" value="statusArray"/>
 	<jsp:param name="wrap" value="no"/>
 	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="gender"/>
+	<jsp:param name="secondary" value="sex"/>
 	<jsp:param name="tertiary" value="age"/>
 </jsp:include>
 
@@ -1635,7 +1635,7 @@
 <%-- <jsp:include page="doubleHistogram.jsp"> --%>
 <%-- 	<jsp:param name="block" value="${param.block}"/> --%>
 <%-- 	<jsp:param name="datatable_div" value="${param.datatable_div}"/> --%>
-<%-- 	<jsp:param name="array" value="GenderStatusArray"/> --%>
-<%-- 	<jsp:param name="primary" value="gender"/> --%>
+<%-- 	<jsp:param name="array" value="SexStatusArray"/> --%>
+<%-- 	<jsp:param name="primary" value="sex"/> --%>
 <%-- 	<jsp:param name="secondary" value="smoking_status"/> --%>
 <%-- </jsp:include> --%>

@@ -36,7 +36,7 @@
    "long_percent": 72.69
  },
  {
-   "demographic": "Gender",
+   "demographic": "Sex",
    "value": " Female",
    "total_enclave": 7806422,
    "total_positive": 1013196,
@@ -45,7 +45,7 @@
    "long_percent": 65.59
  },
  {
-   "demographic": "Gender",
+   "demographic": "Sex",
    "value": " Male",
    "total_enclave": 6289597,
    "total_positive": 679046,
@@ -117,8 +117,8 @@
    "long_percent": 0
  },
  {
-   "demographic": "Gender",
-   "value": " Other Gender",
+   "demographic": "Sex",
+   "value": " Other Sex",
    "total_enclave": 9328,
    "total_positive": 229,
    "positive_percent": 0.01,

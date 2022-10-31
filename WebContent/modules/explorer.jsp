@@ -111,14 +111,14 @@
 							</div>
 							<div class="panel-body">
 								<h6>Sex</h6>
-								<select id="gender-select" multiple="multiple">
-									<sql:query var="gender" dataSource="jdbc/N3CPublic">
-										select gender_abbrev as gender,sum(case when (count = '<20' or count is null) then 0 else count::int end)
+								<select id="sex-select" multiple="multiple">
+									<sql:query var="sex" dataSource="jdbc/N3CPublic">
+										select gender_abbrev as sex,sum(case when (count = '<20' or count is null) then 0 else count::int end)
 										from n3c_questions_new.all_ages_covid_pos_demo_censored,n3c_dashboard.gender_map3
 										where gender_concept_name=gender group by 1,gender_seq order by gender_seq;
 									</sql:query>
-									<c:forEach items="${gender.rows}" var="row" varStatus="rowCounter">
-										<option value="${row.gender}">${row.gender}</option>
+									<c:forEach items="${sex.rows}" var="row" varStatus="rowCounter">
+										<option value="${row.sex}">${row.sex}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -181,7 +181,7 @@
 			<div class="col-12 col-lg-6 viz_section">
 				<h5 class="text-center strong">Sex</h5>
 				<div class="panel-body">
-					<div id="gender_histogram"></div>
+					<div id="sex_histogram"></div>
 				</div>
 			</div>
 		</div>
@@ -246,9 +246,9 @@ $('#age-select').multiselect({
      }
 });
 
-$('#gender-select').multiselect({
+$('#sex-select').multiselect({
  	onChange: function(option, checked, select) {
-		var options = $('#gender-select');
+		var options = $('#sex-select');
 		var selected = [];
         $(options).each(function(){
             selected.push($(this).val());
@@ -324,7 +324,7 @@ function clear_search(){
 	$('#table_clear').addClass("no_clear");
 	
 	$('#age-select').multiselect('clearSelection');
-	$('#gender-select').multiselect('clearSelection');
+	$('#sex-select').multiselect('clearSelection');
 	$('#race-select').multiselect('clearSelection');
 	$('#ethnicity-select').multiselect('clearSelection');
 	$('#severity-select').multiselect('clearSelection');
@@ -344,7 +344,7 @@ var aggregated_datatable = null;
 var ageArray = new Array();
 var raceArray = new Array();
 var ethnicityArray = new Array();
-var genderArray = new Array();
+var sexArray = new Array();
 var severityArray = new Array();
 
 $(document).ready( function () {
@@ -422,7 +422,7 @@ $(document).ready( function () {
 	        	{ data: 'race', visible: true, orderable: true },
 	        	{ data: 'ethnicity', visible: true, orderable: true },
 	        	{ data: 'age_bin', visible: true, orderable: true },
-	        	{ data: 'gender', visible: true, orderable: true },
+	        	{ data: 'sex', visible: true, orderable: true },
 	        	{ data: 'severity', visible: true, orderable: true },
 	        	{ data: 'patient_count', visible: true, orderable: true },
 	        	{ data: 'age_abbrev', visible: false },
@@ -431,8 +431,8 @@ $(document).ready( function () {
 	        	{ data: 'race_seq', visible: false },
 	        	{ data: 'ethnicity_abbrev', visible: false },
 	        	{ data: 'ethnicity_seq', visible: false },
-	        	{ data: 'gender_abbrev', visible: false },
-	        	{ data: 'gender_seq', visible: false },
+	        	{ data: 'sex_abbrev', visible: false },
+	        	{ data: 'sex_seq', visible: false },
 	        	{ data: 'severity_abbrev', visible: false },
 	        	{ data: 'severity_seq', visible: false }
 	    	]
@@ -468,7 +468,7 @@ function refreshHistograms() {
     refreshAgeArray(data);
     refreshRaceArray(data);
     refreshEthnicityArray(data);
-    refreshGenderArray(data);
+    refreshSexArray(data);
     refreshSeverityArray(data);
     
     var doBar = false;
@@ -493,11 +493,11 @@ function refreshHistograms() {
     else
     	localPieChart(ethnicityArray,"#ethnicity_histogram");
 
-    d3.select("#gender_histogram").select("svg").remove();
+    d3.select("#sex_histogram").select("svg").remove();
     if (doBar)
-	    localBarChart(genderArray,"#gender_histogram",135);
+	    localBarChart(sexArray,"#sex_histogram",135);
     else
-    	localPieChart(genderArray,"#gender_histogram");
+    	localPieChart(sexArray,"#sex_histogram");
 
     d3.select("#severity_histogram").select("svg").remove();
     if (doBar)
@@ -619,12 +619,12 @@ function refreshEthnicityArray(data) {
     ethnicityArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
 }
 
-function refreshGenderArray(data) {
+function refreshSexArray(data) {
 	var aData = new Object;
 	var bData = new Object;
 	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
-    	var group = data[i].gender;
-       	switch (data[i].gender) {
+    	var group = data[i].sex;
+       	switch (data[i].sex) {
        	case "MALE":
        		group = "Male";
        		break;
@@ -640,12 +640,12 @@ function refreshGenderArray(data) {
        	case "Unkown":
        		group = "Unkown";
        		break;
-       	case "Gender unkown":
+       	case "Sex unkown":
        		group = "Unkown";
        		break;
        	};
     	var count = data[i].patient_count;
-    	var seq = data[i].gender_seq;
+    	var seq = data[i].sex_seq;
       if (typeof aData[group] == 'undefined') {
             aData[group] = count;
             bData[group] = seq;
@@ -653,7 +653,7 @@ function refreshGenderArray(data) {
         	 aData[group] += count;
 	});
 
-	genderArray = new Array();
+	sexArray = new Array();
     for(var i in aData) {
     	var obj = new Object();
     	Object.defineProperty(obj, 'element', {
@@ -665,9 +665,9 @@ function refreshGenderArray(data) {
     	Object.defineProperty(obj, 'seq', {
     		  value: bData[i]
     		});
-    	genderArray.push(obj);
+    	sexArray.push(obj);
     }
-    genderArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+    sexArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
 }
 
 function refreshSeverityArray(data) {

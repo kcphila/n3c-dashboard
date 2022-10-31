@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select observation, age_abbrev as age, gender_abbrev as gender, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev, gender_seq, observation_seq
+	from (select observation, age_abbrev as age, gender_abbrev as sex, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, observation_seq
 			from (select
 					INITCAP(observation) as observation,
 					coalesce(age_bracket, 'Unknown') as age_bin,
@@ -27,13 +27,13 @@
     "headers": [
         {"value":"observation", "label":"Observation"},
         {"value":"age", "label":"Age"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
         {"value":"age_abbrev", "label":"dummy0"},
         {"value":"age_seq", "label":"dummy1"},
-        {"value":"gender_abbrev", "label":"dummy2"},
-        {"value":"gender_seq", "label":"dummy3"},
+        {"value":"sex_abbrev", "label":"dummy2"},
+        {"value":"sex_seq", "label":"dummy3"},
         {"value":"observation_seq", "label":"dummy4"}
     ],
     "rows" : 

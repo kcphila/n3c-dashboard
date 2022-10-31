@@ -2,7 +2,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 {
-"axes": [ "Age", "Severity", "Gender", "Race", "Ethnicity" ],
+"axes": [ "Age", "Severity", "Sex", "Race", "Ethnicity" ],
 
 "nodes": [
 

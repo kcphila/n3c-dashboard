@@ -10,7 +10,7 @@
 				<jsp:param name="namespace" value="diabetes_type1_aggregate" />
 				<jsp:param name="dom_element" value="#diabetes_type1_detail_1" />
 				<jsp:param name="primary_group" value="observation" />
-				<jsp:param name="secondary_group" value="gender_concept_name" />
+				<jsp:param name="secondary_group" value="sex_concept_name" />
 				<jsp:param name="stack_group" value="age_bracket" />
 				<jsp:param name="count" value="count" />
 				<jsp:param name="xaxis_label" value="Patient Count" />

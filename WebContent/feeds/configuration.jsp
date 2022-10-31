@@ -1,9 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
-var gender_range = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6"];
-var gender_range3 = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6", "#8B8B8B"];
-var gender_range_no_other = ["#4833B2", "#ffa600", "#a6a6a6"];
+var sex_range = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6"];
+var sex_range3 = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6", "#8B8B8B"];
+var sex_range_no_other = ["#4833B2", "#ffa600", "#a6a6a6"];
 
 var severity_range2 = ["#F5B1A3", "#EE765E", "#CE3617", "#A02A12", "#5C180A", "#8B8B8B", "#8B8B8B"];
 var severity_range3 = ["#FFC1DC", "#F584B5", "#CE4682", "#9D285B", "#6C0934", "#8B8B8B"];
@@ -54,24 +54,24 @@ var sequential_2_7 = ["#F5B1A3", "#ee765e", "#e94f2f", "#d03616", "#a12a11", "#8
 
 var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF", "#D6BFD9", "#A36FAA", "#8A5590", "#6C4270", "#4D2F50"];
 
-<sql:query var="genders" dataSource="jdbc/N3CPublic">
+<sql:query var="sexes" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
 	from (select distinct gender_abbrev as secondary, gender_seq as secondary_seq, gender_abbrev as secondary_name
 		  from n3c_dashboard.gender_map
 		  ) as done;
 </sql:query>
-<c:forEach items="${genders.rows}" var="row" varStatus="rowCounter">
-	var gender_legend = ${row.jsonb_pretty};
+<c:forEach items="${sexes.rows}" var="row" varStatus="rowCounter">
+	var sex_legend = ${row.jsonb_pretty};
 </c:forEach>
 
-<sql:query var="genders3" dataSource="jdbc/N3CPublic">
+<sql:query var="sexes3" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
 	from (select distinct gender_abbrev as secondary, gender_seq as secondary_seq, gender_abbrev as secondary_name
 		  from n3c_dashboard.gender_map3
 		  ) as done;
 </sql:query>
-<c:forEach items="${genders3.rows}" var="row" varStatus="rowCounter">
-	var gender_legend3 = ${row.jsonb_pretty};
+<c:forEach items="${sexes3.rows}" var="row" varStatus="rowCounter">
+	var sex_legend3 = ${row.jsonb_pretty};
 </c:forEach>
 
 <sql:query var="severities" dataSource="jdbc/N3CPublic">

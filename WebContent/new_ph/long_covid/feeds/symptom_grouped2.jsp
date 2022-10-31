@@ -3,8 +3,8 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select age_bin as age, gender_abbrev as gender, race, ethnicity, observation, symptom, patient_display, patient_count,
-				 age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev, gender_seq,
+	from (select age_bin as age, gender_abbrev as sex, race, ethnicity, observation, symptom, patient_display, patient_count,
+				 age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq,
 				 observation_seq, symptom_seq
 			from (select
 					coalesce(age_bin, 'Unknown') as age_bin,
@@ -31,7 +31,7 @@
 {
     "headers": [
         {"value":"age", "label":"Age"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
         {"value":"observation", "label":"Observation"},
@@ -44,8 +44,8 @@
         {"value":"race_seq", "label":"dummy4"},
         {"value":"ethnicity_abbrev", "label":"dummy5"},
         {"value":"ethnicity_seq", "label":"dummy6"},
-        {"value":"gender_abbrev", "label":"dummy7"},
-        {"value":"gender_seq", "label":"dummy8"},
+        {"value":"sex_abbrev", "label":"dummy7"},
+        {"value":"sex_seq", "label":"dummy8"},
         {"value":"observation_seq", "label":"dummy9"},
         {"value":"symptom_seq", "label":"dummy10"}
     ],

@@ -25,17 +25,17 @@ function ${param.block}_age_refresh() {
 			primary: 'observation',
 			secondary: 'age',
 			count: 'patient_count',
-			stack_group: 'gender',
-			xaxis_label: 'Gender',
-			legend_label: gender_legend,
-			colorscale: gender_range,
+			stack_group: 'sex',
+			xaxis_label: 'Sex',
+			legend_label: sex_legend,
+			colorscale: sex_range,
 			label1: 'Observation',
 			label2: 'Age',
 			offset: 250
 	}
 	// console.log('reached age refresh');
    	d3.select("#${param.block}_age_viz").select("svg").remove();
-	localHorizontalGroupedStackedBarChart(${param.block}_AgeGenderArray, properties);	
+	localHorizontalGroupedStackedBarChart(${param.block}_AgeSexArray, properties);	
 }
 
 ${param.block}_age_refresh();

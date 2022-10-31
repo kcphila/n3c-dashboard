@@ -13,7 +13,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'race':
 	    table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'gender':
+	case 'sex':
 	    table.column(3).search(constraint, true, false, true).draw();	
 		break;
 	}
@@ -144,15 +144,15 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
          	{ data: 'age', visible: true, orderable: true },
         	{ data: 'smoking_status', visible: true, orderable: true },
         	{ data: 'race', visible: true, orderable: true },
-        	{ data: 'gender', visible: true, orderable: true },
+        	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
         	{ data: 'race_abbrev', visible: false },
         	{ data: 'race_seq', visible: false },
-        	{ data: 'gender_abbrev', visible: false },
-        	{ data: 'gender_seq', visible: false },
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false },
         	{ data: 'smoking_status_abbrev', visible: false },
         	{ data: 'smoking_status_seq', visible: false }
     	]

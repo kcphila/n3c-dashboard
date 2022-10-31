@@ -8,7 +8,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'severity':
 		table.column(0).search(constraint, true, false, false).draw();	
 		break;
-	case 'gender':
+	case 'sex':
 		table.column(1).search(constraint, true, false, false).draw();	
 		break;
 	case 'age':
@@ -143,7 +143,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'severity', visible: true},
-        	{ data: 'gender', visible: true},
+        	{ data: 'sex', visible: true},
         	{ data: 'age', visible: true},
         	{ data: 'race', visible: true},
         	{ data: 'ethnicity', visible: true},
@@ -157,8 +157,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'race_seq', visible: false, orderable: false, searchable: false },
         	{ data: 'ethnicity_abbrev', visible: false, orderable: false, searchable: false },
         	{ data: 'ethnicity_seq', visible: false, orderable: false, searchable: false },
-        	{ data: 'gender_abbrev', visible: false, orderable: false, searchable: false },
-        	{ data: 'gender_seq', visible: false, orderable: false, searchable: false },
+        	{ data: 'sex_abbrev', visible: false, orderable: false, searchable: false },
+        	{ data: 'sex_seq', visible: false, orderable: false, searchable: false },
         	{ data: 'severity_abbrev', visible: false, orderable: false, searchable: false },
         	{ data: 'severity_seq', visible: false, orderable: false, searchable: false }
     	]

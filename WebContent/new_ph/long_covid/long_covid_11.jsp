@@ -13,17 +13,17 @@
 
 	<jsp:param name="age_filter4" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 	
 	<jsp:param name="symptom" value="Shortness%20of%20breath" />
 
 	<jsp:param name="age_panel" value="long_covid/observationAge.jsp" />
 	<jsp:param name="race_panel" value="long_covid/observationRace.jsp" />
-	<jsp:param name="gender_panel" value="long_covid/observationGender.jsp" />
+	<jsp:param name="sex_panel" value="long_covid/observationSex.jsp" />
 	<jsp:param name="ethnicity_panel" value="long_covid/observationEthnicity.jsp" />
 	<jsp:param name="ethnicity_labelwidth" value="210" />
-	<jsp:param name="gender_labelwidth" value="210" />
+	<jsp:param name="sex_labelwidth" value="210" />
 	<jsp:param name="race_labelwidth" value="210" />
 	<jsp:param name="age_labelwidth" value="210" />
 

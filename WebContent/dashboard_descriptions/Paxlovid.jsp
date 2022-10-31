@@ -16,7 +16,7 @@
 			data-content="
 				<a href='<util:applicationRoot/>/public-health/Paxlovid/4'>Age</a> 
 				<br>
-				<a href='<util:applicationRoot/>/public-health/Paxlovid/5'>Gender</a>
+				<a href='<util:applicationRoot/>/public-health/Paxlovid/5'>Sex</a>
 				<br>
 				<a href='<util:applicationRoot/>/public-health/Paxlovid/6'>Race</a>
 				<br>

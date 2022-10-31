@@ -12,13 +12,13 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter2" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter3" value="true" />
+	<jsp:param name="sex_filter3" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="adult_summary/severity.jsp" />
 	<jsp:param name="age_panel" value="adult_summary/age.jsp" />
 	<jsp:param name="race_panel" value="adult_summary/race.jsp" />
-	<jsp:param name="gender_panel" value="adult_summary/gender.jsp" />
+	<jsp:param name="sex_panel" value="adult_summary/sex.jsp" />
 	<jsp:param name="ethnicity_panel" value="adult_summary/ethnicity.jsp" />
 	<jsp:param name="raceseverity_panel" value="adult_summary/raceseverity.jsp" />
 

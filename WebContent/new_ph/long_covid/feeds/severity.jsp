@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select severity_abbrev as severity, gender_abbrev as gender, patient_display, patient_count, gender_abbrev, gender_seq, severity_abbrev, severity_seq
+	from (select severity_abbrev as severity, gender_abbrev as sex, patient_display, patient_count, gender_abbrev as sex_abbrev, gender_seq as sex_seq, severity_abbrev, severity_seq
 			from (select
 					severity_type as severity,
 					gender_concept_name as gender,
@@ -21,11 +21,11 @@
 {
     "headers": [
         {"value":"severity", "label":"Severity"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
-        {"value":"gender_abbrev", "label":"dummy7"},
-        {"value":"gender_seq", "label":"dummy8"},
+        {"value":"sex_abbrev", "label":"dummy7"},
+        {"value":"sex_seq", "label":"dummy8"},
         {"value":"severity_abbrev", "label":"dummy9"},
         {"value":"severity_seq", "label":"dummy0"}
     ],

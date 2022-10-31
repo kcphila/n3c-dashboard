@@ -7,7 +7,7 @@
 			from (select
 					age_bracket as age_bin,
 					severity_type as severity,
-					addtl_gender_concept_name as gender,
+					addtl_sex_concept_name as sex,
 					case
 						when (count = '<20' or count is null) then 0
 						else count::int
@@ -23,14 +23,14 @@
     "headers": [
         {"value":"severity", "label":"Severity"},
         {"value":"age_bin", "label":"Age"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"patient_count", "label":"Patient Count"},
         {"value":"age_abbrev", "label":"dummy1"},
         {"value":"age_seq", "label":"dummy2"},
         {"value":"severity_abbrev", "label":"dummy3"},
         {"value":"severity_seq", "label":"dummy4"},
-        {"value":"gender_abbrev", "label":"dummy7"},
-        {"value":"gender_seq", "label":"dummy8"}
+        {"value":"sex_abbrev", "label":"dummy7"},
+        {"value":"sex_seq", "label":"dummy8"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

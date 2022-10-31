@@ -12,13 +12,13 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filterpeds2" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter3" value="true" />
+	<jsp:param name="sex_filter3" value="true" />
 	<jsp:param name="comorbidities_filter" value="true" /> 
 
 	<jsp:param name="severity_panel" value="pediatrics/severity.jsp" />
 	<jsp:param name="age_panel" value="pediatrics/age2.jsp" />
 	<jsp:param name="race_panel" value="pediatrics/race.jsp" />
-	<jsp:param name="gender_panel" value="pediatrics/gender.jsp" />
+	<jsp:param name="sex_panel" value="pediatrics/sex.jsp" />
 	<jsp:param name="raceseverity_panel" value="pediatrics/raceseverity.jsp" />
 
 	<jsp:param name="datatable" value="pediatrics/unknown_vaccination_table.jsp" />

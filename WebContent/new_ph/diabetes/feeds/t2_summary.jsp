@@ -2,8 +2,8 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
-	select jsonb_pretty(jsonb_agg(done order by observation_seq,gender_seq))
-	from (select age_bin as age, gender_abbrev as gender, observation, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev, gender_seq, observation_seq
+	select jsonb_pretty(jsonb_agg(done order by observation_seq,sex_seq))
+	from (select age_bin as age, gender_abbrev as sex, observation, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, observation_seq
 			from (select
 					age_bracket as age_bin,
 					gender_concept_name as gender,
@@ -23,14 +23,14 @@
 {
     "headers": [
         {"value":"age", "label":"Age"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"observation", "label":"Observation"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
         {"value":"age_abbrev", "label":"dummy1"},
         {"value":"age_seq", "label":"dummy2"},
-        {"value":"gender_abbrev", "label":"dummy7"},
-        {"value":"gender_seq", "label":"dummy8"},
+        {"value":"sex_abbrev", "label":"dummy7"},
+        {"value":"sex_seq", "label":"dummy8"},
         {"value":"observation_seq", "label":"dummy0"}
     ],
     "rows" : 

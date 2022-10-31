@@ -17,7 +17,7 @@
 	<select id="selectMe">
 		<optgroup label="Demographics">
 			<option value="paxlovid_4">Age</option>
-			<option value="paxlovid_5">Gender</option>
+			<option value="paxlovid_5">Sex</option>
 			<option value="paxlovid_6">Race</option>
 			<option value="paxlovid_7">Ethnicity</option>
 		</optgroup>

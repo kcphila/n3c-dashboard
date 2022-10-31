@@ -21,18 +21,18 @@ function ${param.block}_refresh() {
 	var properties = {
 			domName: '${param.block}_diabetest2_viz',
 			primary: 'observation',
-			secondary: 'gender',
+			secondary: 'sex',
 			count: 'patient_count',
 			stack_group: 'age',
 			xaxis_label: 'Age',
 			legend_label: age_legend_4,
 			colorscale: age_range,
 			label1: 'Observation',
-			label2: 'Gender',
+			label2: 'Sex',
 			offset: 350
 	}
 
    	d3.select("#${param.block}_diabetest2_viz").select("svg").remove();
-	localHorizontalGroupedStackedBarChart(${param.block}_GenderAgeArray, properties);	
+	localHorizontalGroupedStackedBarChart(${param.block}_SexAgeArray, properties);	
 }
 </script>

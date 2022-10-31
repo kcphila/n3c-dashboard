@@ -9,12 +9,12 @@
 
 	<jsp:param name="kpis" value="cumulative/kpis.jsp" />
 
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 	
 	<jsp:param name="raceethncity_panel" value="cumulative/raceEthnicity.jsp" />
-	<jsp:param name="racegender_panel" value="cumulative/raceGender.jsp" />
+	<jsp:param name="racesex_panel" value="cumulative/raceSex.jsp" />
 
 	<jsp:param name="datatable" value="cumulative/tables/demographics_table.jsp" />
 	<jsp:param name="datatable_div" value="cumulative_demographics" />

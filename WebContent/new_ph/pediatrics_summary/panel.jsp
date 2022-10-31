@@ -19,13 +19,13 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="test_panel.jsp" />
 	<jsp:param name="age_panel" value="test_panel.jsp" />
 	<jsp:param name="race_panel" value="test_panel.jsp" />
-	<jsp:param name="gender_panel" value="test_panel.jsp" />
+	<jsp:param name="sex_panel" value="test_panel.jsp" />
 	<jsp:param name="ethnicity_panel" value="test_panel.jsp" />
 
 	<jsp:param name="datatable" value="../modules/reinfections_by_date.jsp" />
@@ -47,12 +47,12 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="test_panel.jsp" />
 	<jsp:param name="age_panel" value="test_panel.jsp" />
 	<jsp:param name="race_panel" value="test_panel.jsp" />
-	<jsp:param name="gender_panel" value="test_panel.jsp" />
+	<jsp:param name="sex_panel" value="test_panel.jsp" />
 
 	<jsp:param name="datatable" value="pediatrics_summary/vaccinated_table.jsp" />
 	<jsp:param name="datatable_div" value="pediatrics_vaccinated" />
@@ -70,13 +70,13 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="test_panel.jsp" />
 	<jsp:param name="age_panel" value="test_panel.jsp" />
 	<jsp:param name="race_panel" value="test_panel.jsp" />
-	<jsp:param name="gender_panel" value="test_panel.jsp" />
+	<jsp:param name="sex_panel" value="test_panel.jsp" />
 	<jsp:param name="ethnicity_panel" value="test_panel.jsp" />
 
 	<jsp:param name="datatable" value="pediatrics_summary/vaccinated_comorbidity_table.jsp" />
@@ -95,12 +95,12 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="test_panel.jsp" />
 	<jsp:param name="age_panel" value="test_panel.jsp" />
 	<jsp:param name="race_panel" value="test_panel.jsp" />
-	<jsp:param name="gender_panel" value="test_panel.jsp" />
+	<jsp:param name="sex_panel" value="test_panel.jsp" />
 
 	<jsp:param name="datatable" value="pediatrics_summary/unknown_vaccination_table.jsp" />
 	<jsp:param name="datatable_div" value="pediatrics_unknown_vaccination" />
@@ -118,12 +118,12 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="test_panel.jsp" />
 	<jsp:param name="age_panel" value="test_panel.jsp" />
 	<jsp:param name="race_panel" value="test_panel.jsp" />
-	<jsp:param name="gender_panel" value="test_panel.jsp" />
+	<jsp:param name="sex_panel" value="test_panel.jsp" />
 
 	<jsp:param name="datatable" value="pediatrics_summary/ungrouped_table.jsp" />
 	<jsp:param name="datatable_div" value="pediatrics_ungrouped" />

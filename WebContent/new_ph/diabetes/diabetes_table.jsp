@@ -7,7 +7,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'age':
 	    table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'gender':
+	case 'sex':
 	    table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'observation':
@@ -159,14 +159,14 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	order: [[9, 'asc']],
      	columns: [
          	{ data: 'age', visible: true, orderable: true,  orderData: [6] },
-        	{ data: 'gender', visible: true, orderable: true },
+        	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'observation', visible: true, orderable: true },
            	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
-        	{ data: 'gender_abbrev', visible: false },
-        	{ data: 'gender_seq', visible: false },
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false },
         	{ data: 'observation_seq', visible: false }
     	]
 	} );

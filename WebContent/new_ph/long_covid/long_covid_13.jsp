@@ -11,10 +11,10 @@
 	<jsp:param name="kpis" value="long_covid/kpis2.jsp" />
 
 	<jsp:param name="severity_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 
-	<jsp:param name="severity_panel" value="long_covid/severityGender.jsp" />
-	<jsp:param name="gender_panel" value="long_covid/genderSeverity.jsp" />
+	<jsp:param name="severity_panel" value="long_covid/severitySex.jsp" />
+	<jsp:param name="sex_panel" value="long_covid/sexSeverity.jsp" />
 
 	<jsp:param name="datatable" value="long_covid/severity_table.jsp" />
 	<jsp:param name="datatable_div" value="long_covid_severity" />

@@ -98,7 +98,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'paxlovid_gender',
+    	      filename: 'paxlovid_sex',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -119,11 +119,11 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'gender', visible: true, orderable: true },
+        	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'result', visible: true, orderable: true },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [3] },
         	{ data: 'patient_count', visible: false },
-        	{ data: 'gender_seq', visible: false },
+        	{ data: 'sex_seq', visible: false },
            	{ data: 'result_seq', visible: false }
     	]
 	} );

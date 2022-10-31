@@ -67,7 +67,7 @@
 			<div class="col col-12 col-md-6 viz-section">
 				<h5>Sex</h5>
 				<div class="panel-body">
-					<div id="gender_histogram"></div>
+					<div id="sex_histogram"></div>
 				</div>
 			</div>
 			<div class="col col-12 col-md-6 viz-section">
@@ -93,7 +93,7 @@ var aggregated_datatable = null;
 var ageArray = new Array();
 var raceArray = new Array();
 var ethnicityArray = new Array();
-var genderArray = new Array();
+var sexArray = new Array();
 var severityArray = new Array();
 
 $(document).ready( function () {
@@ -153,7 +153,7 @@ $(document).ready( function () {
 
 	$.fn.dataTable.ext.search.push(
 		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="gender"]:checked').map(function() {
+		      var positions = $('input:checkbox[name="sex"]:checked').map(function() {
 		        return this.value;
 		      }).get();
 		   
@@ -227,7 +227,7 @@ $(document).ready( function () {
 	        	{ data: 'race', visible: true, orderable: true },
 	        	{ data: 'ethnicity', visible: true, orderable: true },
 	        	{ data: 'age_bin', visible: true, orderable: true },
-	        	{ data: 'gender', visible: true, orderable: true },
+	        	{ data: 'sex', visible: true, orderable: true },
 	        	{ data: 'severity', visible: true, orderable: true },
 	        	{ data: 'patient_count', visible: true, orderable: true },
 	        	{ data: 'age_abbrev', visible: false },
@@ -236,8 +236,8 @@ $(document).ready( function () {
 	        	{ data: 'race_seq', visible: false },
 	        	{ data: 'ethnicity_abbrev', visible: false },
 	        	{ data: 'ethnicity_seq', visible: false },
-	        	{ data: 'gender_abbrev', visible: false },
-	        	{ data: 'gender_seq', visible: false },
+	        	{ data: 'sex_abbrev', visible: false },
+	        	{ data: 'sex_seq', visible: false },
 	        	{ data: 'severity_abbrev', visible: false },
 	        	{ data: 'severity_seq', visible: false }
 	    	]
@@ -257,7 +257,7 @@ function refreshHistograms() {
     refreshAgeArray(data);
     refreshRaceArray(data);
     refreshEthnicityArray(data);
-    refreshGenderArray(data);
+    refreshSexArray(data);
     refreshSeverityArray(data);
     
     var doBar = false;
@@ -282,11 +282,11 @@ function refreshHistograms() {
     else
     	localPieChart(ethnicityArray,"#ethnicity_histogram");
 
-    d3.select("#gender_histogram").select("svg").remove();
+    d3.select("#sex_histogram").select("svg").remove();
     if (doBar)
-	    localBarChart(genderArray,"#gender_histogram",120);
+	    localBarChart(sexArray,"#sex_histogram",120);
     else
-    	localPieChart(genderArray,"#gender_histogram");
+    	localPieChart(sexArray,"#sex_histogram");
 
     d3.select("#severity_histogram").select("svg").remove();
     if (doBar)
@@ -411,12 +411,12 @@ function refreshEthnicityArray(data) {
     console.log(ethnicityArray);
 }
 
-function refreshGenderArray(data) {
+function refreshSexArray(data) {
 	var aData = new Object;
 	var bData = new Object;
 	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
-    	var group = data[i].gender;
-       	switch (data[i].gender) {
+    	var group = data[i].sex;
+       	switch (data[i].sex) {
        	case "MALE":
        		group = "Male";
        		break;
@@ -432,12 +432,12 @@ function refreshGenderArray(data) {
        	case "Unkown":
        		group = "Unkown";
        		break;
-       	case "Gender unkown":
+       	case "Sex unkown":
        		group = "Unkown";
        		break;
        	};
     	var count = data[i].patient_count;
-    	var seq = data[i].gender_seq;
+    	var seq = data[i].sex_seq;
       if (typeof aData[group] == 'undefined') {
             aData[group] = count;
             bData[group] = seq;
@@ -445,7 +445,7 @@ function refreshGenderArray(data) {
         	 aData[group] += count;
 	});
 
-	genderArray = new Array();
+	sexArray = new Array();
     for(var i in aData) {
     	var obj = new Object();
     	Object.defineProperty(obj, 'element', {
@@ -457,10 +457,10 @@ function refreshGenderArray(data) {
     	Object.defineProperty(obj, 'seq', {
     		  value: bData[i]
     		});
-    	genderArray.push(obj);
+    	sexArray.push(obj);
     }
-    genderArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
-    console.log(genderArray);
+    sexArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+    console.log(sexArray);
 }
 
 function refreshSeverityArray(data) {
@@ -578,13 +578,13 @@ $('#ethnicity').on('click', function() {
 		panel.style.display = "none";
 	}
 });
-$('#gender').on('click', function() {
-	var panel = document.getElementById("gender_panel");
+$('#sex').on('click', function() {
+	var panel = document.getElementById("sex_panel");
 	if (panel.style.display === "none") {
-		this.innerHTML = "<i class='fas fa-chevron-down'></i> Gender";
+		this.innerHTML = "<i class='fas fa-chevron-down'></i> Sex";
 		panel.style.display = "block";
 	} else {
-		this.innerHTML = "<i class='fas fa-chevron-right'></i> Gender";
+		this.innerHTML = "<i class='fas fa-chevron-right'></i> Sex";
 		panel.style.display = "none";
 	}
 });

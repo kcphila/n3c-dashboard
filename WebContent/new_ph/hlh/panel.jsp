@@ -12,7 +12,7 @@
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
 
 	<jsp:param name="age_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 
 	<jsp:param name="simple_panel" value="test_panel.jsp" />
 

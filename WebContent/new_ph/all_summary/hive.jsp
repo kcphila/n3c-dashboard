@@ -23,7 +23,7 @@ function ${param.block}_hive_refresh() {
 		scaling: 1.75,
 		domName: "${param.block}_hive_viz",
 		domTarget: "all_summary_1",
-		color: [ age_range_all, severity_range, gender_range, race_range, ethnicity_range ]
+		color: [ age_range_all, severity_range, sex_range, race_range, ethnicity_range ]
 	};
 	
 	d3.select("#${param.block}_hive_viz").select("svg").remove();

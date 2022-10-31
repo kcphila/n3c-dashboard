@@ -11,7 +11,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#cumulative_1_cumulative_table-table').DataTable();
 	
 	switch (filter) {
-	case 'gender':
+	case 'sex':
 		table.column(0).search(constraint, true, false, true).draw();	
 		break;
 	case 'race':
@@ -104,7 +104,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 	th2.setAttribute('data-b-a-s', 'medium'); 
 	th2.setAttribute('data-b-a-c', 'ffffff'); 
 	th2.style.textAlign = 'Center';
-	th2.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Ethnic/Gender Categories</span>';
+	th2.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Ethnic/Sex Categories</span>';
 	header_row1.appendChild(th2);
 	
 	var th3 = document.createElement("th");
@@ -121,7 +121,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 	header_row1.appendChild(th3);
 
 	var ethnicity_vals = ['Non-Hispanic or Latino', 'Hispanic or Latino', 'Unknown or Not Reported Ethnicity'];
-	var gender_vals = ['Female', 'Male', 'Other', 'Unknown'];
+	var sex_vals = ['Female', 'Male', 'Other', 'Unknown'];
 
 	for (i in ethnicity_vals) {
 		var th = document.createElement("th");
@@ -135,7 +135,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 		th.setAttribute('data-b-a-c', 'ffffff'); 
 		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + ethnicity_vals[i] + '</span>';
 		header_row2.appendChild(th);
-		for (i in gender_vals){
+		for (i in sex_vals){
 			var th = document.createElement("th");
 			th.setAttribute("colspan", "1");
 			th.setAttribute("rowspan", "1");
@@ -145,7 +145,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary2.j
 			th.setAttribute("data-f-sz", "14");
 			th.setAttribute('data-b-a-s', 'medium'); 
 			th.setAttribute('data-b-a-c', 'ffffff'); 
-			th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + gender_vals[i] + '</span>';
+			th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + sex_vals[i] + '</span>';
 			header_row3.appendChild(th);
 		}
 	};
@@ -277,7 +277,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 	th1.setAttribute("data-a-h", "center");
 	th1.setAttribute("data-f-bold", "true");
 	th1.setAttribute("data-f-sz", "16");
-	th1.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Racial Categories & Gender</span>';
+	th1.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">Racial Categories & Sex</span>';
 	header_row1.appendChild(th1);
 	var th2 = document.createElement("th");
 	th2.setAttribute("colspan", "4");
@@ -355,7 +355,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
 	  	          	format: {
 	  	            	header: function(content, index) {
 	  	            		if(index === 0){
-	  	            			return "Gender"
+	  	            			return "Sex"
 	  	            		} else if (index === 1 || index === 2 || index === 3){
 	  	            			return "Eth: " + content.replace(/(<([^>]+)>)/gi, "");
 	  	            		} else {
@@ -383,7 +383,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/cumulative/feeds/cumulative_summary.js
     	     }
     	],
      	columns: [
-        	{ data: 'gender', visible: true, orderable: false },
+        	{ data: 'sex', visible: true, orderable: false },
         	{ data: 'count_non_hispanic', visible: true, orderable: false },
         	{ data: 'count_hispanic', visible: true, orderable: false },
         	{ data: 'count_ethnicity_unknown', visible: true, orderable: false},

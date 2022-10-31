@@ -45,14 +45,14 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<h4 id="gender"><i class="fas fa-chevron-right"></i> Sex</h4>
-				<div id="gender_panel" style="display:none;">
-					<sql:query var="genders" dataSource="jdbc/N3CPublic">
-						select distinct gender_abbrev,gender_seq from n3c_dashboard.gender_map order by gender_seq;
+				<h4 id="sex"><i class="fas fa-chevron-right"></i> Sex</h4>
+				<div id="sex_panel" style="display:none;">
+					<sql:query var="sexes" dataSource="jdbc/N3CPublic">
+						select distinct gender_abbrev as sex_abbrev,gender_seq as sex_seq from n3c_dashboard.gender_map order by sex_seq;
 					</sql:query>
-					<c:forEach items="${genders.rows}" var="row" varStatus="rowCounter">
+					<c:forEach items="${sexes.rows}" var="row" varStatus="rowCounter">
 						<c:if test="${!rowCounter.first}"><br></c:if>
-						<input type="checkbox" name="gender" value="${row.gender_abbrev}" > ${row.gender_abbrev}
+						<input type="checkbox" name="sex" value="${row.sex_abbrev}" > ${row.sex_abbrev}
 					</c:forEach>
 				</div>
 			</div>

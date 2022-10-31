@@ -11,7 +11,7 @@
 	</div>
 </c:if>
 
-<div id="${param.block}_gender_save_viz"> 
+<div id="${param.block}_sex_save_viz"> 
 	<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_covid_long_percent_viz', '${param.block}_covid_long_percent_viz.svg');">Save as SVG</button>
 	<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_covid_long_percent_viz', '${param.block}_covid_long_percent_viz.png');">Save as PNG</button>
 	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_covid_long_percent_viz', '${param.block}_covid_long_percent_viz.jpg');">Save as JPEG</button>

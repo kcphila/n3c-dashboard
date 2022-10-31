@@ -28,7 +28,7 @@ function ${param.block}_race_refresh() {
 			colorscale: race_range
 	}
 
-	// console.log("race graph", "${param.block}_gender_viz", ${param.block}_RaceArray)
+	// console.log("race graph", "${param.block}_sex_viz", ${param.block}_RaceArray)
 	d3.select("#${param.block}_race_viz").select("svg").remove();
 	localHorizontalBarChart(${param.block}_RaceArray, properties);
 }

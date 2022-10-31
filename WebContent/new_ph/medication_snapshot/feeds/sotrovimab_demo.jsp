@@ -3,8 +3,8 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select severity_abbrev as severity, foo.age as age, gender_abbrev as gender, patient_display, patient_count,
-				age_abbrev, age_seq, gender_abbrev, gender_seq, severity_abbrev, severity_seq
+	from (select severity_abbrev as severity, foo.age as age, gender_abbrev as sex, patient_display, patient_count,
+				age_abbrev, age_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, severity_abbrev, severity_seq
 			from (select
 					severity_type as severity,
 					age_bracket as age,
@@ -27,13 +27,13 @@
     "headers": [
         {"value":"severity", "label":"Severity"},
         {"value":"age", "label":"Age"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
         {"value":"age_abbrev", "label":"dummy1"},
         {"value":"age_seq", "label":"dummy2"},
-        {"value":"gender_abbrev", "label":"dummy3"},
-        {"value":"gender_seq", "label":"dummy4"},
+        {"value":"sex_abbrev", "label":"dummy3"},
+        {"value":"sex_seq", "label":"dummy4"},
         {"value":"severity_abbrev", "label":"dummy5"},
         {"value":"severity_seq", "label":"dummy6"}
     ],

@@ -9,7 +9,7 @@
 					race,
 					regexp_replace(condition_name,'Charlson - ','','g') as comorbidity,
 					age_bin,
-					gender_concept_name as gender,
+					sex_concept_name as sex,
 					num_patients as patient_display,
 					case
 						when (num_patients = '<20' or num_patients is null) then 0
@@ -19,14 +19,14 @@
 		  	) as foo
 		  	natural join n3c_dashboard.age_map3
 		  	natural join n3c_dashboard.race_map
-		  	natural join n3c_dashboard.gender_map2
+		  	natural join n3c_dashboard.sex_map2
 		  	natural join n3c_dashboard.severity_map
 		  ) as done;
 </sql:query>
 {
     "headers": [
         {"value":"severity", "label":"Severity"},
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"age_bin", "label":"Age"},
         {"value":"race", "label":"Race"},
         {"value":"comorbidity", "label":"Comorbidity"},
@@ -36,8 +36,8 @@
         {"value":"age_seq", "label":"dummy2"},
         {"value":"race_abbrev", "label":"dummy3"},
         {"value":"race_seq", "label":"dummy4"},
-        {"value":"gender_abbrev", "label":"dummy7"},
-        {"value":"gender_seq", "label":"dummy8"},
+        {"value":"sex_abbrev", "label":"dummy7"},
+        {"value":"sex_seq", "label":"dummy8"},
         {"value":"severity_abbrev", "label":"dummy9"},
         {"value":"severity_seq", "label":"dummy0"}
     ],

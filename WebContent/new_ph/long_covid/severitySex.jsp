@@ -26,14 +26,14 @@ function ${param.block}_severity_refresh() {
 	var properties = {
 			domName: '${param.block}_severity_viz',
 			barLabelWidth: 120,
-			legend_data: gender_legend,
-			secondary_range: gender_range,
-			legend_label: 'Gender'
+			legend_data: sex_legend,
+			secondary_range: sex_range,
+			legend_label: 'Sex'
 		}
 
 	// console.log("reached");
    	d3.select("#${param.block}_severity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SeverityGenderArray, properties);	
+	localHorizontalStackedBarChart(${param.block}_SeveritySexArray, properties);	
 }
 
 ${param.block}_severity_refresh();

@@ -7,7 +7,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'severity':
 	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'gender':
+	case 'sex':
 	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'age_bin':
@@ -62,7 +62,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'severity', visible: true, orderable: true },
-        	{ data: 'gender', visible: true, orderable: true },
+        	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'age_bin', visible: true, orderable: true },
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'vaccinated', visible: true, orderable: true },
@@ -72,8 +72,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'age_seq', visible: false },
         	{ data: 'race_abbrev', visible: false },
         	{ data: 'race_seq', visible: false },
-        	{ data: 'gender_abbrev', visible: false },
-        	{ data: 'gender_seq', visible: false },
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false },
         	{ data: 'severity_abbrev', visible: false },
         	{ data: 'severity_seq', visible: false }
     	]

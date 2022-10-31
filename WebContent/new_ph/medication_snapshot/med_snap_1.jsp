@@ -11,11 +11,11 @@
 	
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="age_filter4" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 
 	<jsp:param name="severity_panel" value="medication_snapshot/severity.jsp" />
 	<jsp:param name="age_panel" value="medication_snapshot/age.jsp" />
-	<jsp:param name="gender_panel" value="medication_snapshot/gender.jsp" />
+	<jsp:param name="sex_panel" value="medication_snapshot/sex.jsp" />
 
 	<jsp:param name="datatable" value="medication_snapshot/tables/aggregated_table.jsp" />
 	<jsp:param name="datatable_div" value="sotrovimab_demo" />

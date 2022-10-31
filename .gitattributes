@@ -200,7 +200,6 @@ WebContent/new_ph/adult_summary/feeds/ungrouped.jsp -text
 WebContent/new_ph/adult_summary/feeds/unknown_vaccination.jsp -text
 WebContent/new_ph/adult_summary/feeds/vaccinated.jsp -text
 WebContent/new_ph/adult_summary/feeds/vaccinated_comorbidities.jsp -text
-WebContent/new_ph/adult_summary/gender.jsp -text
 WebContent/new_ph/adult_summary/kpis.jsp -text
 WebContent/new_ph/adult_summary/panel.jsp -text
 WebContent/new_ph/adult_summary/race.jsp -text
@@ -211,6 +210,7 @@ WebContent/new_ph/adult_summary/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/adult_summary/secondary_text/secondary_4.jsp -text
 WebContent/new_ph/adult_summary/secondary_text/secondary_5.jsp -text
 WebContent/new_ph/adult_summary/severity.jsp -text
+WebContent/new_ph/adult_summary/sex.jsp -text
 WebContent/new_ph/adult_summary/ungrouped_table.jsp -text
 WebContent/new_ph/adult_summary/unknown_vaccination_table.jsp -text
 WebContent/new_ph/adult_summary/vaccinated_comorbidity_table.jsp -text
@@ -231,7 +231,6 @@ WebContent/new_ph/all_summary/feeds/ungrouped.jsp -text
 WebContent/new_ph/all_summary/feeds/unknown_vaccination.jsp -text
 WebContent/new_ph/all_summary/feeds/vaccinated.jsp -text
 WebContent/new_ph/all_summary/feeds/vaccinated_comorbidities.jsp -text
-WebContent/new_ph/all_summary/gender.jsp -text
 WebContent/new_ph/all_summary/hive.jsp -text
 WebContent/new_ph/all_summary/kpis.jsp -text
 WebContent/new_ph/all_summary/panel.jsp -text
@@ -243,6 +242,7 @@ WebContent/new_ph/all_summary/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/all_summary/secondary_text/secondary_4.jsp -text
 WebContent/new_ph/all_summary/secondary_text/secondary_5.jsp -text
 WebContent/new_ph/all_summary/severity.jsp -text
+WebContent/new_ph/all_summary/sex.jsp -text
 WebContent/new_ph/all_summary/ungrouped_table.jsp -text
 WebContent/new_ph/all_summary/unknown_vaccination_table.jsp -text
 WebContent/new_ph/all_summary/vaccinated_comorbidity_table.jsp -text
@@ -258,7 +258,7 @@ WebContent/new_ph/cumulative/feeds/demographics.jsp -text
 WebContent/new_ph/cumulative/kpis.jsp -text
 WebContent/new_ph/cumulative/panel.jsp -text
 WebContent/new_ph/cumulative/raceEthnicity.jsp -text
-WebContent/new_ph/cumulative/raceGender.jsp -text
+WebContent/new_ph/cumulative/raceSex.jsp -text
 WebContent/new_ph/cumulative/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/cumulative/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/cumulative/tables/cumulative_table.jsp -text
@@ -329,8 +329,6 @@ WebContent/new_ph/filters/comorbidity_number.jsp -text
 WebContent/new_ph/filters/death_delay.jsp -text
 WebContent/new_ph/filters/diagnosis.jsp -text
 WebContent/new_ph/filters/ethnicity.jsp -text
-WebContent/new_ph/filters/gender.jsp -text
-WebContent/new_ph/filters/gender3.jsp -text
 WebContent/new_ph/filters/medication.jsp -text
 WebContent/new_ph/filters/medication_class.jsp -text
 WebContent/new_ph/filters/medication_ts.jsp -text
@@ -340,6 +338,8 @@ WebContent/new_ph/filters/region.jsp -text
 WebContent/new_ph/filters/reinfection_interval.jsp -text
 WebContent/new_ph/filters/result.jsp -text
 WebContent/new_ph/filters/severity.jsp -text
+WebContent/new_ph/filters/sex.jsp -text
+WebContent/new_ph/filters/sex3.jsp -text
 WebContent/new_ph/filters/smoking.jsp -text
 WebContent/new_ph/filters/sotrovimab_meds.jsp -text
 WebContent/new_ph/filters/symptom.jsp -text
@@ -347,7 +347,7 @@ WebContent/new_ph/filters/vaccinated.jsp -text
 WebContent/new_ph/filters/vaccinated2.jsp -text
 WebContent/new_ph/frame.jsp -text
 WebContent/new_ph/groupedbarpercentToggle.jsp -text
-WebContent/new_ph/hlh/ageGender.jsp -text
+WebContent/new_ph/hlh/ageSex.jsp -text
 WebContent/new_ph/hlh/comorbidity_1.jsp -text
 WebContent/new_ph/hlh/comorbidity_10.jsp -text
 WebContent/new_ph/hlh/comorbidity_11.jsp -text
@@ -367,12 +367,12 @@ WebContent/new_ph/hlh/comorbidity_7.jsp -text
 WebContent/new_ph/hlh/comorbidity_8.jsp -text
 WebContent/new_ph/hlh/comorbidity_9.jsp -text
 WebContent/new_ph/hlh/feeds/hlh.jsp -text
-WebContent/new_ph/hlh/genderAge.jsp -text
 WebContent/new_ph/hlh/hlh_table.jsp -text
 WebContent/new_ph/hlh/kpis.jsp -text
 WebContent/new_ph/hlh/panel.jsp -text
 WebContent/new_ph/hlh/panel2.jsp -text
 WebContent/new_ph/hlh/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/hlh/sexAge.jsp -text
 WebContent/new_ph/hss/kpis.jsp -text
 WebContent/new_ph/hss/panel.jsp -text
 WebContent/new_ph/kpis/adult_patients.jsp -text
@@ -500,7 +500,6 @@ WebContent/new_ph/long_covid/feeds/symptom_grouped.jsp -text
 WebContent/new_ph/long_covid/feeds/symptom_grouped2.jsp -text
 WebContent/new_ph/long_covid/feeds/symptom_summary.jsp -text
 WebContent/new_ph/long_covid/feeds/symptom_ungrouped.jsp -text
-WebContent/new_ph/long_covid/genderSeverity.jsp -text
 WebContent/new_ph/long_covid/kpis.jsp -text
 WebContent/new_ph/long_covid/kpis2.jsp -text
 WebContent/new_ph/long_covid/long_before_static.jsp -text
@@ -519,13 +518,13 @@ WebContent/new_ph/long_covid/long_covid_8.jsp -text
 WebContent/new_ph/long_covid/long_covid_9.jsp -text
 WebContent/new_ph/long_covid/not_positive_age.jsp -text
 WebContent/new_ph/long_covid/not_positive_ethnicity.jsp -text
-WebContent/new_ph/long_covid/not_positive_gender.jsp -text
 WebContent/new_ph/long_covid/not_positive_race.jsp -text
 WebContent/new_ph/long_covid/not_positive_severity.jsp -text
+WebContent/new_ph/long_covid/not_positive_sex.jsp -text
 WebContent/new_ph/long_covid/observationAge.jsp -text
 WebContent/new_ph/long_covid/observationEthnicity.jsp -text
-WebContent/new_ph/long_covid/observationGender.jsp -text
 WebContent/new_ph/long_covid/observationRace.jsp -text
+WebContent/new_ph/long_covid/observationSex.jsp -text
 WebContent/new_ph/long_covid/panel.jsp -text
 WebContent/new_ph/long_covid/panel2.jsp -text
 WebContent/new_ph/long_covid/secondary_text/secondary_1.jsp -text
@@ -540,12 +539,13 @@ WebContent/new_ph/long_covid/secondary_text/secondary_6.jsp -text
 WebContent/new_ph/long_covid/secondary_text/secondary_7.jsp -text
 WebContent/new_ph/long_covid/secondary_text/secondary_8.jsp -text
 WebContent/new_ph/long_covid/secondary_text/secondary_9.jsp -text
-WebContent/new_ph/long_covid/severityGender.jsp -text
+WebContent/new_ph/long_covid/severitySex.jsp -text
 WebContent/new_ph/long_covid/severity_table.jsp -text
+WebContent/new_ph/long_covid/sexSeverity.jsp -text
 WebContent/new_ph/long_covid/symptomAge.jsp -text
 WebContent/new_ph/long_covid/symptomEthnicity.jsp -text
-WebContent/new_ph/long_covid/symptomGender.jsp -text
 WebContent/new_ph/long_covid/symptomRace.jsp -text
+WebContent/new_ph/long_covid/symptomSex.jsp -text
 WebContent/new_ph/long_covid/symptom_breath_table.jsp -text
 WebContent/new_ph/long_covid/symptom_cognitive_table.jsp -text
 WebContent/new_ph/long_covid/symptom_fatigue_table.jsp -text
@@ -561,7 +561,6 @@ WebContent/new_ph/medication_snapshot/feeds/sotrovimab_demo.jsp -text
 WebContent/new_ph/medication_snapshot/feeds/sotrovimab_diagnosis.jsp -text
 WebContent/new_ph/medication_snapshot/feeds/sotrovimab_meds.jsp -text
 WebContent/new_ph/medication_snapshot/feeds/sotrovimab_vac.jsp -text
-WebContent/new_ph/medication_snapshot/gender.jsp -text
 WebContent/new_ph/medication_snapshot/kpis.jsp -text
 WebContent/new_ph/medication_snapshot/med_snap_1.jsp -text
 WebContent/new_ph/medication_snapshot/med_snap_2.jsp -text
@@ -580,6 +579,7 @@ WebContent/new_ph/medication_snapshot/severity_comorbidity.jsp -text
 WebContent/new_ph/medication_snapshot/severity_diagnosis.jsp -text
 WebContent/new_ph/medication_snapshot/severity_meds.jsp -text
 WebContent/new_ph/medication_snapshot/severity_vac.jsp -text
+WebContent/new_ph/medication_snapshot/sex.jsp -text
 WebContent/new_ph/medication_snapshot/tables/aggregated_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/comorbidity_table.jsp -text
 WebContent/new_ph/medication_snapshot/tables/diagnosis_table.jsp -text
@@ -615,7 +615,6 @@ WebContent/new_ph/mortality/delayed_table.jsp -text
 WebContent/new_ph/mortality/ethnicity.jsp -text
 WebContent/new_ph/mortality/feeds/delayed.jsp -text
 WebContent/new_ph/mortality/feeds/hospitalization.jsp -text
-WebContent/new_ph/mortality/gender.jsp -text
 WebContent/new_ph/mortality/hospitalization_table.jsp -text
 WebContent/new_ph/mortality/kpis.jsp -text
 WebContent/new_ph/mortality/mortality_1.jsp -text
@@ -624,17 +623,18 @@ WebContent/new_ph/mortality/panel.jsp -text
 WebContent/new_ph/mortality/race.jsp -text
 WebContent/new_ph/mortality/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/mortality/secondary_text/secondary_2.jsp -text
+WebContent/new_ph/mortality/sex.jsp -text
 WebContent/new_ph/panel_qlik.jsp -text
 WebContent/new_ph/paxlovid/age.jsp -text
 WebContent/new_ph/paxlovid/demographics_age_table.jsp -text
 WebContent/new_ph/paxlovid/demographics_ethnicity_table.jsp -text
-WebContent/new_ph/paxlovid/demographics_gender_table.jsp -text
 WebContent/new_ph/paxlovid/demographics_race_table.jsp -text
+WebContent/new_ph/paxlovid/demographics_sex_table.jsp -text
 WebContent/new_ph/paxlovid/ethnicity.jsp -text
 WebContent/new_ph/paxlovid/feeds/demographics_age.jsp -text
 WebContent/new_ph/paxlovid/feeds/demographics_ethnicity.jsp -text
-WebContent/new_ph/paxlovid/feeds/demographics_gender.jsp -text
 WebContent/new_ph/paxlovid/feeds/demographics_race.jsp -text
+WebContent/new_ph/paxlovid/feeds/demographics_sex.jsp -text
 WebContent/new_ph/paxlovid/feeds/drugs_viz_feed.jsp -text
 WebContent/new_ph/paxlovid/feeds/greater_condition.jsp -text
 WebContent/new_ph/paxlovid/feeds/greater_drugs.jsp -text
@@ -646,7 +646,6 @@ WebContent/new_ph/paxlovid/feeds/topten_condition_long.jsp -text
 WebContent/new_ph/paxlovid/feeds/topten_drugs.jsp -text
 WebContent/new_ph/paxlovid/feeds/topten_drugs_long.jsp -text
 WebContent/new_ph/paxlovid/feeds/visits.jsp -text
-WebContent/new_ph/paxlovid/gender.jsp -text
 WebContent/new_ph/paxlovid/images/image1.png -text
 WebContent/new_ph/paxlovid/images/image2.png -text
 WebContent/new_ph/paxlovid/kpis.jsp -text
@@ -666,6 +665,7 @@ WebContent/new_ph/paxlovid/paxlovid_7.jsp -text
 WebContent/new_ph/paxlovid/paxlovid_8.jsp -text
 WebContent/new_ph/paxlovid/race.jsp -text
 WebContent/new_ph/paxlovid/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/paxlovid/sex.jsp -text
 WebContent/new_ph/paxlovid/tables/greater_drugs_table.jsp -text
 WebContent/new_ph/paxlovid/tables/greater_table.jsp -text
 WebContent/new_ph/paxlovid/tables/less20_drugs_table.jsp -text
@@ -690,7 +690,6 @@ WebContent/new_ph/pediatrics/feeds/ungrouped.jsp -text
 WebContent/new_ph/pediatrics/feeds/unknown_vaccination.jsp -text
 WebContent/new_ph/pediatrics/feeds/vaccinated.jsp -text
 WebContent/new_ph/pediatrics/feeds/vaccinated_comorbidities.jsp -text
-WebContent/new_ph/pediatrics/gender.jsp -text
 WebContent/new_ph/pediatrics/kpis.jsp -text
 WebContent/new_ph/pediatrics/panel.jsp -text
 WebContent/new_ph/pediatrics/peds_summary_1.jsp -text
@@ -706,6 +705,7 @@ WebContent/new_ph/pediatrics/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/pediatrics/secondary_text/secondary_4.jsp -text
 WebContent/new_ph/pediatrics/secondary_text/secondary_5.jsp -text
 WebContent/new_ph/pediatrics/severity.jsp -text
+WebContent/new_ph/pediatrics/sex.jsp -text
 WebContent/new_ph/pediatrics/ungrouped_table.jsp -text
 WebContent/new_ph/pediatrics/unknown_vaccination_table.jsp -text
 WebContent/new_ph/pediatrics/vaccinated_comorbidity_table.jsp -text
@@ -771,8 +771,6 @@ WebContent/new_ph/smoking/ageStatus.jsp -text
 WebContent/new_ph/smoking/demographics_table.jsp -text
 WebContent/new_ph/smoking/feeds/demographics.jsp -text
 WebContent/new_ph/smoking/feeds/severity.jsp -text
-WebContent/new_ph/smoking/gender.jsp -text
-WebContent/new_ph/smoking/genderStatus.jsp -text
 WebContent/new_ph/smoking/kpis.jsp -text
 WebContent/new_ph/smoking/panel.jsp -text
 WebContent/new_ph/smoking/race.jsp -text
@@ -782,6 +780,8 @@ WebContent/new_ph/smoking/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/smoking/severity.jsp -text
 WebContent/new_ph/smoking/severityStatus.jsp -text
 WebContent/new_ph/smoking/severity_table.jsp -text
+WebContent/new_ph/smoking/sex.jsp -text
+WebContent/new_ph/smoking/sexStatus.jsp -text
 WebContent/new_ph/smoking/smoking_1.jsp -text
 WebContent/new_ph/smoking/smoking_2.jsp -text
 WebContent/new_ph/sotrovimab/demographics_table.jsp -text

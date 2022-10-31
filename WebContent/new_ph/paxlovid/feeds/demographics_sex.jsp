@@ -2,8 +2,8 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
-        select jsonb_pretty(jsonb_agg(done order by gender_seq,result_seq))
-        from (select gender, result_abbrev as result, patient_display, patient_count, gender_seq, result_seq
+        select jsonb_pretty(jsonb_agg(done order by sex_seq,result_seq))
+        from (select gender as sex, result_abbrev as result, patient_display, patient_count, gender_seq as sex_seq, result_seq
                         from (select
                                         category_name as gender,
                                         test_result,
@@ -21,11 +21,11 @@
 </sql:query>
 {
     "headers": [
-        {"value":"gender", "label":"Gender"},
+        {"value":"sex", "label":"Sex"},
         {"value":"result_abbrev", "label":"Test Result"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
-        {"value":"gender_seq", "label":"gender seq"},
+        {"value":"sex_seq", "label":"sex seq"},
         {"value":"result_seq", "label":"result seq"}
     ],
     "rows" : 

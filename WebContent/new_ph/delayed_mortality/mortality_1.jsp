@@ -13,12 +13,12 @@
 
 	<jsp:param name="age_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="gender_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 
 	<jsp:param name="age_panel" value="delayed_mortality/age.jsp" />
 	<jsp:param name="race_panel" value="delayed_mortality/race.jsp" />
-	<jsp:param name="gender_panel" value="delayed_mortality/gender.jsp" />
+	<jsp:param name="sex_panel" value="delayed_mortality/sex.jsp" />
 	<jsp:param name="ethnicity_panel" value="delayed_mortality/ethnicity.jsp" />
 
 	<jsp:param name="datatable" value="delayed_mortality/demographics_table.jsp" />
