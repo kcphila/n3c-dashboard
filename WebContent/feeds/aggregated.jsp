@@ -10,7 +10,7 @@
 					race,
 					ethnicity,
 					COALESCE (age_bin, 'null') as age,
-					COALESCE (gender_concept_name, 'null') as sex,
+					COALESCE (gender_concept_name, 'null') as gender,
 					count as patient_display,
 					case
 						when (count = '<20' or count is null) then 0
