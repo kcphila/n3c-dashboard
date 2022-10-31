@@ -79,9 +79,15 @@ function localBarChart(data, domName, barLabelWidth, colorgroup) {
 			.attr('y', y)
 			.attr('rx', 2)
 			.attr('height', yScale.bandwidth())
-			.attr('width', function(d) { return x(barValue(d)); })
+			.attr('width', function(d) { return 0;})
 			.attr('stroke', 'white')
 			.attr('fill', function(d) { return colorgroup[d.seq]; })
+			
+		barsContainer.selectAll('rect')
+			.transition().duration(1000)
+			.attr('width', function(d) { return x(barValue(d)); });
+				
+
 		// bar value labels
 		barsContainer.selectAll("text").data(data).enter().append("text")
 			.attr("x", function(d) { return x(barValue(d)); })
