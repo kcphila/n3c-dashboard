@@ -47,6 +47,17 @@
 	margin-top:20px;
 }
 
+#limitations_drop a[aria-expanded = "false"] span.btn:after {
+    font-family: "Font Awesome\ 5 Free";
+    content: "\f055";
+    font-weight: 900;
+}
+
+#limitations_drop a[aria-expanded = "true"] span.btn:after {
+    font-family: "Font Awesome\ 5 Free";
+    content: "\f056";
+    font-weight: 900;
+}
 </style>
 
 <jsp:include page="head.jsp" flush="true" />
@@ -64,10 +75,11 @@
 			
 			<div class="section section-viz">
 				<c:import url="composite/simple_grid.jsp"/>
+				
 			</div>
-			<hr>
 		</div>
 	</div>
+
 	
 	
 

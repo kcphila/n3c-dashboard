@@ -22,6 +22,7 @@ WebContent/caption.jsp -text
 WebContent/composite.jsp -text
 WebContent/composite/filters.jsp -text
 WebContent/composite/horizontalBarChart_local.jsp -text
+WebContent/composite/limitations.jsp -text
 WebContent/composite/pieChart_local.jsp -text
 WebContent/composite/simple_grid.jsp -text
 WebContent/dashboard_descriptions/MedicationsSnapshots.jsp -text

@@ -21,6 +21,18 @@
 .viz-section{
 	margin-bottom: 20px;
 }
+
+.viz-demo{
+	color: #3f50b0;
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.secondary-description{
+	margin-top: 30px;
+}
+
+
 </style>
 
 <div class="row stats">
@@ -28,54 +40,66 @@
 
 	<div class="col col-12 col-md-10">
 		<div id="display-d3">
-		<div class="row stats">
-			<div class="col col-12 col-md-6 viz-section">
-				<div class="panel-body kpi-section">
-					<div class="row kpi-row">
-						<div class="col col-5 m-auto">
-							Total COVID+ Patients*
-							<div class="kpi_num"><i class="fas fa-user-plus" aria-hidden="true"></i>    6.25M</div>
-						</div>
-						<div class="col col-7" style="border-left: 2px solid #d0e3f6;">
-							Patients in View*
-							<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   6.26M</div>
-							% of Total COVID+</br> Patients in View*
-							<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   100%</div>
+			<div class="row stats">
+				<div class="col col-12 col-md-6 viz-section">
+					<div class="panel-body kpi-section">
+						<div class="row kpi-row">
+							<div class="col col-5 m-auto">
+								Total COVID+ Patients*
+								<div class="kpi_num"><i class="fas fa-user-plus" aria-hidden="true"></i>    6.25M</div>
+							</div>
+							<div class="col col-7" style="border-left: 2px solid #d0e3f6;">
+								Patients in View*
+								<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   6.26M</div>
+								% of Total COVID+</br> Patients in View*
+								<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   100%</div>
+								<div class="kpi-limit">
+									<a onclick="limitlink(); return false;" href="#limitations-section">* See Limitations Below</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col col-12 col-md-6 viz-section">
-				<h4>Severity</h4>
-				<div class="panel-body">
-					<div id="severity_histogram"></div>
+				<div class="col col-12 col-md-6 viz-section">
+					<h4 class="viz-demo">Severity</h4>
+					<div class="panel-body">
+						<div id="severity_histogram"></div>
+					</div>
+				</div>
+				<div class="col col-12 col-md-6 viz-section">
+					<h4 class="viz-demo">Age</h4>
+					<div class="panel-heading">
+						<div id="age_histogram"></div>
+					</div>
+				</div>
+				<div class="col col-12 col-md-6 viz-section">
+					<h4 class="viz-demo">Race</h4>
+					<div class="panel-body">
+						<div id="race_histogram"></div>
+					</div>
+				</div>
+				<div class="col col-12 col-md-6 viz-section">
+					<h4 class="viz-demo">Sex</h4>
+					<div class="panel-body">
+						<div id="sex_histogram"></div>
+					</div>
+				</div>
+				<div class="col col-12 col-md-6 viz-section">
+					<h4 class="viz-demo">Ethnicity</h4>
+					<div class="panel-heading">
+						<div id="ethnicity_histogram"></div>
+					</div>
 				</div>
 			</div>
-			<div class="col col-12 col-md-6 viz-section">
-				<h4>Age</h4>
-				<div class="panel-heading">
-					<div id="age_histogram"></div>
-				</div>
+			<div class="secondary-description">
+				<p><strong>Sample:</strong> <span class="tip">
+					<a class="viz_secondary_info" title="COVID+ Defined As:" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
+  						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
+  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
+					</a>
+				</span>&nbsp;in the N3C Data Enclave. 
+				Data aggregated by Age, Race, Ethnicity, Sex, and Severity.</p>
 			</div>
-			<div class="col col-12 col-md-6 viz-section">
-				<h4>Race</h4>
-				<div class="panel-body">
-					<div id="race_histogram"></div>
-				</div>
-			</div>
-			<div class="col col-12 col-md-6 viz-section">
-				<h4>Sex</h4>
-				<div class="panel-body">
-					<div id="sex_histogram"></div>
-				</div>
-			</div>
-			<div class="col col-12 col-md-6 viz-section">
-				<h4>Ethnicity</h4>
-				<div class="panel-heading">
-					<div id="ethnicity_histogram"></div>
-				</div>
-			</div>
-		</div>
 		</div>
 		<div id="display-table" style="display:none" class="panel panel-primary">
 			<div class="panel-heading">Aggregated Data</div>
@@ -83,11 +107,23 @@
 				<div id="aggregated"></div>
 			</div>
 		</div>
+		<c:import url="composite/limitations.jsp"/>
 	</div>
 </div>
 <jsp:include page="horizontalBarChart_local.jsp"/>
 <jsp:include page="pieChart_local.jsp"/>
 <script>
+
+function limitlink(){
+	$('#limitcollapseOne').collapse('show');
+	$('html, body').animate({
+        scrollTop: $("#limitations-section").offset().top
+    }, 500);
+}
+
+$(function () {
+	$('[data-toggle="popover"]').popover()
+});
 
 var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#762AC6", 6:"#6512BD", 7:"#4C1EA5", 8:"#33298D"};
 var race_range = {1:"#09405A", 2:"#AD1181", 3:"#8406D1", 4:"#ffa600", 5:"#ff7155", 6:"#a6a6a6", 7:"#8B8B8B"};
