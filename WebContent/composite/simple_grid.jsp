@@ -32,7 +32,9 @@
 	margin-top: 30px;
 }
 
-
+.loading{
+	text-align:center;
+}
 
 </style>
 
@@ -129,10 +131,6 @@
 <jsp:include page="horizontalBarChart_local.jsp"/>
 <jsp:include page="pieChart_local.jsp"/>
 <script>
-
-jQuery(document).ready(function() {
-    jQuery('.loading').fadeOut(3000);
-});
 
 function limitlink(){
 	$('#limitcollapseOne').collapse('show');
@@ -284,6 +282,9 @@ $(document).ready( function () {
 			"dom": '<l<t>ip>',
 	    	data: data,
 	       	paging: true,
+	       	initComplete: function(settings, json) {
+	       		jQuery('.loading').fadeOut(200);
+	       	},
 	    	pageLength: 10,
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
 	    	order: [[0, 'asc']],
