@@ -1,11 +1,12 @@
 <script>
 
-function localBarChart(data, domName) {
-	localBarChart(data, domName, 50);
-}
+// function localBarChart(data, domName) {
+// 	localBarChart(data, domName, 50);
+// }
 
-function localBarChart(data, domName, barLabelWidth) {
-	var valueLabelWidth = 50; // space reserved for value labels (right)
+function localBarChart(data, domName, barLabelWidth, colorgroup) {
+	
+	var valueLabelWidth = 80; // space reserved for value labels (right)
 	var barHeight = 20; // height of one bar
 //	var barLabelWidth = 50; // space reserved for bar labels
 	var barLabelPadding = 5; // padding between bar and bar labels (left)
@@ -55,12 +56,12 @@ function localBarChart(data, domName, barLabelWidth) {
 		var gridContainer = chart.append('g')
 			.attr('transform', 'translate(' + barLabelWidth + ',' + gridLabelHeight + ')');
 		// vertical grid lines
-		gridContainer.selectAll("line").data(x.ticks(10)).enter().append("line")
-			.attr("x1", x)
-			.attr("x2", x)
-			.attr("y1", 0)
-			.attr("y2", yScale.range()[1] + gridChartOffset)
-			.style("stroke", "#ccc");
+// 		gridContainer.selectAll("line").data(x.ticks(10)).enter().append("line")
+// 			.attr("x1", x)
+// 			.attr("x2", x)
+// 			.attr("y1", 0)
+// 			.attr("y2", yScale.range()[1] + gridChartOffset)
+// 			.style("stroke", "#ccc");
 		// bar labels
 		var labelsContainer = chart.append('g')
 			.attr('transform', 'translate(' + (barLabelWidth - barLabelPadding) + ',' + (gridLabelHeight + gridChartOffset) + ')');
@@ -79,7 +80,7 @@ function localBarChart(data, domName, barLabelWidth) {
 			.attr('height', yScale.bandwidth())
 			.attr('width', function(d) { return x(barValue(d)); })
 			.attr('stroke', 'white')
-			.attr('fill', '#376076');
+			.attr('fill', function(d) { return colorgroup[d.seq]; })
 		// bar value labels
 		barsContainer.selectAll("text").data(data).enter().append("text")
 			.attr("x", function(d) { return x(barValue(d)); })
@@ -89,7 +90,7 @@ function localBarChart(data, domName, barLabelWidth) {
 			.attr("text-anchor", "start") // text-align: right
 			.attr("fill", "black")
 			.attr("stroke", "none")
-			.text(function(d) { return barValue(d); });
+			.text(function(d) { return barValue(d).toLocaleString(); });
 		// start line
 		barsContainer.append("line")
 			.attr("y1", -gridChartOffset)

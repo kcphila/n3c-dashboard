@@ -11,7 +11,7 @@ chart {
 
 <script>
 
-function localPieChart(data, domName) {
+function localPieChart(data, domName, colorgroup) {
 	var width = 325, //var width = parseInt(d3.select("${param.dom_element}").style("width"))-10,
 		height = width,
 		border = 10;
@@ -77,7 +77,7 @@ function localPieChart(data, domName) {
 
 		var path = g.append("path")
 			.attr("d", arc)
-			.style("fill", function(d) { return color(d.data.element); });
+			.style("fill", function(d) { return colorgroup[d.data.seq]; });
 
 		path.on('mouseover', function(d) {
 			var total = d3.sum(data.map(function(d) {
