@@ -577,8 +577,38 @@ function refreshSeverityArray(data) {
 //     console.log(severityArray);
 }
 
-function uncheckAll(){
+function uncheckAll() {
 	$('input[type="checkbox"]:checked').prop('checked',false);
+	aggregated_datatable.draw();
+	refreshHistograms();
+}
+
+function checkPeds() {
+	$('input[type="checkbox"][value="0-4"]').prop('checked',true);
+	$('input[type="checkbox"][value="5-11"]').prop('checked',true);
+	$('input[type="checkbox"][value="12-15"]').prop('checked',true);
+	$('input[type="checkbox"][value="16-<18"]').prop('checked',true);
+
+	$('input[type="checkbox"][value="18-29"]').prop('checked',false);
+	$('input[type="checkbox"][value="30-49"]').prop('checked',false);
+	$('input[type="checkbox"][value="50-64"]').prop('checked',false);
+	$('input[type="checkbox"][value="65+"]').prop('checked',false);
+	
+	aggregated_datatable.draw();
+	refreshHistograms();
+}
+
+function checkAdult() {
+	$('input[type="checkbox"][value="0-4"]').prop('checked',false);
+	$('input[type="checkbox"][value="5-11"]').prop('checked',false);
+	$('input[type="checkbox"][value="12-15"]').prop('checked',false);
+	$('input[type="checkbox"][value="16-<18"]').prop('checked',false);
+
+	$('input[type="checkbox"][value="18-29"]').prop('checked',true);
+	$('input[type="checkbox"][value="30-49"]').prop('checked',true);
+	$('input[type="checkbox"][value="50-64"]').prop('checked',true);
+	$('input[type="checkbox"][value="65+"]').prop('checked',true);
+	
 	aggregated_datatable.draw();
 	refreshHistograms();
 }

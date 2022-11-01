@@ -17,6 +17,8 @@
 			<div class="panel-body">
 				<h5 id="age"><i class="fas fa-chevron-right"></i> Age</h5>
 				<div id="age_panel" style="display:none;">
+					<button class="btn btn-light btn-sm" onclick="checkPeds();">Peds</button>
+					<button class="btn btn-light btn-sm" onclick="checkAdult();">Adult</button><br>
 					<sql:query var="ages" dataSource="jdbc/N3CPublic">
 						select age_bin,age_abbrev from n3c_dashboard.age_map5 order by age_seq;
 					</sql:query>
