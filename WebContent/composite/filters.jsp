@@ -22,8 +22,11 @@
 					</sql:query>
 					<c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
 						<c:if test="${rowCounter.first}">
-							Select: <button class="btn btn-light btn-sm" onclick="selectall('age_panel');">All</button>&nbsp;
-							<button class="btn btn-light btn-sm" onclick="deselect('age_panel');">None</button><br>
+							Select: 
+							<button class="btn btn-light btn-sm" onclick="selectall('age_panel');">All</button>&nbsp;
+							<button class="btn btn-light btn-sm" onclick="deselect('age_panel');">None</button>
+							<button class="btn btn-light btn-sm" onclick="swap('age_panel');">Inverse</button>
+							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="age_bin" value="${row.age_bin}" > ${row.age_abbrev}
@@ -39,7 +42,9 @@
 					<c:forEach items="${races.rows}" var="row" varStatus="rowCounter">
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('race_panel');">All</button>&nbsp;
-							<button class="btn btn-light btn-sm" onclick="deselect('race_panel');">None</button><br>
+							<button class="btn btn-light btn-sm" onclick="deselect('race_panel');">None</button>
+							<button class="btn btn-light btn-sm" onclick="swap('race_panel');">Inverse</button>
+							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="race" value="${row.race_abbrev}" > ${row.race_abbrev}
@@ -55,7 +60,9 @@
 					<c:forEach items="${ethnicities.rows}" var="row" varStatus="rowCounter">
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('ethnicity_panel');">All</button>&nbsp;
-							<button class="btn btn-light btn-sm" onclick="deselect('ethnicity_panel');">None</button><br>
+							<button class="btn btn-light btn-sm" onclick="deselect('ethnicity_panel');">None</button>
+							<button class="btn btn-light btn-sm" onclick="swap('ethnicity_panel');">Inverse</button>
+							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="ethnicity" value="${row.ethnicity}" > ${row.ethnicity_abbrev}
@@ -71,7 +78,9 @@
 					<c:forEach items="${sexes.rows}" var="row" varStatus="rowCounter">
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('sex_panel');">All</button>&nbsp;
-							<button class="btn btn-light btn-sm" onclick="deselect('sex_panel');">None</button><br>
+							<button class="btn btn-light btn-sm" onclick="deselect('sex_panel');">None</button>
+							<button class="btn btn-light btn-sm" onclick="swap('sex_panel');">Inverse</button>
+							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="sex" value="${row.sex_abbrev}" > ${row.sex_abbrev}
@@ -87,7 +96,9 @@
 					<c:forEach items="${severities.rows}" var="row" varStatus="rowCounter">
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('severity_panel');">All</button>&nbsp;
-							<button class="btn btn-light btn-sm" onclick="deselect('severity_panel');">None</button><br>
+							<button class="btn btn-light btn-sm" onclick="deselect('severity_panel');">None</button>
+							<button class="btn btn-light btn-sm" onclick="swap('severity_panel');">Inverse</button>
+							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="severity" value="${row.severity_abbrev}" > ${row.severity_abbrev}
@@ -105,6 +116,16 @@
 		
 		function selectall(checkid){
 		   $('#' + checkid + ' input[type="checkbox"]').prop('checked',true).trigger('change');
+		};
+		
+		function swap(checkid){
+			$('#' + checkid + ' input[type="checkbox"]').each(function () {
+				if (this.checked){
+					$(this).prop('checked', false).trigger('change');
+				}else{
+					$(this).prop('checked', true).trigger('change');
+				};
+			});
 		};
 	
 	</script>
