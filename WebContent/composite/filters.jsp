@@ -21,6 +21,10 @@
 						select age_bin,age_abbrev from n3c_dashboard.age_map5 order by age_seq;
 					</sql:query>
 					<c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
+						<c:if test="${rowCounter.first}">
+							Select: <button class="btn btn-light btn-sm" onclick="selectall('age_panel');">All</button>&nbsp;
+							<button class="btn btn-light btn-sm" onclick="deselect('age_panel');">None</button><br>
+						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="age_bin" value="${row.age_bin}" > ${row.age_abbrev}
 					</c:forEach>
@@ -33,6 +37,10 @@
 						select race,race_abbrev from n3c_dashboard.race_map order by race_seq;
 					</sql:query>
 					<c:forEach items="${races.rows}" var="row" varStatus="rowCounter">
+						<c:if test="${rowCounter.first}">
+							Select: <button class="btn btn-light btn-sm" onclick="selectall('race_panel');">All</button>&nbsp;
+							<button class="btn btn-light btn-sm" onclick="deselect('race_panel');">None</button><br>
+						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="race" value="${row.race_abbrev}" > ${row.race_abbrev}
 					</c:forEach>
@@ -45,6 +53,10 @@
 						select ethnicity,ethnicity_abbrev from n3c_dashboard.ethnicity_map order by ethnicity_seq;
 					</sql:query>
 					<c:forEach items="${ethnicities.rows}" var="row" varStatus="rowCounter">
+						<c:if test="${rowCounter.first}">
+							Select: <button class="btn btn-light btn-sm" onclick="selectall('ethnicity_panel');">All</button>&nbsp;
+							<button class="btn btn-light btn-sm" onclick="deselect('ethnicity_panel');">None</button><br>
+						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="ethnicity" value="${row.ethnicity}" > ${row.ethnicity_abbrev}
 					</c:forEach>
@@ -57,6 +69,10 @@
 						select distinct gender_abbrev as sex_abbrev,gender_seq as sex_seq from n3c_dashboard.gender_map order by sex_seq;
 					</sql:query>
 					<c:forEach items="${sexes.rows}" var="row" varStatus="rowCounter">
+						<c:if test="${rowCounter.first}">
+							Select: <button class="btn btn-light btn-sm" onclick="selectall('sex_panel');">All</button>&nbsp;
+							<button class="btn btn-light btn-sm" onclick="deselect('sex_panel');">None</button><br>
+						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="sex" value="${row.sex_abbrev}" > ${row.sex_abbrev}
 					</c:forEach>
@@ -69,6 +85,10 @@
 						select severity,severity_abbrev from n3c_dashboard.severity_map order by severity_seq;
 					</sql:query>
 					<c:forEach items="${severities.rows}" var="row" varStatus="rowCounter">
+						<c:if test="${rowCounter.first}">
+							Select: <button class="btn btn-light btn-sm" onclick="selectall('severity_panel');">All</button>&nbsp;
+							<button class="btn btn-light btn-sm" onclick="deselect('severity_panel');">None</button><br>
+						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
 						<input type="checkbox" name="severity" value="${row.severity_abbrev}" > ${row.severity_abbrev}
 					</c:forEach>
@@ -76,3 +96,15 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<script>
+		function deselect(checkid){
+		   $('#' + checkid + ' input[type="checkbox"]:checked').prop('checked',false).trigger('change');
+		};
+		
+		function selectall(checkid){
+		   $('#' + checkid + ' input[type="checkbox"]').prop('checked',true).trigger('change');
+		};
+	
+	</script>

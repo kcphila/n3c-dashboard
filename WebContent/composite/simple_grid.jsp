@@ -282,8 +282,8 @@ $(document).ready( function () {
 			"dom": '<l<t>ip>',
 	    	data: data,
 	       	paging: true,
-	       	initComplete: function(settings, json) {
-	       		jQuery('.loading').fadeOut(200);
+	       	initComplete: function() {
+	       		jQuery('.loading').fadeOut(100);
 	       	},
 	    	pageLength: 10,
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
