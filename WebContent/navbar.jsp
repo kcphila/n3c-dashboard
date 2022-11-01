@@ -48,9 +48,11 @@
 	  	<li>
 	  		<a class="nav-link" href="https://covid.cd2h.org/"><i class="fa fa-home" aria-hidden="true"></i> N3C</a>
 	  	</li>
-	  	<li>
-	  		<a class="nav-link" href="<util:applicationRoot/>/index3.jsp"><i class="fa fa-home" aria-hidden="true"></i> index3</a>
-	  	</li>
+	  	<c:if test="${util:isDomain('uiowa.edu') || util:isDomain('local')}">
+		  	<li>
+		  		<a class="nav-link" href="<util:applicationRoot/>/index3.jsp"><i class="fa fa-home" aria-hidden="true"></i> index3</a>
+		  	</li>
+	  	</c:if>
 	</ul>
   </div>
 </nav>
