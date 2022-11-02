@@ -50,7 +50,7 @@ function ${param.block}_severity_refresh() {
 	} else if (mode == 'bar'){
 		localHorizontalBarChart_legend(${param.block}_SeverityArray, properties);
 	} else {
-		localPercentageBarChart2(${param.block}_SeverityArray, properties);
+		localPercentageBarChart(${param.block}_SeverityArray, properties);
 	};
 }
 
