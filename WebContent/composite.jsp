@@ -58,6 +58,17 @@
     content: "\f056";
     font-weight: 900;
 }
+
+div.composite.tooltip {
+    position: absolute;
+    background-color: white;
+    opacity: 0.9;
+    height: auto;
+    padding: 1px;
+    pointer-events: none;
+    max-width: 250px;
+    padding-left: 10px;
+}
 </style>
 
 <jsp:include page="head.jsp" flush="true" />
