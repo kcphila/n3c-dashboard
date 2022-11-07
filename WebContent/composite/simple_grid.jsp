@@ -30,10 +30,32 @@
 
 .secondary-description{
 	margin-top: 30px;
+    background: #edf6ff;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.secondary-description p{
+	margin: 0px;
 }
 
 .loading{
 	text-align:center;
+}
+
+.data-as-of{
+	margin-top:20px; 
+	font-size:14px; 
+	font-weight:300;
+	margin-bottom: 0px;
+}
+
+#display-table{
+	margin-bottom: 30px;
+}
+
+.viz_secondary_info p{
+	margin: 0px;
 }
 
 </style>
@@ -48,17 +70,64 @@
 					<div class="panel-body kpi-section">
 						<div class="row kpi-row">
 							<div class="col col-5 m-auto">
-								Total COVID+ Patients*
-								<div class="kpi_num"><i class="fas fa-user-plus" aria-hidden="true"></i>    6.25M</div>
+								<span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a href='#' class='close' data-dismiss='alert'>&times;</a> Total COVID+ Patients in the N3C Data Enclave" 
+										data-html="true" data-toggle="popover" 
+										data-placement="top" 
+										data-content="<strong>COVID+ Defined As:</strong>
+										<ul style='padding-inline-start: 15px;'>
+											<li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
+											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
+											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
+										</ul>" aria-describedby="tooltip">
+  											<p style="white-space:nowrap;">Total COVID+ Patients <i class="fas fa-info-circle"></i>
+	  											<span class="sr-only">in the N3C Data Enclave, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, 
+	  												a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 
+	  												(U07.1) was recorded
+	  											</span>
+  											</p> 
+  									</a>
+  								</span>
+								<div class="kpi_num"><i class="fas fa-user-plus" aria-hidden="true"></i>    6.34M</div>
+								<p class="data-as-of"><em>Data as of October 27, 2022 (V.98)</em></p>
 							</div>
 							<div class="col col-7" style="border-left: 2px solid #d0e3f6;">
-								Patients in View*
+								<span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a href='#' class='close' data-dismiss='alert'>&times;</a> Total Patients in this Dashboard" 
+										data-html="true" 
+										data-toggle="popover" 
+										data-placement="top" 
+										data-content="<strong>Sample:</strong> COVID+ Patients in the N3C Data Enclave aggregated by 
+											Age, Race, Ethnicity, Sex, and Severity. (Updates on Filter)<br><br>
+											<em>Note: This dashboard may not include all patients in this sample, as cohorts with counts <20 are not displayed.</em>" 
+										aria-describedby="tooltip">
+  										<p style="white-space:nowrap;">Patients in Dashboard <i class="fas fa-info-circle" aria-hidden="true"></i>
+  											<span class="sr-only">: COVID+ Patients in the N3C Data Enclave aggregated by 
+												Age, Race, Ethnicity, Sex, and Severity. Note: This dashboard may not include all patients in this sample, as cohorts with counts <20 are not displayed.
+  											</span>
+  										</p>
+  									</a>
+  								</span>
 								<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   6.26M</div>
-								% of Total COVID+</br> Patients in View*
-								<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   100%</div>
-								<div class="kpi-limit">
-									<a onclick="limitlink(); return false;" href="#limitations-section">* See Limitations Below</a>
-								</div>
+								
+								<span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a href='#' class='close' data-dismiss='alert'>&times;</a> % of Total COVID+ Patients in this Dashboard" 
+										data-html="true" data-toggle="popover" 
+										data-placement="top" 
+										data-content="<strong>Calculated as:</strong> The number of patients in this dashboard divided by the Total number of COVID+ Patients in the Enclave (Updates on Filter)
+										<br><br><em>Note: This dashboard may not include all relevant patients, as cohorts with counts <20 are not displayed.</em>" 
+										aria-describedby="tooltip">
+  										<p style="white-space:nowrap;">% of Total COVID+</br> Patients in Dashboard <i class="fas fa-info-circle" aria-hidden="true"></i>
+  											<span class="sr-only">. Calculated as: The number of patients in this dashboard divided by 
+  												the Total number of COVID+ Patients in the Enclave. Note: This dashboard may not include all relevant patients, as cohorts with counts <20 are not displayed.
+  											</span>
+  										</p>
+  									</a>
+  								</span>
+								<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i>   98.7%</div>
 							</div>
 						</div>
 					</div>
@@ -111,20 +180,21 @@
 			</div>
 			<div class="secondary-description">
 				<p><strong>Sample:</strong> <span class="tip">
-					<a class="viz_secondary_info" title="COVID+ Defined As:" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
+					<a class="viz_secondary_info" title="COVID+ Defined As: <a href='#' class='close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
   						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
   						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 					</a>
-				</span>&nbsp;in the N3C Data Enclave. 
-				Data aggregated by Age, Race, Ethnicity, Sex, and Severity.</p>
+					</span>&nbsp;in the N3C Data Enclave. Data aggregated by Age, Race, Ethnicity, Sex, and Severity. 
+					For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+				</p>
 			</div>
 		</div>
-		<div id="display-table" style="display:none" class="panel panel-primary">
-			<div class="panel-heading">Aggregated Data</div>
+		<div id="display-table" class="panel panel-primary">
 			<div class="panel-body">
 				<div id="aggregated"></div>
 			</div>
 		</div>
+		
 		<c:import url="composite/limitations.jsp"/>
 	</div>
 </div>
@@ -132,6 +202,7 @@
 <jsp:include page="pieChart_local.jsp"/>
 <script>
 
+// jump to limitations
 function limitlink(){
 	$('#limitcollapseOne').collapse('show');
 	$('html, body').animate({
@@ -139,10 +210,15 @@ function limitlink(){
     }, 500);
 }
 
+// popover stuff
 $(function () {
 	$('[data-toggle="popover"]').popover()
 });
+$(document).on("click", ".popover .close" , function(){
+    $(this).parents(".popover").popover('hide');
+});
 
+//color codes
 var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#762AC6", 6:"#6512BD", 7:"#4C1EA5", 8:"#33298D"};
 var race_range = {1:"#09405A", 2:"#AD1181", 3:"#8406D1", 4:"#ffa600", 5:"#ff7155", 6:"#a6a6a6", 7:"#8B8B8B"};
 var ethnicity_range = {1:"#332380", 2:"#B6AAF3", 3:"#a6a6a6"};
@@ -279,8 +355,35 @@ $(document).ready( function () {
 		var data = json['rows'];
 	
 		aggregated_datatable = $('#aggregated-table').DataTable( {
-			"dom": '<l<t>ip>',
-	    	data: data,
+			data: data,
+	    	dom: 'lr<"datatable_overflow"t>Bip',
+	    	buttons: {
+	    	    dom: {
+	    	      button: {
+	    	        tag: 'button',
+	    	        className: ''
+	    	      }
+	    	    },
+	    	    buttons: [{
+	    	      extend: 'csv',
+	    	      className: 'btn btn-sm btn-light',
+	    	      titleAttr: 'CSV export.',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
+	    	      text: 'CSV',
+	    	      filename: 'covid_positive_demographics',
+	    	      extension: '.csv'
+	    	    }, {
+	    	      extend: 'copy',
+	    	      className: 'btn btn-sm btn-light',
+	    	      titleAttr: 'Copy table data.',
+	    	      exportOptions: {
+	                  columns: ':visible'
+	              },
+	    	      text: 'Copy'
+	    	    }]
+	    	},
 	       	paging: true,
 	       	initComplete: function() {
 	       		jQuery('.loading').fadeOut(100);
@@ -618,8 +721,6 @@ $('#mode-bar').on('click', function(element) {
 		document.getElementById("mode-bar").classList.add("active-display");
 	}
 	document.getElementById("mode-pie").classList.remove("active-display");
-	document.getElementById("mode-table").classList.remove("active-display");
-	document.getElementById("display-table").style.display = "none";
 	document.getElementById("display-d3").style.display = "block";
 	refreshHistograms();
 });
@@ -628,20 +729,10 @@ $('#mode-pie').on('click', function(element) {
 		document.getElementById("mode-pie").classList.add("active-display");
 	}
 	document.getElementById("mode-bar").classList.remove("active-display");
-	document.getElementById("mode-table").classList.remove("active-display");
-	document.getElementById("display-table").style.display = "none";
 	document.getElementById("display-d3").style.display = "block";
 	refreshHistograms();
 });
-$('#mode-table').on('click', function(element) {
-	if (!document.getElementById("mode-table").classList.contains("active-display")) {
-		document.getElementById("mode-table").classList.add("active-display");
-	}
-	document.getElementById("mode-bar").classList.remove("active-display");
-	document.getElementById("mode-pie").classList.remove("active-display");
-	document.getElementById("display-table").style.display = "block";
-	document.getElementById("display-d3").style.display = "none";
-});
+
 
 $('#age').on('click', function() {
 	var panel = document.getElementById("age_panel");

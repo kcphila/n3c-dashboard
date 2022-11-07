@@ -8,14 +8,14 @@
 			<div class="display_toggles">
 				<i data-toggle="tooltip" data-placement="top" title="Bar Chart" id="mode-bar" class="fas fa-chart-bar fa-lg active-display">&nbsp;</i> 
 				<i data-toggle="tooltip" data-placement="top" title="Pie Chart" id="mode-pie" class="fas fa-chart-pie fa-lg">&nbsp;</i> 
-				<i data-toggle="tooltip" data-placement="top" title="Table" id="mode-table" class="fas fa-table fa-lg">&nbsp;</i>
 			</div>
-		</div>
+		</div>	
+		
 		<div class=" panel-primary filter-section">
-			<h4><i class="fas fa-filter">&nbsp;</i>Filters:</h4>
-			<a class="btn btn-sm dash-filter-btn mt-0" onclick="uncheckAll();" style="color:white;"><i class="fas fa-times-circle">&nbsp;</i>Reset Filters</a>
+			<h4>Filters:</h4>
+			<a class="btn btn-sm dash-filter-btn mt-0 filtered" onclick="uncheckAll();" style="color:white;"><i class="fas fa-times-circle">&nbsp;</i>Reset Filters</a>
 			<div class="panel-body">
-				<h5 id="age"><i class="fas fa-chevron-right"></i> Age</h5>
+				<h5 class="filter-drop" id="age"><i class="fas fa-chevron-right"></i> Age</h5>
 				<div id="age_panel" style="display:none;">
 					<button class="btn btn-light btn-sm" onclick="checkPeds();">Peds</button>
 					<button class="btn btn-light btn-sm" onclick="checkAdult();">Adult</button><br>
@@ -27,7 +27,6 @@
 							Select: 
 							<button class="btn btn-light btn-sm" onclick="selectall('age_panel');">All</button>&nbsp;
 							<button class="btn btn-light btn-sm" onclick="deselect('age_panel');">None</button>
-							<button class="btn btn-light btn-sm" onclick="swap('age_panel');">Inverse</button>
 							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
@@ -36,7 +35,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<h5 id="race"><i class="fas fa-chevron-right"></i> Race</h5>
+				<h5 class="filter-drop" id="race"><i class="fas fa-chevron-right"></i> Race</h5>
 				<div id="race_panel" style="display:none;">
 					<sql:query var="races" dataSource="jdbc/N3CPublic">
 						select race,race_abbrev from n3c_dashboard.race_map order by race_seq;
@@ -45,7 +44,6 @@
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('race_panel');">All</button>&nbsp;
 							<button class="btn btn-light btn-sm" onclick="deselect('race_panel');">None</button>
-							<button class="btn btn-light btn-sm" onclick="swap('race_panel');">Inverse</button>
 							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
@@ -54,7 +52,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<h5 id="ethnicity"><i class="fas fa-chevron-right"></i> Ethnicity</h5>
+				<h5 class="filter-drop" id="ethnicity"><i class="fas fa-chevron-right"></i> Ethnicity</h5>
 				<div id="ethnicity_panel" style="display:none;">
 					<sql:query var="ethnicities" dataSource="jdbc/N3CPublic">
 						select ethnicity,ethnicity_abbrev from n3c_dashboard.ethnicity_map order by ethnicity_seq;
@@ -63,7 +61,6 @@
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('ethnicity_panel');">All</button>&nbsp;
 							<button class="btn btn-light btn-sm" onclick="deselect('ethnicity_panel');">None</button>
-							<button class="btn btn-light btn-sm" onclick="swap('ethnicity_panel');">Inverse</button>
 							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
@@ -72,7 +69,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<h5 id="sex"><i class="fas fa-chevron-right"></i> Sex</h5>
+				<h5 class="filter-drop" id="sex"><i class="fas fa-chevron-right"></i> Sex</h5>
 				<div id="sex_panel" style="display:none;">
 					<sql:query var="sexes" dataSource="jdbc/N3CPublic">
 						select distinct gender_abbrev as sex_abbrev,gender_seq as sex_seq from n3c_dashboard.gender_map order by sex_seq;
@@ -81,7 +78,6 @@
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('sex_panel');">All</button>&nbsp;
 							<button class="btn btn-light btn-sm" onclick="deselect('sex_panel');">None</button>
-							<button class="btn btn-light btn-sm" onclick="swap('sex_panel');">Inverse</button>
 							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
@@ -90,7 +86,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<h5 id="severity"><i class="fas fa-chevron-right"></i> Severity</h5>
+				<h5 class="filter-drop" id="severity"><i class="fas fa-chevron-right"></i> Severity</h5>
 				<div id="severity_panel" style="display:none;">
 					<sql:query var="severities" dataSource="jdbc/N3CPublic">
 						select severity,severity_abbrev from n3c_dashboard.severity_map order by severity_seq;
@@ -99,7 +95,6 @@
 						<c:if test="${rowCounter.first}">
 							Select: <button class="btn btn-light btn-sm" onclick="selectall('severity_panel');">All</button>&nbsp;
 							<button class="btn btn-light btn-sm" onclick="deselect('severity_panel');">None</button>
-							<button class="btn btn-light btn-sm" onclick="swap('severity_panel');">Inverse</button>
 							<br>
 						</c:if>
 						<c:if test="${!rowCounter.first}"><br></c:if>
@@ -107,6 +102,7 @@
 					</c:forEach>
 				</div>
 			</div>
+		
 		</div>
 	</div>
 	
@@ -118,16 +114,6 @@
 		
 		function selectall(checkid){
 		   $('#' + checkid + ' input[type="checkbox"]').prop('checked',true).trigger('change');
-		};
-		
-		function swap(checkid){
-			$('#' + checkid + ' input[type="checkbox"]').each(function () {
-				if (this.checked){
-					$(this).prop('checked', false).trigger('change');
-				}else{
-					$(this).prop('checked', true).trigger('change');
-				};
-			});
 		};
 	
 	</script>

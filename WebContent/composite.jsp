@@ -69,6 +69,14 @@ div.composite.tooltip {
     max-width: 250px;
     padding-left: 10px;
 }
+
+.filter-drop{
+	cursor: pointer;
+}
+
+.multiselect-group.dropdown-item-text{
+	font-weight:600;
+}
 </style>
 
 <jsp:include page="head.jsp" flush="true" />
@@ -81,7 +89,16 @@ div.composite.tooltip {
 	<div class="container-fluid content">
 		<div id="cohort">
 			<div class="section-heading">
-				<h3>COVID+ Patient Demographics</h3>
+				<select id="dimension_select">
+					<option value="all_summary_1">Demographics of COVID+ Patients</option>
+					<option value="all_summary_0">Multi-dimensional Summary</option>
+					<optgroup label="Demographics of COVID+ Patients Filterable By:">
+						<option value="all_summary_2">Vaccination Status</option>
+  						<option value="all_summary_3">Vaccination Status and Grouped Comorbidities</option>
+  						<option value="all_summary_4">Grouped Comorbidities</option>
+  						<option value="all_summary_5">Ungrouped Comorbidities</option>
+  					</optgroup>
+				</select>
 			</div>
 			
 			<div class="section section-viz">
@@ -91,12 +108,16 @@ div.composite.tooltip {
 		</div>
 	</div>
 
-	
-	
-
 	<jsp:include page="footer.jsp" flush="true" />
 	
 	<c:import url="modules/popover_init.jsp"/>
 	
+	<script>
+	$(document).ready(function() {       
+		$('#dimension_select').multiselect({		
+		});
+	});
+	
+	</script>
 </body>
 </html>
