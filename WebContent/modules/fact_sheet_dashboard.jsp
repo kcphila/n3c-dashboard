@@ -1,27 +1,33 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+<style>
+.stat-header{
+	color: rgba(100,42,107,1);
+}
 
+.stat{
+	color: #007bff;
+}
+</style>
 
 <div class="row mx-auto" style="padding: 10px; padding-bottom:30px; padding-top:30px; width:100%;">
-	<div class="col-12 text-max" style="text-align:left; margin-bottom:30px;">
-		<h4>Data within the N3C Data Enclave is provided by <span style="font-weight:700;"><span id="site_count">&nbsp;</span> 
-		sites</span> from across the nation and contains information about 
-		<span style="font-weight:700;"><span id="persons">&nbsp;</span> anonymized persons</span>.
-		The Enclave has <span style="font-weight:700;"><span id="rows">&nbsp;</span> total rows</span> containing:
-		</h4>
-	</div>
-	<div class="col-12 col-md-6">
-		<h4><span id="positive">&nbsp;</span> <strong>COVID+ Cases	<i class="fas fa-virus"></i></strong></h4>
-		<h4><span id="observations">&nbsp;</span> <strong>Clinical Observations	<i class="fas fa-comment-medical"></i></strong></h4>
-		<h4><span id="results">&nbsp;</span> <strong>Lab Results <i class="fas fa-file-medical-alt"></i></strong></h4>
-	</div>
-	<div class="col-12 col-md-6">
-		<h4><span id="records">&nbsp;</span> <strong>Medication Records <i class="fas fa-pills"></i></strong></h4>
-		<h4><span id="procedures">&nbsp;</span> <strong>Procedures <i class="fas fa-procedures"></i></strong></h4>
-		<h4><span id="visits"></span> <strong>Visits <i class="far fa-calendar-alt"></i></strong></h4>
-	</div>
-	<div class="col-12" style="margin-top:20px;">
-		<em style="margin-top:10px; font-size:14px;">Data as of	<span id="date"></span></em>
+	<div class="row" style="padding: 10px; padding-bottom:30px; padding-top:30px; width:100%;">
+		<div class="col-12 col-md-6" style="text-align:center;">
+			<h4><strong class="stat-header"><i class="fas fa-clinic-medical"></i> Sites: </strong> <span id="site_count" class="stat">&nbsp;</span></h4>
+			<h4><strong class="stat-header"><i class="fas fa-user"></i> Persons: </strong><span id="persons" class="stat">&nbsp;</span></h4>
+			<h4><strong class="stat-header"><i class="fas fa-virus"></i> COVID+ Cases: </strong> <span id="positive" class="stat">&nbsp;</span></h4>
+			<h4><strong class="stat-header"><i class="fas fa-table"></i> # of Rows: </strong> <span id="rows" class="stat">&nbsp;</span></h4>
+			<h4><strong class="stat-header"><i class="fas fa-notes-medical"></i> Clinical Observations: </strong> <span id="observations" class="stat">&nbsp;</span></h4>
+		</div>
+		<div class="col-12 col-md-6" style="text-align:center;">
+			<h4><strong class="stat-header"><i class="fas fa-file-medical-alt"></i> Lab Results: </strong><span id="results" class="stat">&nbsp;</span></h4>
+			<h4><strong class="stat-header"><i class="fas fa-pills"></i> Medication Records: </strong><span id="records" class="stat">&nbsp;</span></h4>
+			<h4><strong class="stat-header"><i class="fas fa-procedures"></i> Procedures: </strong><span id="procedures" class="stat">&nbsp;</span></h4>
+			<h4><strong class="stat-header"><i class="far fa-calendar-alt"></i> Visits: </strong><span id="visits" class="stat"></span></h4>
+		</div>
+		<div class="col-12" style="margin-top:20px;">
+			<em style="margin-top:10px; font-size:14px;">Data as of	<span id="date"></span></em>
+		</div>
 	</div>
 </div>
 	

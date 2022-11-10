@@ -171,6 +171,7 @@ a{
 
 		<div class="row">
 			<div class="col-12 col-lg-7">
+				<h2>Enclave Overview</h2>
 				<jsp:include page="modules/fact_sheet_dashboard.jsp" />
 			</div>
 			<div class="col-12 col-lg-5" style="text-align:center; ">
@@ -179,7 +180,7 @@ a{
 					<div class="col-12 col-sm-6 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#data-overview'">
 							<div class="card-body">
-								<h5 class="card-title">Enclave Overview</h5>
+								<h5 class="card-title">Summary Data</h5>
 								<h1><i class="fas fa-database"></i></h1>
 							</div>
 						</div>
@@ -232,11 +233,10 @@ a{
 		
 
 		<div class="dashboard-section hidden" id="data-overview">
-			<h2>Enclave Data Overview</h2>
+			<h2>Summary Data</h2>
 			
 			<div class="row">
 				<div class="col-12 col-md-8 my-auto">
-					<h4>Summary Data</h3>
 					<h5>These dashboard provides an overview of the demographics, severity, vaccination status, and comorbidities of 
 					COVID+ patients within the Enclave. You can explore the full data, or specifically target adult or pediatrics age groups.</h5>
 				</div>
