@@ -148,7 +148,7 @@ function createD3Chart(sites_data){
      				 const {transform} = d3.event;
       				 g.attr('transform', transform);
       				 g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k));
-      				 g.selectAll("circle").attr('r', 7 / transform.k);
+      				 g.selectAll("circle").attr('r', r / transform.k);
   			});
 
   			svg.call(zoom);
@@ -283,7 +283,7 @@ function update(data){
 				 const {transform} = d3.event;
 				 g .attr('transform', transform);
 				 g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k))
-				 g.selectAll("circle").attr('r', 7 / transform.k);;
+				 g.selectAll("circle").attr('r', r / transform.k);;
 		});
 
 		svg.call(zoom.transform, d3.zoomIdentity);
