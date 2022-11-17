@@ -6,12 +6,12 @@ let draw2 = false;
 init();
 
 function init() {
-	$.getJSON("<util:applicationRoot/>/feeds/siteLocations.jsp", function(data){
+	$.getJSON("<util:applicationRoot/>/feeds/siteCollaborations.jsp", function(data){
 		// console.log(data);
 		
 		var json = $.parseJSON(JSON.stringify(data));
 		var col = [];
-		var hard_headers = ["Site", "Type", "Data Status", "Data Model", "URL"] ;
+		var hard_headers = ["Site", "Type", "Investigator Count"] ;
 		var table = document.createElement("table");
 			table.className = 'table table-hover compact site-wrapper';
 			table.style.width = '100%';
@@ -61,9 +61,7 @@ function init() {
 	             		}
 	        		},
 	        	{ data: 'type', visible: true, orderable: true },
-	        	{ data: 'status', visible: true, orderable: true },
-	        	{ data: 'data_model', visible: true, orderable: true },
-	        	{ data: 'url', visible: false}
+	        	{ data: 'count', visible: true}
 	    	]
 		} );
 		const tableData = getTableData(table2);
@@ -91,8 +89,7 @@ function getTableData(table) {
 var width = null;
 var height = null;
 	
-function createD3Chart(sites_data){ 
-	console.log(sites_data)
+function createD3Chart(sites_data){
 	d3.select("#graph").select("svg").remove();
 	
 	
@@ -156,12 +153,11 @@ function createD3Chart(sites_data){
 
   			svg.call(zoom);
   			
-  			
 			
 			// Color Scale For Legend and Map 
-			var color = d3.scaleOrdinal() 
-				.domain(["available", "submitted", "pending"])
-				.range(["#64286b", "#545454", "#545454"]);
+		var color = d3.scaleOrdinal()
+			.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
+			.range(d3.schemeCategory10)
 	
 			var stroke = d3.scaleOrdinal() 
 				.domain(["available", "submitted", "pending"])
@@ -201,32 +197,11 @@ function createD3Chart(sites_data){
 					.enter()
 					.append("path")
 					.attr("d", path)
-					.style("stroke", "#d4d4d4")
+					.style("stroke", "#808080")
 					.style("stroke-width", "1")
-					.style("fill", "#f8f9fa");
+					.style("fill", "#EEEEEE");
 				
-				
-				d3.json("<util:applicationRoot/>/feeds/ochinLocations.jsp", function(graph) {
-					var locationBySite = [],
-						positions = [];
-	
-					var sites = graph.sites.filter(function(site) {
-						var location = [site.longitude, site.latitude];
-						locationBySite[site.id] = projection(location);
-						positions.push(projection(location));
-						return true;
-					});
-	
-	
-					var ochin = g.selectAll("path")
-						.data(sites)
-						.enter().append("path")
-						.attr('class', "remove")
-						.attr("d", function(d) {return d3.symbol().type(d3.symbolCircle).size("20")()})
-						.attr("transform", function(d, i) {return "translate("+positions[i][0]+", "+positions[i][1]+")";})
-	  					.attr("fill", "#64286b");
-					});
-	
+					
 					var graph = sites_data; 
 						var locationBySite = [],
 							positions = [];
@@ -234,19 +209,25 @@ function createD3Chart(sites_data){
 					var sites = graph.sites.filter(function(site) {
 						var location = [site.longitude, site.latitude];
 						locationBySite[site.id] = projection(location);
+						if (projection(location) == undefined)
+							return false;
 						positions.push(projection(location));
 						return true;
 					});
 	
+					var nodeScale = d3.scaleLinear()
+					.domain([0, d3.max(sites, function(d) { return d.count; })])
+					.range([2, 15]);
+
 					var other = g.selectAll("circle")
 						.data(sites)
 						.enter().append("svg:circle")
-						.style("fill", function(d) { return color(d.status); })
-						.attr("fill-opacity", .5)
+						.style("fill", function(d) { return color(d.type); })
+						.attr("fill-opacity", 1.0)
 						.attr('class', "remove")
 						.attr("cx", function(d, i) { return positions[i][0]; })
 						.attr("cy", function(d, i) { return positions[i][1]; })
-						.attr("r", function(d, i) { return 7; })
+						.attr("r", function(d, i) { return nodeScale(d.count); })
 						.append('title')
   						.text(function(d) { return ("Site: " + d.site + "\nType: "+d.type + "\nStatus: "+d.status); });
 
@@ -315,13 +296,19 @@ function update(data){
 		var sites = graph.sites.filter(function(site) {
 			var location = [site.longitude, site.latitude];
 			locationBySite[site.id] = projection(location);
+			if (projection(location) == undefined)
+				return false;
 			positions.push(projection(location));
-				return true;
+			return true;
 			});
 		
-		var color = d3.scaleOrdinal() 
-		.domain(["available", "submitted", "pending"])
-		.range(["#64286b", "#545454", "#545454"]);
+		var nodeScale = d3.scaleLinear()
+		.domain([0, d3.max(sites, function(d) { return d.count; })])
+		.range([2, 15]);
+
+		var color = d3.scaleOrdinal()
+		.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
+		.range(d3.schemeCategory10)
 		
 		var ochin_check = [];
 		for (i in data["sites"]){
@@ -330,32 +317,8 @@ function update(data){
 		
 		d3.select("#graph").select("svg").selectAll("path.remove").remove();
 		
-		if (ochin_check.includes("OCHIN")){
-			d3.json("feeds/ochinLocations.jsp", function(graph) {
-				var locationBySite = [],
-					positions = [];
-
-				var sites = graph.sites.filter(function(site) {
-					var location = [site.longitude, site.latitude];
-					locationBySite[site.id] = projection(location);
-					positions.push(projection(location));
-					return true;
-				});
-				
-				var path = g.selectAll("path.return").data(sites);
-				
-				path
-					.enter().append("path")	
-					.attr("class", "remove")
-					.attr("d", function(d) {return d3.symbol().type(d3.symbolCircle).size("20")()})
-					.attr("transform", function(d, i) {return "translate("+positions[i][0]+", "+positions[i][1]+")";})
-  					.attr("fill", "#64286b");
-				path.exit().remove();
-			});
-		} else {
-			var path = g.selectAll("path.return").data(sites);
-			path.exit().remove();
-		};
+		var path = g.selectAll("path.return").data(sites);
+		path.exit().remove();
 		
 		d3.select("#graph").select("svg").selectAll("circle.remove").remove();
 		
@@ -364,11 +327,11 @@ function update(data){
 		circle
 			.enter().append("circle")	
 			.attr("class", "remove")
-			.style("fill", function(d) { return color(d.status); })
-			.attr("fill-opacity", .5)
+			.style("fill", function(d) { return color(d.type); })
+			.attr("fill-opacity", 1.0)
 			.attr("cx", function(d, i) { return positions[i][0]; })
 			.attr("cy", function(d, i) { return positions[i][1]; })
-			.attr("r", function(d, i) { return 7; })
+			.attr("r", function(d, i) { return nodeScale(d.count); })
 			.append('title')
   			.text(function(d) { return ("Site: " + d.site + "\nType: "+d.type + "\nStatus: "+d.status); });;
   			

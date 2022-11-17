@@ -50,6 +50,9 @@
 	  	</li>
 	  	<c:if test="${util:isDomain('uiowa.edu') || util:isDomain('local')}">
 		  	<li>
+		  		<a class="nav-link" href="<util:applicationRoot/>/collaboration.jsp"><i class="fa fa-home" aria-hidden="true"></i> collaboration</a>
+		  	</li>
+		  	<li>
 		  		<a class="nav-link" href="<util:applicationRoot/>/composite.jsp"><i class="fa fa-home" aria-hidden="true"></i> composite</a>
 		  	</li>
 		  	<li>

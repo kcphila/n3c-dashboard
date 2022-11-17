@@ -19,6 +19,7 @@ WebContent/admin/map.jsp -text
 WebContent/admin/projects.jsp -text
 WebContent/admin/users.jsp -text
 WebContent/caption.jsp -text
+WebContent/collaboration.jsp -text
 WebContent/composite.jsp -text
 WebContent/composite/filters.jsp -text
 WebContent/composite/horizontalBarChart_local.jsp -text
@@ -70,6 +71,7 @@ WebContent/feeds/publications.jsp -text
 WebContent/feeds/questions.jsp -text
 WebContent/feeds/questions2.jsp -text
 WebContent/feeds/reinfections_by_date.jsp -text
+WebContent/feeds/siteCollaborations.jsp -text
 WebContent/feeds/siteLocations.jsp -text
 WebContent/feeds/siteRoster.jsp -text
 WebContent/feeds/us-states.json -text
@@ -156,6 +158,8 @@ WebContent/long_covid/table1.html -text
 WebContent/long_covid/table2.html -text
 WebContent/modules/admin_fact.jsp -text
 WebContent/modules/admin_map.jsp -text
+WebContent/modules/collaboration_map.jsp -text
+WebContent/modules/collaboration_map_code.jsp -text
 WebContent/modules/collaboration_networks.jsp -text
 WebContent/modules/domain_team_roster.jsp -text
 WebContent/modules/explorer.jsp -text
