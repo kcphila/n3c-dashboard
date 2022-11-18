@@ -93,7 +93,6 @@ function createD3Chart(sites_data){
 	d3.select("#graph").select("svg").remove();
 	
 	
-	
 	// Load the Cohort Data
 	d3.json("<util:applicationRoot/>/feeds/map_data.jsp", function(error, data) {
 		if (error) throw error;
@@ -141,6 +140,11 @@ function createD3Chart(sites_data){
 				.attr("height", height+40);
 			
 			var g = svg.append("g");
+			
+			
+			var nodeScale = d3.scaleLinear()
+				.domain([0, d3.max(sites_data.sites, function(d) { return d.count; })])
+				.range([2, 15]);
 
 			const zoom = d3.zoom()
     			.scaleExtent([1, 30])
@@ -148,7 +152,7 @@ function createD3Chart(sites_data){
      				 const {transform} = d3.event;
       				 g.attr('transform', transform);
       				 g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k));
-      				 g.selectAll("circle").attr('r', 7 / transform.k);
+					 g.selectAll("circle").attr('r', function(d) { return nodeScale(d.count) / transform.k; });
   			});
 
   			svg.call(zoom);
@@ -258,8 +262,6 @@ function createD3Chart(sites_data){
 		};
 	});
 	
-	
-	
 	function org_label(x) {
 		return "<br>"+x;
 	}
@@ -276,16 +278,6 @@ function update(data){
 		var svg = d3.select("#graph").select("svg");
 		var g = svg.select("g");
 		
-		
-		const zoom = d3.zoom()
-		.scaleExtent([1, 30])
-		.on('zoom', function() {
-			const {transform} = d3.event;
-			g .attr('transform', transform);
-			g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k));
-			g.selectAll("circle").attr('r', 7 / transform.k);
-		});
-
 		svg.call(zoom.transform, d3.zoomIdentity);
 		
 		var projection = d3.geoAlbersUsa()
@@ -303,8 +295,17 @@ function update(data){
 			});
 		
 		var nodeScale = d3.scaleLinear()
-		.domain([0, d3.max(sites, function(d) { return d.count; })])
-		.range([2, 15]);
+			.domain([0, d3.max(sites, function(d) { return d.count; })])
+			.range([2, 15]);
+		
+		const zoom = d3.zoom()
+		.scaleExtent([1, 30])
+		.on('zoom', function() {
+			const {transform} = d3.event;
+			g .attr('transform', transform);
+			g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k));
+			g.selectAll("circle").attr('r', function(d) { console.log(d); return 7 / transform.k; });
+		});
 
 		var color = d3.scaleOrdinal()
 		.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
