@@ -299,10 +299,10 @@ function update(data){
 		const zoom = d3.zoom()
 		.scaleExtent([1, 30])
 		.on('zoom', function() {
-				 const {transform} = d3.event;
-				 g .attr('transform', transform);
-				 g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k))
-				 g.selectAll("circle").attr('r', 7 / transform.k);;
+			const {transform} = d3.event;
+			g .attr('transform', transform);
+			g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k))
+			g.selectAll("circle").attr('r', 7 / transform.k);;
 		});
 
 		svg.call(zoom.transform, d3.zoomIdentity);
