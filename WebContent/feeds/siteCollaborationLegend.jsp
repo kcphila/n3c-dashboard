@@ -3,7 +3,7 @@
 
 <sql:query var="sites" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(foo)) from (
-		select ror_name as 	site,ror_id as id,org_type as type,count,latitude,longitude from n3c_collaboration.collaboration_organization
+		select org_type,count(*) from n3c_collaboration.collaboration_organization group by 1 order by 2 desc
 	) as foo;
 </sql:query>
 

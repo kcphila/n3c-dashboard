@@ -3,12 +3,12 @@
 
 <sql:query var="sites" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(foo)) from (
-		select ror_name as 	site,ror_id as id,org_type as type,count,latitude,longitude from n3c_collaboration.collaboration_organization
+		select source,target,count	 from n3c_collaboration.collaboration_edge
 	) as foo;
 </sql:query>
 
 {
-  "sites":
+  "edges":
 	<c:forEach items="${sites.rows}" var="row" varStatus="rowCounter">
 		${row.jsonb_pretty}
 	</c:forEach>

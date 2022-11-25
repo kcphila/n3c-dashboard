@@ -71,6 +71,8 @@ WebContent/feeds/publications.jsp -text
 WebContent/feeds/questions.jsp -text
 WebContent/feeds/questions2.jsp -text
 WebContent/feeds/reinfections_by_date.jsp -text
+WebContent/feeds/siteCollaborationEdges.jsp -text
+WebContent/feeds/siteCollaborationLegend.jsp -text
 WebContent/feeds/siteCollaborations.jsp -text
 WebContent/feeds/siteLocations.jsp -text
 WebContent/feeds/siteRoster.jsp -text
