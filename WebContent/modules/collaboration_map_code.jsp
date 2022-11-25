@@ -12,29 +12,31 @@
 	let draw2 = false;
 	var table2 = null;
 	
-	init();
-	
 	$(document).ready( function () {
-	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="type"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[1]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
+		init();
+		
+		$.fn.dataTable.ext.search.push(
+			    function( settings, searchData, index, rowData, counter ) {
+			      var positions = $('input:checkbox[name="type"]:checked').map(function() {
+			        return this.value;
+			      }).get();
+			   
+			      if (positions.length === 0) {
+			        return true;
+			      }
+			      
+			      if (positions.indexOf(searchData[1]) !== -1) {
+			        return true;
+			      }
+			      
+			      return false;
+			    }
+			  );
 	});
 
-	function init() {
+	async function init() {
+		await getEdges();
+		
 		$.getJSON("<util:applicationRoot/>/feeds/siteCollaborations.jsp", function(data) {
 			// console.log(data);
 	
@@ -125,14 +127,16 @@
 	var links = null;
 	var node_map = null;
 	
-	function createD3Chart(sites_data) {
-		d3.select("#graph").select("svg").remove();
-	
+	async function getEdges() {
 		d3.json("<util:applicationRoot/>/feeds/siteCollaborationEdges.jsp", function(error, data) {
 			if (error) throw error;
 	
 			links = data.edges;
-		});
+		});		
+	}
+	
+	function createD3Chart(sites_data) {
+		d3.select("#graph").select("svg").remove();
 	
 		node_map = d3.map(sites_data.sites, d => d.id);
 	
