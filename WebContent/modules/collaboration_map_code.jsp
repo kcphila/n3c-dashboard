@@ -309,6 +309,15 @@
 							});
 						};
 					}
+					
+					function collaborator_count(d) {
+						var coll_count = 0;
+						links.filter(function(o) {
+							if (o.source == d.id || o.target == d.id)
+								coll_count = coll_count + 1;
+						});
+						return coll_count;
+					}
 	
 					var other = g.selectAll("circle")
 						.data(sites)
@@ -322,7 +331,7 @@
 						.on("mouseover", fade(.2, false))
 						.on("mouseout", fade(1, true))
 						.append('title')
-						.text(function(d) { return ("Site: " + d.site + "\nType: " + d.type + "\nStatus: " + d.status); });
+						.text(function(d) { return ("Site: " + d.site + "\nType: " + d.type + "\n# Investigators: " + d.count + "\n# Collaborating Sites: " + collaborator_count(d)); });
 	
 				});
 	
@@ -427,7 +436,7 @@
 				const { transform } = d3.event;
 				g.attr('transform', transform);
 				g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k));
-				g.selectAll("circle").attr('r', function(d) { console.log(d); nodeScale(d.count) / transform.k; });
+				g.selectAll("circle").attr('r', function(d) { nodeScale(d.count) / transform.k; });
 			});
 	
 		d3.select("#graph").select("svg").selectAll("line").remove();
@@ -476,6 +485,15 @@
 	
 		d3.select("#graph").select("svg").selectAll("circle.remove").remove();
 	
+		function collaborator_count(d) {
+			var coll_count = 0;
+			links.filter(function(o) {
+				if (o.source == d.id || o.target == d.id)
+					coll_count = coll_count + 1;
+			});
+			return coll_count;
+		}
+
 		var circle = g.selectAll("circle.return").data(sites);
 	
 		circle
@@ -489,7 +507,7 @@
 			.on("mouseover", fade(.2, false))
 			.on("mouseout", fade(1, true))
 			.append('title')
-			.text(function(d) { return ("Site: " + d.site + "\nType: " + d.type + "\nStatus: " + d.status); });;
+			.text(function(d) { return ("Site: " + d.site + "\nType: " + d.type + "\n# Investigators: " + d.count+ "\n# Collaborating Sites: " + collaborator_count(d)); });;
 	
 	
 		circle.exit().remove();
