@@ -14,7 +14,7 @@
 						<div id="filters" style="overflow:hidden;">
 							<b>Filter:</b>
 							<sql:query var="types" dataSource="jdbc/N3CPublic">
-								select org_type,count(*) from n3c_collaboration.collaboration_organization group by 1 order by 2 desc
+								select org_type,site_seq,count(*) from n3c_collaboration.collaboration_organization, n3c_dashboard.site_map where org_type=site group by 1,2 order by 2
 							</sql:query>
 							<c:forEach items="${types.rows}" var="row" varStatus="rowCounter">
 								<c:if test="${rowCounter.first}">
