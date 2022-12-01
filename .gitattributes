@@ -45,6 +45,13 @@ WebContent/dashboard_descriptions/severity-region.jsp -text
 WebContent/dashboard_descriptions/smoking.jsp -text
 WebContent/dashboard_descriptions/summary.jsp -text
 WebContent/dashboard_descriptions/timeline.jsp -text
+WebContent/demo/bostock_counties.html -text
+WebContent/demo/data.csv -text
+WebContent/demo/farms.html -text
+WebContent/demo/us.json -text
+WebContent/demo/us_zip.html -text
+WebContent/demo/us_zoom.html -text
+WebContent/demo/zips_us_topo.json -text
 WebContent/downloads.jsp -text
 WebContent/embedded.jsp -text
 WebContent/exploration.jsp -text
