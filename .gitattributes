@@ -171,7 +171,6 @@ WebContent/index.jsp -text
 WebContent/index2.jsp -text
 WebContent/index3_embedded.jsp -text
 WebContent/index_old.jsp -text
-WebContent/institutions.jsp -text
 WebContent/long_covid/data.json -text
 WebContent/long_covid/fig4.jsp -text
 WebContent/long_covid/table1.html -text
@@ -980,4 +979,5 @@ WebContent/tables/domain_team_roster.jsp -text
 WebContent/tables/project_roster_styled.jsp -text
 WebContent/tables/publications_styled.jsp -text
 WebContent/teams.jsp -text
+WebContent/users.jsp -text
 /pom.xml -text
