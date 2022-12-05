@@ -979,4 +979,5 @@ WebContent/resources/topojson.js -text
 WebContent/tables/domain_team_roster.jsp -text
 WebContent/tables/project_roster_styled.jsp -text
 WebContent/tables/publications_styled.jsp -text
+WebContent/teams.jsp -text
 /pom.xml -text
