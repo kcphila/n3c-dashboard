@@ -1,26 +1,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+ 
+<div>
+	<h4>Collaboration Networks
+		<span class="tip">
+			<button class="btn btn-xs btn-tip gly-radius" title="Interaction Tip:" data-toggle="popover" data-placement="top" data-content="&#x2022;Large blue icons are projects - mousing over shows the ID
+				and title.&#13;&#x2022;The remaining icons are project members (color key at the right) - mouse over to see a name." aria-describedby="tooltip">
+				<i class="fas fa-lightbulb"></i>
+				<span class="sr-only">Large blue icons are projects - mousing over shows the ID
+				and title.&#13;The remaining icons are project members (color key at the
+				right) - mouse over to see a name.</span>
+			</button>
+		</span>
+	</h4>
+</div>
 
-<h3 class="header-text">Collaboration Networks</h3>
+
 <div class="row mb-5">
-	<div class="col-12 col-lg-4">
-		<form>
-			<input id="organization_button" name=type type="radio" value="full"	onclick="switch_graph();" checked> Organizations - Research	DURs<br>
-			<input id="collaboration_button" name=type type="radio" value="full" onclick="switch_graph();"> Persons - Research DURs<br>
-			<input id="operational_button" name=type type="radio" value="operational" onclick="switch_graph();"> Persons - Operational DURs<br>
-			<input id="challenge_button" name=type type="radio" value="challenge" onclick="switch_graph();"> Challenge and connected DURs (individuals)<br>
-			<input id="challenge_org_button" name=type type="radio"	value="challenge_org" onclick="switch_graph();"> Challenge and connected DURs (organizations)<br>
-		</form>
+	<div class="col-12 col-lg-6 col-xl-7">
+		<select id="graph-select">
+			<option value="orgs"> Organizations - Research	DURs</option>
+			<option value="persons-research"> Persons - Research DURs</option>
+			<option value="persons-op"> Persons - Operational DURs</option>
+			<option value="challenge"> Challenge and connected DURs (individuals)</option>
+			<option value="challenge_org"> Challenge and connected DURs (organizations)</option>
+		</select>
 	</div>
-	<div class="col-12 col-lg-4">
-		<ul>
-			<li>Large blue icons are projects - mousing over shows the ID
-				and title
-			<li>The remaining icons are project members (color key at the
-				right) - mouse over to see a name
-		</ul>
-	</div>
-	<div class="col-12 col-lg-4">
+	<div class="col-12 col-lg-6 col-xl-5">
 		<div id="legend" style="display: block;"></div>
 	</div>
 </div>
@@ -89,42 +95,56 @@
 	<jsp:param name="detectionAlg" value="sites" />
 </jsp:include>
 
+<c:import url="modules/popover_init.jsp"/>
+
 <script>
-	function switch_graph() {
-		if (document.getElementById("organization_button").checked) {
-			document.getElementById("organization_graph").style.display = "block";
-			document.getElementById("collaboration_graph").style.display = "none";
-			document.getElementById("operational_graph").style.display = "none";
-			document.getElementById("challenge_graph").style.display = "none";
-			document.getElementById("challenge_org_graph").style.display = "none";
-		}
-		if (document.getElementById("collaboration_button").checked) {
-			document.getElementById("organization_graph").style.display = "none";
-			document.getElementById("collaboration_graph").style.display = "block";
-			document.getElementById("operational_graph").style.display = "none";
-			document.getElementById("challenge_graph").style.display = "none";
-			document.getElementById("challenge_org_graph").style.display = "none";
-		}
-		if (document.getElementById("operational_button").checked) {
-			document.getElementById("organization_graph").style.display = "none";
-			document.getElementById("collaboration_graph").style.display = "none";
-			document.getElementById("operational_graph").style.display = "block";
-			document.getElementById("challenge_graph").style.display = "none";
-			document.getElementById("challenge_org_graph").style.display = "none";
-		}
-		if (document.getElementById("challenge_button").checked) {
-			document.getElementById("organization_graph").style.display = "none";
-			document.getElementById("collaboration_graph").style.display = "none";
-			document.getElementById("operational_graph").style.display = "none";
-			document.getElementById("challenge_graph").style.display = "block";
-			document.getElementById("challenge_org_graph").style.display = "none";
-		}
-		if (document.getElementById("challenge_org_button").checked) {
-			document.getElementById("organization_graph").style.display = "none";
-			document.getElementById("collaboration_graph").style.display = "none";
-			document.getElementById("operational_graph").style.display = "none";
-			document.getElementById("challenge_graph").style.display = "none";
-			document.getElementById("challenge_org_graph").style.display = "block";
-		}
+$(document).ready(function() {
+    $('#graph-select').select2();
+});
+
+$('#graph-select').on('select2:select', function (e) {
+    var data = e.params.data;
+    
+    console.log(data.id);
+    
+    if (data.id == 'orgs') {
+		document.getElementById("organization_graph").style.display = "block";
+		document.getElementById("collaboration_graph").style.display = "none";
+		document.getElementById("operational_graph").style.display = "none";
+		document.getElementById("challenge_graph").style.display = "none";
+		document.getElementById("challenge_org_graph").style.display = "none";
 	}
+    if (data.id == 'persons-research') {
+		document.getElementById("organization_graph").style.display = "none";
+		document.getElementById("collaboration_graph").style.display = "block";
+		document.getElementById("operational_graph").style.display = "none";
+		document.getElementById("challenge_graph").style.display = "none";
+		document.getElementById("challenge_org_graph").style.display = "none";
+	}
+    if (data.id == 'persons-op') {
+		document.getElementById("organization_graph").style.display = "none";
+		document.getElementById("collaboration_graph").style.display = "none";
+		document.getElementById("operational_graph").style.display = "block";
+		document.getElementById("challenge_graph").style.display = "none";
+		document.getElementById("challenge_org_graph").style.display = "none";
+	}
+    if (data.id == 'challenge') {
+		document.getElementById("organization_graph").style.display = "none";
+		document.getElementById("collaboration_graph").style.display = "none";
+		document.getElementById("operational_graph").style.display = "none";
+		document.getElementById("challenge_graph").style.display = "block";
+		document.getElementById("challenge_org_graph").style.display = "none";
+	}
+    if (data.id == 'challenge_org') {
+    	console.log('reached');
+		document.getElementById("organization_graph").style.display = "none";
+		document.getElementById("collaboration_graph").style.display = "none";
+		document.getElementById("operational_graph").style.display = "none";
+		document.getElementById("challenge_graph").style.display = "none";
+		document.getElementById("challenge_org_graph").style.display = "block";
+	}
+
+});
+
+
 </script>

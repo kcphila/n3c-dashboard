@@ -24,7 +24,7 @@
 	
 	.tooltip-duas,
 	text.duas{
-        fill: #9e9d9d;
+        fill: #0b4865;
     }
     
     .dua_dta_focus .tooltip{
@@ -35,18 +35,18 @@
     }
     
     path.duas{
-    	stroke: #9e9d9d;
+    	stroke: #0b4865;
     	stroke-width:2.8px;
     }
     path.dtas{
-    	stroke: #117a8b;
+    	stroke: #4933b1;
     	stroke-width:2.8px;
     }
     
     
     .tooltip-dtas, 
     text.dtas{
-    	fill: #117a8b;
+    	fill: #4933b1;
     }
     
     .dua_dta_focus text{

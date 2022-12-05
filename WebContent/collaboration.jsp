@@ -89,7 +89,7 @@ div.composite.tooltip {
 	<div class="container-fluid content">
 		<div id="cohort">
 			<div class="section-heading">
-				<h2>Inter-institutional Collaboration Network</h2>
+				<h1>Inter-institutional Collaboration Network</h1>
 			</div>
 			
 			<div class="section section-viz">

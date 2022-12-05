@@ -24,7 +24,7 @@
 	
 	.reg_focus circle, 
 	text.registration{
-        fill: #117a8b;
+        fill: #4933b1;
     }
     .reg_focus .tooltip{
     	fill: white;
@@ -34,7 +34,7 @@
     }
     
     path.registration{
-    	stroke: #117a8b;
+    	stroke: #4933b1;
     	stroke-width:2.8px;
     }
 
@@ -49,7 +49,7 @@
     }
     
     .tooltip-registration{
-    	fill:#4B6169;
+    	fill:#4933b1;
     }
 
     .tooltip-registration, .tooltip-date{

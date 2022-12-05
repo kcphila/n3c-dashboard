@@ -44,7 +44,7 @@ div.tooltip {
     
 	var colorScale = d3.scaleOrdinal()
 		.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
-		.range(d3.schemeCategory10)
+		.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
 
 	var tooltip = d3.select("body")
 		.append("div")
@@ -81,7 +81,7 @@ div.tooltip {
     	<c:if test="${not empty param.height }">
 			paramHeight = ${param.height};
     	</c:if>
-    	console.log("paramHeight", paramHeight);
+
         width = newWidth; //document.querySelector("#collaboration_graph").clientWidth
         height = paramHeight == 0 ? newWidth : paramHeight; //document.querySelector("#collaboration_graph").clientHeight
         margin = {top:0, left:0, bottom:0, right:0 }
@@ -237,33 +237,24 @@ div.tooltip {
         }
                 
         function drawColorKey(legendData) {
-        	var w = 120;
-        	var h = 130;
+        	var w = Math.ceil(legendData.length/2) * 120;
+        	var h = 60;
         	var k = 0;
+        	var itemWidth = 120;
+        	var itemHeight = 20;
+        	var n = legendData.length/2;
         	
-        	var svg3 = d3.select("#${param.legend_div}")
-        		.append("svg")
-        		.attr("width", w)
-        		.attr("height", h);
         	
-        	svg3.selectAll("node")
-        		.data(legendData)
-         	   .enter().append("circle")
-            	.attr("class", "node")
-        		.attr("r", 5)
-        		.attr("x", 10)
-        		.attr("y", function(d,k) { return 10+(16*k); k++;} )
-        		.attr("transform", function(d,k) { return "translate(" + 20 + "," + (16+16*k) + ")"; k++;})
-        	   	.style("fill", function (d,k) { return colorScale(legendData[k].id);});
-        		
-        	svg3.selectAll("text")
-        		.data(legendData)
-        		.enter()
-        		.append("text")
-        		.text (function (d) { return d.label; })
-        		.attr("x", 30)
-        		.attr("y", function(d, k) { return 23+(16*k); k++; });
-        }
+        	var legend_div = d3.select("#${param.legend_div}").append("div").attr("class", "row");
+    		
+    		var legend_data = legend_div.selectAll(".new_legend")
+    			.data(legendData)
+    			.enter().append("div")
+    			.attr("class", "col col-6 col-lg-4")
+    			.html(function(d,i){
+    				return '<i class="fas fa-circle" style="color:' + colorScale(legendData[i].id) + ';"></i> ' + d.label;
+    			});
+         }
     }
 }());
 </script>    

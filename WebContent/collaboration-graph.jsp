@@ -82,33 +82,28 @@ div.composite.tooltip {
 <jsp:include page="head.jsp" flush="true" />
 
 <body>
-	<jsp:include page="navbar.jsp" flush="true">
-  		<jsp:param name="page" value="explore"/>
-	</jsp:include>
+	<jsp:include page="navbar.jsp" flush="true"/>
 	
-	<div class="container-fluid content">
-		<div id="cohort">
-			<div class="section-heading">
-				<h2>Inter-institutional Collaboration Network</h2>
+	<div class="container container-large content">
+		<div class="row page-title">
+			<div class="col-12">
+				<h1>Inter-institutional Collaboration</h1>
 			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-12">
+				<p class="section-description heading-text text-max mx-auto">Collaborative team science is central to the N3C's mission. 
+				Below you can find the networks of individuals and institutions working together on projects, or DURs, within the N3C Data Enclave. </p>
+			</div>
+		</div>
 			
-			<div class="section section-viz">
-				<c:import url="modules/collaboration_networks.jsp"/>
-				
-			</div>
+		<div class="section section-viz">
+			<c:import url="modules/collaboration_networks.jsp"/>
 		</div>
 	</div>
 
 	<jsp:include page="footer.jsp" flush="true" />
-	
-	<c:import url="modules/popover_init.jsp"/>
-	
-	<script>
-	$(document).ready(function() {       
-		$('#dimension_select').multiselect({		
-		});
-	});
-	
-	</script>
+
 </body>
 </html>
