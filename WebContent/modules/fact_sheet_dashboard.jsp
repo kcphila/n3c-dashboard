@@ -1,29 +1,50 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <style>
-.stat-header{
-	color: rgba(100,42,107,1);
+.stat-header i{
+	font-size: 1.1em;
+    width: 1.8em;
+    text-align: center;
+    line-height: 1.8em;
+    color: white;
+    border-radius: 1em;
+    margin-bottom: 5px;
+    background: rgba(100,42,107,1);
+	background: -moz-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%);
+	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(100,42,107,1)), color-stop(47%, rgba(99,53,112,1)), color-stop(100%, rgba(70,71,119,1)));
+	background: -webkit-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%);
+	background: -o-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%);
+	background: -ms-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%);
+	background: linear-gradient(135deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%);
 }
 
-.stat{
-	color: #007bff;
+.stats_section p{
+	margin-bottom: 0px;
 }
+
+.intro_desc{
+	margin-bottom: 30px!important;
+}
+
 </style>
 
-<div class="row mx-auto" style="padding: 10px; padding-bottom:30px; padding-top:30px; width:100%;">
-	<div class="row" style="padding: 10px; padding-bottom:30px; padding-top:30px; width:100%;">
-		<div class="col-12 col-md-6" style="text-align:center;">
-			<h4><strong class="stat-header"><i class="fas fa-clinic-medical"></i> Sites: </strong> <span id="site_count" class="stat">&nbsp;</span></h4>
-			<h4><strong class="stat-header"><i class="fas fa-user"></i> Persons: </strong><span id="persons" class="stat">&nbsp;</span></h4>
-			<h4><strong class="stat-header"><i class="fas fa-virus"></i> COVID+ Cases: </strong> <span id="positive" class="stat">&nbsp;</span></h4>
-			<h4><strong class="stat-header"><i class="fas fa-table"></i> # of Rows: </strong> <span id="rows" class="stat">&nbsp;</span></h4>
-			<h4><strong class="stat-header"><i class="fas fa-notes-medical"></i> Clinical Observations: </strong> <span id="observations" class="stat">&nbsp;</span></h4>
+<div class="row m-auto stats_section">
+	<div class="">
+		<p class="intro_desc heading-text">The N3C Data Enclave represents one of the largest secure collections of harmonized clinical health data in the United States.</p>
+	</div>
+	<div class="row large-p">
+		<div class="col-12 col-md-6">
+			<p><strong class="stat-header"><i class="fas fa-clinic-medical"></i> Sites: </strong> <span id="site_count" class="stat">&nbsp;</span></p>
+			<p><strong class="stat-header"><i class="fas fa-user"></i> Persons: </strong><span id="persons" class="stat">&nbsp;</span></p>
+			<p><strong class="stat-header"><i class="fas fa-virus"></i> COVID+ Cases: </strong> <span id="positive" class="stat">&nbsp;</span></p>
+			<p><strong class="stat-header"><i class="fas fa-table"></i> # of Rows: </strong> <span id="rows" class="stat">&nbsp;</span></p>
+			<p><strong class="stat-header"><i class="fas fa-notes-medical"></i> Clinical Observations: </strong> <span id="observations" class="stat">&nbsp;</span></p>
 		</div>
-		<div class="col-12 col-md-6" style="text-align:center;">
-			<h4><strong class="stat-header"><i class="fas fa-file-medical-alt"></i> Lab Results: </strong><span id="results" class="stat">&nbsp;</span></h4>
-			<h4><strong class="stat-header"><i class="fas fa-pills"></i> Medication Records: </strong><span id="records" class="stat">&nbsp;</span></h4>
-			<h4><strong class="stat-header"><i class="fas fa-procedures"></i> Procedures: </strong><span id="procedures" class="stat">&nbsp;</span></h4>
-			<h4><strong class="stat-header"><i class="far fa-calendar-alt"></i> Visits: </strong><span id="visits" class="stat"></span></h4>
+		<div class="col-12 col-md-6">
+			<p><strong class="stat-header"><i class="fas fa-file-medical-alt"></i> Lab Results: </strong><span id="results" class="stat">&nbsp;</span></p>
+			<p><strong class="stat-header"><i class="fas fa-pills"></i> Medication Records: </strong><span id="records" class="stat">&nbsp;</span></p>
+			<p><strong class="stat-header"><i class="fas fa-procedures"></i> Procedures: </strong><span id="procedures" class="stat">&nbsp;</span></p>
+			<p><strong class="stat-header"><i class="far fa-calendar-alt"></i> Visits: </strong><span id="visits" class="stat"></span></p>
 		</div>
 		<div class="col-12" style="margin-top:20px;">
 			<em style="margin-top:10px; font-size:14px;">Data as of	<span id="date"></span></em>

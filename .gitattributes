@@ -47,6 +47,18 @@ WebContent/dashboard_descriptions/smoking.jsp -text
 WebContent/dashboard_descriptions/summary.jsp -text
 WebContent/dashboard_descriptions/timeline.jsp -text
 WebContent/data-overview.jsp -text
+WebContent/data-overview/demographics-and-vaccination.jsp -text
+WebContent/data-overview/demographics.jsp -text
+WebContent/data-overview/feeds/demographics.jsp -text
+WebContent/data-overview/feeds/vaccination.jsp -text
+WebContent/data-overview/filters.jsp -text
+WebContent/data-overview/filters_vac.jsp -text
+WebContent/data-overview/horizontalBarChart_local.jsp -text
+WebContent/data-overview/limitations.jsp -text
+WebContent/data-overview/pieChart_local.jsp -text
+WebContent/data-overview/pieChart_local_legends.jsp -text
+WebContent/data-overview/simple_grid.jsp -text
+WebContent/data-overview/simple_grid_legends.jsp -text
 WebContent/demo/bostock_counties.html -text
 WebContent/demo/data.csv -text
 WebContent/demo/farms.html -text
@@ -142,6 +154,9 @@ WebContent/images/dashboards/summary.png -text
 WebContent/images/dashboards/timeline.png -text
 WebContent/images/favicon.ico -text
 WebContent/images/home/connect_hero.png -text
+WebContent/images/home/dash_hero2.png -text
+WebContent/images/home/n3c_hero2.png -text
+WebContent/images/home/phastr_hero.png -text
 WebContent/images/home/team_hero.png -text
 WebContent/images/icons/admin.png -text
 WebContent/images/icons/covid.png -text
@@ -935,6 +950,7 @@ WebContent/resources/d3-scale-radial.js -text
 WebContent/resources/d3-tip.js -text
 WebContent/resources/d3.hive.min.js -text
 WebContent/resources/d3.v4.min.js -text
+WebContent/resources/dashboard_style.css -text
 WebContent/resources/jquery-colorize.js -text
 WebContent/resources/jquery.hottie.js -text
 WebContent/resources/main_style.css -text

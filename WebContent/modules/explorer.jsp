@@ -38,24 +38,16 @@
 		display:none;
 	}
 	
-	.viz-mode .fas{
-		cursor: pointer;
-		color: #bae4ea;
+	.viz-mode .fas {
+    	cursor: pointer;
+    	color: #b6d9ff;
 	}
 
-	.viz-mode .fas:hover{
-		color: #117a8b;
+	.viz-mode .fas:hover {
+    	color: #007bff;
 	}
 	.viz-mode .text-success{
-		color: #117a8b !important;
-	}
-	
-	.dash-filter-btn2{
-		color: #117a8b;
-	}
-	
-	.dash-filter-btn2:hover{
-		color: #0b525d;
+		color: #007bff !important;
 	}
 	
 	.col-left{
@@ -93,7 +85,7 @@
 			<div class="col-12 col-right col-md-4 filter_button_container" style="text-align:right;">
 				<button id="table_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="clear_search();"><i class="fas fa-times-circle"></i> Clear Filters</button>
 				<div class="dropdown" style="display: inline-block;">
-					<button data-bs-auto-close="false" class="btn btn-primary dropdown-toggle mt-0 show_filt" type="button" id="dropdownMenuButton" data-toggle="" aria-haspopup="true" aria-expanded="false">Chart/Table Filters</button>
+					<button data-bs-auto-close="false" class="btn dash-filter-btn dropdown-toggle mt-0 show_filt" type="button" id="dropdownMenuButton" data-toggle="" aria-haspopup="true" aria-expanded="false">Chart/Table Filters</button>
 					<div id="filter_options_drop" class="dropdown-menu dropdown-menu-right drop_filter" aria-labelledby="dropdownMenuButton">
 						<div class="kpi_section" style="text-align:center;">	
 							<div class="panel-body">
@@ -216,9 +208,16 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="../modules/verticalBarChart_local.jsp"/>
+<jsp:include page="../data-overview/horizontalBarChart_local.jsp"/>
 <jsp:include page="../modules/pieChart_local.jsp"/>
 <script>
+
+var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#762AC6", 6:"#6512BD", 7:"#4C1EA5", 8:"#33298D"};
+var race_range = {1:"#09405A", 2:"#AD1181", 3:"#8406D1", 4:"#ffa600", 5:"#ff7155", 6:"#a6a6a6", 7:"#8B8B8B"};
+var ethnicity_range = {1:"#332380", 2:"#B6AAF3", 3:"#a6a6a6"};
+var severity_range = {1:"#EBC4E0", 2:"#C24DA1", 3:"#AD1181", 4:"#820D61", 5:"#570941", 6:"#a6a6a6"};
+var sex_range = {1:"#4833B2", 2:"#ffa600", 3:"#8406D1", 4:"#a6a6a6", 5:"#8B8B8B"};
+
 
 $('#dropdownMenuButton').on('click', function() {
 	$("#filter_options_drop").toggleClass('show');
@@ -477,33 +476,33 @@ function refreshHistograms() {
     }
     d3.select("#age_histogram").select("svg").remove();
     if (doBar)
-    	localBarChart(ageArray,"#age_histogram",135);
+    	localBarChart(ageArray,"#age_histogram",120, age_range_all);
     else
-    	localPieChart(ageArray,"#age_histogram");
+    	localPieChart(ageArray,"#age_histogram", age_range_all);
 
     d3.select("#race_histogram").select("svg").remove();
     if (doBar)
-	    localBarChart(raceArray,"#race_histogram",135);
+	    localBarChart(raceArray,"#race_histogram",120, race_range);
     else
-    	localPieChart(raceArray,"#race_histogram");
+    	localPieChart(raceArray,"#race_histogram", race_range);
 
     d3.select("#ethnicity_histogram").select("svg").remove();
     if (doBar)
-	    localBarChart(ethnicityArray,"#ethnicity_histogram",135);
+	    localBarChart(ethnicityArray,"#ethnicity_histogram",120, ethnicity_range);
     else
-    	localPieChart(ethnicityArray,"#ethnicity_histogram");
+    	localPieChart(ethnicityArray,"#ethnicity_histogram", ethnicity_range);
 
     d3.select("#sex_histogram").select("svg").remove();
     if (doBar)
-	    localBarChart(sexArray,"#sex_histogram",135);
+	    localBarChart(sexArray,"#sex_histogram",120, sex_range);
     else
-    	localPieChart(sexArray,"#sex_histogram");
+    	localPieChart(sexArray,"#sex_histogram", sex_range);
 
     d3.select("#severity_histogram").select("svg").remove();
     if (doBar)
-	    localBarChart(severityArray,"#severity_histogram",135);
+	    localBarChart(severityArray,"#severity_histogram",120, severity_range);
     else
-    	localPieChart(severityArray,"#severity_histogram");
+    	localPieChart(severityArray,"#severity_histogram", severity_range);
 }
 
 function refreshAgeArray(data) {

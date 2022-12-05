@@ -3,23 +3,59 @@
 
 
 <style>
-	.Publication:before{
+	.publication-panel-group .Publication:before{
 		content: "\f518  ";
 		font-family: "Font Awesome\ 5 Free"; 
   		font-weight: 900;
 	}
 	
-	.Presentation:before{
+	.publication-panel-group .Presentation:before{
 		content: "\f130  ";
 		font-family: "Font Awesome\ 5 Free"; 
   		font-weight: 900;
 	}
 
-	.Preprint:before{
+	.publication-panel-group .Preprint:before{
 		content: "\f15b  ";
 		font-family: "Font Awesome\ 5 Free"; 
   		font-weight: 900;
 	}
+	
+	.publication-panel-group .Presentation.badge{
+		background-color: #4933b1;
+	}
+	.publication-panel-group .Publication.badge{
+		background-color: #0b4865;
+	}
+	.publication label i{
+		color: #0b4865;
+	}
+	.presentation label i{
+		color: #4933b1; 
+ 	} 
+	.preprint label i{ 
+		color: gray; 
+	}
+	#pub_table_section .form-check label{ 
+ 		font-size: 1.4rem; 
+ 		color: #222;
+ 	}
+	.publication-panel-group .badge{
+		font-size: 18px;
+    	font-weight: 300;
+    }
+    
+    .publication-panel-group .title{
+    	font-size: 1.3rem;
+    	line-height: 1;
+    	font-weight: 400;
+    	color: #222;
+    }
+    
+    .publication-panel-group .panel-body{
+    	width: 90%;
+    	margin: auto;
+    }
 </style>
 
 
@@ -107,12 +143,13 @@ $.getJSON("<util:applicationRoot/>/feeds/publications.jsp", function(data){
         			var date = row.date;
         			var authors = row.authors;
         			var combo = 
-        				'<div class="panel-group" style="margin-bottom:0px;" id="pub'
+        				'<div class="publication-panel-group panel-group" style="margin-bottom:0px;" id="pub'
         				+ id + '_pubs' +
-        				'"><div class="panel panel-default" style="background:none; border:none; box-shadow:none;"><div class="panel-heading" style="background:none; text-align:left;"><div class="row"><div class="col-11"><h4 class="mb-3">'
+        				'"><div class="panel panel-default" style="background:none; border:none; box-shadow:none;"><div class="panel-heading" style="background:none; text-align:left;"><div class="row">'
+        				+ '<div class="col-12"><p class="mb-3 title">'
         				+ title + 
-        				' </h4> <p class="' + row.type + '">' + row.type + '</p>'
-        				+ '</div><div class="col-1" style="margin: auto;"><p class="mb-0" style="text-align: right; font-size:16px;"><a aria-expanded="false" class="accordion-toggle" data-toggle="collapse" data-parent="#'
+        				' </p> </div><div class="col-6"><p class="badge badge-pill badge-secondary ' + row.type + '">' + row.type + '</p>'
+        				+ '</div><div class="col-6"><p class="mb-0" style="text-align: right; font-size:16px;"><a aria-expanded="false" class="accordion-toggle" data-toggle="collapse" data-parent="#'
         				+ 'pub'+ id + '_pubs' + 
         				'" href="#'
         				+ 'pub'+ id + '_pub_description' +
@@ -157,6 +194,7 @@ $(document).ready( function () {
 	$('#pub_table_section input:checkbox').on('change', function () {
 		$('#publications_table').DataTable().draw();
 	});
+	
 
 });
 </script>
