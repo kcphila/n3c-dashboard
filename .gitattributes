@@ -21,7 +21,6 @@ WebContent/admin/users.jsp -text
 WebContent/caption.jsp -text
 WebContent/collaboration-graph.jsp -text
 WebContent/collaboration.jsp -text
-WebContent/composite.jsp -text
 WebContent/composite/filters.jsp -text
 WebContent/composite/horizontalBarChart_local.jsp -text
 WebContent/composite/limitations.jsp -text
@@ -47,6 +46,7 @@ WebContent/dashboard_descriptions/severity-region.jsp -text
 WebContent/dashboard_descriptions/smoking.jsp -text
 WebContent/dashboard_descriptions/summary.jsp -text
 WebContent/dashboard_descriptions/timeline.jsp -text
+WebContent/data-overview.jsp -text
 WebContent/demo/bostock_counties.html -text
 WebContent/demo/data.csv -text
 WebContent/demo/farms.html -text
@@ -161,8 +161,8 @@ WebContent/images/spinners/sun.svg -text
 WebContent/images/spotlight_preview.png -text
 WebContent/index.jsp -text
 WebContent/index2.jsp -text
-WebContent/index3.jsp -text
 WebContent/index3_embedded.jsp -text
+WebContent/index_old.jsp -text
 WebContent/institutions.jsp -text
 WebContent/long_covid/data.json -text
 WebContent/long_covid/fig4.jsp -text

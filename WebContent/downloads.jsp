@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col-12 col-lg-12">
 				<div class="header-text">
-					<h3>N3C Dashboard Data Downloads</h3>
+					<h1>N3C Dashboard Data Downloads</h1>
 				</div>
 				<p>The data used to populate the various visualizations, etc. in the N3C Dashboard are available below for download as JSON and CSV.</p>
 			</div>

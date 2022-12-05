@@ -55,19 +55,19 @@
 		<div class="row">
 			<div class="col-12 col-lg-12">
 				<div class="header-text">
-					<h3>RECOVER Long COVID</h3>
-					<h5>Expanding knowledge of Long COVID using N3C data</h5>
+					<h1>RECOVER Long COVID</h1>
+					<p class="heading-text">Expanding knowledge of Long COVID using N3C data</p>
 				</div>
 				<div id="recover-caption" class="text-max mx-auto">
-						<jsp:include page="caption.jsp">
-							<jsp:param value="n3c_recover.caption" name="schema" />
-							<jsp:param value="intro_paragraphs" name="tag" />
-						</jsp:include>
+					<jsp:include page="caption.jsp">
+						<jsp:param value="n3c_recover.caption" name="schema" />
+						<jsp:param value="intro_paragraphs" name="tag" />
+					</jsp:include>
 				</div>
 				<div id="metric_btns" class="btn-select">
-					<a id="long-model-btn" class="btn btn-primary active" role="button" onclick="toggle_long('model');">Model Features</a>
-					<a id="long-training-btn" class="btn btn-primary" role="button" onclick="toggle_long('training');">Training Cohort Characteristics</a>
-					<a id="long-demographics-btn" class="btn btn-primary" role="button" onclick="toggle_long('demographics');">Demographics</a>
+					<button id="long-model-btn" class="btn btn-primary active" role="button" onclick="toggle_long('model');">Model Features</button>
+					<button id="long-training-btn" class="btn btn-primary" role="button" onclick="toggle_long('training');">Training Cohort Characteristics</button>
+					<button id="long-demographics-btn" class="btn btn-primary" role="button" onclick="toggle_long('demographics');">Demographics</button>
 				</div>
 				<div id="long-model" style="display:block; text-align:center;">
 					<h4 class="header-text">

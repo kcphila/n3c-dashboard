@@ -1,3 +1,4 @@
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <div class="footer" id="footer">	
 	<hr/>
 	<div class="d-flex justify-content-center flex-row flex-wrap">
@@ -14,22 +15,16 @@
 				title="NCATS" href="https://ncats.nih.gov/" class="nav-link">NCATS</a></li>
 			<li itemscope="itemscope"
 				itemtype="https://www.schema.org/SiteNavigationElement"
-				id="menu-item-991"
-				class="menu-item menu-item-type-custom menu-item-object-custom menu-item-991 nav-item"><a
-				title="CTSA" href="https://ctsa.ncats.nih.gov"
-				class="nav-link">CTSA</a></li>
-			<li itemscope="itemscope"
-				itemtype="https://www.schema.org/SiteNavigationElement"
 				id="menu-item-994"
 				class="menu-item menu-item-type-custom menu-item-object-custom menu-item-994 nav-item"><a
-				title="CD2H" href="https://ctsa.ncats.nih.gov/cd2h/"
-				class="nav-link">CD2H</a></li>
+				title="N3C" href="https://covid.cd2h.org/"
+				class="nav-link">N3C</a></li>
 			<li itemscope="itemscope"
 				itemtype="https://www.schema.org/SiteNavigationElement"
 				id="menu-item-997"
 				class="menu-item menu-item-type-custom menu-item-object-custom menu-item-997 nav-item"><a
-				title="CD2H Labs" href="http://labs.cd2h.org"
-				class="nav-link">CD2H Labs</a></li>
+				title="Administration" href="<util:applicationRoot/>/admin"
+				class="nav-link">Admin</a></li>
 		</ul>
 	</div>
 	<div class="container">
