@@ -77,8 +77,13 @@ div.tooltip {
     }
     
     function setSize(newWidth) {
+    	var paramHeight = 0;
+    	<c:if test="${not empty param.height }">
+			paramHeight = ${param.height};
+    	</c:if>
+    	console.log("paramHeight", paramHeight);
         width = newWidth; //document.querySelector("#collaboration_graph").clientWidth
-        height = newWidth; //document.querySelector("#collaboration_graph").clientHeight
+        height = paramHeight == 0 ? newWidth : paramHeight; //document.querySelector("#collaboration_graph").clientHeight
         margin = {top:0, left:0, bottom:0, right:0 }
         
         chartWidth = width - (margin.left+margin.right)
@@ -233,7 +238,7 @@ div.tooltip {
                 
         function drawColorKey(legendData) {
         	var w = 120;
-        	var h = 200;
+        	var h = 130;
         	var k = 0;
         	
         	var svg3 = d3.select("#${param.legend_div}")

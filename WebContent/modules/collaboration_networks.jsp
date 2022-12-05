@@ -48,6 +48,7 @@
 <jsp:include page="../graph_support/forcePhoto.jsp" flush="true">
 	<jsp:param name="charge" value="-350" />
 	<jsp:param name="ld" value="70" />
+	<jsp:param name="height" value="900" />
 	<jsp:param name="target" value="organization_graph" />
 	<jsp:param name="legend_div" value="legend" />
 	<jsp:param name="data_page"
@@ -57,6 +58,7 @@
 <jsp:include page="../graph_support/forcePhoto.jsp" flush="true">
 	<jsp:param name="charge" value="-350" />
 	<jsp:param name="ld" value="70" />
+	<jsp:param name="height" value="0" />
 	<jsp:param name="target" value="collaboration_graph" />
 	<jsp:param name="data_page" value="${root}/feeds/project_graph.jsp" />
 	<jsp:param name="detectionAlg" value="sites" />
@@ -64,6 +66,7 @@
 <jsp:include page="../graph_support/forcePhoto.jsp" flush="true">
 	<jsp:param name="charge" value="-350" />
 	<jsp:param name="ld" value="70" />
+	<jsp:param name="height" value="450" />
 	<jsp:param name="target" value="operational_graph" />
 	<jsp:param name="data_page" value="${root}/feeds/project_operational_graph.jsp" />
 	<jsp:param name="detectionAlg" value="sites" />
@@ -71,6 +74,7 @@
 <jsp:include page="../graph_support/forcePhoto.jsp" flush="true">
 	<jsp:param name="charge" value="-350" />
 	<jsp:param name="ld" value="70" />
+	<jsp:param name="height" value="750" />
 	<jsp:param name="target" value="challenge_graph" />
 	<jsp:param name="data_page" value="${root}/feeds/project_challenge_graph.jsp" />
 	<jsp:param name="detectionAlg" value="sites" />
@@ -78,6 +82,7 @@
 <jsp:include page="../graph_support/forcePhoto.jsp" flush="true">
 	<jsp:param name="charge" value="-350" />
 	<jsp:param name="ld" value="70" />
+	<jsp:param name="height" value="600" />
 	<jsp:param name="target" value="challenge_org_graph" />
 	<jsp:param name="data_page"
 		value="${root}/feeds/project_challenge_organization_graph.jsp" />
