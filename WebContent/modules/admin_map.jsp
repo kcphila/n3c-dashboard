@@ -152,14 +152,14 @@ function createD3Chart(sites_data){
 
   			svg.call(zoom);
 			
-			// Color Scale For Legend and Map 
+  			// Color Scale For Legend and Map 
 			var color = d3.scaleOrdinal() 
 				.domain(["available", "submitted", "pending"])
-				.range(["#64286b", "#545454", "#545454"]);
+				.range(["#33288d", "#545454", "#545454"]);
 	
 			var stroke = d3.scaleOrdinal() 
 				.domain(["available", "submitted", "pending"])
-				.range(["#64286b", "#545454", "#545454"]);
+				.range(["#33288d", "#545454", "#545454"]);
 	
 			var dataArray = [];
 	
@@ -218,7 +218,7 @@ function createD3Chart(sites_data){
 						.attr('class', "remove")
 						.attr("d", function(d) {return d3.symbol().type(d3.symbolCircle).size("20")()})
 						.attr("transform", function(d, i) {return "translate("+positions[i][0]+", "+positions[i][1]+")";})
-	  					.attr("fill", "#64286b");
+	  					.attr("fill", "#0b4865");
 					});
 	
 					var graph = sites_data; 
@@ -261,7 +261,7 @@ function createD3Chart(sites_data){
 				svg.append("path")
 					.attr("d", function(d) {return d3.symbol().type(d3.symbolCircle).size("15")()})
 					.attr("transform", function(d, index) {return "translate(5, 48)";})
-	  				.attr("fill", "#64286b")
+	  				.attr("fill", "#0b4865")
 				svg.append("text").attr("x", 15).attr("y", 11).text("Data Available").style("font-size", "15px").attr("alignment-baseline","middle")
 				svg.append("text").attr("x", 15).attr("y", 31).text("Data transfer signed, pending availability").style("font-size", "15px").attr("alignment-baseline","middle")
 				svg.append("text").attr("x", 15).attr("y", 51).text("OCHIN contributing site").style("font-size", "15px").attr("alignment-baseline","middle")
@@ -343,7 +343,7 @@ function update(data){
 					.attr("class", "remove")
 					.attr("d", function(d) {return d3.symbol().type(d3.symbolCircle).size("20")()})
 					.attr("transform", function(d, i) {return "translate("+positions[i][0]+", "+positions[i][1]+")";})
-  					.attr("fill", "#64286b");
+  					.attr("fill", "#0b4865");
 				path.exit().remove();
 			});
 		} else {

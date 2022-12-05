@@ -131,6 +131,8 @@ WebContent/images/dash_hero3.png -text
 WebContent/images/dashboards/MedicationsSnapshots.png -text
 WebContent/images/dashboards/Paxlovid.png -text
 WebContent/images/dashboards/SummaryDataAllAges.png -text
+WebContent/images/dashboards/collaboration-network.png -text
+WebContent/images/dashboards/data-partners.png -text
 WebContent/images/dashboards/delayed-mortality.png -text
 WebContent/images/dashboards/diabetes-mellitus.png -text
 WebContent/images/dashboards/hlh.png -text
@@ -139,12 +141,14 @@ WebContent/images/dashboards/long-covid.png -text
 WebContent/images/dashboards/medication-time-series.png -text
 WebContent/images/dashboards/medications.png -text
 WebContent/images/dashboards/pediatrics.png -text
+WebContent/images/dashboards/publications.png -text
 WebContent/images/dashboards/reinfection-time-series.png -text
 WebContent/images/dashboards/reinfection.png -text
 WebContent/images/dashboards/severity-region.png -text
 WebContent/images/dashboards/smoking.png -text
 WebContent/images/dashboards/summary.png -text
 WebContent/images/dashboards/timeline.png -text
+WebContent/images/dashboards/user-metrics.png -text
 WebContent/images/favicon.ico -text
 WebContent/images/home/connect_hero.png -text
 WebContent/images/home/dash_hero2.png -text

@@ -91,69 +91,6 @@
 	border: none;
 }
 
-/* scrolling card carousel ***************************************/
-/* .carousel-control-prev-icon { */
-/* 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007bff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important; */
-/* } */
-/* .carousel-control-next-icon { */
-/* 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007bff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important; */
-/* } */
-
-
-/* .carousel-control-next, */
-/* .carousel-control-prev{ */
-/* 	height: fit-content; */
-/*     margin: auto; */
-/*     width: unset; */
-/*     display: unset; */
-/* } */
-
-/* .carousel-control-next-icon, */
-/* .carousel-control-prev-icon{ */
-/* 	width: 60px; */
-/*     height: 60px; */
-/* } */
-
-/* #summary_carousel .carousel-inner:hover{ */
-/* 	overflow: visible; */
-/* } */
-
-/* #summary_carousel .carousel-inner:hover ~ .control_icon .control-icon{ */
-/*   background-image: none !important; */
-/* } */
-
-/* @media (max-width: 992px) { */
-/*     .scroll_carousel .carousel-inner .carousel-item > div { */
-/*         display: none; */
-/*     } */
-/*     .scroll_carousel .carousel-inner .carousel-item > div:first-child { */
-/*         display: block; */
-/*     } */
-/* } */
-
-/* .scroll_carousel .carousel-inner .carousel-item.active, */
-/* .scroll_carousel .carousel-inner .carousel-item-next, */
-/* .scroll_carousel .carousel-inner .carousel-item-prev { */
-/*     display: flex; */
-/* } */
-
-/* .scroll_carousel .carousel-inner .carousel-item-right.active, */
-/* .scroll_carousel .carousel-inner .carousel-item-next { */
-/* 	transform: translateX(33.333%); */
-/* } */
-
-/* @media (min-width: 992px) { */
-/* 	.scroll_carousel .carousel-inner .carousel-item-left.active,  */
-/* 	.scroll_carousel .carousel-inner .carousel-item-prev { */
-/* 		transform: translateX(-33.333%); */
-/* 	} */
-/* } */
-
-/* .scroll_carousel .carousel-inner .carousel-item-right, */
-/* .scroll_carousel .carousel-inner .carousel-item-left{  */
-/*   transform: translateX(0); */
-/* } */
-
 /* dashboard heading section *****************************************/
 .dashboard_main{
 	background: rgba(100,42,107,1);
@@ -353,7 +290,7 @@
 						</div>
 					</div>
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#data-overview'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#members'">
 							<div class="card-body large-p">
 								<p class="card-title">Members<br>
 								<i class="fas fa-users"></i></p>
@@ -434,31 +371,6 @@
 		 				</div>
 		 			</div>
 				</c:forEach>
-<!-- 				<div id="featured_carousel" class="scroll_carousel carousel slide" data-interval="false"> -->
-<!-- 					<div class="carousel-inner"> -->
-<%-- 						<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter"> --%>
-<%-- 							<div class="carousel-item <c:choose><c:when test = "${rowCounter.count == 1}">active</c:when></c:choose>"> --%>
-<!-- 								<div class="col-12 col-lg-4"> -->
-<%-- 									<div class="card hover-card_noshadow mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';"> --%>
-<%-- 					   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="..."> --%>
-<!-- 					   					<div class="card-body card-body-links"> -->
-<%-- 					     					<p class="card-title"><strong>${row.question}</strong></p> --%>
-<%-- 					     					<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/> --%>
-<!-- 					   					</div> -->
-<!-- 					 				</div> -->
-<!-- 					 			</div> -->
-<!-- 							</div> -->
-<%-- 						</c:forEach> --%>
-<!-- 					</div> -->
-<!-- 					<a class="carousel-control-prev" href="#featured_carousel" role="button" data-slide="prev"> -->
-<!-- 						<span class="carousel-control-prev-icon control-icon" aria-hidden="true"></span> -->
-<!-- 						<span class="sr-only">Previous</span> -->
-<!-- 					</a> -->
-<!-- 					<a class="carousel-control-next" href="#featured_carousel" role="button" data-slide="next"> -->
-<!-- 						<span class="carousel-control-next-icon control-icon" aria-hidden="true"></span> -->
-<!-- 				    	<span class="sr-only">Next</span> -->
-<!-- 					</a> -->
-<!-- 				</div> -->
 			</div>
 		</div>
 	</div>
@@ -487,6 +399,83 @@
 		 				</div>
 		 			</div>
 				</c:forEach>
+			</div>
+		</div>
+		
+
+		<div class="dashboard-section hidden" id="members" style="margin-top:0px;">
+			<h3>MEMBERS</h3>
+			<div class="row">
+			
+				<div class="col-12 col-md-6 col-lg-3 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/contributing-sites';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/data-partners.png" class="card-img-top" alt="...">
+	   					<div class="card-body card-body-links">
+     						<p class="card-title"><strong>Institutions Contributing Data</strong></p>
+     						<p class="card-text">
+								Explore our institutional data partners, the data-models they utilize, and the status of their transfers.
+							</p>
+							
+							<div class='row card-link'>
+								<div class="col col-6">
+									<a href='<util:applicationRoot/>/contributing-sites'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+								</div>
+							</div>
+	   					</div>
+	 				</div>
+	 			</div>
+	 			<div class="col-12 col-md-6 col-lg-3 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/users';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/user-metrics.png" class="card-img-top" alt="...">
+	   					<div class="card-body card-body-links">
+     						<p class="card-title"><strong>Site and User Metrics</strong></p>
+     						<p class="card-text">
+								Explore registration, usage, and other administrative metrics for the N3C.
+							</p>
+							
+							<div class='row card-link'>
+								<div class="col col-6">
+									<a href='<util:applicationRoot/>/users'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+								</div>
+							</div>
+	   					</div>
+	 				</div>
+	 			</div>
+	 			<div class="col-12 col-md-6 col-lg-3 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/publications';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/publications.png" class="card-img-top" alt="...">
+	   					<div class="card-body card-body-links">
+     						<p class="card-title"><strong>Publications</strong></p>
+     						<p class="card-text">
+								Explore the publications, presentations, and preprints resulting from research done within the N3C Data Enclave.
+							</p>
+							
+							<div class='row card-link'>
+								<div class="col col-6">
+									<a href='<util:applicationRoot/>/publications'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+								</div>
+							</div>
+	   					</div>
+	 				</div>
+	 			</div>
+	 			<div class="col-12 col-md-6 col-lg-3 d-flex">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/collaboration-graph';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration-network.png" class="card-img-top" alt="...">
+	   					<div class="card-body card-body-links">
+     						<p class="card-title"><strong>Collaboration Networks</strong></p>
+     						<p class="card-text">
+								Explore the collaborations between individuals and institutions working on projects within the N3C.
+							</p>
+							
+							<div class='row card-link'>
+								<div class="col col-6">
+									<a href='<util:applicationRoot/>/collaboration-graph'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+								</div>
+							</div>
+	   					</div>
+	 				</div>
+	 			</div>
+	 			
 			</div>
 		</div>
 		

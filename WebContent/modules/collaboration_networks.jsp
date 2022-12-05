@@ -19,8 +19,8 @@
 <div class="row mb-5">
 	<div class="col-12 col-lg-6 col-xl-7">
 		<select id="graph-select">
-			<option value="orgs"> Organizations - Research	DURs</option>
 			<option value="persons-research"> Persons - Research DURs</option>
+			<option value="orgs"> Organizations - Research	DURs</option>
 			<option value="persons-op"> Persons - Operational DURs</option>
 			<option value="challenge"> Challenge and connected DURs (individuals)</option>
 			<option value="challenge_org"> Challenge and connected DURs (organizations)</option>
@@ -33,8 +33,8 @@
 
 <div class="container content container-large">
 	<div id="content">
-		<div id="organization_graph" style="display: block;"></div>
-		<div id="collaboration_graph" style="display: none;"></div>
+		<div id="collaboration_graph" style="display: block;"></div>
+		<div id="organization_graph" style="display: none;"></div>
 		<div id="operational_graph" style="display: none;"></div>
 		<div id="challenge_graph" style="display: none;"></div>
 		<div id="challenge_org_graph" style="display: none;"></div>

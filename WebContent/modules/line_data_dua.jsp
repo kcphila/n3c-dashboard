@@ -49,6 +49,16 @@
     	fill: #4933b1;
     }
     
+    .dua_area{
+    	fill: #0b4865;
+		opacity: 0.1;
+    }
+    
+    .dta_area{
+    	fill: #4933b1;
+		opacity: 0.1;
+    }
+    
     .dua_dta_focus text{
         font-size: 12px;
     }
@@ -128,7 +138,26 @@
 				var valueline2 = d3.line()
 					.x(function(d) { return x(d.date); })
 					.y(function(d) { return y(d.dtas); });
+				
+				var area = d3.area()
+		    		.x(function(d) { return x(d.date); })
+		    		.y0(height)
+		    		.y1(function(d) { return y(d.duas); });
+				var area2 = d3.area()
+	    			.x(function(d) { return x(d.date); })
+	    			.y0(height)
+	    			.y1(function(d) { return y(d.dtas); });
 			
+				// Paths
+				dua_dta_svg.append("path")
+					.data([data])
+					.attr("class", "dua_area")
+					.attr("d", area);
+				dua_dta_svg.append("path")
+					.data([data])
+					.attr("class", "dta_area")
+					.attr("d", area2);
+				
 				// Lines
 				dua_dta_svg.append("path")
 					.data([data])

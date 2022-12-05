@@ -55,6 +55,11 @@
     .tooltip-registration, .tooltip-date{
         font-weight: bold;
     }
+    
+    .reg_area{
+    	fill: #4933b1;
+		opacity: 0.1;
+    }
 
 </style>
 
@@ -120,7 +125,17 @@
 				.x(function(d) { return reg_x(d.date); })
 				.y(function(d) { return reg_y(d.registrations); });
 		
-		
+			var reg_area = d3.area()
+		    	.x(function(d) { return reg_x(d.date); })
+		    	.y0(reg_height)
+		    	.y1(function(d) { return reg_y(d.registrations); });
+			
+			// Path
+			reg_svg.append("path")
+				.data([data2])
+				.attr("class", "reg_area")
+				.attr("d", reg_area);
+			
 			// Lines
 			reg_svg.append("path")
 				.data([data2])
