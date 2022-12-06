@@ -27,9 +27,9 @@
 			</c:if>
 		</ul>
 		<ul class="navbar-nav ml-auto ">
-	    	<form class="form-inline">
-	    		<button class="btn my-2 my-sm-0 btn-n3c" type="submit">Join N3C</button>
-	  		</form>
+			<li>
+	    		<a role="button" href="https://covid.cd2h.org/account-instructions" class="btn my-2 my-sm-0 btn-n3c">Join N3C</a>
+	    	</li>
 		  	<li>
 		  		<a class="nav-link" href="<util:applicationRoot/>/data-overview">composite</a>
 		  	</li>
