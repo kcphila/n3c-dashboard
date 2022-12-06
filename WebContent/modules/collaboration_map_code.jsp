@@ -2,7 +2,7 @@
 <style>
 
 .links {
-	stroke: blue;
+	stroke: #007bff;
     stroke-width: 0.5px;
     pointer-events: all;
 	}
@@ -151,7 +151,7 @@
 					if (newWidth > 0) {
 						d3.select("#graph").select("svg").remove();
 						width = newWidth;
-						height = (width / 2) + 60;
+						height = (width / 2);
 						draw();
 					}
 				});
@@ -165,7 +165,7 @@
 	
 				// D3 Projection 
 				var projection = d3.geoAlbersUsa()
-					.translate([width / 2, (height / 2) + 20]) // translate to center of screen
+					.translate([width / 2, (height / 2)]) // translate to center of screen
 					.scale([width]); // scale things down so see entire US
 	
 				// Define path generator
@@ -176,7 +176,7 @@
 				var svg = d3.select("#graph")
 					.append("svg")
 					.attr("width", width)
-					.attr("height", height + 40);
+					.attr("height", height);
 	
 				var g = svg.append("g");
 	
@@ -203,7 +203,7 @@
 				// Color Scale For Legend and Map 
 				var color = d3.scaleOrdinal()
 					.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
-					.range(d3.schemeCategory10)
+					.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
 	
 				var stroke = d3.scaleOrdinal()
 					.domain(["available", "submitted", "pending"])
@@ -243,9 +243,9 @@
 						.enter()
 						.append("path")
 						.attr("d", path)
-						.style("stroke", "#808080")
+						.style("stroke", "#d4d4d4")
 						.style("stroke-width", "1")
-						.style("fill", "#EEEEEE");
+						.style("fill", "#f8f9fa");
 	
 	
 					var graph = sites_data;
@@ -353,36 +353,20 @@
     function drawColorKey() {
 		$.getJSON("<util:applicationRoot/>/feeds/siteCollaborationLegend.jsp", function(data) {
 			var legendData = data.sites;
-	    	var w = 180;
-	    	var h = 90;
-	    	var k = 0;
-	    	
-			var colorScale = d3.scaleOrdinal()
-			.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
-			.range(d3.schemeCategory10)
+        	var colorScale = d3.scaleOrdinal()
+				.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
+				.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
 
-			var svg3 = d3.select("#legend")
-	    		.append("svg")
-	    		.attr("width", w)
-	    		.attr("height", h);
-	    	
-	    	svg3.selectAll("node")
-	    		.data(legendData)
-	    		.enter().append("circle")
-	        	.attr("class", "node")
-	    		.attr("r", 5)
-	    		.attr("x", 10)
-	    		.attr("y", function(d,k) { return 10+(16*k); k++;} )
-	    		.attr("transform", function(d,k) { return "translate(" + 20 + "," + (16+16*k) + ")"; k++;})
-	    	   	.style("fill", function (d,k) { return colorScale(legendData[k].org_type);});
-	    		
-	    	svg3.selectAll("text")
-	    		.data(legendData)
-	    		.enter()
-	    		.append("text")
-	    		.text (function (d) { return d.org_type+" ["+d.count+"]"; })
-	    		.attr("x", 30)
-	    		.attr("y", function(d, k) { return 23+(16*k); k++; });
+
+        	var legend_div = d3.select("#legend").append("div").attr("class", "row");
+    		
+    		var legend_data = legend_div.selectAll(".new_legend")
+    			.data(legendData)
+    			.enter().append("div")
+    			.attr("class", "col col-6 col-lg-4")
+    			.html(function(d,i){
+    				return '<i class="fas fa-circle" style="color:' + colorScale(legendData[i].org_type) + ';"></i> ' +  d.org_type + " [" + d.count + "]";
+    			});
 		});
     }
 	
@@ -471,7 +455,7 @@
 	
 		var color = d3.scaleOrdinal()
 			.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
-			.range(d3.schemeCategory10)
+			.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
 	
 		var ochin_check = [];
 		for (i in data["sites"]) {

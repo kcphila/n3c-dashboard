@@ -31,9 +31,6 @@
 	    		<button class="btn my-2 my-sm-0 btn-n3c" type="submit">Join N3C</button>
 	  		</form>
 		  	<li>
-		  		<a class="nav-link" href="<util:applicationRoot/>/collaboration.jsp">collaboration</a>
-		  	</li>
-		  	<li>
 		  		<a class="nav-link" href="<util:applicationRoot/>/data-overview">composite</a>
 		  	</li>
 		  	<li>

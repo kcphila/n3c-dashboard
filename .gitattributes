@@ -132,6 +132,7 @@ WebContent/images/dashboards/MedicationsSnapshots.png -text
 WebContent/images/dashboards/Paxlovid.png -text
 WebContent/images/dashboards/SummaryDataAllAges.png -text
 WebContent/images/dashboards/collaboration-network.png -text
+WebContent/images/dashboards/collaboration_map.png -text
 WebContent/images/dashboards/data-partners.png -text
 WebContent/images/dashboards/delayed-mortality.png -text
 WebContent/images/dashboards/diabetes-mellitus.png -text
@@ -147,6 +148,7 @@ WebContent/images/dashboards/reinfection.png -text
 WebContent/images/dashboards/severity-region.png -text
 WebContent/images/dashboards/smoking.png -text
 WebContent/images/dashboards/summary.png -text
+WebContent/images/dashboards/teams.png -text
 WebContent/images/dashboards/timeline.png -text
 WebContent/images/dashboards/user-metrics.png -text
 WebContent/images/favicon.ico -text

@@ -405,10 +405,26 @@
 
 		<div class="dashboard-section hidden" id="members" style="margin-top:0px;">
 			<h3>MEMBERS</h3>
-			<div class="row">
-			
-				<div class="col-12 col-md-6 col-lg-3 d-flex">
-					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/contributing-sites';">
+			<div class="row members-slick">
+				<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/collaboration';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration_map.png" class="card-img-top" alt="...">
+	   					<div class="card-body card-body-links">
+     						<p class="card-title"><strong>Institutional Collaboration Map</strong></p>
+     						<p class="card-text">
+								Explore the collaborations between institutions who have researchers working with N3C Data.
+							</p>
+							
+							<div class='row card-link'>
+								<div class="col col-6">
+									<a href='<util:applicationRoot/>/collaboration'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+								</div>
+							</div>
+	   					</div>
+	 				</div>
+	 			</div>
+				<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/contributing-sites';">
 	   					<img src="<util:applicationRoot/>/images/dashboards/data-partners.png" class="card-img-top" alt="...">
 	   					<div class="card-body card-body-links">
      						<p class="card-title"><strong>Institutions Contributing Data</strong></p>
@@ -424,25 +440,42 @@
 	   					</div>
 	 				</div>
 	 			</div>
-	 			<div class="col-12 col-md-6 col-lg-3 d-flex">
-					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/users';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/user-metrics.png" class="card-img-top" alt="...">
+	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/collaboration-graph';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration-network.png" class="card-img-top" alt="...">
 	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>Site and User Metrics</strong></p>
+     						<p class="card-title"><strong>Collaboration Networks</strong></p>
      						<p class="card-text">
-								Explore registration, usage, and other administrative metrics for the N3C.
+								Explore the collaborations between individuals and institutions working on projects within the N3C.
 							</p>
 							
 							<div class='row card-link'>
 								<div class="col col-6">
-									<a href='<util:applicationRoot/>/users'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+									<a href='<util:applicationRoot/>/collaboration-graph'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
 								</div>
 							</div>
 	   					</div>
 	 				</div>
 	 			</div>
-	 			<div class="col-12 col-md-6 col-lg-3 d-flex">
-					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/publications';">
+	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/teams';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/teams.png" class="card-img-top" alt="...">
+	   					<div class="card-body card-body-links">
+     						<p class="card-title"><strong>N3C Teams</strong></p>
+     						<p class="card-text">
+								Learn more about the teams working within the N3C Data Enclave.
+							</p>
+							
+							<div class='row card-link'>
+								<div class="col col-6">
+									<a href='<util:applicationRoot/>/teams'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+								</div>
+							</div>
+	   					</div>
+	 				</div>
+	 			</div>
+	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/publications';">
 	   					<img src="<util:applicationRoot/>/images/dashboards/publications.png" class="card-img-top" alt="...">
 	   					<div class="card-body card-body-links">
      						<p class="card-title"><strong>Publications</strong></p>
@@ -458,18 +491,18 @@
 	   					</div>
 	 				</div>
 	 			</div>
-	 			<div class="col-12 col-md-6 col-lg-3 d-flex">
-					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/collaboration-graph';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration-network.png" class="card-img-top" alt="...">
+	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/users';">
+	   					<img src="<util:applicationRoot/>/images/dashboards/user-metrics.png" class="card-img-top" alt="...">
 	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>Collaboration Networks</strong></p>
+     						<p class="card-title"><strong>Site and User Metrics</strong></p>
      						<p class="card-text">
-								Explore the collaborations between individuals and institutions working on projects within the N3C.
+								Explore registration, usage, and other administrative metrics for the N3C.
 							</p>
 							
 							<div class='row card-link'>
 								<div class="col col-6">
-									<a href='<util:applicationRoot/>/collaboration-graph'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
+									<a href='<util:applicationRoot/>/users'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
 								</div>
 							</div>
 	   					</div>
@@ -635,6 +668,45 @@ $(document).ready(function(){
 	  	}
 	});
 	
+	var slider2 = $('.members-slick').slick({
+		arrows: false,
+		dots: true,
+		draggable: false,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		centerMode: true,
+		autoplay: false,
+		responsive: [
+		    {
+		      breakpoint: 1200,
+		      settings: {
+		        arrows: false,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 2
+		      }
+		    },
+		    {
+		      breakpoint: 700,
+		      settings: {
+		        arrows: false,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 1
+		      }
+		    }
+		  ]
+	});
+	
+	slider2.on('mousewheel', function(e){
+	  	if(e.originalEvent.wheelDelta /120 > 0) {
+	  		jQuery(this).slick('slickPrev');
+	  	}
+	  	else{
+	  		jQuery(this).slick('slickNext');
+	  	}
+	});
+	
 
 	
 	//slick cards resize so they are the same height as largest (need to repeate for each new carousel)
@@ -651,6 +723,21 @@ $(document).ready(function(){
 	// Set ALL card bodies to this height
 	for (var i = 0; i < cards.length; i++) {
   		$(cards[i]).height(maxHeight);
+	}
+	//Get cards
+	var cards2 = $('.slick-card-2');
+	var maxHeight2 = 0;
+
+	// Loop all cards and check height, if bigger than max then save it
+	for (var i = 0; i < cards2.length; i++) {
+		console.log('reached')
+		if (maxHeight2 < $(cards2[i]).outerHeight()) {
+    		maxHeight2 = $(cards2[i]).outerHeight();
+  		}
+	}
+	// Set ALL card bodies to this height
+	for (var i = 0; i < cards2.length; i++) {
+  		$(cards2[i]).height(maxHeight2);
 	}
 });
 

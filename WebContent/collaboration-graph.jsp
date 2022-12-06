@@ -87,7 +87,7 @@ div.composite.tooltip {
 	<div class="container container-large content">
 		<div class="row page-title">
 			<div class="col-12">
-				<h1>Inter-institutional Collaboration</h1>
+				<h1>N3C Collaboration Networks</h1>
 			</div>
 		</div>
 		

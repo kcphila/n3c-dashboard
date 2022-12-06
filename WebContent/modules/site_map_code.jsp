@@ -161,11 +161,11 @@ function createD3Chart(sites_data){
 			// Color Scale For Legend and Map 
 			var color = d3.scaleOrdinal() 
 				.domain(["available", "submitted", "pending"])
-				.range(["#33288d", "#545454", "#545454"]);
+				.range(["#007bff", "#8406D1", "#8406D1"]);
 	
 			var stroke = d3.scaleOrdinal() 
 				.domain(["available", "submitted", "pending"])
-				.range(["#33288d", "#545454", "#545454"]);
+				.range(["#007bff", "#8406D1", "#8406D1"]);
 	
 			var dataArray = [];
 	
@@ -321,7 +321,8 @@ function update(data){
 		
 		var color = d3.scaleOrdinal() 
 		.domain(["available", "submitted", "pending"])
-		.range(["#64286b", "#545454", "#545454"]);
+		.range(["#007bff", "#8406D1", "#8406D1"]);
+
 		
 		var ochin_check = [];
 		for (i in data["sites"]){

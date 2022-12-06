@@ -20,44 +20,6 @@
     margin: auto;
 }
 
-.section-heading{
-	margin-top: 30px;
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-.display_toggles{
-	color: #b6d9ff;
-}
-
-.display_toggles .fas{
-	cursor: pointer;
-	color: #b6d9ff;
-}
-
-.display_toggles .fas:hover{
-	color: #007bff;
-}
-
-.display_toggles .active-display{
-	color: #007bff!important;
-}
-
-.filter-section{
-	margin-top:20px;
-}
-
-#limitations_drop a[aria-expanded = "false"] span.btn:after {
-    font-family: "Font Awesome\ 5 Free";
-    content: "\f055";
-    font-weight: 900;
-}
-
-#limitations_drop a[aria-expanded = "true"] span.btn:after {
-    font-family: "Font Awesome\ 5 Free";
-    content: "\f056";
-    font-weight: 900;
-}
 
 div.composite.tooltip {
     position: absolute;
@@ -70,13 +32,16 @@ div.composite.tooltip {
     padding-left: 10px;
 }
 
-.filter-drop{
-	cursor: pointer;
+.popover {
+    white-space: pre-wrap!important;    
 }
 
-.multiselect-group.dropdown-item-text{
-	font-weight:600;
+#filters{
+	width: fit-content;
+    margin: auto;
+    margin-top: 20px;
 }
+
 </style>
 
 <jsp:include page="head.jsp" flush="true" />
@@ -86,29 +51,40 @@ div.composite.tooltip {
   		<jsp:param name="page" value="explore"/>
 	</jsp:include>
 	
-	<div class="container-fluid content">
-		<div id="cohort">
-			<div class="section-heading">
-				<h1>Inter-institutional Collaboration Network</h1>
-			</div>
-			
-			<div class="section section-viz">
-				<c:import url="modules/collaboration_map.jsp"/>
-				
+	<div class="container container-large content">
+		<div class="row page-title">
+			<div class="col-12">
+				<h1>Inter-institutional Collaboration Map</h1>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-12">
+				<p class="section-description heading-text text-max mx-auto"> 
+				Collaborative team science is central to the N3C's mission. Below you can find a map of institutions with members working 
+				within the N3C Data Enclave sized by their number of collaborative members. Links represent collaborations between at least 
+				one member from each institution. The darker the link, the more collaborators. 
+				 </p>
+			</div>
+		</div>
+		<div class="section section-viz text-max">
+			<div>
+				<h4>Collaboration Map
+					<span class="tip">
+						<button class="btn btn-xs btn-tip gly-radius" data-html="true" title="Interaction Tip:" data-toggle="popover" data-placement="top" data-content="&#x2022;Search the Table to Update the Map.&#013;&#x2022;Click on a Heading to Sort the Table.&#013;&#x2022;Click and drag to reposition the map.&#013;&#x2022;Control drag up and down to zoom out and in.&#013;&#x2022;Hover over a node to identify the site and highlight its collaborations." aria-describedby="tooltip">
+	  						<i class="fas fa-lightbulb"></i>
+	  						<span class="sr-only">Search the Table to Update the Map.&#13;Click on a Heading to Sort the Table.</span>
+						</button>
+					</span>
+				</h4>
+			</div>
+			<c:import url="modules/collaboration_map.jsp"/>
+		</div>
 	</div>
+
 
 	<jsp:include page="footer.jsp" flush="true" />
 	
 	<c:import url="modules/popover_init.jsp"/>
 	
-	<script>
-	$(document).ready(function() {       
-		$('#dimension_select').multiselect({		
-		});
-	});
-	
-	</script>
 </body>
 </html>

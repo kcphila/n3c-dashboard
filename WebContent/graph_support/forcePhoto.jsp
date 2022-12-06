@@ -237,15 +237,7 @@ div.tooltip {
         }
                 
         function drawColorKey(legendData) {
-        	var w = Math.ceil(legendData.length/2) * 120;
-        	var h = 60;
-        	var k = 0;
-        	var itemWidth = 120;
-        	var itemHeight = 20;
-        	var n = legendData.length/2;
-        	
-        	
-        	var legend_div = d3.select("#${param.legend_div}").append("div").attr("class", "row");
+          	var legend_div = d3.select("#${param.legend_div}").append("div").attr("class", "row");
     		
     		var legend_data = legend_div.selectAll(".new_legend")
     			.data(legendData)
