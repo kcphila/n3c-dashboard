@@ -104,99 +104,114 @@
 	
 </body>
 <script>
-$.getJSON("<util:applicationRoot/>/search.json", function(data){
-		
-	var json = $.parseJSON(JSON.stringify(data));
 
-	var col = [];
-
-	for (i in json['headers']){
-		col.push(json['headers'][i]['label']);
-	}
-
-
-	var table = document.createElement("table");
-	table.className = 'table table-hover table-expand';
-	table.style.width = '100%';
-	table.style.textAlign = "left";
-	table.id="search_table";
-
-	var header= table.createTHead();
-	var header_row = header.insertRow(0); 
-
-	for (i in col) {
-		var th = document.createElement("th");
-		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:16px;">' + col[i].toString() + '</span>';
-		header_row.appendChild(th);
-	}
-
-	var divContainer = document.getElementById("search-list");
-	divContainer.innerHTML = "";
-	divContainer.appendChild(table);
-
-	var data = json['rows'];
-
-	$('#search_table').DataTable( {
-    	data: data,
-       	paging: true,
-       	dom: 'lfr<"datatable_overflow"t>ip',
-       	language: {
-            searchPlaceholder: "title, keyword, description ..."
-        },
-    	pageLength: 5,
-    	drawCallback: function( settings ) {$("#search_table thead").remove(); } ,
-    	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
-    	order: [[2, 'asc']],
-     	columns: [
-     		{ data: 'dashboard_id', 
-     			orderable: false,
-     			className: 'noExport',
-     			render: function ( data, type, row ) {
-     				var id = row.dashboard_id;
-        			var title = row.dashboard_name;
-        			var desc = row.dashboard_short_desc;
-        			var url = row.dashboard_url;
-        			var image = row.image;
-        			var type = row.type;
-        			
-        			var list = type.split(",");
-        			var icons = '';
-        			
-        			for (i in list){
-        				var icon_code = ' <span class="icon' + list[i].trim() + '"></span>';
-        				icons = icons + icon_code;
-        			}
-        			
-        			console.log(url);
-        			var combo = 
-        				'<div class="row"><div class="col-4"><img src="<util:applicationRoot/>/images/dashboards/'
-        				+ image
-        				+'" class="card-img-top" alt="..."></div><div class="col-8"><p class="mb-3 title">'
-        				+ title 
-        				+ '</p> <p>'
-        				+ desc
-        				+ '</p><div>'
-        				+ icons 
-        				+ '<div class="float-right"><a href="<util:applicationRoot/>'
-            				+ url
-            				+ '" >Explore&#8196;<i class="fas fa-angle-right"></i></a></div>'
-        				+'</div></div></div>';
-             		return combo; }
-     		},
-        	{ data: 'tags', visible: false },
-        	{ data: 'dashboard_name', visible: false },
-        	{ data: 'dashboard_url', visible: false },
-        	{ data: 'dashboard_short_desc', visible: false },
-        	{ data: 'image', visible: false },
-        	{ data: 'type', visible: false }
-    	]
-	} );
-
-	
-});
-
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+} 
 
 $(document).ready( function () {
+	$.getJSON("<util:applicationRoot/>/search.json", function(data){
+		var searchTerm = getUrlVars()['search'];
+		var json = $.parseJSON(JSON.stringify(data));
+	
+		var col = [];
+	
+		for (i in json['headers']){
+			col.push(json['headers'][i]['label']);
+		}
+	
+	
+		var table = document.createElement("table");
+		table.className = 'table table-hover table-expand';
+		table.style.width = '100%';
+		table.style.textAlign = "left";
+		table.id="search_table";
+	
+		var header= table.createTHead();
+		var header_row = header.insertRow(0); 
+	
+		for (i in col) {
+			var th = document.createElement("th");
+			th.innerHTML = '<span style="color:#333; font-weight:600; font-size:16px;">' + col[i].toString() + '</span>';
+			header_row.appendChild(th);
+		}
+	
+		var divContainer = document.getElementById("search-list");
+		divContainer.innerHTML = "";
+		divContainer.appendChild(table);
+	
+		var data = json['rows'];
+	
+		$('#search_table').DataTable( {
+	    	data: data,
+	    	search: {
+	            search: searchTerm
+	        },
+	       	paging: true,
+	       	dom: 'lfr<"datatable_overflow"t>ip',
+	       	language: {
+	            searchPlaceholder: "title, keyword, description ..."
+	        },
+	    	pageLength: 5,
+	    	drawCallback: function( settings ) {$("#search_table thead").remove(); } ,
+	    	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
+	    	order: [[2, 'asc']],
+	     	columns: [
+	     		{ data: 'dashboard_id', 
+	     			orderable: false,
+	     			className: 'noExport',
+	     			render: function ( data, type, row ) {
+	     				var id = row.dashboard_id;
+	        			var title = row.dashboard_name;
+	        			var desc = row.dashboard_short_desc;
+	        			var url = row.dashboard_url;
+	        			var image = row.image;
+	        			var type = row.type;
+	        			
+	        			var list = type.split(",");
+	        			var icons = '';
+	        			
+	        			for (i in list){
+	        				var icon_code = ' <span class="icon' + list[i].trim() + '"></span>';
+	        				icons = icons + icon_code;
+	        			}
+	        			
+	        			console.log(url);
+	        			var combo = 
+	        				'<div class="row"><div class="col-4"><img src="<util:applicationRoot/>/images/dashboards/'
+	        				+ image
+	        				+'" class="card-img-top" alt="..."></div><div class="col-8"><p class="mb-3 title">'
+	        				+ title 
+	        				+ '</p> <p>'
+	        				+ desc
+	        				+ '</p><div>'
+	        				+ icons 
+	        				+ '<div class="float-right"><a href="<util:applicationRoot/>'
+	            				+ url
+	            				+ '" >Explore&#8196;<i class="fas fa-angle-right"></i></a></div>'
+	        				+'</div></div></div>';
+	             		return combo; }
+	     		},
+	        	{ data: 'tags', visible: false },
+	        	{ data: 'dashboard_name', visible: false },
+	        	{ data: 'dashboard_url', visible: false },
+	        	{ data: 'dashboard_short_desc', visible: false },
+	        	{ data: 'image', visible: false },
+	        	{ data: 'type', visible: false }
+	    	]
+		} );
+	
+		
+	});
+	
 	$.fn.dataTable.ext.search.push(
 		function( settings, searchData, index, rowData, counter ) {
 			var positions = $('#search_table_section input:checkbox[name="dash_type"]:checked').map(function() {
@@ -220,8 +235,6 @@ $(document).ready( function () {
 	$('#search_table_section input:checkbox').on('change', function () {
 		$('#search_table').DataTable().draw();
 	});
-	
-
 });
 </script>
 </html>
