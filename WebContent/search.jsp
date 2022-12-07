@@ -20,9 +20,27 @@
 }
 .overview label i{
 	color: #4933b1; 
-	} 
+} 
 .about label i{ 
 	color: gray; 
+}
+.iconanalysis:before{
+	color: #0b4865;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f200";
+}
+.iconoverview:before{
+	color: #4933b1;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f1c0";
+}
+.iconabout:before{
+	color: gray;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f05a";
 }
 
 #search_table_section .form-check label{ 
@@ -53,15 +71,6 @@
 		<div class="row page-title">
 			<div class="col-12">
 				<h1>Dashboard Search</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<p class="section-description heading-text text-max mx-auto">Team science and attribution are central to the N3C's mission. 
-				Because of this, N3C strives to create a conducive environment for research publication by providing 
-				hands-on assistance during the manuscript preparation process and by highlighting research dissemination 
-				in both traditional and non-traditional venues, including academic journals, preprint forums, 
-				and public presentations. </p>
 			</div>
 		</div>
 		<div class="section">
@@ -137,7 +146,7 @@ $.getJSON("<util:applicationRoot/>/search.json", function(data){
     	pageLength: 5,
     	drawCallback: function( settings ) {$("#search_table thead").remove(); } ,
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
-    	order: [[1, 'desc']],
+    	order: [[2, 'asc']],
      	columns: [
      		{ data: 'dashboard_id', 
      			orderable: false,
@@ -150,14 +159,28 @@ $.getJSON("<util:applicationRoot/>/search.json", function(data){
         			var image = row.image;
         			var type = row.type;
         			
+        			var list = type.split(",");
+        			var icons = '';
+        			
+        			for (i in list){
+        				var icon_code = ' <span class="icon' + list[i].trim() + '"></span>';
+        				icons = icons + icon_code;
+        			}
+        			
+        			console.log(url);
         			var combo = 
-        				'<div class="row"><div class="col-2"><img src="<util:applicationRoot/>/images/dashboards/'
+        				'<div class="row"><div class="col-4"><img src="<util:applicationRoot/>/images/dashboards/'
         				+ image
-        				+'" class="card-img-top" alt="..."></div><div class="col-10"><p class="mb-3 title">'
+        				+'" class="card-img-top" alt="..."></div><div class="col-8"><p class="mb-3 title">'
         				+ title 
         				+ '</p> <p>'
         				+ desc
-        				+ '</p></div></div>';
+        				+ '</p><div>'
+        				+ icons 
+        				+ '<div class="float-right"><a href="<util:applicationRoot/>'
+            				+ url
+            				+ '" >Explore&#8196;<i class="fas fa-angle-right"></i></a></div>'
+        				+'</div></div></div>';
              		return combo; }
      		},
         	{ data: 'tags', visible: false },
