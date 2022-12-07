@@ -1,0 +1,208 @@
+{ "headers": [ 
+  {"value":"dashboard_id", "label":"dummy1"}, 
+  {"value":"tags", "label":"dummy2"}, 
+  {"value":"dashboard_name", "label":"Dashboard"}, 
+  {"value":"dashboard_url", "label":"dummy3"},
+  {"value":"dashboard_short_desc", "label":"About"},
+  {"value":"image", "label":"dummy3"},
+  {"value":"type", "label":"dummy4"}
+], "rows" : [
+  {
+    "dashboard_id": "timeline",
+    "tags": "covid+ cases, covid positive cases, daily count, cumulative count",
+    "dashboard_name": "Cumulative and Average COVID+ Cases",
+    "dashboard_url": "/public-health/timeline",
+    "dashboard_short_desc": "This dashboard provides the daily, cumulative, and 7-day average COVID+ patient counts within the Enclave.",
+    "image": "timeline.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "hss",
+    "tags": "patient distribution, irb, enclave overview",
+    "dashboard_name": "Demographics Table for IRB Submission",
+    "dashboard_url": "/public-health/hss",
+    "dashboard_short_desc": "This dashboard provides a downloadable snapshot of the cumulative demographic data for all patients in the Enclave.",
+    "image": "hss.png",
+    "type": "analysis, overview"
+  },
+  {
+    "dashboard_id": "hlh",
+    "tags": "diseases, cancer, congestie heart failure, dementia, diabetes, HIV, HLH, liver disease, metastasis, Myocardial Infarction, paralysis, peptic ulcer disease, peripheral vascular disease, pulmonary, renal disease, Rheumatologic Disease, stroke",
+    "dashboard_name": "Disease Snapshots",
+    "dashboard_url": "/public-health/hlh",
+    "dashboard_short_desc": "This dashboard breaks down the counts of patients with select comorbidities by COVID status, the incidence in relation to COVID+ diagnosis, and demographics.",
+    "image": "hlh.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "diabetes-mellitus",
+    "tags": "diseases, diabetes",
+    "dashboard_name": "Disease - Diabetes Mellitus",
+    "dashboard_url": "/public-health/diabetes-mellitus",
+    "dashboard_short_desc": "This dashboard breaks down the counts of patients with diabetes (types 1 and 2) by COVID status, the incidence in relation to COVID diagnosis, and demographics.",
+    "image": "diabetes-mellitus.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "long-covid",
+    "tags": "diseases, long covid, cognitive impariment, fatigue, mental health condition, Postural Orthostatic Tachycardia Syndrome (POTS), shortness of breath, U09.9, PASC",
+    "dashboard_name": "Long COVID",
+    "dashboard_url": "/public-health/long-covid",
+    "dashboard_short_desc": "This dashboard provides a snapshot of the demographics and symptoms associated with Long COVID.",
+    "image": "long-covid.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "medications",
+    "tags": "medications, medication classes, Dexamethasone, Lisinopril, Losartan, Montelukast, Fluoxetine, Remdesivir, Valsartan, Hydroxychloroquine, Casirivimab & Imdevimab, Nirmatrelvir/Ritonavir, Colchicine, Olmesartan, Benazepril, Enalapril, Irbesartan, Bamlanivimab, Lopinavir & Ritonavir, Ramipril, Tocilizumab, Telmisartan, Sotrovimab, Candesartan, Fluvoxamine, Captopril, Quinapril, Etesevimab, Chloroquine, Anakinra, Fosinopril, Bamlanivimab & Etesevimab, Tixagevimab/Cilgavimab, Azilsartan, Molnupiravir, Interferonbeta-1a, Trandolapril, Moexipril, Perindopril, Interferonbeta-1b, Peginterferon beta-1a",
+    "dashboard_name": "Medications",
+    "dashboard_url": "/public-health/medications",
+    "dashboard_short_desc": "This dashboard provides the counts of COVID+ patients prescribed select medications by demographics.",
+    "image": "medications.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "Paxlovid",
+    "tags": "medications, paxlovid",
+    "dashboard_name": "Medications - Paxlovid",
+    "dashboard_url": "/public-health/Paxlovid",
+    "dashboard_short_desc": "This dashboard provides an overview of the patients prescribed Paxlovid, including demographic information, associated medications, conditions, and outcomes.",
+    "image": "Paxlovid.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "MedicationsSnapshots",
+    "tags": "medications, strovimab",
+    "dashboard_name": "Medications Snapshots",
+    "dashboard_url": "/public-health/MedicationsSnapshots",
+    "dashboard_short_desc": "This dashboard breaks down the counts of COVID+ patients prescribed  Sotrovimab by vaccination status, the occurrence of other comorbidities in relation to prescription, severity, and demographics.",
+    "image": "MedicationsSnapshots.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "medication-time-series",
+    "tags": "meications, Bamlanivimab, Bamlanivimab & Etesevimab, Bebtelovimab, Evusheld, Lagevrio, Paxlovid, REG_COV, Remdesivir, Sotrovimab",
+    "dashboard_name": "Medication Time Series",
+    "dashboard_url": "/public-health/medication-time-series",
+    "dashboard_short_desc": "This dashboard provides the monthly counts of COVID+ patients prescribed select medications.",
+    "image": "medication-time-series.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "delayed-mortality",
+    "tags": "mortality, hospitalization",
+    "dashboard_name": "Mortality",
+    "dashboard_url": "/public-health/delayed-mortality",
+    "dashboard_short_desc": "This dashboard provides data on patients with dates of death occurring after a hospitalization for COVID or Long COVID within the Enclave.",
+    "image": "delayed-mortality.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "severity-region",
+    "tags": "regional distribution, patient distribution, patient map",
+    "dashboard_name": "Regional Distribution of COVID+ Patients",
+    "dashboard_url": "/public-health/severity-region",
+    "dashboard_short_desc": "This dashboard shows the regional distribution of COVID+ patients within the Enclave and the number of contributing sites in each region.",
+    "image": "severity-region.png",
+    "type": "analysis, overview"
+  },
+  {
+    "dashboard_id": "reinfection",
+    "tags": "covid+ cases, covid positive cases, reinfection, covid positive reinfection",
+    "dashboard_name": "Reinfection",
+    "dashboard_url": "/public-health/reinfection",
+    "dashboard_short_desc": "This dashboard provides a snapshot of COVID-19 reinfection counts and reinfection intervals within the Enclave.",
+    "image": "reinfection.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "reinfection-time-series",
+    "tags": "covid+ cases, covid positive cases, reinfection, covid positive reinfection",
+    "dashboard_name": "Reinfection Time Series",
+    "dashboard_url": "/public-health/reinfection-time-series",
+    "dashboard_short_desc": "This dashboard shows the first infection dates of patients reinfected with COVID-19 in any particular month.",
+    "image": "reinfection-time-series.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "smoking",
+    "tags": "smoking",
+    "dashboard_name": "Smoking",
+    "dashboard_url": "/public-health/smoking",
+    "dashboard_short_desc": "This dashboard shows the breakdown of smoking status by demographics and severity for COVID+ patients in the Enclave.",
+    "image": "smoking.png",
+    "type": "analysis"
+  },
+  {
+    "dashboard_id": "demographics",
+    "tags": "overview, covid +, covid positive, demographics",
+    "dashboard_name": "Demographics",
+    "dashboard_url": "/data-overview",
+    "dashboard_short_desc": "Learn more about the N3C Data and explore demographics, comorbidities, and vaccination counts.",
+    "image": "SummaryDataAllAges.png",
+    "type": "about, overview"
+  },
+  {
+    "dashboard_id": "collaboration",
+    "tags": "collaboration, collaboraton map",
+    "dashboard_name": "Institutional Collaboration Map",
+    "dashboard_url": "/collaboration",
+    "dashboard_short_desc": "Explore the collaborations between institutions who have researchers working with N3C Data.",
+    "image": "collaboration_map.png",
+    "type": "about"
+  },
+  {
+    "dashboard_id": "contributing-sites",
+    "tags": "data partners",
+    "dashboard_name": "Institutions Contributing Data",
+    "dashboard_url": "/contributing-sites",
+    "dashboard_short_desc": "Explore our institutional data partners, the data-models they utilize, and the status of their transfers.",
+    "image": "data-partners.png",
+    "type": "about, overview"
+  },
+  {
+    "dashboard_id": "collaboration-graph",
+    "tags": "collaboration, collaboration network",
+    "dashboard_name": "Collaboration Networks",
+    "dashboard_url": "/collaboration-graph",
+    "dashboard_short_desc": "Explore the collaborations between individuals and institutions working on projects within the N3C.",
+    "image": "collaboration-network.png",
+    "type": "about"
+  },
+  {
+    "dashboard_id": "teams",
+    "tags": "teams",
+    "dashboard_name": "N3C Teams",
+    "dashboard_url": "/teams",
+    "dashboard_short_desc": "Learn more about the teams working within the N3C Data Enclave.",
+    "image": "teams.png",
+    "type": "about"
+  },
+  {
+    "dashboard_id": "publications",
+    "tags": "publications",
+    "dashboard_name": "Publications",
+    "dashboard_url": "/publications",
+    "dashboard_short_desc": "Explore the publications, presentations, and preprints resulting from research done within the N3C Data Enclave.",
+    "image": "publications.png",
+    "type": "about"
+  },
+  {
+    "dashboard_id": "users",
+    "tags": "administration, registration",
+    "dashboard_name": "Site and User Metrics",
+    "dashboard_url": "/users",
+    "dashboard_short_desc": "Explore registration, usage, and other administrative metrics for the N3C.",
+    "image": "user-metrics.png",
+    "type": "about"
+  },
+  {
+    "dashboard_id": "recover",
+    "tags": "long covid, PASC, U09.9",
+    "dashboard_name": "RECOVER Initiative (Long COVID)",
+    "dashboard_url": "/recover",
+    "dashboard_short_desc": "This study applies machine learning techinques to N3C data to identify features of the EHR data that are predictive of Long COVID.",
+    "image": "recover.png",
+    "type": "analysis"
+  }
+]}
