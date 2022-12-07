@@ -369,7 +369,7 @@
 			<div class="row featured-slick">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card_noshadow mb-2 slick-card-1">
+						<div class="card hover-card_noshadow mb-2 slick-card-1"  onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
 		   					<div class="card-body card-body-links">
 	     						<p class="card-title"><strong>${row.question}</strong></p>
