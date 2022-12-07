@@ -149,6 +149,16 @@ div.composite.tooltip {
 	color: unset;
 }
 
+/* download buttons ******/
+.viz-demo .btn-light{
+	color: gray;
+	border: none;
+}
+
+.viz-demo .btn-light:after{
+	display:none;
+}
+
 </style>
 
 
@@ -275,7 +285,19 @@ div.composite.tooltip {
 									</div>
 								</div>
 								<div class="col col-12 col-md-6 viz-section">
-									<h4 class="viz-demo">Severity</h4>
+									<h4 class="viz-demo">
+										Severity
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('severity_histogram', 'demographisc-ungrouped-severity.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('severity_histogram', 'demographisc-ungrouped-severity.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('severity_histogram', 'demographisc-ungrouped-severity.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
 									<div class="panel-body">
 										<div class="loading">
 											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
@@ -284,7 +306,19 @@ div.composite.tooltip {
 									</div>
 								</div>
 								<div class="col col-12 col-md-6 viz-section">
-									<h4 class="viz-demo">Age</h4>
+									<h4 class="viz-demo">
+										Age
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('age_histogram', 'demographisc-ungrouped-age.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('age_histogram', 'demographisc-ungrouped-age.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('age_histogram', 'demographisc-ungrouped-age.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
 									<div class="panel-body">
 										<div class="loading">
 											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
@@ -293,7 +327,19 @@ div.composite.tooltip {
 									</div>
 								</div>
 								<div class="col col-12 col-md-6 viz-section">
-									<h4 class="viz-demo">Race</h4>
+									<h4 class="viz-demo">
+										Race
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('race_histogram', 'demographisc-ungrouped-race.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('race_histogram', 'demographisc-ungrouped-race.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('race_histogram', 'demographisc-ungrouped-race.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
 									<div class="panel-body">
 										<div class="loading">
 											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
@@ -302,7 +348,19 @@ div.composite.tooltip {
 									</div>
 								</div>
 								<div class="col col-12 col-md-6 viz-section">
-									<h4 class="viz-demo">Sex</h4>
+									<h4 class="viz-demo">
+										Sex
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('sex_histogram', 'demographisc-ungrouped-sex.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('sex_histogram', 'demographisc-ungrouped-sex.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('sex_histogram', 'demographisc-ungrouped-sex.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
 									<div class="panel-body">
 										<div class="loading">
 											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
@@ -311,11 +369,7 @@ div.composite.tooltip {
 									</div>
 								</div>
 							</div>
-							<div id="${param.block}_raceseverity_save_viz"> 
-								<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographisc-ungrouped-severity.svg'); saveVisualization('age_histogram', 'demographisc-ungrouped-age.svg'); saveVisualization('race_histogram', 'demographisc-ungrouped-race.svg'); saveVisualization('sex_histogram', 'demographisc-ungrouped-sex.svg');">Save as SVG</button>
-								<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographisc-ungrouped-severity.png'); saveVisualization('age_histogram', 'demographisc-ungrouped-age.png'); saveVisualization('race_histogram', 'demographisc-ungrouped-race.png'); saveVisualization('sex_histogram', 'demographisc-ungrouped-sex.png');">Save as PNG</button>
-								<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographisc-ungrouped-severity.jpg'); saveVisualization('age_histogram', 'demographisc-ungrouped-age.jpg'); saveVisualization('race_histogram', 'demographisc-ungrouped-race.jpg'); saveVisualization('sex_histogram', 'demographisc-ungrouped-sex.jpg');">Save as JPEG</button>
-							</div>
+
 							<div class="secondary-description">
 								<p><strong>Sample:</strong> <span class="tip">
 									<a class="viz_secondary_info" title="COVID+ Defined As: <a href='#' class='close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
