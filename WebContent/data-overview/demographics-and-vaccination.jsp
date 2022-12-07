@@ -215,7 +215,12 @@ div.composite.tooltip {
 												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 													<div class="kpi_num"><i class="fas fa-user-plus" aria-hidden="true"></i><span id='total_kpi'>    ${row.count}</span></div>
 												</c:forEach>
-												<p class="data-as-of"><em>Data as of October 27, 2022 (V.98)</em></p>
+												<sql:query var="totals" dataSource="jdbc/N3CPublic">
+													select split_part(substring(value, '-(.+)'), '-', 1) as release,  to_char(TO_DATE(substring(value, '[\w]*-[\w]*-(.*)'), 'YYYY/MM/DD'), 'Mon DD, YYYY') as date from n3c_admin.enclave_stats where title='release_name';
+												</sql:query>
+												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
+													<p class="data-as-of"><em>Data as of ${row.date} (${row.release})</em></p>
+												</c:forEach>
 											</div>
 											<div class="col col-7" style="border-left: 2px solid #d0e3f6;">
 												<span class="tip">
@@ -235,7 +240,16 @@ div.composite.tooltip {
 				  										</p>
 				  									</a>
 				  								</span>
-												<div class="kpi_num"><i class="fas fa-users" aria-hidden="true">&nbsp;</i><span id='count_kpi'></span></div>
+				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
+													select to_char(value::int/1000000.0, '999.99')||'M' as count 
+													from (
+														select sum(case when (num_patients = '<20' or num_patients is null) then 0 else num_patients::numeric end) as value 
+														from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum where vaccinated = '1'
+													) y;
+												</sql:query>
+												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
+													<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i> <span id='count_kpi'>${row.count}</span></div>
+												</c:forEach>
 												
 												<span class="tip">
 													<a class="viz_secondary_info" 
@@ -254,12 +268,12 @@ div.composite.tooltip {
 				  								</span>
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select round(
-														((select sum(case when (num_patients = '<20' or num_patients is null) then 0 else num_patients::numeric end) as patient_count from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum)/
+														((select sum(case when (num_patients = '<20' or num_patients is null) then 0 else num_patients::numeric end) as patient_count from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum where vaccinated = '1')/
 														(select value::numeric from n3c_admin.enclave_stats where title='covid_positive_patients'))*100
 													,2) as count;
 												</sql:query>
 												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
-													<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i> <span id='percent_kpi'>${row.count} %</span></div>
+													<div class="kpi_num"><i class="fas fa-users" aria-hidden="true"></i> <span id='percent_kpi'>${row.count}%</span></div>
 												</c:forEach>
 												
 											</div>
@@ -304,9 +318,9 @@ div.composite.tooltip {
 								</div>
 							</div>
 							<div id="${param.block}_raceseverity_save_viz"> 
-								<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographisc-and-vaccination-severity.svg'); saveVisualization('age_histogram', 'demographisc-and-vaccination-age.svg'); saveVisualization('race_histogram', 'demographisc-and-vaccination-race.svg'); saveVisualization('sex_histogram', 'demographisc-and-vaccination-sex.svg');">Save as SVG</button>
-								<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographisc-and-vaccination-severity.png'); saveVisualization('age_histogram', 'demographisc-and-vaccination-age.png'); saveVisualization('race_histogram', 'demographisc-and-vaccination-race.png'); saveVisualization('sex_histogram', 'demographisc-and-vaccination-sex.png');">Save as PNG</button>
-								<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographisc-and-vaccination-severity.jpg'); saveVisualization('age_histogram', 'demographisc-and-vaccination-age.jpg'); saveVisualization('race_histogram', 'demographisc-and-vaccination-race.jpg'); saveVisualization('sex_histogram', 'demographisc-and-vaccination-sex.jpg');">Save as JPEG</button>
+								<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographics-vaccination-and-grouped-grouped-severity.svg'); saveVisualization('age_histogram', 'demographics-vaccination-and-grouped-age.svg'); saveVisualization('race_histogram', 'demographics-vaccination-and-grouped-race.svg'); saveVisualization('sex_histogram', 'demographics-vaccination-and-grouped-sex.svg');">Save as SVG</button>
+								<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographics-vaccination-and-grouped-severity.png'); saveVisualization('age_histogram', 'demographics-vaccination-and-grouped-age.png'); saveVisualization('race_histogram', 'demographics-vaccination-and-grouped-race.png'); saveVisualization('sex_histogram', 'demographics-vaccination-and-grouped-sex.png');">Save as PNG</button>
+								<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('severity_histogram', 'demographics-vaccination-and-grouped-severity.jpg'); saveVisualization('age_histogram', 'demographics-vaccination-and-grouped-age.jpg'); saveVisualization('race_histogram', 'demographics-vaccination-and-grouped-race.jpg'); saveVisualization('sex_histogram', 'demographics-vaccination-and-grouped-sex.jpg');">Save as JPEG</button>
 							</div>
 							<div class="secondary-description">
 								<p><strong>Sample:</strong> <span class="tip">
@@ -314,7 +328,7 @@ div.composite.tooltip {
 				  						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
 				  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 									</a>
-									</span>&nbsp;in the N3C Data Enclave. Data aggregated by Age, Race, Ethnicity, Sex, and Severity. 
+									</span>&nbsp;in the N3C Data Enclave. Data aggregated by Age, Race, Sex, Severity, and COVID-19 Vaccination status. Vaccination data comes only from EHR vaccination events recorded by N3C partner sites. This means that if a patient received their vaccination from a site that does not automatically link to their EHR (ex. local pharmacy, doctor's office, or state/federal vaccination site), their vaccination will not be represented in the data. As most vaccination events are not occurring at N3C sites, patients shown here as 'Unknown' may be vaccinated; however, we do not have the records to verify this. Vaccinated patient counts do not indicate that the patient is fully vaccinated. We consider a vaccinated patient to have at least one dose of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines. Given that Pfizer and Moderna require two vaccine doses to be considered fully vaccinated, patients shown here may be only partially vaccinated. This same assumption applies to booster shots, as we do not consider shots beyond the first one recorded within the patient's EHR.
 									For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 								</p>
 							</div>
@@ -544,7 +558,7 @@ $(document).ready( function () {
 	                  columns: ':visible'
 	              },
 	    	      text: 'CSV',
-	    	      filename: 'covid_positive_demographics_and_vaccination',
+	    	      filename: 'demographics_vaccination_and_ungrouped_comorbidities',
 	    	      extension: '.csv'
 	    	    }, {
 	    	      extend: 'copy',

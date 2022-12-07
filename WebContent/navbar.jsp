@@ -31,9 +31,6 @@
 	    		<a role="button" href="https://covid.cd2h.org/account-instructions" class="btn my-2 my-sm-0 btn-n3c">Join N3C</a>
 	    	</li>
 		  	<li>
-		  		<a class="nav-link" href="<util:applicationRoot/>/data-overview">composite</a>
-		  	</li>
-		  	<li>
 		  		<a title="Administration" class="nav-link" href="<util:applicationRoot/>/admin"><i class="fas fa-users-cog"></i></a>
 		  	</li>
 		  	<li>

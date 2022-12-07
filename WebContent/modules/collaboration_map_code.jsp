@@ -358,14 +358,14 @@
 				.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
 
 
-        	var legend_div = d3.select("#legend").append("div").attr("class", "row");
+        	var legend_div = d3.select("#legend").append("div").attr("class", "row").attr("id", "filters");
     		
     		var legend_data = legend_div.selectAll(".new_legend")
     			.data(legendData)
     			.enter().append("div")
     			.attr("class", "col col-6 col-lg-4")
     			.html(function(d,i){
-    				return '<i class="fas fa-circle" style="color:' + colorScale(legendData[i].org_type) + ';"></i> ' +  d.org_type + " [" + d.count + "]";
+    				return  '<i class="fas fa-circle" style="color:' + colorScale(legendData[i].org_type) + ';"></i> ' +  d.org_type + " [" + d.count + "]";
     			});
 		});
     }

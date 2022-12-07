@@ -145,6 +145,10 @@ div.composite.tooltip {
 	color: black;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__placeholder{
+	color: unset;
+}
+
 </style>
 
 
@@ -156,6 +160,7 @@ div.composite.tooltip {
 		<div id="cohort">
 			<div class="section-heading">
 				<select id="dimension_select">
+					<option></option>
 					<option value="demographics">Demographics of COVID+ Patients</option>
 					<option value="multi-dimensional-summary">Multi-dimensional Summary</option>
 					<optgroup label="Demographics of COVID+ Patients Filterable By:">
@@ -169,7 +174,7 @@ div.composite.tooltip {
 			
 			<div class="section section-viz">
 				<div class="row stats">
-					<jsp:include page="filters.jsp"/>
+					<jsp:include page="filters_vac_cor.jsp"/>
 				
 					<div class="col col-12 col-md-10">
 						<div id="display-d3">
@@ -209,7 +214,6 @@ div.composite.tooltip {
 												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 													<p class="data-as-of"><em>Data as of ${row.date} (${row.release})</em></p>
 												</c:forEach>
-												
 											</div>
 											<div class="col col-7" style="border-left: 2px solid #d0e3f6;">
 												<span class="tip">
@@ -232,8 +236,8 @@ div.composite.tooltip {
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select to_char(value::int/1000000.0, '999.99')||'M' as count 
 													from (
-														select sum(case when (count = '<20' or count is null) then 0 else count::numeric end) as value 
-														from n3c_questions_new.all_ages_covid_pos_demo_censored
+														select sum(case when (num_patients = '<20' or num_patients is null) then 0 else num_patients::numeric end) as value 
+														from n3c_questions_new.covid_positive_comorbidities_demo_censored_adult_ped_sum
 													) y;
 												</sql:query>
 												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -257,7 +261,7 @@ div.composite.tooltip {
 				  								</span>
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select round(
-														((select sum(case when (count = '<20' or count is null) then 0 else count::numeric end) as patient_count from n3c_questions_new.all_ages_covid_pos_demo_censored)/
+														((select sum(case when (num_patients = '<20' or num_patients is null) then 0 else num_patients::numeric end) as patient_count from n3c_questions_new.covid_positive_comorbidities_demo_censored_adult_ped_sum)/
 														(select value::numeric from n3c_admin.enclave_stats where title='covid_positive_patients'))*100
 													,2) as count;
 												</sql:query>
@@ -326,7 +330,18 @@ div.composite.tooltip {
 				  						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
 				  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 									</a>
-									</span>&nbsp;in the N3C Data Enclave. Data aggregated by Age, Race, Ethnicity, Sex, and Severity. 
+									</span>&nbsp;in the N3C Data Enclave. Data is aggregated by Age, Race, Sex, Severity, and individual comorbidities. Comorbidities 
+									for each patient are linked to EHR medical visits coded for any of the 17 different conditions defined by the Charlson Comorbidity 
+									Index. A patient may have undiagnosed conditions which would not be recorded in their EHR and therefore would not be represented 
+									here. A patient may also have one of these conditions for which they have not required a medical visit and that would not be 
+									represented here. Vaccination data comes only from EHR vaccination events recorded by N3C partner sites. This means that if a 
+									patient received their vaccination from a site that does not automatically link to their EHR (ex. local pharmacy, doctor's office, 
+									or state/federal vaccination site), their vaccination will not be represented in the data. As most vaccination events are not 
+									occurring at N3C sites, patients shown here as 'Unknown' may be vaccinated; however, we do not have the records to verify this. 
+									Vaccinated patient counts do not indicate that the patient is fully vaccinated. We consider a vaccinated patient to have at least 
+									one dose of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines. Given that Pfizer and Moderna require two vaccine doses 
+									to be considered fully vaccinated, patients shown here may be only partially vaccinated. This same assumption applies to booster 
+									shots, as we do not consider shots beyond the first one recorded within the patient's EHR.
 									For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 								</p>
 							</div>
@@ -353,11 +368,11 @@ div.composite.tooltip {
 	
 	
 <script>
-
 $(document).ready(function() {
     $('#dimension_select').select2({
+    	placeholder: "Vaccination Status and Grouped Comorbidities",
 		searchInputPlaceholder: 'Search Topics...'
-    });
+    }).val('demographics-vaccination-comorbidities');
 });
 
 $('#dimension_select').on('select2:select', function (e) {
@@ -383,7 +398,7 @@ $(document).on("click", ".popover .close" , function(){
 });
 
 //color codes
-var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#762AC6", 6:"#6512BD", 7:"#4C1EA5", 8:"#33298D"};
+var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#6512BD", 6:"#33298D", 7:"#a6a6a6", 8:"#8B8B8B"};
 var race_range = {1:"#09405A", 2:"#AD1181", 3:"#8406D1", 4:"#ffa600", 5:"#ff7155", 6:"#a6a6a6", 7:"#8B8B8B"};
 var ethnicity_range = {1:"#332380", 2:"#B6AAF3", 3:"#a6a6a6"};
 var severity_range = {1:"#EBC4E0", 2:"#C24DA1", 3:"#AD1181", 4:"#820D61", 5:"#570941", 6:"#a6a6a6"};
@@ -429,96 +444,113 @@ var severityArray = new Array();
 
 $(document).ready( function () {
 	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="race"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[0]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
+		function( settings, searchData, index, rowData, counter ) {
+			var positions = $('input:checkbox[name="race"]:checked').map(function() {
+				return this.value;
+			}).get();
+			if (positions.length === 0) {
+				return true;
+			}
+			if (positions.indexOf(searchData[3]) !== -1) {
+				return true;
+			}
+			return false;
+		}
+	);
 	
 	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="ethnicity"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[1]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
+		function( settings, searchData, index, rowData, counter ) {
+			var positions = $('input:checkbox[name="ethnicity"]:checked').map(function() {
+				return this.value;
+			}).get();
+			if (positions.length === 0) {
+				return true;
+			}
+			if (positions.indexOf(searchData[4]) !== -1) {
+				return true;
+			}   
+			return false;
+		}
+	);
 
 	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="age_bin"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[2]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
+		function( settings, searchData, index, rowData, counter ) {
+			var positions = $('input:checkbox[name="age_bin"]:checked').map(function() {
+				return this.value;
+			}).get();
+			if (positions.length === 0) {
+				return true;
+			} 
+			if (positions.indexOf(searchData[2]) !== -1) {
+				return true;
+			} 
+			return false;
+		}
+	);
 
 	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="sex"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[3]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
+		function( settings, searchData, index, rowData, counter ) {
+			var positions = $('input:checkbox[name="sex"]:checked').map(function() {
+				return this.value;
+			}).get();
+			if (positions.length === 0) {
+				return true;
+			}
+			if (positions.indexOf(searchData[1]) !== -1) {
+				return true;
+			}
+			return false;
+		}
+	);
 
 	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="severity"]:checked').map(function() {
-		        return this.value;
-		      }).get();
-		   
-		      if (positions.length === 0) {
-		        return true;
-		      }
-		      
-		      if (positions.indexOf(searchData[4]) !== -1) {
-		        return true;
-		      }
-		      
-		      return false;
-		    }
-		  );
+		function( settings, searchData, index, rowData, counter ) {
+			var positions = $('input:checkbox[name="severity"]:checked').map(function() {
+				return this.value;
+			}).get();
+			if (positions.length === 0) {
+				return true;
+			}
+			if (positions.indexOf(searchData[0]) !== -1) {
+				return true;
+			}
+			return false;
+		}
+	);
 	
-	$.getJSON("<util:applicationRoot/>/data-overview/feeds/demographics.jsp", function(data){
+	$.fn.dataTable.ext.search.push(
+		function( settings, searchData, index, rowData, counter ) {
+			var positions = $('input:checkbox[name="vaccination"]:checked').map(function() {
+				return this.value;
+			}).get();
+			if (positions.length === 0) {
+				return true;
+			}
+			if (positions.indexOf(searchData[6]) !== -1) {
+				return true;
+			}
+			return false;
+		}
+	);
+	
+	$.fn.dataTable.ext.search.push(
+		function( settings, searchData, index, rowData, counter ) {
+			var positions = $('input:checkbox[name="comorbidity"]:checked').map(function() {
+				return this.value;
+			}).get();
+			if (positions.length === 0) {
+				return true;
+			}
+			positions.sort();
+			var search = positions.join(", ");
+			if (search == searchData[5]) {
+				return true;
+			}
+			return false;
+		}
+	);
+	
+	$.getJSON("<util:applicationRoot/>/data-overview/feeds/vaccinated_comorbidities.jsp", function(data){
 			
 		var json = $.parseJSON(JSON.stringify(data));
 		var col = [];
@@ -565,7 +597,7 @@ $(document).ready( function () {
 	                  columns: ':visible'
 	              },
 	    	      text: 'CSV',
-	    	      filename: 'covid_positive_demographics',
+	    	      filename: 'covid_positive_demographics_vaccination_and_comorbidities',
 	    	      extension: '.csv'
 	    	    }, {
 	    	      extend: 'copy',
@@ -595,12 +627,15 @@ $(document).ready( function () {
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
 	    	order: [[0, 'asc']],
 	     	columns: [
+	        	{ data: 'severity', visible: true, orderable: true },
+	        	{ data: 'sex', visible: true, orderable: true },
+	        	{ data: 'age_bin', visible: true, orderable: true },
 	        	{ data: 'race', visible: true, orderable: true },
 	        	{ data: 'ethnicity', visible: true, orderable: true },
-	        	{ data: 'age_bin', visible: true, orderable: true },
-	        	{ data: 'sex', visible: true, orderable: true },
-	        	{ data: 'severity', visible: true, orderable: true },
-	        	{ data: 'patient_count', visible: true, orderable: true },
+	        	{ data: 'comorbidities', visible: true, orderable: true },
+	        	{ data: 'vaccinated', visible: true, orderable: true },
+	        	{ data: 'patient_display', visible: true, orderable: true },
+	        	{ data: 'patient_count', visible: false },
 	        	{ data: 'age_abbrev', visible: false },
 	        	{ data: 'age_seq', visible: false },
 	        	{ data: 'race_abbrev', visible: false },
@@ -924,10 +959,8 @@ function checkPeds() {
 	$('input[type="checkbox"][value="12-15"]').prop('checked',true);
 	$('input[type="checkbox"][value="16-<18"]').prop('checked',true);
 
-	$('input[type="checkbox"][value="18-29"]').prop('checked',false);
-	$('input[type="checkbox"][value="30-49"]').prop('checked',false);
-	$('input[type="checkbox"][value="50-64"]').prop('checked',false);
-	$('input[type="checkbox"][value="65+"]').prop('checked',false);
+	$('input[type="checkbox"][value="18-64"]').prop('checked',false);
+	$('input[type="checkbox"][value="65+"]').prop('checked', false);
 	
 	aggregated_datatable.draw();
 	refreshHistograms();
@@ -939,10 +972,8 @@ function checkAdult() {
 	$('input[type="checkbox"][value="12-15"]').prop('checked',false);
 	$('input[type="checkbox"][value="16-<18"]').prop('checked',false);
 
-	$('input[type="checkbox"][value="18-29"]').prop('checked',true);
-	$('input[type="checkbox"][value="30-49"]').prop('checked',true);
-	$('input[type="checkbox"][value="50-64"]').prop('checked',true);
-	$('input[type="checkbox"][value="65+"]').prop('checked',true);
+	$('input[type="checkbox"][value="18-64"]').prop('checked',true);
+	$('input[type="checkbox"][value="65+"]').prop('checked', true);
 	
 	aggregated_datatable.draw();
 	refreshHistograms();
@@ -1013,6 +1044,26 @@ $('#severity').on('click', function() {
 		panel.style.display = "block";
 	} else {
 		this.innerHTML = "<i class='fas fa-chevron-right'></i> Severity";
+		panel.style.display = "none";
+	}
+});
+$('#vaccination').on('click', function() {
+	var panel = document.getElementById("vaccination_panel");
+	if (panel.style.display === "none") {
+		this.innerHTML = "<i class='fas fa-chevron-down'></i> Vaccination";
+		panel.style.display = "block";
+	} else {
+		this.innerHTML = "<i class='fas fa-chevron-right'></i> Vaccination";
+		panel.style.display = "none";
+	}
+});
+$('#comorbidities').on('click', function() {
+	var panel = document.getElementById("comorbidity_panel");
+	if (panel.style.display === "none") {
+		this.innerHTML = "<i class='fas fa-chevron-down'></i> Cormorbidities";
+		panel.style.display = "block";
+	} else {
+		this.innerHTML = "<i class='fas fa-chevron-right'></i> Cormorbidities";
 		panel.style.display = "none";
 	}
 });
