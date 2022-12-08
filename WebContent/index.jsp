@@ -252,6 +252,12 @@
   /*when hovering an item:*/
   background-color: #e9e9e9;
 }
+
+.autocomplete-active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
 </style>
 <script>
 	$(function(){
@@ -1051,5 +1057,14 @@ function autocomplete(inp, arr) {
 }
 
 autocomplete(document.getElementById("dashboard-search"), keywords);
+
+// $("#dashboard-search").keyup(function(event) {
+// 	var autocomplete = document.getElementById(this.id + "autocomplete-list");
+// 	console.log(autocomplete);
+//     if (event.keyCode === 13 && autocomplete != null) {
+//         $("#search-addon").click();
+//     }
+// });
+
 </script>
 </html>
