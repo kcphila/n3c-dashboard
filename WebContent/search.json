@@ -153,7 +153,7 @@
   },
   {
     "dashboard_id": "contributing-sites",
-    "tags": "data partners, patient distribution",
+    "tags": "data partners, patient distribution, map",
     "dashboard_name": "Institutions Contributing Data",
     "dashboard_url": "/contributing-sites",
     "dashboard_short_desc": "Explore our institutional data partners, the data-models they utilize, and the status of their transfers.",
