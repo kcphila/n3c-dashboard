@@ -114,7 +114,12 @@ function getUrlVars() {
         vars.push(hash[0]);
         vars[hash[0]] = hash[1];
     }
-    return vars;
+    console.log(vars);
+    if (vars['search']){
+    	return vars;
+    } else{
+    	return {search : ''};
+    }
 } 
 
 $(document).ready( function () {
@@ -184,7 +189,6 @@ $(document).ready( function () {
 	        				icons = icons + icon_code;
 	        			}
 	        			
-	        			console.log(url);
 	        			var combo = 
 	        				'<div class="row"><div class="col-4"><img src="<util:applicationRoot/>/images/dashboards/'
 	        				+ image
