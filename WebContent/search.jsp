@@ -119,7 +119,7 @@ function getUrlVars() {
 
 $(document).ready( function () {
 	$.getJSON("<util:applicationRoot/>/search.json", function(data){
-		var searchTerm = getUrlVars()['search'];
+		var searchTerm =decodeURIComponent(getUrlVars()['search'].replaceAll('+',' '));
 		var json = $.parseJSON(JSON.stringify(data));
 	
 		var col = [];
