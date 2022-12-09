@@ -260,6 +260,13 @@
   color: #ffffff;
 }
 
+
+/* general elements  ****************************************************/
+#dash_nav .col{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
 </style>
 <script>
 	$(function(){
@@ -320,8 +327,8 @@
 			</div>
 			<div class="col-12 col-lg-12 col-xl-5 large-icons" style="text-align:center; ">
 				<h2>Explore Our Dashboards</h2>
-				<div class="row">
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
+				<div class="row" id="dash_nav">
+					<div class="col col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#data-overview'">
 							<div class="card-body large-p">
 								<p class="card-title">Overview<br>
@@ -329,7 +336,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="col col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#members'">
 							<div class="card-body large-p">
 								<p class="card-title">Members<br>
@@ -337,7 +344,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="col col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#tracking'">
 							<div class="card-body large-p">
 								<p class="card-title">Tracking<br>
@@ -345,7 +352,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="col col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#cases'">
 							<div class="card-body large-p">
 								<p class="card-title">Cases<br>
@@ -353,7 +360,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="col col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#medications'">
 							<div class="card-body large-p">
 								<p class="card-title">Medications<br>
@@ -361,7 +368,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
+					<div class="col col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#diseases'">
 							<div class="card-body large-p">
 								<p class="card-title">Diseases<br>
@@ -402,7 +409,7 @@
 			<div class="row featured-slick">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card_noshadow mb-2 slick-card-1"  onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
+						<div class="card hover-card_noshadow mb-2"  onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
 		   					<div class="card-body card-body-links">
 	     						<p class="card-title"><strong>${row.question}</strong></p>
@@ -429,7 +436,7 @@
 			<h3 class="card-section-heading">DATA OVERVIEW</h3>
 			<div class="row overview-slick">
 				<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-disease" onclick="location.href='<util:applicationRoot/>/data-overview';">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/data-overview';">
 		   				<img src="<util:applicationRoot/>/images/dashboards/SummaryDataAllAges.png" class="card-img-top" alt="...">
 		   				<div class="card-body card-body-links">
 	     					<p class="card-title"><strong>Demographics</strong></p>
@@ -463,7 +470,7 @@
 			<h3 class="card-section-heading">MEMBERS</h3>
 			<div class="row members-slick">
 				<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/collaboration';">
+					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/collaboration';">
 	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration_map.png" class="card-img-top" alt="...">
 	   					<div class="card-body card-body-links">
      						<p class="card-title"><strong>Institutional Collaboration Map</strong></p>
@@ -572,14 +579,13 @@
 			select question,
 			iframe_info
 			from n3c_questions_new.roster 
-			where iframe_info in ('Paxlovid', 'medication-time-series')
-			order by seqnum
+			where iframe_info in ('Paxlovid', 'medication-time-series', 'timeline')
 		</sql:query>
 		
 
 		<div class="dashboard-section hidden" id="tracking" style="margin-top:0px;">
 			<h3 class="card-section-heading">TRACKING</h3>
-			<div class="row" style="justify-content: center;">
+			<div class="row tracking-slick" style="justify-content: center;">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
@@ -605,7 +611,7 @@
 		
 		<div class="dashboard-section hidden" id="cases">
 			<h3 class="card-section-heading">CASES</h3>
-			<div class="row">
+			<div class="row cases-slick">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
@@ -630,7 +636,7 @@
 			<div class="row medications-slick">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 slick-card-medication" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
+						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
 		   					<div class="card-body card-body-links">
 		     					<p class="card-title"><strong>${row.question}</strong></p>
@@ -655,7 +661,7 @@
 			<div class="row diseases-slick">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 slick-card-disease" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
+						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
 		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
 		   					<div class="card-body card-body-links">
 		     					<p class="card-title"><strong>${row.question}</strong></p>
@@ -705,7 +711,8 @@
 
 <script>
 $(document).ready(function(){	
-	var slider = $('.featured-slick').slick({
+	
+	$('.featured-slick').slick({
 		arrows: false,
 		dots: true,
 		draggable: false,
@@ -737,17 +744,7 @@ $(document).ready(function(){
 		  ]
 	});
 	
-// 	slider.on('mousewheel', function(e){
-
-// 	  	if(e.originalEvent.wheelDelta /120 > 0) {
-// 	  		jQuery(this).slick('slickPrev');
-// 	  	}
-// 	  	else{
-// 	  		jQuery(this).slick('slickNext');
-// 	  	}
-// 	});
-	
-	var slider2 = $('.members-slick').slick({
+	$('.members-slick').slick({
 		arrows: false,
 		dots: true,
 		draggable: false,
@@ -761,7 +758,7 @@ $(document).ready(function(){
 		      breakpoint: 1200,
 		      settings: {
 		        arrows: false,
-		        centerMode: true,
+		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
 		      }
@@ -792,7 +789,7 @@ $(document).ready(function(){
 		      breakpoint: 1200,
 		      settings: {
 		        arrows: false,
-		        centerMode: true,
+		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
 		      }
@@ -809,6 +806,69 @@ $(document).ready(function(){
 		  ]
 	});
 	
+	$('.tracking-slick').slick({
+		arrows: false,
+		dots: true,
+		draggable: false,
+		infinite: false,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		centerMode: false,
+		autoplay: false,
+		responsive: [
+		    {
+		      breakpoint: 1200,
+		      settings: {
+		        arrows: false,
+		        centerMode: false,
+		        centerPadding: '40px',
+		        slidesToShow: 2
+		      }
+		    },
+		    {
+		      breakpoint: 700,
+		      settings: {
+		        arrows: false,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 1
+		      }
+		    }
+		  ]
+	});
+	
+	$('.cases-slick').slick({
+		arrows: false,
+		dots: true,
+		draggable: false,
+		infinite: false,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		centerMode: false,
+		autoplay: false,
+		responsive: [
+		    {
+		      breakpoint: 1200,
+		      settings: {
+		        arrows: false,
+		        centerMode: false,
+		        centerPadding: '40px',
+		        slidesToShow: 2
+		      }
+		    },
+		    {
+		      breakpoint: 700,
+		      settings: {
+		        arrows: false,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 1
+		      }
+		    }
+		  ]
+	});
+	
+	
 	$('.medications-slick').slick({
 		arrows: false,
 		dots: true,
@@ -823,7 +883,7 @@ $(document).ready(function(){
 		      breakpoint: 1200,
 		      settings: {
 		        arrows: false,
-		        centerMode: true,
+		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
 		      }
@@ -854,7 +914,7 @@ $(document).ready(function(){
 		      breakpoint: 1200,
 		      settings: {
 		        arrows: false,
-		        centerMode: true,
+		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
 		      }
@@ -869,86 +929,36 @@ $(document).ready(function(){
 		      }
 		    }
 		  ]
-	});
-	
-	// height adjustments wern't always triggered
-	setTimeout(
-		function(){   
-		//slick cards resize so they are the same height as largest (need to repeate for each new carousel)
-		//Get cards
-		var cards = $('.slick-card-1');
-		var maxHeight = 0;
-	
-		// Loop all cards and check height, if bigger than max then save it
-		for (var i = 0; i < cards.length; i++) {
-			if (maxHeight < $(cards[i]).outerHeight()) {
-	    		maxHeight = $(cards[i]).outerHeight();
-	  		}
-		}
-		// Set ALL card bodies to this height
-		for (var i = 0; i < cards.length; i++) {
-	  		$(cards[i]).height(maxHeight);
-		}
-		//Get cards
-		var cards2 = $('.slick-card-2');
-		var maxHeight2 = 0;
-	
-		// Loop all cards and check height, if bigger than max then save it
-		for (var i = 0; i < cards2.length; i++) {
-			if (maxHeight2 < $(cards2[i]).outerHeight()) {
-	    		maxHeight2 = $(cards2[i]).outerHeight();
-	  		}
-		}
-		// Set ALL card bodies to this height
-		for (var i = 0; i < cards2.length; i++) {
-	  		$(cards2[i]).height(maxHeight2);
-		}
-		
-		//Get cards
-		var cards_med = $('.slick-card-medication');
-		var maxHeight_med = 0;
-	
-		// Loop all cards and check height, if bigger than max then save it
-		for (var i = 0; i < cards_med.length; i++) {
-			if (maxHeight_med < $(cards_med[i]).outerHeight()) {
-				maxHeight_med = $(cards_med[i]).outerHeight();
-	  		}
-		}
-		// Set ALL card bodies to this height
-		for (var i = 0; i < cards_med.length; i++) {
-	  		$(cards_med[i]).height(maxHeight_med);
-		}
-		
-		//Get cards
-		var cards_dis = $('.slick-card-disease');
-		var maxHeight_dis = 0;
-	
-		// Loop all cards and check height, if bigger than max then save it
-		for (var i = 0; i < cards_dis.length; i++) {
-			if (maxHeight_dis < $(cards_dis[i]).outerHeight()) {
-				maxHeight_dis = $(cards_dis[i]).outerHeight();
-	  		}
-		}
-		// Set ALL card bodies to this height
-		for (var i = 0; i < cards_dis.length; i++) {
-	  		$(cards_dis[i]).height(maxHeight_dis);
-		}
-		
-		//Get cards
-		var cards_ov = $('.slick-card-overview');
-		var maxHeight_ov = 0;
-	
-		// Loop all cards and check height, if bigger than max then save it
-		for (var i = 0; i < cards_dis.length; i++) {
-			if (maxHeight_ov < $(cards_ov[i]).outerHeight()) {
-				maxHeight_ov = $(cards_ov[i]).outerHeight();
-	  		}
-		}
-		// Set ALL card bodies to this height
-		for (var i = 0; i < cards_ov.length; i++) {
-	  		$(cards_ov[i]).height(maxHeight_ov);
-		}
-	}, 100);
+	}); 
+});
+
+function adjust_card_height(slick){
+	//slick cards resize so they are the same height as largest (need to repeate for each new carousel)
+	//Get cards
+	var cards = $('.' + slick + ' .card');
+	var maxHeight = 0;
+
+	// Loop all cards and check height, if bigger than max then save it
+	for (var i = 0; i < cards.length; i++) {
+		if (maxHeight < $(cards[i]).outerHeight()) {
+    		maxHeight = $(cards[i]).outerHeight();
+  		}
+	}
+	// Set ALL card bodies to this height
+	console.log(maxHeight);
+	for (var i = 0; i < cards.length; i++) {
+  		$(cards[i]).height(maxHeight);
+	}
+}
+
+$(window).on("load", function() {
+	adjust_card_height('featured-slick');
+	adjust_card_height('overview-slick');
+	adjust_card_height('members-slick');
+	adjust_card_height('tracking-slick');
+	adjust_card_height('cases-slick');
+	adjust_card_height('medications-slick');
+	adjust_card_height('diseases-slick');
 });
 
 
