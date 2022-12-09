@@ -2,6 +2,15 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<div class="navbar-nih-branding-bar l-ribbon-wrapper">
+  <ul class="l-ribbon">
+    <li><span class="ribbon-hhs"></span><a id="hhs" href="https://www.hhs.gov">U.S. Department of Health &amp; Human Services</a><span class="ribbon-right"></span></li>
+    <li><span class="ribbon-nih"></span><a id="nih" href="https://www.nih.gov/">National Institutes of Health</a><span class="ribbon-right"></span></li>
+    <li><span class="ribbon-nih"></span><a id="ncats" href="https://ncats.nih.gov/">National Center for Advancing Translational Sciences</a><span class="ribbon-right"></span></li>
+    <li><span class="ribbon-n3c"></span><a id="n3c" href="https://covid.cd2h.org/">National COVID Cohort Collaborative</a><span class="ribbon-right"></span></li>
+  </ul>
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between" style="margin-bottom:0px;">
 	<a class="navbar-brand" href="<util:applicationRoot/>/">
 		<img src="<util:applicationRoot/>/images/n3c_logo.png" width="30" height="30" class="d-inline-block" alt="N3C logo">

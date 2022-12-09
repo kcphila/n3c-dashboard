@@ -76,6 +76,211 @@ h5{
 /* a:hover, .btn-link:hover{ */
 /* 	color: #095066; */
 /* } */
+
+/*---------- HHS, NIH, NCATS branding bar  -------*/
+.path-frontpage .navbar{
+  margin-top:30px;
+}
+.l-ribbon-wrapper{
+  overflow: hidden;
+  width: 100%;
+  background-color: #20558a;
+  display: block;
+  height: 30px;
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.l-ribbon{
+    font: 0.9em/1.4em "Droid Sans",Trebuchet MS,Arial,Helvetica,sans-serif;
+    padding: 0;
+    margin: 0;
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    min-height: 100%;
+    line-height: 1.5em;
+    display: block;
+}
+
+.l-ribbon li a {
+    display: block;
+    color: #fff;
+    float: left;
+    padding-top: 6px;
+    min-height: 30px;
+}
+
+.l-ribbon li .ribbon-right {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3;
+    background-image: url(../images/nih_icon_list.png);
+    background-size: 189px 400px;
+    background-position: -52px -126px;
+    height: 30px;
+    width: 20px;
+    float: left;
+    margin-left: 10px;
+}
+
+.ribbon-hhs {
+    background-image: url(../images/nih_icon_list.png);
+    background-size: 189px 400px;
+    background-position: 0 -126px;
+    height: 27px;
+    width: 22px;
+    float: left;
+    margin-right:.5em;
+}
+
+.ribbon-nih {
+    background-image: url(../images/nih_icon.png);
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+    float:left;
+    margin-right:.5em;
+    margin-top: 5px;
+}
+
+.ribbon-n3c {
+    background-image: url(../images/n3c_icon.png);
+    background-size: 20px;
+    height: 20px;
+    width: 20px;
+    float:left;
+    margin-right:.5em;
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 1364px) {
+  a#hhs {
+    font-size: 0;
+  }
+  a#hhs{
+    width:30px;
+  }
+  a#hhs:after{
+    content: 'HHS';
+    font-weight: 300;
+    font-size: 14px;
+    float:left;
+  }
+  a#hhs:hover:after{
+    text-decoration: underline;
+  }
+}
+@media only screen and (max-width: 1123px) {
+  a#nih {
+    font-size: 0;
+  }
+  a#nih{
+    width:23px;
+  }
+  a#nih:after{
+    content: 'NIH';
+    font-weight: 300;
+    font-size: 14px;
+    float:left;
+  }
+  a#nih:hover:after{
+    text-decoration: underline;
+  }
+}
+@media only screen and (max-width: 959px) {
+  a#ncats {
+    font-size: 0;
+  }
+  a#ncats{
+    width:43px;
+  }
+  a#ncats:after{
+    content: 'NCATS';
+    font-weight: 300;
+    font-size: 14px;
+    float:left;
+  }
+  a#ncats:hover:after{
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  a#n3c {
+    font-size: 0;
+  }
+  a#n3c{
+    width:26px;
+  }
+  a#n3c:after{
+    content: 'N3C';
+    font-weight: 300;
+    font-size: 14px;
+    float:left;
+  }
+  a#n3c:hover:after{
+    text-decoration: underline;
+  }
+}
+
+
+/* ------------------ Top Sign In Band ----------- */
+.nav-actions-container{
+  float: right; 
+  align-content: bottom; 
+  height: 30px; 
+  display: flex;
+}
+
+.nav-actions{
+    height: 87%; 
+    font-weight: 400; 
+    margin-top: auto; 
+    margin-bottom: auto;
+    display: flex; 
+    font-size: 12px; 
+    padding-top: 4px; 
+    border: none; 
+}
+
+.nav-actions-sign-in{
+    margin-right: 10px; 
+    background: rgba(100,42,107,1); 
+    background: -moz-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%); 
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(100,42,107,1)), color-stop(47%, rgba(99,53,112,1)), color-stop(100%, rgba(70,71,119,1))); 
+    background: -webkit-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%); 
+    background: -o-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%); background: -ms-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%); 
+    background: linear-gradient(135deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%); color: white; width: fit-content; border-radius: 10px;
+}
+
+.nav-actions-secondary{
+    background:none;
+    color: white; 
+    width: fit-content; 
+    border-radius: 10px;
+}
+
+
+@media(max-width:658px){
+  .l-ribbon-wrapper{
+    overflow: visible;
+    height:auto;
+  }
+  .path-frontpage .navbar.navbar-static-top.navbar-inverse.affix-top{
+    margin-top:75px;
+  }
+  .nav-actions-container{
+    float:none;
+    width:291px;
+    margin:auto;
+    margin-top:40px;
+    margin-bottom:5px;
+  }
+}
+
 /* -------------- Container ---------------------  */ 
 @media (min-width: 1200px){
 	.container-large {
