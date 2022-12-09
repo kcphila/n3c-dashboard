@@ -55,6 +55,9 @@
 		  	<li>
 		  		<a title="Data Downloads" class="nav-link" href="<util:applicationRoot/>/downloads"><i class="fas fa-download"></i></a>
 		  	</li>
+		  	<li>
+		  		<a title="N3C Website" class="nav-link" href="https://covid.cd2h.org/"><i class="fas fa-home"></i> N3C</a>
+		  	</li>
 		</ul>
 	</div>
 
