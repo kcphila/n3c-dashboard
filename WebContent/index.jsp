@@ -406,7 +406,7 @@
 		</sql:query>
 		<div id="card-carousel" class="hidden">
 			<h3 class="dashboard-heading text-center">IN THE SPOTLIGHT</h3>
-			<div class="row featured-slick">
+			<div class="row featured-slick slick-test">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card_noshadow mb-2"  onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
@@ -434,7 +434,7 @@
 
 		<div class="dashboard-section hidden" id="data-overview" style="margin-top:0px;">
 			<h3 class="card-section-heading">DATA OVERVIEW</h3>
-			<div class="row overview-slick">
+			<div class="row overview-slick slick-test">
 				<div class="col-12 col-md-6 col-lg-4 d-flex">
 					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/data-overview';">
 		   				<img src="<util:applicationRoot/>/images/dashboards/SummaryDataAllAges.png" class="card-img-top" alt="...">
@@ -468,7 +468,7 @@
 
 		<div class="dashboard-section hidden" id="members" style="margin-top:0px;">
 			<h3 class="card-section-heading">MEMBERS</h3>
-			<div class="row members-slick">
+			<div class="row members-slick slick-test">
 				<div class="col-12 col-md-6 col-lg-4 d-flex">
 					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/collaboration';">
 	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration_map.png" class="card-img-top" alt="...">
@@ -585,7 +585,7 @@
 
 		<div class="dashboard-section hidden" id="tracking" style="margin-top:0px;">
 			<h3 class="card-section-heading">TRACKING</h3>
-			<div class="row tracking-slick" style="justify-content: center;">
+			<div class="row tracking-slick slick-test" style="justify-content: center;">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
@@ -611,7 +611,7 @@
 		
 		<div class="dashboard-section hidden" id="cases">
 			<h3 class="card-section-heading">CASES</h3>
-			<div class="row cases-slick">
+			<div class="row cases-slick slick-test">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
@@ -633,7 +633,7 @@
 		</sql:query>
 		<div class="dashboard-section hidden" id="medications">
 			<h3 class="card-section-heading">MEDICATIONS</h3>
-			<div class="row medications-slick">
+			<div class="row medications-slick slick-test">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
@@ -658,7 +658,7 @@
 		
 		<div class="dashboard-section hidden" id="diseases">
 			<h3 class="card-section-heading">DISEASES</h3>
-			<div class="row diseases-slick">
+			<div class="row diseases-slick slick-test">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
@@ -710,6 +710,12 @@
 </body>
 
 <script>
+
+// close all popovers when any carousel is changed
+$(".slick-test").on("beforeChange", function (){
+	$('.popover').popover('hide')
+})
+
 $(document).ready(function(){	
 	
 	$('.featured-slick').slick({
