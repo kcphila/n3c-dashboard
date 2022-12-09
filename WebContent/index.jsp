@@ -182,6 +182,8 @@
 		padding:0px;
 		width: 100%;
 		padding-right: 40px;
+	}
+	#hero_carousel .carousel-caption h1{
 		text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 	}
 	#hero_carousel .btn:hover{
@@ -282,7 +284,7 @@
 					<hr style="border-top: 1px solid white;">
 					<h2 class="hidden">Reliable High-Velocity COVID-19 Insights Brought to you by the N3C.</h2>
 					<br>
-					<a href="#dashboards" role="button" class="btn btn-lg btn-outline-light">Dashboards</a>&emsp;
+					<a href="#dashboards" role="button" class="btn btn-lg btn-n3c">Explore Dashboards</a>&emsp;
 					<a href="<util:applicationRoot/>/publications" role="button" class="btn btn-lg btn-outline-light">Publications</a>
 				</div>
 			</div>
@@ -293,6 +295,7 @@
 					<hr style="border-top: 1px solid white;">
 					<h2 class="hidden">Your Trusted Comprehensive Source for COVID&#x2011;19 Patient-Centric Data.</h2>
 					<br>
+					<a href="https://covid.cd2h.org/account-instructions" role="button" class="btn btn-lg btn-n3c">Get Started</a>&emsp;
 					<a href="<util:applicationRoot/>/exploration" role="button" class="btn btn-lg btn-outline-light">About</a>&emsp;
 					<a href="<util:applicationRoot/>/distribution-demographics" role="button" class="btn btn-lg btn-outline-light">Distribution & Demographics</a>
 				</div>
@@ -304,7 +307,7 @@
 					<hr style="border-top: 1px solid white;">
 					<h2 class="hidden">Fast Actionable Analysis on High-Impact COVID-19 Public Health Questions</h2>
 					<br>
-					<a href="https://covid.cd2h.org/phastr" role="button" class="btn btn-lg btn-outline-light">Learn More</a>
+					<a href="https://covid.cd2h.org/phastr" role="button" class="btn btn-lg btn-n3c">Learn More</a>
 				</div>
 			</div>
 		</div>

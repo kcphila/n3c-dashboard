@@ -36,9 +36,19 @@
 			</c:if>
 		</ul>
 		<ul class="navbar-nav ml-auto ">
-			<li>
-	    		<a role="button" href="https://covid.cd2h.org/account-instructions" class="btn my-2 my-sm-0 btn-n3c">Join N3C</a>
-	    	</li>
+<!-- 			<li> -->
+<!-- 	    		<a role="button" href="https://covid.cd2h.org/account-instructions" class="btn my-2 my-sm-0 btn-n3c">Join N3C</a> -->
+<!-- 	    	</li> -->
+	    	<li>
+	    		<div class="btn-group">
+  					<button id="join_btn" type="button" class="btn btn-n3c dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Join N3C
+  					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="https://covid.cd2h.org/for-researchers">Researchers</a>
+						<a class="dropdown-item" href="https://covid.cd2h.org/for-institutions">Institutions</a>
+  					</div>
+				</div>
 		  	<li>
 		  		<a title="Administration" class="nav-link" href="<util:applicationRoot/>/admin"><i class="fas fa-users-cog"></i></a>
 		  	</li>
