@@ -8,7 +8,8 @@
     line-height: 1.8em;
     color: white;
     border-radius: 1em;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    margin-top: 2px;
     background: rgba(100,42,107,1);
 	background: -moz-linear-gradient(-45deg, rgba(100,42,107,1) 0%, rgba(99,53,112,1) 47%, rgba(70,71,119,1) 100%);
 	background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(100,42,107,1)), color-stop(47%, rgba(99,53,112,1)), color-stop(100%, rgba(70,71,119,1)));
@@ -26,6 +27,15 @@
 	margin-bottom: 30px!important;
 }
 
+.stat{
+	white-space: nowrap;
+}
+
+.stat-icon{
+	margin-top:auto;
+	margin-bottom: auto;
+}
+
 </style>
 
 <div class="row m-auto stats_section">
@@ -34,17 +44,80 @@
 	</div>
 	<div class="row large-p">
 		<div class="col-12 col-md-6">
-			<p><strong class="stat-header"><i class="fas fa-clinic-medical"></i> Sites: </strong> <span id="site_count" class="stat">&nbsp;</span></p>
-			<p><strong class="stat-header"><i class="fas fa-user"></i> Persons: </strong><span id="persons" class="stat">&nbsp;</span></p>
-			<p><strong class="stat-header"><i class="fas fa-virus"></i> COVID+ Cases: </strong> <span id="positive" class="stat">&nbsp;</span></p>
-			<p><strong class="stat-header"><i class="fas fa-table"></i> # of Rows: </strong> <span id="rows" class="stat">&nbsp;</span></p>
-			<p><strong class="stat-header"><i class="fas fa-notes-medical"></i> Clinical Observations: </strong> <span id="observations" class="stat">&nbsp;</span></p>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-clinic-medical"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong> Sites: </strong> <span id="site_count" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-user"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong> Persons: </strong> <span id="persons" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-virus"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong> COVID+ Cases: </strong> <span id="positive" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-table"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong> # of Rows: </strong> <span id="rows" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-notes-medical"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong>  Clinical Observations: </strong> <span id="observations" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
 		</div>
 		<div class="col-12 col-md-6">
-			<p><strong class="stat-header"><i class="fas fa-file-medical-alt"></i> Lab Results: </strong><span id="results" class="stat">&nbsp;</span></p>
-			<p><strong class="stat-header"><i class="fas fa-pills"></i> Medication Records: </strong><span id="records" class="stat">&nbsp;</span></p>
-			<p><strong class="stat-header"><i class="fas fa-procedures"></i> Procedures: </strong><span id="procedures" class="stat">&nbsp;</span></p>
-			<p><strong class="stat-header"><i class="far fa-calendar-alt"></i> Visits: </strong><span id="visits" class="stat"></span></p>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-file-medical-alt"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong>  Lab Results: </strong> <span id="results" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-pills"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong>  Medication Records: </strong> <span id="records" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="fas fa-procedures"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong>  Procedures: </strong> <span id="procedures" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
+			<div class="d-flex stat-header">
+				<div class="pr-2 stat-icon">
+					<p><i class="far fa-calendar-alt"></i></p>
+				</div>
+				<div class="mt-auto mb-auto">
+					<p><strong>  Visits: </strong> <span id="visits" class="stat">&nbsp;</span></p>
+				</div>
+			</div>
 		</div>
 		<div class="col-12" style="margin-top:20px;">
 			<em style="margin-top:10px; font-size:14px;">Data as of	<span id="date"></span></em>
