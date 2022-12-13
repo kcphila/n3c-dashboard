@@ -378,7 +378,7 @@
 		node_map = d3.map(data.sites, d => d.id);
 	
 		var projection = d3.geoAlbersUsa()
-			.translate([width / 2, (height / 2) + 20]) // translate to center of screen
+			.translate([width / 2, (height / 2)]) // translate to center of screen
 			.scale([width]); // scale things down so see entire US
 		var graph = data;
 		var locationBySite = [], positions = [];
