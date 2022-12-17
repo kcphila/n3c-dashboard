@@ -61,6 +61,11 @@
 			<artifactId>GraphTagLib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>N3CDashboardTagLib</groupId>
+			<artifactId>N3CDashboardTagLib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

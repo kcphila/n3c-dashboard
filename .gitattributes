@@ -27,6 +27,9 @@ WebContent/dashboard_descriptions/Paxlovid.jsp -text
 WebContent/dashboard_descriptions/SummaryDataAllAges.jsp -text
 WebContent/dashboard_descriptions/delayed-mortality.jsp -text
 WebContent/dashboard_descriptions/diabetes-mellitus.jsp -text
+WebContent/dashboard_descriptions/displayContainerTile.jsp -text
+WebContent/dashboard_descriptions/displayDashboardThumbnail.jsp -text
+WebContent/dashboard_descriptions/displayDashboardTile.jsp -text
 WebContent/dashboard_descriptions/hlh.jsp -text
 WebContent/dashboard_descriptions/hss.jsp -text
 WebContent/dashboard_descriptions/long-covid.jsp -text
@@ -190,6 +193,7 @@ WebContent/images/spotlight_preview.png -text
 WebContent/index.jsp -text
 WebContent/index2.jsp -text
 WebContent/index3_embedded.jsp -text
+WebContent/index4.jsp -text
 WebContent/index_old.jsp -text
 WebContent/long_covid/data.json -text
 WebContent/long_covid/fig4.jsp -text
