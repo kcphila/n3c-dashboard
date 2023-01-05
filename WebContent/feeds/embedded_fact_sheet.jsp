@@ -69,7 +69,7 @@
 			</c:forEach>
 
 			<sql:query var="dta" dataSource="jdbc/N3CPublic">
-            	select title,trim(to_char(value::int/1000000.0,'999.9')||' million') as value from n3c_admin.enclave_stats where title='procedure_rows';
+            	select title,trim(to_char(value::int/1000000000.0,'999.9')||' billion') as value from n3c_admin.enclave_stats where title='procedure_rows';
             </sql:query>
 			<c:forEach items="${dta.rows}" var="row" varStatus="rowCounter">
 				"${row.title}": "${row.value}",
