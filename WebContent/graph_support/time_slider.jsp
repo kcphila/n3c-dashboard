@@ -63,9 +63,11 @@ var margin = {top:0, right:50, bottom:0, left:50},
 	
 	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+	
+	var num_years = maxDate.getFullYear() - minDate.getFullYear();
 	for (let year = 0; year < interval; year++) {
 	  for (let month = 0; month < 12; month++) {
-		  if (month <= maxDate.getMonth() || year < 2){
+		  if (month <= maxDate.getMonth() || year < num_years){
 			  	var year2 = startYear + year;
 			  	// console.log(monthNames[month] + ' 01 ' + year2);
 				dataMonths.push(new Date(monthNames[month] + " 01 " + year2));
@@ -202,7 +204,7 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			var timer;
 			
 			var minDate = new Date('Jan 01 2020'),
-		      maxDate = new Date('Jul 01 2022'),
+			 	maxDate = new Date(current_month + " 01 " + current_year),
 		      startDate = new Date("Feb 01 2022");
 			var interval = maxDate.getFullYear() - minDate.getFullYear() + 1;
 			var startYear = minDate.getFullYear();
@@ -211,9 +213,11 @@ var margin = {top:0, right:50, bottom:0, left:50},
 			
 			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	
+			var num_years = maxDate.getFullYear() - minDate.getFullYear();
+			console.log(num_years);
 			for (let year = 0; year < interval; year++) {
 			  for (let month = 0; month < 12; month++) {
-				  if (month <= maxDate.getMonth() || year < 2){
+				  if (month <= maxDate.getMonth() || year < num_years){
 					  	var year2 = startYear + year;
 					  	// console.log(monthNames[month] + ' 01 ' + year2);
 						dataMonths.push(new Date(monthNames[month] + " 01 " + year2));
