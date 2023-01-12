@@ -52,6 +52,13 @@
 
 	<div class="container content container-large">
 		
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
+				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">RECOVER Long COVID</li>
+			</ol>
+		</nav>
+		
 		<div class="row">
 			<div class="col-12 col-lg-12">
 				<div class="header-text">

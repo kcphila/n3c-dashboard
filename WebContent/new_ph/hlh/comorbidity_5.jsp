@@ -4,9 +4,10 @@
 
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="hlh_5" />
-	<jsp:param name="block_header" value="Diabetes%20Mellitus%20with%20Complications" />
+	<jsp:param name="block_header" value="Diabetes Mellitus with Complications" />
 	<jsp:param name="topic_description" value="secondary_1" />
-	<jsp:param name="topic_disease" value="Diabetes%20Mellitus%20with%20Complications" />
+	<jsp:param name="topic_disease" value="Diabetes Mellitus with Complications" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Been Diagnosed with" />
 	
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="diabetes_mellitus_with_complications" />

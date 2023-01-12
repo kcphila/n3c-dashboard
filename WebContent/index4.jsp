@@ -400,7 +400,7 @@
 		</div>
 		<dashboard:foreachCategory sortCriteria="seqnum" limitCriteria="1" var="catIter">
 			<dashboard:category>
-				<div id="card-carousel" class="hidden">
+				<div id="<dashboard:categoryLabel/>" class="dashboard-section hidden">
 					<h3 class="dashboard-heading text-center"><dashboard:categoryLabel/></h3>
 					<div class="row featured-slick slick-test">
 						<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
@@ -418,7 +418,7 @@
 		<dashboard:foreachCategory sortCriteria="seqnum" var="catIter">
 			<c:if test="${!catIter.isFirst()}">
 				<dashboard:category>
-					<div id="card-carousel" class="hidden">
+					<div id="<dashboard:categoryLabel/>" class="dashboard-section hidden">
 						<h3 class="card-section-heading"><dashboard:categoryLabel/></h3>
 						<div class="row featured-slick slick-test">
 							<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">

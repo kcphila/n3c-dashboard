@@ -6,6 +6,7 @@
 	<jsp:param name="block" value="diabetes_2" />
 	<jsp:param name="block_header" value="Diabetes Mellitus Type 1" />
 	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Been Diagnosed with Diabetes Mellitus Type 1 by Diagnosis Timeframe, Sex, and Age" />
 
 	<jsp:param name="kpis" value="diabetes/kpis.jsp" />
 

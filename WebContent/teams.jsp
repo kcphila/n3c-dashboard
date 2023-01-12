@@ -26,6 +26,12 @@
 	</jsp:include>
 
 	<div class="container container-large content">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
+				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">N3C Teams and Their Results</li>
+			</ol>
+		</nav>
 		<div class="row page-title">
 			<div class="col-12">
 				<h1>Teams and Their Results</h1>

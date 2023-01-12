@@ -6,7 +6,7 @@
 	<jsp:param name="block" value="long_covid_3" />
 	<jsp:param name="block_header" value="Long COVID Cumulative Symptoms Summary (Dyspnea, Fatigue, Cognition, POTS, Mental Health)" />
 	<jsp:param name="topic_description" value="secondary_3" />
-	<jsp:param name="topic_title" value="Counts of Patients Who Have Experinced Long COVID-Related Symptoms by COVID & Long COVID Status" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Experinced Long COVID-Related Symptoms by COVID-19/Long COVID Status" />
 	
 	<jsp:param name="kpis" value="long_covid/kpis2.jsp" />
 

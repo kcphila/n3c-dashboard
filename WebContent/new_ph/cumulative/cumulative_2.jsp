@@ -6,6 +6,7 @@
 	<jsp:param name="block" value="cumulative_2" />
 	<jsp:param name="block_header" value="Enclave Cumulative Participat Demographics" />
 	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="topic_title" value="Count of Patients" />
 
 	<jsp:param name="kpis" value="cumulative/kpis.jsp" />
 

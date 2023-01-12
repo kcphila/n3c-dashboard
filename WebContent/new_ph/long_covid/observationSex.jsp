@@ -2,31 +2,52 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-
-<div id="${param.block}_sex_viz" class="col-12 dash_viz"></div>
-
-<c:if test="${not empty param.symptom}">
-<div id="${param.block}-long-sex">
-	<jsp:include page="../long_covid/long_before_static.jsp">
-		<jsp:param name="block" value="${param.block}" />
-		<jsp:param name="type" value="sex" />
-		<jsp:param name="symptom" value="${param.symptom}" />
-	</jsp:include>
+<div class="row">
+	<div class="col-12 viz-header-section">
+		<h2 class="viz-title">${param.topic_title} and Sex</h2>
+		<div class="btn-group float-right">
+			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-download"></i>
+			</button>
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sex_viz', '${param.topic_title} and Sex.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sex_viz', '${param.topic_title} and Sex.png');">Save as PNG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sex_viz', '${param.topic_title} and Sex.svg')">Save as SVG</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-12">
+		<div id="${param.block}_sex_viz" class="col-12 dash_viz"></div>
+	</div>
+	<c:if test="${not empty param.symptom}">
+		<div class="col-12 viz-header-section">
+			<h2 class="viz-title">${param.topic_title2}</h2>
+			<div class="btn-group float-right">
+				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-download"></i>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" onclick="saveVisualization('${param.block}-long-age', '${param.topic_title2}.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="saveVisualization('${param.block}-long-age', '${param.topic_title2}.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="saveVisualization('${param.block}-long-age', '${param.topic_title2}.svg')">Save as SVG</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12" id="${param.block}-long-sex">
+			<jsp:include page="../long_covid/long_before_static.jsp">
+				<jsp:param name="block" value="${param.block}" />
+				<jsp:param name="type" value="sex" />
+				<jsp:param name="symptom" value="${param.symptom}" />
+			</jsp:include>
+		</div>
+	</c:if>
 </div>
-</c:if>
 
 <c:if test="${not empty param.topic_description}">
 	<div id="viz_caption">
 		<jsp:include page="../long_covid/secondary_text/${param.topic_description}.jsp"/>
 	</div>
 </c:if>
-
-<div id="${param.block}_sex_save_viz"> 
-	<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_sex_viz', '${param.block}_sex.svg');">Save as SVG</button>
-	<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_sex_viz', '${param.block}_sex.png');">Save as PNG</button>
-	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_sex_viz', '${param.block}_sex.jpg');">Save as JPEG</button>
-	<br><small>Note: Download will only include the top graph.</small>
-</div>
 
 
 <script>

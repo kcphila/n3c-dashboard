@@ -8,7 +8,7 @@
 }
 </style>
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
-	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
+	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<option value="timeline_1">Daily Patient Count & 7-day Rolling Avg.</option>
 		<option value="timeline_2">Cumulative Patient Count & 7-day Rolling Avg.</option>
@@ -54,16 +54,21 @@ function frame_load(selection) {
 
 	
 
-
-$(document).ready(function() {
-    $('#selectMe').select2({
-    	minimumResultsForSearch: Infinity
+$(document).ready(function () {
+	$('#selectMe').select2({
+		minimumResultsForSearch: Infinity
     });
+    
+	// set breadcrumb text to panel on intial load
+    $('#topic_breadcrumb').html($("#selectMe :selected").text());
+    
     $('#selectMe').change(function () {
 		frame_load($(this).val());
-	    $('.group').hide();
+		$('.group').hide();
 	    $('#'+$(this).val()).show();
-	});
+	    // set breadcrumb to be the selected value
+	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+    }); 
 });
 
 </script>

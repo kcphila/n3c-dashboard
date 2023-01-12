@@ -41,64 +41,23 @@
 		<jsp:param name="page" value="health" />
 	</jsp:include>
 
-	<div class="container-fluid content" style="margin-top: 30px;">
+<!-- 	Breadcrumb logic is located in questions styled 3 and each dashboards panel -->
+	<div class="container container-large content">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
+			<li class="breadcrumb-item"><a id="dashboard_breadcrumb" href=""></a></li>
+			<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page"></li>
+		</ol>
+	</nav>
+
 		<div class="row">
 			<div class="col-12 mx-auto">
 				<div class="row">
-					<div class="col-12 col-md-5">
-						<div class="text-max mx-auto" style="padding: 20px; background: #f1f1f1; border: 1px solid lightgray;">
-							<h3 class="header-text" >N3C Public Health Data Browser</h3>
-							
-							<div>
-								<p>
-									The N3C public health browser provides interactive views of N3C Research Program 
-									participant data. These dashboards offer policymakers access to high-value health 
-									data and investigators access to a snapshot of the clinical status of COVID as well 
-									as a signal for further investigation within the N3C open science Enclave.
-								</p>
-								<div class="accordion" id="ph_data_drop">
-  									<div class="card">
-  										<a Title="expand/collapse learn more about data" href="" class="accordion-toggle" data-toggle="collapse" data-target="#factcollapseOne" aria-expanded="false" aria-controls="collapseOne">
-	    									<div class="card-header" id="ph_data_heading_one">
-	      										<h4 class="mb-0">
-	      											<span class="accordion_text">More about the Data:</span>
-	      											<span style="display:inline; float:right;" class="btn btn-link btn-block text-left collapsed icon-btn p-0 accordion-toggle">
-	      											</span>
-	      										</h4>
-	   						 				</div>
-   						 				</a>
-    									<div id="factcollapseOne" class="collapse" aria-labelledby="ph_data_heading_one" data-parent="#ph_data_drop">
-      										<div class="card-body">
-       											<p>
-													The data shown in the N3C public health browser comes from the N3C Data Enclave, 
-													the largest collection of real-world COVID-19 data in the USA. Data in the Enclave 
-													comes from <span id="sites">&nbsp;</span> health care institutions, from 49/50 states in the USA, 
-													and consists of <span id="rows">&nbsp;</span> rows of clinical information. 
-													The Enclave also has an additional library of over 30 external data sets 
-													varying in scope from mortality to pollution that can be linked to its real-world 
-													clinical data. A full list of available external data sets can be found 
-													<a href="https://discovery.biothings.io/dataset?guide=/guide/n3c/dataset" title="Full External Dataset Browser">here</a>.
-												</p>
-												<div style="line-height: 1rem;">
-													<small>
-													In order to protect participant privacy, the data are de-identified and limited to aggregate counts and summary demographic information, with cell counts <20 not being displayed. For more information, please visit our <a href="https://covid.cd2h.org/faq" Title="N3C FAQ Page">FAQ page</a>.
-													</small>
-												</div>
-      										</div>
-    									</div>
-  									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-md-7">
-						<div id="ph-dash-top" style="padding-top: 20px;">
-							<div id="choose_dash">
-								<h3>Choose a Topic:</h3>
-								<select id="dashboard_select">
-								</select>
-							</div>
-							<div id="question-description" style="padding: 10px;"></div>
+					<div class="col-12">
+						<div id="ph-dash-top">
+							<h1 id="dashboard_name" class="page-title"></h1>
+							<div id="question-description" class="section-description heading-text text-max mx-auto"></div>
 						</div>
 					</div>
 				</div>
@@ -106,7 +65,7 @@
 		</div>
 		
 		
-		<div class="mb-5" style="margin-top: 30px;">
+		<div class="mb-5">
 			<div class="">
 				<div id="ph-summary" style="display: block;">
 					<c:choose>

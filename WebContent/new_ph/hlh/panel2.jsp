@@ -138,11 +138,22 @@ function modelMatcher (params, data) {
 	  return null;
 }
 
+
 $(document).ready(function() {
-    $('#selectMe').select2({
+	$('#selectMe').select2({
 		matcher: modelMatcher,
 		searchInputPlaceholder: 'Search Topics...'
-    });
+	});
+	// set breadcrumb text to panel on intial load
+	$('#topic_breadcrumb').html($("#selectMe :selected").text());
+	
+	$('#selectMe').change(function () {
+		frame_load($(this).val());
+	    $('.group').hide();
+	    $('#'+$(this).val()).show();
+	 	// set breadcrumb to be the selected value
+	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+	}); 
 });
 
 </script>

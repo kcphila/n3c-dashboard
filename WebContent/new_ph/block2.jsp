@@ -29,10 +29,6 @@
 	white-space: unset;
 }
 
-#viz_title{
-	display:none;
-}
-
 #${param.block}_btn_hide{
 	position: absolute;
     left: 0px;
@@ -114,13 +110,8 @@
 <div class="row stats block2 mx-auto">
 	<div class="col-12">
 		
-<!-- 		<div class="block_header "> -->
-<%-- 			${param.block_header } --%>
-<!-- 		</div> -->
-	
-		
+<!-- KPIs ----------------------------------------------------------------------------------------------------------- -->	
 		<div class="row" style="margin-top: 30px;">
-		
 			<c:if test="${not empty param.kpis}">
 			<div class="col-12 col-md-2">
 				<div class="row kpi-row">
@@ -133,14 +124,11 @@
 				</div>
 			</div>
 			</c:if>
-			
+
+
 			<div id="${param.block}-panel" class="col-12 col-md-10 mx-auto mb-4" >
-				
-				<c:if test="${not empty param.topic_title}">
-					<div id="viz_title" style="text-align:center;"> 
-						<h4>${param.topic_title}</h4>
-					</div>
-				</c:if>
+
+<!-- Old Alert for vaccine select true can remove when get rid of individual summary data? -------------------------- -->				
 				<div class="row viz_info_box no_clear alert alert-primary">
 					<span class="filter_info">
 					</span>
@@ -149,8 +137,8 @@
 					</button>
 				</div>
 				
+<!-- Panel Selector ------------------------------------------------------------------------------------------------- -->
 				<div class="row">
-					
 					<c:if test="${not empty param.severity_panel || not empty param.age_panel || not empty param.sex_panel || not empty param.ethnicity_panel || not empty param.sotrovimab_panel1 || not empty param.raceethncity_panel}">
 						<div class="mt-2 col-12 col-md-6">
 						<div class="viz_options_dropdown">
@@ -194,6 +182,8 @@
 						</div>	
 						</div>
 					</c:if>
+
+<!-- Filters ------------------------------------------------------------------------------------------------- -->	
 					<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter}">
 						<div class="mt-2 ml-auto col-12 col-md-6 filter_button_container">
 							<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
@@ -315,58 +305,242 @@
 					
 				</div>
 				
+				
+<!-- Panels ------------------------------------------------------------------------------------------------- -->	
 				<c:if test="${not empty param.simple_panel}">
 					<div id="${param.block}-simple" class="" style="display: block;">
-						<jsp:include page="${param.simple_panel}?panel=${param.simple_panel}&block=${param.block}&datatable_div=${param.datatable_div}&topic_description=${param.topic_description}"/>
+						<c:url value="${param.simple_panel}" var="url">
+  							<c:param name="panel" value="${param.simple_panel}" />
+  							<c:param name="block" value="${param.block}" />
+  							<c:param name="datatable_div" value="${param.datatable_div}" />
+  							<c:if test="${not empty param.topic_description}">
+  								<c:param name="topic_description" value="${param.topic_description}" />
+  							</c:if>
+  							<c:if test="${not empty param.topic_title}">
+  								<c:param name="topic_title" value="${param.topic_title}" />
+  							</c:if>
+						</c:url>
+						<jsp:include page="${url}"/>
 					</div>
 				</c:if>
+				
+<!-- TODO: Need to test something with a severity panel to make sure this works -->
 				<c:if test="${not empty param.severity_panel}">
-					<div id="${param.block}-severity" class="" style="display: none;" src="${param.severity_panel}?panel=${param.severity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.severity_labelwidth}">&label_width=${param.severity_labelwidth}</c:if><c:if test="${not empty param.severity_height}">&viz_height=${param.severity_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-					</div>
+					<c:url value="${param.severity_panel}" var="severity_url">
+ 							<c:param name="panel" value="${param.severity_panel}" />
+ 							<c:param name="block" value="${param.block}" />
+ 							<c:param name="datatable_div" value="${param.datatable_div}" />
+ 							<c:if test="${not empty param.topic_description}">
+ 								<c:param name="topic_description" value="${param.topic_description}" />
+ 							</c:if>
+ 							<c:if test="${not empty param.topic_title}">
+ 								<c:param name="topic_title" value="${param.topic_title}" />
+ 							</c:if>
+ 							<c:if test="${not empty param.severity_labelwidth}">
+ 								<c:param name="label_width" value="${param.severity_labelwidth}" />
+ 							</c:if>
+ 							<c:if test="${not empty param.severity_height}">
+ 								<c:param name="viz_height" value="${param.severity_height}" />
+ 							</c:if>
+					</c:url>
+					<div id="${param.block}-severity" class="" style="display: none;" src="<c:out value='${severity_url}'/>"></div>
 				</c:if>
+				
 				<c:if test="${not empty param.age_panel}">
-					<div id="${param.block}-age" class="" style="display: none;" src="${param.age_panel}?panel=${param.age_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.age_labelwidth}">&label_width=${param.age_labelwidth}</c:if><c:if test="${not empty param.age_height}">&viz_height=${param.age_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if><c:if test="${not empty param.topic_disease}">&topic_disease=${param.topic_disease}</c:if>">
-					</div>
+					<c:url value="${param.age_panel}" var="age_url">
+  						<c:param name="panel" value="${param.age_panel}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.symptom}">
+  							<c:param name="symptom" value="${param.symptom}" />
+  						</c:if>
+  						<c:if test="${not empty param.age_labelwidth}">
+  							<c:param name="labelwidth" value="${param.age_labelwidth}" />
+  						</c:if>
+  						<c:if test="${not empty param.age_height}">
+  							<c:param name="viz_height" value="${param.age_height}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_disease}">
+  							<c:param name="topic_disease" value="${param.topic_disease}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title2}">
+  							<c:param name="topic_title2" value="${param.topic_title2}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-age" class="" style="display: none;" src="<c:out value='${age_url}'/>"></div>
 				</c:if>
+				
 				<c:if test="${not empty param.race_panel}">
-					<div id="${param.block}-race" class="" style="display: none;" src="${param.race_panel}?panel=${param.race_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.race_labelwidth}">&label_width=${param.race_labelwidth}</c:if><c:if test="${not empty param.race_height}">&viz_height=${param.race_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-					</div>
+					<c:url value="${param.race_panel}" var="race_url">
+  						<c:param name="panel" value="${param.race_panel}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.symptom}">
+  							<c:param name="symptom" value="${param.symptom}" />
+  						</c:if>
+  						<c:if test="${not empty param.race_labelwidth}">
+  							<c:param name="labelwidth" value="${param.race_labelwidth}" />
+  						</c:if>
+  						<c:if test="${not empty param.race_height}">
+  							<c:param name="viz_height" value="${param.race_height}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_disease}">
+  							<c:param name="topic_disease" value="${param.topic_disease}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title2}">
+  							<c:param name="topic_title2" value="${param.topic_title2}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-race" style="display: none;" src="<c:out value='${race_url}'/>"></div>
 				</c:if>
+				
 				<c:if test="${not empty param.sex_panel}">
-					<div id="${param.block}-sex" class="" style="display: none;" src="${param.sex_panel}?panel=${param.sex_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.sex_labelwidth}">&label_width=${param.sex_labelwidth}</c:if><c:if test="${not empty param.sex_height}">&viz_height=${param.sex_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if><c:if test="${not empty param.topic_disease}">&topic_disease=${param.topic_disease}</c:if>">
-					</div>
+					<c:url value="${param.sex_panel}" var="sex_url">
+  						<c:param name="panel" value="${param.sex_panel}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.symptom}">
+  							<c:param name="symptom" value="${param.symptom}" />
+  						</c:if>
+  						<c:if test="${not empty param.sex_labelwidth}">
+  							<c:param name="labelwidth" value="${param.sex_labelwidth}" />
+  						</c:if>
+  						<c:if test="${not empty param.sex_height}">
+  							<c:param name="viz_height" value="${param.sex_height}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_disease}">
+  							<c:param name="topic_disease" value="${param.topic_disease}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title2}">
+  							<c:param name="topic_title2" value="${param.topic_title2}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-sex" style="display: none;" src="<c:out value='${sex_url}'/>"></div>
 				</c:if>
+				
 				<c:if test="${not empty param.ethnicity_panel}">
-					<div id="${param.block}-ethnicity" class="" style="display: none;" src="${param.ethnicity_panel}?panel=${param.ethnicity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.symptom}">&symptom=${param.symptom}</c:if><c:if test="${not empty param.ethnicity_labelwidth}">&label_width=${param.ethnicity_labelwidth}</c:if><c:if test="${not empty param.ethnicity_height}">&viz_height=${param.ethnicity_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-					</div>
+					<c:url value="${param.ethnicity_panel}" var="ethnicity_url">
+  						<c:param name="panel" value="${param.ethnicity_panel}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.symptom}">
+  							<c:param name="symptom" value="${param.symptom}" />
+  						</c:if>
+  						<c:if test="${not empty param.ethnicity_labelwidth}">
+  							<c:param name="labelwidth" value="${param.ethnicity_labelwidth}" />
+  						</c:if>
+  						<c:if test="${not empty param.ethnicity_height}">
+  							<c:param name="viz_height" value="${param.ethnicity_height}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_disease}">
+  							<c:param name="topic_disease" value="${param.topic_disease}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title2}">
+  							<c:param name="topic_title2" value="${param.topic_title2}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-ethnicity" style="display: none;" src="<c:out value='${ethnicity_url}'/>"></div>
 				</c:if>
+
+<!-- This panel is only on adult summary/all summary/ and pediatrics summary. Could remove if not using anymore -->				
 				<c:if test="${not empty param.raceseverity_panel}">
 					<div id="${param.block}-raceseverity" class="" style="display: none;" src="${param.raceseverity_panel}?panel=${param.raceseverity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.raceseverity_labelwidth}">&label_width=${param.raceseverity_labelwidth}</c:if><c:if test="${not empty param.raceseverity_height}">&viz_height=${param.raceseverity_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
 					</div>
 				</c:if>
+<!-- This panel is only on adult summary/all summary/ and pediatrics summary. Could remove if not using anymore -->						
 				<c:if test="${not empty param.comorbidity_panel}">
 					<div id="${param.block}-comorbidity" class="" style="display: none;" src="${param.comorbidity_panel}?panel=${param.comorbidity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.comorbidity_labelwidth}">&label_width=${param.comorbidity_labelwidth}</c:if><c:if test="${not empty param.comorbidity_height}">&viz_height=${param.comorbidity_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
 					</div>
 				</c:if>
+				
 				<c:if test="${not empty param.sotrovimab_panel1}">
-					<div id="${param.block}-sotrovimab1" class="" style="display: none;" src="${param.sotrovimab_panel1}?panel=${param.sotrovimab_panel1}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-					</div>
+					<c:url value="${param.sotrovimab_panel1}" var="sotrovimab1_url">
+  						<c:param name="panel" value="${param.sotrovimab_panel1}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-sotrovimab1" style="display: none;" src="<c:out value='${sotrovimab1_url}'/>"></div>
 				</c:if>
+				
 				<c:if test="${not empty param.sotrovimab_panel2}">
-					<div id="${param.block}-sotrovimab2" class="" style="display: none;" src="${param.sotrovimab_panel2}?panel=${param.sotrovimab_panel2}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-					</div>
+					<c:url value="${param.sotrovimab_panel2}" var="sotrovimab2_url">
+  						<c:param name="panel" value="${param.sotrovimab_panel2}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-sotrovimab2" style="display: none;" src="<c:out value='${sotrovimab2_url}'/>"></div>
 				</c:if>
+				
 				<c:if test="${not empty param.raceethncity_panel}">
-					<div id="${param.block}-raceethnicity" class="" style="display: none;" src="${param.raceethncity_panel}?panel=${param.raceethncity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-					</div>
+					<c:url value="${param.raceethncity_panel}" var="raceethncity_url">
+  						<c:param name="panel" value="${param.raceethncity_panel}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-raceethnicity" style="display: none;" src="<c:out value='${raceethncity_url}'/>"></div>
 				</c:if>
+				
 				<c:if test="${not empty param.racesex_panel}">
-					<div id="${param.block}-racesex" class="" style="display: none;" src="${param.racesex_panel}?panel=${param.racesex_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-					</div>
+					<c:url value="${param.racesex_panel}" var="racesex_url">
+  						<c:param name="panel" value="${param.racesex_panel}" />
+  						<c:param name="block" value="${param.block}" />
+  						<c:param name="datatable_div" value="${param.datatable_div}" />
+  						<c:if test="${not empty param.topic_description}">
+  							<c:param name="topic_description" value="${param.topic_description}" />
+  						</c:if>
+  						<c:if test="${not empty param.topic_title}">
+  							<c:param name="topic_title" value="${param.topic_title}" />
+  						</c:if>
+					</c:url>
+					<div id="${param.block}-racesex" style="display: none;" src="<c:out value='${racesex_url}'/>"></div>
 				</c:if>
+				
 			</div>
 		</div>
 		
+<!-- DataTable --------------------------------------------------------------------------------------- -->	
 		<div class="row">
 			<c:if test="${not empty param.datatable}">
 					<div class="col-12 ">
@@ -389,6 +563,7 @@
 </div>			
 
 <script>
+
 	$(document).ready(function() {
 	    $('#${param.block}toggle_viz_select').select2({
 	    	minimumResultsForSearch: Infinity,

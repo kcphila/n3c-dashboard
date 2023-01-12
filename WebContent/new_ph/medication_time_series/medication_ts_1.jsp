@@ -5,6 +5,8 @@
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="medication_ts_1" />
 	<jsp:param name="block_header" value="Medication Time Series" />
+	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_title" value="Monthly Counts of Patients Who Have Been Prescribed Select Medications" />
 
 	<jsp:param name="kpis" value="medication_time_series/kpis.jsp" />
 

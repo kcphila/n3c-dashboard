@@ -7,6 +7,7 @@
 	<jsp:param name="block_header" value="Paralysis" />
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="topic_disease" value="Paralysis" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Been Diagnosed with" />
 	
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="paralysis" />

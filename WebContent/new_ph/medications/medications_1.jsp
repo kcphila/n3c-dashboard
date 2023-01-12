@@ -7,6 +7,8 @@
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="medications_1" />
 	<jsp:param name="block_header" value="COVID+ Patients Distribution by Medication" />
+	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_title" value="Counts of COVID+ Patients Prescribed Select Medications by Medication and Sex" />
 
 	<jsp:param name="kpis" value="medications/kpis.jsp" />
 

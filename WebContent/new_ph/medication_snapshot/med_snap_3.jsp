@@ -6,6 +6,7 @@
 	<jsp:param name="block" value="med_snap_3" />
 	<jsp:param name="block_header" value="Medications Taken Before and After Sotrovimab" />
 	<jsp:param name="topic_description" value="secondary_3" />
+	<jsp:param name="topic_title" value="Test Title" />
 
 	<jsp:param name="kpis" value="medication_snapshot/kpis.jsp" />
 	

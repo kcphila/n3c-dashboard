@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <style>
 	#paxlovid .dataTables_filter{
@@ -11,9 +12,26 @@
 		display:none;
 	}
 </style>
+<div class="pax-intro text-max mx-auto">
+	<sql:query var="paxintro" dataSource="jdbc/N3CPublic">
+		select
+			to_char(count, '999,999') as count,
+			(select to_char(substring(value from '[a-zA-Z]*-v[0-9]*-(.*)')::date, 'Month FMDD, YYYY') as value
+			 from n3c_admin.enclave_stats where title='release_name') as date,
+			(select substring(value from '[a-zA-Z]*-v([0-9]*)-.*') as value
+			 from n3c_admin.enclave_stats where title='release_name') as build
+		from n3c_questions.drug_count_summary where drug_name='PAXLOVID';
+	</sql:query>
+	<c:forEach items="${paxintro.rows}" var="row" varStatus="rowCounter">
+		<p>As of <span id="date">&nbsp;</span> (updated weekly), N3C has data from 
+		<span id="site_count">&nbsp;</span> institutions and <span id="positive">&nbsp;</span> COVID+ patients.
+		This data can be utilized to assess the real-world use of Paxlovid prescribed to ${row.count} patients.</p>
+ 	</c:forEach>
+	
+</div>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
-	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
+	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<optgroup label="Demographics">
 			<option value="paxlovid_4">Age</option>
@@ -27,7 +45,6 @@
 			<option value="paxlovid_2">Medications</option>
 			<option value="paxlovid_3">Visits</option>
 		</optgroup>
-			<option disabled value="veryveryverylongveryveryverylong">veryveryverylongveryveryverylong</option>
 	</select>
 </div>
 	
@@ -75,14 +92,6 @@ function frame_load(selection) {
 	if (typeof embedded_mode == 'undefined' || !embedded_mode)
 		cache_browser_history("public-health", "public-health/Paxlovid/"+url_map(selection));
 };
-
-$(document).ready(function () {
-	  $('#selectMe').change(function () {
-		frame_load($(this).val());
-	    $('.group').hide();
-	    $('#'+$(this).val()).show();
-	  })
-	});
 	
 function modelMatcher (params, data) {
 	  data.parentText = data.parentText || "";
@@ -136,10 +145,28 @@ function modelMatcher (params, data) {
 }
 
 $(document).ready(function() {
-    $('#selectMe').select2({
+	$('#selectMe').select2({
 		matcher: modelMatcher,
 		searchInputPlaceholder: 'Search Topics...'
-    });
+	});
+	// set breadcrumb text to panel on intial load
+	$('#topic_breadcrumb').html($("#selectMe :selected").text());
+	
+	$('#selectMe').change(function () {
+		frame_load($(this).val());
+	    $('.group').hide();
+	    $('#'+$(this).val()).show();
+	 	// set breadcrumb to be the selected value
+	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+	}); 
+});
+
+$.getJSON("<util:applicationRoot/>/feeds/embedded_fact_sheet.jsp", function(json){
+	var data = $.parseJSON(JSON.stringify(json));
+
+	$('#date').text(data['release_date']); 
+	$('#site_count').text(data['sites_ingested']); 	 
+	$('#positive').text(data['covid_positive_patients']); 	
 });
 
 </script>

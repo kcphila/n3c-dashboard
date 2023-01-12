@@ -6,7 +6,8 @@
 	<jsp:param name="block" value="long_covid_7" />
 	<jsp:param name="block_header" value="Long COVID: Cognitive Impairment" />
 	<jsp:param name="topic_description" value="secondary_7" />
-	<jsp:param name="topic_title" value="Counts of Patients Who Have Experienced Cognitive Impairment by COVID & Long COVID Status" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Experienced Cognitive Impairment by COVID-19/Long COVID Status" />
+	<jsp:param name="topic_title2" value="Counts of Patients Who Have Experienced Cognitive Impairment Before and After COVID-19 Diagnosis" />
 	
 	<jsp:param name="kpis" value="long_covid/kpis2.jsp" />
 	<jsp:param name="kpi_filter" value="Cognitive impairment" />

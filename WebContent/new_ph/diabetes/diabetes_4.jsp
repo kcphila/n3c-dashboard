@@ -4,8 +4,9 @@
 
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="diabetes_4" />
-	<jsp:param name="block_header" value="Diabetes Mellitus Type 1" />
+	<jsp:param name="block_header" value="Diabetes Mellitus Type 2" />
 	<jsp:param name="topic_description" value="secondary_4" />
+	<jsp:param name="topic_title" value="Counts of Pediatric Patients Who Have Been Diagnosed with Diabetes Mellitus Type 2 by Diagnosis Conditions" />
 
 	<jsp:param name="kpis" value="diabetes/kpis.jsp" />
 

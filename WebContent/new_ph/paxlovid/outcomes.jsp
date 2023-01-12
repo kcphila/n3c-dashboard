@@ -91,7 +91,11 @@
 </style>
 
 <div class="row">
-	<div class="col-12 mx-auto mt-2 mb-2 text-center">
+	<div class="col-12 mx-auto mt-2 mb-2 text-max">
+		<p>Paxlovid was approved for emergency use relatively recently (December 2021). In the three weeks after finishing a 
+		5-day course of Paxlovid, only 838 of these 14,475 patients sought COVID-related care post-Paxlovid, and only 
+		100 tested SARS-CoV-2 positive in a clinical setting. The hospitalization rate post-Paxlovid is also extremely low. 
+		This data was from 14,475 patients prescribed Paxlovid at 20 healthcare systems from 15 states across the US.</p>
 		<p>All data shown occurred between the first day after the end of the 5-day course of Paxlovid (i.e., day 6 post-Paxlovid) and three weeks following (i.e., day 27 post-Paxlovid).</p>
 	</div>
 </div>

@@ -6,7 +6,8 @@
 	<jsp:param name="block" value="long_covid_11" />
 	<jsp:param name="block_header" value="Long COVID: Shortness of Breath" />
 	<jsp:param name="topic_description" value="secondary_11" />
-	<jsp:param name="topic_title" value="Counts of Patients Who Have Experienced Shortness of Breath By COVID & Long COVID Status" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Experienced Shortness of Breath By COVID-19/Long COVID Status" />
+	<jsp:param name="topic_title2" value="Counts of Patients Who Have Experienced Shortness of Breath Before and After COVID-19 Diagnosis" />
 
 	<jsp:param name="kpis" value="long_covid/kpis2.jsp" />
 	<jsp:param name="kpi_filter" value="Shortness of breath" />

@@ -11,7 +11,6 @@
 		<option value="diabetes_4">Type 2 Under the Age of 18</option>
 		<option value="diabetes_5">Type 1 Over the Age of 18</option>
 		<option value="diabetes_6">Type 2 Over the Age of 18</option>
-		<option disabled hidden="hidden">Diabetes Mellitus Type 1+++++++++++++</option>
 	</select>
 </div>
 <div id="frame">
@@ -56,18 +55,20 @@ function frame_load(selection) {
 		cache_browser_history("public-health", "public-health/diabetes-mellitus/"+url_map(selection));
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
+	$('#selectMe').select2({
+		minimumResultsForSearch: Infinity
+	});
+	// set breadcrumb text to panel on intial load
+	$('#topic_breadcrumb').html($("#selectMe :selected").text());
+	
 	$('#selectMe').change(function () {
 		frame_load($(this).val());
 	    $('.group').hide();
-		$('#'+$(this).val()).show();
-	})
-});
-
-$(document).ready(function() {
-    $('#selectMe').select2({
-    	minimumResultsForSearch: Infinity
-    });
+	    $('#'+$(this).val()).show();
+	 	// set breadcrumb to be the selected value
+	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+	}); 
 });
 
 </script>

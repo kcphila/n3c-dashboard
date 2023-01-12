@@ -166,7 +166,14 @@ div.composite.tooltip {
 
  	<jsp:include page="../navbar.jsp" flush="true"/>
 	
-	<div class="container-fluid content">
+	<div class="container-fluid content container container-large">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
+				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/data-overview">Demographics</a></li>
+				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">COVID+ and Vaccination Status and Grouped Comorbidities</li>
+			</ol>
+		</nav>
 		<div id="cohort">
 			<div class="section-heading">
 				<select id="dimension_select">

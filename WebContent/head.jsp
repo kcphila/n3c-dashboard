@@ -151,12 +151,12 @@
 					});
 					// console.log("secondary index", secondary_index)
 					if (secondary_index == -1) {
-						history.pushState(null, '', '<util:applicationRoot/>/'+tab_cache[index].pathname)
+						history.pushState(null, '', '<util:applicationRoot/>/'+tab_cache[index].pathname);
 					} else {
-						history.pushState(null, '', '<util:applicationRoot/>/'+secondary_tab_cache[secondary_index].pathname)
+						history.pushState(null, '', '<util:applicationRoot/>/'+secondary_tab_cache[secondary_index].pathname);
 					}
 				} else
-					history.pushState(null, '', '<util:applicationRoot/>/'+tab_cache[index].pathname)
+					history.pushState(null, '', '<util:applicationRoot/>/'+tab_cache[index].pathname);
 			}
 		}
 		

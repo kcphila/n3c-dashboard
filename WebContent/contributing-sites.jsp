@@ -39,7 +39,13 @@ div.composite.tooltip {
   		<jsp:param name="page" value="explore"/>
 	</jsp:include>
 	
-	<div class="container content">
+	<div class="container container-large content">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
+				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Institutions Contributing Data</li>
+			</ol>
+		</nav>
 		<div class="row page-title">
 			<div class="col-12">
 				<h1>Institutions Contributing Data</h1>
