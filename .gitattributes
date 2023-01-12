@@ -854,8 +854,7 @@ WebContent/new_ph/test_panel.jsp -text
 WebContent/new_ph/timeline/cumulative.jsp -text
 WebContent/new_ph/timeline/daily.jsp -text
 WebContent/new_ph/timeline/feeds/positive_cases_by_date.jsp -text
-WebContent/new_ph/timeline/kpis_1.jsp -text
-WebContent/new_ph/timeline/kpis_2.jsp -text
+WebContent/new_ph/timeline/kpis.jsp -text
 WebContent/new_ph/timeline/panel.jsp -text
 WebContent/new_ph/timeline/panel2.jsp -text
 WebContent/new_ph/timeline/positive_cases_by_date.jsp -text
