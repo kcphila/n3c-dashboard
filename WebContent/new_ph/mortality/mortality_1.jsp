@@ -6,6 +6,9 @@
 	<jsp:param name="block" value="mortality_1" />
 	<jsp:param name="block_header" value="Mortality: COVID+ and Hospitalization" />
 	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_title" value="Mortalities" />
+	
+	
 
 	<jsp:param name="kpis" value="mortality/kpis.jsp" />
 

@@ -1,6 +1,3 @@
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div class="secondary-description">
 	<p><strong>Sample:</strong> <span class="tip">
@@ -9,7 +6,10 @@
 			<span class="sr-only">, or patients who have had a laboratory-confirmed positive COVID-19 PCR or Antigen test</span>
 		</a>
 		</span>&nbsp;in the N3C Data Enclave with more than one positive PCR or Antigen test 60 days or more apart. 
-		The graph provides a snapshot of COVID+ reinfection counts grouped by 30 day increments.
+		Patients were aggregated into cohorts based on their reinfection month and year. This cohort was then assessed 
+		for the month and year of any previous infection. For example, suppose the reinfection date is set to February 2022. In that case, 
+		the graph will display the counts of patients diagnosed with their first infection at least 60 days before that date 
+		(December 2021) by the month they experienced their first infection.
 		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 	</p>
 </div>

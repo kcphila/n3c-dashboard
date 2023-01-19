@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
-	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
+	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<optgroup label="Sotrovimab">
 			<option value="med_snap_1">Sotrovimab: Treated Patient Demographics</option>
@@ -121,11 +121,22 @@ function modelMatcher (params, data) {
 	  return null;
 }
 
-$(document).ready(function() {
-    $('#selectMe').select2({
+$(document).ready(function () {
+	$('#selectMe').select2({
 		matcher: modelMatcher,
 		searchInputPlaceholder: 'Search Topics...'
     });
+    
+	// set breadcrumb text to panel on intial load
+    $('#topic_breadcrumb').html($("#selectMe :selected").text());
+    
+    $('#selectMe').change(function () {
+		frame_load($(this).val());
+		$('.group').hide();
+	    $('#'+$(this).val()).show();
+	    // set breadcrumb to be the selected value
+	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+    }); 
 });
 
 </script>

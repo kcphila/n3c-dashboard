@@ -6,7 +6,7 @@
 	<jsp:param name="block" value="med_snap_2" />
 	<jsp:param name="block_header" value="Sotrovimab Treated Patients: COVID Diagnosis Type and Severity" />
 	<jsp:param name="topic_description" value="secondary_2" />
-	<jsp:param name="topic_title" value="Test Title" />
+	<jsp:param name="topic_title" value="Counts of Patients Prescribed Sotrovimab by Severity and Diagnosis" />
 
 	<jsp:param name="kpis" value="medication_snapshot/kpis.jsp" />
 	

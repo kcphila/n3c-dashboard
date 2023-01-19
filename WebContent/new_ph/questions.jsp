@@ -2,18 +2,17 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<style>
-
-
-</style>
-
-
 <div class="row">
 	<div class="col-12 mx-auto">
 		<div id="question-panel" class="panel panel-primary top_panel" style="margin-top:0px;">
 			<div class="panel-body">
 				<div id="question-select" class="">
-					<jsp:include page="questions_styled3.jsp?secondary_tab=${param.secondary_tab}&tertiary_tab=${param.tertiary_tab}"/>
+<%-- 					<c:if test="${param.secondary_tab != 'reinfection'}"> --%>
+						<jsp:include page="questions_styled3.jsp?secondary_tab=${param.secondary_tab}&tertiary_tab=${param.tertiary_tab}"/>
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${param.secondary_tab == 'reinfection'}"> --%>
+<%-- 						<jsp:include page="questions_styled4.jsp?secondary_tab=${param.secondary_tab}&tertiary_tab=${param.tertiary_tab}"/> --%>
+<%-- 					</c:if> --%>
 				</div>
 			</div>
 		</div>

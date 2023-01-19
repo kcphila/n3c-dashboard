@@ -4,7 +4,12 @@
 
 
 <div class="secondary-description">
-	<p>
+	<p><strong>Sample:</strong> <span class="tip">
+		<a class="viz_secondary_info" title="COVID+ Defined As: <a class='close popover_close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li></li></ul>" aria-describedby="tooltip">
+			<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
+			<span class="sr-only">, or patients who have had a laboratory-confirmed positive COVID-19 PCR or Antigen test</span>
+		</a>
+		</span>&nbsp;in the N3C Data Enclave.
 		<sql:query var="cases" dataSource="jdbc/N3CPublic">
 		select
 			to_char(c_date::date, 'FMMM/FMDD/YY') as date,
@@ -13,9 +18,13 @@
 		from n3c_questions_new.covid_lds_with_reinfection_date_counts_censored_infection_re where c_date ='2020-03-28'
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
-			The numbers indicate counts of first diagnosis for that date and counts of reinfection for that specific cohort.
-			As an example for ${row.date}, count that had a positive test was ${row.first_diagnosis} and of this cohort of ${row.first_diagnosis}, ${row.reinfection} were reinfected.
+			This graph shows the daily COVID+ cases within the Enclave and the number those patients diagnosed on that day who had subsequent infections.
+			For example, on ${row.date}, the number of patients diagnosed with COVID was ${row.first_diagnosis}; of these patients, 
+			${row.reinfection} were reinfected later at any date. 
+			For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 		</c:forEach>
-		Hover over the graph to show the counts for that day. Click and drag to focus on a specific time range. Double click to revert to the default time range.
 	</p>
+	<em>Hover over the graph to show the counts for that day. Click and drag to focus on a specific time range. 
+	Double click to revert to the default time range.</em>
+
 </div>

@@ -1,6 +1,6 @@
 <div class="secondary-description">
-	<p>Sample: <span class="tip">
-					<a class="viz_secondary_info" title="COVID+ Defined As:" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
+	<p><strong>Sample:</strong> <span class="tip">
+					<a class="viz_secondary_info" title="COVID+ Defined As: <a class='close popover_close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
   						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
   						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 					</a>
@@ -13,7 +13,7 @@
 				patient actually took the displayed medication. Some medication exposure records specify that a prescription 
 				for a medication was written while others specify In-patient administration. There is no guarantee that a 
 				patient was exposed to the displayed medications, only that their medical records include evidence of that 
-				medication.</p>
+				medication. For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a></p>
 </div>
 
 

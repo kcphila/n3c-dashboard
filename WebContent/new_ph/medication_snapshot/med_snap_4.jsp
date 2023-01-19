@@ -6,6 +6,7 @@
 	<jsp:param name="block" value="med_snap_4" />
 	<jsp:param name="block_header" value="Sotrovimab Treated Patients: Comorbiditis" />
 	<jsp:param name="topic_description" value="secondary_4" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Been Prescribed Sotrovimab by Severity and # of Comorbidities" />
 
 	<jsp:param name="kpis" value="medication_snapshot/kpis.jsp" />
 	

@@ -2,21 +2,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+<style>
+#d3viz .dataTables_filter{
+    display: none;
+}
+</style>
 
-<jsp:include page="../block2.jsp">
-	<jsp:param name="block" value="severity_region_1" />
-	<jsp:param name="block_header" value="Regional Distribution of COVID+ Patients" />
-	<jsp:param name="topic_description" value="secondary_1" />
+<div id="frame">
+	<div id="map1" class="group"></div>
+</div>
 
-	<jsp:param name="kpis" value="severity_region/kpis.jsp" />
+<script>
+
+var frame_crumbs = '';
+
+frame_load('map1');
+
+
+function frame_load(selection) {
+	var $this = $("#"+selection);
+	$this.load("<util:applicationRoot/>/new_ph/severity_region/"+selection+".jsp");
+	cache_browser_history("public-health", "public-health/severity-region/map1");		
+};
+
 	
-	<jsp:param name="severity_filter" value="true" />
-	<jsp:param name="region_filter" value="true" />
-	
-	<jsp:param name="simple_panel" value="severity_region/map.jsp" />
 
-	<jsp:param name="datatable" value="severity_region/region_table.jsp" />
-	<jsp:param name="datatable_div" value="severityregion" />
-	<jsp:param name="datatable_feed" value="severity_region/feeds/regions.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count,region_seq" />
-</jsp:include>
+$(document).ready(function () {
+	// set breadcrumb text to panel on intial load
+    $('#topic_breadcrumb').html("Map"); 
+});
+
+</script>

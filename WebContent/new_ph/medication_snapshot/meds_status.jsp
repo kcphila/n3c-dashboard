@@ -4,15 +4,15 @@
 
 <div class="row">
 	<div class="col-12 viz-header-section">
-		<h2 class="viz-title">${param.topic_title}</h2>
+		<h2 class="viz-title">${param.topic_title} by Medication and Occurrence</h2>
 		<div class="btn-group float-right">
 			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-download"></i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sotrovimab2_viz', '${param.topic_title}_medsoccurrence.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sotrovimab2_viz', '${param.topic_title}_medsoccurrence.png');">Save as PNG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sotrovimab2_viz', '${param.topic_title}_medsoccurrence.svg')">Save as SVG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sotrovimab2_viz', '${param.topic_title} by Medication and Occurrence.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sotrovimab2_viz', '${param.topic_title} by Medication and Occurrence.png');">Save as PNG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_sotrovimab2_viz', '${param.topic_title} by Medication and Occurrence.svg')">Save as SVG</a>
 			</div>
 		</div>
 	</div>

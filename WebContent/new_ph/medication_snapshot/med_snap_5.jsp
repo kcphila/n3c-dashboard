@@ -6,6 +6,7 @@
 	<jsp:param name="block" value="med_snap_5" />
 	<jsp:param name="block_header" value="Sotrovimab Treated Patients: Vaccinations" />
 	<jsp:param name="topic_description" value="secondary_5" />
+	<jsp:param name="topic_title" value="Counts of Patients Who Have Been Prescribed Sotrovimab by Severity and Vaccination Status" />
 
 	<jsp:param name="kpis" value="medication_snapshot/kpis.jsp" />
 	

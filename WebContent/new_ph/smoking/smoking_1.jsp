@@ -6,6 +6,7 @@
 	<jsp:param name="block" value="smoking_1" />
 	<jsp:param name="block_header" value="Demographics: COVID+ and Smoking Status" />
 	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_title" value="COVID+ Patients" />
 
 	<jsp:param name="kpis" value="smoking/kpis.jsp" />
 	

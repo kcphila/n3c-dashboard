@@ -13,11 +13,6 @@
 	margin-bottom:100px;
 }
 
-.section-description{
-	margin-top: 30px;
-	margin-bottom: 60px;
-}
-
 .section-viz{
 	width: 95%;
     margin: auto;
@@ -156,7 +151,7 @@ div.composite.tooltip {
 
  	<jsp:include page="../navbar.jsp" flush="true"/>
 	
-	<div class="container-fluid content container container-large">
+	<div id="d3viz" class="container-fluid content container container-large">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
@@ -164,8 +159,12 @@ div.composite.tooltip {
 				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">COVID+ Multi-dimensional Summary</li>
 			</ol>
 		</nav>
+		
+		<jsp:include page="header.jsp" flush="true" />
+		
 		<div id="cohort">
-			<div class="section-heading">
+			<div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
+				<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 				<select id="dimension_select">
 					<option></option>
 					<option value="demographics">Demographics of COVID+ Patients</option>
@@ -179,7 +178,7 @@ div.composite.tooltip {
 				</select>
 			</div>
 			
-			<div class="section section-viz">
+			<div class="section section-viz" style="margin-top: 30px;">
 				<div class="row stats">
 					<div class="col col-12 col-md-10 mx-auto">
 						<div id="display-d3">
@@ -299,7 +298,7 @@ div.composite.tooltip {
 							</div>
 							<div class="secondary-description">
 								<p><strong>Sample:</strong> <span class="tip">
-									<a class="viz_secondary_info" title="COVID+ Defined As: <a href='#' class='close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
+									<a class="viz_secondary_info" title="COVID+ Defined As: <a class='close popover_close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
 				  						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
 				  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 									</a>

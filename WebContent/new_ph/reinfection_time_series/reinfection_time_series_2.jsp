@@ -7,6 +7,8 @@
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="reinfection_ts_2" />
 	<jsp:param name="block_header" value="Reinfection Time Series" />
+	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="topic_title" value="Counts of Reinfected COVID+ Patients By 30-Day Reinfection Intervals" />
 
 	<jsp:param name="kpis" value="reinfection_time_series/kpis_2.jsp" />
 	

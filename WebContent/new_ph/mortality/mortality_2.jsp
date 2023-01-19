@@ -6,7 +6,8 @@
 	<jsp:param name="block" value="mortality_2" />
 	<jsp:param name="block_header" value="Mortality: Delayed Mortality" />
 	<jsp:param name="topic_description" value="secondary_2" />
-
+	<jsp:param name="topic_title" value="Counts of Mortalities By 30-Day Hospital Release Intervals" />
+	
 	<jsp:param name="kpis" value="mortality/kpis.jsp" />
 	
 	<jsp:param name="delay_filter" value="true" />

@@ -6,6 +6,7 @@
 	<jsp:param name="block" value="med_snap_1" />
 	<jsp:param name="block_header" value="Sotrovimab Treated Patients: Demographics" />
 	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_title" value="Patients Prescribed Sotrovimab" />
 
 	<jsp:param name="kpis" value="medication_snapshot/kpis.jsp" />
 	

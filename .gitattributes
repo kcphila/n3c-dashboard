@@ -57,6 +57,7 @@ WebContent/data-overview/filters.jsp -text
 WebContent/data-overview/filters_cor.jsp -text
 WebContent/data-overview/filters_vac.jsp -text
 WebContent/data-overview/filters_vac_cor.jsp -text
+WebContent/data-overview/header.jsp -text
 WebContent/data-overview/horizontalBarChart_local.jsp -text
 WebContent/data-overview/limitations.jsp -text
 WebContent/data-overview/multi-dimensional-summary.jsp -text
@@ -301,6 +302,7 @@ WebContent/new_ph/all_summary/vaccinated_table.jsp -text
 WebContent/new_ph/barPieToggle.jsp -text
 WebContent/new_ph/block.jsp -text
 WebContent/new_ph/block2.jsp -text
+WebContent/new_ph/block3.jsp -text
 WebContent/new_ph/cumulative/cumulative_1.jsp -text
 WebContent/new_ph/cumulative/cumulative_2.jsp -text
 WebContent/new_ph/cumulative/feeds/cumulative_summary.jsp -text
@@ -512,6 +514,11 @@ WebContent/new_ph/kpis/block2_kpis/smoking2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smokingnot.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smokingnot2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/total_w_symptoms_clean.jsp -text
+WebContent/new_ph/kpis/block3_kpis/covid_first_diagnosis.jsp -text
+WebContent/new_ph/kpis/block3_kpis/covid_positive.jsp -text
+WebContent/new_ph/kpis/block3_kpis/covid_reinfections.jsp -text
+WebContent/new_ph/kpis/block3_kpis/covid_subsequent_test.jsp -text
+WebContent/new_ph/kpis/block3_kpis/reinfection_30day.jsp -text
 WebContent/new_ph/kpis/covid_first_diagnosis.jsp -text
 WebContent/new_ph/kpis/covid_positive.jsp -text
 WebContent/new_ph/kpis/covid_reinfections.jsp -text
@@ -773,9 +780,11 @@ WebContent/new_ph/reinfection/counts.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_30day.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_by_date.jsp -text
 WebContent/new_ph/reinfection/kpis_1.jsp -text
+WebContent/new_ph/reinfection/kpis_1_new.jsp -text
 WebContent/new_ph/reinfection/kpis_2.jsp -text
+WebContent/new_ph/reinfection/kpis_2_new.jsp -text
 WebContent/new_ph/reinfection/kpis_3.jsp -text
-WebContent/new_ph/reinfection/panel.jsp -text
+WebContent/new_ph/reinfection/kpis_3_new.jsp -text
 WebContent/new_ph/reinfection/panel2.jsp -text
 WebContent/new_ph/reinfection/reinfection_1.jsp -text
 WebContent/new_ph/reinfection/reinfection_2.jsp -text
@@ -798,12 +807,14 @@ WebContent/new_ph/reinfection_time_series/reinfection.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_table.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_1.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_time_series_2.jsp -text
+WebContent/new_ph/reinfection_time_series/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/reinfection_time_series/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/severity_region/albers-usa-pr.js -text
 WebContent/new_ph/severity_region/feeds/regional.jsp -text
 WebContent/new_ph/severity_region/feeds/regions.jsp -text
 WebContent/new_ph/severity_region/kpis.jsp -text
 WebContent/new_ph/severity_region/map.jsp -text
-WebContent/new_ph/severity_region/panel.jsp -text
+WebContent/new_ph/severity_region/map1.jsp -text
 WebContent/new_ph/severity_region/panel2.jsp -text
 WebContent/new_ph/severity_region/region_table.jsp -text
 WebContent/new_ph/severity_region/regional_table.jsp -text

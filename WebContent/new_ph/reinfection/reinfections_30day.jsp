@@ -3,19 +3,30 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div id="reinfection3">
-	<div id="reinfection3_graph"></div>
+	<div class="row">
+		<div class="col-12 viz-header-section">
+			<h2 class="viz-title">${param.topic_title}</h2>
+			<div class="btn-group float-right">
+				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-download"></i>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" onclick="saveVisualization('reinfection3_graph', '${param.topic_title}.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="saveVisualization('reinfection3_graph', '${param.topic_title}.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="saveVisualization('reinfection3_graph', '${param.topic_title}.svg')">Save as SVG</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<div id="reinfection3_graph"></div>
+		</div>
+	</div>
 	
 	<c:if test="${not empty param.topic_description}">
 		<div id="viz_caption">
 			<jsp:include page="../reinfection/secondary_text/${param.topic_description}.jsp"/>
 		</div>
 	</c:if>
-	
-	<div id="reinfection3_graph_save_viz"> 
-		<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('reinfection3_graph', 'reinfection3_graph.svg');">Save as SVG</button>
-		<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('reinfection3_graph', 'reinfection3_graph.png');">Save as PNG</button>
-		<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('reinfection3_graph', 'reinfection3_graph.jpg');">Save as JPEG</button>
-	</div>
 	
 	<c:set var="feedPath"><util:applicationRoot/>/new_ph/reinfection/feeds/reinfections_30day.jsp</c:set>
 	

@@ -13,11 +13,6 @@
 	margin-bottom:100px;
 }
 
-.section-description{
-	margin-top: 30px;
-	margin-bottom: 60px;
-}
-
 .section-viz{
 	width: 95%;
     margin: auto;
@@ -80,10 +75,6 @@ div.composite.tooltip {
 .multiselect-group.dropdown-item-text{
 	font-weight:600;
 }
-
-
-
-
 
 
 .kpi-section{
@@ -165,7 +156,7 @@ div.composite.tooltip {
 
  	<jsp:include page="../navbar.jsp" flush="true"/>
 	
-	<div class="container-fluid content container container-large">
+	<div id="d3viz" class="container-fluid content container container-large">
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
@@ -173,15 +164,11 @@ div.composite.tooltip {
 				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">COVID+ and Vaccination Status</li>
 			</ol>
 		</nav>
-		<div id="cohort">
-			<div class="row alert alert-primary alert-dismissible fade show" role="alert">
-  				<small class="vaccine_search_indicator"><i class="fas fa-info-circle" aria-hidden="true"></i> Vaccination Status is defaulted to True. Clear filters to reset.</small></span>
-  				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    				<span aria-hidden="true">&times;</span>
-  				</button>
-			</div>
+		<jsp:include page="header.jsp" flush="true" />
 		
-			<div class="section-heading">
+		<div id="cohort">
+			<div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
+				<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 				<select id="dimension_select">
 					<option></option>
 					<option value="demographics">Demographics of COVID+ Patients</option>
@@ -195,7 +182,14 @@ div.composite.tooltip {
 				</select>
 			</div>
 			
-			<div class="section section-viz">
+			<div class="row alert alert-primary alert-dismissible fade show" role="alert" style="margin-top:20px;">
+  				<small class="vaccine_search_indicator"><i class="fas fa-info-circle" aria-hidden="true"></i> Vaccination Status is defaulted to True. Clear filters to reset.</small></span>
+  				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    				<span aria-hidden="true">&times;</span>
+  				</button>
+			</div>
+			
+			<div class="section section-viz" style="margin-top: 30px;">
 				<div class="row stats">
 					<jsp:include page="filters_vac.jsp"/>
 				
@@ -384,7 +378,7 @@ div.composite.tooltip {
 
 							<div class="secondary-description">
 								<p><strong>Sample:</strong> <span class="tip">
-									<a class="viz_secondary_info" title="COVID+ Defined As: <a href='#' class='close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
+									<a class="viz_secondary_info" title="COVID+ Defined As: <a class='close popover_close' data-dismiss='alert'>&times;</a>" data-html="true" data-toggle="popover" data-placement="top" data-content="<ul style='padding-inline-start: 15px;'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>" aria-describedby="tooltip">
 				  						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
 				  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 									</a>

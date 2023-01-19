@@ -19,21 +19,73 @@
 	<jsp:param name="left" value="260" />
 </jsp:include>
 
-<div id="${param.block}_race_viz" class="col-12 dash_viz"></div>
+
+<div class="row">
+	<div class="col-12 viz-header-section">
+		<h2 id="race-title" class="viz-title"></h2>
+		<div class="btn-group float-right">
+			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-download"></i>
+			</button>
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" onclick="save_viz_pass('.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="save_viz_pass('.jpg');">Save as PNG</a>
+				<a class="dropdown-item" onclick="save_viz_pass('.jpg');">Save as SVG</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-12">
+		<div id="${param.block}_race_viz" class="col-12 dash_viz"></div>
+	</div>
+</div>
+
+
 
 <c:if test="${not empty param.topic_description}">
 	<div id="viz_caption">
-		<jsp:include page="../long_covid/secondary_text/${param.topic_description}.jsp"/>
+		<jsp:include page="../smoking/secondary_text/${param.topic_description}.jsp"/>
 	</div>
 </c:if>
-				
-<div id="${param.block}_race_save_viz"> 
-	<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_race_viz', '${param.block}_race.svg');">Save as SVG</button>
-	<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_race_viz', '${param.block}_race.png');">Save as PNG</button>
-	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_race_viz', '${param.block}_race.jpg');">Save as JPEG</button>
-</div>
 
 <script>
+//this is to change the title of the download based on which visualization mode is selected
+function save_viz_pass(extension){
+	var id = $("#${param.block}-race-mode").find('.text-primary').attr('id');
+	var strings = id.split('-');
+	var mode = strings[strings.length-1];
+	
+	var text = '';
+	if (mode == 'bar'){
+		text = "Counts of ${param.topic_title} by Race and Smoking Status" + extension;
+	} else {
+		text = "% of COVID+ Smokers In Each Race Category Vs. % of COVID+ Non-Smokers In Each Race Category" + extension;
+	};
+	
+	saveVisualization('${param.block}_race_viz', text);
+};
+
+// set inital title based on load mode
+var title_id = $("#${param.block}-race-mode").find('.text-primary').attr('id');
+var title_strings = title_id.split('-');
+var title_mode = title_strings[title_strings.length-1];
+
+if (title_mode == 'bar'){
+	var title = "Counts of ${param.topic_title} by Race and Smoking Status";
+	$("#race-title").text(title);
+} else {
+	var title = "% of COVID+ Smokers In Each Race Category Vs. % of COVID+ Non-Smokers In Each Race Category";
+	$("#race-title").text(title);
+};
+
+//this is to change the title of the graphic based on which visualization mode is selected
+$('#${param.block}-race-mode-barpercent').on('mouseup', function() {
+	var title = "% of COVID+ Smokers In Each Race Category Vs. % of COVID+ Non-Smokers In Each Race Category";
+	$("#race-title").text(title);
+});
+$('#${param.block}-race-mode-bar').on('mouseup', function() {
+	var title = "Counts of ${param.topic_title} by Race and Smoking Status";
+	$("#race-title").text(title);
+});
 
 function ${param.block}_race_refresh() {
 	var id = $("#${param.block}-race-mode").find('.text-primary').attr('id');

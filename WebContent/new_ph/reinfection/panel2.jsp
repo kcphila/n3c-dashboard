@@ -9,12 +9,11 @@
 </style>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
-	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
+	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<option value="reinfection_1">First Diagnosis Versus Reinfected Patients Per COVID+ Cohort</option>
 		<option value="reinfection_2">First Diagnosis Versus Number of Reinfections Per Day</option>
-		<option value="reinfection_3">Reinfection Counts Grouped by 30 Day Increments</option>	
-		<option disabled hidden="hidden">First Diagnosis Versus Reinfected Patients Per COVID+ Cohort++++++++</option>	
+		<option value="reinfection_3">Reinfection Counts Grouped by 30 Day Increments</option>		
 	</select>
 </div>
 <div id="frame">
@@ -58,15 +57,21 @@ function frame_load(selection) {
 		cache_browser_history("public-health", "public-health/reinfection/"+url_map(selection));
 };
 
-$(document).ready(function() {
-    $('#selectMe').select2({
-    	minimumResultsForSearch: Infinity
+$(document).ready(function () {
+	$('#selectMe').select2({
+		minimumResultsForSearch: Infinity
     });
+    
+	// set breadcrumb text to panel on intial load
+    $('#topic_breadcrumb').html($("#selectMe :selected").text());
+    
     $('#selectMe').change(function () {
 		frame_load($(this).val());
-	    $('.group').hide();
+		$('.group').hide();
 	    $('#'+$(this).val()).show();
-	});
+	    // set breadcrumb to be the selected value
+	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+    }); 
 });
 
 </script>
