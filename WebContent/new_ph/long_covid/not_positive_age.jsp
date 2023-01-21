@@ -10,9 +10,9 @@
 				<i class="fas fa-download"></i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_age_viz', '${param.topic_title} by Age');">Save as JPG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_age_viz', '${param.topic_title} by Age');">Save as PNG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_age_viz', '${param.topic_title} by Age')">Save as SVG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_age_viz', '${param.topic_title} by Age.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_age_viz', '${param.topic_title} by Age.png');">Save as PNG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_age_viz', '${param.topic_title} by Age.svg')">Save as SVG</a>
 			</div>
 		</div>
 	</div>

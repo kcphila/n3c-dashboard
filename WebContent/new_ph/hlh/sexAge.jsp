@@ -27,12 +27,7 @@
 		<jsp:include page="../hlh/secondary_text/${param.topic_description}.jsp?symptom=${param.symptom}"/>
 	</div>
 </c:if>
-				
-<div id="${param.block}_age_save_viz"> 
-	<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_sex_viz', '${param.block}_sex.svg');">Save as SVG</button>
-	<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_sex_viz', '${param.block}_sex.png');">Save as PNG</button>
-	<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_sex_viz', '${param.block}_sex.jpg');">Save as JPEG</button>
-</div>
+		
 
 <script>
 

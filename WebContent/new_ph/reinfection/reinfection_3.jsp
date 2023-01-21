@@ -1,10 +1,10 @@
-<jsp:include page="../block3.jsp">
+<jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="reinfection_3" />
 	<jsp:param name="block_header" value="COVID+ Reinfection Counts Grouped by 30 Day Increments" />
 	<jsp:param name="topic_description" value="secondary_3" />
 	<jsp:param name="topic_title" value="Counts of Reinfected COVID+ Patients By 30-Day Reinfection Intervals" />
 
-	<jsp:param name="kpis" value="reinfection/kpis_3_new.jsp" />
+	<jsp:param name="kpis" value="reinfection/kpis_3.jsp" />
 
 	<jsp:param name="simple_panel" value="reinfection/reinfections_30day.jsp" />
 

@@ -10,7 +10,7 @@
 	<jsp:param name="block" value="paxlovid_4" />
 	<jsp:param name="block_header" value="Paxlovid" />
 	<jsp:param name="topic_description" value="secondary_1" />
-	<jsp:param name="topic_title" value="Demographics of Patients With Paxlovid" />
+	<jsp:param name="topic_title" value="Counts of Patients Prescribed Paxlovid by Age and COVID Test Results" />
 
 	<jsp:param name="result_filter" value="true" />
 

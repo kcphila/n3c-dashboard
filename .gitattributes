@@ -712,6 +712,7 @@ WebContent/new_ph/paxlovid/images/image1.png -text
 WebContent/new_ph/paxlovid/images/image2.png -text
 WebContent/new_ph/paxlovid/kpis.jsp -text
 WebContent/new_ph/paxlovid/kpis2.jsp -text
+WebContent/new_ph/paxlovid/kpis3.jsp -text
 WebContent/new_ph/paxlovid/outcomes.jsp -text
 WebContent/new_ph/paxlovid/panel.jsp -text
 WebContent/new_ph/paxlovid/panel2.jsp -text
@@ -727,6 +728,8 @@ WebContent/new_ph/paxlovid/paxlovid_7.jsp -text
 WebContent/new_ph/paxlovid/paxlovid_8.jsp -text
 WebContent/new_ph/paxlovid/race.jsp -text
 WebContent/new_ph/paxlovid/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/paxlovid/secondary_text/secondary_2.jsp -text
+WebContent/new_ph/paxlovid/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/paxlovid/sex.jsp -text
 WebContent/new_ph/paxlovid/tables/greater_drugs_table.jsp -text
 WebContent/new_ph/paxlovid/tables/greater_table.jsp -text

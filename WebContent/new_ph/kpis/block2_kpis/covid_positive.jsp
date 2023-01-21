@@ -24,7 +24,7 @@
 											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
 											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
 										</ul>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">Total COVID+ Patients <i class="fas fa-info-circle"></i>
+	 											<p style="margin-bottom:0px;">Total COVID+ </br>Patients <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">in the N3C Data Enclave, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, 
 	  												a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 
 	  												(U07.1) was recorded

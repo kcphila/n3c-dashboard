@@ -10,9 +10,9 @@
 				<i class="fas fa-download"></i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_ethnicity_viz', '${param.topic_title} by Ethnicity');">Save as JPG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_ethnicity_viz', '${param.topic_title} by Ethnicity');">Save as PNG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_ethnicity_viz', '${param.topic_title} by Ethnicity')">Save as SVG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_ethnicity_viz', '${param.topic_title} by Ethnicity.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_ethnicity_viz', '${param.topic_title} by Ethnicity.png');">Save as PNG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_ethnicity_viz', '${param.topic_title} by Ethnicity.svg')">Save as SVG</a>
 			</div>
 		</div>
 	</div>

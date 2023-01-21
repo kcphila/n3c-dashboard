@@ -79,14 +79,14 @@
 			</div>
 		</div>
  	</c:forEach>
-<sql:query var="totals" dataSource="jdbc/N3CPublic">
+ <sql:query var="totals" dataSource="jdbc/N3CPublic">
  	select to_char(sum(count)/1000.0, '999.99')||'k' as patient_count
  	from (select 
 			case
 				when (ptct = '<20' or ptct is null) then 0
 				else ptct::int
 			end as count
-			from n3c_questions.table1_union where demographic_feature='sex') as foo
+			from n3c_questions.persons_with_visits) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 col-sm-4 kpi-main-col">
@@ -100,23 +100,25 @@
 										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> # of Patients Taking Paxlovid in Current View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
-										data-content="The data in this view is from an extract of patients prescribed Paxlovid performed on July 22, 2022." 
+										data-content="This data was from 14,475 patients prescribed Paxlovid at 20 healthcare systems from 15 states across the US." 
 										aria-describedby="tooltip">
 	 										<p style="margin-bottom:0px;">Patients in View <i class="fas fa-info-circle"></i>
-	  											<span class="sr-only">: count is from data extracted July 22, 2022.</span>
+	  											<span class="sr-only">: count is from data extract.</span>
 	 										</p> 
  									</a>
  								</span></td>
 							</tr>
 					</table>
 				</div>
-				<div id="${param.block}_patient_count_kpi" class="panel-heading kpi_num"><i class="fas fa-users" aria-hidden="true"></i> ${row.patient_count}</div>
-			<p style="text-align: center"><i>Count is from data extracted July 22, 2022.</i></p>
+				<div id="${param.block}_patient_count_kpi" class="panel-heading kpi_num"><i class="fas fa-users" aria-hidden="true"></i> 14.48k</div>
+			<p style="text-align: center"><i>Count is from data extract.</i></p>
 			</div>
 		</div>
 	</div>
 </c:forEach>
 </div>
+
+
 
 <script>
 //popover stuff

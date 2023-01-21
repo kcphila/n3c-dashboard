@@ -25,8 +25,10 @@
 	<c:forEach items="${paxintro.rows}" var="row" varStatus="rowCounter">
 		<p>As of <span id="date">&nbsp;</span> (updated weekly), N3C has data from 
 		<span id="site_count">&nbsp;</span> institutions and <span id="positive">&nbsp;</span> COVID+ patients.
-		This data can be utilized to assess the real-world use of Paxlovid prescribed to ${row.count} patients.</p>
+		This data can be utilized to assess the real-world use of Paxlovid prescribed to ${row.count} patients.
+		<strong>Currently, the data in this dashboard is from several static data extracts and does not include all ${row.count} patients.</strong></strong></p>
  	</c:forEach>
+ 		
 	
 </div>
 

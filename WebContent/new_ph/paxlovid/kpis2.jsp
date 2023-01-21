@@ -15,11 +15,29 @@
 					<div class="panel-body">
 						<table>
 							<tr>
-								<td><i class="fas fa-user-plus"></i> COVID+ Patients*</td>
+								<td><span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total COVID+ Patients in the N3C Data Enclave" 
+										data-html="true" data-toggle="popover" 
+										data-placement="top" 
+										data-content="<strong>COVID+ Defined As:</strong>
+										<ul style='padding-inline-start: 15px;'>
+											<li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
+											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
+											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
+										</ul>" aria-describedby="tooltip">
+	 											<p style="margin-bottom:0px;">Total COVID+ Patients <i class="fas fa-info-circle"></i>
+	  											<span class="sr-only">in the N3C Data Enclave, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, 
+	  												a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 
+	  												(U07.1) was recorded
+	  											</span>
+	 											</p> 
+ 									</a>
+ 								</span></td>
 							</tr>
 						</table>
 					</div>
-					<div class="panel-heading kpi_num">${row.count}</div>
+					<div class="panel-heading kpi_num"><i class="fas fa-user-plus"></i> ${row.count}</div>
 				</div>
 			</div>
 		</div>
@@ -40,11 +58,22 @@
 					<div class="panel-body">
 						<table>
 							<tr>
-								<td><i class="fas fa-users"></i> # of Patients Taking Paxlovid</td>
+								<td><span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total # of Patients Taking Paxlovid in the Enclave" 
+										data-html="true" data-toggle="popover" 
+										data-placement="top" 
+										data-content="Count is <strong>current</strong> as of ${row.date} (Release Build ${row.build})" 
+										aria-describedby="tooltip">
+	 										<p style="margin-bottom:0px;">Total # of Patients Taking Paxlovid <i class="fas fa-info-circle"></i>
+	  											<span class="sr-only">in the N3C Data Enclave: count is <strong>current</strong> as of ${row.date} (Release Build ${row.build})</span>
+	 										</p> 
+ 									</a>
+ 								</span></td>
 							</tr>
 						</table>
 					</div>
-					<div class="panel-heading kpi_num">${row.count}</div>
+					<div class="panel-heading kpi_num"><i class="fas fa-users" aria-hidden="true"></i> ${row.count}</div>
 				<p style="text-align: center"><i>Count is current as of ${row.date} (Release Build ${row.build}).</i></p>
 				</div>
 			</div>
@@ -66,11 +95,22 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td><i class="fas fa-users"></i> Filtered Patients with Visits</td>
-						</tr>
+								<td><span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> # of Patients Taking Paxlovid w/Subsequent Visit in Current View" 
+										data-html="true" data-toggle="popover" 
+										data-placement="top" 
+										data-content="The data in this view is from an extract of patients prescribed Paxlovid who had subsequent visits within 27 days performed on July 22, 2022." 
+										aria-describedby="tooltip">
+	 										<p style="margin-bottom:0px;">Patients in View <i class="fas fa-info-circle"></i>
+	  											<span class="sr-only">: count is from data extracted July 22, 2022.</span>
+	 										</p> 
+ 									</a>
+ 								</span></td>
+							</tr>
 					</table>
 				</div>
-				<div id="${param.block}_patient_count_kpi" class="panel-heading kpi_num">${row.patient_count}</div>
+				<div id="${param.block}_patient_count_kpi" class="panel-heading kpi_num"><i class="fas fa-users" aria-hidden="true"></i> ${row.patient_count}</div>
 			<p style="text-align: center"><i>Count is from data extracted July 22, 2022.</i></p>
 			</div>
 		</div>
@@ -82,3 +122,14 @@
 		<p>All data shown occurred between the first day after the end of the 5-day course of Paxlovid (i.e., day 6 post-Paxlovid) and three weeks following (i.e., day 27 post-Paxlovid).</p>
 	</div>
 </div>
+
+
+<script>
+//popover stuff
+$(function () {
+	$('[data-toggle="popover"]').popover()
+});
+$(document).on("click", ".popover .close" , function(){
+    $(this).parents(".popover").popover('hide');
+});
+</script>
