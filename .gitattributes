@@ -873,6 +873,7 @@ WebContent/new_ph/timelineNHistogram.jsp -text
 WebContent/new_ph/tripleHistogram.jsp -text
 WebContent/new_ph/unavailable_panel.jsp -text
 WebContent/positive_timeline.jsp -text
+WebContent/pprl.jsp -text
 WebContent/public-health.jsp -text
 WebContent/publications.jsp -text
 WebContent/recover.jsp -text
