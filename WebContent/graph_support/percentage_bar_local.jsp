@@ -20,9 +20,6 @@ rect{
 
 function localPercentageBarChart(data, properties) {
 	
-	console.log(data);
-	console.log(properties);
-	
 	var filter_icon = " &#xf0b0";
 	
 	var margin = {top: 40, right: 100, bottom: 50, left: properties.barLabelWidth},

@@ -2,13 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<jsp:include page="../block2.jsp">
+<jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="mortality_2" />
 	<jsp:param name="block_header" value="Mortality: Delayed Mortality" />
+	<jsp:param name="folder" value="mortality" />
 	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="topic_title" value="Counts of Mortalities By 30-Day Hospital Release Intervals" />
+	<jsp:param name="related" value="true" />
+	<jsp:param name="related_topics" value="'smoking', 'hlh', 'long-covid'" />
 	
-	<jsp:param name="kpis" value="mortality/kpis.jsp" />
+	<jsp:param name="kpis" value="mortality/kpis_new.jsp" />
 	
 	<jsp:param name="delay_filter" value="true" />
 

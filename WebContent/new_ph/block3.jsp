@@ -84,9 +84,7 @@
 	text-align: left; 
 	font-size: 1.2rem;
 }
-.filter_button_container{
-	text-align:right;
-}
+
 
 @media (max-width: 768px) {
   .viz_options_dropdown, 
@@ -122,6 +120,172 @@
   }
 }
 
+
+
+/* change in dashboard style when all done */
+.viz-header-section {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+
+.panel{
+	margin-top: 30px;
+}
+
+#d3viz .kpi_section {
+    text-align: left;
+}
+
+.small-viz-panel{
+	padding: 10px;
+}
+
+/* filter stuff */
+#filter_checks .custom-select{
+	height: auto;
+}
+
+#filter_checks .btn-group{
+	width: 100%;
+}
+
+#filter_checks .multiselect{
+	overflow: visible;
+	white-space: normal;
+	word-wrap: break-word;
+}
+
+#filter_checks .multiselect-container.dropdown-menu.show{
+	width: 100%;
+}
+
+#related_dashboards .card{
+	cursor: pointer;
+}
+
+
+/* from demographics overview dash */
+.filter-section {
+    margin-top: 20px;
+}
+
+
+/* test of multiselect to list style */
+
+.multiselect-native-select{
+	width: 100%
+}
+.checkbox-list-container .checkbox-list > li > a {
+	display: block;
+	padding: 3px 0;
+}
+
+.checkbox-list-container .checkbox-list > .multiselect-option.active,
+.checkbox-list-container .checkbox-list > .multiselect-option.active:hover,
+.checkbox-list-container .checkbox-list > .multiselect-option.active:focus {
+	color: #333;
+}
+
+.checkbox-list-container .checkbox-list > .multiselect-option.disabled,
+.checkbox-list-container .checkbox-list > .multiselect-option.disabled:hover,
+.checkbox-list-container .checkbox-list > .multiselect-option.disabled:focus {
+	color: #777;
+}
+
+.checkbox-list-container .checkbox-list > .multiselect-option.disabled:hover,
+.checkbox-list-container .checkbox-list > .multiselect-option.disabled:focus {
+	text-decoration: none;
+	cursor: unset;
+	background-color: transparent;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+.checkbox-list-container .multiselect-container.checkbox-list {
+	position: static;
+}
+
+
+.filter_drop_button{
+	width: 100%;
+}
+
+.filter_drop_button:focus{
+	box-shadow: none;
+}
+
+#filter_checks .filter_drop_button:after {
+    content: <i class="towerIcon"></i>;
+    content: '\f068';
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    float: right;
+}
+
+#filter_checks .filter_drop_button.collapsed:after {
+    content: <i class="towerIcon"></i>;
+    content: '\f067';
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    float: right;
+}
+
+#filter_checks .card-header{
+	padding: 2px;
+}
+
+#filter_checks .panel-body{
+	border: 2px solid #eeeeee;
+    border-radius: 5px;
+}
+
+#filter_checks .card{
+	border: 0px;
+	background-color: unset;
+}
+
+#filter_checks .card-header{
+	background-color: unset;
+}
+
+#related_dashboards .related-img{
+	opacity: .7;
+}
+
+#related_dashboards .card-title{
+	color: #686767;
+}
+
+#related_dashboards .card-body{
+	padding: 10px;
+}
+
+#related_dashboards .card{
+	border: 0px;
+	box-shadow: 4px 4px 15px -2px rgb(197 222 255);
+    -webkit-box-shadow: 4px 4px 15px -2px rgb(197 222 255);
+    -moz-box-shadow: 4px 4px 15px -2px rgba(197,222,255,1);
+}
+
+.side-col h4{
+	font-weight: 300;
+}
+
+@media only screen and (max-width: 1400px) {
+	.side-col .card-body{
+		padding: 0px;
+	}
+}
+
+.loading{
+	text-align:center;
+}
+
 </style>
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
@@ -131,25 +295,147 @@
 	<div class="col-12">
 	
 		
-<!-- KPIs ----------------------------------------------------------------------------------------------------------- -->	
+<!-- KPIs & related dashboards ----------------------------------------------------------------------------------------------------------- -->	
 		<div class="row" style="margin-top: 30px;">
-			<div class="col col-12 col-md-2">
-				<c:if test="${empty param.severity_filter && empty param.age_filter && empty param.age_filter2 && empty param.age_filter4 && empty param.age_filter5 && empty param.age_filter6 && empty param.age_filter7 && empty param.age_filterpeds && empty param.age_filterpeds2 && empty param.race_filter && empty param.sex_filter && empty param.ethnicity_filter && empty param.observation_filter && empty param.symptom_filter && empty param.beforeafter_filter && empty param.result_filter && empty param.delay_filter && empty param.diagnosis_filter && empty param.medication_filter && empty param.medication_class_filter && empty param.medications_filter && empty param.reinfectionbin_filter}">
+			<div class="col col-12 col-lg-2 side-col">
+				<c:if test="${not empty param.toggle}">
+					<div id="mode" class="panel-heading filter-section">
+						<jsp:include page="barPieToggle_new.jsp">
+							<jsp:param name="block" value="${param.block}" />
+							<jsp:param name="viz_properties" value="${param.viz_properties}" />
+						</jsp:include>
+					</div>
+				</c:if>
+				
+				<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter}">
+					<div id="filter_checks" class="panel-primary filter-section">
+						<h4>Filters</h4>
+						<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
+    					<div id="${param.block}-block-kpi" class="kpi_section">
+							<!-- filters are enabled by passing in a boolean parameter -->
+							
+							<c:if test="${param.severity_filter}">
+								<jsp:include page="filters/severity.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filter}">
+								<jsp:include page="filters/age.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filter2}">
+								<jsp:include page="filters/age_2.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filter4}">
+								<jsp:include page="filters/age_4.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filter5}">
+								<jsp:include page="filters/age_5.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filter6}">
+								<jsp:include page="filters/age_6.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filter7}">
+								<jsp:include page="filters/age_7.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filter10}">
+								<jsp:include page="filters_new/age_10.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filterpeds}">
+								<jsp:include page="filters/age_peds.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filterpeds2}">
+								<jsp:include page="filters/age_peds2.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filterall}">
+								<jsp:include page="filters/age_all.jsp"/>
+							</c:if>
+							<c:if test="${param.age_filterall2}">
+								<jsp:include page="filters/age_all2.jsp"/>
+							</c:if>
+							<c:if test="${param.race_filter}">
+								<jsp:include page="filters_new/race.jsp"/>
+							</c:if>
+							<c:if test="${param.sex_filter}">
+								<jsp:include page="filters_new/sex.jsp"/>
+							</c:if>
+							<c:if test="${param.sex_filter3}">
+								<jsp:include page="filters/sex3.jsp"/>
+							</c:if>
+							<c:if test="${param.ethnicity_filter}">
+								<jsp:include page="filters_new/ethnicity.jsp"/>
+							</c:if>
+							<c:if test="${param.observation_filter}">
+								<jsp:include page="filters/observation.jsp"/>
+							</c:if>
+							<c:if test="${param.symptom_filter}">
+								<jsp:include page="filters/symptom.jsp"/>
+							</c:if>
+							<c:if test="${param.vaccinated_filter}">
+								<jsp:include page="filters/vaccinated.jsp"/>
+							</c:if>
+							<c:if test="${param.vaccinated_filter2}">
+								<jsp:include page="filters/vaccinated2.jsp"/>
+							</c:if>
+							<c:if test="${param.comorbidities_filter}">
+								<jsp:include page="filters/comorbidities.jsp"/>
+							</c:if>
+							<c:if test="${param.beforeafter_filter}">
+								<jsp:include page="filters/beforeafter.jsp"/>
+							</c:if>
+							<c:if test="${param.beforeaftersotrovimab_filter}">
+								<jsp:include page="filters/beforeafter_sotrovimab.jsp"/>
+							</c:if>
+							<c:if test="${param.result_filter}">
+								<jsp:include page="filters/result.jsp"/>
+							</c:if>
+							<c:if test="${param.delay_filter}">
+								<jsp:include page="filters_new/death_delay.jsp"/>
+							</c:if>
+							<c:if test="${param.diagnosis_filter}">
+								<jsp:include page="filters/diagnosis.jsp"/>
+							</c:if>
+							<c:if test="${param.comorbiditynumber_filter}">
+								<jsp:include page="filters/comorbidity_number.jsp"/>
+							</c:if>
+							<c:if test="${param.sotrovimabmeds_filter}">
+								<jsp:include page="filters/sotrovimab_meds.jsp"/>
+							</c:if>
+							<c:if test="${param.medication_filter}">
+								<jsp:include page="filters/medication.jsp"/>
+							</c:if>
+							<c:if test="${param.medication_class_filter}">
+								<jsp:include page="filters/medication_class.jsp"/>
+							</c:if>
+							<c:if test="${param.medications_filter}">
+								<jsp:include page="filters/medication_ts.jsp"/>
+							</c:if>
+							<c:if test="${param.smoking_filter}">
+								<jsp:include page="filters/smoking.jsp"/>
+							</c:if>
+							<c:if test="${param.region_filter}">
+								<jsp:include page="filters/region.jsp"/>
+							</c:if>
+							<c:if test="${param.reinfectionbin_filter}">
+								<jsp:include page="filters/reinfection_interval.jsp"/>
+							</c:if>
+						</div>
+					</div>
+				</c:if>
+				
+				<c:if test="${not empty param.related}">
 					<sql:query var="topics" dataSource="jdbc/N3CPublic">
 						select question,
 						iframe_info
 						from n3c_questions_new.roster 
-						where iframe_info in ('timeline', 'reinfection-time-series', 'medication-time-series')
+						where iframe_info in (${param.related_topics})
 						order by seqnum
 					</sql:query>
 		
-					<div class="dashboard-section" id="related_dashboards">
-						<h2>Related Dashboards</h2>
+					<div class="panel-heading filter-section" id="related_dashboards">
+						<h4>Related Dashboards</h4>
 						<div class="row">
 							<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 								<div class="col-12 d-flex">
 									<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-	   									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+	   									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top related-img" alt="...">
 	   									<div class="card-body card-body-links">
 	     									<p class="card-title">${row.question}</p>
 	   									</div>
@@ -161,7 +447,7 @@
 				</c:if>
 			</div>
 			
-			<div class="col col-12 col-md-10">
+			<div class="col col-12 col-lg-10">
 				<c:if test="${not empty param.kpis}">
 					<div class="row kpi-row">
 						<div id="${param.block}-block-kpi-kpi" class="col-12">
@@ -172,188 +458,9 @@
 					</div>
 				</c:if>
 	
-	
-				<div id="${param.block}-panel" class="col-12 col-md-12 mx-auto mb-4" >
-	
-	<!-- Old Alert for vaccine select true can remove when get rid of individual summary data? -------------------------- -->				
-					<div class="row viz_info_box no_clear alert alert-primary">
-						<span class="filter_info">
-						</span>
-						<button type="button" class="close ml-auto" aria-label="Close">
-	  						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					
-	<!-- Panel Selector ------------------------------------------------------------------------------------------------- -->
-					<div class="row">
-						<c:if test="${not empty param.severity_panel || not empty param.age_panel || not empty param.sex_panel || not empty param.ethnicity_panel || not empty param.sotrovimab_panel1 || not empty param.raceethncity_panel}">
-							<div class="mt-2 col-12 col-md-6">
-							<div class="viz_options_dropdown">
-								<span class="align-middle">Explore Topic By </span>
-								<select id="${param.block}toggle_viz_select">
-									<c:if test="${not empty param.severity_panel}">
-										<option value="severity">Severity</option>
-									</c:if>
-									<c:if test="${not empty param.age_panel}">
-										<option value="age">Age</option>
-									</c:if>
-									<c:if test="${not empty param.race_panel}">
-										<option value="race">Race</option>
-									</c:if>
-									<c:if test="${not empty param.sex_panel}">
-										<option value="sex">Sex</option>
-									</c:if>
-									<c:if test="${not empty param.ethnicity_panel}">
-										<option value="ethnicity">Ethnicity</option>
-									</c:if>
-									<c:if test="${not empty param.raceseverity_panel}">
-										<option value="raceseverity">Race & Severity</option>
-									</c:if>
-									<c:if test="${not empty param.comorbidity_panel}">
-										<option value="comorbidity">Comorbidities</option>
-									</c:if>
-									<c:if test="${not empty param.sotrovimab_panel1}">
-										<option value="sotrovimab1">Severity & Medications</option>
-									</c:if>
-									<c:if test="${not empty param.sotrovimab_panel2}">
-										<option value="sotrovimab2">Additional Medications</option>
-									</c:if>
-									<c:if test="${not empty param.raceethncity_panel}">
-										<option value="raceethnicity">Race & Ethnicity</option>
-									</c:if>
-									<c:if test="${not empty param.racesex_panel}">
-										<option value="racesex">Race & Sex</option>
-									</c:if>
-										<option hidden value="verylongtextverylongtext">verylongtextverylongtext</option>
-								</select>
-							</div>	
-							</div>
-						</c:if>
-	
-	<!-- Filters ------------------------------------------------------------------------------------------------- -->	
-						<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter}">
-							<div class="mt-2 ml-auto col-12 col-md-6 filter_button_container">
-								<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
-								<div class="dropdown" style="display: inline-block;">
-			  						<button data-bs-auto-close="false" class="btn dash-filter-btn dropdown-toggle mt-0 show_filt" type="button" id="${param.block}dropdownMenuButton" data-toggle="" aria-haspopup="true" aria-expanded="false">
-			    						Chart/Table Filters
-			  						</button>
-				  					<div id="${param.block}filter_options_drop" class="dropdown-menu dropdown-menu-right drop_filter" aria-labelledby="${param.block}dropdownMenuButton">
-				    					<div id="${param.block}-block-kpi" class="kpi_section">
-											<!-- filters are enabled by passing in a boolean parameter -->
-											
-											<c:if test="${param.severity_filter}">
-												<jsp:include page="filters/severity.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filter}">
-												<jsp:include page="filters/age.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filter2}">
-												<jsp:include page="filters/age_2.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filter4}">
-												<jsp:include page="filters/age_4.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filter5}">
-												<jsp:include page="filters/age_5.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filter6}">
-												<jsp:include page="filters/age_6.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filter7}">
-												<jsp:include page="filters/age_7.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filter10}">
-												<jsp:include page="filters/age_10.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filterpeds}">
-												<jsp:include page="filters/age_peds.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filterpeds2}">
-												<jsp:include page="filters/age_peds2.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filterall}">
-												<jsp:include page="filters/age_all.jsp"/>
-											</c:if>
-											<c:if test="${param.age_filterall2}">
-												<jsp:include page="filters/age_all2.jsp"/>
-											</c:if>
-											<c:if test="${param.race_filter}">
-												<jsp:include page="filters/race.jsp"/>
-											</c:if>
-											<c:if test="${param.sex_filter}">
-												<jsp:include page="filters/sex.jsp"/>
-											</c:if>
-											<c:if test="${param.sex_filter3}">
-												<jsp:include page="filters/sex3.jsp"/>
-											</c:if>
-											<c:if test="${param.ethnicity_filter}">
-												<jsp:include page="filters/ethnicity.jsp"/>
-											</c:if>
-											<c:if test="${param.observation_filter}">
-												<jsp:include page="filters/observation.jsp"/>
-											</c:if>
-											<c:if test="${param.symptom_filter}">
-												<jsp:include page="filters/symptom.jsp"/>
-											</c:if>
-											<c:if test="${param.vaccinated_filter}">
-												<jsp:include page="filters/vaccinated.jsp"/>
-											</c:if>
-											<c:if test="${param.vaccinated_filter2}">
-												<jsp:include page="filters/vaccinated2.jsp"/>
-											</c:if>
-											<c:if test="${param.comorbidities_filter}">
-												<jsp:include page="filters/comorbidities.jsp"/>
-											</c:if>
-											<c:if test="${param.beforeafter_filter}">
-												<jsp:include page="filters/beforeafter.jsp"/>
-											</c:if>
-											<c:if test="${param.beforeaftersotrovimab_filter}">
-												<jsp:include page="filters/beforeafter_sotrovimab.jsp"/>
-											</c:if>
-											<c:if test="${param.result_filter}">
-												<jsp:include page="filters/result.jsp"/>
-											</c:if>
-											<c:if test="${param.delay_filter}">
-												<jsp:include page="filters/death_delay.jsp"/>
-											</c:if>
-											<c:if test="${param.diagnosis_filter}">
-												<jsp:include page="filters/diagnosis.jsp"/>
-											</c:if>
-											<c:if test="${param.comorbiditynumber_filter}">
-												<jsp:include page="filters/comorbidity_number.jsp"/>
-											</c:if>
-											<c:if test="${param.sotrovimabmeds_filter}">
-												<jsp:include page="filters/sotrovimab_meds.jsp"/>
-											</c:if>
-											<c:if test="${param.medication_filter}">
-												<jsp:include page="filters/medication.jsp"/>
-											</c:if>
-											<c:if test="${param.medication_class_filter}">
-												<jsp:include page="filters/medication_class.jsp"/>
-											</c:if>
-											<c:if test="${param.medications_filter}">
-												<jsp:include page="filters/medication_ts.jsp"/>
-											</c:if>
-											<c:if test="${param.smoking_filter}">
-												<jsp:include page="filters/smoking.jsp"/>
-											</c:if>
-											<c:if test="${param.region_filter}">
-												<jsp:include page="filters/region.jsp"/>
-											</c:if>
-											<c:if test="${param.reinfectionbin_filter}">
-												<jsp:include page="filters/reinfection_interval.jsp"/>
-											</c:if>
-										</div>
-				  					</div>
-								</div>
-							</div>
-						</c:if>
-						
-					</div>
-					
-					
-	<!-- Panels ------------------------------------------------------------------------------------------------- -->	
+	<!-- Panels ------------------------------------------------------------------------------------------------- -->		
+				<div id="${param.block}-panel" class="col-12 col-md-12 mx-auto mb-4 panel" >
+
 					<c:if test="${not empty param.simple_panel}">
 						<div id="${param.block}-simple" class="" style="display: block;">
 							<c:url value="${param.simple_panel}" var="url">
@@ -371,147 +478,161 @@
 						</div>
 					</c:if>
 					
-	<!-- TODO: Need to test something with a severity panel to make sure this works -->
-					<c:if test="${not empty param.severity_panel}">
-						<c:url value="${param.severity_panel}" var="severity_url">
-	 							<c:param name="panel" value="${param.severity_panel}" />
-	 							<c:param name="block" value="${param.block}" />
-	 							<c:param name="datatable_div" value="${param.datatable_div}" />
-	 							<c:if test="${not empty param.topic_description}">
-	 								<c:param name="topic_description" value="${param.topic_description}" />
-	 							</c:if>
-	 							<c:if test="${not empty param.topic_title}">
-	 								<c:param name="topic_title" value="${param.topic_title}" />
-	 							</c:if>
-	 							<c:if test="${not empty param.severity_labelwidth}">
-	 								<c:param name="label_width" value="${param.severity_labelwidth}" />
-	 							</c:if>
-	 							<c:if test="${not empty param.severity_height}">
-	 								<c:param name="viz_height" value="${param.severity_height}" />
-	 							</c:if>
-						</c:url>
-						<div id="${param.block}-severity" class="" style="display: none;" src="<c:out value='${severity_url}'/>"></div>
-					</c:if>
-					
-					<c:if test="${not empty param.age_panel}">
-						<c:url value="${param.age_panel}" var="age_url">
-	  						<c:param name="panel" value="${param.age_panel}" />
-	  						<c:param name="block" value="${param.block}" />
-	  						<c:param name="datatable_div" value="${param.datatable_div}" />
-	  						<c:if test="${not empty param.symptom}">
-	  							<c:param name="symptom" value="${param.symptom}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.age_labelwidth}">
-	  							<c:param name="labelwidth" value="${param.age_labelwidth}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.age_height}">
-	  							<c:param name="viz_height" value="${param.age_height}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_description}">
-	  							<c:param name="topic_description" value="${param.topic_description}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_disease}">
-	  							<c:param name="topic_disease" value="${param.topic_disease}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title}">
-	  							<c:param name="topic_title" value="${param.topic_title}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title2}">
-	  							<c:param name="topic_title2" value="${param.topic_title2}" />
-	  						</c:if>
-						</c:url>
-						<div id="${param.block}-age" class="" style="display: none;" src="<c:out value='${age_url}'/>"></div>
-					</c:if>
-					
-					<c:if test="${not empty param.race_panel}">
-						<c:url value="${param.race_panel}" var="race_url">
-	  						<c:param name="panel" value="${param.race_panel}" />
-	  						<c:param name="block" value="${param.block}" />
-	  						<c:param name="datatable_div" value="${param.datatable_div}" />
-	  						<c:if test="${not empty param.symptom}">
-	  							<c:param name="symptom" value="${param.symptom}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.race_labelwidth}">
-	  							<c:param name="labelwidth" value="${param.race_labelwidth}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.race_height}">
-	  							<c:param name="viz_height" value="${param.race_height}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_description}">
-	  							<c:param name="topic_description" value="${param.topic_description}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_disease}">
-	  							<c:param name="topic_disease" value="${param.topic_disease}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title}">
-	  							<c:param name="topic_title" value="${param.topic_title}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title2}">
-	  							<c:param name="topic_title2" value="${param.topic_title2}" />
-	  						</c:if>
-						</c:url>
-						<div id="${param.block}-race" style="display: none;" src="<c:out value='${race_url}'/>"></div>
-					</c:if>
-					
-					<c:if test="${not empty param.sex_panel}">
-						<c:url value="${param.sex_panel}" var="sex_url">
-	  						<c:param name="panel" value="${param.sex_panel}" />
-	  						<c:param name="block" value="${param.block}" />
-	  						<c:param name="datatable_div" value="${param.datatable_div}" />
-	  						<c:if test="${not empty param.symptom}">
-	  							<c:param name="symptom" value="${param.symptom}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.sex_labelwidth}">
-	  							<c:param name="labelwidth" value="${param.sex_labelwidth}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.sex_height}">
-	  							<c:param name="viz_height" value="${param.sex_height}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_description}">
-	  							<c:param name="topic_description" value="${param.topic_description}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_disease}">
-	  							<c:param name="topic_disease" value="${param.topic_disease}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title}">
-	  							<c:param name="topic_title" value="${param.topic_title}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title2}">
-	  							<c:param name="topic_title2" value="${param.topic_title2}" />
-	  						</c:if>
-						</c:url>
-						<div id="${param.block}-sex" style="display: none;" src="<c:out value='${sex_url}'/>"></div>
-					</c:if>
-					
-					<c:if test="${not empty param.ethnicity_panel}">
-						<c:url value="${param.ethnicity_panel}" var="ethnicity_url">
-	  						<c:param name="panel" value="${param.ethnicity_panel}" />
-	  						<c:param name="block" value="${param.block}" />
-	  						<c:param name="datatable_div" value="${param.datatable_div}" />
-	  						<c:if test="${not empty param.symptom}">
-	  							<c:param name="symptom" value="${param.symptom}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.ethnicity_labelwidth}">
-	  							<c:param name="labelwidth" value="${param.ethnicity_labelwidth}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.ethnicity_height}">
-	  							<c:param name="viz_height" value="${param.ethnicity_height}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_description}">
-	  							<c:param name="topic_description" value="${param.topic_description}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_disease}">
-	  							<c:param name="topic_disease" value="${param.topic_disease}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title}">
-	  							<c:param name="topic_title" value="${param.topic_title}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title2}">
-	  							<c:param name="topic_title2" value="${param.topic_title2}" />
-	  						</c:if>
-						</c:url>
-						<div id="${param.block}-ethnicity" style="display: none;" src="<c:out value='${ethnicity_url}'/>"></div>
-					</c:if>
+					<div class="row">
+						<c:if test="${not empty param.severity_panel}">
+							<c:url value="${param.severity_panel}" var="severity_url">
+		 							<c:param name="panel" value="${param.severity_panel}" />
+		 							<c:param name="block" value="${param.block}" />
+		 							<c:param name="datatable_div" value="${param.datatable_div}" />
+		 							<c:if test="${not empty param.topic_description}">
+		 								<c:param name="topic_description" value="${param.topic_description}" />
+		 							</c:if>
+		 							<c:if test="${not empty param.topic_title}">
+		 								<c:param name="topic_title" value="${param.topic_title}" />
+		 							</c:if>
+		 							<c:if test="${not empty param.severity_labelwidth}">
+		 								<c:param name="label_width" value="${param.severity_labelwidth}" />
+		 							</c:if>
+		 							<c:if test="${not empty param.severity_height}">
+		 								<c:param name="viz_height" value="${param.severity_height}" />
+		 							</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-severity" class="" src="<c:out value='${severity_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.age_panel}">
+							<c:url value="${param.age_panel}" var="age_url">
+		  						<c:param name="panel" value="${param.age_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.symptom}">
+		  							<c:param name="symptom" value="${param.symptom}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.age_labelwidth}">
+		  							<c:param name="labelwidth" value="${param.age_labelwidth}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.age_height}">
+		  							<c:param name="viz_height" value="${param.age_height}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_disease}">
+		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title2}">
+		  							<c:param name="topic_title2" value="${param.topic_title2}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-age" class="" src="<c:out value='${age_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.race_panel}">
+							<c:url value="${param.race_panel}" var="race_url">
+		  						<c:param name="panel" value="${param.race_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.symptom}">
+		  							<c:param name="symptom" value="${param.symptom}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.race_labelwidth}">
+		  							<c:param name="labelwidth" value="${param.race_labelwidth}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.race_height}">
+		  							<c:param name="viz_height" value="${param.race_height}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_disease}">
+		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title2}">
+		  							<c:param name="topic_title2" value="${param.topic_title2}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-race" src="<c:out value='${race_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.sex_panel}">
+							<c:url value="${param.sex_panel}" var="sex_url">
+		  						<c:param name="panel" value="${param.sex_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.symptom}">
+		  							<c:param name="symptom" value="${param.symptom}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.sex_labelwidth}">
+		  							<c:param name="labelwidth" value="${param.sex_labelwidth}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.sex_height}">
+		  							<c:param name="viz_height" value="${param.sex_height}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_disease}">
+		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title2}">
+		  							<c:param name="topic_title2" value="${param.topic_title2}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-sex" src="<c:out value='${sex_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.ethnicity_panel}">
+							<c:url value="${param.ethnicity_panel}" var="ethnicity_url">
+		  						<c:param name="panel" value="${param.ethnicity_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.symptom}">
+		  							<c:param name="symptom" value="${param.symptom}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.ethnicity_labelwidth}">
+		  							<c:param name="labelwidth" value="${param.ethnicity_labelwidth}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.ethnicity_height}">
+		  							<c:param name="viz_height" value="${param.ethnicity_height}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_disease}">
+		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title2}">
+		  							<c:param name="topic_title2" value="${param.topic_title2}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-ethnicity" src="<c:out value='${ethnicity_url}'/>"></div>
+							</div>
+						</c:if>
+					</div>
+					<div class="row">
+						<c:if test="${not empty param.topic_description}">
+							<div id="viz_caption">
+								<jsp:include page="${param.folder}/secondary_text/${param.topic_description}.jsp"/>
+							</div>
+						</c:if>
+					</div>
 	
 	<!-- This panel is only on adult summary/all summary/ and pediatrics summary. Could remove if not using anymore -->				
 					<c:if test="${not empty param.raceseverity_panel}">
@@ -613,17 +734,7 @@
 </div>			
 
 <script>
-
 	$(document).ready(function() {
-	    $('#${param.block}toggle_viz_select').select2({
-	    	minimumResultsForSearch: Infinity,
-    		templateResult: function(option) {
-    		      if(option.element && (option.element).hasAttribute('hidden')){
-    		         return null;
-    		      }
-    		      return option.text;
-    		   }
-	    });
 	    
 	    setTimeout(function() {
 			if ('${param.block}' === 'peds_summary_2' || '${param.block}' === 'adult_summary_2' || '${param.block}' === 'all_summary_2') {
@@ -642,57 +753,9 @@
 				sliderTime.value(new Date('Feb 1 2022').valueOf());
 			};
 	    }, 1000);
-	})
-	
-	$('#${param.block}dropdownMenuButton').on('click', function() {
-		$("#${param.block}filter_options_drop").toggleClass('show');
-		$(this).toggleClass('show_filt hide_filt');
-	});
-	
-
-	function ${param.block}_viz_constrain(element, elementParent) {
-		console.log("element",element);
-		console.log("elementParent",elementParent);
-		console.log("target","#${param.block}-"+elementParent.toLowerCase()+"-select");
-		var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
-        var selected = [];
-        
-        $(options).each(function(){
-            selected.push($(this).val());
-        });
-	        
-        console.log("selected", selected);
-		if (selected[0].includes( element.secondary_name)){
-			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('deselect', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
-		} else {
-			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('select', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
-		}
-	}
-
-	function ${param.block}_constrain(filter, selection) {
-		var selected = selection;
-		if (selected != undefined && selected.length > 0){
-			var values = selected.split("|");
-			var text = "";
-			for (let i = 0; i < values.length; ++i) {
-				var clean_text = values[i].replace("+", "\\+");
-
-				if (i < (values.length-1)){
-		    		search = "^" + clean_text + "$|";
-				} else {
-					search = "^" + clean_text + "$";
-				}
-		    	text = text.concat(search);
-			}
-			selected = text;
-		}else{
-			selected = '';
-		}
-		${param.block}_constrain_table(filter, selected);
-	}
-
-
-	$(document).ready(function() {   
+	    
+	    
+	 // initiate the filters /////////////////////////////////////////
 		
 		$('#${param.block}-severity-select').multiselect({	
 			onChange: function(option, checked, select) {
@@ -707,6 +770,13 @@
             }
 		});
 		$('#${param.block}-age-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-age-select');
 		        var selected = [];
@@ -718,7 +788,16 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
+		
+		
 		$('#${param.block}-race-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-race-select');
 		        var selected = [];
@@ -730,7 +809,14 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
-		$('#${param.block}-sex-select').multiselect({	
+		$('#${param.block}-sex-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-sex-select');
 		        var selected = [];
@@ -744,6 +830,13 @@
             }
 		});
 		$('#${param.block}-ethnicity-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-ethnicity-select');
 		        var selected = [];
@@ -835,6 +928,13 @@
 		});
 	
 		$('#${param.block}-delay-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			maxHeight: 300,
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-delay-select');
@@ -977,7 +1077,7 @@
 		});
 	
 		var mut = new MutationObserver(function(mutations, mut){
-			if($('#${param.block}-block-kpi').find('.multiselect.dropdown-toggle[title!="None selected"]').length !== 0){
+			if($('#${param.block}-block-kpi').find('.dropdown-item.active').length !== 0){
 				$('#${param.block}_btn_clear').removeClass("no_clear");
 				$('#${param.block}_btn_clear').addClass("show_clear");
 			} else if ($('#${param.datatable_div}-table').DataTable().search().length > 0){
@@ -988,15 +1088,66 @@
 				$('#${param.block}_btn_clear').addClass("no_clear");
 			}
 		});
-		$( "#${param.block}-block-kpi .multiselect").each(function() {
+		$( "#${param.block}-block-kpi .checkbox-list button").each(function() {
 			mut.observe(this,{
 				'attributes': true,
-				attributeFilter: ['title']
+				attributeFilter: ['class']
 			});
-		});
+		}); 
 	
-		
 	});
+	// end of doc ready
+	
+	
+	
+	
+// FILTER FUNCTIONS /////////////////////////////
+	function deselect(checkid){
+		$('#' + checkid + ' input[type="checkbox"]:checked').prop('checked',false).trigger('change');
+	};
+		
+	function selectall(checkid){
+		$('#' + checkid + ' input[type="checkbox"]').prop('checked',true).trigger('change');
+	};
+
+	
+	
+	function ${param.block}_viz_constrain(element, elementParent) {
+		var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
+        var selected = [];
+        
+        $(options).each(function(){
+            selected.push($(this).val());
+        });
+	       
+		if (selected[0].includes( element.secondary_name)){
+			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('deselect', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
+		} else {
+			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('select', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
+		}
+	}
+
+	function ${param.block}_constrain(filter, selection) {
+		var selected = selection;
+		if (selected != undefined && selected.length > 0){
+			var values = selected.split("|");
+			var text = "";
+			for (let i = 0; i < values.length; ++i) {
+				var clean_text = values[i].replace("+", "\\+");
+
+				if (i < (values.length-1)){
+		    		search = "^" + clean_text + "$|";
+				} else {
+					search = "^" + clean_text + "$";
+				}
+		    	text = text.concat(search);
+			}
+			selected = text;
+		}else{
+			selected = '';
+		}
+		${param.block}_constrain_table(filter, selected);
+	}
 
 	function ${param.block}_filter_clear() {
 		
@@ -1099,6 +1250,11 @@
 	    ${param.block}_refreshHistograms();
 	}
 	
+	
+	
+	
+	
+	// initialize all possible data arrays
 	var ${param.block}_AgeArray = new Array();
 	var ${param.block}_RaceArray = new Array();
 	var ${param.block}_EthnicityArray = new Array();
@@ -1305,145 +1461,14 @@
 	    }
 	  }
 	
-	function ${param.block}_toggle(selection) {
-		if (selection == "severity") {
-			$("#${param.block}-severity").css('display', 'block');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
+	function ${param.block}_panel(selection) {
+		for (i in selection){
+			${param.block}_load(selection[i]);
 		}
-		if (selection == "age") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'block');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		if (selection == "race") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'block');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		if (selection == "sex") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'block');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		if (selection == "ethnicity") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'block');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		if (selection == "raceseverity") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'block');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		if (selection == "comorbidity") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'block');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		if (selection == "raceethnicity") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'block');
-			$("#${param.block}-racesex").css('display', 'none');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		if (selection == "racesex") {
-			$("#${param.block}-severity").css('display', 'none');
-			$("#${param.block}-age").css('display', 'none');
-			$("#${param.block}-race").css('display', 'none');
-			$("#${param.block}-sex").css('display', 'none');
-			$("#${param.block}-ethnicity").css('display', 'none');
-			$("#${param.block}-raceseverity").css('display', 'none');
-			$("#${param.block}-comorbidity").css('display', 'none');
-			$("#${param.block}-raceethnicity").css('display', 'none');
-			$("#${param.block}-racesex").css('display', 'block');
-//			cache_browser_history("admin", "admin/institutions")
-		}
-		
-		if (selection == "sotrovimab1") {
-			$("#${param.block}-sotrovimab2").css('display', 'none');
-			$("#${param.block}-sotrovimab1").css('display', 'block');
-		}
-		
-		if (selection == "sotrovimab2") {
-			$("#${param.block}-sotrovimab1").css('display', 'none');
-			$("#${param.block}-sotrovimab2").css('display', 'block');
-		}
-		
-		${param.block}_load(selection);
 	}
-	
-	$(document).ready(function () {
-		  $('#${param.block}toggle_viz_select').change(function () {
-			${param.block}_toggle($(this).val());
-			// wait for a little bit for new page to load so dropdown doesn't throw error about function not defined
-			function stateChange(newState) {
-			    setTimeout(function () {
-			        	${param.block}_refreshHistograms('just_viz');
-			    }, 50);
-			}
-			stateChange();
-		  })
-		  
-	});
+
 
 	// manage incremental loading of panels on inner nav bar clicks
-	//
 	var ${param.block}_crumbs = [];
 	
 	function ${param.block}_load(selection) {
@@ -1840,27 +1865,3 @@
 	<jsp:param name="primary" value="medication"/>
 	<jsp:param name="count" value="count"/>
 </jsp:include>
-
-<%-- <jsp:include page="doubleHistogram.jsp"> --%>
-<%-- 	<jsp:param name="block" value="${param.block}"/> --%>
-<%-- 	<jsp:param name="datatable_div" value="${param.datatable_div}"/> --%>
-<%-- 	<jsp:param name="array" value="AgeStatusArray"/> --%>
-<%-- 	<jsp:param name="primary" value="age"/> --%>
-<%-- 	<jsp:param name="secondary" value="smoking_status"/> --%>
-<%-- </jsp:include> --%>
-
-<%-- <jsp:include page="doubleHistogram.jsp"> --%>
-<%-- 	<jsp:param name="block" value="${param.block}"/> --%>
-<%-- 	<jsp:param name="datatable_div" value="${param.datatable_div}"/> --%>
-<%-- 	<jsp:param name="array" value="RaceStatusArray"/> --%>
-<%-- 	<jsp:param name="primary" value="race"/> --%>
-<%-- 	<jsp:param name="secondary" value="smoking_status"/> --%>
-<%-- </jsp:include> --%>
-
-<%-- <jsp:include page="doubleHistogram.jsp"> --%>
-<%-- 	<jsp:param name="block" value="${param.block}"/> --%>
-<%-- 	<jsp:param name="datatable_div" value="${param.datatable_div}"/> --%>
-<%-- 	<jsp:param name="array" value="SexStatusArray"/> --%>
-<%-- 	<jsp:param name="primary" value="sex"/> --%>
-<%-- 	<jsp:param name="secondary" value="smoking_status"/> --%>
-<%-- </jsp:include> --%>

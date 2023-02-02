@@ -21,14 +21,6 @@
 	</div>
 </div>
 
-
-
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../mortality/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
 <script>
 
 function ${param.block}_delay_refresh() {

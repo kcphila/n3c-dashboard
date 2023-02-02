@@ -8,11 +8,14 @@
 </script>
 
 <jsp:include page="../graph_support/pieChart_local.jsp"/>
+<jsp:include page="../graph_support/pieChart_local_new.jsp"/>
 <jsp:include page="../graph_support/percentage_bar_local.jsp"/>
+<jsp:include page="../graph_support/percentage_bar_local_new.jsp"/>
 <!-- this one divides by all covid+ patients -->
 <jsp:include page="../graph_support/percentage_bar_local2.jsp"/>
 <jsp:include page="../graph_support/horizontalBarChart_local.jsp"/>
 <jsp:include page="../graph_support/horizontalBarChart_local2.jsp"/>
+<jsp:include page="../graph_support/horizontalBarChart_local_new.jsp"/>
 <jsp:include page="../graph_support/horizontalStackedBarChart_local.jsp"/>
 <jsp:include page="../graph_support/horizontalStackedBarChart_local_percent.jsp"/>
 <jsp:include page="../graph_support/time_line_2_column_local2.jsp"/>

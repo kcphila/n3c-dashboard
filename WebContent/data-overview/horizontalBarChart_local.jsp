@@ -33,9 +33,7 @@ function localBarChart(data, domName, barLabelWidth, colorgroup) {
 			}
 		});
 	});
-// 	console.log(domName);
-// 	console.log(d3.select(domName));
-// 	console.log(d3.select(domName).node());
+
 	myObserver.observe(d3.select(domName).node());
 
 	draw();

@@ -3,15 +3,6 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 
-<jsp:include page="../barPieToggle.jsp">
-	<jsp:param name="block" value="${param.block}" />
-	<jsp:param name="dimension" value="race" />
-	<jsp:param name="dimension_name" value="Race" />
-	<jsp:param name="dimension_range" value="race_range" />
-	<jsp:param name="dimension_legend" value="race_legend" />
-	<jsp:param name="dimension_minheight" value="300" />
-</jsp:include>
-
 <div class="row">
 	<div class="col-12 viz-header-section">
 		<h2 id="race-title" class="viz-title"></h2>
@@ -20,29 +11,22 @@
 				<i class="fas fa-download"></i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="save_viz_pass('.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="save_viz_pass('.jpg');">Save as PNG</a>
-				<a class="dropdown-item" onclick="save_viz_pass('.jpg');">Save as SVG</a>
+				<a class="dropdown-item" onclick="save_viz_pass_race('.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="save_viz_pass_race('.jpg');">Save as PNG</a>
+				<a class="dropdown-item" onclick="save_viz_pass_race('.jpg');">Save as SVG</a>
 			</div>
 		</div>
 	</div>
 	<div class="col-12">
-		<div id="${param.block}_race_viz" class="col-12 dash_viz"></div>
+		<div id="${param.block}_race_viz" class="dash_viz"></div>
 	</div>
 </div>
 
 
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../mortality/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
-
 <script>
 //this is to change the title of the download based on which visualization mode is selected
-function save_viz_pass(extension){
-	var id = $("#${param.block}-race-mode").find('.text-primary').attr('id');
+function save_viz_pass_race(extension){
+	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
@@ -59,7 +43,7 @@ function save_viz_pass(extension){
 };
 
 // set inital title based on load mode
-var title_id = $("#${param.block}-race-mode").find('.text-primary').attr('id');
+var title_id = $("#${param.block}-mode").find('.text-primary').attr('id');
 var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
@@ -75,15 +59,15 @@ if (title_mode =='pie'){
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-race-mode-barpercent').on('mouseup', function() {
+$('#${param.block}-mode-barpercent').on('mouseup', function() {
 	var title = "Race Percentages of ${param.topic_title}";
 	$("#race-title").text(title);
 });
-$('#${param.block}-race-mode-bar').on('mouseup', function() {
+$('#${param.block}-mode-bar').on('mouseup', function() {
 	var title = "Counts of ${param.topic_title} by Race";
 	$("#race-title").text(title);
 });
-$('#${param.block}-race-mode-pie').on('mouseup', function() {
+$('#${param.block}-mode-pie').on('mouseup', function() {
 	var title = "Race Percentages of ${param.topic_title}";
 	$("#race-title").text(title);
 });
@@ -91,7 +75,7 @@ $('#${param.block}-race-mode-pie').on('mouseup', function() {
 function ${param.block}_race_refresh() {
 	var properties = {
 			domName: '#${param.block}_race_viz',
-			barLabelWidth: 120,
+			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
 			colorscale: race_range,
@@ -100,18 +84,18 @@ function ${param.block}_race_refresh() {
 			donutRatio: 0.5
 		}
 
-	var id = $("#${param.block}-race-mode").find('.text-primary').attr('id');
+	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
 	d3.select("#${param.block}_race_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart(${param.block}_RaceArray, properties);
+		localPieChart_new(${param.block}_RaceArray, properties);
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_RaceArray, properties);
+		localHorizontalBarChart_new(${param.block}_RaceArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_RaceArray, properties);
+		localPercentageBarChart_new(${param.block}_RaceArray, properties);
 	};
 }
 

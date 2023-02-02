@@ -118,6 +118,7 @@ WebContent/graph_support/hive.jsp -text
 WebContent/graph_support/hive_local.jsp -text
 WebContent/graph_support/horizontalBarChart_local.jsp -text
 WebContent/graph_support/horizontalBarChart_local2.jsp -text
+WebContent/graph_support/horizontalBarChart_local_new.jsp -text
 WebContent/graph_support/horizontalBarChart_percentIndicator_local.jsp -text
 WebContent/graph_support/horizontalGroupedStackedBarChart_local.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local.jsp -text
@@ -125,7 +126,9 @@ WebContent/graph_support/horizontalStackedBarChart_local_percent.jsp -text
 WebContent/graph_support/mortalityBarChart_local.jsp -text
 WebContent/graph_support/percentage_bar_local.jsp -text
 WebContent/graph_support/percentage_bar_local2.jsp -text
+WebContent/graph_support/percentage_bar_local_new.jsp -text
 WebContent/graph_support/pieChart_local.jsp -text
+WebContent/graph_support/pieChart_local_new.jsp -text
 WebContent/graph_support/radialStackedBarChart.jsp -text
 WebContent/graph_support/radial_data.csv -text
 WebContent/graph_support/region_map_local.jsp -text
@@ -300,6 +303,7 @@ WebContent/new_ph/all_summary/unknown_vaccination_table.jsp -text
 WebContent/new_ph/all_summary/vaccinated_comorbidity_table.jsp -text
 WebContent/new_ph/all_summary/vaccinated_table.jsp -text
 WebContent/new_ph/barPieToggle.jsp -text
+WebContent/new_ph/barPieToggle_new.jsp -text
 WebContent/new_ph/block.jsp -text
 WebContent/new_ph/block2.jsp -text
 WebContent/new_ph/block3.jsp -text
@@ -401,6 +405,11 @@ WebContent/new_ph/filters/sotrovimab_meds.jsp -text
 WebContent/new_ph/filters/symptom.jsp -text
 WebContent/new_ph/filters/vaccinated.jsp -text
 WebContent/new_ph/filters/vaccinated2.jsp -text
+WebContent/new_ph/filters_new/age_10.jsp -text
+WebContent/new_ph/filters_new/death_delay.jsp -text
+WebContent/new_ph/filters_new/ethnicity.jsp -text
+WebContent/new_ph/filters_new/race.jsp -text
+WebContent/new_ph/filters_new/sex.jsp -text
 WebContent/new_ph/frame.jsp -text
 WebContent/new_ph/groupedbarpercentToggle.jsp -text
 WebContent/new_ph/hlh/ageSex.jsp -text
@@ -518,6 +527,9 @@ WebContent/new_ph/kpis/block3_kpis/covid_first_diagnosis.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_positive.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_reinfections.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_subsequent_test.jsp -text
+WebContent/new_ph/kpis/block3_kpis/mortality.jsp -text
+WebContent/new_ph/kpis/block3_kpis/mortality2.jsp -text
+WebContent/new_ph/kpis/block3_kpis/mortality3.jsp -text
 WebContent/new_ph/kpis/block3_kpis/reinfection_30day.jsp -text
 WebContent/new_ph/kpis/covid_first_diagnosis.jsp -text
 WebContent/new_ph/kpis/covid_positive.jsp -text
@@ -679,6 +691,7 @@ WebContent/new_ph/mortality/feeds/delayed.jsp -text
 WebContent/new_ph/mortality/feeds/hospitalization.jsp -text
 WebContent/new_ph/mortality/hospitalization_table.jsp -text
 WebContent/new_ph/mortality/kpis.jsp -text
+WebContent/new_ph/mortality/kpis_new.jsp -text
 WebContent/new_ph/mortality/mortality_1.jsp -text
 WebContent/new_ph/mortality/mortality_2.jsp -text
 WebContent/new_ph/mortality/panel.jsp -text

@@ -1,6 +1,8 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <script>
 
+
+// kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	
@@ -57,6 +59,8 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 
 var ${param.block}_datatable = null;
 
+
+// datatable setup ////////////////////////
 $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 		
 	var json = $.parseJSON(JSON.stringify(data));
@@ -147,7 +151,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	snapshot: null,
        	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
-       	  },
+       	 	${param.block}_refreshHistograms();
+       	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
