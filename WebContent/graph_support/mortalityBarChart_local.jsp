@@ -118,8 +118,8 @@ function mortalityVerticalBarChart(data, properties) {
 			    	  }
 			      })
 			      //.attr("width", x.bandwidth())
-			      .attr("y", function(d) { return y(d.count); })
-			      .attr("height", function(d) { return height - y(d.count); })
+			      .attr("y", height)
+			      .attr("height", 0)
 			      .on("click", function(d, i){
 			    	  var format = {};
 			    	  format['secondary_name'] = d.element;
@@ -144,6 +144,11 @@ function mortalityVerticalBarChart(data, properties) {
 					.on('mouseout', function(d){
 				 		d3.selectAll(".tooltip").remove(); 
 					});
+			  
+			  svg.selectAll('rect')
+				.transition().duration(1000)
+				.attr("y", function(d) { return y(d.count); })
+				.attr('height', function(d) { return height - y(d.count); });
 
 
 			  // add the x Axis
