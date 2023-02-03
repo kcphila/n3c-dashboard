@@ -31,6 +31,10 @@ function mortalityVerticalBarChart(data, properties) {
 			barLabelWidth = Math.max(barLabelWidth,node.element.length * 8);
 		});
 		
+		var original = d3.select(domName).node();
+		var newnode = original.cloneNode();
+	    original.parentNode.replaceChild(newnode, original);
+	    
 		var myObserver = new ResizeObserver(entries => {
 			entries.forEach(entry => {
 				var newWidth = Math.floor(entry.contentRect.width);
