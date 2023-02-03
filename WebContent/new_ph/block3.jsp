@@ -123,6 +123,20 @@
 
 
 /* change in dashboard style when all done */
+.multiselect-container .multiselect-all:focus, .multiselect-container .multiselect-all:hover, .multiselect-container .multiselect-group:focus, .multiselect-container .multiselect-group:hover, .multiselect-container .multiselect-option:focus, .multiselect-container .multiselect-option:hover {
+    background-color: #edf6ff!important;
+}
+
+.multiselect-container .multiselect-all.active:not(.multiselect-active-item-fallback), .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):active, .multiselect-container .multiselect-group.active:not(.multiselect-active-item-fallback), .multiselect-container .multiselect-group:not(.multiselect-active-item-fallback):active, .multiselect-container .multiselect-option.active:not(.multiselect-active-item-fallback), .multiselect-container .multiselect-option:not(.multiselect-active-item-fallback):active {
+    background-color: #edf6ff;
+    color: #000;
+}
+
+.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: #edf6ff;
+}
+
 .viz-header-section {
     margin-top: 0px;
     margin-bottom: 10px;

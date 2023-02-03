@@ -1,3 +1,14 @@
+<style>
+div.bar.tooltip {
+	position: absolute;
+	background-color: white;
+  	opacity: 0.8;
+  	height: auto;
+	padding: 1px;
+  	pointer-events: none;
+}
+</style>
+
 <script>
 
 function mortalityVerticalBarChart(data, properties) {
@@ -89,6 +100,7 @@ function mortalityVerticalBarChart(data, properties) {
 			    .enter().append("rect")
 			      .attr("class", "bar")
 			      .attr("fill", "url(#mainGradient)")
+			      .attr('rx', 2)
 			      .attr("x", function(d) { 
 			    	  var barwidth = x.bandwidth();
 			    	  if (barwidth > barwidthmax){
@@ -113,35 +125,26 @@ function mortalityVerticalBarChart(data, properties) {
 			    	  format['secondary_name'] = d.element;
 					 window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, 'delay'); 
 				  })
-			      .on("mouseover", function() { tooltip.style("display", null); })
-				  .on("mouseout", function() { tooltip.style("display", "none"); })
-				  .on("mousemove", function(d) {
-				  	var yPosition = d3.mouse(document.getElementById("svg_g"))[1];
-				    var xPosition = d3.mouse(document.getElementById("svg_g"))[0];
-				    var count2 = d.count;
-				    var range = d.element;
-				     	
-				    tooltip.selectAll("tspan").remove();
-				    tooltip
-				    	.attr("transform", "translate(" + xPosition + "," +  yPosition + ")")
-				    	.selectAll("text")
-				     	.append("tspan")
-				     	.text(range)
-				     	.attr('fill', 'black')
-				    	.attr('x', 30)
-		  				.attr('dy', 20)
-			     		.append("tspan")
-			     		.text(function (d){
-			     			if (count2 == '<20'){
-			     				return count2;
-			     			}else{
-			     				return parseInt(count2).toLocaleString();
-			     			}
-			     		})
-			     		.attr('fill', 'black')
-			     		.attr('x', 30)
-		  				.attr('dy', 25);
-				   	 });
+				  .on('mousemove', function(d){
+					  var text = "";
+						if (d.count == '<20'){
+		     				text= d.count;
+		     			}else{
+		     				text = parseInt(d.count).toLocaleString();
+		     			};
+		     			
+						d3.selectAll(".tooltip").remove(); 
+						d3.select("body").append("div")
+							.attr("class", "bar tooltip")
+							.style("opacity", 0.8)
+							.style("left", (d3.event.pageX + 5) + "px")
+							.style("top", (d3.event.pageY - 28) + "px")
+							.html("<strong>" + d.element + "</strong><br><strong>Count:</strong> " + text);
+					})
+					.on('mouseout', function(d){
+				 		d3.selectAll(".tooltip").remove(); 
+					});
+
 
 			  // add the x Axis
 			  svg.append("g")
