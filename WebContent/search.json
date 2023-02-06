@@ -8,6 +8,15 @@
   {"value":"type", "label":"dummy4"}
 ], "rows" : [
   {
+    "dashboard_id": "pprl",
+    "tags": "privacy-preserving, record linkage, external resources, external data, CMS",
+    "dashboard_name": "Privacy-Preserving Record Linkage (PPRL)",
+    "dashboard_url": "/pprl",
+    "dashboard_short_desc": "This dashboard displays the current status of linking N3C records to other resources.",
+    "image": "pprl.png",
+    "type": "analysis"
+  },
+  {
     "dashboard_id": "timeline",
     "tags": "covid+ cases, covid positive cases, daily count, cumulative count",
     "dashboard_name": "Cumulative and Average COVID+ Cases",
