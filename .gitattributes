@@ -36,6 +36,7 @@ WebContent/dashboard_descriptions/long-covid.jsp -text
 WebContent/dashboard_descriptions/medication-time-series.jsp -text
 WebContent/dashboard_descriptions/medications.jsp -text
 WebContent/dashboard_descriptions/pediatrics.jsp -text
+WebContent/dashboard_descriptions/pprl.jsp -text
 WebContent/dashboard_descriptions/reinfection-time-series.jsp -text
 WebContent/dashboard_descriptions/reinfection.jsp -text
 WebContent/dashboard_descriptions/severity-region.jsp -text
@@ -159,6 +160,7 @@ WebContent/images/dashboards/long-covid.png -text
 WebContent/images/dashboards/medication-time-series.png -text
 WebContent/images/dashboards/medications.png -text
 WebContent/images/dashboards/pediatrics.png -text
+WebContent/images/dashboards/pprl.png -text
 WebContent/images/dashboards/publications.png -text
 WebContent/images/dashboards/recover.png -text
 WebContent/images/dashboards/reinfection-time-series.png -text

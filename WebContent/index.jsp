@@ -401,7 +401,7 @@
 			select question,
 			iframe_info
 			from n3c_questions_new.roster 
-			where iframe_info in ('Paxlovid', 'medication-time-series', 'long-covid', 'severity-region')
+			where iframe_info in ('pprl', 'Paxlovid', 'medication-time-series', 'long-covid', 'severity-region')
 			order by seqnum
 		</sql:query>
 		<div id="card-carousel" class="hidden">
@@ -409,14 +409,31 @@
 			<div class="row featured-slick slick-test">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card_noshadow mb-2"  onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-	     						<p class="card-title"><strong>${row.question}</strong></p>
-	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
-		   					</div>
-		 				</div>
-		 			</div>
+						<c:choose>
+							<c:when test="${row.iframe_info == 'pprl'}">
+								<div class="card hover-card_noshadow mb-2" onclick="location.href='<util:applicationRoot/>/${row.iframe_info}';">
+									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+									<div class="card-body card-body-links">
+										<p class="card-title">
+											<strong>${row.question}</strong>
+										</p>
+										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="card hover-card_noshadow mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
+									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+									<div class="card-body card-body-links">
+										<p class="card-title">
+											<strong>${row.question}</strong>
+										</p>
+										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</c:forEach>
 			</div>
 		</div>
@@ -579,7 +596,8 @@
 			select question,
 			iframe_info
 			from n3c_questions_new.roster 
-			where iframe_info in ('Paxlovid', 'medication-time-series', 'timeline')
+			where iframe_info in ('pprl', 'Paxlovid', 'medication-time-series', 'timeline')
+			order by seqnum
 		</sql:query>
 		
 
@@ -588,14 +606,31 @@
 			<div class="row tracking-slick slick-test" style="justify-content: center;">
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-	     						<p class="card-title"><strong>${row.question}</strong></p>
-	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
-		   					</div>
-		 				</div>
-		 			</div>
+						<c:choose>
+							<c:when test="${row.iframe_info == 'pprl'}">
+								<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/${row.iframe_info}';">
+									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+									<div class="card-body card-body-links">
+										<p class="card-title">
+											<strong>${row.question}</strong>
+										</p>
+										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
+									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
+									<div class="card-body card-body-links">
+										<p class="card-title">
+											<strong>${row.question}</strong>
+										</p>
+										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</c:forEach>
 				
 			</div>
