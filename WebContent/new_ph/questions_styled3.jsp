@@ -18,45 +18,11 @@
 </style>
 
 <script>
-$(document).ready(function() {
-//     $('#dashboard_select').select2({
-//     	width: "100%",
-//     	selectionCssClass: "dash_select",
-//     	searchInputPlaceholder: 'Search Dashboards...'
-//     });
-    
-//     $('#dashboard_select').change(function () {
-// 		frame_vars = JSON.parse($(this).val());
-
-// 		// support different default panels by topic
-// 		var tertiary = 1;
-// 		switch (frame_vars.iframe_info) {
-// 		case "Paxlovid":
-// 			tertiary = 4;
-// 			break;
-// 		default:
-// 			tertiary = 1;
-// 		}
-		
-// 		frame_render(frame_vars, tertiary);
-// 	});
-    
-});
 
 $.getJSON("<util:applicationRoot/>/feeds/questions.jsp", function(data){
 	
 	var json = $.parseJSON(JSON.stringify(data));
-
 	var data = json['rows'];
-	
-// 	for (i in data){
-// 		var option = document.createElement('option');
-// 		option.text = data[i].question;
-// 		option.title = data[i].description.replace("<p>","").replace("&nbsp;", "").replace("</p>","");
-// 		option.value = JSON.stringify(data[i]);
-// 		document.getElementById("dashboard_select").appendChild(option);
-// 	}
-	
 
 	(async() => {
 		
@@ -72,7 +38,6 @@ $.getJSON("<util:applicationRoot/>/feeds/questions.jsp", function(data){
 		if (index < 0) {index = 0;};
 		
 	 	$('#dashboard_select').val(JSON.stringify(data[index]));
-	 	//$('#dashboard_select').trigger('change'); 
 			
 		document.getElementById("question-tile").removeAttribute("style");
 		
@@ -84,8 +49,6 @@ $.getJSON("<util:applicationRoot/>/feeds/questions.jsp", function(data){
 
 
 function frame_render(question, tertiary) {	
-	
-	console.log(question);
 	
 	var paramcheck = "";
 	paramcheck += paramcheck + "${param.tertiary_tab}";

@@ -16,9 +16,10 @@
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 	
+	<jsp:param name="db_title" value="Mortality" />
+	
+	
 	<jsp:param name="toggle" value="true" />
-	<jsp:param name="related" value="true" />
-	<jsp:param name="related_topics" value="'smoking', 'hlh', 'long-covid'" />
 	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',

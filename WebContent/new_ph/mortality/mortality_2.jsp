@@ -8,8 +8,8 @@
 	<jsp:param name="folder" value="mortality" />
 	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="topic_title" value="Counts of Mortalities By 30-Day Hospital Release Intervals" />
-	<jsp:param name="related" value="true" />
-	<jsp:param name="related_topics" value="'smoking', 'hlh', 'long-covid'" />
+	
+	<jsp:param name="db_title" value="Mortality" />
 	
 	<jsp:param name="kpis" value="mortality/kpis_new.jsp" />
 	

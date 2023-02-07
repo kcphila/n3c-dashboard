@@ -151,6 +151,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	
 	// table search logic that distinguishes sort/filter 
 	${param.block}_datatable.on( 'search.dt', function () {
+		
+		console.log('other table');
+		
 		${param.block}_refreshHistograms();
 		${param.block}_constrain_table();
 		var snapshot = ${param.block}_datatable

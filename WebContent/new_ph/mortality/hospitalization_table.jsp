@@ -92,32 +92,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	var data = json['rows'];
 
 	var ${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
-// search/clear button logic instead of datatable default		
-//			initComplete : function() {
-// 			var input = $('#${param.target_div}-table_wrapper .dataTables_filter input').unbind(),
-// 				self = this.api(),
-// 	            $searchButton = $('<button>')
-// 					.text('Search')
-// 					.attr('class', 'btn btn-sm btn-light')
-// 					.click(function() {
-// 						self.search(input.val()).draw();
-// 						${param.block}_refreshHistograms();
-// 						${param.block}_constrain_table();
-// 						$('#${param.block}_table_clear').removeClass("no_clear");
-// 						$('#${param.block}_table_clear').addClass("show_clear");
-// 					}),
-// 				$clearButton = $('<button>')
-// 					.text('Clear')
-// 					.attr('class', 'btn btn-sm btn-light')
-// 					.click(function() {
-// 						self.search('').draw();
-// 						${param.block}_refreshHistograms();
-// 						${param.block}_constrain_table();
-// 						$('#${param.block}_table_clear').removeClass("show_clear");
-// 						$('#${param.block}_table_clear').addClass("no_clear");
-// 					})
-// 	        $('#${param.target_div}-table_wrapper .dataTables_filter').append($searchButton, $clearButton);
-// 	    },
 	    data: data,
     	dom: 'lfr<"datatable_overflow"t>Bip',
     	buttons: {
@@ -151,7 +125,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	snapshot: null,
        	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
-       	 	${param.block}_refreshHistograms();
+       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
        	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
@@ -173,30 +147,41 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'sex_seq', visible: false }
     	]
 	} );
+	
+	//table search logic that distinguishes sort/filter 
+	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
 
-	// table search logic that distinguishes sort/filter 
-	${param.block}_datatable.on( 'search.dt', function () {
 		var snapshot = ${param.block}_datatable
 	     .rows({ search: 'applied', order: 'index'})
 	     .data()
-	     .toArray()
-	     .toString();
+	     .toArray().toString();
 
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
-
-	  	if (currentSnapshot != snapshot) {
+	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
+	  	
+	  	
+	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
 	   		$('#${param.block}_btn_clear').removeClass("no_clear");
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
 	  	}
+	  	
+	  	if (snapshot == snapshotAll) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("show_clear");
+	   		$('#${param.block}_btn_clear').addClass("no_clear");
+	  	}
 	} );
 	
-	// this is necessary to populate the histograms for the panel's initial D3 rendering
 	${param.block}_refreshHistograms();
-
-	
 });
+
+
+
+
 
 </script>

@@ -5,6 +5,19 @@
 <%@ taglib prefix="dashboard" uri="http://icts.uiowa.edu/N3CDashboardTagLib"%>
 
 <style>
+
+@media (max-width: 1200px){
+	.container-large {
+    	max-width: 100% !important;
+	}
+}
+
+@media (min-width: 1200px){
+	.container-large {
+    	max-width: 100%;
+	}
+}
+
 .block_header{
 	text-align:center; 
 	color:#fff; 
@@ -435,36 +448,11 @@
 					</div>
 				</c:if>
 				
-				<c:if test="${not empty param.related}">
-					<sql:query var="topics" dataSource="jdbc/N3CPublic">
-						select question,
-						iframe_info
-						from n3c_questions_new.roster 
-						where iframe_info in (${param.related_topics})
-						order by seqnum
-					</sql:query>
-		
-					<div class="panel-heading filter-section" id="related_dashboards">
-						<h4>Related Dashboards</h4>
-						<div class="row">
-							<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-								<div class="col-12 d-flex">
-									<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-	   									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top related-img" alt="...">
-	   									<div class="card-body card-body-links">
-	     									<p class="card-title">${row.question}</p>
-	   									</div>
-	 								</div>
-	 							</div>
-							</c:forEach>
-						</div>
-					</div>
-				</c:if>
-			
+				
 				<sql:query var="topics" dataSource="jdbc/N3CPublic">
 					select did from n3c_dashboard.dashboard 
 					where title = ?
-					<sql:param>Mortality</sql:param>
+					<sql:param>${param.db_title}</sql:param>
 				</sql:query>
 				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
 					<c:set var="did" value="${row.did}"/>
@@ -472,24 +460,27 @@
 				<c:if test="${dashboard:dashboardHasRelatedDashboard(did)}">
 					<div class="panel-heading filter-section" id="related_dashboards">
 						<h4>Related Dashboards</h4>
-						<dashboard:dashboard did="${did}">
-							<dashboard:foreachRelatedDashboard sortCriteria="seqnum" var="x">
-								<dashboard:relatedDashboard>
-									<dashboard:dashboard did="${tag_relatedDashboard.rid }">
-										<div class="col-12 d-flex">
-											<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath/>';">
-												<img src="<util:applicationRoot/>/new_ph/displayDashboardThumbnail.jsp?did=${tag_relatedDashboard.rid}" class="card-img-top related-img" alt="...">
-												<div class="card-body card-body-links">
-													<p class="card-title"><dashboard:dashboardTitle/></p>
+						<div class="row">
+							<dashboard:dashboard did="${did}">
+								<dashboard:foreachRelatedDashboard sortCriteria="seqnum" var="x">
+									<dashboard:relatedDashboard>
+										<dashboard:dashboard did="${tag_relatedDashboard.rid }">
+											<div class="col-12 d-flex">
+												<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath/>';">
+													<img src="<util:applicationRoot/>/new_ph/displayDashboardThumbnail.jsp?did=${tag_relatedDashboard.rid}" class="card-img-top related-img" alt="...">
+													<div class="card-body card-body-links">
+														<p class="card-title"><dashboard:dashboardTitle/></p>
+													</div>
 												</div>
 											</div>
-										</div>
-									</dashboard:dashboard>
-								</dashboard:relatedDashboard>
-							</dashboard:foreachRelatedDashboard>
-						</dashboard:dashboard>
+										</dashboard:dashboard>
+									</dashboard:relatedDashboard>
+								</dashboard:foreachRelatedDashboard>
+							</dashboard:dashboard>
+						</div>
 					</div>
 				</c:if>
+				
 			</div>
 			
 			<div class="col col-12 col-lg-10">
@@ -1196,8 +1187,8 @@
 
 	function ${param.block}_filter_clear() {
 		
-		$('#${param.block}_table_clear').removeClass("show_clear");
-		$('#${param.block}_table_clear').addClass("no_clear");
+		$('#${param.block}_btn_clear').removeClass("show_clear");
+		$('#${param.block}_btn_clear').addClass("no_clear");
 
 		<c:if test="${param.severity_filter}">
 			$('#${param.block}-severity-select').multiselect('clearSelection');
