@@ -371,6 +371,7 @@ WebContent/new_ph/diabetes/type_2.jsp -text
 WebContent/new_ph/diabetes/type_2_detailed.jsp -text
 WebContent/new_ph/diabetes/type_2_over.jsp -text
 WebContent/new_ph/diabetes/type_2_under.jsp -text
+WebContent/new_ph/displayDashboardThumbnail.jsp -text
 WebContent/new_ph/doubleHistogram.jsp -text
 WebContent/new_ph/filters/age.jsp -text
 WebContent/new_ph/filters/age_10.jsp -text
