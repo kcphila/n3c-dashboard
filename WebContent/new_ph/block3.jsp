@@ -449,14 +449,7 @@
 				</c:if>
 				
 				
-				<sql:query var="topics" dataSource="jdbc/N3CPublic">
-					select did from n3c_dashboard.dashboard 
-					where title = ?
-					<sql:param>${param.db_title}</sql:param>
-				</sql:query>
-				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-					<c:set var="did" value="${row.did}"/>
-				</c:forEach>
+				<c:set var="did" value="${dashboard:dashboardDidByTitle(param.db_title)}"/>
 				<c:if test="${dashboard:dashboardHasRelatedDashboard(did)}">
 					<div class="panel-heading filter-section" id="related_dashboards">
 						<h4>Related Dashboards</h4>
