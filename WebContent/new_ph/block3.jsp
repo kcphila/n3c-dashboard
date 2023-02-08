@@ -448,31 +448,7 @@
 					</div>
 				</c:if>
 				
-				
-				<c:set var="did" value="${dashboard:dashboardDidByTitle(param.db_title)}"/>
-				<c:if test="${dashboard:dashboardHasRelatedDashboard(did)}">
-					<div class="panel-heading filter-section" id="related_dashboards">
-						<h4>Related Dashboards</h4>
-						<div class="row">
-							<dashboard:dashboard did="${did}">
-								<dashboard:foreachRelatedDashboard sortCriteria="seqnum" var="x">
-									<dashboard:relatedDashboard>
-										<dashboard:dashboard did="${tag_relatedDashboard.rid }">
-											<div class="col-12 d-flex">
-												<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath/>';">
-													<img src="<util:applicationRoot/>/new_ph/displayDashboardThumbnail.jsp?did=${tag_relatedDashboard.rid}" class="card-img-top related-img" alt="...">
-													<div class="card-body card-body-links">
-														<p class="card-title"><dashboard:dashboardTitle/></p>
-													</div>
-												</div>
-											</div>
-										</dashboard:dashboard>
-									</dashboard:relatedDashboard>
-								</dashboard:foreachRelatedDashboard>
-							</dashboard:dashboard>
-						</div>
-					</div>
-				</c:if>
+				<jsp:include page="../meta/relatedDashboardsByTitle.jsp?title=${param.db_title}"/>
 				
 			</div>
 			

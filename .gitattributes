@@ -205,6 +205,9 @@ WebContent/long_covid/data.json -text
 WebContent/long_covid/fig4.jsp -text
 WebContent/long_covid/table1.html -text
 WebContent/long_covid/table2.html -text
+WebContent/meta/relatedDashboardsByID.jsp -text
+WebContent/meta/relatedDashboardsByPath.jsp -text
+WebContent/meta/relatedDashboardsByTitle.jsp -text
 WebContent/modules/admin_fact.jsp -text
 WebContent/modules/admin_map.jsp -text
 WebContent/modules/collaboration_map.jsp -text
