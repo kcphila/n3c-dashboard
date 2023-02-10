@@ -1026,6 +1026,9 @@ WebContent/resources/tableToExcel.js -text
 WebContent/resources/topojson.js -text
 WebContent/search.json -text
 WebContent/search.jsp -text
+WebContent/search/dashboard_feed.jsp -text
+WebContent/search/search.jsp -text
+WebContent/search/term_feed.jsp -text
 WebContent/tables/domain_team_roster.jsp -text
 WebContent/tables/project_roster_styled.jsp -text
 WebContent/tables/publications_styled.jsp -text
