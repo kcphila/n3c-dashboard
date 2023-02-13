@@ -4,13 +4,14 @@
 
 <!-- positive_cases_by_day_cumsum_censored (2022-03-31 05:01) -->
 
-<jsp:include page="../block2.jsp">
+<jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="reinfection_ts_1" />
-	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="block_header" value="Reinfection Time Series" />
 
 	<jsp:param name="kpis" value="reinfection_time_series/kpis_1.jsp" />
 
+	<jsp:param name="did" value="62" />
+	
 	<jsp:param name="simple_panel" value="reinfection_time_series/reinfection.jsp" />
 
 	<jsp:param name="datatable" value="reinfection_time_series/reinfection_table.jsp" />

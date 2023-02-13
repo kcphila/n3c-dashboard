@@ -3,16 +3,17 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 
-<jsp:include page="../block2.jsp">
+<jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="severity_region_1" />
 	<jsp:param name="block_header" value="Regional Distribution of COVID+ Patients" />
-	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="topic_title" value="Regional Distribution of COVID+ Patients" />
 
 	<jsp:param name="kpis" value="severity_region/kpis.jsp" />
 	
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="region_filter" value="true" />
+	
+	<jsp:param name="did" value="60" />
 	
 	<jsp:param name="simple_panel" value="severity_region/map.jsp" />
 

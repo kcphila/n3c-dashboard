@@ -40,28 +40,7 @@ div.composite.tooltip {
 	</jsp:include>
 	
 	<div class="container container-large content">
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
-				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Institutions Contributing Data</li>
-			</ol>
-		</nav>
-		<div class="row page-title">
-			<div class="col-12">
-				<h1>Institutions Contributing Data</h1>
-			</div>
-		</div>
-		
-		<div id="sites" class="section section-viz text-max">
-			<div class="row">
-				<div class="col-12">
-					<p class="section-description heading-text text-max mx-auto">The N3C allows medical sites within the United States 
-					to securely transfer anonymized data into the Enclave. The average interval for data transfer from our partners is 
-					once a week. To explore the geographic coverage of our current partners, please see the map below.</p>
-				</div>
-			</div>
-			<c:import url="modules/site_map.jsp"/>
-		</div>
+		<jsp:include page="overview/contributing_sites/contributing_sites.jsp" flush="true" />
 	</div>
 
 	<jsp:include page="footer.jsp" flush="true" />

@@ -26,6 +26,12 @@
 									<input type="checkbox" name="type" value="${row.org_type}" > ${row.org_type}
 								</c:if>
 							</c:forEach>
+							<span class="tip">
+								<button class="btn btn-xs btn-tip gly-radius" data-html="true" title="Interaction Tip:" data-toggle="popover" data-placement="top" data-content="&#x2022;Search the Table to Update the Map.&#013;&#x2022;Click on a Heading to Sort the Table.&#013;&#x2022;Click and drag to reposition the map.&#013;&#x2022;Control drag up and down to zoom out and in.&#013;&#x2022;Hover over a node to identify the site and highlight its collaborations." aria-describedby="tooltip">
+	  								<i class="fas fa-lightbulb"></i>
+	  						<span class="sr-only">Search the Table to Update the Map.&#13;Click on a Heading to Sort the Table.</span>
+						</button>
+					</span>
 						</div>
 					</div>
 				</div>

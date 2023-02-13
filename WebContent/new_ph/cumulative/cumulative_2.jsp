@@ -2,10 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<jsp:include page="../block2.jsp">
+<jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="cumulative_2" />
 	<jsp:param name="block_header" value="Enclave Cumulative Participat Demographics" />
-	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="topic_title" value="Count of Patients" />
 
 	<jsp:param name="kpis" value="cumulative/kpis.jsp" />
@@ -13,6 +12,8 @@
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
+	
+	<jsp:param name="did" value="50" />
 	
 	<jsp:param name="raceethncity_panel" value="cumulative/raceEthnicity.jsp" />
 	<jsp:param name="racesex_panel" value="cumulative/raceSex.jsp" />

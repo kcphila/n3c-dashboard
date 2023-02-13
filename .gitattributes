@@ -891,6 +891,16 @@ WebContent/new_ph/timeline2Histogram.jsp -text
 WebContent/new_ph/timelineNHistogram.jsp -text
 WebContent/new_ph/tripleHistogram.jsp -text
 WebContent/new_ph/unavailable_panel.jsp -text
+WebContent/overview/block.jsp -text
+WebContent/overview/collaboration_graph/collaboration_graph.jsp -text
+WebContent/overview/collaboration_map/collaboration_map.jsp -text
+WebContent/overview/contributing_sites/contributing_sites.jsp -text
+WebContent/overview/publications/publications.jsp -text
+WebContent/overview/publications/table_includes.jsp -text
+WebContent/overview/teams/table_includes.jsp -text
+WebContent/overview/teams/teams.jsp -text
+WebContent/overview/users/graph_includes.jsp -text
+WebContent/overview/users/users.jsp -text
 WebContent/positive_timeline.jsp -text
 WebContent/pprl.jsp -text
 WebContent/public-health.jsp -text

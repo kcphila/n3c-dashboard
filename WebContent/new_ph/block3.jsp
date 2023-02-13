@@ -448,7 +448,7 @@
 					</div>
 				</c:if>
 				
-				<jsp:include page="../meta/relatedDashboardsByTitle.jsp?title=${param.db_title}"/>
+				<jsp:include page="../meta/relatedDashboardsByID.jsp?did=${param.did}"/>
 				
 			</div>
 			
@@ -692,7 +692,7 @@
 	  							<c:param name="topic_title" value="${param.topic_title}" />
 	  						</c:if>
 						</c:url>
-						<div id="${param.block}-raceethnicity" style="display: none;" src="<c:out value='${raceethncity_url}'/>"></div>
+						<div id="${param.block}-raceethnicity" style="display: block;" src="<c:out value='${raceethncity_url}'/>"></div>
 					</c:if>
 					
 					<c:if test="${not empty param.racesex_panel}">
@@ -707,7 +707,7 @@
 	  							<c:param name="topic_title" value="${param.topic_title}" />
 	  						</c:if>
 						</c:url>
-						<div id="${param.block}-racesex" style="display: none;" src="<c:out value='${racesex_url}'/>"></div>
+						<div id="${param.block}-racesex" style="display: block;" src="<c:out value='${racesex_url}'/>"></div>
 					</c:if>
 					
 				</div>

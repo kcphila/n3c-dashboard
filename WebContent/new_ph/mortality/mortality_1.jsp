@@ -16,7 +16,7 @@
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 	
-	<jsp:param name="db_title" value="Mortality" />
+	<jsp:param name="did" value="61" />
 	
 	
 	<jsp:param name="toggle" value="true" />
