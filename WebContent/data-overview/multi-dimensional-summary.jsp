@@ -284,17 +284,21 @@ div.composite.tooltip {
 									Hover over a node or edge to highlight the respective connections.</p>
 								</div>
 								<div class="col col-12 viz-section">
-									<h4 class="viz-demo"></h4>
+									<div class="btn-group float-right viz-demo">
+										<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="fas fa-download"></i>
+										</button>
+										<div class="dropdown-menu dropdown-menu-right">
+											<a class="dropdown-item" onclick="saveVisualization('hive_viz', 'multi-dimensional-summary.jpg');">Save as JPG</a>
+											<a class="dropdown-item" onclick="saveVisualization('hive_viz', 'multi-dimensional-summary.png');">Save as PNG</a>
+											<a class="dropdown-item" onclick="saveVisualization('hive_viz', 'multi-dimensional-summary.svg');">Save as SVG</a>
+										</div>
+									</div>
 									<div class="panel-body">
 										<div id="hive_viz" style="text-align:center;"></div>
 									</div>
 								</div>
 								
-							</div>
-							<div id="${param.block}_raceseverity_save_viz"> 
-								<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('hive_viz', 'multi-dimensional-summary.svg');">Save as SVG</button>
-								<button id='pngButton' class="btn btn-light btn-sm" onclick="saveVisualization('hive_viz', 'multi-dimensional-summary.png');">Save as PNG</button>
-								<button id='jpegButton' class="btn btn-light btn-sm" onclick="saveVisualization('hive_viz', 'multi-dimensional-summary.jpg');">Save as JPEG</button>
 							</div>
 							<div class="secondary-description">
 								<p><strong>Sample:</strong> <span class="tip">

@@ -2,6 +2,8 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
+<jsp:include page="../graph_support/graphic_save.jsp" />
+
 <table class="table table-hover">
 	<thead>
 		<tr><th>Users</th><th>Count</th></tr>
@@ -26,8 +28,18 @@
 	</c:forEach>
 </table>
 
-<div id="registration_line">
-	<c:import url="modules//line_registrations.jsp">
+<div class="btn-group float-right viz-demo">
+	<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<i class="fas fa-download"></i>
+	</button>
+	<div class="dropdown-menu dropdown-menu-right">
+		<a class="dropdown-item" onclick="saveVisualization('registration_line', 'registration_timeline.jpg');">Save as JPG</a>
+		<a class="dropdown-item" onclick="saveVisualization('registration_line', 'registration_timeline.png');">Save as PNG</a>
+		<a class="dropdown-item" onclick="saveVisualization('registration_line', 'registration_timeline.svg');">Save as SVG</a>
+	</div>
+</div>
+<div id="registration_line" class="panel-body">
+	<c:import url="modules/line_registrations.jsp">
 		<c:param name="data_page" value="/feeds/line_dua_dta_regs.jsp" />
 		<c:param name="dom_element" value="#registration_line" />
 	</c:import>

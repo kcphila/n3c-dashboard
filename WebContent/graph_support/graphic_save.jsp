@@ -3,7 +3,7 @@
 <script>
 
 function saveVisualization(domName, fileName) {
-	// console.log("saving", domName, fileName)
+	console.log("saving", domName, fileName)
 	var svgNode = d3.select("#"+domName).select("svg").node();
 	// console.log("node", svgNode);
 	var svgString = getSVGString(svgNode);

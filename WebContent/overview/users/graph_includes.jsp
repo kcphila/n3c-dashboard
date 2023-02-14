@@ -3,10 +3,10 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div class="row">
-	<div class="col-12 col-lg-6">
+	<div class="col-12 col-lg-6 viz-section">
 		<c:import url="admin/institutions.jsp" />
 	</div>
-	<div class="col-12 col-lg-6">
+	<div class="col-12 col-lg-6 viz-section">
 		<c:import url="admin/users.jsp" />
 	</div>
 </div>

@@ -2,7 +2,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<div id="${param.block}_hive_viz" class="dash_viz" style="text-align:center;"></div>
+<jsp:include page="../../graph_support/graphic_save.jsp" />
+
+<div id="hive_wrapper" class="col col-12 col-md-12 viz-section">
+	<div class="btn-group float-right viz-demo">
+		<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="fas fa-download"></i>
+		</button>
+		<div class="dropdown-menu dropdown-menu-right">
+			<a class="dropdown-item" onclick="saveVisualization('${param.block}_hive_viz', 'hive.svg');">Save as JPG</a>
+			<a class="dropdown-item" onclick="saveVisualization('${param.block}_hive_viz', 'hive.svg');">Save as PNG</a>
+			<a class="dropdown-item" onclick="saveVisualization('${param.block}_hive_viz', 'hive.svg');">Save as SVG</a>
+		</div>
+	</div>
+	<div class="panel-body">
+		<div id="${param.block}_hive_viz" class="dash_viz" style="text-align: center;"></div>
+	</div>
+</div>
 
 <div id="${param.block}_hive_save_viz">
 	<button id='svgButton' class="btn btn-light btn-sm" onclick="saveVisualization('${param.block}_hive_viz', 'hive.svg');">Save as SVG</button>
