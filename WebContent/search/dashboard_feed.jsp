@@ -5,13 +5,14 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (select
 			did as dashboard_id,
-			title as dashboart_name,
-			blurb as deshboard_short_desc,
+			title as dashboard_name,
+			blurb as dashboard_short_desc,
 			path as dashboard_url,
 			thumbnail_path as image,
-			(select string_agg(tag, ', ') from n3c_dashboard.tag_definition natural join n3c_dashboard.dashboard_tag where dashboard_tag.did = dashboard.did) as tags,
-			(select string_agg(type, ', ') from n3c_dashboard.type_definition natural join n3c_dashboard.dashboard_type where dashboard_type.did = dashboard.did) as type
+			coalesce((select string_agg(tag, ', ') from n3c_dashboard.tag_definition natural join n3c_dashboard.dashboard_tag where dashboard_tag.did = dashboard.did),'') as tags,
+			coalesce((select string_agg(type, ', ') from n3c_dashboard.type_definition natural join n3c_dashboard.dashboard_type where dashboard_type.did = dashboard.did),'') as type
 		  from n3c_dashboard.dashboard
+		  where did != 53 and did !=54
 		  order by did
 		  ) as done;
 </sql:query>

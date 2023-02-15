@@ -153,7 +153,7 @@ function getUrlVars() {
 } 
 
 $(document).ready( function () {
-	$.getJSON("<util:applicationRoot/>/search.json", function(data){
+	$.getJSON("<util:applicationRoot/>/search/dashboard_feed.jsp", function(data){
 		
 		// search autocomplete /////////////////////////////////////////////////////////////////////
 		<jsp:include page="search/term_feed.jsp" flush="true" />
@@ -327,15 +327,15 @@ $(document).ready( function () {
 	        			}
 	        			
 	        			var combo = 
-	        				'<div class="row"><div class="col-4"><img src="<util:applicationRoot/>/images/dashboards/'
-	        				+ image
+	        				'<div class="row"><div class="col-4"><img src="<util:applicationRoot/>/dashboard_descriptions/displayDashboardThumbnail.jsp?did='
+	        				+ id
 	        				+'" class="card-img-top" alt="..."></div><div class="col-8"><p class="mb-3 title">'
 	        				+ title 
 	        				+ '</p> <p>'
 	        				+ desc
 	        				+ '</p><div>'
 	        				+ icons 
-	        				+ '<div class="float-right"><a href="<util:applicationRoot/>'
+	        				+ '<div class="float-right"><a href="<util:applicationRoot/>/'
 	            				+ url
 	            				+ '" >Explore&#8196;<i class="fas fa-angle-right"></i></a></div>'
 	        				+'</div></div></div>';
