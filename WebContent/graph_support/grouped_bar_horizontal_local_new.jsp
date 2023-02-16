@@ -11,6 +11,16 @@
 .graph_tooltip{
 	pointer-events:none;
 }
+
+div.bar.tooltip {
+	position: absolute;
+	background-color: white;
+  	opacity: 0.8;
+  	height: auto;
+	padding: 1px;
+  	pointer-events: none;
+  	max-width: 200px;
+}
 </style>
 
 <script>
@@ -20,7 +30,7 @@
 // margin = array: [top, bottom, left, right]
 
 
-function localHorizontalGroupedBarChart(data, properties) {
+function localHorizontalGroupedBarChart_new(data, properties) {
 	
 	//
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
@@ -35,8 +45,6 @@ function localHorizontalGroupedBarChart(data, properties) {
 	var label1 = properties.label1;
 	var label2 = properties.label2;
 	var offset = properties.offset;
-	
-	var filter_icon = " &#xf0b0";
 	
 	var setup_data = d3.nest()
 		.key(function (d) { return d[primary]; })
@@ -59,7 +67,7 @@ function localHorizontalGroupedBarChart(data, properties) {
 	var barPadding = 3;
 	var barHeight = 20;
 	
-	var margin = {top: 90, right: 100, bottom: 50, left: offset},
+	var margin = {top: 0, right: 30, bottom: 50, left: offset},
 		width = $("#"+domName).width() - margin.left - margin.right,
 		height = (secondary_list.length*barHeight);
 	
@@ -86,7 +94,6 @@ function localHorizontalGroupedBarChart(data, properties) {
 		var prime_seq = primary + '_seq';
 		data.sort(function (x, y) { return x[prime_seq] - y[prime_seq] || x[sequence] - y[sequence]; });
 		
-
 		var x = d3.scaleLinear()
 			.rangeRound([0, width-margin.right]);
 		var x2 = d3.scaleLinear()
@@ -106,7 +113,6 @@ function localHorizontalGroupedBarChart(data, properties) {
 		})
  		.map(data);
 		
-		
 		var max_count = 0;
 		
 		var groupedData = d3.nest()
@@ -116,6 +122,7 @@ function localHorizontalGroupedBarChart(data, properties) {
      			var count2 = 0;
      			var seq = 0;
      			var total = 0;
+     			var label = v[0][primary];
      			for (i in v){
      				count2 += v[i][count];
      				seq = v[i][sequence];
@@ -124,20 +131,28 @@ function localHorizontalGroupedBarChart(data, properties) {
      					max_count = count2;
      				};
      			}
-     			return {count: count2, seq: seq, total: total};
+     			return {count: count2, seq: seq, total: total, label: label};
 			})
      		.entries(data);
+		
+		var abbrev = d3.nest()
+			.key(function (d) { return d[primary]; })
+ 			.key(function (d) { return d[primary+"_abbrev"]; })
+ 			.rollup(function(v) { })
+ 			.entries(data);
 		
 		x.domain([0, max_count]).nice();
 		
 		var category_labels = [];
-		var cummulative = 0;
+		var cumulative = 0;
 		groupedData.forEach(function(d, i) {
-			d.cummulative = cummulative;
-			cummulative += d.values.length;
+			var full = d.key;
+			var ab = abbrev.find(item => item.key === full);
+			d.abbrev = ab.values[0].key;
+			d.cumulative = cumulative;
+			cumulative += d.values.length;
 			category_labels.push(d.key);
 		});
-		
 		
 		var y_category = d3.scaleLinear().range([0, height]);
 		var axis_color = d3.scaleOrdinal()
@@ -145,7 +160,7 @@ function localHorizontalGroupedBarChart(data, properties) {
 			.domain(category_labels);
 	
 		var bar_color = d3.scaleOrdinal()
-			.range(["#EEEEEE", "white"])
+			.range(["#f1f1f1", "white"])
 			.domain(category_labels);
 
 		var svg = d3.select("#"+domName).append("svg")
@@ -156,77 +171,7 @@ function localHorizontalGroupedBarChart(data, properties) {
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 			.attr("id", "svg_g"+domName);
 		
-		g.append("text")
-			.attr("y", 0 - (margin.top/2))
-			.attr("x",width/2)
-			.attr("dy", "1em")
-			.text(xaxis_label); 
-		
-		g.append("g")
-			.attr("class", "axis")
-			.call(d3.axisTop(x).ticks(null, "s"))
-			.append("text")
-			.attr("y", 2)
-			.attr("x", x(x.ticks().pop()) + 0.5)
-			.attr("dx", "0.32em")
-			.attr("fill", "#000")
-			.attr("font-weight", "bold")
-			.attr("text-anchor", "start");
-		
-		// Legend ////////////////////	
-		var legend_text = svg.append("g")
-			.attr("transform", "translate(" + 0 + " ," + 30 + " )")
-			.attr("font-family", "sans-serif")
-			.attr("font-size", '14px')
-			.attr("font-weight", "bold")
-			.attr("text-anchor", "end")
-			.append("text")
-			.attr("x", width+margin.right+margin.left)
-			.attr("y", 9.5)
-			.attr("dy", "0.32em")
-			.text(label2)
-			.append("tspan")
-			.attr('font-family', 'FontAwesome')
-			.attr("class", "fa")
-			.html(filter_icon);
-			
-		var legend = svg.append("g")
-			.attr("transform", "translate(" + (margin.right+margin.left) + " ," + (50) + " )")
-			.attr("font-family", "sans-serif")
-			.attr("font-size", ".8rem")
-			.attr("text-anchor", "end")
-			.selectAll("g")
-			.data(legend_label)
-			.enter().append("g")
-			.attr("transform", function(d, i) {
-				return "translate(0," + i * 20 + ")";
-			});
 
-		legend.append("rect")
-			.attr("x", width - 19)
-			.attr("width", 19)
-			.attr("height", 19)
-			.attr("fill", function(d, i) { return colorscale[i]; })
-			.on("click", function(d, i){
-				window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](d, label2.replace(/\s/g, "")); 
-			})
-			.on("mouseover", function(d, i) {
-				svg.selectAll(".secondary:not(.lab" + d.secondary.replace(/[^A-Z0-9]/ig, "") + ")").style("opacity", "0.05");
-				tooltip2.style("display", null);
-			})
-			.on("mouseout", function(d, i) {
-  				svg.selectAll(".secondary").style("opacity", "1");
-  				tooltip2.style("display", "none");
-			});
-
-		legend.append("text")
-			.attr("x", width - 24)
-			.attr("y", 9.5)
-			.attr("dy", "0.32em")
-			.text(function(d) {
-				return d.secondary;
-		});
-		
 		//////// Bars ///////////////
 		var categories = g.selectAll(".categories")
 			.data(groupedData)
@@ -235,7 +180,7 @@ function localHorizontalGroupedBarChart(data, properties) {
     			return 'category category-' + d.key.replace(/\s+/g, '');
   			})
   			.attr("transform", function(d) {
-    			return "translate(0, " + ( d.cummulative * barHeight ) + ")";
+    			return "translate(0, " + ( d.cumulative * barHeight ) + ")";
   			});
 		
 		categories.append("rect")
@@ -252,15 +197,25 @@ function localHorizontalGroupedBarChart(data, properties) {
 		
 		categories
 			.append("text")
-	    	.text(function(d) { return d.key })
+	    	.text(function(d) { return d.abbrev })
 	    	.attr("class", function(d){return "text_color " + d.key.replace(/\s/g,'')})
-			.style("font-size", ".8rem")
-			.style("fill", "black")
-			.style("text-anchor", "start")
 			.attr("transform", function(d) {
 				var h = (d.values.length * barHeight);
     			return "translate(" + -(margin.left) + " , " + ((h/2)+5) + ")";
-  			});
+  			})
+  			.on('mousemove', function(d, i){
+	    		var label = d.key;
+				d3.selectAll(".tooltip").remove(); 
+				d3.select("body").append("div")
+					.attr("class", "bar tooltip")
+					.style("opacity", 0.8)
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html(label);
+			})
+			.on('mouseout', function(d){
+				 d3.selectAll(".tooltip").remove(); 
+			});
 			
 		var serie = categories.append("g")
 			.attr("transform", function(d) {
@@ -270,10 +225,9 @@ function localHorizontalGroupedBarChart(data, properties) {
 		serie.selectAll("g")
 			.data(function(d) {return d.values; })
 			.enter().append("text")
-			.style("fill", "#a5a2a2")
+			.style("fill", "#696969")
 			.attr("class", "secondary")
 			.style("text-anchor", "start")
-			.style("font-size", ".8rem")
 			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })
 			.attr("y", function(d) { 
 				return (y_category(0) + 15); 
@@ -291,72 +245,30 @@ function localHorizontalGroupedBarChart(data, properties) {
 			.attr("height",  (barHeight- barPadding))
 			.attr("fill", function(d){ return colorscale[(d.value.seq-1)]; })
 			.attr("transform", function(d, i) {return "translate(0, " + ((i * barHeight)+15) + ")"; })
-			.on("mouseover", function() { tooltip.style("display", null); })
-		    .on("mouseout", function() { tooltip.style("display", "none"); })
-		    .on("mousemove", function(d) {
-		     	var yPosition = d3.mouse(document.getElementById("svg_g"+domName))[1];
-		     	var xPosition = d3.mouse(document.getElementById("svg_g"+domName))[0];
-		     	var count2 = d.value.count;
+			.on("click", function(d, i){
+				d3.selectAll(".tooltip").remove(); 
+				var format = {};
+				format['secondary_name'] = d.key;
+				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, properties.legend_label.replace(/\s/g, "")); 
+			})
+			.on('mousemove', function(d){
+				var count2 = d.value.count;
 		     	var total = d.value.total;
 		     	var label = d.key;
 		     	var seq = d.value.seq;
-		     	tooltip.selectAll("tspan").remove();
-		     	tooltip
-		     		.attr("transform", "translate(" + xPosition + "," +  yPosition + ")")
-		     		.selectAll("text")
-		     		.append("tspan")
-		     		.text(label)
-		     		.attr('x', 10)
-  					.attr('dy', 10)
-  					.attr('fill', function(d){return colorscale[(seq-1)]; })
-  					.style('text-anchor', 'start')
-		     		.append("tspan")
-		     		.text(count2.toLocaleString())
-		     		.attr('fill', 'black')
-		     		.attr('x', 10)
-  					.attr('dy', 20)
-		     		.append("tspan")
-	     			.text(function(){
-	     				return  ((count2/total) * 100).toFixed(2) + "%";
-	     			})
-	     			.attr('fill', 'black')
-	     			.attr('x', 10)
-					.attr('dy', 21);
-		   	 	});
-
+		     	var fill = colorscale[(seq-1)];
+				d3.selectAll(".tooltip").remove(); 
+				d3.select("body").append("div")
+					.attr("class", "bar tooltip")
+					.style("opacity", 0.8)
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html("<strong style='color:  " + fill + ";'>" + d.key + "</strong><br><strong>Count: </strong>" + count2.toLocaleString() + "<br><strong>% of " + d.key + " that are " + d.value.label + ": </strong>" + ((count2/total) * 100).toFixed(2) + "%");
+			})
+			.on('mouseout', function(d){
+				 d3.selectAll(".tooltip").remove(); 
+			});
 		
-		// Tooltip ////// 
-		var tooltip = g.append("g")
-    		.attr("class", "graph_tooltip")
-    		.style("display", "none");
-      
-  		tooltip.append("rect")
-    		.attr("width", 120)
-    		.attr("height", 53)
-    		.attr("fill", "white")
-    		.style("opacity", 0.8);
-
-		tooltip.append("text")
- 			.attr("x", 30)
-    		.attr("dy", "1.2em")
-    		.style("text-anchor", "middle")
-    		.attr("font-size", "12px")
-    		.attr("font-weight", "bold");	
-		
-		// Legend Tooltip ////// 
-		var tooltip2 = svg.append("g")
-    		.attr("class", "graph_tooltip")
-    		.style("display", "none")
-    		.attr("transform", "translate(" + ((width + margin.left + margin.right)-40) + "," + 10 + ")")
-
-  		tooltip2.append("text")
-    		.attr("x", 30)
-    		.attr("dy", "1.2em")
-    		.style("text-anchor", "end")
-    		.style("fill", "#0d6efd")
-    		.attr("font-size", "12px")
-    		.attr("font-weight", "bold")
-    		.text("Click to add/remove filter");
 	}
 };
 

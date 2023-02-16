@@ -328,9 +328,9 @@
 				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">${param.block_header}</li>
 			</ol>
 		</nav>
-		<div class="row page-title">
+		<div class="row">
 			<div class="col-12">
-				<h1>${param.block_header}</h1>
+				<h1 class="page-title">${param.block_header}</h1>
 			</div>
 			<div id="question-description" class="section-description heading-text text-max mx-auto">
 				<dashboard:dashboard did="${param.did}">

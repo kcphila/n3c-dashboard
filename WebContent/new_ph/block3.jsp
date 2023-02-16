@@ -314,6 +314,11 @@
 	text-align:center;
 }
 
+/* Should go over the layout to try not to overflow */
+#filter_checks label.form-check-label {
+    overflow-wrap: anywhere;
+}
+
 </style>
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
@@ -329,6 +334,15 @@
 				<c:if test="${not empty param.toggle}">
 					<div id="mode" class="panel-heading filter-section">
 						<jsp:include page="barPieToggle_new.jsp">
+							<jsp:param name="block" value="${param.block}" />
+							<jsp:param name="viz_properties" value="${param.viz_properties}" />
+						</jsp:include>
+					</div>
+				</c:if>
+				
+				<c:if test="${not empty param.toggle2}">
+					<div id="mode" class="panel-heading filter-section">
+						<jsp:include page="groupedbarpercentToggle_new.jsp">
 							<jsp:param name="block" value="${param.block}" />
 							<jsp:param name="viz_properties" value="${param.viz_properties}" />
 						</jsp:include>
@@ -352,7 +366,7 @@
 								<jsp:include page="filters/age_2.jsp"/>
 							</c:if>
 							<c:if test="${param.age_filter4}">
-								<jsp:include page="filters/age_4.jsp"/>
+								<jsp:include page="filters_new/age_4.jsp"/>
 							</c:if>
 							<c:if test="${param.age_filter5}">
 								<jsp:include page="filters/age_5.jsp"/>
@@ -433,10 +447,10 @@
 								<jsp:include page="filters/medication_class.jsp"/>
 							</c:if>
 							<c:if test="${param.medications_filter}">
-								<jsp:include page="filters/medication_ts.jsp"/>
+								<jsp:include page="filters_new/medication_ts.jsp"/>
 							</c:if>
 							<c:if test="${param.smoking_filter}">
-								<jsp:include page="filters/smoking.jsp"/>
+								<jsp:include page="filters_new/smoking.jsp"/>
 							</c:if>
 							<c:if test="${param.region_filter}">
 								<jsp:include page="filters/region.jsp"/>
@@ -483,6 +497,7 @@
 						</div>
 					</c:if>
 					
+			<!-- Composite Panels ------------------------------------------------------------------------------------------------- -->
 					<div class="row">
 						<c:if test="${not empty param.severity_panel}">
 							<c:url value="${param.severity_panel}" var="severity_url">
@@ -537,37 +552,6 @@
 								<div id="${param.block}-age" class="" src="<c:out value='${age_url}'/>"></div>
 							</div>
 						</c:if>
-						<c:if test="${not empty param.race_panel}">
-							<c:url value="${param.race_panel}" var="race_url">
-		  						<c:param name="panel" value="${param.race_panel}" />
-		  						<c:param name="block" value="${param.block}" />
-		  						<c:param name="datatable_div" value="${param.datatable_div}" />
-		  						<c:if test="${not empty param.symptom}">
-		  							<c:param name="symptom" value="${param.symptom}" />
-		  						</c:if>
-		  						<c:if test="${not empty param.race_labelwidth}">
-		  							<c:param name="labelwidth" value="${param.race_labelwidth}" />
-		  						</c:if>
-		  						<c:if test="${not empty param.race_height}">
-		  							<c:param name="viz_height" value="${param.race_height}" />
-		  						</c:if>
-		  						<c:if test="${not empty param.topic_description}">
-		  							<c:param name="topic_description" value="${param.topic_description}" />
-		  						</c:if>
-		  						<c:if test="${not empty param.topic_disease}">
-		  							<c:param name="topic_disease" value="${param.topic_disease}" />
-		  						</c:if>
-		  						<c:if test="${not empty param.topic_title}">
-		  							<c:param name="topic_title" value="${param.topic_title}" />
-		  						</c:if>
-		  						<c:if test="${not empty param.topic_title2}">
-		  							<c:param name="topic_title2" value="${param.topic_title2}" />
-		  						</c:if>
-							</c:url>
-							<div class="col-12 col-md-6 small-viz-panel">
-								<div id="${param.block}-race" src="<c:out value='${race_url}'/>"></div>
-							</div>
-						</c:if>
 						<c:if test="${not empty param.sex_panel}">
 							<c:url value="${param.sex_panel}" var="sex_url">
 		  						<c:param name="panel" value="${param.sex_panel}" />
@@ -597,6 +581,37 @@
 							</c:url>
 							<div class="col-12 col-md-6 small-viz-panel">
 								<div id="${param.block}-sex" src="<c:out value='${sex_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.race_panel}">
+							<c:url value="${param.race_panel}" var="race_url">
+		  						<c:param name="panel" value="${param.race_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.symptom}">
+		  							<c:param name="symptom" value="${param.symptom}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.race_labelwidth}">
+		  							<c:param name="labelwidth" value="${param.race_labelwidth}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.race_height}">
+		  							<c:param name="viz_height" value="${param.race_height}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_disease}">
+		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title2}">
+		  							<c:param name="topic_title2" value="${param.topic_title2}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-race" src="<c:out value='${race_url}'/>"></div>
 							</div>
 						</c:if>
 						<c:if test="${not empty param.ethnicity_panel}">
@@ -639,17 +654,8 @@
 						</c:if>
 					</div>
 	
-	<!-- This panel is only on adult summary/all summary/ and pediatrics summary. Could remove if not using anymore -->				
-					<c:if test="${not empty param.raceseverity_panel}">
-						<div id="${param.block}-raceseverity" class="" style="display: none;" src="${param.raceseverity_panel}?panel=${param.raceseverity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.raceseverity_labelwidth}">&label_width=${param.raceseverity_labelwidth}</c:if><c:if test="${not empty param.raceseverity_height}">&viz_height=${param.raceseverity_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-						</div>
-					</c:if>
-	<!-- This panel is only on adult summary/all summary/ and pediatrics summary. Could remove if not using anymore -->						
-					<c:if test="${not empty param.comorbidity_panel}">
-						<div id="${param.block}-comorbidity" class="" style="display: none;" src="${param.comorbidity_panel}?panel=${param.comorbidity_panel}&block=${param.block}&datatable_div=${param.datatable_div}<c:if test="${not empty param.comorbidity_labelwidth}">&label_width=${param.comorbidity_labelwidth}</c:if><c:if test="${not empty param.comorbidity_height}">&viz_height=${param.comorbidity_height}</c:if><c:if test="${not empty param.topic_description}">&topic_description=${param.topic_description}</c:if>">
-						</div>
-					</c:if>
-					
+
+<!-- other panel logic	--------------------------------->
 					<c:if test="${not empty param.sotrovimab_panel1}">
 						<c:url value="${param.sotrovimab_panel1}" var="sotrovimab1_url">
 	  						<c:param name="panel" value="${param.sotrovimab_panel1}" />
@@ -853,8 +859,46 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
+		$('#${param.block}-smokingstatus-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-smokingstatus-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+		        
+		        ${param.block}_constrain("smokingstatus",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
 		
+		$('#${param.block}-medications-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-medications-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("medication",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
 		
+// old multiselects //////////////////////////////////////////////
 		$('#${param.block}-symptom-select').multiselect({	
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-symptom-select');
@@ -1029,31 +1073,8 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
-		$('#${param.block}-medications-select').multiselect({	
-			maxHeight: 300,
-			numberDisplayed: 1,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-medications-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("medication",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-smokingstatus-select').multiselect({
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-smokingstatus-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("smokingstatus",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
+		
+		
 		
 		$('#${param.block}-region-select').multiselect({
 			numberDisplayed: 1,
@@ -1466,11 +1487,12 @@
 	    }
 	  }
 	
+	// new load function for composite views
 	function ${param.block}_panel(selection) {
 		for (i in selection){
 			${param.block}_load(selection[i]);
 		}
-	}
+	};
 
 
 	// manage incremental loading of panels on inner nav bar clicks

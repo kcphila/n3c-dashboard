@@ -25,6 +25,7 @@
 <jsp:include page="../graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp"/>
 
 <jsp:include page="../graph_support/grouped_bar_horizontal_local.jsp"/>
+<jsp:include page="../graph_support/grouped_bar_horizontal_local_new.jsp"/>
 <jsp:include page="../graph_support/grouped_bar_horizontal_percentage_local.jsp"/>
 
 <jsp:include page="../graph_support/region_map_local.jsp"/>

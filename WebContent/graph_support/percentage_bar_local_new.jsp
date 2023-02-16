@@ -201,6 +201,7 @@ function localPercentageBarChart_new(data, properties) {
 				}
 			})
 			.on("click", function(d, i){
+				d3.selectAll(".tooltip").remove(); 
 				var format = {};
 				format['secondary_name'] = d.element;
 				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, properties.legend_label.replace(/\s/g, "")); 
