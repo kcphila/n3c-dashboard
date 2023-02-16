@@ -783,12 +783,7 @@ WebContent/new_ph/questions_styled3.jsp -text
 WebContent/new_ph/reinfection/counts.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_30day.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_by_date.jsp -text
-WebContent/new_ph/reinfection/kpis_1.jsp -text
-WebContent/new_ph/reinfection/kpis_1_new.jsp -text
-WebContent/new_ph/reinfection/kpis_2.jsp -text
-WebContent/new_ph/reinfection/kpis_2_new.jsp -text
-WebContent/new_ph/reinfection/kpis_3.jsp -text
-WebContent/new_ph/reinfection/kpis_3_new.jsp -text
+WebContent/new_ph/reinfection/kpis.jsp -text
 WebContent/new_ph/reinfection/panel2.jsp -text
 WebContent/new_ph/reinfection/reinfection_1.jsp -text
 WebContent/new_ph/reinfection/reinfection_2.jsp -text
