@@ -9,7 +9,7 @@
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="topic_title" value="Mortalities" />
 	
-	<jsp:param name="kpis" value="mortality/kpis_new.jsp" />
+	<jsp:param name="kpis" value="mortality/kpis.jsp" />
 
 	<jsp:param name="age_filter10" value="true" />
 	<jsp:param name="race_filter" value="true" />

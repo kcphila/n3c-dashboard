@@ -11,7 +11,7 @@
 	
 	<jsp:param name="did" value="61" />
 	
-	<jsp:param name="kpis" value="mortality/kpis_new.jsp" />
+	<jsp:param name="kpis" value="mortality/kpis.jsp" />
 	
 	<jsp:param name="delay_filter" value="true" />
 
