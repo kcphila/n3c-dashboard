@@ -357,7 +357,7 @@
 							<!-- filters are enabled by passing in a boolean parameter -->
 							
 							<c:if test="${param.severity_filter}">
-								<jsp:include page="filters/severity.jsp"/>
+								<jsp:include page="filters_new/severity.jsp"/>
 							</c:if>
 							<c:if test="${param.age_filter}">
 								<jsp:include page="filters/age.jsp"/>
@@ -453,7 +453,7 @@
 								<jsp:include page="filters_new/smoking.jsp"/>
 							</c:if>
 							<c:if test="${param.region_filter}">
-								<jsp:include page="filters/region.jsp"/>
+								<jsp:include page="filters_new/region.jsp"/>
 							</c:if>
 							<c:if test="${param.reinfectionbin_filter}">
 								<jsp:include page="filters/reinfection_interval.jsp"/>
@@ -769,6 +769,13 @@
 	 // initiate the filters /////////////////////////////////////////
 		
 		$('#${param.block}-severity-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-severity-select');
 		        var selected = [];
@@ -894,6 +901,25 @@
 		            selected.push($(this).val());
 		        });
 				${param.block}_constrain("medication",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
+		$('#${param.block}-region-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-region-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("region",  selected[0].join('|'));
 			    ${param.block}_refreshHistograms();
             }
 		});
@@ -1074,20 +1100,6 @@
             }
 		});
 		
-		
-		
-		$('#${param.block}-region-select').multiselect({
-			numberDisplayed: 1,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-region-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("region",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
 		
 		$('#${param.block}-intervalbin-select').multiselect({
 			maxHeight: 300,

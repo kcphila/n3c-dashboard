@@ -7,6 +7,8 @@
 	<jsp:param name="block" value="severity_region_1" />
 	<jsp:param name="block_header" value="Regional Distribution of COVID+ Patients" />
 	<jsp:param name="topic_title" value="Regional Distribution of COVID+ Patients" />
+	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="folder" value="severity_region" />
 
 	<jsp:param name="kpis" value="severity_region/kpis.jsp" />
 	

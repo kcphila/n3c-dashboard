@@ -418,6 +418,8 @@ WebContent/new_ph/filters_new/death_delay.jsp -text
 WebContent/new_ph/filters_new/ethnicity.jsp -text
 WebContent/new_ph/filters_new/medication_ts.jsp -text
 WebContent/new_ph/filters_new/race.jsp -text
+WebContent/new_ph/filters_new/region.jsp -text
+WebContent/new_ph/filters_new/severity.jsp -text
 WebContent/new_ph/filters_new/sex.jsp -text
 WebContent/new_ph/filters_new/smoking.jsp -text
 WebContent/new_ph/frame.jsp -text
@@ -538,6 +540,9 @@ WebContent/new_ph/kpis/block3_kpis/medication_ts_selected.jsp -text
 WebContent/new_ph/kpis/block3_kpis/mortality.jsp -text
 WebContent/new_ph/kpis/block3_kpis/mortality2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/mortality3.jsp -text
+WebContent/new_ph/kpis/block3_kpis/regions.jsp -text
+WebContent/new_ph/kpis/block3_kpis/regions2.jsp -text
+WebContent/new_ph/kpis/block3_kpis/regions3.jsp -text
 WebContent/new_ph/kpis/block3_kpis/reinfection_30day.jsp -text
 WebContent/new_ph/kpis/block3_kpis/smoking.jsp -text
 WebContent/new_ph/kpis/block3_kpis/smokingnot.jsp -text
