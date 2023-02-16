@@ -419,6 +419,7 @@ WebContent/new_ph/filters_new/ethnicity.jsp -text
 WebContent/new_ph/filters_new/medication_ts.jsp -text
 WebContent/new_ph/filters_new/race.jsp -text
 WebContent/new_ph/filters_new/region.jsp -text
+WebContent/new_ph/filters_new/reinfection_interval.jsp -text
 WebContent/new_ph/filters_new/severity.jsp -text
 WebContent/new_ph/filters_new/sex.jsp -text
 WebContent/new_ph/filters_new/smoking.jsp -text
@@ -544,6 +545,9 @@ WebContent/new_ph/kpis/block3_kpis/regions.jsp -text
 WebContent/new_ph/kpis/block3_kpis/regions2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/regions3.jsp -text
 WebContent/new_ph/kpis/block3_kpis/reinfection_30day.jsp -text
+WebContent/new_ph/kpis/block3_kpis/reinfection_by_date.jsp -text
+WebContent/new_ph/kpis/block3_kpis/reinfection_rolling_by_date.jsp -text
+WebContent/new_ph/kpis/block3_kpis/reinfection_total.jsp -text
 WebContent/new_ph/kpis/block3_kpis/smoking.jsp -text
 WebContent/new_ph/kpis/block3_kpis/smokingnot.jsp -text
 WebContent/new_ph/long_covid/beforeAfter.jsp -text
@@ -799,8 +803,7 @@ WebContent/new_ph/reinfection_time_series/feeds/interval.jsp -text
 WebContent/new_ph/reinfection_time_series/feeds/timeline.jsp -text
 WebContent/new_ph/reinfection_time_series/interval.jsp -text
 WebContent/new_ph/reinfection_time_series/interval_table.jsp -text
-WebContent/new_ph/reinfection_time_series/kpis_1.jsp -text
-WebContent/new_ph/reinfection_time_series/kpis_2.jsp -text
+WebContent/new_ph/reinfection_time_series/kpis.jsp -text
 WebContent/new_ph/reinfection_time_series/panel.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection.jsp -text
 WebContent/new_ph/reinfection_time_series/reinfection_table.jsp -text

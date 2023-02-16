@@ -7,8 +7,10 @@
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="reinfection_ts_1" />
 	<jsp:param name="block_header" value="Reinfection Time Series" />
+	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="folder" value="reinfection_time_series" />
 
-	<jsp:param name="kpis" value="reinfection_time_series/kpis_1.jsp" />
+	<jsp:param name="kpis" value="reinfection_time_series/kpis.jsp" />
 
 	<jsp:param name="did" value="62" />
 	

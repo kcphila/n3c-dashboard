@@ -456,7 +456,7 @@
 								<jsp:include page="filters_new/region.jsp"/>
 							</c:if>
 							<c:if test="${param.reinfectionbin_filter}">
-								<jsp:include page="filters/reinfection_interval.jsp"/>
+								<jsp:include page="filters_new/reinfection_interval.jsp"/>
 							</c:if>
 						</div>
 					</div>
@@ -924,6 +924,26 @@
             }
 		});
 		
+		$('#${param.block}-intervalbin-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			maxHeight: 300,
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-intervalbin-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("intervalbin",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
 // old multiselects //////////////////////////////////////////////
 		$('#${param.block}-symptom-select').multiselect({	
 			onChange: function(option, checked, select) {
@@ -1101,18 +1121,7 @@
 		});
 		
 		
-		$('#${param.block}-intervalbin-select').multiselect({
-			maxHeight: 300,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-intervalbin-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("intervalbin",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
+		
 	
 		var mut = new MutationObserver(function(mutations, mut){
 			if($('#${param.block}-block-kpi').find('.dropdown-item.active').length !== 0){

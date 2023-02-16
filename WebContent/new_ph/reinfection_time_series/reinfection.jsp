@@ -32,12 +32,6 @@
 	</div>
 </div>
 
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../reinfection_time_series/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
 <script>
 
 function save_viz_pass(extension){
