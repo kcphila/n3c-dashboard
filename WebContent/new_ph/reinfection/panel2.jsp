@@ -71,6 +71,15 @@ $(document).ready(function () {
 	    $('#'+$(this).val()).show();
 	    // set breadcrumb to be the selected value
 	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+
+	    // this resets the datatable after selecting a new panel to display b/c graph resets
+	    var val = $(this).val();
+	    try {
+	    	eval(val + "_constraint(null, null)");
+	    } catch (e) {
+	    	
+	    };
+
     }); 
 });
 

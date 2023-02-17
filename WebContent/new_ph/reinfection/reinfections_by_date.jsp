@@ -3,6 +3,7 @@
 
 var ${param.block}_constraint_begin = null,
     ${param.block}_constraint_end = null;
+    
 
 function ${param.block}_constraint(begin, end) {
 	// console.log("constraint", begin, end)
@@ -51,15 +52,20 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 
 $(document).ready( function () {
 	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
+	    function( settings, searchData, index, rowData, counter ) {
+	    	// only do search on single table not both
+	    	if (settings.nTable.id == '${param.target_div}-table'){
 		    	if (${param.block}_constraint_begin == null)
 		    		return true;
 		    	if (${param.block}_constraint_begin <= searchData[0] && searchData[0] <= ${param.block}_constraint_end)
 		    		return true;
 		    	
 		    	return false;
+		    }else{
+		    	return true;
 		    }
-		);
+	    }
+	);
 		 
 	$.getJSON("<util:applicationRoot/>/new_ph/reinfection/feeds/reinfections_by_date.jsp?headers=y", function(data){
 			
