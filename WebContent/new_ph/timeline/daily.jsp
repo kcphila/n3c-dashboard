@@ -19,13 +19,6 @@
 	<div id="pos_rolling_graph" class="col-12 dash_viz"></div>	
 </div>
 
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../timeline/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
-
 <c:set var="feedPath"><util:applicationRoot />/new_ph/timeline/feeds/positive_cases_by_date.jsp</c:set>
 	
 <jsp:include page="../../graph_support/time_line_2_column.jsp">

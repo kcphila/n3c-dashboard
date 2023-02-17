@@ -5,7 +5,6 @@ var ${param.block}_constraint_begin = null,
     ${param.block}_constraint_end = null;
 
 function ${param.block}_constraint(begin, end) {
-	// console.log("constraint", begin, end)
 	${param.block}_constraint_begin = begin;
 	${param.block}_constraint_end = end;
 	var table = $('#${param.target_div}-table').DataTable();
@@ -14,15 +13,19 @@ function ${param.block}_constraint(begin, end) {
 
 $(document).ready( function () {
 	$.fn.dataTable.ext.search.push(
-		    function( settings, searchData, index, rowData, counter ) {
-		    	if (${param.block}_constraint_begin == null)
-		    		return true;
-		    	if (${param.block}_constraint_begin <= searchData[0] && searchData[0] <= ${param.block}_constraint_end)
-		    		return true;
-		    	
-		    	return false;
-		    }
-		);
+	    function( settings, searchData, index, rowData, counter ) {	    
+	    	// only do search on single table not both
+	    	if (settings.nTable.id == '${param.target_div}-table'){
+	    		if (${param.block}_constraint_begin == null)
+	    			return true;
+	    		if (${param.block}_constraint_begin <= searchData[0] && searchData[0] <= ${param.block}_constraint_end)
+	    			return true;
+	    		return false;
+	    	} else {
+	    		return true;
+	    	}
+	    }
+	);
 		 
 	$.getJSON("<util:applicationRoot/>/feeds/positive_cases_by_date.jsp?headers=y", function(data){
 			

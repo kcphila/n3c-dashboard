@@ -68,6 +68,14 @@ $(document).ready(function () {
 	    $('#'+$(this).val()).show();
 	    // set breadcrumb to be the selected value
 	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
+	    
+	    // this resets the datatable after selecting a new panel to display b/c graph resets
+	    var val = $(this).val();
+	    var myString = val.substr(val.indexOf("_") + 1);
+	    eval(val + "_constraint_begin = null;");
+	    eval(val + "_constraint_end = null;");
+	    var table = $("#positives-by-date" + myString + "-table").DataTable();
+	    table.draw();
     }); 
 });
 
