@@ -4,40 +4,38 @@
 
 <c:choose>
 	<c:when test="${param.block == 'cumulative_1' }">
-		<div class="col col-12 col-md-3 my-auto ">
+		<div class="col col-12 col-md-3 my-auto kpi_border_right">
 			<jsp:include page="../kpis/block3_kpis/covid_positive.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
 		<div class="col col-12 col-md-3 my-auto ">
-			<jsp:include page="../kpis/block2_kpis/cumulative_total.jsp">
+			<jsp:include page="../kpis/block3_kpis/cumulative_total.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-2 my-auto ">
-			<jsp:include page="../kpis/block2_kpis/cumulative_non.jsp">
+		<div class="col col-12 col-md-3 my-auto ">
+			<jsp:include page="../kpis/block3_kpis/cumulative_non.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+			<jsp:include page="../kpis/block3_kpis/cumulative_hisp.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-2 my-auto ">
-			<jsp:include page="../kpis/block2_kpis/cumulative_hisp.jsp">
-				<jsp:param name="block" value="${param.block}" />
-			</jsp:include>
-		</div>
-		<div class="col col-12 col-md-2 my-auto ">
-			<jsp:include page="../kpis/block2_kpis/cumulative_unkn.jsp">
+		<div class="col col-12 col-md-3 my-auto ">
+			<jsp:include page="../kpis/block3_kpis/cumulative_unkn.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
 	</c:when>
 	<c:when test="${param.block == 'cumulative_2' }">
-		<div class="col col-12 col-md-6 my-auto ">
+		<div class="col col-12 col-md-6 my-auto kpi_border_right">
 			<jsp:include page="../kpis/block3_kpis/covid_positive.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-6 my-auto ">
-			<jsp:include page="../kpis/block2_kpis/cumulative_total2.jsp">
+		<div class="col col-12 col-md-3 my-auto ">
+			<jsp:include page="../kpis/block3_kpis/cumulative_total2.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>

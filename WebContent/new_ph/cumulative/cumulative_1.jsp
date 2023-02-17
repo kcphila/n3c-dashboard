@@ -5,6 +5,8 @@
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="cumulative_1" />
 	<jsp:param name="block_header" value="Enclave Cumulative Participat Information" />
+	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="folder" value="cumulative" />
 
 	<jsp:param name="kpis" value="cumulative/kpis.jsp" />
 

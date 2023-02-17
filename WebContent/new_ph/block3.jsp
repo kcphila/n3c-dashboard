@@ -646,6 +646,40 @@
 							</div>
 						</c:if>
 					</div>
+					
+					
+					<c:if test="${not empty param.raceethncity_panel}">
+						<c:url value="${param.raceethncity_panel}" var="raceethncity_url">
+	  						<c:param name="panel" value="${param.raceethncity_panel}" />
+	  						<c:param name="block" value="${param.block}" />
+	  						<c:param name="datatable_div" value="${param.datatable_div}" />
+	  						<c:if test="${not empty param.topic_description}">
+	  							<c:param name="topic_description" value="${param.topic_description}" />
+	  						</c:if>
+	  						<c:if test="${not empty param.topic_title}">
+	  							<c:param name="topic_title" value="${param.topic_title}" />
+	  						</c:if>
+						</c:url>
+						<div id="${param.block}-raceethnicity" style="display: block;" src="<c:out value='${raceethncity_url}'/>"></div>
+					</c:if>
+					
+					<c:if test="${not empty param.racesex_panel}">
+						<c:url value="${param.racesex_panel}" var="racesex_url">
+	  						<c:param name="panel" value="${param.racesex_panel}" />
+	  						<c:param name="block" value="${param.block}" />
+	  						<c:param name="datatable_div" value="${param.datatable_div}" />
+	  						<c:if test="${not empty param.topic_description}">
+	  							<c:param name="topic_description" value="${param.topic_description}" />
+	  						</c:if>
+	  						<c:if test="${not empty param.topic_title}">
+	  							<c:param name="topic_title" value="${param.topic_title}" />
+	  						</c:if>
+						</c:url>
+						<div id="${param.block}-racesex" style="display: block;" src="<c:out value='${racesex_url}'/>"></div>
+					</c:if>
+					
+					
+					
 					<div class="row">
 						<c:if test="${not empty param.topic_description}">
 							<div id="viz_caption">
@@ -686,35 +720,7 @@
 						<div id="${param.block}-sotrovimab2" style="display: none;" src="<c:out value='${sotrovimab2_url}'/>"></div>
 					</c:if>
 					
-					<c:if test="${not empty param.raceethncity_panel}">
-						<c:url value="${param.raceethncity_panel}" var="raceethncity_url">
-	  						<c:param name="panel" value="${param.raceethncity_panel}" />
-	  						<c:param name="block" value="${param.block}" />
-	  						<c:param name="datatable_div" value="${param.datatable_div}" />
-	  						<c:if test="${not empty param.topic_description}">
-	  							<c:param name="topic_description" value="${param.topic_description}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title}">
-	  							<c:param name="topic_title" value="${param.topic_title}" />
-	  						</c:if>
-						</c:url>
-						<div id="${param.block}-raceethnicity" style="display: block;" src="<c:out value='${raceethncity_url}'/>"></div>
-					</c:if>
 					
-					<c:if test="${not empty param.racesex_panel}">
-						<c:url value="${param.racesex_panel}" var="racesex_url">
-	  						<c:param name="panel" value="${param.racesex_panel}" />
-	  						<c:param name="block" value="${param.block}" />
-	  						<c:param name="datatable_div" value="${param.datatable_div}" />
-	  						<c:if test="${not empty param.topic_description}">
-	  							<c:param name="topic_description" value="${param.topic_description}" />
-	  						</c:if>
-	  						<c:if test="${not empty param.topic_title}">
-	  							<c:param name="topic_title" value="${param.topic_title}" />
-	  						</c:if>
-						</c:url>
-						<div id="${param.block}-racesex" style="display: block;" src="<c:out value='${racesex_url}'/>"></div>
-					</c:if>
 					
 				</div>
 			
@@ -745,6 +751,7 @@
 </div>			
 
 <script>
+
 	$(document).ready(function() {
 	    
 	    setTimeout(function() {

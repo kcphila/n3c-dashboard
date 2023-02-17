@@ -536,6 +536,11 @@ WebContent/new_ph/kpis/block3_kpis/covid_first_diagnosis.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_positive.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_reinfections.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_subsequent_test.jsp -text
+WebContent/new_ph/kpis/block3_kpis/cumulative_hisp.jsp -text
+WebContent/new_ph/kpis/block3_kpis/cumulative_non.jsp -text
+WebContent/new_ph/kpis/block3_kpis/cumulative_total.jsp -text
+WebContent/new_ph/kpis/block3_kpis/cumulative_total2.jsp -text
+WebContent/new_ph/kpis/block3_kpis/cumulative_unkn.jsp -text
 WebContent/new_ph/kpis/block3_kpis/medication_ts_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/medication_ts_selected.jsp -text
 WebContent/new_ph/kpis/block3_kpis/mortality.jsp -text

@@ -6,6 +6,8 @@
 	<jsp:param name="block" value="cumulative_2" />
 	<jsp:param name="block_header" value="Enclave Cumulative Participat Demographics" />
 	<jsp:param name="topic_title" value="Count of Patients" />
+	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="folder" value="cumulative" />
 
 	<jsp:param name="kpis" value="cumulative/kpis.jsp" />
 
@@ -25,5 +27,6 @@
 </jsp:include>
 
 <script>
-	cumulative_2_toggle("raceethnicity");
+	cumulative_2_load("raceethnicity");
+	cumulative_2_load("racesex");
 </script>
