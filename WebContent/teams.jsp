@@ -11,7 +11,6 @@
 }
 
 .section-description {
-	margin-top: 30px;
 	margin-bottom: 60px;
 }
 

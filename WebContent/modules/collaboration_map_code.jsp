@@ -9,6 +9,19 @@
 </style>
 
 <script>
+
+	var cbs = document.querySelectorAll('[type="checkbox"]');
+	[].forEach.call(cbs, function (cb) {
+	    cb.addEventListener("click", function(){
+	        console.log(this.id);
+	    });
+	});
+	$("input").on('change', function (event) {
+		console.log('reached');
+		console.log(event);
+	 });
+
+
 	let draw2 = false;
 	var table2 = null;
 	
@@ -20,6 +33,8 @@
 			      var positions = $('input:checkbox[name="type"]:checked').map(function() {
 			        return this.value;
 			      }).get();
+			      
+			      console.log(positions);
 			   
 			      if (positions.length === 0) {
 			        return true;
@@ -101,10 +116,6 @@
 			createD3Chart(tableData);
 			setTableEvents(table2);
 		});
-		
-		$('input:checkbox').on('change', function () {
-		    table2.draw();
-		 });
 	}
 	
 	function getTableData(table) {
@@ -350,6 +361,10 @@
 	
 	}
 	
+	function clickfilter(){
+		table2.draw();
+	}
+	
     function drawColorKey() {
 		$.getJSON("<util:applicationRoot/>/feeds/siteCollaborationLegend.jsp", function(data) {
 			var legendData = data.sites;
@@ -365,10 +380,11 @@
     			.enter().append("div")
     			.attr("class", "col col-6 col-lg-4")
     			.html(function(d,i){
-    				return  '<i class="fas fa-circle" style="color:' + colorScale(legendData[i].org_type) + ';"></i> ' +  d.org_type + " [" + d.count + "]";
+    				return  '<label class="testcheck"><input onclick="clickfilter()" class="checkbox" type="checkbox" name="type" value="' + legendData[i].org_type + '"><i class="fas fa-circle" style="color:' + colorScale(legendData[i].org_type) + ';"></i> ' +  d.org_type + " [" + d.count + "]</label>";
     			});
 		});
     }
+    
 	
 	function update(data) {
 	
