@@ -180,7 +180,12 @@ div.composite.tooltip {
 			
 			<div class="section section-viz" style="margin-top: 30px;">
 				<div class="row stats">
-					<div class="col col-12 col-md-10 mx-auto">
+					<div class="col col-2 col-lg-2 side-col">
+						<jsp:include page="../meta/relatedDashboardsByID.jsp">
+							<jsp:param name="did" value="56"/>
+						</jsp:include>
+					</div>
+					<div class="col col-10 col-md-10 mx-auto">
 						<div id="display-d3">
 							<div class="row stats">
 								<div class="col col-12 col-md-6 viz-section">
