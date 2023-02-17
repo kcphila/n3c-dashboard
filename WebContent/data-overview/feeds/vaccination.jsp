@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select severity_abbrev as severity, gender_abbrev as sex, age_bin, race, vaccinated, patient_display, patient_count,age_abbrev,
+	from (select severity_abbrev as severity, gender_abbrev as sex, age_bin, race_abbrev as race, vaccinated, patient_display, patient_count,age_abbrev,
 	age_seq, race_abbrev, race_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, severity_abbrev, severity_seq
 			from (select
 					severity_type as severity,

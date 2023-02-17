@@ -66,6 +66,7 @@ WebContent/data-overview/pieChart_local.jsp -text
 WebContent/data-overview/pieChart_local_legends.jsp -text
 WebContent/data-overview/simple_grid.jsp -text
 WebContent/data-overview/simple_grid_legends.jsp -text
+WebContent/data-overview/style.css -text
 WebContent/demo/bostock_counties.html -text
 WebContent/demo/data.csv -text
 WebContent/demo/farms.html -text

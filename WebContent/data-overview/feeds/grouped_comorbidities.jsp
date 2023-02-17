@@ -6,7 +6,7 @@
    FROM ( SELECT severity_abbrev as severity,
             gender_map3.gender_abbrev AS sex,
             age_map6.age_abbrev AS age_bin,
-            foo.race,
+            race_map.race_abbrev as race,
             foo.comorbidities,
             foo.patient_display,
             foo.patient_count,

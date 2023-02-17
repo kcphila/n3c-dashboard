@@ -6,7 +6,7 @@ SELECT jsonb_pretty(jsonb_agg(done.*)) AS jsonb_pretty
    FROM ( SELECT severity_abbrev as severity,
             gender_map3.gender_abbrev AS sex,
             age_map6.age_bin AS age_bin,
-            foo.race,
+            race_map.race_abbrev as race,
             foo.comorbidity,
             foo.patient_display,
             foo.patient_count,
