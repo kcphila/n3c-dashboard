@@ -10,10 +10,6 @@
 	margin-bottom: 100px;
 }
 
-.section-description {
-	margin-bottom: 60px;
-}
-
 
 </style>
 
