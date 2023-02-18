@@ -11,26 +11,15 @@
 .graph_tooltip{
 	pointer-events:none;
 }
-
-div.bar.tooltip {
-	position: absolute;
-	background-color: white;
-  	opacity: 0.8;
-  	height: auto;
-	padding: 1px;
-  	pointer-events: none;
-  	max-width: 200px;
-}
 </style>
 
 <script>
-
 
 // not implemented
 // margin = array: [top, bottom, left, right]
 
 
-function localHorizontalGroupedBarChart_new(data, properties) {
+function localHorizontalGroupedPercentageBarChart_new(data, properties) {
 	
 	console.log('reached');
 	
@@ -47,6 +36,8 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 	var label1 = properties.label1;
 	var label2 = properties.label2;
 	var offset = properties.offset;
+		
+	var filter_icon = " &#xf0b0";
 	
 	var setup_data = d3.nest()
 		.key(function (d) { return d[primary]; })
@@ -69,7 +60,7 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 	var barPadding = 3;
 	var barHeight = 20;
 	
-	var margin = {top: 0, right: 30, bottom: 30, left: offset},
+	var margin = {top: 20, right: 30, bottom: 30, left: offset},
 		width = $("#"+domName).width() - margin.left - margin.right,
 		height = (secondary_list.length*barHeight);
 	
@@ -84,21 +75,22 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 				d3.select("#"+domName).select("svg").remove();
 				width = newWidth - margin.left - margin.right;
 				height = (secondary_list.length*barHeight);
-				draw_bar();
+				draw_pbar();
 			}
 		});
 	});
 	
 	myObserver.observe(d3.select("#"+domName).node());
 	
-	draw_bar();
+	draw_pbar();
 	
-	function draw_bar() {
+	function draw_pbar() {
 		
 		var sequence = secondary + '_seq';
 		var prime_seq = primary + '_seq';
 		data.sort(function (x, y) { return x[prime_seq] - y[prime_seq] || x[sequence] - y[sequence]; });
 		
+
 		var x = d3.scaleLinear()
 			.rangeRound([0, width-margin.right]);
 		var x2 = d3.scaleLinear()
@@ -119,8 +111,6 @@ function localHorizontalGroupedBarChart_new(data, properties) {
  		.map(data);
 		
 		
-		var max_count = 0;
-		
 		var groupedData = d3.nest()
      		.key(function (d) { return d[primary]; })
      		.key(function (d) { return d[secondary]; })
@@ -133,30 +123,27 @@ function localHorizontalGroupedBarChart_new(data, properties) {
      				count2 += v[i][count];
      				seq = v[i][sequence];
      				total = totalsGrouped.get(v[i][secondary]).total;
-     				if (max_count < count2){ 
-     					max_count = count2;
-     				};
      			}
      			return {count: count2, seq: seq, total: total, label: label};
 			})
      		.entries(data);
 		
 		var abbrev = d3.nest()
-			.key(function (d) { return d[primary]; })
- 			.key(function (d) { return d[primary+"_abbrev"]; })
- 			.rollup(function(v) { })
- 			.entries(data);
+		.key(function (d) { return d[primary]; })
+			.key(function (d) { return d[primary+"_abbrev"]; })
+			.rollup(function(v) { })
+			.entries(data);
 		
-		x.domain([0, max_count]).nice();
+		x.domain([0, 100]).nice();
 		
 		var category_labels = [];
-		var cumulative = 0;
+		var cummulative = 0;
 		groupedData.forEach(function(d, i) {
 			var full = d.key;
 			var ab = abbrev.find(item => item.key === full);
 			d.abbrev = ab.values[0].key;
-			d.cumulative = cumulative;
-			cumulative += d.values.length;
+			d.cummulative = cummulative;
+			cummulative += d.values.length;
 			category_labels.push(d.key);
 		});
 		
@@ -167,7 +154,7 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 			.domain(category_labels);
 	
 		var bar_color = d3.scaleOrdinal()
-			.range(["#f1f1f1", "white"])
+			.range(["#EEEEEE", "white"])
 			.domain(category_labels);
 
 		var svg = d3.select("#"+domName).append("svg")
@@ -178,8 +165,21 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 		var g = svg.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 			.attr("id", "svg_g"+domName);
-		
 
+		
+		g.append("g")
+			.attr("class", "axis")
+			.call(d3.axisTop(x).ticks(Math.round(width/100), "s").tickFormat(function(d) {  return  d + "%" }))
+			.append("text")
+			.attr("y", 2)
+			.attr("x", x(x.ticks().pop()) + 0.5)
+			.attr("dx", "0.32em")
+			.attr("fill", "#000")
+			.attr("font-weight", "bold")
+			.attr("text-anchor", "start");
+		
+		
+		
 		//////// Bars ///////////////
 		var categories = g.selectAll(".categories")
 			.data(groupedData)
@@ -188,7 +188,7 @@ function localHorizontalGroupedBarChart_new(data, properties) {
     			return 'category category-' + d.key.replace(/\s+/g, '');
   			})
   			.attr("transform", function(d) {
-    			return "translate(0, " + ( d.cumulative * barHeight ) + ")";
+    			return "translate(0, " + ( d.cummulative * barHeight ) + ")";
   			});
 		
 		categories.append("rect")
@@ -201,17 +201,14 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 			.attr("height", function(d){
 				return ( d.values.length * barHeight);
 			})
-			.attr("width", width + margin.left);
+			.attr("width", x(100)+margin.left);
 		
 		categories
 			.append("text")
 	    	.text(function(d) { return d.abbrev })
 	    	.attr("class", function(d){return "text_color " + d.key.replace(/\s/g,'')})
-			.attr("transform", function(d) {
-				var h = (d.values.length * barHeight);
-    			return "translate(" + -(margin.left) + " , " + ((h/2)+5) + ")";
-  			})
-  			.on('mousemove', function(d, i){
+			.style("text-anchor", "start")
+			.on('mousemove', function(d, i){
 	    		var label = d.key;
 				d3.selectAll(".tooltip").remove(); 
 				d3.select("body").append("div")
@@ -223,7 +220,11 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 			})
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 
-			});
+			})
+			.attr("transform", function(d) {
+				var h = (d.values.length * barHeight);
+    			return "translate(" + -(margin.left) + " , " + ((h/2)+5) + ")";
+  			});
 			
 		var serie = categories.append("g")
 			.attr("transform", function(d) {
@@ -240,8 +241,8 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 			.attr("y", function(d) { 
 				return (y_category(0) + 15); 
 			})
-			.attr("x", function(d) { return (x(d.value.count)) + 5; })
-			.text(function(d){return d.value.count.toLocaleString()});
+			.attr("x", function(d) { return (x((d.value.count/d.value.total)*100) + 5); })
+			.text(function(d){return ((d.value.count/d.value.total)*100).toFixed(2) + "%"});
 		
 		serie.selectAll("rect")
 			.data(function(d) {return d.values; })
@@ -277,47 +278,13 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 
 			});
-		
+
 		serie.selectAll('rect')
 			.transition().duration(1000)
-			.attr("width", function(d) {return Math.max(1, x(d.value.count)); });
-		
-		
-		// draw color key on to decoupled div
-		function drawColorKey() {
-			d3.select("#legend").html("");
-        	var legend_div = d3.select("#legend").append("div").attr("class", "row").attr("id", "filters");
-    		
-        	legend_div.selectAll(".legend-title")
-        		.data([label2])
-    			.enter().append("div")
-        		.attr("class", "col col-12")
-        		.html(function(d){
-    				return  '<h5><i class="fas fa-filter"></i>   ' + d + ' Legend</h5>';
-    			});
-        	
-    		var legend_data = legend_div.selectAll(".new_legend")
-    			.data(legend_label)
-    			.enter().append("div")
-    			.attr("class", "filter_col col col-6 col-lg-3")
-    			.on("click", function(d, i){
-    				console.log('click');
-    				console.log(d.secondary);
-    				console.log(label2.replace(/\s/g, ""));
-    				
-    				var format = {};
-    				format['secondary_name'] = d.secondary;
-    				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, label2.replace(/\s/g, ""));
-				})
-    			.html(function(d,i){
-    				return  '<i class="fas fa-circle" style="color:' + colorscale[d.secondary_seq-1] + ';"></i> ' +  d.secondary;
-    			});
-	    };
-	    
-	    drawColorKey();
-	    
-	    // overdraw width and put legend outside of clip path (to only show on download)
-	    var legend_text = svg.append("g")
+			.attr("width", function(d) {return Math.max(1, x((d.value.count/d.value.total)*100)); });
+	
+		// Legend ////////////////////	
+		var legend_text = svg.append("g")
 			.attr("transform", "translate(" + 150 + " ," + 0 + " )")
 			.attr("font-family", "sans-serif")
 			.attr("font-size", '14px')
@@ -328,8 +295,8 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 			.attr("y", 9.5)
 			.attr("dy", "0.32em")
 			.text(label2);
-		
-	    var legend = svg.append("g")
+			
+		var legend = svg.append("g")
 			.attr("font-family", "sans-serif")
 			.attr("font-size", ".8rem")
 			.attr("text-anchor", "end")
@@ -339,13 +306,13 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 			.attr("transform", function(d, i) {
 				return "translate(250," + ((i * 20)+20) + ")";
 			});
-
+	
 		legend.append("rect")
 			.attr("x", width - 19)
 			.attr("width", 19)
 			.attr("height", 19)
 			.attr("fill", function(d, i) { return colorscale[i]; });
-
+	
 		legend.append("text")
 			.attr("x", width - 24)
 			.attr("y", 9.5)

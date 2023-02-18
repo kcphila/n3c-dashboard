@@ -25,42 +25,15 @@
 <script>
 //this is to change the title of the download based on which visualization mode is selected
 function save_viz_pass_sex(extension){
-	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
-	var strings = id.split('-');
-	var mode = strings[strings.length-1];
-	
-	var text = '';
-	if (mode == 'bar'){
-		text = "Counts of ${param.topic_title} by Sex and Smoking Status" + extension;
-	} else {
-		text = "% of COVID+ Smokers In Each Sex Category Vs. % of COVID+ Non-Smokers In Each Sex Category" + extension;
-	};
-	
+	var text = "Counts of ${param.topic_title} by Sex and Smoking Status" + extension;
 	saveVisualization('${param.block}_sex_viz', text);
 };
 
-// set inital title based on load mode
-var title_id = $("#${param.block}-mode").find('.text-primary').attr('id');
-var title_strings = title_id.split('-');
-var title_mode = title_strings[title_strings.length-1];
-
-if (title_mode == 'bar'){
 	var title = "Counts of ${param.topic_title} by Sex and Smoking Status";
 	$("#sex-title").text(title);
-} else {
-	var title = "% of COVID+ Smokers In Each Sex Category Vs. % of COVID+ Non-Smokers In Each Sex Category";
-	$("#sex-title").text(title);
-};
 
-//this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "% of COVID+ Smokers In Each Sex Category Vs. % of COVID+ Non-Smokers In Each Sex Category";
-	$("#sex-title").text(title);
-});
-$('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of ${param.topic_title} by Sex and Smoking Status";
-	$("#sex-title").text(title);
-});
+
+
 
 function ${param.block}_sex_refresh() {
 	var properties = {
@@ -78,17 +51,9 @@ function ${param.block}_sex_refresh() {
 			array: 'status'
 	}
 	
-	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
-	var strings = id.split('-');
-	var mode = strings[strings.length-1];
 	
 	d3.select("#${param.block}_sex_viz").select("svg").remove();
-	
-	if (mode == 'bar'){
-		localHorizontalGroupedBarChart_new(${param.block}_statusArray, properties);	
-	} else if (mode == 'barpercent'){
-		localHorizontalGroupedPercentageBarChart_new(${param.block}_statusArray, properties);	
-	};	
+	localHorizontalGroupedBarChart_new(${param.block}_statusArray, properties);	
 }
 
 ${param.block}_sex_refresh();

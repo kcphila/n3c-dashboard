@@ -319,6 +319,26 @@
     overflow-wrap: anywhere;
 }
 
+
+#legend{
+/* 	padding: 10px;  */
+/* 	border: 1px solid lightgray; */
+}
+
+#filters .filter_col{
+	cursor: pointer;
+}
+
+/* clip the legend on the viz but keep it there for download */
+.dash_viz.clip {
+    width: 100%;
+    overflow: hidden;
+}
+
+.clipsvg{
+	background-color: white;
+}
+
 </style>
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
@@ -479,6 +499,13 @@
 	
 	<!-- Panels ------------------------------------------------------------------------------------------------- -->		
 				<div id="${param.block}-panel" class="col-12 col-md-12 mx-auto mb-4 panel" >
+				
+					<!-- Floating Legend -->
+						<c:if test="${not empty param.floating_legend}">
+							<div class="col-12"> 
+								<div id="legend"></div>
+							</div>
+						</c:if>
 
 					<c:if test="${not empty param.simple_panel}">
 						<div id="${param.block}-simple" class="" style="display: block;">
@@ -499,6 +526,8 @@
 					
 			<!-- Composite Panels ------------------------------------------------------------------------------------------------- -->
 					<div class="row">
+						
+						
 						<c:if test="${not empty param.severity_panel}">
 							<c:url value="${param.severity_panel}" var="severity_url">
 		 							<c:param name="panel" value="${param.severity_panel}" />

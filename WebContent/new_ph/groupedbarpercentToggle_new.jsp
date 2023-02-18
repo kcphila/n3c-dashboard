@@ -38,7 +38,7 @@ $('#${param.block}-mode-barpercent').on('click', function() {
 		$("#${param.block}_" + i + "_viz svg").remove();
 		
 		var array = eval("${param.block}_"+properties[0].array+"Array");
-		localHorizontalGroupedPercentageBarChart(array, properties[0]);
+		localHorizontalGroupedPercentageBarChart_new(array, properties[0]);
 	};	
 });
 
