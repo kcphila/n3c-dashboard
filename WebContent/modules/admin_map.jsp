@@ -1,5 +1,8 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+<script src="<util:applicationRoot/>/graph_support/albers-usa-pr.js"></script>
+
+
 <script>
 let draw2 = true;
 
@@ -121,7 +124,7 @@ function createD3Chart(sites_data){
 			var legendPosition = [];
 			
 			// D3 Projection 
-			var projection = d3.geoAlbersUsa()
+			var projection = geoAlbersUsaTerritories.geoAlbersUsaTerritories()
 				.translate([width / 2, (height / 2)+20]) // translate to center of screen
 				.scale([width]); // scale things down so see entire US
 	
@@ -301,7 +304,7 @@ function update(data){
 
 		svg.call(zoom.transform, d3.zoomIdentity);
 		
-		var projection = d3.geoAlbersUsa()
+		var projection = geoAlbersUsaTerritories.geoAlbersUsaTerritories()
 			.translate([width / 2, (height / 2)+20]) // translate to center of screen
 			.scale([width]); // scale things down so see entire US
 		var graph = data; 
