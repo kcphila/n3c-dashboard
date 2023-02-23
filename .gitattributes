@@ -108,6 +108,7 @@ WebContent/feeds/siteLocations.jsp -text
 WebContent/feeds/siteRoster.jsp -text
 WebContent/feeds/us-states.json -text
 WebContent/footer.jsp -text
+WebContent/graph_support/albers-usa-pr.js -text
 WebContent/graph_support/forcePhoto.jsp -text
 WebContent/graph_support/graphic_save.jsp -text
 WebContent/graph_support/grouped_bar_horizontal_local.jsp -text

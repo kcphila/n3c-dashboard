@@ -1,11 +1,18 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+
+
+<script src="<util:applicationRoot/>/graph_support/albers-usa-pr.js"></script>
+
 <script>
 let draw2 = false;
 
 init();
 
 function init() {
+	
+	console.log('reached 5');
+
 	$.getJSON("<util:applicationRoot/>/feeds/siteLocations.jsp", function(data){
 		// console.log(data);
 		
@@ -92,7 +99,6 @@ var width = null;
 var height = null;
 	
 function createD3Chart(sites_data){ 
-	console.log(sites_data)
 	d3.select("#graph").select("svg").remove();
 	
 	
@@ -104,7 +110,6 @@ function createD3Chart(sites_data){
 		var myObserver = new ResizeObserver(entries => {
 			entries.forEach(entry => {
 				var newWidth = Math.floor(entry.contentRect.width);
-				// // console.log('body width '+newWidth);
 				if (newWidth > 0) {
 					d3.select("#graph").select("svg").remove();
 					width = newWidth;
@@ -125,7 +130,7 @@ function createD3Chart(sites_data){
 			var legendPosition = [];
 			
 			// D3 Projection 
-			var projection = d3.geoAlbersUsa()
+			var projection = geoAlbersUsaTerritories.geoAlbersUsaTerritories()
 				.translate([width / 2, (height / 2)+20]) // translate to center of screen
 				.scale([width]); // scale things down so see entire US
 	
@@ -230,6 +235,7 @@ function createD3Chart(sites_data){
 					var graph = sites_data; 
 						var locationBySite = [],
 							positions = [];
+						
 					
 					var sites = graph.sites.filter(function(site) {
 						var location = [site.longitude, site.latitude];
@@ -237,7 +243,7 @@ function createD3Chart(sites_data){
 						positions.push(projection(location));
 						return true;
 					});
-	
+					
 					var other = g.selectAll("circle")
 						.data(sites)
 						.enter().append("svg:circle")
@@ -289,7 +295,7 @@ function createD3Chart(sites_data){
 	
 	
 }
-
+	
 function update(data){
 		
 		var svg = d3.select("#graph").select("svg");
@@ -307,7 +313,7 @@ function update(data){
 
 		svg.call(zoom.transform, d3.zoomIdentity);
 		
-		var projection = d3.geoAlbersUsa()
+		var projection = geoAlbersUsaTerritories.geoAlbersUsaTerritories()
 			.translate([width / 2, (height / 2)+20]) // translate to center of screen
 			.scale([width]); // scale things down so see entire US
 		var graph = data; 
@@ -398,6 +404,7 @@ function setTableEvents(table) {
 	    }
 	  });
 	}
+
 
 
 
