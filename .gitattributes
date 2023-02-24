@@ -78,6 +78,7 @@ WebContent/distribution-demographics.jsp -text
 WebContent/downloads.jsp -text
 WebContent/embedded.jsp -text
 WebContent/exploration.jsp -text
+WebContent/external/spotlight.jsp -text
 WebContent/feeds/aggregated.jsp -text
 WebContent/feeds/configuration.jsp -text
 WebContent/feeds/domain_team_roster.jsp -text
