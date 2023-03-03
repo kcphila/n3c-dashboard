@@ -3,6 +3,9 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
+
+<!-- update to new db for questions and dashboards  -->
+
 <style>
 #limitations_drop a[aria-expanded = "true"] span.btn:after{
 	font-family: "Font Awesome\ 5 Free"; 

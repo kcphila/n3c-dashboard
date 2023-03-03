@@ -422,6 +422,8 @@ WebContent/new_ph/filters_new/age_10.jsp -text
 WebContent/new_ph/filters_new/age_4.jsp -text
 WebContent/new_ph/filters_new/death_delay.jsp -text
 WebContent/new_ph/filters_new/ethnicity.jsp -text
+WebContent/new_ph/filters_new/medication.jsp -text
+WebContent/new_ph/filters_new/medication_class.jsp -text
 WebContent/new_ph/filters_new/medication_ts.jsp -text
 WebContent/new_ph/filters_new/race.jsp -text
 WebContent/new_ph/filters_new/region.jsp -text
@@ -547,6 +549,9 @@ WebContent/new_ph/kpis/block3_kpis/cumulative_non.jsp -text
 WebContent/new_ph/kpis/block3_kpis/cumulative_total.jsp -text
 WebContent/new_ph/kpis/block3_kpis/cumulative_total2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/cumulative_unkn.jsp -text
+WebContent/new_ph/kpis/block3_kpis/medication_class_count.jsp -text
+WebContent/new_ph/kpis/block3_kpis/medication_count.jsp -text
+WebContent/new_ph/kpis/block3_kpis/medication_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/medication_ts_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/medication_ts_selected.jsp -text
 WebContent/new_ph/kpis/block3_kpis/mortality.jsp -text

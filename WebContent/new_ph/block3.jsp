@@ -461,10 +461,10 @@
 								<jsp:include page="filters/sotrovimab_meds.jsp"/>
 							</c:if>
 							<c:if test="${param.medication_filter}">
-								<jsp:include page="filters/medication.jsp"/>
+								<jsp:include page="filters_new/medication.jsp"/>
 							</c:if>
 							<c:if test="${param.medication_class_filter}">
-								<jsp:include page="filters/medication_class.jsp"/>
+								<jsp:include page="filters_new/medication_class.jsp"/>
 							</c:if>
 							<c:if test="${param.medications_filter}">
 								<jsp:include page="filters_new/medication_ts.jsp"/>
@@ -773,6 +773,13 @@
 						</c:if>
 				</div>
 				<div class="row" id="question-limits">
+<%-- 					<sql:query var="questions" dataSource="jdbc/N3CPublic"> --%>
+<%-- 						select limitations from ${schema} where did = ? --%>
+<%-- 						<sql:param>${param.did}</sql:param> --%>
+<%--  					</sql:query> --%>
+<%-- 					<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter"> --%>
+<%-- 						${row.limitations } --%>
+<%-- 					</c:forEach> --%>
 				</div>
 			</div>
 		</div>
@@ -980,6 +987,50 @@
             }
 		});
 		
+		$('#${param.block}-medication-class-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			maxHeight: 300,
+			numberDisplayed: 1,
+			enableCaseInsensitiveFiltering: true,
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-medication-class-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("drug_domain",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
+		$('#${param.block}-medication-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			maxHeight: 300,
+			numberDisplayed: 1,
+			enableCaseInsensitiveFiltering: true,
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-medication-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("concept_set_name",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
 // old multiselects //////////////////////////////////////////////
 		$('#${param.block}-symptom-select').multiselect({	
 			onChange: function(option, checked, select) {
@@ -1127,34 +1178,8 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
-		$('#${param.block}-medication-select').multiselect({	
-			maxHeight: 300,
-			numberDisplayed: 1,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-medication-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("concept_set_name",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-medication-class-select').multiselect({	
-			maxHeight: 300,
-			numberDisplayed: 1,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-medication-class-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("drug_domain",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
+		
+		
 		
 		
 		
