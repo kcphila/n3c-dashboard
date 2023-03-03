@@ -4,11 +4,12 @@
 
 <!-- covid_patients_demographics_censored (2022-03-31 05:01) -->
 
-<jsp:include page="../block2.jsp">
+<jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="medications_2" />
 	<jsp:param name="block_header" value="COVID+ Patient Distribution by Medication" />
 	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="topic_title" value="Counts of COVID+ Patients Prescribed Select Medications by Drug Class and Sex" />
+	<jsp:param name="folder" value="medications" />
 
 	<jsp:param name="kpis" value="medications/kpis.jsp" />
 
@@ -16,6 +17,8 @@
 	<jsp:param name="medication_filter" value="true" />
 	<jsp:param name="medication_class_filter" value="true" />
 
+	<jsp:param name="did" value="46" />
+	
 	<jsp:param name="simple_panel" value="medications/classes_frequency.jsp" />
 
 	<jsp:param name="datatable" value="medications/medications_table2.jsp" />

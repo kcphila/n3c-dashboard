@@ -21,12 +21,6 @@
 	</div>
 </div>
 
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../medications/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
 
 <script>
 
