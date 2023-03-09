@@ -395,7 +395,7 @@
 								<jsp:include page="filters/age_6.jsp"/>
 							</c:if>
 							<c:if test="${param.age_filter7}">
-								<jsp:include page="filters/age_7.jsp"/>
+								<jsp:include page="filters_new/age_7.jsp"/>
 							</c:if>
 							<c:if test="${param.age_filter10}">
 								<jsp:include page="filters_new/age_10.jsp"/>
@@ -419,7 +419,7 @@
 								<jsp:include page="filters_new/sex.jsp"/>
 							</c:if>
 							<c:if test="${param.sex_filter3}">
-								<jsp:include page="filters/sex3.jsp"/>
+								<jsp:include page="filters_new/sex3.jsp"/>
 							</c:if>
 							<c:if test="${param.ethnicity_filter}">
 								<jsp:include page="filters_new/ethnicity.jsp"/>
@@ -522,6 +522,9 @@
 	  							<c:if test="${not empty param.topic_title}">
 	  								<c:param name="topic_title" value="${param.topic_title}" />
 	  							</c:if>
+	  							<c:if test="${not empty param.topic_disease}">
+		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
 							</c:url>
 							<jsp:include page="${url}"/>
 						</div>
@@ -1545,6 +1548,7 @@
 	    	${param.block}_severity_refresh();
 	    }
 	    if (${param.block}_loaded("age")) {
+	    	console.log('loaded age');
 	    	${param.block}_age_refresh();
 	    }
 	    if (${param.block}_loaded("race")) {
@@ -1604,6 +1608,11 @@
 	    }
 	    if ('${param.block}' === "severity_region_1") {
 	    	${param.block}_region_refresh();
+	    }
+	    if ('${param.block}'.includes('hlh')) {
+	    	console.log('reached refresh');
+	    	${param.block}_age_refresh();
+	    	${param.block}_sex_refresh();
 	    }
 	  }
 	

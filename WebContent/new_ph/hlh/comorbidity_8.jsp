@@ -2,12 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<jsp:include page="../block2.jsp">
+<jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="hlh_8" />
 	<jsp:param name="block_header" value="Liver Disease Mild" />
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="topic_disease" value="Liver Disease Mild" />
 	<jsp:param name="topic_title" value="Counts of Patients Who Have Been Diagnosed with" />
+	<jsp:param name="folder" value="hlh" />
+	<jsp:param name="did" value="52" />
 	
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="liver_disease_mild" />
@@ -15,8 +17,7 @@
 	<jsp:param name="age_filter7" value="true" />
 	<jsp:param name="sex_filter3" value="true" />
 	
-	<jsp:param name="age_panel" value="hlh/ageSex.jsp" />
-	<jsp:param name="sex_panel" value="hlh/sexAge.jsp" />
+	<jsp:param name="simple_panel" value="hlh/counts.jsp" />
 
 	<jsp:param name="datatable" value="hlh/hlh_table.jsp" />
 	<jsp:param name="datatable_div" value="hlh_data_8" />
@@ -27,6 +28,3 @@
 	
 </jsp:include>
 
-<script>
-	hlh_8_toggle("age");
-</script>

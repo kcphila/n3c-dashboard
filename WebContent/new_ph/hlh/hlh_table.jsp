@@ -197,6 +197,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	// this is necessary to populate the histograms for the panel's initial D3 rendering
 	${param.block}_refreshHistograms();
 	${param.block}_age_refresh();
+	${param.block}_sex_refresh();
 
 	
 });
