@@ -22,19 +22,12 @@
 </div>
 
 
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../long_covid/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
-
 <script>
 
 function ${param.block}_age_refresh() {
 	var properties = {
 			domName: '#${param.block}_age_viz',
-			barLabelWidth: 70,
+			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
 			colorscale: age_range
@@ -42,7 +35,7 @@ function ${param.block}_age_refresh() {
 
 	// console.log("age graph", "${param.block}_age_viz", ${param.block}_AgeArray)
 	d3.select("#${param.block}_age_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_AgeArray, properties);
+	localHorizontalBarChart_new(${param.block}_AgeArray, properties);
 }
 
 ${param.block}_age_refresh();

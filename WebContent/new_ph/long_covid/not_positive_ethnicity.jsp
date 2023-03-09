@@ -21,19 +21,12 @@
 	</div>
 </div>
 
-
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../long_covid/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
 <script>
 
 function ${param.block}_ethnicity_refresh() {
 	var properties = {
 			domName: '#${param.block}_ethnicity_viz',
-			barLabelWidth: 160,
+			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 1,
 			colorscale: ethnicity_range
@@ -41,7 +34,7 @@ function ${param.block}_ethnicity_refresh() {
 
 	// console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_EthnicityArray)
 	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
-	localHorizontalBarChart(${param.block}_EthnicityArray, properties);
+	localHorizontalBarChart_new(${param.block}_EthnicityArray, properties);
 }
 
 ${param.block}_ethnicity_refresh();

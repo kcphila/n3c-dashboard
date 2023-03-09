@@ -428,7 +428,7 @@
 								<jsp:include page="filters/observation.jsp"/>
 							</c:if>
 							<c:if test="${param.symptom_filter}">
-								<jsp:include page="filters/symptom.jsp"/>
+								<jsp:include page="filters_new/symptom.jsp"/>
 							</c:if>
 							<c:if test="${param.vaccinated_filter}">
 								<jsp:include page="filters/vaccinated.jsp"/>
@@ -440,7 +440,7 @@
 								<jsp:include page="filters/comorbidities.jsp"/>
 							</c:if>
 							<c:if test="${param.beforeafter_filter}">
-								<jsp:include page="filters/beforeafter.jsp"/>
+								<jsp:include page="filters_new/beforeafter.jsp"/>
 							</c:if>
 							<c:if test="${param.beforeaftersotrovimab_filter}">
 								<jsp:include page="filters_new/beforeafter_sotrovimab.jsp"/>
@@ -524,6 +524,12 @@
 	  							</c:if>
 	  							<c:if test="${not empty param.topic_disease}">
 		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.labelwidth}">
+		  							<c:param name="labelwidth" value="${param.labelwidth}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.viz_height}">
+		  							<c:param name="viz_height" value="${param.viz_height}" />
 		  						</c:if>
 							</c:url>
 							<jsp:include page="${url}"/>
@@ -1156,8 +1162,14 @@
             }
 		});
 		
-// old multiselects //////////////////////////////////////////////
-		$('#${param.block}-symptom-select').multiselect({	
+		$('#${param.block}-symptom-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-symptom-select');
 		        var selected = [];
@@ -1169,6 +1181,27 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
+		
+		$('#${param.block}-symptomoccurrence-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-symptomoccurrence-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("beforeafter",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
+// old multiselects //////////////////////////////////////////////
 		$('#${param.block}-vaccinated-select').multiselect({
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-vaccinated-select');
@@ -1191,17 +1224,6 @@
 		            selected.push($(this).val());
 		        });
 				${param.block}_constrain("comorbidities",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-symptomoccurrence-select').multiselect({	
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-symptomoccurrence-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("beforeafter",  selected[0].join('|'));
 			    ${param.block}_refreshHistograms();
             }
 		});
@@ -1610,9 +1632,18 @@
 	    	${param.block}_region_refresh();
 	    }
 	    if ('${param.block}'.includes('hlh')) {
-	    	console.log('reached refresh');
 	    	${param.block}_age_refresh();
 	    	${param.block}_sex_refresh();
+	    }
+	    if ('${param.block}' === "long_covid_2" || '${param.block}' === "long_covid_13") {
+	    	${param.block}_severity_refresh();
+	    	${param.block}_sex_refresh();
+	    }
+	    if (["long_covid_3", "long_covid_4", "long_covid_5", "long_covid_7", "long_covid_8", "long_covid_9", "long_covid_10", "long_covid_11"].includes('${param.block}')) {
+	    	${param.block}_age_refresh();
+	    	${param.block}_race_refresh();
+	    	${param.block}_sex_refresh();
+	    	${param.block}_ethnicity_refresh();
 	    }
 	  }
 	

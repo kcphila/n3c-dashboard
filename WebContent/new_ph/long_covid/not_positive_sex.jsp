@@ -21,19 +21,12 @@
 	</div>
 </div>
 
-
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../long_covid/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
 <script>
 
 function ${param.block}_sex_refresh() {
 	var properties = {
 			domName: '#${param.block}_sex_viz',
-			barLabelWidth: 70,
+			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 1,
 			colorscale: sex_range
@@ -41,7 +34,7 @@ function ${param.block}_sex_refresh() {
 
 	// console.log("sex graph", "${param.block}_sex_viz", ${param.block}_SexArray)
 	d3.select("#${param.block}_sex_viz").select("svg").remove();
-    localHorizontalBarChart(${param.block}_SexArray, properties);
+	localHorizontalBarChart_new(${param.block}_SexArray, properties);
 }
 
 ${param.block}_sex_refresh();
