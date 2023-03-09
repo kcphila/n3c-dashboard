@@ -434,7 +434,7 @@
 								<jsp:include page="filters/vaccinated.jsp"/>
 							</c:if>
 							<c:if test="${param.vaccinated_filter2}">
-								<jsp:include page="filters/vaccinated2.jsp"/>
+								<jsp:include page="filters_new/vaccinated2.jsp"/>
 							</c:if>
 							<c:if test="${param.comorbidities_filter}">
 								<jsp:include page="filters/comorbidities.jsp"/>
@@ -443,7 +443,7 @@
 								<jsp:include page="filters/beforeafter.jsp"/>
 							</c:if>
 							<c:if test="${param.beforeaftersotrovimab_filter}">
-								<jsp:include page="filters/beforeafter_sotrovimab.jsp"/>
+								<jsp:include page="filters_new/beforeafter_sotrovimab.jsp"/>
 							</c:if>
 							<c:if test="${param.result_filter}">
 								<jsp:include page="filters/result.jsp"/>
@@ -452,13 +452,16 @@
 								<jsp:include page="filters_new/death_delay.jsp"/>
 							</c:if>
 							<c:if test="${param.diagnosis_filter}">
-								<jsp:include page="filters/diagnosis.jsp"/>
+								<jsp:include page="filters_new/diagnosis.jsp"/>
+							</c:if>
+							<c:if test="${param.diagnosis_filter2}">
+								<jsp:include page="filters_new/diagnosis2.jsp"/>
 							</c:if>
 							<c:if test="${param.comorbiditynumber_filter}">
-								<jsp:include page="filters/comorbidity_number.jsp"/>
+								<jsp:include page="filters_new/comorbidity_number.jsp"/>
 							</c:if>
 							<c:if test="${param.sotrovimabmeds_filter}">
-								<jsp:include page="filters/sotrovimab_meds.jsp"/>
+								<jsp:include page="filters_new/sotrovimab_meds.jsp"/>
 							</c:if>
 							<c:if test="${param.medication_filter}">
 								<jsp:include page="filters_new/medication.jsp"/>
@@ -809,8 +812,8 @@
 	    }, 1000);
 	    
 	    
-	 // initiate the filters /////////////////////////////////////////
-		
+// initiate the filters /////////////////////////////////////////
+	
 		$('#${param.block}-severity-select').multiselect({	
 			buttonContainer: '<div class="checkbox-list-container"></div>',
             buttonClass: '',
@@ -1031,84 +1034,6 @@
             }
 		});
 		
-// old multiselects //////////////////////////////////////////////
-		$('#${param.block}-symptom-select').multiselect({	
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-symptom-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("symptom",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-vaccinated-select').multiselect({
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-vaccinated-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("vaccinated", selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-vaccinationstatus-select').multiselect({
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-vaccinationstatus-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("vaccinated", selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-comorbidities-select').multiselect({	
-			maxHeight: 300,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-comorbidities-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("comorbidities",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-symptomoccurrence-select').multiselect({	
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-symptomoccurrence-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("beforeafter",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-	
-		$('#${param.block}-testresult-select').multiselect({	
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-testresult-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("result",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-	
 		$('#${param.block}-delay-select').multiselect({	
 			buttonContainer: '<div class="checkbox-list-container"></div>',
             buttonClass: '',
@@ -1129,19 +1054,14 @@
             }
 		});
 		
-		$('#${param.block}-sotrovimaboccurrence-select').multiselect({	
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-sotrovimaboccurrence-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("sotrovimaboccurrence",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
 		$('#${param.block}-diagnosis-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-diagnosis-select');
 		        var selected = [];
@@ -1154,6 +1074,13 @@
 		});
 		
 		$('#${param.block}-numberofcomorbidities-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			maxHeight: 300,
 			onChange: function(option, checked, select) {
 				var options = $('#${param.block}-numberofcomorbidities-select');
@@ -1165,7 +1092,54 @@
 			    ${param.block}_refreshHistograms();
             }
 		});
+		
+		$('#${param.block}-vaccinationstatus-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-vaccinationstatus-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+		        
+				${param.block}_constrain("vaccinated", selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
+		$('#${param.block}-sotrovimaboccurrence-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-sotrovimaboccurrence-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("sotrovimaboccurrence",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
 		$('#${param.block}-othermeds-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
 			maxHeight: 300,
 			numberDisplayed: 1,
 			onChange: function(option, checked, select) {
@@ -1179,11 +1153,73 @@
             }
 		});
 		
-		
-		
-		
-		
+// old multiselects //////////////////////////////////////////////
+		$('#${param.block}-symptom-select').multiselect({	
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-symptom-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+		        
+				${param.block}_constrain("symptom",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		$('#${param.block}-vaccinated-select').multiselect({
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-vaccinated-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+		        
+				${param.block}_constrain("vaccinated", selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		$('#${param.block}-comorbidities-select').multiselect({	
+			maxHeight: 300,
+			enableCaseInsensitiveFiltering: true,
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-comorbidities-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("comorbidities",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		$('#${param.block}-symptomoccurrence-select').multiselect({	
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-symptomoccurrence-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("beforeafter",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		$('#${param.block}-testresult-select').multiselect({	
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-testresult-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("result",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
 	
+		
+		
+		
+		
+		
+// show/hide clear filters button //////////////////////////////////////////////
 		var mut = new MutationObserver(function(mutations, mut){
 			if($('#${param.block}-block-kpi').find('.dropdown-item.active').length !== 0){
 				$('#${param.block}_btn_clear').removeClass("no_clear");
@@ -1318,6 +1354,10 @@
 			$('#${param.block}-diagnosis-select').multiselect('clearSelection');
 			${param.block}_constrain("diagnosis_type", '');
 		</c:if>
+		<c:if test="${param.diagnosis_filter2}">
+		$('#${param.block}-diagnosis-select').multiselect('clearSelection');
+		${param.block}_constrain("diagnosis_type", '');
+	</c:if>
 		<c:if test="${param.comorbiditynumber_filter}">
 			$('#${param.block}-numberofcomorbidities-select').multiselect('clearSelection');
 			${param.block}_constrain("comorbidity_number", '');
@@ -1555,10 +1595,8 @@
 	    if ('${param.block}' === 'med_snap_5') {
 	    	${param.block}_severityvaccinated_refresh();
 	    }
-	    if (${param.block}_loaded("sotrovimab1")) {
+	    if ('${param.block}' === 'med_snap_3') {
 	    	${param.block}_sotrovimab1_refresh();
-	    }
-	    if (${param.block}_loaded("sotrovimab2")) {
 	    	${param.block}_sotrovimab2_refresh();
 	    }
 	    if ('${param.block}' === "diabetes_1" || '${param.block}' === "diabetes_2") {

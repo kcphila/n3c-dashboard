@@ -4,43 +4,63 @@
 
 <c:choose>
 	<c:when test="${param.block == 'med_snap_1'}">
-		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-		<jsp:include page="../kpis/block2_kpis/medication_sotrovimab.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
+		<div class="col col-12 col-md-6 my-auto kpi_border_right">
+			<jsp:include page="../kpis/block3_kpis/covid_positive.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/sotrovimab_demo.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>		
 	</c:when>
 	<c:when test="${param.block == 'med_snap_2'}">
-		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-		<jsp:include page="../kpis/block2_kpis/medication_sotrovimab.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
+		<div class="col col-12 col-md-6 my-auto kpi_border_right">
+			<jsp:include page="../kpis/block3_kpis/covid_positive.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/sotrovimab_diagnosis.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>		
 	</c:when>
 	<c:when test="${param.block == 'med_snap_3'}">
-		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-		<jsp:include page="../kpis/block2_kpis/medication_sotrovimab.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
+		<div class="col col-12 col-md-6 my-auto kpi_border_right">
+			<jsp:include page="../kpis/block3_kpis/covid_positive.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/sotrovimab_meds.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>		
 	</c:when>
 	<c:when test="${param.block == 'med_snap_4'}">
-		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-		<jsp:include page="../kpis/block2_kpis/medication_sotrovimab.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
+		<div class="col col-12 col-md-6 my-auto kpi_border_right">
+			<jsp:include page="../kpis/block3_kpis/covid_positive.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/sotrovimab_comor.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>		
 	</c:when>
 	<c:when test="${param.block == 'med_snap_5'}">
-		<jsp:include page="../kpis/block2_kpis/covid_positive.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-		<jsp:include page="../kpis/block2_kpis/medication_sotrovimab.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
+		<div class="col col-12 col-md-6 my-auto kpi_border_right">
+			<jsp:include page="../kpis/block3_kpis/covid_positive.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/sotrovimab_vac.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>		
 	</c:when>
 </c:choose>

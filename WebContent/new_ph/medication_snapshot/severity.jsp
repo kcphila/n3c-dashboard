@@ -2,15 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<jsp:include page="../barPieToggle.jsp">
-	<jsp:param name="block" value="${param.block}" />
-	<jsp:param name="dimension" value="severity" />
-	<jsp:param name="dimension_name" value="Severity" />
-	<jsp:param name="dimension_range" value="severity_range" />
-	<jsp:param name="dimension_legend" value="severity_legend" />
-	<jsp:param name="dimension_minheight" value="300" />
-</jsp:include>
-
 <div class="row">
 	<div class="col-12 viz-header-section">
 		<h2 id="severity-title" class="viz-title"></h2>
@@ -19,9 +10,9 @@
 				<i class="fas fa-download"></i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="save_viz_pass('.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="save_viz_pass('.png');">Save as PNG</a>
-				<a class="dropdown-item" onclick="save_viz_pass('.svg');">Save as SVG</a>
+				<a class="dropdown-item" onclick="save_viz_pass_severity('.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="save_viz_pass_severity('.png');">Save as PNG</a>
+				<a class="dropdown-item" onclick="save_viz_pass_severity('.svg');">Save as SVG</a>
 			</div>
 		</div>
 	</div>
@@ -30,18 +21,11 @@
 	</div>
 </div>
 
-
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../medication_snapshot/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
-
 <script>
 
 // this is to change the title of the download based on which visualization mode is selected
-function save_viz_pass(extension){
-	var id = $("#${param.block}-severity-mode").find('.text-primary').attr('id');
+function save_viz_pass_severity(extension){
+	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
@@ -58,7 +42,7 @@ function save_viz_pass(extension){
 };
 
 // set inital title based on load mode
-var title_id = $("#${param.block}-severity-mode").find('.text-primary').attr('id');
+var title_id = $("#${param.block}-mode").find('.text-primary').attr('id');
 var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
@@ -74,15 +58,15 @@ if (title_mode =='pie'){
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-severity-mode-barpercent').on('mouseup', function() {
+$('#${param.block}-mode-barpercent').on('mouseup', function() {
 	var title = "Severity Percentages of ${param.topic_title}";
 	$("#severity-title").text(title);
 });
-$('#${param.block}-severity-mode-bar').on('mouseup', function() {
+$('#${param.block}-mode-bar').on('mouseup', function() {
 	var title = "Counts of ${param.topic_title} by Severity";
 	$("#severity-title").text(title);
 });
-$('#${param.block}-severity-mode-pie').on('mouseup', function() {
+$('#${param.block}-mode-pie').on('mouseup', function() {
 	var title = "Severity Percentages of ${param.topic_title}";
 	$("#severity-title").text(title);
 });
@@ -101,18 +85,18 @@ function ${param.block}_severity_refresh() {
 			donutRatio: 0.5
 		}
 
-	var id = $("#${param.block}-severity-mode").find('.text-primary').attr('id');
+	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
 	d3.select("#${param.block}_severity_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart(${param.block}_SeverityArray, properties);
+		localPieChart_new(${param.block}_SeverityArray, properties);
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_legend(${param.block}_SeverityArray, properties);
+		localHorizontalBarChart_new(${param.block}_SeverityArray, properties);
 	} else {
-		localPercentageBarChart(${param.block}_SeverityArray, properties);
+		localPercentageBarChart_new(${param.block}_SeverityArray, properties);
 	};
 }
 

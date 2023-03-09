@@ -420,7 +420,11 @@ WebContent/new_ph/filters/vaccinated.jsp -text
 WebContent/new_ph/filters/vaccinated2.jsp -text
 WebContent/new_ph/filters_new/age_10.jsp -text
 WebContent/new_ph/filters_new/age_4.jsp -text
+WebContent/new_ph/filters_new/beforeafter_sotrovimab.jsp -text
+WebContent/new_ph/filters_new/comorbidity_number.jsp -text
 WebContent/new_ph/filters_new/death_delay.jsp -text
+WebContent/new_ph/filters_new/diagnosis.jsp -text
+WebContent/new_ph/filters_new/diagnosis2.jsp -text
 WebContent/new_ph/filters_new/ethnicity.jsp -text
 WebContent/new_ph/filters_new/medication.jsp -text
 WebContent/new_ph/filters_new/medication_class.jsp -text
@@ -431,6 +435,8 @@ WebContent/new_ph/filters_new/reinfection_interval.jsp -text
 WebContent/new_ph/filters_new/severity.jsp -text
 WebContent/new_ph/filters_new/sex.jsp -text
 WebContent/new_ph/filters_new/smoking.jsp -text
+WebContent/new_ph/filters_new/sotrovimab_meds.jsp -text
+WebContent/new_ph/filters_new/vaccinated2.jsp -text
 WebContent/new_ph/frame.jsp -text
 WebContent/new_ph/groupedbarpercentToggle.jsp -text
 WebContent/new_ph/groupedbarpercentToggle_new.jsp -text
@@ -568,6 +574,11 @@ WebContent/new_ph/kpis/block3_kpis/smoking.jsp -text
 WebContent/new_ph/kpis/block3_kpis/smoking2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/smokingnot.jsp -text
 WebContent/new_ph/kpis/block3_kpis/smokingnot2.jsp -text
+WebContent/new_ph/kpis/block3_kpis/sotrovimab_comor.jsp -text
+WebContent/new_ph/kpis/block3_kpis/sotrovimab_demo.jsp -text
+WebContent/new_ph/kpis/block3_kpis/sotrovimab_diagnosis.jsp -text
+WebContent/new_ph/kpis/block3_kpis/sotrovimab_meds.jsp -text
+WebContent/new_ph/kpis/block3_kpis/sotrovimab_vac.jsp -text
 WebContent/new_ph/long_covid/beforeAfter.jsp -text
 WebContent/new_ph/long_covid/before_after_table.jsp -text
 WebContent/new_ph/long_covid/clinic_severity_table.jsp -text
@@ -647,7 +658,6 @@ WebContent/new_ph/medication_snapshot/med_snap_2.jsp -text
 WebContent/new_ph/medication_snapshot/med_snap_3.jsp -text
 WebContent/new_ph/medication_snapshot/med_snap_4.jsp -text
 WebContent/new_ph/medication_snapshot/med_snap_5.jsp -text
-WebContent/new_ph/medication_snapshot/meds_status.jsp -text
 WebContent/new_ph/medication_snapshot/panel.jsp -text
 WebContent/new_ph/medication_snapshot/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/medication_snapshot/secondary_text/secondary_2.jsp -text
