@@ -9,6 +9,7 @@
 					coalesce(age_bracket, 'Unknown') as age_bin,
 					case
 					when (gender_concept_name = 'UNKNOWN') THEN 'Unknown'
+					when (gender_concept_name is null) THEN 'Unknown'
 					ELSE gender_concept_name
 					END as gender,
 					count as patient_display,
