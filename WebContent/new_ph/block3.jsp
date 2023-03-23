@@ -339,6 +339,14 @@
 	background-color: white;
 }
 
+
+
+/* limitations section */
+
+#question-limits{
+	margin-top: 30px;
+}
+
 </style>
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
@@ -784,21 +792,51 @@
 							</div>
 						</c:if>
 				</div>
-				<div class="row" id="question-limits">
-<%-- 					<sql:query var="questions" dataSource="jdbc/N3CPublic"> --%>
-<%-- 						select limitations from ${schema} where did = ? --%>
-<%-- 						<sql:param>${param.did}</sql:param> --%>
-<%--  					</sql:query> --%>
-<%-- 					<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter"> --%>
-<%-- 						${row.limitations } --%>
-<%-- 					</c:forEach> --%>
-				</div>
+				
+				<c:if test="${not empty param.did}">
+					<div class="row" id="question-limits">
+						<sql:query var="questions" dataSource="jdbc/N3CPublic">
+							select limitations from n3c_dashboard.dashboard where did = ?::INTEGER
+							 <sql:param>${param.did}</sql:param>
+	 					</sql:query>
+						<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">
+							<div id="limitations-section" class="col col-12">
+								<div class="accordion" id="limitations_drop">
+									<div class="card">
+										<a Title="expand/collapse limitations section" href="" class="accordion-toggle" data-toggle="collapse" data-target="#limitcollapseOne" aria-expanded="false" aria-controls="collapseOne">
+											<div class="card-header" id="limitheadingOne">
+												<h4 class="mb-0"><span class="accordion_text">Limitations</span>
+													<span style="display:inline; float:right;" class="btn btn-link btn-block text-left collapsed icon-btn p-0 accordion-toggle"></span>
+												</h4>
+											</div>
+										</a>
+										<div id="limitcollapseOne" class="collapse" aria-labelledby="limitheadingOne" data-parent="#limitations_drop">
+											<div class="card-body">
+												${row.limitations}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</c:if>
+				
+				
 			</div>
 		</div>
 	</div>
 </div>			
 
 <script>
+
+function limitlink(){
+	$('#limitcollapseOne').collapse('show');
+	$('html, body').animate({
+        scrollTop: $("#limitations-section").offset().top
+    }, 500);
+}
+
 
 	$(document).ready(function() {
 	    

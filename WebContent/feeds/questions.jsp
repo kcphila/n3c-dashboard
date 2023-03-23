@@ -10,7 +10,6 @@
         {"value":"question", "label":"Question"},
         {"value":"asked", "label":"Ask Date"},
         {"value":"description", "label":"Description"},
-        {"value":"limitations", "label":"Limitations"},
         {"value":"iframe_info", "label":"IFrame info"},
         {"value":"iframe_content", "label":"IFrame content"},
         {"value":"iframe_style", "label":"IFrame style"},
