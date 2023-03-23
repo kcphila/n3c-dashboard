@@ -38,6 +38,7 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
 	//
 	var domName = properties.domName;
+	var block = properties.block;
 	var primary = properties.primary;
 	var secondary = properties.secondary;
 	var count = properties.count;
@@ -285,8 +286,8 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 		
 		// draw color key on to decoupled div
 		function drawColorKey() {
-			d3.select("#legend").html("");
-        	var legend_div = d3.select("#legend").append("div").attr("class", "row").attr("id", "filters");
+			d3.select("#" + block + "legend").html("");
+        	var legend_div = d3.select("#" + block + "legend").append("div").attr("class", "row").attr("id", "filters");
     		
         	legend_div.selectAll(".legend-title")
         		.data([label2])

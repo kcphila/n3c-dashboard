@@ -22,6 +22,7 @@
 	
 	<jsp:param name="viz_properties" value="{'severity' : [{
 			domName: 'smoking_2_severity_viz',
+			block: 'smoking_2',
 			primary: 'severity',
 			secondary: 'smoking_status',
 			count: 'patient_count',

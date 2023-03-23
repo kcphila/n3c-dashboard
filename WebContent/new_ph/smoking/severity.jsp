@@ -71,6 +71,7 @@ function ${param.block}_severity_refresh() {
 	
 	var properties = {
 			domName: '${param.block}_severity_viz',
+			block: '${param.block}',
 			primary: 'severity',
 			secondary: 'smoking_status',
 			count: 'patient_count',

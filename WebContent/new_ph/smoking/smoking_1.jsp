@@ -25,6 +25,7 @@
 	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			domName: 'smoking_1_age_viz',
+			block: 'smoking_1',
 			primary: 'age',
 			secondary: 'smoking_status',
 			count: 'patient_count',
@@ -38,6 +39,7 @@
 			array: 'status'
 		}], 'race' : [{
 			domName: 'smoking_1_race_viz',
+			block: 'smoking_1',
 			primary: 'race',
 			secondary: 'smoking_status',
 			count: 'patient_count',
@@ -51,6 +53,7 @@
 			array: 'status'
 		}], 'sex' : [{
 			domName: 'smoking_1_sex_viz',
+			block: 'smoking_1',
 			primary: 'sex',
 			secondary: 'smoking_status',
 			count: 'patient_count',

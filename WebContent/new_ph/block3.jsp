@@ -506,7 +506,7 @@
 					<!-- Floating Legend -->
 						<c:if test="${not empty param.floating_legend}">
 							<div class="col-12"> 
-								<div id="legend"></div>
+								<div id="${param.block}legend"></div>
 							</div>
 						</c:if>
 

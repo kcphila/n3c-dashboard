@@ -38,6 +38,7 @@ $("#age-title").text(title);
 function ${param.block}_age_refresh() {
 	var properties = {
 			domName: '${param.block}_age_viz',
+			block: '${param.block}',
 			primary: 'age',
 			secondary: 'smoking_status',
 			count: 'patient_count',

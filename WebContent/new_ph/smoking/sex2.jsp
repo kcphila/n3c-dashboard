@@ -38,6 +38,7 @@ function save_viz_pass_sex(extension){
 function ${param.block}_sex_refresh() {
 	var properties = {
 			domName: '${param.block}_sex_viz',
+			block: '${param.block}',
 			primary: 'sex',
 			secondary: 'smoking_status',
 			count: 'patient_count',

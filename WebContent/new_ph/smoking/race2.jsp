@@ -36,6 +36,7 @@
 function ${param.block}_race_refresh() {
 	var properties = {
 			domName: '${param.block}_race_viz',
+			block: '${param.block}',
 			primary: 'race',
 			secondary: 'smoking_status',
 			count: 'patient_count',
