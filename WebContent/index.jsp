@@ -231,6 +231,43 @@
 	bottom: -10px;
 }
 
+.slick-prev, 
+.slick-next{
+	z-index: 1;
+	width: 50px;
+	height: 100%;
+}
+
+.slick-prev{
+	left: 0px;
+}
+.slick-next{
+	right: -0px;
+}
+
+.slick-prev:before, 
+.slick-next:before{
+	font-size: 50px;
+	color: #423f4e;
+	background: white;
+    border-radius: 50%;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 800; 
+   
+}
+.slick-prev:before{
+	 content: "\f137";
+}
+.slick-next:before{
+	 content: "\f138";
+}
+
+.slick-prev.slick-disabled:before, 
+.slick-next.slick-disabled:before{
+	display: none;
+}
+
+
 
 /* general elements  ****************************************************/
 #dash_nav .col{
@@ -720,10 +757,10 @@ $(".slick-test").on("beforeChange", function (){
 $(document).ready(function(){	
 	
 	$('.featured-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		infinite: false,
 		slidesToScroll: 1,
 		centerMode: false,
@@ -733,7 +770,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -742,7 +779,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -752,11 +789,11 @@ $(document).ready(function(){
 	});
 	
 	$('.members-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -764,7 +801,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -773,7 +810,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -783,11 +820,11 @@ $(document).ready(function(){
 	});
 	
 	$('.diseases-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -795,7 +832,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -804,7 +841,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -814,11 +851,11 @@ $(document).ready(function(){
 	});
 	
 	$('.tracking-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -826,7 +863,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -835,7 +872,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -845,7 +882,7 @@ $(document).ready(function(){
 	});
 	
 	$('.cases-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
@@ -857,7 +894,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -866,7 +903,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -877,11 +914,11 @@ $(document).ready(function(){
 	
 	
 	$('.medications-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -889,7 +926,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -898,7 +935,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -908,11 +945,11 @@ $(document).ready(function(){
 	});
 	
 	$('.overview-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -920,7 +957,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -929,7 +966,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -938,6 +975,12 @@ $(document).ready(function(){
 		  ]
 	}); 
 });
+
+
+
+
+
+
 
 function adjust_card_height(slick){
 	//slick cards resize so they are the same height as largest (need to repeate for each new carousel)
