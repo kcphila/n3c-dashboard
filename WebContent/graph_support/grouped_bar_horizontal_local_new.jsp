@@ -32,8 +32,6 @@ div.bar.tooltip {
 
 function localHorizontalGroupedBarChart_new(data, properties) {
 	
-	console.log('reached');
-	
 	//
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
 	//
@@ -214,13 +212,17 @@ function localHorizontalGroupedBarChart_new(data, properties) {
   			})
   			.on('mousemove', function(d, i){
 	    		var label = d.key;
+	    		var sum = 0;
+	    		for (i in d.values){
+	    			sum += d.values[i].value.count;
+	    		};
 				d3.selectAll(".tooltip").remove(); 
 				d3.select("body").append("div")
 					.attr("class", "bar tooltip")
 					.style("opacity", 0.8)
 					.style("left", (d3.event.pageX + 5) + "px")
 					.style("top", (d3.event.pageY - 28) + "px")
-					.html(label);
+					.html("<strong>" + label + "</strong> (" + sum.toLocaleString() + ")");
 			})
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 
