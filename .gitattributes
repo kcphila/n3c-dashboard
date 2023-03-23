@@ -21,6 +21,7 @@ WebContent/admin/users.jsp -text
 WebContent/caption.jsp -text
 WebContent/collaboration-graph.jsp -text
 WebContent/collaboration.jsp -text
+WebContent/concept-sets.jsp -text
 WebContent/contributing-sites.jsp -text
 WebContent/dashboard_descriptions/MedicationsSnapshots.jsp -text
 WebContent/dashboard_descriptions/Paxlovid.jsp -text
@@ -80,6 +81,7 @@ WebContent/embedded.jsp -text
 WebContent/exploration.jsp -text
 WebContent/external/spotlight.jsp -text
 WebContent/feeds/aggregated.jsp -text
+WebContent/feeds/concept_sets.jsp -text
 WebContent/feeds/configuration.jsp -text
 WebContent/feeds/domain_team_roster.jsp -text
 WebContent/feeds/download_csv.jsp -text
@@ -220,6 +222,7 @@ WebContent/modules/admin_map.jsp -text
 WebContent/modules/collaboration_map.jsp -text
 WebContent/modules/collaboration_map_code.jsp -text
 WebContent/modules/collaboration_networks.jsp -text
+WebContent/modules/concept_sets.jsp -text
 WebContent/modules/domain_team_roster.jsp -text
 WebContent/modules/explorer.jsp -text
 WebContent/modules/fact_sheet.jsp -text
@@ -924,6 +927,8 @@ WebContent/new_ph/unavailable_panel.jsp -text
 WebContent/overview/block.jsp -text
 WebContent/overview/collaboration_graph/collaboration_graph.jsp -text
 WebContent/overview/collaboration_map/collaboration_map.jsp -text
+WebContent/overview/concept_sets/concept_sets.jsp -text
+WebContent/overview/concept_sets/table_includes.jsp -text
 WebContent/overview/contributing_sites/contributing_sites.jsp -text
 WebContent/overview/pprl/pprl.jsp -text
 WebContent/overview/pprl/pprl_includes.jsp -text
