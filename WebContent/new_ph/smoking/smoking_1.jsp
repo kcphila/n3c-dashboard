@@ -36,7 +36,8 @@
 			label1: 'Age',
 			label2: 'Smoking Status',
 			offset: 70,
-			array: 'status'
+			array: 'status',
+			legendid: 'smoking_1legend'
 		}], 'race' : [{
 			domName: 'smoking_1_race_viz',
 			block: 'smoking_1',
@@ -50,7 +51,8 @@
 			label1: 'Race',
 			label2: 'Smoking Status',
 			offset: 70,
-			array: 'status'
+			array: 'status',
+			legendid: 'smoking_1legend'
 		}], 'sex' : [{
 			domName: 'smoking_1_sex_viz',
 			block: 'smoking_1',
@@ -64,7 +66,8 @@
 			label1: 'Sex',
 			label2: 'Smoking Status',
 			offset: 70,
-			array: 'status'
+			array: 'status',
+			legendid: 'smoking_1legend'
 		}]
 	}"/>
 	

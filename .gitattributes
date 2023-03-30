@@ -447,6 +447,7 @@ WebContent/new_ph/filters_new/vaccinated2.jsp -text
 WebContent/new_ph/frame.jsp -text
 WebContent/new_ph/groupedbarpercentToggle.jsp -text
 WebContent/new_ph/groupedbarpercentToggle_new.jsp -text
+WebContent/new_ph/hlh/age.jsp -text
 WebContent/new_ph/hlh/comorbidity_1.jsp -text
 WebContent/new_ph/hlh/comorbidity_10.jsp -text
 WebContent/new_ph/hlh/comorbidity_11.jsp -text
@@ -475,6 +476,7 @@ WebContent/new_ph/hlh/hlh_table.jsp -text
 WebContent/new_ph/hlh/kpis.jsp -text
 WebContent/new_ph/hlh/panel2.jsp -text
 WebContent/new_ph/hlh/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/hlh/sex.jsp -text
 WebContent/new_ph/kpis/block2_kpis/adult_patients.jsp -text
 WebContent/new_ph/kpis/block2_kpis/adult_ungrouped.jsp -text
 WebContent/new_ph/kpis/block2_kpis/adult_unknown_vaccinated.jsp -text

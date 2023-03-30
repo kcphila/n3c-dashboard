@@ -3,11 +3,11 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by observation_seq,sex_seq))
-	from (select observation, age_bin as age, gender_abbrev as sex, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, observation_seq
+	from (select observation, age_bin as age, gender_abbrev as sex, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, observation as observation_abbrev, observation_seq
 			from (select
 					INITCAP(age_bracket) as age_bin,
 					gender_concept_name as gender,
-					replace(replace(INITCAP(observation), 'Type 2 Diabetes', 'Disease'), 'Condition', '')  as observation,
+					replace(replace(replace(INITCAP(observation), 'Type 2 Diabetes', 'Disease'), 'Conditon', 'test'), 'Condition', '')  as observation,
 					n_observation as observation_seq,
 					count as patient_display,
 					case
@@ -31,7 +31,8 @@
         {"value":"age_seq", "label":"dummy1"},
         {"value":"sex_abbrev", "label":"dummy2"},
         {"value":"sex_seq", "label":"dummy3"},
-        {"value":"observation_seq", "label":"dummy4"}
+        {"value":"observation_abbrev", "label":"dummy4"},
+        {"value":"observation_seq", "label":"dummy5"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

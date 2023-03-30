@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<div class="col-12">
-		<div id="${param.block}_race_viz" class="col-12 dash_viz clip"></div>
+		<div id="${param.block}_race_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -47,7 +47,8 @@ function ${param.block}_race_refresh() {
 			label1: 'Race',
 			label2: 'Smoking Status',
 			offset: 70,
-			array: 'status'
+			array: 'status',
+			legendid: '${param.block}legend'
 	}
 	
 	

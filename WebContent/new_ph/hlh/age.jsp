@@ -16,6 +16,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12"> 
+		<div id="${param.block}_age_legend"></div>
+	</div>
 	<div class="col-12">
 		<div id="${param.block}_age_viz" class="dash_viz clip">
 		</div>
@@ -26,12 +29,12 @@
 
 //this is to change the title of the download based on which visualization mode is selected
 function save_viz_pass_age(extension){
-	var text = text = "Counts of ${param.topic_title} by Age and Smoking Status" + extension;
+	var text = text = "${param.topic_title} ${param.topic_disease} by Observation Type and Age" + extension;
 	saveVisualization('${param.block}_age_viz', text);
 };
 
 
-var title = "Counts of ${param.topic_title} by Age and Smoking Status";
+var title = "${param.topic_title} ${param.topic_disease} by Observation Type and Age";
 $("#age-title").text(title);
 
 
@@ -39,18 +42,19 @@ function ${param.block}_age_refresh() {
 	var properties = {
 			domName: '${param.block}_age_viz',
 			block: '${param.block}',
-			primary: 'age',
-			secondary: 'smoking_status',
+			primary: 'observation',
+			secondary: 'age',
 			count: 'patient_count',
 			xaxis_label: 'Count',
 			xaxis_label2: 'Percent',
-			legend_label: status_legend,
-			colorscale: status_range,
-			label1: 'Age',
-			label2: 'Smoking Status',
-			offset: 70,
+			legend_label: age_legend_4,
+			colorscale: age_range,
+			label1: 'Observation',
+			label2: 'Age',
+			offset: 210,
 			array: 'status',
-			legendid: '${param.block}legend'
+			observationtotal: true,
+			legendid: "${param.block}_age_legend"
 	};
 	
 	d3.select("#${param.block}_age_viz").select("svg").remove();

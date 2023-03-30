@@ -82,7 +82,8 @@ function ${param.block}_severity_refresh() {
 			label1: 'Severity',
 			label2: 'Smoking Status',
 			offset: 90,
-			array: 'status'
+			array: 'status',
+			legendid: '${param.block}legend'
 	};
 
 	if (mode == 'bar'){

@@ -33,7 +33,8 @@
 			label1: 'Severity',
 			label2: 'Smoking Status',
 			offset: 90,
-			array: 'status'
+			array: 'status',
+			legendid: 'smoking_1legend'
 		}]
 	}"/>
 	

@@ -16,6 +16,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12"> 
+		<div id="${param.block}_sex_legend"></div>
+	</div>
 	<div class="col-12">
 		<div id="${param.block}_sex_viz" class="dash_viz clip"></div>
 	</div>
@@ -25,11 +28,11 @@
 <script>
 //this is to change the title of the download based on which visualization mode is selected
 function save_viz_pass_sex(extension){
-	var text = "Counts of ${param.topic_title} by Sex and Smoking Status" + extension;
+	var text = "${param.topic_title} ${param.topic_disease} by Observation Type and Sex" + extension;
 	saveVisualization('${param.block}_sex_viz', text);
 };
 
-	var title = "Counts of ${param.topic_title} by Sex and Smoking Status";
+	var title = "${param.topic_title} ${param.topic_disease} by Observation Type and Sex";
 	$("#sex-title").text(title);
 
 
@@ -39,18 +42,19 @@ function ${param.block}_sex_refresh() {
 	var properties = {
 			domName: '${param.block}_sex_viz',
 			block: '${param.block}',
-			primary: 'sex',
-			secondary: 'smoking_status',
+			primary: 'observation',
+			secondary: 'sex',
 			count: 'patient_count',
 			xaxis_label: 'Count',
 			xaxis_label2: 'Percent',
-			legend_label: status_legend,
-			colorscale: status_range,
-			label1: 'Sex',
-			label2: 'Smoking Status',
-			offset: 70,
+			legend_label: sex_legend,
+			colorscale: sex_range,
+			label1: 'Observation',
+			label2: 'Sex',
+			offset: 210,
 			array: 'status',
-			legendid: '${param.block}legend'
+			observationtotal: true, 
+			legendid: "${param.block}_sex_legend"
 	}
 	
 	

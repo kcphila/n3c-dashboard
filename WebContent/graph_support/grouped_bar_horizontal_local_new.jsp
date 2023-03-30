@@ -110,8 +110,16 @@ function localHorizontalGroupedBarChart_new(data, properties) {
  		.key(function (d) { return d[secondary]; })
  		.rollup(function(v) { 
  			var count2 = 0;
- 			for (i in v){
- 				count2 += v[i][count];
+ 			if (properties.observationtotal){
+ 				for (i in v){
+ 					if (v[i].observation == "Has Disease"){
+ 						count2 += v[i][count];
+ 					}
+ 				}
+ 			} else {
+ 				for (i in v){
+ 					count2 += v[i][count];
+ 				}
  			}
  			return {total: count2};
 		})
@@ -288,8 +296,8 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 		
 		// draw color key on to decoupled div
 		function drawColorKey() {
-			d3.select("#" + block + "legend").html("");
-        	var legend_div = d3.select("#" + block + "legend").append("div").attr("class", "row").attr("id", "filters");
+			d3.select("#" + properties.legendid).html("");
+        	var legend_div = d3.select("#" + properties.legendid).append("div").attr("class", "row").attr("id", "filters");
     		
         	legend_div.selectAll(".legend-title")
         		.data([label2])
@@ -304,10 +312,6 @@ function localHorizontalGroupedBarChart_new(data, properties) {
     			.enter().append("div")
     			.attr("class", "filter_col col col-6 col-lg-3")
     			.on("click", function(d, i){
-    				console.log('click');
-    				console.log(d.secondary);
-    				console.log(label2.replace(/\s/g, ""));
-    				
     				var format = {};
     				format['secondary_name'] = d.secondary;
     				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, label2.replace(/\s/g, ""));
@@ -320,37 +324,38 @@ function localHorizontalGroupedBarChart_new(data, properties) {
 	    drawColorKey();
 	    
 	    // overdraw width and put legend outside of clip path (to only show on download)
+	    
+		
 	    var legend_text = svg.append("g")
-			.attr("transform", "translate(" + 150 + " ," + 0 + " )")
+	    	.attr("transform", "translate(" + (width + margin.left + margin.right) + " ," + 0 + " )")
 			.attr("font-family", "sans-serif")
 			.attr("font-size", '14px')
 			.attr("font-weight", "bold")
-			.attr("text-anchor", "end")
+			.attr("text-anchor", "start")
 			.append("text")
-			.attr("x", width+margin.right+margin.left)
 			.attr("y", 9.5)
 			.attr("dy", "0.32em")
 			.text(label2);
-		
+	
 	    var legend = svg.append("g")
+	    	.attr("transform", "translate(" + (width + margin.left + margin.right) + " ," + 0 + " )")
 			.attr("font-family", "sans-serif")
 			.attr("font-size", ".8rem")
-			.attr("text-anchor", "end")
 			.selectAll("g")
 			.data(legend_label)
 			.enter().append("g")
 			.attr("transform", function(d, i) {
-				return "translate(250," + ((i * 20)+20) + ")";
+				return "translate(0," + ((i * 20)+20) + ")";
 			});
-
+	
 		legend.append("rect")
-			.attr("x", width - 19)
+			.attr("x", 0)
 			.attr("width", 19)
 			.attr("height", 19)
 			.attr("fill", function(d, i) { return colorscale[i]; });
-
+	
 		legend.append("text")
-			.attr("x", width - 24)
+			.attr("x", 27)
 			.attr("y", 9.5)
 			.attr("dy", "0.32em")
 			.text(function(d) {
