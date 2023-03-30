@@ -267,7 +267,13 @@
 	display: none;
 }
 
+.slick-dots li button:before{
+	color: #007bff;
+}
 
+.slick-dots li.slick-active button:before{
+	color: #007bff;
+}
 
 /* general elements  ****************************************************/
 #dash_nav .col{
