@@ -82,9 +82,7 @@ $.getJSON("<util:applicationRoot/>/feeds/concept_sets.jsp", function(data){
         	  },
         	  { data: 'created_by', visible: true},
         	  { data: 'creator', visible: true},
-        	  { data: 'limitations', visible: true},
-        	  { data: 'issues', visible: true},
-        	  { data: 'provenance', visible: true}
+        	  { data: 'limitations', visible: true}
     	]
 	} );
 });

@@ -27,9 +27,7 @@
         {"value":"doi", "label":"DOI"},
         {"value":"created_by", "label":"Created By"},
         {"value":"creator", "label":"Creator"},
-        {"value":"limitations", "label":"Limitations"},
-        {"value":"issues", "label":"Issues"},
-        {"value":"provenance", "label":"Provenance"}
+        {"value":"limitations", "label":"Limitations"}
     ],
     "rows" : 
 <c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
