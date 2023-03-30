@@ -5,7 +5,7 @@
 	select jsonb_pretty(jsonb_agg(done order by observation_seq,sex_seq))
 	from (select observation, age_bin as age, gender_abbrev as sex, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, observation_seq
 			from (select
-					age_bracket as age_bin,
+					INITCAP(age_bracket) as age_bin,
 					gender_concept_name as gender,
 					replace(replace(INITCAP(observation), 'Type 2 Diabetes', 'Disease'), 'Condition', '')  as observation,
 					n_observation as observation_seq,
@@ -16,7 +16,7 @@
 					end as patient_count
 				  from n3c_questions_new.diabetes_t2_full_censored_diabetes_mellitus
 		  	) as foo
-		  	natural join n3c_dashboard.age_map4
+		  	natural join n3c_dashboard.age_map7
 		  	natural join n3c_dashboard.gender_map2
 		  ) as done;
 </sql:query>

@@ -557,7 +557,11 @@ WebContent/new_ph/kpis/block2_kpis/smokingnot.jsp -text
 WebContent/new_ph/kpis/block2_kpis/smokingnot2.jsp -text
 WebContent/new_ph/kpis/block2_kpis/total_w_symptoms_clean.jsp -text
 WebContent/new_ph/kpis/block3_kpis/comorbidities.jsp -text
+WebContent/new_ph/kpis/block3_kpis/comorbidities_diabetes_t1.jsp -text
+WebContent/new_ph/kpis/block3_kpis/comorbidities_diabetes_t2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/comorbidities_pediatrics.jsp -text
+WebContent/new_ph/kpis/block3_kpis/comorbidities_pediatrics_t1.jsp -text
+WebContent/new_ph/kpis/block3_kpis/comorbidities_pediatrics_t2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_first_diagnosis.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_positive.jsp -text
 WebContent/new_ph/kpis/block3_kpis/covid_reinfections.jsp -text
