@@ -7,7 +7,7 @@
 			from (select
 					INITCAP(age_bracket) as age_bin,
 					gender_concept_name as gender,
-					replace(replace(replace(INITCAP(observation), 'Type 2 Diabetes', 'Disease'), 'Conditon', 'test'), 'Condition', '')  as observation,
+					replace(replace(replace(INITCAP(observation), 'Type 2 Diabetes', 'Disease'), 'Conditon', ''), 'Condition', '')  as observation,
 					n_observation as observation_seq,
 					count as patient_display,
 					case
