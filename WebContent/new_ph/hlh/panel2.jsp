@@ -9,6 +9,8 @@
 		<option value="comorbidity_2">Congestive Heart Failure</option>
 		<option value="comorbidity_3">Dementia</option>
 		<option value="comorbidity_4">Diabetes Mellitus</option>
+		<option value="comorbidity_19">Diabetes Type 1</option>
+		<option value="comorbidity_20">Diabetes Type 2</option>
 		<option value="comorbidity_5">Diabetes Mellitus with Complications</option>
 		<option value="comorbidity_6">HIV</option>
 		<option value="comorbidity_7">HLH</option>
@@ -44,6 +46,8 @@
 	<div id="comorbidity_16" class="group"></div>
 	<div id="comorbidity_17" class="group"></div>
 	<div id="comorbidity_18" class="group"></div>
+	<div id="comorbidity_19" class="group"></div>
+	<div id="comorbidity_20" class="group"></div>
 </div>
 
 <script>

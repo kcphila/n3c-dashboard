@@ -457,7 +457,9 @@ WebContent/new_ph/hlh/comorbidity_15.jsp -text
 WebContent/new_ph/hlh/comorbidity_16.jsp -text
 WebContent/new_ph/hlh/comorbidity_17.jsp -text
 WebContent/new_ph/hlh/comorbidity_18.jsp -text
+WebContent/new_ph/hlh/comorbidity_19.jsp -text
 WebContent/new_ph/hlh/comorbidity_2.jsp -text
+WebContent/new_ph/hlh/comorbidity_20.jsp -text
 WebContent/new_ph/hlh/comorbidity_3.jsp -text
 WebContent/new_ph/hlh/comorbidity_4.jsp -text
 WebContent/new_ph/hlh/comorbidity_5.jsp -text
@@ -466,6 +468,8 @@ WebContent/new_ph/hlh/comorbidity_7.jsp -text
 WebContent/new_ph/hlh/comorbidity_8.jsp -text
 WebContent/new_ph/hlh/comorbidity_9.jsp -text
 WebContent/new_ph/hlh/counts.jsp -text
+WebContent/new_ph/hlh/feeds/diabetes_t1.jsp -text
+WebContent/new_ph/hlh/feeds/diabetes_t2.jsp -text
 WebContent/new_ph/hlh/feeds/hlh.jsp -text
 WebContent/new_ph/hlh/hlh_table.jsp -text
 WebContent/new_ph/hlh/kpis.jsp -text
