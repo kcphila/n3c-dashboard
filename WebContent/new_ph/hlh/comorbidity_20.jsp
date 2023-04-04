@@ -12,7 +12,7 @@
 	<jsp:param name="did" value="52" />
 	
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
-	<jsp:param name="kpi_filter" value="stroke" />
+	<jsp:param name="kpi_filter" value="Diabetes" />
 	
 	<jsp:param name="age_filter7" value="true" />
 	<jsp:param name="sex_filter3" value="true" />

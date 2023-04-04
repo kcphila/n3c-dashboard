@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-12 viz-header-section">
-		<h2 id="sex-title" class="viz-title"></h2>
+		<h2 id="${param.block}sex-title" class="viz-title"></h2>
 		<div class="btn-group float-right">
 			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-download"></i>
@@ -32,10 +32,8 @@ function save_viz_pass_sex(extension){
 	saveVisualization('${param.block}_sex_viz', text);
 };
 
-	var title = "${param.topic_title} ${param.topic_disease} by Observation Type and Sex";
-	$("#sex-title").text(title);
-
-
+var title = "${param.topic_title} ${param.topic_disease} by Observation Type and Sex";
+$("#${param.block}sex-title").text(title);
 
 
 function ${param.block}_sex_refresh() {

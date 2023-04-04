@@ -171,6 +171,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'age_seq', visible: false },
         	{ data: 'sex_abbrev', visible: false },
         	{ data: 'sex_seq', visible: false },
+        	{ data: 'observation_abbrev', visible: false },
         	{ data: 'observation_seq', visible: false }
     	]
 	} );

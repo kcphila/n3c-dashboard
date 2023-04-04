@@ -17,7 +17,8 @@
 	<jsp:param name="age_filter7" value="true" />
 	<jsp:param name="sex_filter3" value="true" />
 	
-	<jsp:param name="simple_panel" value="hlh/counts.jsp" />
+	<jsp:param name="age_panel" value="hlh/age.jsp" />
+	<jsp:param name="sex_panel" value="hlh/sex.jsp" />
 
 	<jsp:param name="datatable" value="hlh/hlh_table.jsp" />
 	<jsp:param name="datatable_div" value="hlh_data_5" />
@@ -27,4 +28,9 @@
 	
 	
 </jsp:include>
+
+<script>
+	var panels = ["age", "sex"];
+	hlh_5_panel(panels);
+</script>
 
