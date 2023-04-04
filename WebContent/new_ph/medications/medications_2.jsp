@@ -8,7 +8,7 @@
 	<jsp:param name="block" value="medications_2" />
 	<jsp:param name="block_header" value="COVID+ Patient Distribution by Medication" />
 	<jsp:param name="topic_description" value="secondary_2" />
-	<jsp:param name="topic_title" value="Counts of COVID+ Patients Prescribed Select Medications by Drug Class and Sex" />
+	<jsp:param name="topic_title" value="Counts of COVID+ Patients Prescribed Select Medications by Drug Class and Age" />
 	<jsp:param name="folder" value="medications" />
 
 	<jsp:param name="kpis" value="medications/kpis.jsp" />
