@@ -5,7 +5,7 @@
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="paxlovid_5" />
 	<jsp:param name="block_header" value="Vaccinations Before COVID+" />
-	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_description" value="secondary_5" />
 	<jsp:param name="topic_title" value="COVID+ Patients" />
 	<jsp:param name="did" value="55" />
 	<jsp:param name="folder" value="paxlovid" />
@@ -18,5 +18,5 @@
 	<jsp:param name="datatable" value="paxlovid/viz_tables/vaccination_table.jsp" />
 	<jsp:param name="datatable_div" value="paxlovid_paxlovid_vaccination" />
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/vaccination.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count" />
+	<jsp:param name="datatable_kpis" value="patient_count,paxlovid" />
 </jsp:include>

@@ -5,7 +5,7 @@
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="paxlovid_4" />
 	<jsp:param name="block_header" value="Demographics: COVID+ and Paxlovid Status" />
-	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_description" value="secondary_4" />
 	<jsp:param name="topic_title" value="COVID+ Patients" />
 	<jsp:param name="did" value="55" />
 	<jsp:param name="folder" value="paxlovid" />

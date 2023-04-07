@@ -125,18 +125,9 @@
 	
 	d3.json("${param.data_page}", function(error, data) {	
 		if (error) throw error;
-		
-		console.log(data);
 				
 		var column1_opacity = 1;
 		var column2_opacity = 1;
-		
-		<c:if test="${not empty param.column1_opacity}">
-			column1_opacity = ${param.column1_opacity};
-		</c:if>
-		<c:if test="${not empty param.column2_opacity}">
-			column2_opacity = ${param.column2_opacity};
-		</c:if>
 		
 		var ${param.block}myObserver = new ResizeObserver(entries => {
 			entries.forEach(entry => {
@@ -183,31 +174,13 @@
 				.append("g")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			
-			// Add a clipPath: everything out of this area won't be drawn.
-			 var clip = svg.append("defs").append("svg:clipPath")
-			     .attr("id", "${param.namespace}clip")
-			     .append("svg:rect")
-			     .attr("width",width)
-			     .attr("height", height)
-			     .attr("x", 0)
-			     .attr("y", 0);
-			
 			
 			    // Create the scatter variable: where both the circles and the brush take place
 			  var graph = svg.append('g')
-    			  .attr("clip-path", "url(#${param.namespace}clip)")
-    			  .attr("class", "overlay");
-			 
-			  
-			// Add brushing
-			  var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-			      .extent( [ [0,0], [width,height] ] )  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-			      .on("brush", dua_dta_mousemove)
-			      .on("end", ${param.namespace}updateChart);              // Each time the brush selection changes, trigger the 'updateChart' function
-			  
-			  
-			  
-
+    			  .attr("class", "overlay")
+    			  .on("mouseover", function() { dua_dta_focus.style("display", null);  tooltipLine.style("display", null);})
+		    	  .on("mouseout", function() { dua_dta_focus.style("display", "none");  tooltipLine.style("display", "none");})
+		    	  .on("mousemove", dua_dta_mousemove);
 			
 				// Scales
 				${param.namespace}x.domain(d3.extent(data, function(d) { return d.${param.date_column}; }));
@@ -249,32 +222,6 @@
 					.attr("stroke-width", '2.8px')
 					.attr("class", "line dtas ${namespace}")
 					.attr("d", valueline2);
-				
-				// Add the brushing
-				var test_tip = graph
-				    .append("g")
-				    .attr("class", "brush")
-				    .call(brush)
-				    .on("mouseover", function() { dua_dta_focus.style("display", null);  tooltipLine.style("display", null);})
-		    	  	.on("mouseout", function() { dua_dta_focus.style("display", "none");  tooltipLine.style("display", "none");})
-		    	  	.on("mousemove", dua_dta_mousemove);
-			
-				// Labels & Current Totals
-				<c:if test="not empty param.lineLabels">
-					graph.append("text")
-				    	.attr("transform", "translate("+(width+3)+","+y1(data[data.length-1].${param.column1})+")")
-				    	.attr("dy", ".35em")
-				    	.attr("text-anchor", "start")
-				    	.attr("class", "duas ${namespace}")
-				    	.text("${param.column1_tip}");
-					graph.append("text")
-				    	.attr("transform", "translate("+(width+3)+","+y2(data[data.length-1].${param.column2})+")")
-				    	.attr("dy", ".35em")
-				    	.attr("text-anchor", "start")
-				    	.attr("class", "dtas ${namespace}")
-				    	.text("${param.column2_tip}");
-				</c:if>
-				
 
 			    
 			  	// Axis
@@ -362,7 +309,7 @@
 					.attr("class", "tool_line");
 				
 				// tooltips
-				var dua_dta_focus = test_tip.append("g")
+				var dua_dta_focus = graph.append("g")
 			    	.attr("class", "dua_dta_focus")
 			    	.style("display", "none");
 			
@@ -407,11 +354,6 @@
 					dateFormatter2 = d3.timeFormat("%Y-%m-%d");
 				
 				
-				function valueFormatter(value) {
-					if (value == '<20')
-						return value;
-					return formatValue(value);
-				}
 			
 				function dua_dta_mousemove() {
 				    var x0 = ${param.namespace}x.invert(d3.mouse(this)[0]),
@@ -427,7 +369,6 @@
 				    	d0 = d1;
 				    };
 
-				    
 				    var d = x0 - d0.${param.date_column} > d1.${param.date_column} - x0 ? d1 : d0;
 				    
 				    
@@ -437,7 +378,7 @@
 				    	dua_dta_focus.attr("transform", "translate(" + ((${param.namespace}x(d.${param.date_column}))-150) + "," + d3.mouse(this)[1] + ")");
 				    };
 				   
-				    dua_dta_focus.select(".tooltip-date_dta_dua").text(d.${param.date_column});
+				    dua_dta_focus.select(".tooltip-date_dta_dua").text("# of Dr. Visits: " + d.${param.date_column});
 				    dua_dta_focus.select(".tooltip-duas").text(d.${param.column1}.toLocaleString());
 				    dua_dta_focus.select(".tooltip-dtas").text(d.${param.column2}.toLocaleString());
 				    
@@ -446,73 +387,7 @@
 				    	.attr('y1', 0)
 				    	.attr('y2', height);
 				};
-
-
 				
-				// A function that set idleTimeOut to null
-				  var idleTimeout;
-				  function idled() { idleTimeout = null; };
-				
-				// A function that update the chart for given boundaries
-				   function ${param.namespace}updateChart() {
-
-						// What are the selected boundaries?
-						var extent = d3.event.selection;
-
-				      	// If no selection, back to initial coordinate. Otherwise, update X axis domain
-				     	if(!extent){
-				        	if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-				        	${param.namespace}x.domain(d3.extent(data, function(d) { return d.${param.date_column}; }));
-				      	}else{
-				        	<c:if test="${not empty param.constraintPropagator}">
-				        		${param.block}_${param.constraintPropagator}(dateFormatter2(${param.namespace}x.invert(extent[0])),dateFormatter2(${param.namespace}x.invert(extent[1])))
-				        	</c:if>
-				      		${param.namespace}x.domain([ ${param.namespace}x.invert(extent[0]), ${param.namespace}x.invert(extent[1]) ]);
-				        	graph.select(".brush").call(brush.move, null); // This remove the grey brush area as soon as the selection has been done
-				      	}
-				      		
-					      
-				      	// redraw axis
-				      	d3.selectAll('${param.dom_element} .xaxis').remove();
-				      	svg.append("g")
-						.attr("transform", "translate(0," + height + ")")
-						.attr("class", "xaxis")
-						.call(d3.axisBottom(${param.namespace}x)
-			        	.tickFormat(function(date){
-							if (d3.timeYear(date) < date) {
-								if (d3.timeMonth(date) < date) {
-									return d3.timeFormat('%b %d')(date);
-								}else{
-									return d3.timeFormat('%b')(date);
-								} 
-					         } else {
-					           return d3.timeFormat('%Y')(date);
-					         }
-					      	}))
-						.selectAll("text")  
-    						.style("text-anchor", "end")
-    						.attr("dx", "-.8em")
-    						.attr("dy", ".15em")
-    						.style("font-size", "12px")
-    						.attr("transform", "rotate(-65)");
-
-				      	// Update line position
-				      	graph
-				          .select('path.duas')
-				          .transition()
-				          .duration(1000)
-				          .attr("d", d3.line()
-				            .x(function(d) { return ${param.namespace}x(d.${param.date_column}); })
-				            .y(function(d) { return y1(d.${param.column1}); }));
-				      	graph
-				          .select('path.dtas')
-				          .transition()
-				          .duration(1000)
-				          .attr("d", d3.line()
-				            .x(function(d) { return ${param.namespace}x(d.${param.date_column}); })
-				            .y(function(d) { return y2(d.${param.column2}); }));
-	
-				};
 				
 			};
 			

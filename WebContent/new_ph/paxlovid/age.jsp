@@ -51,7 +51,8 @@ function ${param.block}_age_refresh() {
 			offset: 70,
 			array: 'paxlovid',
 			legendid: '${param.block}legend', 
-			category: 'age'
+			category: 'age',
+			nopercent: true
 	};
 	
 	d3.select("#${param.block}_age_viz").select("svg").remove();

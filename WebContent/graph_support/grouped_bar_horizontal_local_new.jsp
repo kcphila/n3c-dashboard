@@ -32,8 +32,6 @@ div.bar.tooltip {
 
 function localHorizontalGroupedBarChart_new(data1, properties) {
 	
-	console.log(data1);
-	
 	var data = data1;
 	if (typeof properties.category !== 'undefined') {
 		var data = data1.filter(function (el) {
@@ -286,13 +284,21 @@ function localHorizontalGroupedBarChart_new(data1, properties) {
 		     	var label = d.key;
 		     	var seq = d.value.seq;
 		     	var fill = colorscale[(seq-1)];
+		     	
+		     	var percentage = "";
+		     	
+		     	if (typeof properties.nopercent == 'undefined') {
+		    		percentage = "<br><strong>% of " + d.key + " that are " + d.value.label + ": </strong>" + ((count2/total) * 100).toFixed(2) + "%";
+		    	};
+		     	
+		     	
 				d3.selectAll(".tooltip").remove(); 
 				d3.select("body").append("div")
 					.attr("class", "bar tooltip")
 					.style("opacity", 0.8)
 					.style("left", (d3.event.pageX + 5) + "px")
 					.style("top", (d3.event.pageY - 28) + "px")
-					.html("<strong style='color:  " + fill + ";'>" + d.key + "</strong><br><strong>Count: </strong>" + count2.toLocaleString() + "<br><strong>% of " + d.key + " that are " + d.value.label + ": </strong>" + ((count2/total) * 100).toFixed(2) + "%");
+					.html("<strong style='color:  " + fill + ";'>" + d.key + "</strong><br><strong>Count: </strong>" + count2.toLocaleString() + percentage);
 			})
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 

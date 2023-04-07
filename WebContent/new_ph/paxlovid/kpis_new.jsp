@@ -41,10 +41,10 @@
 			</jsp:include>
 		</div>
 		<div class="col col-12 col-md-5 my-auto">
-			<jsp:include page="../kpis/block3_kpis/paxlovid_covid_positive.jsp" >
+			<jsp:include page="../kpis/block3_kpis/paxlovid_covid_positive_vac.jsp" >
 				<jsp:param name="block" value="${param.block}"/>
 			</jsp:include>
-			<jsp:include page="../kpis/block3_kpis/paxlovid_view.jsp">
+			<jsp:include page="../kpis/block3_kpis/paxlovid_view_vac.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>	
@@ -64,10 +64,10 @@
 			</jsp:include>
 		</div>
 		<div class="col col-12 col-md-5 my-auto">
-			<jsp:include page="../kpis/block3_kpis/paxlovid_covid_positive.jsp" >
+			<jsp:include page="../kpis/block3_kpis/paxlovid_covid_positive_visits.jsp" >
 				<jsp:param name="block" value="${param.block}"/>
 			</jsp:include>
-			<jsp:include page="../kpis/block3_kpis/paxlovid_view.jsp">
+			<jsp:include page="../kpis/block3_kpis/paxlovid_view_visits.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>	

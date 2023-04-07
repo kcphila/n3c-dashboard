@@ -608,8 +608,12 @@ WebContent/new_ph/kpis/block3_kpis/mortality3.jsp -text
 WebContent/new_ph/kpis/block3_kpis/not_positive.jsp -text
 WebContent/new_ph/kpis/block3_kpis/not_positive_total.jsp -text
 WebContent/new_ph/kpis/block3_kpis/paxlovid_covid_positive.jsp -text
+WebContent/new_ph/kpis/block3_kpis/paxlovid_covid_positive_vac.jsp -text
+WebContent/new_ph/kpis/block3_kpis/paxlovid_covid_positive_visits.jsp -text
 WebContent/new_ph/kpis/block3_kpis/paxlovid_total.jsp -text
 WebContent/new_ph/kpis/block3_kpis/paxlovid_view.jsp -text
+WebContent/new_ph/kpis/block3_kpis/paxlovid_view_vac.jsp -text
+WebContent/new_ph/kpis/block3_kpis/paxlovid_view_visits.jsp -text
 WebContent/new_ph/kpis/block3_kpis/regions.jsp -text
 WebContent/new_ph/kpis/block3_kpis/regions2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/regions3.jsp -text
@@ -790,9 +794,10 @@ WebContent/new_ph/paxlovid/paxlovid_7.jsp -text
 WebContent/new_ph/paxlovid/paxlovid_8.jsp -text
 WebContent/new_ph/paxlovid/pre_hosp.jsp -text
 WebContent/new_ph/paxlovid/race.jsp -text
-WebContent/new_ph/paxlovid/secondary_text/secondary_1.jsp -text
-WebContent/new_ph/paxlovid/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/paxlovid/secondary_text/secondary_3.jsp -text
+WebContent/new_ph/paxlovid/secondary_text/secondary_4.jsp -text
+WebContent/new_ph/paxlovid/secondary_text/secondary_5.jsp -text
+WebContent/new_ph/paxlovid/secondary_text/secondary_6.jsp -text
 WebContent/new_ph/paxlovid/sex.jsp -text
 WebContent/new_ph/paxlovid/tables/greater_drugs_table.jsp -text
 WebContent/new_ph/paxlovid/tables/greater_table.jsp -text
@@ -805,6 +810,7 @@ WebContent/new_ph/paxlovid/visits.jsp -text
 WebContent/new_ph/paxlovid/viz_tables/condition_viz_table.jsp -text
 WebContent/new_ph/paxlovid/viz_tables/demographics_table.jsp -text
 WebContent/new_ph/paxlovid/viz_tables/drugs_viz_table.jsp -text
+WebContent/new_ph/paxlovid/viz_tables/pre_hosp_table.jsp -text
 WebContent/new_ph/paxlovid/viz_tables/vaccination_table.jsp -text
 WebContent/new_ph/paxlovid/viz_tables/visits_table.jsp -text
 WebContent/new_ph/paxlovid/vizs/long_bar.jsp -text

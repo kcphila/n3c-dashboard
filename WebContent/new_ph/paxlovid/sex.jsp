@@ -51,7 +51,8 @@ function ${param.block}_sex_refresh() {
 			offset: 70,
 			array: 'paxlovid',
 			legendid: '${param.block}legend', 
-			category: 'sex'
+			category: 'sex',
+			nopercent: true
 	};
 	
 	d3.select("#${param.block}_sex_viz").select("svg").remove();

@@ -53,7 +53,8 @@ function ${param.block}_vaccination_refresh() {
 			label2: 'Paxlovid Status',
 			offset: 170,
 			array: 'paxlovid',
-			legendid: '${param.block}_vaccination_legend'
+			legendid: '${param.block}_vaccination_legend',
+			nopercent: true
 	};
 	
 	d3.select("#${param.block}_vaccination_viz").select("svg").remove();

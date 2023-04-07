@@ -51,7 +51,8 @@ function ${param.block}_race_refresh() {
 			offset: 70,
 			array: 'paxlovid',
 			legendid: '${param.block}legend', 
-			category: 'race'
+			category: 'race',
+			nopercent: true
 	};
 	
 	d3.select("#${param.block}_race_viz").select("svg").remove();
