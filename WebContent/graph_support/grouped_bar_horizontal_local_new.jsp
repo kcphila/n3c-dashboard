@@ -75,7 +75,7 @@ function localHorizontalGroupedBarChart_new(data1, properties) {
 	var barPadding = 3;
 	var barHeight = 20;
 	
-	var margin = {top: 0, right: 30, bottom: 30, left: offset},
+	var margin = {top: 0, right: 70, bottom: 30, left: offset},
 		width = $("#"+domName).width() - margin.left - margin.right,
 		height = (secondary_list.length*barHeight);
 	
