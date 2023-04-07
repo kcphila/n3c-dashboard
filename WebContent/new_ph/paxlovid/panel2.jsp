@@ -17,8 +17,12 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
-		<optgroup label="Live Data">
+		<optgroup label="Overview">
 			<option value="paxlovid_4">Demographics</option>
+		</optgroup>
+		<optgroup label=" Pre-COVID Utilization">
+			<option value="paxlovid_5"># of Vaccinations Before COVID+</option>
+			<option value="paxlovid_6">Pre-COVID Dr. Visits</option>
 		</optgroup>
 		<optgroup label="Static Data">
 			<option value="paxlovid_8">Paxlovid Outcomes (Extract)</option>

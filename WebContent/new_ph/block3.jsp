@@ -1720,8 +1720,8 @@ function limitlink(){
 	    	${param.block}_sex_refresh();
 	    	${param.block}_ethnicity_refresh();
 	    }
-	    if ('${param.block}' === "paxlovid_4") {
-	    	${param.block}_age_refresh();
+	    if ('${param.block}' === "paxlovid_5") {
+	    	${param.block}_vaccination_refresh();
 	    }
 	  }
 	

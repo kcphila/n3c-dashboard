@@ -18,7 +18,7 @@
 
 	<jsp:param name="simple_panel" value="paxlovid/visits.jsp" />
 
-	<jsp:param name="datatable" value="paxlovid/visits_table.jsp" />
+	<jsp:param name="datatable" value="paxlovid/viz_tables/visits_table.jsp" />
 	<jsp:param name="datatable_div" value="paxlovid_paxlovid_visits" />
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/visits.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />

@@ -4,10 +4,11 @@
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	switch (filter) {
-	case 'result':
+	case 'paxlovid':
 	    table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	}
+	
 	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
 		${param.block}_updateKPI(table, kpis[a])
@@ -16,7 +17,25 @@ function ${param.block}_constrain_table(filter, constraint) {
 
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
-	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
+	var sum = 0;
+	
+	console.log(column);
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'patient_count'){
+			if (data['cat'].replace(/[0-9]/g, '') == 'sex'){
+				sum += data['patient_count'];
+			};
+		};
+		if (column == 'paxlovid'){
+			if (data['cat'].replace(/[0-9]/g, '') == 'sex' && data['paxlovid'].replace(/[0-9]/g, '') == 'Paxlovid'){
+				sum += data['patient_count'];
+			};
+		};
+	} );
+	
+
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -114,12 +133,14 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'age', visible: true, orderable: true },
-        	{ data: 'result', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [3] },
+     		{ data: 'vaccination', visible: true, orderable: true },
+        	{ data: 'paxlovid', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
         	{ data: 'patient_count', visible: false },
-        	{ data: 'age_seq', visible: false },
-           	{ data: 'result_seq', visible: false }
+        	{ data: 'vaccination_abbrev', visible: false },
+        	{ data: 'vaccination_seq', visible: false },
+        	{ data: 'paxlovid_abbrev', visible: false },
+        	{ data: 'paxlovid_seq', visible: false }
     	]
 	} );
 

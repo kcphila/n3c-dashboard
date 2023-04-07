@@ -24,22 +24,22 @@
 		</div>
 	</div>
 	
-	<c:set var="feedPath"><util:applicationRoot/>/new_ph/reinfection/feeds/reinfections_by_date.jsp</c:set>
+	<c:set var="feedPath"><util:applicationRoot/>/new_ph/paxlovid/feeds/pre_hosp.jsp</c:set>
 	
-	<jsp:include page="../../graph_support/time_line_2_column.jsp">
+	<jsp:include page="../../graph_support/time_line_2_column_paxlovid.jsp">
 		<jsp:param name="data_page" value="${feedPath}" />
 		<jsp:param name="dom_element" value="#reinfection1" />
 		<jsp:param name="namespace" value="reinfection1" />
-		<jsp:param name="date_column" value="c_date" />
-		<jsp:param name="column1" value="first_diagnosis" />
-		<jsp:param name="column1_label" value="First Diagnosis Count" />
-		<jsp:param name="column1_tip" value="First Diagnosis" />
+		<jsp:param name="date_column" value="visits" />
+		<jsp:param name="column1" value="paxlovid" />
+		<jsp:param name="column1_label" value="COVID+ Patients Prescriped Paxlovid" />
+		<jsp:param name="column1_tip" value="Paxlovid" />
 		<jsp:param name="column1_tip_offset" value="110" />
 		<jsp:param name="column1_color" value="#4833B2" />
 		<jsp:param name="column1_opacity" value="1" />
-		<jsp:param name="column2" value="reinfected" />
-		<jsp:param name="column2_label" value="Reinfection Count" />
-		<jsp:param name="column2_tip" value="Reinfection" />
+		<jsp:param name="column2" value="no_paxlovid" />
+		<jsp:param name="column2_label" value="COVID+ Patients Not Prescriped Paxlovid" />
+		<jsp:param name="column2_tip" value="No Pax" />
 		<jsp:param name="column2_tip_offset" value="85" />
 		<jsp:param name="column2_color" value="#A772DF" />
 		<jsp:param name="column2_opacity" value="0.7" />

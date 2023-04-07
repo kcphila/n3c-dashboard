@@ -32,6 +32,8 @@ div.bar.tooltip {
 
 function localHorizontalGroupedBarChart_new(data1, properties) {
 	
+	console.log(data1);
+	
 	var data = data1;
 	if (typeof properties.category !== 'undefined') {
 		var data = data1.filter(function (el) {

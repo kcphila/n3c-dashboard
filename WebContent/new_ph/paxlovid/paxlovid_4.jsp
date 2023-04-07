@@ -15,11 +15,11 @@
 
 	<jsp:param name="paxlovid_filter" value="true" />
 	
-	<jsp:param name="age_panel" value="paxlovid/age2.jsp" />
-	<jsp:param name="sex_panel" value="paxlovid/sex2.jsp" />
-	<jsp:param name="race_panel" value="paxlovid/race2.jsp" />
+	<jsp:param name="age_panel" value="paxlovid/age.jsp" />
+	<jsp:param name="sex_panel" value="paxlovid/sex.jsp" />
+	<jsp:param name="race_panel" value="paxlovid/race.jsp" />
 
-	<jsp:param name="datatable" value="paxlovid/demographics_table.jsp" />
+	<jsp:param name="datatable" value="paxlovid/viz_tables/demographics_table.jsp" />
 	<jsp:param name="datatable_div" value="paxlovid_paxlovid_demographics" />
 	<jsp:param name="datatable_kpis" value="patient_count,paxlovid" />
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/demographics.jsp" />
