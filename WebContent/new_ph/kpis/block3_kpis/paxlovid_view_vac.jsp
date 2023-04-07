@@ -26,7 +26,24 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Total Patients on Paxlovid in View*</td>
+							<td>
+								<span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients Prescribed Paxlovid in View" 
+										data-html="true" data-toggle="popover" 
+										data-placement="top" 
+										data-content="
+										<p>Total Number of COVID+ Individuals within the N3C Data Enclave who have Paxlovid 
+										indicated in their EHR within five days of their COVID Diagnosis.</p>
+										<p> Anyone that received Paxlovid 
+										before their COVID diagnosis or after the recommended 5-day period would be excluded. Additionally, 
+										anyone who received Paxlovid but did not have a COVID diagnosis recorded within the Enclave would be 
+										excluded. </p>" aria-describedby="tooltip">
+	 											<p style="margin-bottom:0px;">Total Paxlovid Patients in View* <i class="fas fa-info-circle"></i>
+	 											</p> 
+ 									</a>
+ 								</span>
+ 							</td>
 						</tr>
 					</table>
 				</div>

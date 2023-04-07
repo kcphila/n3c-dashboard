@@ -19,7 +19,19 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Total Patients on Paxlovid in Enclave</td>
+							<td>
+								<span class="tip">
+									<a class="viz_secondary_info" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients Prescribed Paxlovid in Enclave" 
+										data-html="true" data-toggle="popover" 
+										data-placement="top" 
+										data-content="
+										<p>Total Number of Individuals within the N3C Data Enclave who have Paxlovid indicated in their EHR </p>" aria-describedby="tooltip">
+	 											<p style="margin-bottom:0px;">Total Paxlovid Patients in Enclave <i class="fas fa-info-circle"></i>
+	 											</p> 
+ 									</a>
+ 								</span>
+ 							</td>
 						</tr>
 					</table>
 				</div>
