@@ -38,6 +38,7 @@
 <sql:query var="ages" dataSource="jdbc/N3CPublic">
 	select roster_map.* from n3c_dashboard.roster_map natural join n3c_questions_new.roster order by seqnum;
 </sql:query>
+
 <c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
 	<c:choose>
 		<c:when test="${param.frame == row.iframe_info && row.mode == 'D3'}">

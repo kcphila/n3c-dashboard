@@ -21,14 +21,8 @@
 	</div>
 </div>
 
-<c:if test="${not empty param.topic_description}">
-	<div id="viz_caption">
-		<jsp:include page="../paxlovid/secondary_text/${param.topic_description}.jsp"/>
-	</div>
-</c:if>
 
 <script>
-
 function ${param.block}_age_refresh() {
 	var properties = {
 			domName: '${param.block}_paxlovid_viz',
@@ -45,4 +39,5 @@ function ${param.block}_age_refresh() {
 }
 
 ${param.block}_age_refresh();
+
 </script>

@@ -12,40 +12,19 @@
 		display:none;
 	}
 </style>
-<div class="pax-intro text-max mx-auto">
-	<sql:query var="paxintro" dataSource="jdbc/N3CPublic">
-		select
-			to_char(count, '999,999') as count,
-			(select to_char(substring(value from '[a-zA-Z]*-v[0-9]*-(.*)')::date, 'Month FMDD, YYYY') as value
-			 from n3c_admin.enclave_stats where title='release_name') as date,
-			(select substring(value from '[a-zA-Z]*-v([0-9]*)-.*') as value
-			 from n3c_admin.enclave_stats where title='release_name') as build
-		from n3c_questions.drug_count_summary where drug_name='PAXLOVID';
-	</sql:query>
-	<c:forEach items="${paxintro.rows}" var="row" varStatus="rowCounter">
-		<p>As of <span id="date">&nbsp;</span> (updated weekly), N3C has data from 
-		<span id="site_count">&nbsp;</span> institutions and <span id="positive">&nbsp;</span> COVID+ patients.
-		This data can be utilized to assess the real-world use of Paxlovid prescribed to ${row.count} patients.
-		<strong>Currently, the data in this dashboard is from several static data extracts and does not include all ${row.count} patients.</strong></strong></p>
- 	</c:forEach>
- 		
-	
-</div>
+
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
-		<optgroup label="Demographics">
-			<option value="paxlovid_4">Age</option>
-			<option value="paxlovid_5">Sex</option>
-			<option value="paxlovid_6">Race</option>
-			<option value="paxlovid_7">Ethnicity</option>
+		<optgroup label="Live Data">
+			<option value="paxlovid_4">Demographics</option>
 		</optgroup>
-		<optgroup label="Paxlovid">
-			<option value="paxlovid_8">Paxlovid Outcomes</option>
-			<option value="paxlovid_1">Conditions</option>
-			<option value="paxlovid_2">Medications</option>
-			<option value="paxlovid_3">Visits</option>
+		<optgroup label="Static Data">
+			<option value="paxlovid_8">Paxlovid Outcomes (Extract)</option>
+			<option value="paxlovid_1">Related Conditions (Extract: July 22, 2022)</option>
+			<option value="paxlovid_2">Related Medications (Extract: July 22, 2022)</option>
+			<option value="paxlovid_3">Visits (Extract: July 22, 2022)</option>
 		</optgroup>
 	</select>
 </div>
@@ -161,14 +140,6 @@ $(document).ready(function() {
 	 	// set breadcrumb to be the selected value
 	    $('#topic_breadcrumb').html($("option:selected", $(this)).text());
 	}); 
-});
-
-$.getJSON("<util:applicationRoot/>/feeds/embedded_fact_sheet.jsp", function(json){
-	var data = $.parseJSON(JSON.stringify(json));
-
-	$('#date').text(data['release_date']); 
-	$('#site_count').text(data['sites_ingested']); 	 
-	$('#positive').text(data['covid_positive_patients']); 	
 });
 
 </script>

@@ -351,7 +351,7 @@
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
 	 that supports a set of optional sub-panels -->
-
+	 
 <div class="row stats block2 mx-auto">
 	<div class="col-12">
 	
@@ -377,7 +377,7 @@
 					</div>
 				</c:if>
 				
-				<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter}">
+				<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter || not empty param.paxlovid_filter}">
 					<div id="filter_checks" class="panel-primary filter-section">
 						<h4>Filters</h4>
 						<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
@@ -454,7 +454,7 @@
 								<jsp:include page="filters_new/beforeafter_sotrovimab.jsp"/>
 							</c:if>
 							<c:if test="${param.result_filter}">
-								<jsp:include page="filters/result.jsp"/>
+								<jsp:include page="filters_new/result.jsp"/>
 							</c:if>
 							<c:if test="${param.delay_filter}">
 								<jsp:include page="filters_new/death_delay.jsp"/>
@@ -488,6 +488,9 @@
 							</c:if>
 							<c:if test="${param.reinfectionbin_filter}">
 								<jsp:include page="filters_new/reinfection_interval.jsp"/>
+							</c:if>
+							<c:if test="${param.paxlovid_filter}">
+								<jsp:include page="filters_new/paxlovid.jsp"/>
 							</c:if>
 						</div>
 					</div>
@@ -731,7 +734,7 @@
 					
 					<div class="row">
 						<c:if test="${not empty param.topic_description}">
-							<div id="viz_caption">
+							<div class="col-12" id="viz_caption">
 								<jsp:include page="${param.folder}/secondary_text/${param.topic_description}.jsp"/>
 							</div>
 						</c:if>
@@ -1239,6 +1242,46 @@ function limitlink(){
             }
 		});
 		
+		// paxlovid new
+		$('#${param.block}-paxlovidstatus-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-paxlovidstatus-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("paxlovid",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
+		// paxlovid old
+		$('#${param.block}-testresult-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-testresult-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("result",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
 // old multiselects //////////////////////////////////////////////
 		$('#${param.block}-vaccinated-select').multiselect({
 			onChange: function(option, checked, select) {
@@ -1265,17 +1308,7 @@ function limitlink(){
 			    ${param.block}_refreshHistograms();
             }
 		});
-		$('#${param.block}-testresult-select').multiselect({	
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-testresult-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("result",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
+		
 	
 		
 		
@@ -1453,6 +1486,10 @@ function limitlink(){
 			$('#${param.block}-intervalbin-select').multiselect('clearSelection');
 			${param.block}_constrain("intervalbin", '');
 		</c:if>
+		<c:if test="${param.paxlovid_filter}">
+			$('#${param.block}-paxlovidstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("paxlovid", '');
+		</c:if>
 
 		
 		
@@ -1583,7 +1620,7 @@ function limitlink(){
 	    
 	    	${param.block}_refreshSeverityStatusArray(data);
 	    	${param.block}_refreshstatusArray(data);
-	    
+	    	
 	    	${param.block}_refreshAgeResultArray(data);
 	    	${param.block}_refreshSexResultArray(data);
 	    	${param.block}_refreshRaceResultArray(data);
@@ -1682,6 +1719,9 @@ function limitlink(){
 	    	${param.block}_race_refresh();
 	    	${param.block}_sex_refresh();
 	    	${param.block}_ethnicity_refresh();
+	    }
+	    if ('${param.block}' === "paxlovid_4") {
+	    	${param.block}_age_refresh();
 	    }
 	  }
 	

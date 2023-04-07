@@ -21,8 +21,6 @@
 	
 	<jsp:param name="db_title" value="Mortality" />
 	
-
-	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			domName: 'smoking_1_age_viz',
 			block: 'smoking_1',

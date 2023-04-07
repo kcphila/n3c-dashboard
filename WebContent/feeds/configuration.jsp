@@ -26,6 +26,8 @@ var age_range_peds2 = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE"];
 
 var status_range = ["#4833B2", "#AD1181", "#a6a6a6"];
 
+var paxlovid_range = ["#AD1181", "#a6a6a6"];
+
 var result_range = ["#4833B2", "#AD1181", "#a6a6a6"];
 
 var vaccinated_range = ["#4833B2", "#a6a6a6"];
@@ -216,6 +218,7 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 	var age_legend_10 = ${row.jsonb_pretty};
 </c:forEach>
 
+
 <sql:query var="statuses" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (select smoking_status as secondary, 
@@ -227,6 +230,19 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	var status_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="paxlovid" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select pax_abbrev as secondary, 
+		pax_abbrev as secondary_name, 
+		pax_seq as secondary_seq
+		from n3c_dashboard.pax_map
+		order by pax_seq
+	) as done;
+</sql:query>
+<c:forEach items="${paxlovid.rows}" var="row" varStatus="rowCounter">
+	var paxlovid_legend = ${row.jsonb_pretty};
 </c:forEach>
 
 <sql:query var="statuses" dataSource="jdbc/N3CPublic">
@@ -297,7 +313,6 @@ var medication_legend = new Array()
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	medication_legend.push("${row.drug_name}");
 </c:forEach>
-console.log(medication_legend)
 
 
 var sotrovimaboccurrence_legend = [ { "secondary": "Before Other Med", "secondary_name": "Before Other Med", "sotrovimaboccurrence_seq": 1 }, { "secondary": "After Other Med", "secondary_name": "After Other Med", "sotrovimaboccurrence_seq": 2 } ];

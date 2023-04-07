@@ -2,14 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-<jsp:include page="kpis2.jsp">
+<jsp:include page="kpis.jsp">
 	<jsp:param value="paxlovid_3" name="block"/>
 </jsp:include>
 
-<jsp:include page="../block2.jsp">
+<jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="paxlovid_3" />
 	<jsp:param name="block_header" value="Paxlovid" />
 	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="did" value="55" />
+	<jsp:param name="folder" value="paxlovid" />
 	<jsp:param name="topic_title" value="Counts of Patients Prescribed Paxlovid Who Had Subsequent Visits Within 27 Days by Visit Type and COVID Test Results" />
 	
 	<jsp:param name="result_filter" value="true" />

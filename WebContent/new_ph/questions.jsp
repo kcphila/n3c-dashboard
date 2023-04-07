@@ -7,12 +7,7 @@
 		<div id="question-panel" class="panel panel-primary top_panel" style="margin-top:0px;">
 			<div class="panel-body">
 				<div id="question-select" class="">
-<%-- 					<c:if test="${param.secondary_tab != 'reinfection'}"> --%>
-						<jsp:include page="questions_styled3.jsp?secondary_tab=${param.secondary_tab}&tertiary_tab=${param.tertiary_tab}"/>
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${param.secondary_tab == 'reinfection'}"> --%>
-<%-- 						<jsp:include page="questions_styled4.jsp?secondary_tab=${param.secondary_tab}&tertiary_tab=${param.tertiary_tab}"/> --%>
-<%-- 					</c:if> --%>
+					<jsp:include page="questions_styled3.jsp?secondary_tab=${param.secondary_tab}&tertiary_tab=${param.tertiary_tab}"/>
 				</div>
 			</div>
 		</div>

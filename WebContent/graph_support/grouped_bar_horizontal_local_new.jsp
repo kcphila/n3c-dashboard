@@ -30,8 +30,15 @@ div.bar.tooltip {
 // margin = array: [top, bottom, left, right]
 
 
-function localHorizontalGroupedBarChart_new(data, properties) {
+function localHorizontalGroupedBarChart_new(data1, properties) {
 	
+	var data = data1;
+	if (typeof properties.category !== 'undefined') {
+		var data = data1.filter(function (el) {
+			  return el.cat == properties.category;
+			});
+	}
+
 	//
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
 	//

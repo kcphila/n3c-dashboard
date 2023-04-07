@@ -24,6 +24,8 @@ rect{
 
 function localHorizontalStackedBarChart(data, properties) {
 	
+	console.log('reached me youu did');
+	
 	var add_filter_text = 1;
 	var filter_icon = " &#xf0b0";
 	if ((properties.nofilter != undefined) && (properties.nofilter == 1) ){

@@ -27,7 +27,7 @@ function ${param.block}_refresh${param.array}(data) {
 	}
 
 	${param.block}_${param.array}.sort((a,b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
-	console.log("refreshed ${param.array}", ${param.block}_${param.array});
+	//// console.log("refreshed ${param.array}", ${param.block}_${param.array});
 }
 
 </script>
