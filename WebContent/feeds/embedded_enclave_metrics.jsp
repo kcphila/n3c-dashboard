@@ -35,7 +35,7 @@
 			</c:forEach>
 
 			<sql:query var="dta" dataSource="jdbc/N3CPublic">
-            	select title, round(value::int/1000000000.0, 1) as value from n3c_admin.enclave_stats where title='observation_rows';
+            	select title, round(value::bigint/1000000000.0, 1) as value from n3c_admin.enclave_stats where title='observation_rows';
             </sql:query>
 			<c:forEach items="${dta.rows}" var="row" varStatus="rowCounter">
 				"${row.title}": {
