@@ -232,35 +232,49 @@
 	bottom: -10px;
 }
 
-/* autocomplete  ****************************************************/
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-  color: black;
-}
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
-}
-.autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #e9e9e9;
+.slick-prev, 
+.slick-next{
+	z-index: 1;
+	width: 50px;
+	height: 100%;
 }
 
-.autocomplete-active {
-  background-color: DodgerBlue !important;
-  color: #ffffff;
+.slick-prev{
+	left: 0px;
+}
+.slick-next{
+	right: -0px;
 }
 
+.slick-prev:before, 
+.slick-next:before{
+	font-size: 50px;
+	color: #423f4e;
+	background: white;
+    border-radius: 50%;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 800; 
+   
+}
+.slick-prev:before{
+	 content: "\f137";
+}
+.slick-next:before{
+	 content: "\f138";
+}
+
+.slick-prev.slick-disabled:before, 
+.slick-next.slick-disabled:before{
+	display: none;
+}
+
+.slick-dots li button:before{
+	color: #007bff;
+}
+
+.slick-dots li.slick-active button:before{
+	color: #007bff;
+}
 
 /* general elements  ****************************************************/
 #dash_nav .col{
@@ -389,12 +403,7 @@
 					<h2>Dashboards</h2>
 				</div>
 				<div class="col-12 col-md-4 m-auto">
-					<form autocomplete="off" class="input-group mb-3" action="<util:applicationRoot/>/search">
-	  					<input id="dashboard-search" type="text" name="search" class="form-control" placeholder="Search All Dashboards" aria-label="Search" aria-describedby="search-addon">
-	  					<div class="input-group-append">
-	    					<button id="search-addon" class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-	  					</div>
-					</form>
+					<jsp:include page="search/search.jsp"/>
 				</div>
 			</div>
 		</div>
@@ -447,10 +456,10 @@ $(".slick-test").on("beforeChange", function (){
 $(document).ready(function(){	
 	
 	$('.featured-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		infinite: false,
 		slidesToScroll: 1,
 		centerMode: false,
@@ -460,7 +469,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -469,7 +478,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -479,11 +488,11 @@ $(document).ready(function(){
 	});
 	
 	$('.members-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -491,7 +500,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -500,7 +509,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -510,11 +519,11 @@ $(document).ready(function(){
 	});
 	
 	$('.diseases-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -522,7 +531,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -531,7 +540,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -541,11 +550,11 @@ $(document).ready(function(){
 	});
 	
 	$('.tracking-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -553,7 +562,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -562,7 +571,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -572,7 +581,7 @@ $(document).ready(function(){
 	});
 	
 	$('.cases-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
@@ -584,7 +593,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -593,7 +602,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -604,11 +613,11 @@ $(document).ready(function(){
 	
 	
 	$('.medications-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -616,7 +625,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -625,7 +634,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -635,11 +644,11 @@ $(document).ready(function(){
 	});
 	
 	$('.overview-slick').slick({
-		arrows: false,
+		arrows: true,
 		dots: true,
 		draggable: false,
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 3.3,
 		slidesToScroll: 1,
 		centerMode: false,
 		autoplay: false,
@@ -647,7 +656,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 1200,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: false,
 		        centerPadding: '40px',
 		        slidesToShow: 2
@@ -656,7 +665,7 @@ $(document).ready(function(){
 		    {
 		      breakpoint: 700,
 		      settings: {
-		        arrows: false,
+		        arrows: true,
 		        centerMode: true,
 		        centerPadding: '40px',
 		        slidesToShow: 1
@@ -699,116 +708,6 @@ $(window).on("load", function() {
 // stop card clicks from being triggered when clicking inner links
 $(".card a").click(function(e) {
 	   e.stopPropagation();
-});
-
-
-// search autocomplete /////////////////////////////////////////////////////////////////////
-var keywords = ["covid+ cases", "distribution", "covid positive cases", "daily count", "cumulative count", "patient distribution", "irb", "enclave overview", "diseases", "cancer", "congestie heart failure", "dementia", "diabetes", "HIV", "HLH", "liver disease", "metastasis", "Myocardial Infarction", "paralysis", "peptic ulcer disease", "peripheral vascular disease", "pulmonary", "renal disease", "Rheumatologic Disease", "stroke", "long covid", "cognitive impariment", "fatigue", "mental health condition", "Postural Orthostatic Tachycardia Syndrome (POTS)", "shortness of breath", "U09.9", "medications", "medication classes", "Dexamethasone", "Lisinopril", "Losartan", "Montelukast", "Fluoxetine", "Remdesivir", "Valsartan", "Hydroxychloroquine", "Casirivimab & Imdevimab", "Nirmatrelvir/Ritonavir", "Colchicine", "Olmesartan", "Benazepril", "Enalapril", "Irbesartan", "Bamlanivimab", "Lopinavir & Ritonavir", "Ramipril", "Tocilizumab", "Telmisartan", "Sotrovimab", "Candesartan", "Fluvoxamine", "Captopril", "Quinapril", "Etesevimab", "Chloroquine", "Anakinra", "Fosinopril", "Bamlanivimab & Etesevimab", "Tixagevimab/Cilgavimab", "Azilsartan", "Molnupiravir", "Interferonbeta-1a", "Trandolapril", "Moexipril", "Perindopril", "Interferonbeta-1b", "Peginterferon beta-1a", "medications", "paxlovid", "strovimab", "meications", "Bebtelovimab", "Evusheld", "Lagevrio", "Paxlovid", "REG_COV", "mortality", "hospitalization", "regional distribution", "patient map", "reinfection", "covid positive reinfection", "smoking", "overview", "demographics", "collaboration", "collaboration map", "data partners", "collaboration network", "teams", "publications", "administration", "registration", "PASC", "Cumulative and Average COVID+ Cases", "Demographics Table for IRB Submission", "Disease Snapshots", "Disease - Diabetes Mellitus", "Long COVID", "Medications", "Medications - Paxlovid", "Medications Snapshots", "Medication Time Series", "Mortality", "Regional Distribution of COVID+ Patients", "Reinfection", "Reinfection Time Series", "Smoking", "Demographics", "Institutional Collaboration Map", "Institutions Contributing Data", "Collaboration Networks", "N3C Teams", "Publications", "Site and User Metrics", "RECOVER Initiative (Long COVID)"];
-
-// from w3 schools autocomplete
-function autocomplete(inp, arr) {
-	  /*the autocomplete function takes two arguments,
-	  the text field element and an array of possible autocompleted values:*/
-	  var currentFocus;
-	  /*execute a function when someone writes in the text field:*/
-	  inp.addEventListener("input", function(e) {
-	      var a, b, i, val = this.value;
-	      /*close any already open lists of autocompleted values*/
-	      closeAllLists();
-	      if (!val) { return false;}
-	      currentFocus = -1;
-	      /*create a DIV element that will contain the items (values):*/
-	      a = document.createElement("DIV");
-	      a.setAttribute("id", this.id + "autocomplete-list");
-	      a.setAttribute("class", "autocomplete-items");
-	      /*append the DIV element as a child of the autocomplete container:*/
-	      this.parentNode.appendChild(a);
-	      /*for each item in the array...*/
-	      for (i = 0; i < arr.length; i++) {
-	        /*check if the item starts with the same letters as the text field value:*/
-	        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-	          /*create a DIV element for each matching element:*/
-	          b = document.createElement("DIV");
-	          /*make the matching letters bold:*/
-	          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-	          b.innerHTML += arr[i].substr(val.length);
-	          /*insert a input field that will hold the current array item's value:*/
-	          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-	          /*execute a function when someone clicks on the item value (DIV element):*/
-	              b.addEventListener("click", function(e) {
-	              /*insert the value for the autocomplete text field:*/
-	              inp.value = this.getElementsByTagName("input")[0].value;
-	              /*close the list of autocompleted values,
-	              (or any other open lists of autocompleted values:*/
-	              closeAllLists();
-	          });
-	          a.appendChild(b);
-	        }
-	      }
-	  });
-	  /*execute a function presses a key on the keyboard:*/
-	  inp.addEventListener("keydown", function(e) {
-	      var x = document.getElementById(this.id + "autocomplete-list");
-	      if (x) x = x.getElementsByTagName("div");
-	      if (e.keyCode == 40) {
-	        /*If the arrow DOWN key is pressed,
-	        increase the currentFocus variable:*/
-	        currentFocus++;
-	        /*and and make the current item more visible:*/
-	        addActive(x);
-	      } else if (e.keyCode == 38) { //up
-	        /*If the arrow UP key is pressed,
-	        decrease the currentFocus variable:*/
-	        currentFocus--;
-	        /*and and make the current item more visible:*/
-	        addActive(x);
-	      } else if (e.keyCode == 13) {
-	        /*If the ENTER key is pressed, prevent the form from being submitted,*/
-	        e.preventDefault();
-	        if (currentFocus > -1) {
-	          /*and simulate a click on the "active" item:*/
-	          if (x) x[currentFocus].click();
-	        }
-	      }
-	  });
-	  function addActive(x) {
-	    /*a function to classify an item as "active":*/
-	    if (!x) return false;
-	    /*start by removing the "active" class on all items:*/
-	    removeActive(x);
-	    if (currentFocus >= x.length) currentFocus = 0;
-	    if (currentFocus < 0) currentFocus = (x.length - 1);
-	    /*add class "autocomplete-active":*/
-	    x[currentFocus].classList.add("autocomplete-active");
-	  }
-	  function removeActive(x) {
-	    /*a function to remove the "active" class from all autocomplete items:*/
-	    for (var i = 0; i < x.length; i++) {
-	      x[i].classList.remove("autocomplete-active");
-	    }
-	  }
-	  function closeAllLists(elmnt) {
-	    /*close all autocomplete lists in the document,
-	    except the one passed as an argument:*/
-	    var x = document.getElementsByClassName("autocomplete-items");
-	    for (var i = 0; i < x.length; i++) {
-	      if (elmnt != x[i] && elmnt != inp) {
-	      x[i].parentNode.removeChild(x[i]);
-	    }
-	  }
-	}
-	/*execute a function when someone clicks in the document:*/
-	document.addEventListener("click", function (e) {
-	    closeAllLists(e.target);
-	});
-}
-
-autocomplete(document.getElementById("dashboard-search"), keywords);
-
-$("#dashboard-search").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#search-addon").click();
-    }
 });
 
 </script>
