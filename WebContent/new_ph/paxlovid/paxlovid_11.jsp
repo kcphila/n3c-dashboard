@@ -5,18 +5,18 @@
 
 
 <jsp:include page="../block3.jsp">
-	<jsp:param name="block" value="paxlovid_6" />
+	<jsp:param name="block" value="paxlovid_11" />
 	<jsp:param name="block_header" value="Paxlovid" />
-	<jsp:param name="topic_description" value="secondary_6" />
-	<jsp:param name="topic_title" value="Counts of COVID+ Patients by their Number of Pre-COVID Dr. Visits and Paxlovid Status" />
+	<jsp:param name="topic_description" value="secondary_11" />
+	<jsp:param name="topic_title" value="Counts of COVID+ Patients by the Number of Days Between COVID+ and Hospitalization" />
 	<jsp:param name="did" value="55" />
 	<jsp:param name="folder" value="paxlovid" />
 	<jsp:param name="kpis" value="paxlovid/kpis_new.jsp" />
 
-	<jsp:param name="simple_panel" value="paxlovid/pre_hosp.jsp" />
+	<jsp:param name="simple_panel" value="paxlovid/hosp_delta.jsp" />
 
-	<jsp:param name="datatable" value="paxlovid/viz_tables/hosp_table.jsp" />
-	<jsp:param name="datatable_div" value="paxlovid_paxlovid_drvisits" />
-	<jsp:param name="datatable_feed" value="paxlovid/feeds/pre_hosp.jsp" />
+	<jsp:param name="datatable" value="paxlovid/viz_tables/hosp_delta_table.jsp" />
+	<jsp:param name="datatable_div" value="paxlovid_paxlovid_hosp" />
+	<jsp:param name="datatable_feed" value="paxlovid/feeds/hosp_delta.jsp" />
 	
 </jsp:include>

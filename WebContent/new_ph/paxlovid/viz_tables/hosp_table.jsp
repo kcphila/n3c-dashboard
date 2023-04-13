@@ -19,8 +19,6 @@ function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = 0;
 	
-	console.log(column);
-	
 	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
 		var data = this.data();
 		if (column == 'patient_count'){
@@ -89,8 +87,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	divContainer.appendChild(table);
 
 	var data = json;
-	
-	console.log(data);
 
 	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
     	data: data,

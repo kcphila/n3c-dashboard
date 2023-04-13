@@ -19,8 +19,6 @@ function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = 0;
 	
-	console.log(column);
-	
 	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
 		var data = this.data();
 		if (column == 'patient_count'){

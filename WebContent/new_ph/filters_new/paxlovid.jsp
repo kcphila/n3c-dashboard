@@ -13,7 +13,7 @@
 				</h2>
 			</div>
 		</div>
-		<div id="paxlovid_body" class="collapse" aria-labelledby="paxlovid_heading" data-parent="#paxlovid_accordion">
+		<div id="paxlovid_body" class="collapse show" aria-labelledby="paxlovid_heading" data-parent="#paxlovid_accordion">
 			<div class="card-body">
 				<div id="paxlovid_panel">
 					<select id="${param.block}-paxlovidstatus-select" multiple="multiple">

@@ -12,11 +12,12 @@ function ${param.block}_refresh${param.array}(data) {
     			var group = data[i].${param.primary};
 			</c:when>
 			<c:otherwise>
+				console.log('reached not empty abbrev');
 				var group = data[i].${param.primary_abbrev};
 			</c:otherwise>
 		</c:choose>
 		
-		if (data[i].${param.primary}_abbrev){
+		if (typeof data[i].${param.primary}_abbrev !== 'undefined'){
 			cData[group] = data[i].${param.primary}_abbrev;
 		}else{
 			cData[group] = data[i].${param.primary};

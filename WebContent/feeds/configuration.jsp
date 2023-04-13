@@ -315,4 +315,15 @@ var medication_legend = new Array()
 </c:forEach>
 
 
+<sql:query var="days" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct pax_covid_delta as secondary, pax_covid_delta as secondary_seq, CONCAT(pax_covid_delta::text, ' Day(s) Between COVID+ Diagnosis and Prescription') as secondary_name
+		  from n3c_questions_new.pax_administration
+		  ) as done;
+</sql:query>
+<c:forEach items="${days.rows}" var="row" varStatus="rowCounter">
+	var days_pax_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+
 var sotrovimaboccurrence_legend = [ { "secondary": "Before Other Med", "secondary_name": "Before Other Med", "sotrovimaboccurrence_seq": 1 }, { "secondary": "After Other Med", "secondary_name": "After Other Med", "sotrovimaboccurrence_seq": 2 } ];

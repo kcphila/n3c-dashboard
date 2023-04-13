@@ -19,10 +19,16 @@
 	<select id="selectMe">
 		<optgroup label="Overview">
 			<option value="paxlovid_4">Demographics</option>
+			<option value="paxlovid_9">Days Between COVID+ and Prescription</option>
 		</optgroup>
-		<optgroup label=" Pre-COVID Utilization">
+		<optgroup label=" Pre-COVID Factors">
 			<option value="paxlovid_5"># of Vaccinations Before COVID+</option>
 			<option value="paxlovid_6">Pre-COVID Dr. Visits</option>
+			<option value="paxlovid_7">Charlson Comorbidity Index (CCI)</option>
+		</optgroup>
+		<optgroup label=" Post-COVID Factors">
+			<option value="paxlovid_10">Post-COVID Dr. Visits</option>
+			<option value="paxlovid_11"># Days Between COVID+ and Hospitalization</option>
 		</optgroup>
 		<optgroup label="Static Data">
 			<option value="paxlovid_8">Paxlovid Outcomes (Extract)</option>
@@ -43,6 +49,9 @@
 		<div id="paxlovid_6" class="group"></div>
 		<div id="paxlovid_7" class="group"></div>
 		<div id="paxlovid_8" class="group"></div>
+		<div id="paxlovid_9" class="group"></div>
+		<div id="paxlovid_10" class="group"></div>
+		<div id="paxlovid_11" class="group"></div>
 	</div>
 </div>
 <script>

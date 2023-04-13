@@ -347,13 +347,30 @@
 	margin-top: 30px;
 }
 
+/* pre filtered notice section */
+.viz_info_box{
+	margin-top: 20px;
+}
+
 </style>
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
 	 that supports a set of optional sub-panels -->
 	 
 <div class="row stats block2 mx-auto">
+					
+				
+				
 	<div class="col-12">
+	
+		<!-- Alert for pre filters -------------------------- -->
+		<div id="${param.block}_alert" class="row viz_info_box no_clear alert alert-primary">
+			<span class="filter_info">
+			</span>
+			<button type="button" class="close ml-auto" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 	
 		
 <!-- KPIs & related dashboards ----------------------------------------------------------------------------------------------------------- -->	
@@ -840,26 +857,30 @@ function limitlink(){
     }, 500);
 }
 
-
 	$(document).ready(function() {
 	    
 	    setTimeout(function() {
-			if ('${param.block}' === 'peds_summary_2' || '${param.block}' === 'adult_summary_2' || '${param.block}' === 'all_summary_2') {
-				$('#${param.block}-vaccinated-select').multiselect('select', 'True', true);
-				${param.block}_refreshHistograms();
-				${param.block}_constrain_table();
-				$(".viz_info_box .filter_info" ).append('<small class="vaccine_search_indicator"><i class="fas fa-info-circle"></i> Vaccination Status is defaulted to True. Clear filters to reset.</small>');
-				$(".viz_info_box").removeClass('no_clear');
-				$(".viz_info_box .close" ).on('click', function() {
-					$(".viz_info_box").addClass('no_clear');
-				});
-				
-			};
 			if ('${param.block}' === 'reinfection_ts_1') {
 				update(new Date('Feb 1 2022 1:00:00 CST'));
 				sliderTime.value(new Date('Feb 1 2022').valueOf());
 			};
+			if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5') {
+				console.log('reached this alert');
+				$('#${param.block}-paxlovidstatus-select').multiselect('select', 'Paxlovid', true);
+				${param.block}_refreshHistograms();
+				${param.block}_constrain_table();
+				$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Paxlovid Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all COVID+ patients for context.</small>');
+				$("#${param.block}_alert").removeClass('no_clear');
+				$("#${param.block}_alert .close" ).on('click', function() {
+					$("#${param.block}_alert").addClass('no_clear');
+				});
+				
+			} else{
+				$("#${param.block}_alert").hide();
+			} 
 	    }, 1000);
+	   
+	  
 	    
 	    
 // initiate the filters /////////////////////////////////////////
@@ -1393,6 +1414,7 @@ function limitlink(){
 		
 		$('#${param.block}_btn_clear').removeClass("show_clear");
 		$('#${param.block}_btn_clear').addClass("no_clear");
+		$("#${param.block}_alert").addClass("no_clear");  
 
 		<c:if test="${param.severity_filter}">
 			$('#${param.block}-severity-select').multiselect('clearSelection');
@@ -1503,6 +1525,7 @@ function limitlink(){
 	
 	
 	// initialize all possible data arrays
+	var ${param.block}_DaysArray = new Array();
 	var ${param.block}_AgeArray = new Array();
 	var ${param.block}_RaceArray = new Array();
 	var ${param.block}_EthnicityArray = new Array();
@@ -1573,6 +1596,7 @@ function limitlink(){
 	    	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
 	 	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
 	 	    
+	 	   ${param.block}_refreshDaysArray(data);
 	    	${param.block}_refreshAgeArray(data);
 	    	${param.block}_refreshRaceArray(data);
 	    	${param.block}_refreshEthnicityArray(data);
@@ -1728,6 +1752,12 @@ function limitlink(){
 	    if ('${param.block}' === "paxlovid_5") {
 	    	${param.block}_vaccination_refresh();
 	    }
+	    if ('${param.block}' === "paxlovid_7") {
+	    	${param.block}_cci_refresh();
+	    }
+	    if ('${param.block}' === "paxlovid_9") {
+	    	${param.block}_days_refresh();
+	    }
 	  }
 	
 	// new load function for composite views
@@ -1756,6 +1786,14 @@ function limitlink(){
 		return ${param.block}_crumbs.includes(selection);
 	}
 </script>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="DaysArray"/>
+	<jsp:param name="primary" value="days"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>

@@ -4,7 +4,7 @@
 
 
 
-<div id="prehosp">
+<div id="hospdelta">
 	<div class="row">
 		<div class="col-12 viz-header-section">
 			<h2 class="viz-title">${param.topic_title}</h2>
@@ -13,24 +13,24 @@
 					<i class="fas fa-download"></i>
 				</button>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" onclick="saveVisualization('prehosp_graph', '${param.topic_title}.jpg');">Save as JPG</a>
-					<a class="dropdown-item" onclick="saveVisualization('prehosp_graph', '${param.topic_title}.png');">Save as PNG</a>
-					<a class="dropdown-item" onclick="saveVisualization('prehosp_graph', '${param.topic_title}.svg')">Save as SVG</a>
+					<a class="dropdown-item" onclick="saveVisualization('hospdelta_graph', '${param.topic_title}.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="saveVisualization('hospdelta_graph', '${param.topic_title}.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="saveVisualization('hospdelta_graph', '${param.topic_title}.svg')">Save as SVG</a>
 				</div>
 			</div>
 		</div>
 		<div class="col-12">
-			<div id="prehosp_graph"></div>
+			<div id="hospdelta_graph"></div>
 		</div>
 	</div>
 	
-	<c:set var="feedPath"><util:applicationRoot/>/new_ph/paxlovid/feeds/pre_hosp.jsp</c:set>
+	<c:set var="feedPath"><util:applicationRoot/>/new_ph/paxlovid/feeds/hosp_delta.jsp</c:set>
 	
 	<jsp:include page="../../graph_support/time_line_2_column_paxlovid.jsp">
 		<jsp:param name="data_page" value="${feedPath}" />
-		<jsp:param name="dom_element" value="#prehosp" />
-		<jsp:param name="namespace" value="prehosp" />
-		<jsp:param name="date_column" value="visits" />
+		<jsp:param name="dom_element" value="#hospdelta" />
+		<jsp:param name="namespace" value="hospdelta" />
+		<jsp:param name="date_column" value="days" />
 		<jsp:param name="column1" value="paxlovid" />
 		<jsp:param name="column1_label" value="COVID+ Patients Prescriped Paxlovid" />
 		<jsp:param name="column1_tip" value="Paxlovid" />
@@ -44,8 +44,8 @@
 		<jsp:param name="column2_color" value="#A772DF" />
 		<jsp:param name="column2_opacity" value="0.7" />
 		<jsp:param name="constraintPropagator" value="constraint" />
-		<jsp:param name="bottomlabel" value="Number of Dr. Visits Before COVID+ Diagnosis" />
-		<jsp:param name="tooltipprimary" value="# of Dr. Visits" />
+		<jsp:param name="bottomlabel" value="Number of Days Between COVID+ and Hospitalization" />
+		<jsp:param name="tooltipprimary" value="# of Days" />
 	</jsp:include>
 	
 </div>

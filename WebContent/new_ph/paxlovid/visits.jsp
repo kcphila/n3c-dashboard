@@ -35,9 +35,7 @@ function ${param.block}_visits_refresh() {
 			nofilter: 1
 		}
 
-	// console.log("reached");
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
-   	// console.log(${param.block}_CategoryResultArray);
 	localHorizontalStackedBarChart(${param.block}_CategoryResultArray, properties);
 }
 

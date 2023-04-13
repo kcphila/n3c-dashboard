@@ -5,7 +5,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	switch (filter) {
 	case 'paxlovid':
-	    table.column(1).search(constraint, true, false, true).draw();	
+	    table.column(2).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -22,10 +22,12 @@ function ${param.block}_updateKPI(table, column) {
 	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
 		var data = this.data();
 		if (column == 'patient_count'){
+			if (data['cat'].replace(/[0-9]/g, '') == 'sex'){
 				sum += data['patient_count'];
+			};
 		};
 		if (column == 'paxlovid'){
-			if (data['paxlovid'].replace(/[0-9]/g, '') == 'Paxlovid'){
+			if (data['cat'].replace(/[0-9]/g, '') == 'sex' && data['paxlovid'].replace(/[0-9]/g, '') == 'Paxlovid'){
 				sum += data['patient_count'];
 			};
 		};
@@ -64,11 +66,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 		
 	var json = $.parseJSON(JSON.stringify(data));
 
-	var col = [];
-
-	for (i in json['headers']){
-		col.push(json['headers'][i]['label']);
-	}
+	var col = ['Number of Days', 'No Paxlovid', 'Paxlovid'];
 
 
 	var table = document.createElement("table");
@@ -88,11 +86,11 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	var divContainer = document.getElementById("${param.target_div}");
 	divContainer.appendChild(table);
 
-	var data = json['rows'];
+	var data = json;
 
 	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
     	data: data,
-    	dom: 'lfr<"datatable_overflow"t>Bip',
+    	dom: 'lr<"datatable_overflow"t>Bip',
     	buttons: {
     	    dom: {
     	      button: {
@@ -129,14 +127,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-     		{ data: 'vaccination', visible: true, orderable: true },
-        	{ data: 'paxlovid', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
-        	{ data: 'patient_count', visible: false },
-        	{ data: 'vaccination_abbrev', visible: false },
-        	{ data: 'vaccination_seq', visible: false },
-        	{ data: 'paxlovid_abbrev', visible: false },
-        	{ data: 'paxlovid_seq', visible: false }
+     		{ data: 'days', visible: true, orderable: true },
+        	{ data: 'no_paxlovid', visible: true, orderable: true },
+        	{ data: 'paxlovid', visible: true, orderable: true }
     	]
 	} );
 

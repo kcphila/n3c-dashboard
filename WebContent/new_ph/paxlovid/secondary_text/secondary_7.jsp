@@ -8,8 +8,8 @@
 			<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
 			<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 		</a>
-		</span>&nbsp;in the N3C Data Enclave with diagnosis dates after December 22, 2021 (the date that Paxlovid was authorized for use by the FDA) who had 350 visits or less before their COVID+ diagnosis (visits have been filtered to exclude outliers). 
-		 Note that N3C data may not be representative of the entire US population. 
+		</span>&nbsp;in the N3C Data Enclave with diagnosis dates after December 22, 2021 (the date that Paxlovid was authorized for use by the FDA).
+		 The Charlson Comorbidity Index (CCI) score is as of a patient's COVID+ diagnosis date. Note that N3C data may not be representative of the entire US population. 
 		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 	</p>
 </div>

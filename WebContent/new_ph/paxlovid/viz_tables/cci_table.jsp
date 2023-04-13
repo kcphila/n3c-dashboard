@@ -129,12 +129,12 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-     		{ data: 'vaccination', visible: true, orderable: true },
+     		{ data: 'cci', visible: true, orderable: true, orderData: [5] },
         	{ data: 'paxlovid', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [3] },
         	{ data: 'patient_count', visible: false },
-        	{ data: 'vaccination_abbrev', visible: false },
-        	{ data: 'vaccination_seq', visible: false },
+        	{ data: 'cci_abbrev', visible: false },
+        	{ data: 'cci_seq', visible: false },
         	{ data: 'paxlovid_abbrev', visible: false },
         	{ data: 'paxlovid_seq', visible: false }
     	]

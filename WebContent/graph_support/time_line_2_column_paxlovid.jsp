@@ -241,7 +241,7 @@
 				      .attr("transform",
 				            "translate(" + (width/2) + " ," + (height + 60) + ")")
 				      .style("text-anchor", "middle")
-				      .text("Number of Dr. Visits Before COVID+ Diagnosis")
+				      .text("${param.bottomlabel}")
 				      .attr("font-size", '14px')
 					  .attr("font-weight", "bold");
 
@@ -378,7 +378,7 @@
 				    	dua_dta_focus.attr("transform", "translate(" + ((${param.namespace}x(d.${param.date_column}))-150) + "," + d3.mouse(this)[1] + ")");
 				    };
 				   
-				    dua_dta_focus.select(".tooltip-date_dta_dua").text("# of Dr. Visits: " + d.${param.date_column});
+				    dua_dta_focus.select(".tooltip-date_dta_dua").text("${param.tooltipprimary}: " + d.${param.date_column});
 				    dua_dta_focus.select(".tooltip-duas").text(d.${param.column1}.toLocaleString());
 				    dua_dta_focus.select(".tooltip-dtas").text(d.${param.column2}.toLocaleString());
 				    
