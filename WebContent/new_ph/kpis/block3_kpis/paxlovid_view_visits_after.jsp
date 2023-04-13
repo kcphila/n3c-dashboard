@@ -48,7 +48,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_paxlovid_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-prescription-bottle-alt"></i> <span id="${param.block}_paxlovid_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>
