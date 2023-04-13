@@ -35,13 +35,13 @@
 		<jsp:param name="column1_label" value="COVID+ Patients Prescriped Paxlovid" />
 		<jsp:param name="column1_tip" value="Paxlovid" />
 		<jsp:param name="column1_tip_offset" value="110" />
-		<jsp:param name="column1_color" value="#4833B2" />
+		<jsp:param name="column1_color" value="#AD1181" />
 		<jsp:param name="column1_opacity" value="1" />
 		<jsp:param name="column2" value="no_paxlovid" />
 		<jsp:param name="column2_label" value="COVID+ Patients Not Prescriped Paxlovid" />
 		<jsp:param name="column2_tip" value="No Pax" />
 		<jsp:param name="column2_tip_offset" value="85" />
-		<jsp:param name="column2_color" value="#A772DF" />
+		<jsp:param name="column2_color" value="#a6a6a6" />
 		<jsp:param name="column2_opacity" value="0.7" />
 		<jsp:param name="constraintPropagator" value="constraint" />
 		<jsp:param name="bottomlabel" value="Number of Days Between COVID+ and Hospitalization" />
