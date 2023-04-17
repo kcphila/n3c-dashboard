@@ -15,6 +15,10 @@
 			UNION ALL
 
 			select title, 'Presentation' as type, '' as url, '' as outlet, pub_date as date, correspondingauthor as authors from n3c_pubs.conference_cache
+
+			UNION ALL
+
+			select title, 'Presentation' as type, '' as url, '' as outlet, pub_date as date, correspondingauthor as authors from n3c_pubs.manual_cache
 		) x
 	) AS foo;
 </sql:query>
