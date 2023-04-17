@@ -6,7 +6,14 @@
 <c:choose>
 	<c:when test="${param.type == 'operational' }">
 		<sql:query var="projects" dataSource="jdbc/N3CPublic">
-            	select to_json(title) as title, to_json(uid) as id, to_json(research_statement) as research_statement, to_json(lead_investigator) as lead_investigator, to_json(accessing_institution) as accessing_institution, task_team
+            	select
+            		to_json(title) as title,
+            		to_json(uid) as id,
+            		to_json(research_statement) as research_statement,
+            		to_json(lead_investigator) as lead_investigator,
+            		to_json(accessing_institution) as accessing_institution,
+            		task_team,
+            		to_json(dur_project_id) as dur_project_id
             	from n3c_admin.enclave_project
             	where title ~ '\[N3C'
             	and lead_investigator != 'Mariam Deacy'
@@ -15,7 +22,13 @@
 	</c:when>
 	<c:otherwise>
 		<sql:query var="projects" dataSource="jdbc/N3CPublic">
-            	select to_json(title) as title, to_json(uid) as id, to_json(research_statement) as research_statement, to_json(lead_investigator) as lead_investigator, to_json(accessing_institution) as accessing_institution, task_team
+            	select to_json(title) as title,
+            		to_json(uid) as id,
+            		to_json(research_statement) as research_statement,
+            		to_json(lead_investigator) as lead_investigator,
+            		to_json(accessing_institution) as accessing_institution,
+            		task_team,
+            		to_json(dur_project_id) as dur_project_id
             	from n3c_admin.enclave_project
             	where title !~ '\[N3C'
             	and lead_investigator != 'Mariam Deacy'
@@ -31,7 +44,8 @@
         {"value":"description", "label":"Research Statement"},
         {"value":"pi_name", "label":"Lead Investigator"},
         {"value":"accessing_institution", "label":"Accessing Institution"},
-        {"value":"id", "label":"ID"}  
+        {"value":"id", "label":"ID"},
+        {"value":"dur_project_id", "label":"DUR"}  
     ],
     "rows" : [
     <c:forEach items="${projects.rows}" var="row" varStatus="rowCounter">
@@ -40,7 +54,8 @@
 	    	"description":${row.research_statement},
 	    	"pi_name":${row.lead_investigator},
 	    	"accessing_institution":${row.accessing_institution},
-	    	"id":${row.id}
+	    	"id":${row.id},
+	    	"dur_project_id":${row.dur_project_id}
 	    }<c:if test="${!rowCounter.last}">,</c:if>
 </c:forEach>
     ]

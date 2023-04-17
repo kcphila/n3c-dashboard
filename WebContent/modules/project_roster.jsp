@@ -91,6 +91,7 @@ $.getJSON("<util:applicationRoot/>/feeds/project_roster.jsp", function(data){
         			var desc = row.description;
         			var contact = row.pi_name;
         			var institution = row.accessing_institution;
+        			var dur = row.dur_project_id;
         			var combo = 
         				'<div class="project-panel-group panel-group" style="margin-bottom:0px;" id="' 
         				+ id.replace(/\s+/g, '').toLowerCase() + '_accordion' +
@@ -103,7 +104,7 @@ $.getJSON("<util:applicationRoot/>/feeds/project_roster.jsp", function(data){
         				'"> </a></p></div></div> </div><div id="'
         				+ id.replace(/\s+/g, '').toLowerCase() + '_description' +
         				'" class="panel-collapse collapse"><div class="panel-body" style="border:none;">'
-        				+ desc + '<\/p>' + '<strong>Lead Investigator: ' + contact + '<\/strong> <br> <strong>Accessing Institution: ' + institution + '<\/strong> <br> ID: ' + id
+        				+ desc + '<\/p>' + '<strong>Lead Investigator: ' + contact + '<\/strong> <br> <strong>Accessing Institution: ' + institution + '<\/strong> <br> ID: ' + id + ' (' + dur + ')'
         				+ '</div></div></div></div>';
              		return combo; }
              },
@@ -111,7 +112,8 @@ $.getJSON("<util:applicationRoot/>/feeds/project_roster.jsp", function(data){
         	{ data: 'description', visible: false },
         	{ data: 'pi_name', visible: false },
         	{ data: 'accessing_institution', visible: false},
-        	{ data: 'id', visible: false}
+        	{ data: 'id', visible: false},
+        	{ data: 'dur_project_id', visible: false}
     	]
 	} );
 
