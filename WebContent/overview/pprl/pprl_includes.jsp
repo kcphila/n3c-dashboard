@@ -1,3 +1,10 @@
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+
+	<div class="row">
+		<div class="col-12 col-lg-12">
+			<img alt="Regenstrief Logo" src="<util:applicationRoot/>/images/dashboards/RegenstriefLogo_400x60-01.png" width="400px">
+		</div>
+	</div>
 		<div class="row">
 			<div class="col-12 col-lg-12">
 				<div style="display: flex; align-items: center; justify-content: center;">
