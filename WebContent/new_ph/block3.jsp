@@ -532,11 +532,11 @@
 				<div id="${param.block}-panel" class="col-12 col-md-12 mx-auto mb-4 panel" >
 				
 					<!-- Floating Legend -->
-						<c:if test="${not empty param.floating_legend}">
-							<div class="col-12"> 
-								<div id="${param.block}legend"></div>
-							</div>
-						</c:if>
+					<c:if test="${not empty param.floating_legend}">
+						<div class="col-12"> 
+							<div id="${param.block}legend"></div>
+						</div>
+					</c:if>
 
 					<c:if test="${not empty param.simple_panel}">
 						<div id="${param.block}-simple" class="" style="display: block;">

@@ -123,6 +123,7 @@ WebContent/graph_support/grouped_bar_horizontal_percentage_local_new.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal_alexis.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp -text
+WebContent/graph_support/grouped_stacked_bar_horizontal_local_new.jsp -text
 WebContent/graph_support/grouped_stacked_bar_vertical.jsp -text
 WebContent/graph_support/hive.jsp -text
 WebContent/graph_support/hive_local.jsp -text
@@ -132,6 +133,7 @@ WebContent/graph_support/horizontalBarChart_local_new.jsp -text
 WebContent/graph_support/horizontalBarChart_percentIndicator_local.jsp -text
 WebContent/graph_support/horizontalGroupedStackedBarChart_local.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local.jsp -text
+WebContent/graph_support/horizontalStackedBarChart_local_new.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_percent.jsp -text
 WebContent/graph_support/mortalityBarChart_local.jsp -text
 WebContent/graph_support/percentage_bar_local.jsp -text

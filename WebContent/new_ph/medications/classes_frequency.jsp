@@ -16,8 +16,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}legend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_class_viz" class="dash_viz"></div>
+		<div id="${param.block}_class_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -26,16 +29,16 @@
 function ${param.block}_class_refresh() {
 	var properties = {
 			domName: '${param.block}_class_viz',
-			barLabelWidth: 190,
+			barLabelWidth: 213,
 			legend_data: age_legend_4,
 			secondary_range: age_range,
 			legend_label: 'Age',
-			min_height: 900
+			legendid: '${param.block}legend'
 		}
 
 	// console.log("class graph", "${param.block}_class_viz", ${param.block}_MedicationAgeArray);
    	d3.select("#${param.block}_class_viz").select("svg").remove(); 
-	localHorizontalStackedBarChart(${param.block}_ClassAgeArray, properties);
+	localHorizontalStackedBarChart_new(${param.block}_ClassAgeArray, properties);
 }
 
 </script>
