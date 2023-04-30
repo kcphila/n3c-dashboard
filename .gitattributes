@@ -110,6 +110,9 @@ WebContent/feeds/siteCollaborationEdges.jsp -text
 WebContent/feeds/siteCollaborationLegend.jsp -text
 WebContent/feeds/siteCollaborations.jsp -text
 WebContent/feeds/siteLocations.jsp -text
+WebContent/feeds/sitePublicationEdges.jsp -text
+WebContent/feeds/sitePublicationLegend.jsp -text
+WebContent/feeds/sitePublications.jsp -text
 WebContent/feeds/siteRoster.jsp -text
 WebContent/feeds/us-states.json -text
 WebContent/footer.jsp -text
@@ -247,6 +250,7 @@ WebContent/modules/popover_init.jsp -text
 WebContent/modules/positive_cases_by_date.jsp -text
 WebContent/modules/positive_timeline.jsp -text
 WebContent/modules/project_roster.jsp -text
+WebContent/modules/publication_map.jsp -text
 WebContent/modules/publications.jsp -text
 WebContent/modules/questions.jsp -text
 WebContent/modules/questions_styled.jsp -text
@@ -979,6 +983,7 @@ WebContent/overview/concept_sets/table_includes.jsp -text
 WebContent/overview/contributing_sites/contributing_sites.jsp -text
 WebContent/overview/pprl/pprl.jsp -text
 WebContent/overview/pprl/pprl_includes.jsp -text
+WebContent/overview/publication_map/publication_map.jsp -text
 WebContent/overview/publications/publications.jsp -text
 WebContent/overview/publications/table_includes.jsp -text
 WebContent/overview/teams/table_includes.jsp -text
@@ -988,6 +993,7 @@ WebContent/overview/users/users.jsp -text
 WebContent/positive_timeline.jsp -text
 WebContent/pprl.jsp -text
 WebContent/public-health.jsp -text
+WebContent/publications-map.jsp -text
 WebContent/publications.jsp -text
 WebContent/recover.jsp -text
 WebContent/reinfection_timeline.jsp -text

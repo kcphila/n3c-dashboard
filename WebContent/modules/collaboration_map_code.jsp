@@ -52,7 +52,7 @@
 	async function init() {
 		await getEdges();
 		
-		$.getJSON("<util:applicationRoot/>/feeds/siteCollaborations.jsp", function(data) {
+		$.getJSON("<util:applicationRoot/>/feeds/${param.nodes}", function(data) {
 			// console.log(data);
 	
 			var json = $.parseJSON(JSON.stringify(data));
@@ -139,7 +139,7 @@
 	var node_map = null;
 	
 	async function getEdges() {
-		d3.json("<util:applicationRoot/>/feeds/siteCollaborationEdges.jsp", function(error, data) {
+		d3.json("<util:applicationRoot/>/feeds/${param.edges}", function(error, data) {
 			if (error) throw error;
 	
 			links = data.edges;
@@ -366,7 +366,7 @@
 	}
 	
     function drawColorKey() {
-		$.getJSON("<util:applicationRoot/>/feeds/siteCollaborationLegend.jsp", function(data) {
+		$.getJSON("<util:applicationRoot/>/feeds/${param.legend}", function(data) {
 			var legendData = data.sites;
         	var colorScale = d3.scaleOrdinal()
 				.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])

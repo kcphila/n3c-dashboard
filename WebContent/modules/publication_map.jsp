@@ -41,9 +41,9 @@
 						<div id="graph" style="overflow: hidden;"></div>
 						<div id="site-roster"></div>
 						<jsp:include page="../modules/collaboration_map_code.jsp">
-							<jsp:param name="nodes" value="siteCollaborations.jsp"/>
-							<jsp:param name="edges" value="siteCollaborationEdges.jsp"/>
-							<jsp:param name="legend" value="siteCollaborationLegend.jsp"/>
+							<jsp:param name="nodes" value="sitePublications.jsp"/>
+							<jsp:param name="edges" value="sitePublicationEdges.jsp"/>
+							<jsp:param name="legend" value="sitePublicationLegend.jsp"/>
 						</jsp:include>
 					</div>
 				</div>
