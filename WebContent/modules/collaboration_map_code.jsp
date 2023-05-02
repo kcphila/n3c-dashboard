@@ -57,16 +57,21 @@
 	
 			var json = $.parseJSON(JSON.stringify(data));
 			var col = [];
-			var hard_headers = ["Site", "Type", "Investigator Count"];
+
+			for (i in json['headers']){
+				col.push(json['headers'][i]['label']);
+			}
+
 			var table = document.createElement("table");
 			table.className = 'table table-hover compact site-wrapper';
 			table.style.width = '100%';
 			table.id = "site-table";
-			var header = table.createTHead();
-			var header_row = header.insertRow(0);
-			for (i in hard_headers) {
+			var header= table.createTHead();
+			var header_row = header.insertRow(0); 
+
+			for (i in col) {
 				var th = document.createElement("th");
-				th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + hard_headers[i].toString() + '</span>';
+				th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + col[i].toString() + '</span>';
 				header_row.appendChild(th);
 			}
 			var divContainer = document.getElementById("site-roster");
@@ -104,11 +109,20 @@
 					{
 						data: 'site', visible: true, orderable: true,
 						render: function(data, type, row) {
-							return '<a href="' + row.url + '"><span>' + row.site + '<\/span></a>';
+							if (row.url == null)
+								return '<a href="http://' + row.id + '"><span>' + row.site + '<\/span></a>';
+							else
+								return '<a href="' + row.url + '"><span>' + row.site + '<\/span></a>';
 						}
 					},
 					{ data: 'type', visible: true, orderable: true },
-					{ data: 'count', visible: true }
+					{ data: 'count', visible: true, className: "text-right" },
+					{ data: 'aggregate_count', visible: true, className: "text-right" },
+					{ data: 'target_count', visible: true, className: "text-right" },
+					{ data: 'id', visible: false },
+					{ data: 'url', visible: false },
+					{ data: 'latitude', visible: false },
+					{ data: 'longitude', visible: false }
 				]
 			});
 			const tableData = getTableData(table2);
