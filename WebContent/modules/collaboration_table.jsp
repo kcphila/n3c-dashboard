@@ -69,16 +69,15 @@
 							return '<a href="' + row.external_url + '"><span>' + row.title + '<\/span></a>';
 						}
 					},
-					{ data: 'authors', visible: true, orderable: true, render: function (data, type, row) {
-				         if (type === 'display') {
-				             var names = [];
-				            $.each(data, function(index, value) {
-				               names.push( value.last_name + ",&nbsp;" + value.first_name );
-				             });
-				             return names.join('<br>');
-				           }
-				           return data;
-				         }
+					{
+						data: 'authors', visible: true, orderable: true,
+						render: function (data, type, row) {
+							var names = [];
+							$.each(data, function(index, value) {
+								names.push( value.last_name + ",&nbsp;" + value.first_name );
+							});
+							return names.join('<br>');
+						}
 					},
 					{ data: 'external_url', visible: false }
 				]
