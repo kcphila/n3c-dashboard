@@ -24,7 +24,7 @@
         {"value":"count", "label":"Author Count"},
         {"value":"aggregate_count", "label":"Authorship Count"},
         {"value":"target_count", "label":"Publication Count"},
-        {"value":"id", "label":"ID"},
+        {"value":"id", "label":"Details"},
         {"value":"url", "label":"URL"},
         {"value":"latitude", "label":"Latitude"},
         {"value":"longitude", "label":"Longitude"}

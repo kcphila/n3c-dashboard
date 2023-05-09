@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <style>
 
@@ -34,7 +35,7 @@
 			        return this.value;
 			      }).get();
 			      
-			      console.log(positions);
+			      //console.log(positions);
 			   
 			      if (positions.length === 0) {
 			        return true;
@@ -119,7 +120,19 @@
 					{ data: 'count', visible: true, className: "text-right" },
 					{ data: 'aggregate_count', visible: true, className: "text-right" },
 					{ data: 'target_count', visible: true, className: "text-right" },
-					{ data: 'id', visible: false },
+					<c:choose>
+						<c:when test="${empty param.linkage}">
+							{ data: 'id', visible: false },
+						</c:when>
+						<c:otherwise>
+							{
+								data: 'id', visible: true, orderable: true,
+								render: function(data, type, row) {
+									return '<a href="<util:applicationRoot/>/${param.linkage}'+row.id+'">details</a>';
+								}
+							},
+						</c:otherwise>
+					</c:choose>
 					{ data: 'url', visible: false },
 					{ data: 'latitude', visible: false },
 					{ data: 'longitude', visible: false }
@@ -295,6 +308,9 @@
 						//console.log(link);
 						var source = node_map.get(link.source);
 						var target = node_map.get(link.target);
+						//console.log(link, source, target);
+						if (source == undefined || target == undefined)
+							return false;
 						var count = link.count;
 						var source_loc = projection([source.longitude, source.latitude]);
 						var target_loc = projection([target.longitude, target.latitude]);

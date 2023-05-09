@@ -44,6 +44,7 @@
 							<jsp:param name="nodes" value="sitePublications.jsp"/>
 							<jsp:param name="edges" value="sitePublicationEdges.jsp"/>
 							<jsp:param name="legend" value="sitePublicationLegend.jsp"/>
+							<jsp:param name="linkage" value="publications-site.jsp?ror="/>
 						</jsp:include>
 					</div>
 				</div>

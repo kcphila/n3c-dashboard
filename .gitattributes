@@ -103,6 +103,7 @@ WebContent/feeds/project_operational_graph.jsp -text
 WebContent/feeds/project_organization_graph.jsp -text
 WebContent/feeds/project_roster.jsp -text
 WebContent/feeds/publications.jsp -text
+WebContent/feeds/publications_by_site.jsp -text
 WebContent/feeds/questions.jsp -text
 WebContent/feeds/questions2.jsp -text
 WebContent/feeds/reinfections_by_date.jsp -text
@@ -229,6 +230,7 @@ WebContent/modules/admin_map.jsp -text
 WebContent/modules/collaboration_map.jsp -text
 WebContent/modules/collaboration_map_code.jsp -text
 WebContent/modules/collaboration_networks.jsp -text
+WebContent/modules/collaboration_table.jsp -text
 WebContent/modules/concept_sets.jsp -text
 WebContent/modules/domain_team_roster.jsp -text
 WebContent/modules/explorer.jsp -text
@@ -251,6 +253,7 @@ WebContent/modules/positive_cases_by_date.jsp -text
 WebContent/modules/positive_timeline.jsp -text
 WebContent/modules/project_roster.jsp -text
 WebContent/modules/publication_map.jsp -text
+WebContent/modules/publication_site.jsp -text
 WebContent/modules/publications.jsp -text
 WebContent/modules/questions.jsp -text
 WebContent/modules/questions_styled.jsp -text
@@ -984,6 +987,7 @@ WebContent/overview/contributing_sites/contributing_sites.jsp -text
 WebContent/overview/pprl/pprl.jsp -text
 WebContent/overview/pprl/pprl_includes.jsp -text
 WebContent/overview/publication_map/publication_map.jsp -text
+WebContent/overview/publication_map/publication_site.jsp -text
 WebContent/overview/publications/publications.jsp -text
 WebContent/overview/publications/table_includes.jsp -text
 WebContent/overview/teams/table_includes.jsp -text
@@ -994,6 +998,7 @@ WebContent/positive_timeline.jsp -text
 WebContent/pprl.jsp -text
 WebContent/public-health.jsp -text
 WebContent/publications-map.jsp -text
+WebContent/publications-site.jsp -text
 WebContent/publications.jsp -text
 WebContent/recover.jsp -text
 WebContent/reinfection_timeline.jsp -text
