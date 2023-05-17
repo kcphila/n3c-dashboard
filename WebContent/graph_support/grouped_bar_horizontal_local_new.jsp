@@ -19,7 +19,6 @@ div.bar.tooltip {
   	height: auto;
 	padding: 1px;
   	pointer-events: none;
-  	max-width: 200px;
 }
 </style>
 

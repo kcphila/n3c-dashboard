@@ -308,12 +308,22 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 var medication_legend = new Array()
 <sql:query var="statuses" dataSource="jdbc/N3CPublic">
 	select distinct drug_name
-		  from n3c_questions_new.drug_monthly_count_summary order by drug_name
+		  from n3c_dashboard_ph.medtimeser_drug_cnt_smry_csd order by drug_name
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	medication_legend.push("${row.drug_name}");
 </c:forEach>
 
+<sql:query var="statuses" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select distinct drug_name as secondary, ROW_NUMBER() OVER (ORDER BY drug_name) as secondary_seq, drug_name as secondary_name
+		from n3c_dashboard_ph.medtimeser_drug_cnt_smry_csd
+		order by drug_name
+	) as done;
+</sql:query>
+<c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
+	var medication_legend2 = ${row.jsonb_pretty};
+</c:forEach>
 
 <sql:query var="days" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by secondary_seq))

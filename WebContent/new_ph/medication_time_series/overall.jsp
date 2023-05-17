@@ -24,14 +24,15 @@
 function ${param.block}_medication_overall_refresh() {
 	var properties = {
 			domName: '#${param.block}_medication_overall',
-			barLabelWidth: 230,
-			min_height: 600,
+			barLabelWidth: 250,
+			min_height: 300,
 			colorscale: categorical8,
-			noseq: 1
+			legend_label: 'Medication',
+			legend_data: medication_legend2
 	}
 
 	d3.select("#${param.block}_medication_overall").select("svg").remove();
-	localHorizontalBarChart(${param.block}_MedicationOverallArray, properties);	
+	localHorizontalBarChart_new(${param.block}_MedicationOverallArray, properties);	
 }
 
 </script>

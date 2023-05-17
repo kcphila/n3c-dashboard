@@ -18,11 +18,11 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Patients Taking Any Medications*</td>
+							<td>Patients in View*</td>
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_patient_count_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_actual_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

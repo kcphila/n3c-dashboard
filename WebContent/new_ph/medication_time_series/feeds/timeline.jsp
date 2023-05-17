@@ -5,7 +5,7 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (
 		select month,medication,coalesce(count,'') as count,coalesce(actual_count, 0) as actual_count from
-			(select distinct month,drug_name as medication from n3c_dashboard.month, n3c_questions.drug_monthly_count_summary) as bar
+			(select distinct month,drug_name as medication from n3c_dashboard.month, n3c_dashboard_ph.medtimeser_drug_monthcnt_csd) as bar
 			natural left outer join
 			(select
 				drug_name as medication,
@@ -15,7 +15,7 @@
 					when (count_per_month = '<20' or count_per_month is null) then 0
 					else count_per_month::int
 				end as actual_count
-			from n3c_questions.drug_monthly_count_summary) as foo
+			from n3c_dashboard_ph.medtimeser_drug_monthcnt_csd) as foo
 		order by 1,2
 	) as done;
 </sql:query>
