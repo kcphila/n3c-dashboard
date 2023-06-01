@@ -29,7 +29,7 @@
         		when org_type = 'UNAFFILIATED' then 5
         		when org_type = 'REGIONAL' then 6
         	end as group,
-        	count
+        	investigator_count as count
         from n3c_collaboration.organization_organization;
     </sql:query>
     <c:forEach items="${persons.rows}" var="row">
