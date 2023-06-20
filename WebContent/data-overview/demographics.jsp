@@ -104,8 +104,8 @@
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select to_char(value::int/1000000.0, '999.99')||'M' as count 
 													from (
-														select sum(case when (count = '<20' or count is null) then 0 else count::numeric end) as value 
-														from n3c_questions_new.all_ages_covid_pos_demo_censored
+														select sum(case when (patient_count = '<20' or patient_count is null) then 0 else patient_count::numeric end) as value 
+														from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
 													) y;
 												</sql:query>
 												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -129,7 +129,7 @@
 				  								</span>
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select round(
-														((select sum(case when (count = '<20' or count is null) then 0 else count::numeric end) as patient_count from n3c_questions_new.all_ages_covid_pos_demo_censored)/
+														((select sum(case when (patient_count = '<20' or patient_count is null) then 0 else patient_count::numeric end) as patient_count from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd)/
 														(select value::numeric from n3c_admin.enclave_stats where title='covid_positive_patients'))*100
 													,2) as count;
 												</sql:query>
@@ -255,7 +255,7 @@
 				  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 									</a>
 									</span>&nbsp;in the N3C Data Enclave. Data aggregated by Age, Race, Ethnicity, Sex, and Severity. 
-									For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+									For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 								</p>
 							</div>
 						</div>
@@ -311,11 +311,12 @@ $(document).on("click", ".popover .close" , function(){
 });
 
 //color codes
-var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#762AC6", 6:"#6512BD", 7:"#4C1EA5", 8:"#33298D"};
+var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#762AC6", 6:"#6512BD", 7:"#4C1EA5", 8:"#33298D", 9:"#251a8a", 10:"#a6a6a6"};
 var race_range = {1:"#09405A", 2:"#AD1181", 3:"#8406D1", 4:"#ffa600", 5:"#ff7155", 6:"#a6a6a6", 7:"#8B8B8B"};
 var ethnicity_range = {1:"#332380", 2:"#B6AAF3", 3:"#a6a6a6"};
 var severity_range = {1:"#EBC4E0", 2:"#C24DA1", 3:"#AD1181", 4:"#820D61", 5:"#570941", 6:"#a6a6a6"};
-var sex_range = {1:"#4833B2", 2:"#ffa600", 3:"#8406D1", 4:"#a6a6a6", 5:"#8B8B8B"};
+var sex_range = {1:"#4833B2", 2:"#ffa600", 3:"#8406D1", 4:"#a6a6a6"};
+
 
 function updateKPI() {
 	var table = $('#aggregated-table').DataTable();	
@@ -394,7 +395,7 @@ $(document).ready( function () {
 
 	$.fn.dataTable.ext.search.push(
 		    function( settings, searchData, index, rowData, counter ) {
-		      var positions = $('input:checkbox[name="age_bin"]:checked').map(function() {
+		      var positions = $('input:checkbox[name="age"]:checked').map(function() {
 		        return this.value;
 		      }).get();
 		   
@@ -525,7 +526,7 @@ $(document).ready( function () {
 	     	columns: [
 	        	{ data: 'race', visible: true, orderable: true },
 	        	{ data: 'ethnicity', visible: true, orderable: true },
-	        	{ data: 'age_bin', visible: true, orderable: true },
+	        	{ data: 'age', visible: true, orderable: true },
 	        	{ data: 'sex', visible: true, orderable: true },
 	        	{ data: 'severity', visible: true, orderable: true },
 	        	{ data: 'patient_count', visible: true, orderable: true },
@@ -627,7 +628,7 @@ function refreshAgeArray(data) {
 	var aData = new Object;
 	var bData = new Object;
 	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
-    	var group = data[i].age_bin;
+    	var group = data[i].age;
     	var count = data[i].patient_count;
     	var seq = data[i].age_seq;
         if (typeof aData[group] == 'undefined') {
@@ -852,8 +853,9 @@ function checkPeds() {
 	$('input[type="checkbox"][value="12-15"]').prop('checked',true);
 	$('input[type="checkbox"][value="16-<18"]').prop('checked',true);
 
-	$('input[type="checkbox"][value="18-29"]').prop('checked',false);
-	$('input[type="checkbox"][value="30-49"]').prop('checked',false);
+	$('input[type="checkbox"][value="18-24"]').prop('checked',false);
+	$('input[type="checkbox"][value="25-34"]').prop('checked',false);
+	$('input[type="checkbox"][value="35-49"]').prop('checked',false);
 	$('input[type="checkbox"][value="50-64"]').prop('checked',false);
 	$('input[type="checkbox"][value="65+"]').prop('checked',false);
 	
@@ -867,8 +869,9 @@ function checkAdult() {
 	$('input[type="checkbox"][value="12-15"]').prop('checked',false);
 	$('input[type="checkbox"][value="16-<18"]').prop('checked',false);
 
-	$('input[type="checkbox"][value="18-29"]').prop('checked',true);
-	$('input[type="checkbox"][value="30-49"]').prop('checked',true);
+	$('input[type="checkbox"][value="18-24"]').prop('checked',true);
+	$('input[type="checkbox"][value="25-34"]').prop('checked',true);
+	$('input[type="checkbox"][value="35-49"]').prop('checked',true);
 	$('input[type="checkbox"][value="50-64"]').prop('checked',true);
 	$('input[type="checkbox"][value="65+"]').prop('checked',true);
 	

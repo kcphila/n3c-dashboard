@@ -14,18 +14,24 @@
 	<jsp:param name="floating_legend" value="true" />
 
 	<jsp:param name="paxlovid_filter" value="true" />
+	<jsp:param name="sex_filter" value="true" />
+	<jsp:param name="race_filter" value="true" />
+	<jsp:param name="ethnicity_filter" value="true" />
+	<jsp:param name="severity_filter" value="true" />
+	<jsp:param name="age_filter_sec" value="true" />
 	
 	<jsp:param name="age_panel" value="paxlovid/age.jsp" />
 	<jsp:param name="sex_panel" value="paxlovid/sex.jsp" />
 	<jsp:param name="race_panel" value="paxlovid/race.jsp" />
+	<jsp:param name="ethnicity_panel" value="paxlovid/ethnicity.jsp" />
 
 	<jsp:param name="datatable" value="paxlovid/viz_tables/demographics_table.jsp" />
 	<jsp:param name="datatable_div" value="paxlovid_paxlovid_demographics" />
 	<jsp:param name="datatable_kpis" value="patient_count,paxlovid" />
-	<jsp:param name="datatable_feed" value="paxlovid/feeds/demographics.jsp" />
+	<jsp:param name="datatable_feed" value="paxlovid/feeds/demographics_new.jsp" />
 </jsp:include>
 
 <script>
-	var panels = ["age", "sex", "race"];
+	var panels = ["age", "sex", "race", "ethnicity"];
 	paxlovid_4_panel(panels);
 </script>

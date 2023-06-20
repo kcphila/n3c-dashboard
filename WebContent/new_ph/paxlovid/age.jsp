@@ -39,8 +39,8 @@ function ${param.block}_age_refresh() {
 	var properties = {
 			domName: '${param.block}_age_viz',
 			block: '${param.block}',
-			primary: 'var',
-			secondary: 'paxlovid',
+			primary: 'age',
+			secondary: 'pax',
 			count: 'patient_count',
 			xaxis_label: 'Count',
 			xaxis_label2: 'Percent',
@@ -48,10 +48,9 @@ function ${param.block}_age_refresh() {
 			colorscale: paxlovid_range,
 			label1: 'Age',
 			label2: 'Paxlovid Status',
-			offset: 70,
+			offset: 100,
 			array: 'paxlovid',
 			legendid: '${param.block}legend', 
-			category: 'age',
 			nopercent: true
 	};
 	

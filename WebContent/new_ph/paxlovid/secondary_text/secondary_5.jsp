@@ -13,6 +13,6 @@
 		 vaccination from a site that does not automatically link to their EHR (ex. local pharmacy, doctor's office, or state/federal 
 		 vaccination site), their vaccination will not be represented in the data. As most vaccination events are not occurring at N3C sites, 
 		 the data shown here may not be fully representative. Note that N3C data may not be representative of the entire US population. 
-		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 	</p>
 </div>

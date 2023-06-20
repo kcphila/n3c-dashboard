@@ -394,7 +394,7 @@
 					</div>
 				</c:if>
 				
-				<c:if test="${not empty param.severity_filter || not empty param.age_filter || not empty param.age_filter2 || not empty param.age_filter4 || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter || not empty param.paxlovid_filter}">
+				<c:if test="${not empty param.severity_filter || not empty param.age_filter_min || not empty param.age_filter_sec || not empty param.age_filter_ideal || not empty param.age_filter5 || not empty param.age_filter6 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2 || not empty param.race_filter || not empty param.sex_filter || not empty param.ethnicity_filter || not empty param.observation_filter || not empty param.symptom_filter || not empty param.beforeafter_filter || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter || not empty param.reinfectionbin_filter || not empty param.paxlovid_filter || not empty param.covid_filter}">
 					<div id="filter_checks" class="panel-primary filter-section">
 						<h4>Filters</h4>
 						<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
@@ -404,26 +404,14 @@
 							<c:if test="${param.severity_filter}">
 								<jsp:include page="filters_new/severity.jsp"/>
 							</c:if>
-							<c:if test="${param.age_filter}">
-								<jsp:include page="filters/age.jsp"/>
+							<c:if test="${param.age_filter_min}">
+								<jsp:include page="filters_new/age_min.jsp"/>
 							</c:if>
-							<c:if test="${param.age_filter2}">
-								<jsp:include page="filters/age_2.jsp"/>
+							<c:if test="${param.age_filter_sec}">
+								<jsp:include page="filters_new/age_sec.jsp"/>
 							</c:if>
-							<c:if test="${param.age_filter4}">
-								<jsp:include page="filters_new/age_4.jsp"/>
-							</c:if>
-							<c:if test="${param.age_filter5}">
-								<jsp:include page="filters/age_5.jsp"/>
-							</c:if>
-							<c:if test="${param.age_filter6}">
-								<jsp:include page="filters/age_6.jsp"/>
-							</c:if>
-							<c:if test="${param.age_filter7}">
-								<jsp:include page="filters_new/age_7.jsp"/>
-							</c:if>
-							<c:if test="${param.age_filter10}">
-								<jsp:include page="filters_new/age_10.jsp"/>
+							<c:if test="${param.age_filter_ideal}">
+								<jsp:include page="filters_new/age_ideal.jsp"/>
 							</c:if>
 							<c:if test="${param.age_filterpeds}">
 								<jsp:include page="filters/age_peds.jsp"/>
@@ -456,10 +444,7 @@
 								<jsp:include page="filters_new/symptom.jsp"/>
 							</c:if>
 							<c:if test="${param.vaccinated_filter}">
-								<jsp:include page="filters/vaccinated.jsp"/>
-							</c:if>
-							<c:if test="${param.vaccinated_filter2}">
-								<jsp:include page="filters_new/vaccinated2.jsp"/>
+								<jsp:include page="filters_new/vaccinated.jsp"/>
 							</c:if>
 							<c:if test="${param.comorbidities_filter}">
 								<jsp:include page="filters/comorbidities.jsp"/>
@@ -482,8 +467,8 @@
 							<c:if test="${param.diagnosis_filter2}">
 								<jsp:include page="filters_new/diagnosis2.jsp"/>
 							</c:if>
-							<c:if test="${param.comorbiditynumber_filter}">
-								<jsp:include page="filters_new/comorbidity_number.jsp"/>
+							<c:if test="${param.cciscore_filter}">
+								<jsp:include page="filters_new/cciscore.jsp"/>
 							</c:if>
 							<c:if test="${param.sotrovimabmeds_filter}">
 								<jsp:include page="filters_new/sotrovimab_meds.jsp"/>
@@ -499,6 +484,12 @@
 							</c:if>
 							<c:if test="${param.smoking_filter}">
 								<jsp:include page="filters_new/smoking.jsp"/>
+							</c:if>
+							<c:if test="${param.covid_filter}">
+								<jsp:include page="filters_new/covid_status.jsp"/>
+							</c:if>
+							<c:if test="${param.environmental_filter}">
+								<jsp:include page="filters_new/environmental.jsp"/>
 							</c:if>
 							<c:if test="${param.region_filter}">
 								<jsp:include page="filters_new/region.jsp"/>
@@ -820,17 +811,17 @@
 							 <sql:param>${param.did}</sql:param>
 	 					</sql:query>
 						<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">
-							<div id="limitations-section" class="col col-12">
-								<div class="accordion" id="limitations_drop">
+							<div id="${param.block}limitations-section" class="col col-12">
+								<div class="accordion" id="${param.block}limitations_drop">
 									<div class="card">
-										<a Title="expand/collapse limitations section" href="" class="accordion-toggle" data-toggle="collapse" data-target="#limitcollapseOne" aria-expanded="false" aria-controls="collapseOne">
-											<div class="card-header" id="limitheadingOne">
+										<a Title="expand/collapse limitations section" href="" class="accordion-toggle" data-toggle="collapse" data-target="#${param.block}limitcollapseOne" aria-expanded="false" aria-controls="${param.block}collapseOne">
+											<div class="card-header" id="${param.block}limitheadingOne">
 												<h4 class="mb-0"><span class="accordion_text">Limitations</span>
 													<span style="display:inline; float:right;" class="btn btn-link btn-block text-left collapsed icon-btn p-0 accordion-toggle"></span>
 												</h4>
 											</div>
 										</a>
-										<div id="limitcollapseOne" class="collapse" aria-labelledby="limitheadingOne" data-parent="#limitations_drop">
+										<div id="${param.block}limitcollapseOne" class="collapse" aria-labelledby="${param.block}limitheadingOne" data-parent="#${param.block}limitations_drop">
 											<div class="card-body">
 												${row.limitations}
 											</div>
@@ -850,10 +841,10 @@
 
 <script>
 
-function limitlink(){
-	$('#limitcollapseOne').collapse('show');
+function ${param.block}limitlink(){
+	$('#${param.block}limitcollapseOne').collapse('show');
 	$('html, body').animate({
-        scrollTop: $("#limitations-section").offset().top
+        scrollTop: $("#${param.block}limitations-section").offset().top
     }, 500);
 }
 
@@ -1003,6 +994,48 @@ function limitlink(){
             }
 		});
 		
+		$('#${param.block}-covidstatus-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-covidstatus-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+		        
+		        ${param.block}_constrain("covidstatus",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
+		$('#${param.block}-environmental-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			maxHeight: 300,
+			numberDisplayed: 1,
+			enableCaseInsensitiveFiltering: true,
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-environmental-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("environmental_factor",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
 		$('#${param.block}-medications-select').multiselect({	
 			buttonContainer: '<div class="checkbox-list-container"></div>',
             buttonClass: '',
@@ -1144,7 +1177,7 @@ function limitlink(){
             }
 		});
 		
-		$('#${param.block}-numberofcomorbidities-select').multiselect({	
+		$('#${param.block}-cciscore-select').multiselect({	
 			buttonContainer: '<div class="checkbox-list-container"></div>',
             buttonClass: '',
             templates: {
@@ -1154,12 +1187,12 @@ function limitlink(){
             },
 			maxHeight: 300,
 			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-numberofcomorbidities-select');
+				var options = $('#${param.block}-cciscore-select');
 		        var selected = [];
 		        $(options).each(function(){
 		            selected.push($(this).val());
 		        });
-				${param.block}_constrain("comorbidity_number",  selected[0].join('|'));
+				${param.block}_constrain("cciscore",  selected[0].join('|'));
 			    ${param.block}_refreshHistograms();
             }
 		});
@@ -1420,7 +1453,7 @@ function limitlink(){
 			$('#${param.block}-severity-select').multiselect('clearSelection');
 			${param.block}_constrain("severity", '');
 		</c:if>
-		<c:if test="${param.age_filter || param.age_filter2 || param.age_filter4 || param.age_filter5 || param.age_filter6 || param.age_filter7 || param.age_filter10 || param.age_filterpeds || param.age_filterpeds2 || param.age_filterall || param.age_filterall2}">
+		<c:if test="${param.age_filter_min || param.age_filter2 || param.age_filter4 || param.age_filter5 || param.age_filter6 || param.age_filter7 || param.age_filter10 || param.age_filterpeds || param.age_filterpeds2 || param.age_filterall || param.age_filterall2}">
 			$('#${param.block}-age-select').multiselect('clearSelection');
 			${param.block}_constrain("age", '');
 		</c:if>
@@ -1441,10 +1474,6 @@ function limitlink(){
 			${param.block}_constrain("symptom", '');
 		</c:if>
 		<c:if test="${param.vaccinated_filter}">
-			$('#${param.block}-vaccinated-select').multiselect('clearSelection');
-			${param.block}_constrain("vaccinated", '');
-		</c:if>
-		<c:if test="${param.vaccinated_filter2}">
 			$('#${param.block}-vaccinationstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("vaccinated", '');
 		</c:if>
@@ -1475,10 +1504,10 @@ function limitlink(){
 		<c:if test="${param.diagnosis_filter2}">
 		$('#${param.block}-diagnosis-select').multiselect('clearSelection');
 		${param.block}_constrain("diagnosis_type", '');
-	</c:if>
-		<c:if test="${param.comorbiditynumber_filter}">
-			$('#${param.block}-numberofcomorbidities-select').multiselect('clearSelection');
-			${param.block}_constrain("comorbidity_number", '');
+		</c:if>
+		<c:if test="${param.cciscore_filter}">
+			$('#${param.block}-cciscore-select').multiselect('clearSelection');
+			${param.block}_constrain("cciscore", '');
 		</c:if>
 		<c:if test="${param.sotrovimabmeds_filter}">
 			$('#${param.block}-othermeds-select').multiselect('clearSelection');
@@ -1499,6 +1528,14 @@ function limitlink(){
 		<c:if test="${param.smoking_filter}">
 			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("smokingstatus", '');
+		</c:if>
+		<c:if test="${param.covid_filter}">
+			$('#${param.block}-covidstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("covidstatus", '');
+		</c:if>
+		<c:if test="${param.environmental_filter}">
+			$('#${param.block}-environmental-select').multiselect('clearSelection');
+			${param.block}_constrain("environmental_factor", '');
 		</c:if>
 		<c:if test="${param.region_filter}">
 			$('#${param.block}-region-select').multiselect('clearSelection');
@@ -1535,7 +1572,7 @@ function limitlink(){
 	
 	var ${param.block}_raceSeverityArray = new Array();
 	var ${param.block}_diagnosisSeverityArray = new Array();
-	var ${param.block}_comorbiditySeverityArray = new Array();
+	var ${param.block}_cciscoreSeverityArray = new Array();
 	var ${param.block}_vaccinatedSeverityArray = new Array();
 	var ${param.block}_medsSeverityArray = new Array();
 	var ${param.block}_sotrovimabMedsArray = new Array();
@@ -1568,6 +1605,7 @@ function limitlink(){
 
 	var ${param.block}_MedicationArray = new Array();
 	var ${param.block}_MedicationAgeArray = new Array();
+	var ${param.block}_EnvironmentStatusArray = new Array();
 	var ${param.block}_ClassAgeArray = new Array();
 	var ${param.block}_DiabetesArray = new Array();
 
@@ -1606,7 +1644,7 @@ function limitlink(){
 	    
 	    	${param.block}_refreshraceSeverityArray(data);
 	    	${param.block}_refreshdiagnosisSeverityArray(data);
-	    	${param.block}_refreshcomorbiditySeverityArray(data);
+	    	${param.block}_refreshcciscoreSeverityArray(data);
 	    	${param.block}_refreshvaccinatedSeverityArray(data);
 	    	${param.block}_refreshmedsSeverityArray(data);
 	    	${param.block}_refreshsotrovimabMedsArray(data);
@@ -1636,6 +1674,7 @@ function limitlink(){
 	    
 	    	${param.block}_refreshMedicationArray(data2);
 	    	${param.block}_refreshMedicationAgeArray(data);
+	    	${param.block}_refreshEnvironmentStatusArray(data);
 	    	${param.block}_refreshClassAgeArray(data);
 	    	${param.block}_refreshDiabetesArray(data2);
 	    
@@ -1669,7 +1708,6 @@ function limitlink(){
 	    	${param.block}_severity_refresh();
 	    }
 	    if (${param.block}_loaded("age")) {
-	    	console.log('loaded age');
 	    	${param.block}_age_refresh();
 	    }
 	    if (${param.block}_loaded("race")) {
@@ -1680,6 +1718,9 @@ function limitlink(){
 	    }
 	    if (${param.block}_loaded("ethnicity")) {
 	    	${param.block}_ethnicity_refresh();
+	    }
+	    if ('${param.block}' === "environment_1") {
+	    	${param.block}_environment_refresh();
 	    }
 	    if ('${param.block}' === "medications_1") {
 	    	${param.block}_medication_refresh();
@@ -1715,7 +1756,7 @@ function limitlink(){
 	    	${param.block}_severitydiagnosis_refresh();
 	    }
 	    if ('${param.block}' === 'med_snap_4') {
-	    	${param.block}_severitycomorbidity_refresh();
+	    	${param.block}_severitycciscore_refresh();
 	    }
 	    if ('${param.block}' === 'med_snap_5') {
 	    	${param.block}_severityvaccinated_refresh();
@@ -1887,9 +1928,9 @@ function limitlink(){
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="comorbiditySeverityArray"/>
+	<jsp:param name="array" value="cciscoreSeverityArray"/>
 	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="secondary" value="numberofcomorbidities"/>
+	<jsp:param name="secondary" value="comorbidity"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">
@@ -2087,6 +2128,15 @@ function limitlink(){
 	<jsp:param name="array" value="MedicationAgeArray"/>
 	<jsp:param name="primary" value="concept_set_name"/>
 	<jsp:param name="secondary" value="age"/>
+	<jsp:param name="sort_desc" value="count"/>
+</jsp:include>
+
+<jsp:include page="doubleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="EnvironmentStatusArray"/>
+	<jsp:param name="primary" value="environmental_factor"/>
+	<jsp:param name="secondary" value="status"/>
 	<jsp:param name="sort_desc" value="count"/>
 </jsp:include>
 

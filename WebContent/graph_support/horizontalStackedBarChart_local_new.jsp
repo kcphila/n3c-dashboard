@@ -26,6 +26,13 @@ function localHorizontalStackedBarChart_new(data, properties) {
 	
 	var secondary_range = (properties.secondary_range === undefined ? categorical : properties.secondary_range);
 	var legend_label = (properties.legend_label === undefined ? "Legend" : properties.legend_label);
+	
+	var trimLength = 0;
+	if (typeof properties.trimLength !== 'undefined'){
+		trimLength = properties.trimLength;
+	} else {
+		trimLength = 25;
+	}
 
 	
 	var setup_data = d3.nest()
@@ -84,7 +91,7 @@ function localHorizontalStackedBarChart_new(data, properties) {
 
 		var keys = data.map(function(d) { return d.element; });
 		
-		var legend_map = d3.map(properties.legend_data, function(d) { return d.secondary_name; });
+		var legend_map = d3.map(properties.legend_data, function(d) { return d.secondary; });
 
 		var stackData = myStack(data);
 		
@@ -103,7 +110,7 @@ function localHorizontalStackedBarChart_new(data, properties) {
 			.attr("class", "y axis")
 			.attr("transform", "translate(0,0)") 						
 			.call(d3.axisLeft(y).tickFormat(function (d){
-				var trimmedString = d.substring(0, 25);
+				var trimmedString = d.substring(0, trimLength);
 				if (trimmedString != d){
 					trimmedString = trimmedString + '...'
 				}
@@ -176,7 +183,7 @@ function localHorizontalStackedBarChart_new(data, properties) {
 					.style("opacity", 0.8)
 					.style("left", (d3.event.pageX + 5) + "px")
 					.style("top", (d3.event.pageY - 28) + "px")
-					.html("<strong><i class='fas fa-circle' style='color:  " + secondary_range[index-1] + ";'>&nbsp;</i>" +  d[2] + "</strong><br><strong>Count: </strong>" + count2.toLocaleString() + "<br><strong>Percent:</strong> " + ((count2/d[3]) * 100).toFixed(2) + "%");
+					.html("<strong><i class='fas fa-circle' style='color:  " + secondary_range[index-1] + ";'>&nbsp;</i>" +  legend_map.get(d[2]).secondary_name + "</strong><br><strong>Count: </strong>" + count2.toLocaleString() + "<br><strong>Percent:</strong> " + ((count2/d[3]) * 100).toFixed(2) + "%");
 			})
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 
@@ -328,7 +335,7 @@ function localHorizontalStackedBarChart_new(data, properties) {
 			.attr("class", "filter_col col col-6 col-lg-3")
 			.on("click", function(d, i){
 				var format = {};
-				format['secondary_name'] = d.secondary;
+				format['secondary_name'] = d.secondary_name;
 				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, legend_label.replace(/\s/g, ""));
 			})
 			.on("mouseover", function(d, i) {

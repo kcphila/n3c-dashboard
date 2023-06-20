@@ -246,8 +246,8 @@ div.composite.tooltip {
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select to_char(value::int/1000000.0, '999.99')||'M' as count 
 													from (
-														select sum(case when (count = '<20' or count is null) then 0 else count::numeric end) as value 
-														from n3c_questions_new.all_ages_covid_pos_demo_censored
+														select sum(case when (patient_count = '<20' or patient_count is null) then 0 else patient_count::numeric end) as value 
+														from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
 													) y;
 												</sql:query>
 												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -271,7 +271,7 @@ div.composite.tooltip {
 				  								</span>
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select round(
-														((select sum(case when (count = '<20' or count is null) then 0 else count::numeric end) as patient_count from n3c_questions_new.all_ages_covid_pos_demo_censored)/
+														((select sum(case when (patient_count = '<20' or patient_count is null) then 0 else patient_count::numeric end) as patient_count from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd)/
 														(select value::numeric from n3c_admin.enclave_stats where title='covid_positive_patients'))*100
 													,2) as count;
 												</sql:query>
@@ -312,7 +312,7 @@ div.composite.tooltip {
 				  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 									</a>
 									</span>&nbsp;in the N3C Data Enclave.
-									For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+									For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 								</p>
 							</div>
 						</div>
@@ -341,11 +341,12 @@ div.composite.tooltip {
 <script>
 
 //color codes
-var age_range_all = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE", "#762AC6", "#6512BD", "#4C1EA5", "#33298D"];
+var age_range_all = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE", "#762AC6", "#6512BD", "#4C1EA5", "#33298D", "#251a8a", "#a6a6a6"];
 var race_range = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#a6a6a6", "#8B8B8B"];
 var ethnicity_range = ["#332380", "#B6AAF3", "#a6a6a6"];
 var severity_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941", "#a6a6a6"];
-var sex_range = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6", "#8B8B8B"];
+var sex_range = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6"];
+
 
 function hive_refresh() {
 	var properties = {

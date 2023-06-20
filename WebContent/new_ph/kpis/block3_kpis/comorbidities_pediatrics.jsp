@@ -6,11 +6,11 @@
  	select to_char(sum(count)/1000.0, '999.99')||'k' as patient_count
  	from (select 
 			case
-				when (count = '<20' or count is null) then 0
-				else count::int
+				when (patient_count = '<20' or patient_count is null) then 0
+				else patient_count::int
 			end as count
-			from n3c_questions_new.${param.kpi_filter}_and_covid_summary_updated
-			where age_bracket = '<18'and observation = 'has disease'
+			from n3c_dashboard_ph.ds_${param.kpi_filter}
+			where age = '<18' and observation = 'has disease'
 		) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

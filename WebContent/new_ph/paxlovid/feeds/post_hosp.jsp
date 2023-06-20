@@ -18,7 +18,7 @@
 		    select number_of_visits_post_covid,
 		        max(count) filter (where covid_w_pax = 0) as no_paxlovid,
 		        max(count) filter (where covid_w_pax = 1) as paxlovid
-		    from n3c_questions_new.postcovid_utilization
+		    from n3c_dashboard_ph.pax_postcovutil_csd
 		    group by number_of_visits_post_covid
 		    order by number_of_visits_post_covid
 		) as foo

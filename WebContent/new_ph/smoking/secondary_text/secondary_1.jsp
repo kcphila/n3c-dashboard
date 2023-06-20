@@ -14,7 +14,7 @@
   						<span class="sr-only">, Never - patients whose EHR recorded Never Smoked Tobacco, Current or Former - patients whose EHR recorded any past or current smoking status, Unknown - patients whose EHR had no data on smoking status</span>
 					</a>
 				</span>&nbsp; for this patient population was obtained from EHR records. There is no guarantee that the reported smoking status of a patient is accurate.
-				 For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+				 For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 </div>
 
 

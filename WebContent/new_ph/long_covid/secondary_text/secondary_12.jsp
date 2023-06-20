@@ -18,7 +18,7 @@
 				&nbsp;was recorded. These conditions are non-specific to Long COVID and could be related to other illnesses. This sample may have instances 
 	of false negatives when using it to assess the population of COVID-19/Long COVID-negative persons. 
 	This can be caused by a lack of testing, non-reported testing, and reported testing not captured by our 
-	data partners (i.e., testing done at an unrelated institution). For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+	data partners (i.e., testing done at an unrelated institution). For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 </div>
 	
 <script>

@@ -14,7 +14,7 @@
 						when (count::text = '<20' or count is null) then 0
 						else count::int
 					end as count
-				  from n3c_questions_new.pax_administration
+				  from n3c_dashboard_ph.pax_paxadm_csd
 				) as foo;
 </sql:query>
 	

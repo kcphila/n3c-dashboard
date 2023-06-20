@@ -16,8 +16,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}legend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_beforeafter_viz" class="col-12 dash_viz"></div>
+		<div id="${param.block}_beforeafter_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -27,17 +30,16 @@
 function ${param.block}_before_refresh() {
 	var properties = {
 			domName: '${param.block}_beforeafter_viz',
-			barLabelWidth: 160,
+			barLabelWidth: 180,
 			legend_data: before_after_legend,
 			secondary_range: categorical,
+			ordered: 1,
 			legend_label: 'Symptom Occurrence',
-			min_height: 200,
-			nofilter: 0,
-			ordered: 1
+			legendid: '${param.block}legend'
 		}
 
    	d3.select("#${param.block}_beforeafter_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_BeforeAfterArray, properties);	
+	localHorizontalStackedBarChart_new(${param.block}_BeforeAfterArray, properties);	
 }
 
 ${param.block}_before_refresh();

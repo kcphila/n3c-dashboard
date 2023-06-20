@@ -111,8 +111,8 @@
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select to_char(value::int/1000000.0, '999.99')||'M' as count 
 													from (
-														select sum(case when (num_patients = '<20' or num_patients is null) then 0 else num_patients::numeric end) as value 
-														from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum where vaccinated = '1'
+														select sum(case when (patient_count = '<20' or patient_count is null) then 0 else patient_count::numeric end) as value 
+														from n3c_dashboard_ph.demo_demo_mort_vacc_sev_cov_csd where vaccinated = '1'
 													) y;
 												</sql:query>
 												<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -136,7 +136,7 @@
 				  								</span>
 				  								<sql:query var="totals" dataSource="jdbc/N3CPublic">
 													select round(
-														((select sum(case when (num_patients = '<20' or num_patients is null) then 0 else num_patients::numeric end) as patient_count from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum where vaccinated = '1')/
+														((select sum(case when (patient_count = '<20' or patient_count is null) then 0 else patient_count::numeric end) as patient_count from n3c_dashboard_ph.demo_demo_mort_vacc_sev_cov_csd where vaccinated = '1')/
 														(select value::numeric from n3c_admin.enclave_stats where title='covid_positive_patients'))*100
 													,2) as count;
 												</sql:query>
@@ -232,6 +232,27 @@
 										<div id="sex_histogram"></div>
 									</div>
 								</div>
+								<div class="col col-12 col-md-6 viz-section">
+									<h4 class="viz-demo">
+										Ethnicity
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('ethnicity_histogram', 'demographics-ethnicity.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('ethnicity_histogram', 'demographics-ethnicity.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('ethnicity_histogram', 'demographics-ethnicity.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
+									<div class="panel-body">
+										<div class="loading">
+											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+										</div>
+										<div id="ethnicity_histogram"></div>
+									</div>
+								</div>
 							</div>
 
 							<div class="secondary-description">
@@ -241,7 +262,7 @@
 				  						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 									</a>
 									</span>&nbsp;in the N3C Data Enclave. Data aggregated by Age, Race, Sex, Severity, and COVID-19 Vaccination status. Vaccination data comes only from EHR vaccination events recorded by N3C partner sites. This means that if a patient received their vaccination from a site that does not automatically link to their EHR (ex. local pharmacy, doctor's office, or state/federal vaccination site), their vaccination will not be represented in the data. As most vaccination events are not occurring at N3C sites, patients shown here as 'Unknown' may be vaccinated; however, we do not have the records to verify this. Vaccinated patient counts do not indicate that the patient is fully vaccinated. We consider a vaccinated patient to have at least one dose of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines. Given that Pfizer and Moderna require two vaccine doses to be considered fully vaccinated, patients shown here may be only partially vaccinated. This same assumption applies to booster shots, as we do not consider shots beyond the first one recorded within the patient's EHR.
-									For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+									For additional information, <a onclick="${param.block}limitlink(); return false;" href="#${param.block}limitations-section">see limitations below</a>.
 								</p>
 							</div>
 						</div>
@@ -290,7 +311,7 @@ $('#dimension_select').on('select2:select', function (e) {
 function limitlink(){
 	$('#limitcollapseOne').collapse('show');
 	$('html, body').animate({
-        scrollTop: $("#limitations-section").offset().top
+        scrollTop: $("#${param.block}limitations-section").offset().top
     }, 500);
 }
 
@@ -303,11 +324,11 @@ $(document).on("click", ".popover .close" , function(){
 });
 
 //color codes
-var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#6512BD", 6:"#33298D", 7:"#a6a6a6", 8:"#8B8B8B"};
+var age_range_all = {1:"#EADEF7", 2:"#C9A8EB", 3:"#A772DF", 4:"#8642CE", 5:"#762AC6", 6:"#6512BD", 7:"#4C1EA5", 8:"#33298D", 9:"#251a8a", 10:"#a6a6a6"};
 var race_range = {1:"#09405A", 2:"#AD1181", 3:"#8406D1", 4:"#ffa600", 5:"#ff7155", 6:"#a6a6a6", 7:"#8B8B8B"};
 var ethnicity_range = {1:"#332380", 2:"#B6AAF3", 3:"#a6a6a6"};
 var severity_range = {1:"#EBC4E0", 2:"#C24DA1", 3:"#AD1181", 4:"#820D61", 5:"#570941", 6:"#a6a6a6"};
-var sex_range = {1:"#4833B2", 2:"#ffa600", 3:"#8406D1", 4:"#a6a6a6", 5:"#8B8B8B"};
+var sex_range = {1:"#4833B2", 2:"#ffa600", 3:"#8406D1", 4:"#a6a6a6"};
 
 function updateKPI() {
 	var table = $('#aggregated-table').DataTable();	
@@ -343,6 +364,7 @@ function updateKPI() {
 var aggregated_datatable = null;
 var ageArray = new Array();
 var raceArray = new Array();
+var ethnicityArray = new Array();
 var sexArray = new Array();
 var severityArray = new Array();
 
@@ -365,7 +387,7 @@ $(document).ready( function () {
 
 	$.fn.dataTable.ext.search.push(
 		function( settings, searchData, index, rowData, counter ) {
-			var positions = $('input:checkbox[name="age_bin"]:checked').map(function() {
+			var positions = $('input:checkbox[name="age"]:checked').map(function() {
 				return this.value;
 			}).get();
 			if (positions.length === 0) {
@@ -377,6 +399,24 @@ $(document).ready( function () {
 			return false;
 		}
 	);
+	
+	$.fn.dataTable.ext.search.push(
+		    function( settings, searchData, index, rowData, counter ) {
+		      var positions = $('input:checkbox[name="ethnicity"]:checked').map(function() {
+		        return this.value;
+		      }).get();
+		   
+		      if (positions.length === 0) {
+		        return true;
+		      }
+		      
+		      if (positions.indexOf(searchData[4]) !== -1) {
+		        return true;
+		      }
+		      
+		      return false;
+		    }
+		  );
 
 	$.fn.dataTable.ext.search.push(
 		function( settings, searchData, index, rowData, counter ) {
@@ -416,7 +456,7 @@ $(document).ready( function () {
 			if (positions.length === 0) {
 				return true;
 			}
-			if (positions.indexOf(searchData[4]) !== -1) {
+			if (positions.indexOf(searchData[5]) !== -1) {
 				return true;
 			}
 			return false;
@@ -502,8 +542,9 @@ $(document).ready( function () {
 	     	columns: [
 	     		{ data: 'severity', visible: true, orderable: true },
 	     		{ data: 'sex', visible: true, orderable: true },
-	     		{ data: 'age_bin', visible: true, orderable: true },
+	     		{ data: 'age', visible: true, orderable: true },
 	        	{ data: 'race', visible: true, orderable: true },
+	        	{ data: 'ethnicity', visible: true, orderable: true },
 	        	{ data: 'vaccinated', visible: true, ordable: true },
 	        	{ data: 'patient_display', visible: true, orderable: true },
 	        	{ data: 'patient_count', visible: false },
@@ -511,6 +552,8 @@ $(document).ready( function () {
 	        	{ data: 'age_seq', visible: false },
 	        	{ data: 'race_abbrev', visible: false },
 	        	{ data: 'race_seq', visible: false },
+	        	{ data: 'ethnicity_abbrev', visible: false },
+	        	{ data: 'ethnicity_seq', visible: false },
 	        	{ data: 'sex_abbrev', visible: false },
 	        	{ data: 'sex_seq', visible: false },
 	        	{ data: 'severity_abbrev', visible: false },
@@ -560,6 +603,7 @@ function refreshHistograms() {
     var data = aggregated_datatable.rows({search:'applied'}).data().toArray();
     refreshAgeArray(data);
     refreshRaceArray(data);
+    refreshEthnicityArray(data);
     refreshSexArray(data);
     refreshSeverityArray(data);
     
@@ -578,6 +622,12 @@ function refreshHistograms() {
 	    localBarChart(raceArray,"#race_histogram",120, race_range);
     else
     	localPieChart(raceArray,"#race_histogram", race_range);
+    
+    d3.select("#ethnicity_histogram").select("svg").remove();
+    if (doBar)
+	    localBarChart(ethnicityArray,"#ethnicity_histogram",120, ethnicity_range);
+    else
+    	localPieChart(ethnicityArray,"#ethnicity_histogram", ethnicity_range);
 
 
     d3.select("#sex_histogram").select("svg").remove();
@@ -597,7 +647,7 @@ function refreshAgeArray(data) {
 	var aData = new Object;
 	var bData = new Object;
 	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
-    	var group = data[i].age_bin;
+    	var group = data[i].age;
     	var count = data[i].patient_count;
     	var seq = data[i].age_seq;
         if (typeof aData[group] == 'undefined') {
@@ -675,6 +725,38 @@ function refreshRaceArray(data) {
     }
     raceArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
 //     console.log(raceArray);
+}
+
+function refreshEthnicityArray(data) {
+	var aData = new Object;
+	var bData = new Object;
+	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
+    	var group = data[i].ethnicity_abbrev;
+    	var count = data[i].patient_count;
+    	var seq = data[i].ethnicity_seq;
+        if (typeof aData[group] == 'undefined') {
+            aData[group] = count;
+            bData[group] = seq;
+         } else
+        	 aData[group] += count;
+	});
+
+	ethnicityArray = new Array();
+    for(var i in aData) {
+    	var obj = new Object();
+    	Object.defineProperty(obj, 'element', {
+    		  value: i
+    		});
+    	Object.defineProperty(obj, 'count', {
+  		  value: aData[i]
+  		});
+    	Object.defineProperty(obj, 'seq', {
+  		  value: bData[i]
+  		});
+    	ethnicityArray.push(obj);
+    }
+    ethnicityArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+//     console.log(ethnicityArray);
 }
 
 
@@ -791,8 +873,11 @@ function checkPeds() {
 	$('input[type="checkbox"][value="12-15"]').prop('checked',true);
 	$('input[type="checkbox"][value="16-<18"]').prop('checked',true);
 
-	$('input[type="checkbox"][value="18-64"]').prop('checked',false);
-	$('input[type="checkbox"][value="65+"]').prop('checked', false);
+	$('input[type="checkbox"][value="18-24"]').prop('checked',false);
+	$('input[type="checkbox"][value="25-34"]').prop('checked',false);
+	$('input[type="checkbox"][value="35-49"]').prop('checked',false);
+	$('input[type="checkbox"][value="50-64"]').prop('checked',false);
+	$('input[type="checkbox"][value="65+"]').prop('checked',false);
 	
 	aggregated_datatable.draw();
 	refreshHistograms();
@@ -804,8 +889,11 @@ function checkAdult() {
 	$('input[type="checkbox"][value="12-15"]').prop('checked',false);
 	$('input[type="checkbox"][value="16-<18"]').prop('checked',false);
 
-	$('input[type="checkbox"][value="18-64"]').prop('checked',true);
-	$('input[type="checkbox"][value="65+"]').prop('checked', true);
+	$('input[type="checkbox"][value="18-24"]').prop('checked',true);
+	$('input[type="checkbox"][value="25-34"]').prop('checked',true);
+	$('input[type="checkbox"][value="35-49"]').prop('checked',true);
+	$('input[type="checkbox"][value="50-64"]').prop('checked',true);
+	$('input[type="checkbox"][value="65+"]').prop('checked',true);
 	
 	aggregated_datatable.draw();
 	refreshHistograms();
@@ -846,6 +934,16 @@ $('#race').on('click', function() {
 		panel.style.display = "block";
 	} else {
 		this.innerHTML = "<i class='fas fa-chevron-right'></i> Race";
+		panel.style.display = "none";
+	}
+});
+$('#ethnicity').on('click', function() {
+	var panel = document.getElementById("ethnicity_panel");
+	if (panel.style.display === "none") {
+		this.innerHTML = "<i class='fas fa-chevron-down'></i> Ethnicity";
+		panel.style.display = "block";
+	} else {
+		this.innerHTML = "<i class='fas fa-chevron-right'></i> Ethnicity";
 		panel.style.display = "none";
 	}
 });

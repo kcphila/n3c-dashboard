@@ -28,7 +28,6 @@ function ${param.block}_sex_refresh() {
 			domName: '#${param.block}_sex_viz',
 			barLabelWidth: 100,
 			min_height: 300,
-			ordered: 1,
 			colorscale: sex_range
 	}
 

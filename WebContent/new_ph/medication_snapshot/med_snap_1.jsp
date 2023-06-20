@@ -12,13 +12,14 @@
 	<jsp:param name="kpis" value="medication_snapshot/kpis.jsp" />
 	
 	<jsp:param name="severity_filter" value="true" />
-	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="sex_filter" value="true" />
+	<jsp:param name="race_filter" value="true" />
 	
 	<jsp:param name="did" value="47" />
 	<jsp:param name="toggle" value="true" />
 	
-	<jsp:param name="viz_properties" value="{'age' : [{
+	<jsp:param name="viz_properties" value="{'severity' : [{
 			dimension: 'severity',
 			domName: '#med_snap_1_severity_viz',
 			barLabelWidth: 120,
@@ -28,15 +29,15 @@
 			legend_label: 'Severity',
 			legend_data: severity_legend,
 			donutRatio: 0.5
-		}], 'race' : [{
+		}], 'age' : [{
 			dimension: 'age',
 			domName: '#med_snap_1_age_viz',
 			barLabelWidth: 120,
 			min_height: 300,
 			ordered: 0,
-			colorscale: age_range,
+			colorscale: age_range_min,
 			legend_label: 'Age',
-			legend_data: age_legend_4,
+			legend_data: age_legend_min,
 			donutRatio: 0.5
 		}], 'sex' : [{
 			dimension: 'sex',
@@ -48,12 +49,23 @@
 			legend_label: 'Sex',
 			legend_data: sex_legend,
 			donutRatio: 0.5
+		}], 'race' : [{
+			dimension: 'race',
+			domName: '#med_snap_1_race_viz',
+			barLabelWidth: 140,
+			min_height: 300,
+			ordered: 0,
+			colorscale: race_range,
+			legend_label: 'Race',
+			legend_data: race_legend,
+			donutRatio: 0.5
 		}]
 	}"/>
 
 	<jsp:param name="severity_panel" value="medication_snapshot/severity.jsp" />
 	<jsp:param name="age_panel" value="medication_snapshot/age.jsp" />
 	<jsp:param name="sex_panel" value="medication_snapshot/sex.jsp" />
+	<jsp:param name="race_panel" value="medication_snapshot/race.jsp" />
 
 	<jsp:param name="datatable" value="medication_snapshot/tables/aggregated_table.jsp" />
 	<jsp:param name="datatable_div" value="sotrovimab_demo" />
@@ -62,7 +74,7 @@
 </jsp:include>
 
 <script>
-	var panels = ["severity", "age", "sex"];
+	var panels = ["severity", "age", "sex", "race"];
 	med_snap_1_panel(panels);
 </script>
 

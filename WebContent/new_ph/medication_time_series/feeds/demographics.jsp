@@ -25,8 +25,8 @@
 					end as patient_count
 				  from n3c_dashboard_ph.medtimeser_drug_demo_csd
 		  	) as foo
-		  	natural join n3c_dashboard.age_map_secondary
-		  	natural join n3c_dashboard.gender_map3
+		  	natural join n3c_dashboard.age_map_sec
+		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.medication_map
 		  ) as done;

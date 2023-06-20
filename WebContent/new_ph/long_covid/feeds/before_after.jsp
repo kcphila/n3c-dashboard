@@ -11,7 +11,7 @@
 			end as condition_after_covid_positive,
 			count as patient_display,
 			count as patient_count
-		  from n3c_questions_new.symptom_before_or_after_covid
+		  from n3c_dashboard_ph.longcov_symbeforeoraftercov_csd
 		  <c:if test="${not empty param.symptom}">where symptom = '${param.symptom}'</c:if>
 		  ) as foo
 		  natural join n3c_dashboard.before_after_map

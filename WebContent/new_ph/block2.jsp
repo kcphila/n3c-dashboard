@@ -118,7 +118,7 @@
 					<div id="${param.block}-block-kpi-kpi" class="col-12">
 						<div class="kpi_containter row" style="justify-content: center;">
 							<jsp:include page="${param.kpis}?block=${param.block}&kpi_filter=${param.kpi_filter}"/>
-							<div class="kpi-limit"><a onclick="limitlink(); return false;" href="#limitations-section">* See Limitations Below</a></div>
+							<div class="kpi-limit"><a onclick="${param.block}limitlink(); return false;" href="#limitations-section">* See Limitations Below</a></div>
 						</div>
 					</div>
 				</div>

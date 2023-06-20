@@ -6,6 +6,6 @@
 			<span class="sr-only">, or patients who have had a laboratory-confirmed positive COVID-19 PCR or Antigen test</span>
 		</a>
 		</span>&nbsp;in the N3C Data Enclave with more than one positive PCR or Antigen test 60 days or more apart. 
-		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 	</p>
 </div>

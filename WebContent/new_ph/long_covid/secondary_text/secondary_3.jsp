@@ -10,7 +10,7 @@
 				</a>
 		</span>
 		&nbsp;was recorded. These conditions are non-specific to Long COVID and could be related to other illnesses. 
-		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 </div>
 
 

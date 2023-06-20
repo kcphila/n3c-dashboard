@@ -11,7 +11,7 @@
 	
 	<jsp:param name="kpis" value="mortality/kpis.jsp" />
 
-	<jsp:param name="age_filter10" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
@@ -27,9 +27,9 @@
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: age_range,
+			colorscale: age_range_min,
 			legend_label: 'Age',
-			legend_data: age_legend_10,
+			legend_data: age_legend_min,
 			donutRatio: 0.5
 		}], 'race' : [{
 			dimension: 'race',
@@ -69,7 +69,7 @@
 	<jsp:param name="sex_panel" value="mortality/sex.jsp" />
 	<jsp:param name="ethnicity_panel" value="mortality/ethnicity.jsp" />
 
-	<jsp:param name="datatable" value="mortality/hospitalization_table.jsp" />
+	<jsp:param name="datatable" value="mortality/tables/hospitalization_table.jsp" />
 	<jsp:param name="datatable_div" value="mortality_hospitalization" />
 	<jsp:param name="datatable_feed" value="mortality/feeds/hospitalization.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />

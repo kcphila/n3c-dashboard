@@ -27,8 +27,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}agelegend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_age_viz" class="col-12 dash_viz"></div>
+		<div id="${param.block}_age_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -46,8 +49,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}racelegend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_race_viz" class="col-12 dash_viz"></div>
+		<div id="${param.block}_race_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -65,8 +71,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}sexlegend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_sex_viz" class="col-12 dash_viz"></div>
+		<div id="${param.block}_sex_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -84,8 +93,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}ethnicitylegend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_ethnicity_viz" class="col-12 dash_viz"></div>
+		<div id="${param.block}_ethnicity_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -151,14 +163,11 @@ function ${param.block}_age_refresh() {
 			legend_data: age_legend_4,
 			secondary_range: age_range,
 			legend_label: 'Age',
-			min_height: "${param.viz_height}",
-			nofilter: 0,
-			ordered: 1
+			ordered: 1,
+			legendid: '${param.block}agelegend'
 		}
-
-	// console.log("age graph", "${param.block}_age_viz", ${param.block}_SymptomAgeArray)
    	d3.select("#${param.block}_age_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SymptomAgeArray, properties);	
+	localHorizontalStackedBarChart_new(${param.block}_SymptomAgeArray, properties);	
 }
 
 ${param.block}_age_refresh();
@@ -170,14 +179,11 @@ function ${param.block}_race_refresh() {
 			legend_data: race_legend,
 			secondary_range: race_range,
 			legend_label: 'Race',
-			min_height: "${param.viz_height}",
-			nofilter: 0,
-			ordered: 1
+			ordered: 1,
+			legendid: '${param.block}racelegend'
 		}
-
-	// console.log("race graph", "${param.block}_race_viz", ${param.block}_SymptomRaceArray)
    	d3.select("#${param.block}_race_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SymptomRaceArray, properties);	
+	localHorizontalStackedBarChart_new(${param.block}_SymptomRaceArray, properties);	
 }
 
 ${param.block}_race_refresh();
@@ -189,14 +195,11 @@ function ${param.block}_sex_refresh() {
 			legend_data: sex_legend,
 			secondary_range: sex_range,
 			legend_label: 'Sex',
-			min_height: "${param.viz_height}",
-			nofilter: 0,
-			ordered: 1
+			ordered: 1,
+			legendid: '${param.block}sexlegend'
 		}
-
-	// console.log("sex graph", "${param.block}_sex_viz", ${param.block}_SymptomSexArray)
    	d3.select("#${param.block}_sex_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SymptomSexArray, properties);	
+	localHorizontalStackedBarChart_new(${param.block}_SymptomSexArray, properties);	
 }
 
 ${param.block}_sex_refresh();
@@ -208,14 +211,11 @@ function ${param.block}_ethnicity_refresh() {
 			legend_data: ethnicity_legend,
 			secondary_range: ethnicity_range,
 			legend_label: 'Ethnicity',
-			min_height: "${param.viz_height}",
-			nofilter: 0,
-			ordered: 1
+			ordered: 1,
+			legendid: '${param.block}ethnicitylegend'
 		}
-
-	// console.log("ethnicity graph", "${param.block}_ethnicity_viz", ${param.block}_SymptomEthnicityArray)
    	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_SymptomEthnicityArray, properties);	
+	localHorizontalStackedBarChart_new(${param.block}_SymptomEthnicityArray, properties);	
 }
 
 ${param.block}_ethnicity_refresh();

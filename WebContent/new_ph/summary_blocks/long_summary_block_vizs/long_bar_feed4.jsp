@@ -5,8 +5,8 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (select sum(
 		case
-		when (count = '<20' or count is null) then 0
-		else count::int
+		when (patient_count = '<20' or patient_count is null) then 0
+		else patient_count::int
 		end) as count,
 		observation as label, 
 		case
@@ -15,7 +15,7 @@
 		when (observation = 'Has not tested positive') then 12
 		when (observation = 'Has U09.9 in Record') then 3
 		end as viz_id
-		from n3c_questions_new.icd10_individual_symptom_summary_counts_long_covid 
+		from n3c_dashboard_ph.longcov_icd10indsymptomcts_csd
 		where observation != 'Does not have U09.9 in Record'
 		group by observation
 		order by count

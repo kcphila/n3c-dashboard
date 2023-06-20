@@ -10,11 +10,11 @@
 	<jsp:param name="did" value="58" />
 	<jsp:param name="topic_title" value="COVID+ Patients" />
 
-	<jsp:param name="kpis" value="smoking/kpis_new.jsp" />
+	<jsp:param name="kpis" value="smoking/kpis.jsp" />
 	
 	<jsp:param name="floating_legend" value="true" />
 	
-	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="smoking_filter" value="true" />
@@ -73,7 +73,7 @@
 	<jsp:param name="race_panel" value="smoking/race2.jsp" />
 	<jsp:param name="sex_panel" value="smoking/sex2.jsp" />
 
-	<jsp:param name="datatable" value="smoking/demographics_table.jsp" />
+	<jsp:param name="datatable" value="smoking/tables/demographics_table.jsp" />
 	<jsp:param name="datatable_div" value="smoking_demographics" />
 	<jsp:param name="datatable_feed" value="smoking/feeds/demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="smoking,smokingnot" />

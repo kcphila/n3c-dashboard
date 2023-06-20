@@ -4,26 +4,26 @@
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (
-		select race, ethnicity, gender_abbrev as sex, patient_display,
+		select race, ethnicity, sex, patient_display,
         case
             when (patient_display = '<20') then 0
             else patient_display::int
         end as patient_count,
-        race_seq, race_abbrev, ethnicity_seq, ethnicity_abbrev, gender_seq as sex_seq, gender_abbrev as sex_abbrev
+        race_seq, race_abbrev, ethnicity_seq, ethnicity_abbrev, sex_seq, sex_abbrev
         from(
-            select race, 'Not Hispanic or Latino' as ethnicity, gender_concept_name as sex, COALESCE(count_non_hispanic, '<20') as patient_display
-            from n3c_questions_new.person_agg_demographic_censored_cumulative_positive 
+            select race, 'Not Hispanic or Latino' as ethnicity, sex, count_non_hispanic as patient_display
+            from n3c_dashboard_ph.demoirb_demo_csd  
             UNION
-            select race, 'Hispanic or Latino' as ethnicity, gender_concept_name as sex, COALESCE(count_hispanic, '<20') as patient_display
-            from n3c_questions_new.person_agg_demographic_censored_cumulative_positive     
+            select race, 'Hispanic or Latino' as ethnicity,  sex, count_hispanic as patient_display
+            from n3c_dashboard_ph.demoirb_demo_csd      
             UNION
-            select race, 'Missing/Unknown' as ethnicity, gender_concept_name as sex, COALESCE(count_ethnicity_unknown, '<20') as patient_display
-            from n3c_questions_new.person_agg_demographic_censored_cumulative_positive 
+            select race, 'Unknown' as ethnicity, sex, count_ethnicity_unknown as patient_display
+            from n3c_dashboard_ph.demoirb_demo_csd
             order by race, ethnicity
         ) as foo
         natural join n3c_dashboard.race_map
-        natural join n3c_dashboard.ethnicity_map
-        natural join n3c_dashboard.gender_map2
+        natural join n3c_dashboard.eth_map
+        natural join n3c_dashboard.sex_map
 	) as done;
 </sql:query>
 {

@@ -3,9 +3,26 @@
 
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
+	console.log(filter);
+	console.log(constraint);
 	switch (filter) {
 	case 'paxlovid':
+	    table.column(0).search(constraint, true, false, true).draw();	
+		break;
+	case 'age':
+	    table.column(1).search(constraint, true, false, true).draw();	
+		break;
+	case 'sex':
 	    table.column(2).search(constraint, true, false, true).draw();	
+		break;
+	case 'race':
+	    table.column(3).search(constraint, true, false, true).draw();	
+		break;
+	case 'ethnicity':
+	    table.column(4).search(constraint, true, false, true).draw();	
+		break;
+	case 'severity':
+    	table.column(5).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -19,15 +36,15 @@ function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = 0;
 	
+	console.log(column);
+	
 	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
 		var data = this.data();
 		if (column == 'patient_count'){
-			if (data['cat'].replace(/[0-9]/g, '') == 'sex'){
-				sum += data['patient_count'];
-			};
+			sum += data['patient_count'];
 		};
 		if (column == 'paxlovid'){
-			if (data['cat'].replace(/[0-9]/g, '') == 'sex' && data['paxlovid'].replace(/[0-9]/g, '') == 'Paxlovid'){
+			if (data['pax'] == 'Paxlovid'){
 				sum += data['patient_count'];
 			};
 		};
@@ -131,16 +148,26 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-     		{ data: 'cat', visible: true, orderable: true },
-        	{ data: 'var', visible: true, orderable: true },
-        	{ data: 'paxlovid', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
-        	{ data: 'patient_count', visible: false },
-        	{ data: 'var_abbrev', visible: false },
-        	{ data: 'var_seq', visible: false },
-        	{ data: 'paxlovid_abbrev', visible: false },
-        	{ data: 'paxlovid_seq', visible: false },
-        	{ data: 'group_total', visible: false }
+     		{ data: 'pax', visible: true, orderable: true },
+        	{ data: 'age', visible: true, orderable: true, orderData: [11] },
+        	{ data: 'sex', visible: true, orderable: true },
+        	{ data: 'race', visible: true, orderable: true},
+        	{ data: 'ethnicity',visible: true, orderable: true },
+        	{ data: 'severity', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [7] },
+        	{ data: 'patient_count', visible: false},
+        	{ data: 'pax_abbrev', visible: false },
+        	{ data: 'pax_seq', visible: false },
+        	{ data: 'age_abbrev', visible: false },
+        	{ data: 'age_seq', visible: false },
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false },
+        	{ data: 'race_abbrev', visible: false },
+        	{ data: 'race_seq', visible: false },
+        	{ data: 'ethnicity_abbrev', visible: false },
+        	{ data: 'ethnicity_seq', visible: false },
+        	{ data: 'severity_abbrev', visible: false },
+        	{ data: 'severity_seq', visible: false }
     	]
 	} );
 

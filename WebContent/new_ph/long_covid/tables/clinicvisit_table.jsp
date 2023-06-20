@@ -1,48 +1,33 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <script>
 
+
+// kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
+	
 	switch (filter) {
+	case 'severity':
+		table.column(0).search(constraint, true, false, true).draw();	
+		break;
 	case 'age':
-	    table.column(0).search(constraint, true, false, true).draw();	
-		break;
-	case 'smokingstatus':
-	    table.column(1).search(constraint, true, false, true).draw();	
-		break;
-	case 'race':
-	    table.column(2).search(constraint, true, false, true).draw();	
+		table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'sex':
-	    table.column(3).search(constraint, true, false, true).draw();	
+		table.column(2).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
 	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
-		${param.block}_updateKPI(table, kpis[a]);
+		${param.block}_updateKPI(table, kpis[a])
 	}
 }
 
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
-	var sum = 0;
-	
-	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
-		var data = this.data();
-		if (column == 'smoking'){
-			if (data['smoking_status'] == 'Current or Former'){
-				sum += data['patient_count'];
-			};
-		};
-		
-		if (column == 'smokingnot'){
-			if (data['smoking_status'] == 'Never'){
-				sum += data['patient_count'];
-			};
-		};
-	});	
-	
+	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
+	// console.log(sum);
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -53,7 +38,6 @@ function ${param.block}_updateKPI(table, column) {
 		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
 		
 	}
-	// console.log(column);
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
 }
 
@@ -72,6 +56,8 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 
 var ${param.block}_datatable = null;
 
+
+// datatable setup ////////////////////////
 $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 		
 	var json = $.parseJSON(JSON.stringify(data));
@@ -102,8 +88,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	var data = json['rows'];
 
-	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
-    	data: data,
+	var ${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
+	    data: data,
     	dom: 'lfr<"datatable_overflow"t>Bip',
     	buttons: {
     	    dom: {
@@ -120,7 +106,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'smoking_csv_export',
+    	      filename: 'hospitalization',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -136,51 +122,60 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	snapshot: null,
        	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
-       	  },
+       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-         	{ data: 'age', visible: true, orderable: true },
-        	{ data: 'smoking_status', visible: true, orderable: true },
-        	{ data: 'race', visible: true, orderable: true },
+        	{ data: 'severity', visible: true, orderable: true },
+        	{ data: 'age', visible: true,  orderable: true, orderData: [6] },
         	{ data: 'sex', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
-        	{ data: 'race_abbrev', visible: false },
-        	{ data: 'race_seq', visible: false },
+        	{ data: 'severity_abbrev', visible: false },
+        	{ data: 'severity_seq', visible: false },
         	{ data: 'sex_abbrev', visible: false },
-        	{ data: 'sex_seq', visible: false },
-        	{ data: 'smoking_status_abbrev', visible: false },
-        	{ data: 'smoking_status_seq', visible: false }
+        	{ data: 'sex_seq', visible: false }
     	]
 	} );
 	
-	// table search logic that distinguishes sort/filter 
-	${param.block}_datatable.on( 'search.dt', function () {
+	//table search logic that distinguishes sort/filter 
+	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
+
 		var snapshot = ${param.block}_datatable
 	     .rows({ search: 'applied', order: 'index'})
 	     .data()
-	     .toArray()
-	     .toString();
+	     .toArray().toString();
 
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
-
-	  	if (currentSnapshot != snapshot) {
+	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
+	  	
+	  	
+	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
 	   		$('#${param.block}_btn_clear').removeClass("no_clear");
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
 	  	}
+	  	
+	  	if (snapshot == snapshotAll) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("show_clear");
+	   		$('#${param.block}_btn_clear').addClass("no_clear");
+	  	}
 	} );
-
-	// this is necessary to populate the histograms for the panel's initial D3 rendering
-	${param.block}_refreshHistograms();
-
 	
+	${param.block}_refreshHistograms();
 });
+
+
+
+
 
 </script>

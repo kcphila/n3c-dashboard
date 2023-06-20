@@ -137,7 +137,8 @@ d3.json("<util:applicationRoot/>/new_ph/long_covid/feeds/before_after.jsp?sympto
 			.attr('height', y.bandwidth())
 			.attr('width', function(d) { return x(d.patient_count); })
 			.attr('stroke', 'white')
-			.attr('fill', function(d, i){
+
+		.attr('fill', function(d, i){
 				return categorical[i]
 			});
 	

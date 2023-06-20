@@ -10,6 +10,6 @@
 		for the month and year of any previous infection. For example, suppose the reinfection date is set to February 2022. In that case, 
 		the graph will display the counts of patients diagnosed with their first infection at least 60 days before that date 
 		(December 2021) by the month they experienced their first infection.
-		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 	</p>
 </div>

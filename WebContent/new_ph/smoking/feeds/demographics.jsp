@@ -3,22 +3,26 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by age_seq))
-	from (select age_bin as age,smoking_status,race,gender_abbrev as sex,patient_display,patient_count,age_abbrev,age_seq,race_abbrev,race_seq,gender_abbrev as sex_abbrev,gender_seq as sex_seq, smoking_status_abbrev, smoking_status_seq
+	from (select age, smoking_status, race, sex, case when (patient_display = 0 )then '<20' else patient_display::text end as patient_display, patient_count, age_abbrev, age_seq, race_abbrev, race_seq, sex_abbrev, sex_seq, smoking_status_abbrev, smoking_status_seq
 			from (select
-					age_bin,
+					coalesce(age, 'Unknown') as age,
 					smoking_status,
 					race,
-					gender_concept_name as gender,
-					num_patients as patient_display,
-					case
-						when (num_patients = '<20' or num_patients is null) then 0
-						else num_patients::int
-					end as patient_count
-				  from n3c_questions_new.covid_smoking_demographics_censored_smoking
+					sex,
+					sum(case
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
+						end) as patient_display,
+					sum(case
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
+						end) as patient_count
+				  from n3c_dashboard_ph.sub_covsmodemoagemin_csd
+				  group by age, smoking_status, race, sex
 		  	) as foo
-		  	natural join n3c_dashboard.age_map4
+		  	natural join n3c_dashboard.age_map_min
 		  	natural join n3c_dashboard.race_map
-		  	natural join n3c_dashboard.gender_map2
+		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.status_map
 		  ) as done;
 </sql:query>

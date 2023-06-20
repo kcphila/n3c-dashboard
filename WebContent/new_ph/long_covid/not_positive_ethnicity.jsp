@@ -28,7 +28,6 @@ function ${param.block}_ethnicity_refresh() {
 			domName: '#${param.block}_ethnicity_viz',
 			barLabelWidth: 100,
 			min_height: 300,
-			ordered: 1,
 			colorscale: ethnicity_range
 	}
 

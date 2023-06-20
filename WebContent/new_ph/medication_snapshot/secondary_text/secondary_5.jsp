@@ -15,7 +15,7 @@
 				of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines. Given that Pfizer and Moderna require two 
 				vaccine doses to be considered fully vaccinated, patients shown here may be only partially vaccinated. 
 				This same assumption applies to booster shots, as we do not consider shots beyond the first one recorded 
-				within the patient's EHR. For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a></p>
+				within the patient's EHR. For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a></p>
 </div>
 
 

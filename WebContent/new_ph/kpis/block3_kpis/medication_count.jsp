@@ -3,8 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
- 	select count(distinct medication) from n3c_dashboard.medication_map
- 	where medication != 'Available, in progress';
+ 	select count(distinct drug_name) from n3c_dashboard.drug_map;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

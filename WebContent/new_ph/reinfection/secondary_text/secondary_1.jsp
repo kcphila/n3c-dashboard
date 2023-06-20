@@ -15,13 +15,13 @@
 			to_char(c_date::date, 'FMMM/FMDD/YY') as date,
 			to_char(first_diagnosis_count::int,'999,999') as first_diagnosis,
 			to_char(original_infection_date_for_reinfected_count::int, '999,999') as reinfection
-		from n3c_questions_new.covid_lds_with_reinfection_date_counts_censored_infection_re where c_date ='2020-03-28'
+		from n3c_dashboard_ph.rein_covdatecounts_csd where c_date ='2020-03-28'
 		</sql:query>
 		<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
 			This graph shows the daily COVID+ cases within the Enclave and the number those patients diagnosed on that day who had subsequent infections.
 			For example, on ${row.date}, the number of patients diagnosed with COVID was ${row.first_diagnosis}; of these patients, 
 			${row.reinfection} were reinfected later at any date. 
-			For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+			For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 		</c:forEach>
 	</p>
 	<em>Hover over the graph to show the counts for that day. Click and drag to focus on a specific time range. 

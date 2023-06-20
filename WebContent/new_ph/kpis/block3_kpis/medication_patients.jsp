@@ -6,10 +6,10 @@
  	select to_char(sum(count)/1000000.0, '999.99')||'M' as count
  	from (select 
 			case
-				when (num_patients = '<20' or num_patients is null) then 0
-				else num_patients::int
+				when (patient_count = '<20' or patient_count is null) then 0
+				else patient_count::int
 			end as count
-			from n3c_questions_new.covid_patients_demographics_censored_medications where drug_domain != 'N/A') as foo
+			from n3c_dashboard_ph.Meds_CovDemoAgeMin_csd) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

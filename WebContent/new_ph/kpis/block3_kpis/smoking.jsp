@@ -11,10 +11,10 @@
  		end as count
 			from (select
 					case
-						when (num_patients = '<20' or num_patients is null) then 0
-						else num_patients::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as count
-				  from n3c_questions_new.covid_smoking_demographics_censored_smoking
+				  from n3c_dashboard_ph.sub_covsmodemoagemin_csd
 				  where smoking_status = 'Current or Former'
 				) as foo;
 </sql:query>

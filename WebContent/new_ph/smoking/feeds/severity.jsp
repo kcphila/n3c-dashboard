@@ -5,15 +5,16 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (select severity_abbrev as severity,smoking_status,patient_count,severity_abbrev,severity_seq,smoking_status_abbrev,smoking_status_seq
 			from (select
-					severity_type as severity,
+					severity,
 					smoking_status,
-					case
-						when (num_patients = '<20' or num_patients is null) then 0
-						else num_patients::int
-					end as patient_count
-				  from n3c_questions_new.covid_smoking_severity_censored_smoking
+					sum (case
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
+					end) as patient_count
+				  from n3c_dashboard_ph.sub_covsmodemoagemin_csd
+				  group by severity, smoking_status
 		  	) as foo
-		  	natural join n3c_dashboard.severity_map
+		  	natural join n3c_dashboard.sev_map
 		  	natural join n3c_dashboard.status_map
 		  ) as done;
 </sql:query>

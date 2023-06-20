@@ -7,20 +7,20 @@ from (select initial_infection, subsequent_infection, count, seven_day_rolling_a
 	 (select
 	 	to_char(initial_month,'FM00')||'/'||initial_year as initial_infection,
 	 	to_char(subsequent_month, 'FM00')||'/'||subsequent_year as subsequent_infection,
-	 	count,
+	 	patient_count as count,
 	 	case
-			when (count = '<20') then 0
-			else count::int
+			when (patient_count = '<20') then 0
+			else patient_count::int
 		end as actual_count,
 	 	initial_year||'-'||to_char(initial_month,'FM00') as initial,
 	 	subsequent_year||'-'||to_char(subsequent_month, 'FM00') as subsequent
-	 from n3c_questions_new.all_tests_month_cohort_reinfection_time_series
+	 from n3c_dashboard_ph.reints_alltstsmonth_csd
 	 ) as foo
 	 natural join
 	(select
 		to_char(first_diagnosis_date::date, 'yyyy-mm') as initial,
 		max(seven_day_rolling_avg) as seven_day_rolling_avg
-	from n3c_questions_new.positive_cases_by_day_cumsum_censored
+	from n3c_dashboard_ph.cumavgcov_poscasebyday_cumsum_csd
 	group by 1
 	) as bar
 	) as json

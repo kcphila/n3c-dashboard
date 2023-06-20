@@ -16,8 +16,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}legend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_severityvaccinated_viz" class="dash_viz"></div>
+		<div id="${param.block}_severityvaccinated_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -29,11 +32,12 @@ function ${param.block}_severityvaccinated_refresh() {
 			barLabelWidth: 120,
 			legend_data: vaccinated_legend,
 			secondary_range: vaccinated_range,
-			legend_label: 'Vaccination Status'
+			legend_label: 'Vaccination Status',
+			legendid: '${param.block}legend'
 		}
 
 	d3.select("#${param.block}_severityvaccinated_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_vaccinatedSeverityArray, properties);
+	localHorizontalStackedBarChart_new(${param.block}_vaccinatedSeverityArray, properties);
 }
 
 ${param.block}_severityvaccinated_refresh();

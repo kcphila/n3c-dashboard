@@ -16,8 +16,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}_ethnicity_legend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_raceethnicity_viz" class="dash_viz"></div>
+		<div id="${param.block}_raceethnicity_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
@@ -29,11 +32,12 @@ function ${param.block}_raceethnicity_refresh() {
 			barLabelWidth: 120,
 			legend_data: ethnicity_legend,
 			secondary_range: ethnicity_range,
-			legend_label: 'Ethnicity'
+			legend_label: 'Ethnicity',
+			legendid: '${param.block}_ethnicity_legend'
 		};
 
 	d3.select("#${param.block}_raceethnicity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_raceEthnicityArray, properties);
+	localHorizontalStackedBarChart_new(${param.block}_raceEthnicityArray, properties);
 }
 
 ${param.block}_raceethnicity_refresh();

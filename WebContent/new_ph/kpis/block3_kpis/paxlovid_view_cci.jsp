@@ -14,7 +14,7 @@
 						when (count::text = '<20' or count::text is null) then 0
 						else count::int
 					end as count
-				  from n3c_questions_new.cci
+				  from n3c_dashboard_ph.pax_cciprecovutil_csd
 				  where covid_w_pax = 1
 				) as foo;
 </sql:query>

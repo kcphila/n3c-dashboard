@@ -6,7 +6,7 @@
  	select to_char(sum(count)/1000000.0, '999.99')||'M' as count
  	from (select 
 			count
-			from n3c_questions_new.symptom_before_or_after_covid where not condition_after_covid_positive) as foo
+			from  n3c_dashboard_ph.longcov_symbeforeoraftercov_csd where not condition_after_covid_positive) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

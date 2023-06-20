@@ -8,7 +8,7 @@
 					</a>
 				</span>&nbsp;in the N3C Data Enclave whose patient records included Sotrovimab on any date included 
 				within the Enclave. Data aggregated by Age, Sex, and Severity. Medications were aggregated based on ingredient included in 
-				the medication. For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a></p>
+				the medication. For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a></p>
 </div>
 
 

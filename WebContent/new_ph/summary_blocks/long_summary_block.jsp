@@ -60,7 +60,7 @@
 					</h3>
 					<p style="text-align: left;">Use these visualizations to gain an overview and learn what you can 
 					explore within the Long COVID Dashboard. Within each visualization, click on any bar/tile to 
-					navigate to its associated view. For additional information about the dashboard, <a class="limitation_link" onclick="limitlink(); return false;" href="#limitations-section">see the limitations below</a>.</p>
+					navigate to its associated view. For additional information about the dashboard, <a class="limitation_link" onclick="${param.block}limitlink(); return false;" href="#limitations-section">see the limitations below</a>.</p>
 				</div>
 			</div>
 			<div class="col-12 col-lg-6">

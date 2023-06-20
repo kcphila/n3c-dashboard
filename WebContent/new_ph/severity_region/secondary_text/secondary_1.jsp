@@ -9,7 +9,7 @@
 				is represented. This does not constitute a representative sample of any geographic region and cannot be used to 
 				calculate the rate of infection for that region. Several sites contributing data to the Enclave are not represented 
 				on this map. This is either a result of the site contributing data pertaining to multiple states or because 
-				the site is still in the process of being mapped. For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+				the site is still in the process of being mapped. For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 				<small><a href="https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf">Learn More about Census Regions <i class="fas fa-external-link-alt"></i></a></small>
 </div>
 

@@ -1,14 +1,3 @@
-<style>
-div.bar.tooltip {
-	position: absolute;
-	background-color: white;
-  	opacity: 0.8;
-  	height: auto;
-	padding: 1px;
-  	pointer-events: none;
-}
-</style>
-
 <script>
 
 function mortalityVerticalBarChart(data, properties) {
@@ -85,7 +74,7 @@ function mortalityVerticalBarChart(data, properties) {
 	  			.attr('y1', '100%')
 	  			.attr('y2', '0%');
 
-	        // Create the stops of the main gradient.
+			// Create the stops of the main gradient.
 	        mainGradient.append('stop')
 	            .style('stop-color', "#33298D")
 	            .attr('offset', '0');
@@ -94,43 +83,43 @@ function mortalityVerticalBarChart(data, properties) {
 	            .style('stop-color', "#3F50B0")
 	            .attr('offset', '99%');
 
-			  // Scale the range of the data in the domains
-			  x.domain(data.map(function(d) { return d.element; }));
-			  y.domain([0, d3.max(data, function(d) { return d.count; })]);
+			// Scale the range of the data in the domains
+			x.domain(data.map(function(d) { return d.element; }));
+			y.domain([0, d3.max(data, function(d) { return d.count; })]);
 
 			  // append the rectangles for the bar chart
-			  svg.selectAll(".bar")
-			      .data(data)
-			    .enter().append("rect")
-			      .attr("class", "bar")
-			      .attr("fill", "url(#mainGradient)")
-			      .attr('rx', 2)
-			      .attr("x", function(d) { 
-			    	  var barwidth = x.bandwidth();
-			    	  if (barwidth > barwidthmax){
-			    		  return x(d.element)+ ((barwidth - barwidthmax)/2);
-			    	  }else{
-			    		  return x(d.element); 
-			    	  }
-			      })
-			      .attr("width", function(d){
-			    	  var barwidth = x.bandwidth();
-			    	  if (barwidth > barwidthmax){
-			    		  return barwidthmax;
-			    	  }else{
-			    		  return barwidth;
-			    	  }
-			      })
-			      //.attr("width", x.bandwidth())
-			      .attr("y", height)
-			      .attr("height", 0)
-			      .on("click", function(d, i){
-			    	  var format = {};
-			    	  format['secondary_name'] = d.element;
-					 window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, 'delay'); 
-				  })
-				  .on('mousemove', function(d){
-					  var text = "";
+			svg.selectAll(".bar")
+				.data(data)
+				.enter().append("rect")
+					.attr("class", "bar")
+					.attr("fill", "url(#mainGradient)")
+					.attr('rx', 2)
+					.attr("x", function(d) { 
+						var barwidth = x.bandwidth();
+						if (barwidth > barwidthmax){
+							return x(d.element)+ ((barwidth - barwidthmax)/2);
+						}else{
+							return x(d.element); 
+						}
+					})
+					.attr("width", function(d){
+						var barwidth = x.bandwidth();
+						if (barwidth > barwidthmax){
+							return barwidthmax;
+						}else{
+							return barwidth;
+						}
+					})
+					//.attr("width", x.bandwidth())
+					.attr("y", height)
+					.attr("height", 0)
+					.on("click", function(d, i){
+						var format = {};
+						format['secondary_name'] = d.element;
+						window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, 'delay'); 
+					})
+					.on('mousemove', function(d){
+						var text = "";
 						if (d.count == '<20'){
 		     				text= d.count;
 		     			}else{
@@ -146,20 +135,20 @@ function mortalityVerticalBarChart(data, properties) {
 							.html("<strong>" + d.element + "</strong><br><strong>Count:</strong> " + text);
 					})
 					.on('mouseout', function(d){
-				 		d3.selectAll(".tooltip").remove(); 
+						d3.selectAll(".tooltip").remove(); 
 					});
 			  
-			  svg.selectAll('rect')
+			svg.selectAll('rect')
 				.transition().duration(1000)
 				.attr("y", function(d) { return y(d.count); })
 				.attr('height', function(d) { return height - y(d.count); });
 
 
-			  // add the x Axis
-			  svg.append("g")
-			      .attr("transform", "translate(0," + height + ")")
-			      .call(d3.axisBottom(x))
-			      	.attr("class", "xaxis")
+			// add the x Axis
+			svg.append("g")
+				.attr("transform", "translate(0," + height + ")")
+				.call(d3.axisBottom(x))
+					.attr("class", "xaxis")
 			      	.append("text")
 			      	.attr("font-size", "14px")
 					.attr("x", (width)/2)
@@ -172,17 +161,17 @@ function mortalityVerticalBarChart(data, properties) {
 					
 					
 			d3.selectAll('.xaxis .tick text')
-  				.style("text-anchor", "end")
+				.style("text-anchor", "end")
   				.attr("dx", "-.8em")
   				.attr("dy", ".15em")
   				.attr("transform", "rotate(-65)")
   				.attr("font-size", "12px");
 
-			  // add the y Axis
-			  svg.append("g")
-			      .call(d3.axisLeft(y))
-			      .attr("class", "yaxis")
-			      	.append("text")
+			// add the y Axis
+			svg.append("g")
+				.call(d3.axisLeft(y))
+				.attr("class", "yaxis")
+					.append("text")
 			      	.attr("font-size", "14px")
 			      	.attr("transform", "rotate(-90)")
 			      	.attr("y", -margin.left+10)
@@ -192,26 +181,7 @@ function mortalityVerticalBarChart(data, properties) {
 					.attr("font-weight", "bold")
 					.attr("text-anchor", "middle")
 					.text("Mortality Count");
-			  
 			 
-			// Tooltip ////// 
-			var tooltip = svg.append("g")
-		    	.attr("class", "graph_tooltip")
-		    	.style("display", "none");
-		      
-		  	tooltip.append("rect")
-		    	.attr("width", 60)
-		    	.attr("height", 53)
-		   		.attr("fill", "white")
-		   		.style("opacity", 0.8);
-
-			tooltip.append("text")
-				.attr("x", 30)
-	    		.attr("dy", "1.2em")
-	    		.style("text-anchor", "middle")		    		
-	    		.attr("font-size", "12px")
-		    	.attr("font-weight", "bold");
-
 		}
 }
 </script>

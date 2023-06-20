@@ -14,8 +14,8 @@
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="hlh" />
 	
-	<jsp:param name="age_filter7" value="true" />
-	<jsp:param name="sex_filter3" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
+	<jsp:param name="sex_filter" value="true" />
 	
 	<jsp:param name="age_panel" value="hlh/age.jsp" />
 	<jsp:param name="sex_panel" value="hlh/sex.jsp" />

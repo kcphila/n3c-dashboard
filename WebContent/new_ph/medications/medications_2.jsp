@@ -13,7 +13,7 @@
 
 	<jsp:param name="kpis" value="medications/kpis.jsp" />
 
-	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="medication_filter" value="true" />
 	<jsp:param name="medication_class_filter" value="true" />
 
@@ -21,7 +21,7 @@
 	
 	<jsp:param name="simple_panel" value="medications/classes_frequency.jsp" />
 
-	<jsp:param name="datatable" value="medications/medications_table2.jsp" />
+	<jsp:param name="datatable" value="medications/tables/medications_table2.jsp" />
 	<jsp:param name="datatable_div" value="medications_medications_2" />
 	<jsp:param name="datatable_feed" value="medications/feeds/medications.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,medication_count,medication_class_count" />

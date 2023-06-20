@@ -3,28 +3,28 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select age_bin as age, gender as sex, race, ethnicity, observation, symptom, patient_display, patient_count,
-			age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, observation_seq, symptom_seq
+	from (select age, sex, race, ethnicity, observation, symptom, patient_display, patient_count,
+			age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq, observation_seq, symptom_seq
 			from (select
-					coalesce(age_bin, 'Unknown') as age_bin,
-					coalesce(gender_concept_name, 'Unknown') as gender,
-					coalesce(race_concept_name, 'Missing/Unknown') as race,
-					coalesce(ethnicity_concept_name, 'Missing/Unknown') as ethnicity,
+					coalesce(age, 'Unknown') as age,
+					sex,
+					race,
+					ethnicity,
 					observation,
 					symptom,
-					count as patient_display,
+					patient_count as patient_display,
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as patient_count
-				  from n3c_questions_new.icd10_individual_symptom_summary_counts_by_symptom_long_covi
+				  from n3c_dashboard_ph.longcov_icd10symptom_csd
 				  where observation != 'Does not have U09.9 in Record'
 				<c:if test="${not empty param.symptom}">and symptom = '${param.symptom}'</c:if>
 		  	) as foo
-		  	natural left join n3c_dashboard.age_map4
-		  	natural left join n3c_dashboard.gender_map2
+		  	natural left join n3c_dashboard.age_map_min
+		  	natural left join n3c_dashboard.sex_map
 		  	natural left join n3c_dashboard.race_map
-		  	natural left join n3c_dashboard.ethnicity_map
+		  	natural left join n3c_dashboard.eth_map
 		  	natural left join n3c_dashboard.observation_map
 		  	natural left join n3c_dashboard.symptom_map
 		  ) as done;

@@ -14,7 +14,7 @@
 	<jsp:param name="kpis" value="long_covid/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="Cognitive impairment" />
 
-	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />

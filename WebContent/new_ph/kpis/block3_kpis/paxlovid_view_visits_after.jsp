@@ -14,7 +14,7 @@
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as count
-				  from n3c_questions_new.postcovid_utilization
+				  from n3c_dashboard_ph.pax_postcovutil_csd
 				  where covid_w_pax = 1
 				  and number_of_visits_post_covid <= 100
 				) as foo;

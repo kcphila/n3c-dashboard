@@ -3,24 +3,24 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select race, ethnicity, age, gender_abbrev as sex, patient_display, patient_count,
-				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq
+	from (select race, ethnicity, age, sex, patient_display, patient_count,
+				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq
 			from (select
 					race,
-					ethnicity_concept_name as ethnicity,
-					COALESCE (age_bin, 'Null') as age,
-					gender_concept_name as gender,
-					count as patient_display,
+					ethnicity,
+					COALESCE (age, 'Unknown') as age,
+					sex,
+					patient_count as patient_display,
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as patient_count
-				  from n3c_questions_new.icd10_mortality_demo_grouped_updated
+				  from n3c_dashboard_ph.mor_icd10demogrouped_csd
 		  	) as foo
-		  	natural join n3c_dashboard.age_map10
+		  	natural join n3c_dashboard.age_map_min
 		  	natural join n3c_dashboard.race_map
-		  	natural join n3c_dashboard.ethnicity_map
-		  	natural join n3c_dashboard.gender_map
+		  	natural join n3c_dashboard.eth_map
+		  	natural join n3c_dashboard.sex_map
 		  ) as done;
 </sql:query>
 {

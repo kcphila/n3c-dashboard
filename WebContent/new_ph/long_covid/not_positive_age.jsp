@@ -29,8 +29,7 @@ function ${param.block}_age_refresh() {
 			domName: '#${param.block}_age_viz',
 			barLabelWidth: 100,
 			min_height: 300,
-			ordered: 0,
-			colorscale: age_range
+			colorscale: age_range_min
 	}
 
 	// console.log("age graph", "${param.block}_age_viz", ${param.block}_AgeArray)

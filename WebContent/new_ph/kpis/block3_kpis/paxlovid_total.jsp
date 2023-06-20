@@ -4,12 +4,12 @@
 
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
 	select
-		to_char(count, '999,999') as count,
+		to_char(patient_count, '999,999') as count,
 		(select to_char(substring(value from '[a-zA-Z]*-v[0-9]*-(.*)')::date, 'Month FMDD, YYYY') as value
 		 from n3c_admin.enclave_stats where title='release_name') as date,
 		(select substring(value from '[a-zA-Z]*-v([0-9]*)-.*') as value
 		 from n3c_admin.enclave_stats where title='release_name') as build
-	from n3c_questions.drug_count_summary where drug_name='PAXLOVID';
+	from n3c_dashboard_ph.medtimeser_drug_cnt_smry_csd where drug_name='PAXLOVID';
 </sql:query>
 	
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

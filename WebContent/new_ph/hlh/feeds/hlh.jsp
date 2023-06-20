@@ -3,25 +3,21 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select observation, age_abbrev as age, gender_abbrev as sex, patient_display, patient_count, age_abbrev, age_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, observation as observation_abbrev, observation_seq
+	from (select observation, age, sex, patient_display, patient_count, age_abbrev, age_seq, sex_abbrev, sex_seq, observation as observation_abbrev, observation_seq
 			from (select
 					INITCAP(observation) as observation,
-					coalesce(age_bracket, 'Unknown') as age_bin,
-					case
-					when (gender_concept_name = 'UNKNOWN') THEN 'Unknown'
-					when (gender_concept_name is null) THEN 'Unknown'
-					ELSE gender_concept_name
-					END as gender,
-					count as patient_display,
+					coalesce(age, 'Unknown') as age,
+					sex,
+					patient_count as patient_display,
 					n_observation as observation_seq,
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as patient_count
-				  from n3c_questions_new.${param.comorbidity}_and_covid_summary_updated
+				  from n3c_dashboard_ph.ds_${param.comorbidity}
 		  	) as foo
-		  	natural join n3c_dashboard.gender_map2
-		  	natural join n3c_dashboard.age_map7
+		  	natural join n3c_dashboard.sex_map
+		  	natural join n3c_dashboard.age_map_min
 		  ) as done;
 </sql:query>
 {

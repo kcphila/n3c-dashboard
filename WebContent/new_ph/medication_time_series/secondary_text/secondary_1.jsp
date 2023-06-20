@@ -6,5 +6,5 @@
 	medications at the same time would be included in multiple medication groups. Medication exposures do not mean 
 	the patient was given the medication in order to treat COVID-19. A patient may have been on a medication due to a 
 	condition that existed prior to their COVID-19 diagnosis. For additional information, 
-	<a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+	<a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 </div>

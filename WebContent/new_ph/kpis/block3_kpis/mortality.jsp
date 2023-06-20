@@ -5,16 +5,16 @@
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
  	select 
  		case
- 			when sum(count) < 1000 then sum(count)::text
- 			when sum(count) < 1000000 then to_char(sum(count)/1000.0, '999.99')||'k'
- 			else to_char(sum(count)/1000000.0, '999.99')||'M'
+ 			when sum(patient_count) < 1000 then sum(patient_count)::text
+ 			when sum(patient_count) < 1000000 then to_char(sum(patient_count)/1000.0, '999.99')||'k'
+ 			else to_char(sum(patient_count)/1000000.0, '999.99')||'M'
  		end as count
 			from (select
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
-					end as count
-				  from n3c_questions_new.icd10_mortality_demo_grouped_updated
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
+					end as patient_count
+				  from n3c_dashboard_ph.mor_icd10ageracsexgrouped_csd
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

@@ -15,7 +15,7 @@
 						when (count::text = '<20' or count::text is null) then 0
 						else count::int
 					end as count
-				  from n3c_questions_new.cci
+				  from n3c_dashboard_ph.pax_cciprecovutil_csd
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

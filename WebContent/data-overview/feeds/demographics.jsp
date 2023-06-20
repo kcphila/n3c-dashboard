@@ -3,33 +3,35 @@
 
 <sql:query var="ages" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select severity_abbrev as severity, race_abbrev as race, ethnicity, foo.age as age_bin, gender_abbrev as sex, patient_display, patient_count,
-				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, severity_abbrev, severity_seq
+	from (select severity_abbrev as severity, race_abbrev as race, ethnicity, foo.age as age, sex, 
+				case when (patient_count = 0) then '<20' else patient_count::text end as patient_display, 
+				patient_count,
+				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq, severity_abbrev, severity_seq
 			from (select
-					severity_type as severity,
+					severity,
 					race,
 					ethnicity,
-					COALESCE (age_bin, 'null') as age,
-					COALESCE (gender_concept_name, 'null') as gender,
-					count as patient_display,
-					case
-						when (count = '<20' or count is null) then 0
-						else count::int
-					end as patient_count
-				  from n3c_questions_new.all_ages_covid_pos_demo_censored
+					COALESCE (age, 'Unknown') as age,
+					sex,
+					sum(case
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
+					end) as patient_count
+				  from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
+				  group by severity, race, ethnicity, age, sex
 		  	) as foo
-		  	join n3c_dashboard.age_map8 on foo.age = age_map8.age
+		  	natural join n3c_dashboard.age_map_ideal
 		  	natural join n3c_dashboard.race_map
-		  	natural join n3c_dashboard.ethnicity_map
-		  	natural join n3c_dashboard.gender_map3
-		  	natural join n3c_dashboard.severity_map
+		  	natural join n3c_dashboard.eth_map
+		  	natural join n3c_dashboard.sex_map
+		  	natural join n3c_dashboard.sev_map
 		  ) as done;
 </sql:query>
 {
     "headers": [
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
-        {"value":"age_bin", "label":"Age"},
+        {"value":"age", "label":"Age"},
         {"value":"sex", "label":"Sex"},
         {"value":"severity", "label":"Severity"},
         {"value":"patient_count", "label":"Patient Count"},

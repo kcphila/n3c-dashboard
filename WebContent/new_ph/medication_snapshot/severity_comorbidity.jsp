@@ -10,32 +10,36 @@
 				<i class="fas fa-download"></i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_severitycomorbidity_viz', '${param.topic_title}.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_severitycomorbidity_viz', '${param.topic_title}.png');">Save as PNG</a>
-				<a class="dropdown-item" onclick="saveVisualization('${param.block}_severitycomorbidity_viz', '${param.topic_title}.svg');")">Save as SVG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_severitycciscore_viz', '${param.topic_title}.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_severitycciscore_viz', '${param.topic_title}.png');">Save as PNG</a>
+				<a class="dropdown-item" onclick="saveVisualization('${param.block}_severitycciscore_viz', '${param.topic_title}.svg');")">Save as SVG</a>
 			</div>
 		</div>
 	</div>
+	<div class="col-12 mb-4"> 
+		<div id="${param.block}legend"></div>
+	</div>
 	<div class="col-12">
-		<div id="${param.block}_severitycomorbidity_viz" class="dash_viz"></div>
+		<div id="${param.block}_severitycciscore_viz" class="dash_viz clip"></div>
 	</div>
 </div>
 
 
 <script>
 
-function ${param.block}_severitycomorbidity_refresh() {
+function ${param.block}_severitycciscore_refresh() {
 	var properties = {
-			domName: '${param.block}_severitycomorbidity_viz',
+			domName: '${param.block}_severitycciscore_viz',
 			barLabelWidth: 120,
-			legend_data: comorbidity_number_legend,
-			secondary_range: comorbidity_number_range,
-			legend_label: 'Number of Comorbidities'
+			legend_data: cci_legend,
+			secondary_range: cci_range,
+			legend_label: 'CCI Score',
+			legendid: '${param.block}legend'
 		}
 
-	d3.select("#${param.block}_severitycomorbidity_viz").select("svg").remove();
-	localHorizontalStackedBarChart(${param.block}_comorbiditySeverityArray, properties);
+	d3.select("#${param.block}_severitycciscore_viz").select("svg").remove();
+	localHorizontalStackedBarChart_new(${param.block}_cciscoreSeverityArray, properties);
 }
 
-${param.block}_severitycomorbidity_refresh();
+${param.block}_severitycciscore_refresh();
 </script>

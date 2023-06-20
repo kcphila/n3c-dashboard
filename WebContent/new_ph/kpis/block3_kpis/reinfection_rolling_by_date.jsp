@@ -3,18 +3,17 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
  <sql:query var="totals" dataSource="jdbc/N3CPublic">
-  	select to_char(max(seven_day_rolling_avg)/1000.0, '999.99')||'K' count from
+  	select to_char(max(seven_day_rolling_avg)/1000.0, '999.99')||'K' patient_count from
 	(select
 		 	to_char(initial_month,'FM00')||'/'||initial_year as initial_infection,
 		 	to_char(subsequent_month, 'FM00')||'/'||subsequent_year as subsequent_infection,
-		 	count,
 		 	case
-				when (count = '<20') then 0
-				else count::int
-			end as actual_count,
+				when (patient_count = '<20') then 0
+				else patient_count::int
+			end as patient_count,
 		 	initial_year||'-'||to_char(initial_month,'FM00') as initial,
 		 	subsequent_year||'-'||to_char(subsequent_month, 'FM00') as subsequent
-		 from n3c_questions_new.all_tests_month_cohort_reinfection_time_series
+		 from n3c_dashboard_ph.reints_alltstsmonth_csd
 		 ) as foo
 		 natural join
 		(select
@@ -35,7 +34,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_reinfected_rolling_by_date_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_reinfected_rolling_by_date_kpi">${row.patient_count}</span></div>
 			</div>
 		</div>
 	</div>

@@ -13,7 +13,7 @@
 					when (count::text = '<20' or count is null) then 0
 					else count::int
 					end as patient_count
-				from n3c_questions_new.cci
+				from n3c_dashboard_ph.pax_cciprecovutil_csd
 			) as foo
 			join n3c_dashboard.pax_map on covid_w_pax = n3c_dashboard.pax_map.pax
 			join n3c_dashboard.cci_map_pax on cci_as_of_index_binned = n3c_dashboard.cci_map_pax.cci

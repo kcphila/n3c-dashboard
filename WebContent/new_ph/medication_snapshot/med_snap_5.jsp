@@ -12,7 +12,7 @@
 	<jsp:param name="kpis" value="medication_snapshot/kpis.jsp" />
 	
 	<jsp:param name="severity_filter" value="true" />
-	<jsp:param name="vaccinated_filter2" value="true" />
+	<jsp:param name="vaccinated_filter" value="true" />
 	
 	<jsp:param name="did" value="47" />
 

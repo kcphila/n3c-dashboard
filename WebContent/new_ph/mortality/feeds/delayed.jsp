@@ -5,13 +5,13 @@
 	select jsonb_pretty(jsonb_agg(done order by diff_seq))
 	from (select
 					datediff_bw_death_and_hos,
-					count as patient_display,
+					patient_count as patient_display,
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as patient_count,
 					substring(datediff_bw_death_and_hos from '^[0-9]*')::int as diff_seq
-				  from n3c_questions_new.binned_diff_bw_death_and_hosptial_visit_updated
+				  from n3c_dashboard_ph.mor_bindiffdeathHos_csd
 				  where substring(datediff_bw_death_and_hos from '^[0-9]*')::int <= 28470
 		  ) as done;
 </sql:query>

@@ -28,7 +28,6 @@ function ${param.block}_race_refresh() {
 			domName: '#${param.block}_race_viz',
 			barLabelWidth: 100,
 			min_height: 300,
-			ordered: 0,
 			colorscale: race_range
 	}
 

@@ -7,8 +7,8 @@
 	<select id="selectMe">
 		<option value="long_covid_1">Long COVID Dashboard Overview</option>
 		<optgroup label="Long COVID Diagnosis">
-			<option value="long_covid_13">Long COVID ICD-10 Code (U09.9)</option>
-			<option value="long_covid_2">Long COVID Clinic Visit</option>
+			<option value="long_covid_13">Demographics of Diagnosed Long COVID Patients (U09.9)</option>
+			<option value="long_covid_2">Demographics of Patients with a Long COVID Clinic Visit</option>
 		</optgroup>
 		<optgroup label="Potential Long COVID Symptoms">
 			<option value="long_covid_3">Cumulative Symptoms Summary</option>

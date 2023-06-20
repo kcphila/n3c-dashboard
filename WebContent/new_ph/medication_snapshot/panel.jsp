@@ -6,11 +6,9 @@
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<optgroup label="Sotrovimab">
-			<option value="med_snap_1">Sotrovimab: Treated Patient Demographics</option>
-			<option value="med_snap_2">Sotrovimab: COVID Diagnosis Type and Severity</option>
-			<option value="med_snap_3">Medications Taken Before and After Sotrovimab</option>
-			<option value="med_snap_4">Sotrovimab: Comorbidities</option>
-			<option value="med_snap_5">Sotrovimab: Vaccinations</option>
+			<option value="med_snap_1">Sotrovimab: Demographics & Severity</option>
+			<option value="med_snap_4">Sotrovimab: Severity & Comorbidities</option>
+			<option value="med_snap_5">Sotrovimab: Severity & Vaccinations</option>
 		</optgroup>
 <!-- 		<optgroup label="Paxlovid"> -->
 <!-- 			<option value="med_snap_6">Demographics</option> -->

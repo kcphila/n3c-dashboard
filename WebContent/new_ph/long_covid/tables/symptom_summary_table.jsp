@@ -166,7 +166,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'observation', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true },
+        	{ data: 'age', visible: true, orderable: true, orderData: [8] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },

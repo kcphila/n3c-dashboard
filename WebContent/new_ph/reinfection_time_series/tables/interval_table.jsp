@@ -126,7 +126,7 @@ $(document).ready( function () {
 	        	{ data: 'subsequent_infection', visible: true, orderable: true, className: 'text-center', orderData: [7] },
 	        	{ data: 'interval', visible: true, orderable: true, className: 'text-right' },
 	        	{ data: 'interval_bin', visible: true, orderable: true, className: 'text-center', orderData: [8] },
-	        	{ data: 'count', visible: true, orderable: true, className: 'text-right', orderData: [5] },
+	        	{ data: 'patient_count', visible: true, orderable: true, className: 'text-right', orderData: [5] },
 	        	{ data: 'actual_count', visible: false, orderable: true, className: 'text-right' },
 	        	{ data: 'initial', visible: false, orderable: true, className: 'text-right' },
 	        	{ data: 'subsequent', visible: false, orderable: true, className: 'text-right' },

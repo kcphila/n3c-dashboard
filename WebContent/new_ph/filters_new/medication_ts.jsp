@@ -20,7 +20,7 @@
 					<button class="btn btn-light btn-sm" onclick="deselect('medications_panel');">None</button><br>
 					<select id="${param.block}-medications-select" multiple="multiple">
 					<sql:query var="cases" dataSource="jdbc/N3CPublic">
-						select distinct drug_name as medication from n3c_questions_new.drug_monthly_count_summary
+						select distinct drug_name as medication from  n3c_dashboard_ph.medtimeser_drug_monthcnt_csd
 						order by 1;
 					</sql:query>
 					<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">

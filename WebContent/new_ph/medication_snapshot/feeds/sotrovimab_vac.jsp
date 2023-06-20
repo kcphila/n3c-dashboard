@@ -6,16 +6,19 @@
 	from (select vaccinated, severity_abbrev as severity, patient_display, patient_count,
 				severity_abbrev, severity_seq, vaccinated_abbrev, vaccinated_seq
 			from (select
-					severity_type as severity,
-					COALESCE (vaccinated, 'Unknown') as vaccinated,
-					count as patient_display,
+					severity,
+					Case
+						when (vaccinated) then 'Vaccinated'
+						else 'Unknown'
+						end as vaccinated,
+					patient_count as patient_display,
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as patient_count
-				  from n3c_questions_new.sotrovimab_vax_status_updated
+				  from n3c_dashboard_ph.med_snpsht_sotro_vaccsev_csd
 		  	) as foo
-		  	natural join n3c_dashboard.severity_map
+		  	natural join n3c_dashboard.sev_map
 		  	natural join n3c_dashboard.vaccinated_map
 		  ) as done;
 </sql:query>

@@ -8,7 +8,7 @@ from (select
 		subsequent_infection,
 		interval,
 		((interval / 30) * 30)||' to '||((interval / 30 + 1) * 30) as interval_bin,
-		count,
+		patient_count,
 		actual_count,
 		initial,
 		subsequent,
@@ -17,14 +17,14 @@ from (select
 	 	to_char(initial_month,'FM00')||'/'||initial_year as initial_infection,
 	 	to_char(subsequent_month, 'FM00')||'/'||subsequent_year as subsequent_infection,
 	 	(subsequent_month||'/'||'01/'||subsequent_year)::date - (initial_month||'/'||'01/'||initial_year)::date as interval,
-	 	count,
+	 	patient_count,
 	 	case
-			when (count = '<20') then 0
-			else count::int
+			when (patient_count = '<20') then 0
+			else patient_count::int
 		end as actual_count,
 	 	initial_year||'-'||to_char(initial_month,'FM00') as initial,
 	 	subsequent_year||'-'||to_char(subsequent_month, 'FM00') as subsequent
-	 from n3c_questions_new.all_tests_month_cohort_reinfection_time_series
+	 from n3c_dashboard_ph.reints_alltstsmonth_csd
 	) as bar
 	) as json
 ;	
@@ -37,7 +37,7 @@ from (select
         {"value":"subsequent_infection", "label":"Subsequent Infection"},
         {"value":"interval", "label":"Reinfection Interval"},
         {"value":"interval_bin", "label":"Interval Bin"},
-        {"value":"count", "label":"Number of Reinfected Patients"},
+        {"value":"patient_count", "label":"Number of Reinfected Patients"},
         {"value":"actual_count", "label":"Actual Count"},
         {"value":"initial", "label":"Actual initial"},
         {"value":"subsequent", "label":"Actual subsequent"},

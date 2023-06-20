@@ -6,10 +6,10 @@ function ${param.block}_constrain_table(filter, constraint) {
 	
 	switch (filter) {
 	case 'severity':
-		table.column(1).search(constraint, true, false, true).draw();	
-		break;
-	case 'comorbidity_number':
 		table.column(0).search(constraint, true, false, true).draw();	
+		break;
+	case 'cciscore':
+		table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -121,14 +121,14 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'numberofcomorbidities', visible: true, orderable: true, orderData: [7] },
         	{ data: 'severity', visible: true, orderable: true },
+        	{ data: 'comorbidity', visible: true, orderable: true, orderData: [7] },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [3] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'severity_abbrev', visible: false },
         	{ data: 'severity_seq', visible: false },
-        	{ data: 'numberofcomorbidities_abbrev', visible: false },
-        	{ data: 'numberofcomorbidities_seq', visible: false }
+        	{ data: 'comorbidity_abbrev', visible: false },
+        	{ data: 'comorbidity_seq', visible: false }
     	]
 	} );
 	

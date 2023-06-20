@@ -3,29 +3,28 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div class="panel-body">
-	<div class="accordion" id="medication_accordion">
+	<div class="accordion" id="${param.block}medication_accordion">
  		<div class="card">
- 			<div class="card-header" id="medication_heading">
+ 			<div class="card-header" id="${param.block}medication_heading">
 				<h2 class="mb-0">
-				<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#medication_body" aria-expanded="true" aria-controls="medication_body">
+				<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#${param.block}medication_body" aria-expanded="true" aria-controls="${param.block}medication_body">
   					Medication
  				</button>
 				</h2>
 			</div>
 		</div>
-		<div id="medication_body" class="collapse" aria-labelledby="medication_heading" data-parent="#medication_accordion">
+		<div id="${param.block}medication_body" class="collapse" aria-labelledby="${param.block}medication_heading" data-parent="#${param.block}medication_accordion">
 			<div class="card-body">
-				<div id="medication_panel">
-					<button class="btn btn-light btn-sm" onclick="selectall('medication_panel');">All</button>
-					<button class="btn btn-light btn-sm" onclick="deselect('medication_panel');">None</button><br>
+				<div id="${param.block}medication_panel">
+					<button class="btn btn-light btn-sm" onclick="selectall('${param.block}medication_panel');">All</button>
+					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}medication_panel');">None</button><br>
 					<select id="${param.block}-medication-select" multiple="multiple">
 						<sql:query var="cases" dataSource="jdbc/N3CPublic">
-							select distinct medication from n3c_dashboard.medication_map 
-							where medication != 'Available, in progress'
+							select distinct drug_name from n3c_dashboard.drug_map 
 							order by 1;
 						</sql:query>
 						<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
-							<option value="${row.medication}">${row.medication}</option>
+							<option value="${row.drug_name}">${row.drug_name}</option>
 						</c:forEach>
 					</select>
 				</div>

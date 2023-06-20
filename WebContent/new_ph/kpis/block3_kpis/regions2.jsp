@@ -9,11 +9,8 @@
  			when sum(count) < 1000000 then to_char(sum(count)/1000.0, '999.99')||'k'
  			else to_char(sum(count)/1000000.0, '999.99')||'M'
  		end as count
-			from (select sum(case
-			when (num_patients = '<20' or num_patients is null) then 0
-			else num_patients::int
-			end) as count from n3c_questions_new.cases_by_severity_by_state_censored_regional_distribution
-			where state = 'Multiple States'
+			from (select patient_count as count from n3c_dashboard_ph.regcovcase_sev_csd
+			where divisions = 'Multiple States'
 		) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

@@ -19,7 +19,7 @@
 	
 	<jsp:param name="simple_panel" value="reinfection_time_series/interval.jsp" />
 
-	<jsp:param name="datatable" value="reinfection_time_series/interval_table.jsp" />
+	<jsp:param name="datatable" value="reinfection_time_series/tables/interval_table.jsp" />
 	<jsp:param name="datatable_div" value="reinfections-by-interval" />
 	<jsp:param name="datatable_feed" value="reinfection_time_series/feeds/interval.jsp" />
 	<jsp:param name="datatable_kpis" value="actual_count" />

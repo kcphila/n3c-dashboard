@@ -77,9 +77,9 @@ function ${param.block}_age_refresh() {
 			barLabelWidth: 120,
 			min_height: 300,
 			ordered: 0,
-			colorscale: age_range,
+			colorscale: age_range_min,
 			legend_label: 'Age',
-			legend_data: age_legend_4,
+			legend_data: age_legend_min,
 			donutRatio: 0.5
 		}
 

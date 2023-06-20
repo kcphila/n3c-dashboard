@@ -22,7 +22,7 @@
 		</a>
 	</span>&nbsp;. 
 	This can be caused by a lack of testing, non-reported testing, and reported testing not captured by our data partners 
-	(i.e., testing done at an unrelated institution). For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+	(i.e., testing done at an unrelated institution). For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 </div>
 
 

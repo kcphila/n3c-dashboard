@@ -5,8 +5,8 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (select sum(
 		case
-		when (count = '<20' or count is null) then 0
-		else count::int
+		when (patient_count = '<20' or patient_count is null) then 0
+		else patient_count::int
 		end) as value,
 		case
 		when (symptom = 'Cognitive impairment') then 'CI'
@@ -23,7 +23,7 @@
 		when (symptom = 'Fatigue') then 8
 		when (symptom = 'Cognitive impairment') then 7
 		end as viz_id
-		from n3c_questions_new.icd10_individual_symptom_summary_counts_by_symptom_long_covi
+		from n3c_dashboard_ph.longcov_icd10symptom_csd
 		group by symptom
 	) as done;
 </sql:query>

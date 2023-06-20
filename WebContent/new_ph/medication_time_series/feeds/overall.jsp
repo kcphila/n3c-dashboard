@@ -4,7 +4,7 @@
 <sql:query var="drugs" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (
-		select drug_name as medication, count, ROW_NUMBER() OVER (ORDER BY drug_name) as medication_seq
+		select drug_name as medication, patient_count as count, ROW_NUMBER() OVER (ORDER BY drug_name) as medication_seq
 		from n3c_dashboard_ph.medtimeser_drug_cnt_smry_csd
 		order by drug_name
 	) as done;

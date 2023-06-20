@@ -12,10 +12,10 @@
  		end as count
 			from (select
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as count
-				  from n3c_questions_new.sex_1
+				  from n3c_dashboard_ph.pax_demoagesec_csd
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">

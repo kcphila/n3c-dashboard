@@ -13,7 +13,6 @@
 		<option value="comorbidity_20">Diabetes Type 2</option>
 		<option value="comorbidity_5">Diabetes Mellitus with Complications</option>
 		<option value="comorbidity_6">HIV</option>
-		<option value="comorbidity_7">HLH</option>
 		<option value="comorbidity_8">Liver Disease Mild</option>
 		<option value="comorbidity_9">Liver Disease Severe</option>
 		<option value="comorbidity_10">Metastasis</option>

@@ -30,7 +30,7 @@
 				</span>&nbsp; of COVID-19 is a calculation based on multiple events recorded in a patients EHR during their medical visit. 
 				The severity score for each patient may be inaccurate due to missing information within the EHR. A patient will only 
 				be graded on Severity if they have a laboratory-confirmed positive PCR or Antigen test. 
-				For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+				For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 </div>
 
 

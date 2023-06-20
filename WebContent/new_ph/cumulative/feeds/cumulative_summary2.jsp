@@ -8,27 +8,27 @@
 		from(
 		    select 
 		        race,
-		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE gender = 'Female'), 0) AS count_non_hispanic_female,
-		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE gender = 'Male'), 0) AS count_non_hispanic_male,
-		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE gender = 'Other'), 0) AS count_non_hispanic_other,
-		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE gender = 'Unknown'), 0) AS count_non_hispanic_unknown,
-		        COALESCE(MAX(count_hispanic) FILTER (WHERE gender = 'Female'), 0) AS count_hispanic_female,
-		        COALESCE(MAX(count_hispanic) FILTER (WHERE gender = 'Male'), 0) AS count_hispanic_male,
-		        COALESCE(MAX(count_hispanic) FILTER (WHERE gender = 'Other'), 0) AS count_hispanic_other,
-		        COALESCE(MAX(count_hispanic) FILTER (WHERE gender = 'Unknown'), 0) AS count_hispanic_unknown,
-		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE gender = 'Female'), 0) AS count_ethnicity_unknown_female,
-		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE gender = 'Male'), 0) AS count_ethnicity_unknown_male,
-		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE gender = 'Other'), 0) AS count_ethnicity_unknown_other,
-		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE gender = 'Unknown'), 0) AS count_ethnicity_unknown_unknown
+		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE sex = 'Female'), 0) AS count_non_hispanic_female,
+		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE sex = 'Male'), 0) AS count_non_hispanic_male,
+		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE sex = 'Other'), 0) AS count_non_hispanic_other,
+		        COALESCE(MAX(count_non_hispanic) FILTER (WHERE sex = 'Unknown'), 0) AS count_non_hispanic_unknown,
+		        COALESCE(MAX(count_hispanic) FILTER (WHERE sex = 'Female'), 0) AS count_hispanic_female,
+		        COALESCE(MAX(count_hispanic) FILTER (WHERE sex = 'Male'), 0) AS count_hispanic_male,
+		        COALESCE(MAX(count_hispanic) FILTER (WHERE sex = 'Other'), 0) AS count_hispanic_other,
+		        COALESCE(MAX(count_hispanic) FILTER (WHERE sex = 'Unknown'), 0) AS count_hispanic_unknown,
+		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE sex = 'Female'), 0) AS count_ethnicity_unknown_female,
+		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE sex = 'Male'), 0) AS count_ethnicity_unknown_male,
+		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE sex = 'Other'), 0) AS count_ethnicity_unknown_other,
+		        COALESCE(MAX(count_ethnicity_unknown) FILTER (WHERE sex = 'Unknown'), 0) AS count_ethnicity_unknown_unknown
 		    from(
 		            select 
 		            race,
 		            case when (count_non_hispanic = '<20') then 0 else COALESCE(count_non_hispanic::int, 0) end as count_non_hispanic,  
 		            case when (count_hispanic = '<20') then 0 else COALESCE(count_hispanic::int, 0) end as count_hispanic, 
 		            case when (count_ethnicity_unknown = '<20') then 0 else COALESCE(count_ethnicity_unknown::int,0) end as count_ethnicity_unknown, 
-		            INITCAP(gender_concept_name) as gender 
-		            from n3c_questions_new.person_agg_demographic_censored_cumulative_positive
-		            order by gender_concept_name
+		            sex
+		            from n3c_dashboard_ph.demoirb_demo_csd
+		            order by sex
 		    ) as foo
 		    group by race
 		) as foo2

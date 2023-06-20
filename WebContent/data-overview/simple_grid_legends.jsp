@@ -59,7 +59,7 @@
 								Total COVID+ Patients*
 								<div class="kpi_num"><i class="fas fa-user-plus" aria-hidden="true"></i>    6.25M</div>
 								<div class="kpi-limit">
-									<a onclick="limitlink(); return false;" href="#limitations-section">* See Limitations Below</a>
+									<a onclick="${param.block}limitlink(); return false;" href="#limitations-section">* See Limitations Below</a>
 								</div>
 								<p class="data-as-of"><em>Data as of October 27, 2022</em></p>
 							</div>
@@ -166,7 +166,7 @@
 								<span style="color: #007bff; font-weight:600;">6.26M*</span>,
 								or <span style="color: #007bff; font-weight:600;">100%*</span> of all COVID+ Patients.</p>
 								<div class="kpi-limit" style="margin-top:10px;">
-									<a onclick="limitlink(); return false;" href="#limitations-section">* See Limitations Below</a>
+									<a onclick="${param.block}limitlink(); return false;" href="#limitations-section">* See Limitations Below</a>
 								</div>
 							</div>
 						</div>

@@ -5,13 +5,13 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (
 		select *, count_non_hispanic + count_hispanic + count_ethnicity_unknown as total from (
-			select INITCAP(gender_concept_name) as sex, 
+			select sex, 
 			case when (count_non_hispanic = '<20') then 0 else COALESCE(count_non_hispanic::int, 0) end as count_non_hispanic,  
     		case when (count_hispanic = '<20') then 0 else COALESCE(count_hispanic::int, 0) end as count_hispanic, 
     		case when (count_ethnicity_unknown = '<20') then 0 else COALESCE(count_ethnicity_unknown::int,0) end as count_ethnicity_unknown, 
 			race 
-			from n3c_questions_new.person_agg_demographic_censored_cumulative_positive 
-			order by gender_concept_name
+			from n3c_dashboard_ph.demoirb_demo_csd 
+			order by sex
 		) as foo
 	) as done;
 </sql:query>

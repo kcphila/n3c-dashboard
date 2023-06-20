@@ -30,9 +30,9 @@
 function ${param.block}_medication_refresh() {
 	var properties = {
 			domName: '${param.block}_medication_viz',
-			barLabelWidth: 213,
-			legend_data: age_legend_4,
-			secondary_range: age_range,
+			barLabelWidth: 220,
+			legend_data: age_legend_min,
+			secondary_range: age_range_min,
 			legend_label: 'Age',
 			legendid: '${param.block}legend'
 		}

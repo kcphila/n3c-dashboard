@@ -13,7 +13,7 @@
   						<span class="sr-only">, including, shortness of breath (R06.02, R06.00, or R06.09), fatigue (R53.83 or R53.82), cognitive impairment (G31.84 or R41.9), mental health condition (F01-F99), or Postural Orthostatic Tachycardia Syndrome (POTS) (I49.8)</span>
 					</a>
 				</span>
-				&nbsp;was recorded. These conditions are non-specific to Long COVID and could be related to other illnesses. The totals within the KPIs are greater than the total number of individuals, as individuals who experience multiple symptoms will be counted distinctly for each. For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
+				&nbsp;was recorded. These conditions are non-specific to Long COVID and could be related to other illnesses. The totals within the KPIs are greater than the total number of individuals, as individuals who experience multiple symptoms will be counted distinctly for each. For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.</p>
 </div>
 
 

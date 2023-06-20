@@ -12,11 +12,11 @@
 		age as label,
 		age_abbrev as short_label,
 		0 as x,
-		(age_seq * 1.0)/(select max(age_seq)-1 from n3c_dashboard.age_map8) as index,
-		(select coalesce(sum(case when count='<20' then 0 else count::int end),0)
-		 from n3c_questions_new.all_ages_covid_pos_demo_censored
-		 where all_ages_covid_pos_demo_censored.age_bin = age_map8.age) as weight
-	from n3c_dashboard.age_map8 where age != 'null'
+		(age_seq * 1.0)/(select max(age_seq)-1 from n3c_dashboard.age_map_ideal) as index,
+		(select coalesce(sum(case when patient_count='<20' then 0 else patient_count::int end),0)
+		 from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
+		 where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.age = age_map_ideal.age) as weight
+	from n3c_dashboard.age_map_ideal where age != 'Unknown'
 	
 	union
 	
@@ -25,24 +25,24 @@
 		severity as label,
 		severity_abbrev as short_label,
 		1 as x,
-		(severity_seq * 1.0)/(select max(severity_seq) from n3c_dashboard.severity_map) as index,
-		(select coalesce(sum(case when count='<20' then 0 else count::int end),0)
-		 from n3c_questions_new.all_ages_covid_pos_demo_censored
-		 where all_ages_covid_pos_demo_censored.severity_type = severity_map.severity) as weight
-	from n3c_dashboard.severity_map
+		(severity_seq * 1.0)/(select max(severity_seq) from n3c_dashboard.sev_map) as index,
+		(select coalesce(sum(case when patient_count='<20' then 0 else patient_count::int end),0)
+		 from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
+		 where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.severity = sev_map.severity) as weight
+	from n3c_dashboard.sev_map
 	
 	union
 	
 	select distinct
-		'2-'||gender_seq as mapping,
-		gender_abbrev as label,
-		gender_abbrev as short_label,
+		'2-'||sex_seq as mapping,
+		sex_abbrev as label,
+		sex_abbrev as short_label,
 		2 as x,
-		(gender_seq * 1.0)/(select max(gender_seq)-1 from n3c_dashboard.gender_map3) as index,
-		(select coalesce(sum(case when count='<20' then 0 else count::int end),0)
-		 from n3c_questions_new.all_ages_covid_pos_demo_censored
-		 where all_ages_covid_pos_demo_censored.gender_concept_name = gender_map3.gender) as weight
-	from n3c_dashboard.gender_map3 where gender != 'null'
+		(sex_seq * 1.0)/(select max(sex_seq) from n3c_dashboard.sex_map) as index,
+		(select coalesce(sum(case when patient_count='<20' then 0 else patient_count::int end),0)
+		 from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
+		 where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.sex = sex_map.sex) as weight
+	from n3c_dashboard.sex_map where sex != 'null'
 	
 	union
 	
@@ -52,9 +52,9 @@
 		race_abbrev as short_label,
 		3 as x,
 		(race_seq * 1.0)/(select max(race_seq) from n3c_dashboard.race_map) as index,
-		(select coalesce(sum(case when count='<20' then 0 else count::int end),0)
-		 from n3c_questions_new.all_ages_covid_pos_demo_censored
-		 where all_ages_covid_pos_demo_censored.race = race_map.race) as weight
+		(select coalesce(sum(case when patient_count='<20' then 0 else patient_count::int end),0)
+		 from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
+		 where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.race = race_map.race) as weight
 	from n3c_dashboard.race_map
 	
 	union
@@ -64,11 +64,11 @@
 		ethnicity as label,
 		ethnicity_abbrev as short_label,
 		4 as x,
-		(ethnicity_seq * 1.0)/(select max(ethnicity_seq) from n3c_dashboard.ethnicity_map) as index,
-		(select coalesce(sum(case when count='<20' then 0 else count::int end),0)
-		 from n3c_questions_new.all_ages_covid_pos_demo_censored
-		 where all_ages_covid_pos_demo_censored.ethnicity = ethnicity_map.ethnicity) as weight
-	from n3c_dashboard.ethnicity_map
+		(ethnicity_seq * 1.0)/(select max(ethnicity_seq) from n3c_dashboard.eth_map) as index,
+		(select coalesce(sum(case when patient_count='<20' then 0 else patient_count::int end),0)
+		 from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
+		 where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.ethnicity = eth_map.ethnicity) as weight
+	from n3c_dashboard.eth_map
 	
 	order by 4,5
 </sql:query>
@@ -81,82 +81,82 @@
 "edges": [
 
 <sql:query var="edges" dataSource="jdbc/N3CPublic">
-	select '0-'||age_seq as source, '1-'||severity_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.age_map8, n3c_dashboard.severity_map
-	where all_ages_covid_pos_demo_censored.age_bin = age_map8.age
-	  and all_ages_covid_pos_demo_censored.severity_type = severity_map.severity
+	select '0-'||age_seq as source, '1-'||severity_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.age_map_ideal, n3c_dashboard.sev_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.age = age_map_ideal.age
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.severity = sev_map.severity
 	group by 1,2
 	
 	union
 	
-	select '0-'||age_seq as source, '2-'||gender_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.age_map8, n3c_dashboard.gender_map3
-	where all_ages_covid_pos_demo_censored.age_bin = age_map8.age
-	  and all_ages_covid_pos_demo_censored.gender_concept_name = gender_map3.gender
+	select '0-'||age_seq as source, '2-'||sex_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.age_map_ideal, n3c_dashboard.sex_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.age = age_map_ideal.age
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.sex = sex_map.sex
 	group by 1,2
 	
 	union
 	
-	select '0-'||age_seq as source, '3-'||race_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.age_map8, n3c_dashboard.race_map
-	where all_ages_covid_pos_demo_censored.age_bin = age_map8.age
-	  and all_ages_covid_pos_demo_censored.race = race_map.race
+	select '0-'||age_seq as source, '3-'||race_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.age_map_ideal, n3c_dashboard.race_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.age = age_map_ideal.age
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.race = race_map.race
 	group by 1,2
 	
 	union
 	
-	select '0-'||age_seq as source, '4-'||ethnicity_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.age_map8, n3c_dashboard.ethnicity_map
-	where all_ages_covid_pos_demo_censored.age_bin = age_map8.age
-	  and all_ages_covid_pos_demo_censored.ethnicity = ethnicity_map.ethnicity
+	select '0-'||age_seq as source, '4-'||ethnicity_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.age_map_ideal, n3c_dashboard.eth_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.age = age_map_ideal.age
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.ethnicity = eth_map.ethnicity
 	group by 1,2
 	
 	union
 	
-	select '1-'||severity_seq as source, '2-'||gender_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.severity_map, n3c_dashboard.gender_map3
-	where all_ages_covid_pos_demo_censored.severity_type = severity_map.severity
-	  and all_ages_covid_pos_demo_censored.gender_concept_name = gender_map3.gender
+	select '1-'||severity_seq as source, '2-'||sex_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.sev_map, n3c_dashboard.sex_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.severity = sev_map.severity
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.sex = sex_map.sex
 	group by 1,2
 	
 	union
 	
-	select '1-'||severity_seq as source, '3-'||race_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.severity_map, n3c_dashboard.race_map
-	where all_ages_covid_pos_demo_censored.severity_type = severity_map.severity
-	  and all_ages_covid_pos_demo_censored.race = race_map.race
+	select '1-'||severity_seq as source, '3-'||race_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.sev_map, n3c_dashboard.race_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.severity = sev_map.severity
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.race = race_map.race
 	group by 1,2
 	
 	union
 	
-	select '1-'||severity_seq as source, '4-'||ethnicity_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.severity_map, n3c_dashboard.ethnicity_map
-	where all_ages_covid_pos_demo_censored.severity_type = severity_map.severity
-	  and all_ages_covid_pos_demo_censored.ethnicity = ethnicity_map.ethnicity
+	select '1-'||severity_seq as source, '4-'||ethnicity_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.sev_map, n3c_dashboard.eth_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.severity = sev_map.severity
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.ethnicity = eth_map.ethnicity
 	group by 1,2
 	
 	union
 	
-	select '2-'||gender_seq as source, '3-'||race_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.gender_map3, n3c_dashboard.race_map
-	where all_ages_covid_pos_demo_censored.gender_concept_name = gender_map3.gender
-	  and all_ages_covid_pos_demo_censored.race = race_map.race
+	select '2-'||sex_seq as source, '3-'||race_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.sex_map, n3c_dashboard.race_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.sex = sex_map.sex
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.race = race_map.race
 	group by 1,2
 	
 	union
 	
-	select '2-'||gender_seq as source, '4-'||ethnicity_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.gender_map3, n3c_dashboard.ethnicity_map
-	where all_ages_covid_pos_demo_censored.gender_concept_name = gender_map3.gender
-	  and all_ages_covid_pos_demo_censored.ethnicity = ethnicity_map.ethnicity
+	select '2-'||sex_seq as source, '4-'||ethnicity_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.sex_map, n3c_dashboard.eth_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.sex = sex_map.sex
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.ethnicity = eth_map.ethnicity
 	group by 1,2
 	
 	union
 	
-	select '3-'||race_seq as source, '4-'||ethnicity_seq as target, sum(case when count='<20' then 0 else count::int end) as weight
-	from n3c_questions_new.all_ages_covid_pos_demo_censored, n3c_dashboard.race_map, n3c_dashboard.ethnicity_map
-	where all_ages_covid_pos_demo_censored.race = race_map.race
-	  and all_ages_covid_pos_demo_censored.ethnicity = ethnicity_map.ethnicity
+	select '3-'||race_seq as source, '4-'||ethnicity_seq as target, sum(case when patient_count='<20' then 0 else patient_count::int end) as weight
+	from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd, n3c_dashboard.race_map, n3c_dashboard.eth_map
+	where n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.race = race_map.race
+	  and n3c_dashboard_ph.Demo_demo_ageidl_cov_csd.ethnicity = eth_map.ethnicity
 	group by 1,2
 	
 	order by 3 desc;

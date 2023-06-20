@@ -13,7 +13,7 @@
 				patient actually took the displayed medication. Some medication exposure records specify that a prescription 
 				for a medication was written while others specify In-patient administration. There is no guarantee that a 
 				patient was exposed to the displayed medications, only that their medical records include evidence of that 
-				medication. For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a></p>
+				medication. For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a></p>
 </div>
 
 

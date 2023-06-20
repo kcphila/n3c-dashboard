@@ -3,85 +3,58 @@
 
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
-	// console.log("${param.block}", filter, constraint)
 	switch (filter) {
 	case 'age':
-		table.column(0).search(constraint, true, false, true).draw();	
+	    table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'sex':
-		table.column(1).search(constraint, true, false, true).draw();	
+	case 'smokingstatus':
+	    table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'race':
-		table.column(2).search(constraint, true, false, true).draw();	
+	    table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'ethnicity':
-		table.column(3).search(constraint, true, false, true).draw();	
-		break;
-	case 'observation':
-		table.column(4).search(constraint, true, false, true).draw();	
-		break;
-	case 'symptom':
-		table.column(5).search(constraint, true, false, true).draw();	
+	case 'sex':
+	    table.column(3).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
-	// console.log('${param.target_kpis}')
 	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
-		// console.log(kpis[a]);
-		${param.block}_updateKPI(table, kpis[a])
-	}
-	
-	// console.log('${param.target_filtered_kpis}')
-	var kpis = '${param.target_filtered_kpis}'.split(',');
-	for (var a in kpis) {
-		// console.log('filtered', kpis[a]);
-		var components = kpis[a].split('|');
-		// console.log('filtered', components);
-		${param.block}_updateFilteredKPI(components[0], components[1], table, components[3], components[2])
+		${param.block}_updateKPI(table, kpis[a]);
 	}
 }
 
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
-	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	// console.log(sum, table.rows({search:'applied'}).data().pluck(column))
+	var sum = 0;
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'smoking'){
+			if (data['smoking_status'] == 'Current or Former'){
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'smokingnot'){
+			if (data['smoking_status'] == 'Never'){
+				sum += data['patient_count'];
+			};
+		};
+	});	
+	
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
 		sum = sum / 1000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k"
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
 	} else {
 		sum = sum / 1000000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
 		
 	}
-	// console.log('${param.block}', column, sumString)
-	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
-}
-
-function ${param.block}_updateFilteredKPI(filter_column, filter_value, table, column, kpi_label) {
-	var sum_string = '';
-    var indexes = table
-      .rows({search:'applied'})
-      .indexes()
-      .filter( function ( value, index ) {
-        return filter_value === table.row(value).data()[filter_column];
-      } );
-	var sum = table.rows(indexes).data().pluck(column).sum();
-	// console.log('filtered', sum, table.rows(indexes).data().pluck(column).sum())
-	if (sum < 1000) {
-		sumString = sum+'';
-	} else if (sum < 1000000) {
-		sum = sum / 1000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k"
-	} else {
-		sum = sum / 1000000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
-		
-	}
-	// console.log('${param.block}', column, sumString)
-	document.getElementById('${param.block}'+'_'+kpi_label+'_kpi').innerHTML = sumString
+	// console.log(column);
+	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
 }
 
 jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
@@ -142,12 +115,12 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	    buttons: [{
     	      extend: 'csv',
     	      className: 'btn btn-sm btn-light',
+    	      titleAttr: 'CSV export.',
     	      exportOptions: {
                   columns: ':visible'
               },
-    	      titleAttr: 'CSV export.',
     	      text: 'CSV',
-    	      filename: 'symptom_ungrouped_csv_export',
+    	      filename: 'smoking_csv_export',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -168,16 +141,23 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'demographic', visible: true, orderable: true },
-        	{ data: 'value', visible: true, orderable: true },
-        	{ data: 'total_enclave', visible: true, orderable: true },
-        	{ data: 'total_positive', visible: true, orderable: true },
-        	{ data: 'positive_percent', visible: true, orderable: true },
-        	{ data: 'total_long', visible: true, orderable: true },
-        	{ data: 'long_percent', visible: true, orderable: true, orderData: [7] }
+         	{ data: 'age', visible: true, orderable: true, orderData: [7] },
+        	{ data: 'smoking_status', visible: true, orderable: true },
+        	{ data: 'race', visible: true, orderable: true },
+        	{ data: 'sex', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
+        	{ data: 'patient_count', visible: false },
+        	{ data: 'age_abbrev', visible: false },
+        	{ data: 'age_seq', visible: false },
+        	{ data: 'race_abbrev', visible: false },
+        	{ data: 'race_seq', visible: false },
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false },
+        	{ data: 'smoking_status_abbrev', visible: false },
+        	{ data: 'smoking_status_seq', visible: false }
     	]
 	} );
-
+	
 	// table search logic that distinguishes sort/filter 
 	${param.block}_datatable.on( 'search.dt', function () {
 		var snapshot = ${param.block}_datatable

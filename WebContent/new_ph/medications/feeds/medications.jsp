@@ -3,23 +3,22 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select drug_domain, medication as concept_set_name, age_bin as age, case when patient_count = 0 then '<20' else patient_count||'' end as patient_display, patient_count, total_count, age_abbrev, age_seq
-			from (select drug_domain,medication,age_bin,max(patient_count) as patient_count,total_count from (
-				select
+	from (select drug_domain, drug_name as concept_set_name, age, case when patient_count = 0 then '<20' else patient_count||'' end as patient_display, patient_count, total_count, age_abbrev, age_seq
+			from (select
+					drug_name,
 					drug_domain,
-					concept_set_name,
-					medication,
-					age_bin,
-					case
-						when (num_patients = '<20' or num_patients is null) then 0
-						else num_patients::int
-					end as patient_count,
-					total_patients as total_count
-				  from n3c_questions_new.covid_patients_demographics_censored_medications natural join n3c_dashboard.medication_map
-				  where concept_set_name != 'Available, in progress'
-				  order by drug_domain, medication) as bar group by 1,2,3,5 order by 1,2,3
+					age,
+					sum(case
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
+					end) as patient_count,
+					max(total_patient_count) as total_count
+				  from n3c_dashboard_ph.Meds_CovDemoAgeMin_csd
+				  natural join n3c_dashboard.drug_map
+				  group by drug_name, drug_domain, age
+				  order by drug_domain, drug_name
 		  	) as foo
-		  	natural join n3c_dashboard.age_map4
+		  	natural join n3c_dashboard.age_map_min
 		  )as done ;
 </sql:query>
 {

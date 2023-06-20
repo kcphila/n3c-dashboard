@@ -46,7 +46,7 @@
 	<c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 		<p class="data-as-of"><em>Data as of ${row.date} (${row.release})</em></p>
 	</c:forEach>
-	<div class="kpi-limit"><a onclick="limitlink(); return false;" href="#limitations-section">* See Limitations Below</a></div>
+	<div class="kpi-limit"><a onclick="${param.block}limitlink(); return false;" href="#${param.block}limitations-section">* See Limitations Below</a></div>
 </c:forEach>
 
 <script>

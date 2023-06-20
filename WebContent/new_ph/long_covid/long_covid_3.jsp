@@ -12,13 +12,13 @@
 	
 	<jsp:param name="kpis" value="long_covid/kpis.jsp" />
 
-	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 	
 	<jsp:param name="simple_panel" value="long_covid/observation.jsp" />
-	<jsp:param name="labelwidth" value="210" />
+	<jsp:param name="labelwidth" value="230" />
 
 	<jsp:param name="datatable" value="long_covid/tables/symptom_summary_table.jsp" />
 	<jsp:param name="datatable_div" value="long_covid_symptom_summary" />

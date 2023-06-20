@@ -10,7 +10,7 @@
 			<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 		</a>
 		</span>&nbsp;in the N3C Data Enclave. Note that N3C data may not be representative of the entire US population. 
-		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 	</p>
 	<em>Hover over the graph to show the counts for that day. Click and drag to focus on a specific time range. Double click to 
 	revert to the default time range.</em>

@@ -13,7 +13,7 @@
 	
 	<jsp:param name="toggle2" value="true" />
 
-	<jsp:param name="kpis" value="smoking/kpis_new.jsp" />
+	<jsp:param name="kpis" value="smoking/kpis.jsp" />
 
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="smoking_filter" value="true" />
@@ -38,7 +38,7 @@
 		}]
 	}"/>
 	
-	<jsp:param name="datatable" value="smoking/severity_table.jsp" />
+	<jsp:param name="datatable" value="smoking/tables/severity_table.jsp" />
 	<jsp:param name="datatable_div" value="smoking_severity" />
 	<jsp:param name="datatable_feed" value="smoking/feeds/severity.jsp" />
 	<jsp:param name="datatable_kpis" value="smoking,smokingnot" />

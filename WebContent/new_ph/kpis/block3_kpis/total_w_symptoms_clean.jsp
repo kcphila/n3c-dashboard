@@ -9,7 +9,7 @@
 				when (count = '<20' or count is null) then 0
 				else count::int
 			end as count
-			from n3c_questions_new.icd10_individual_symptom_summary_counts_long_covid where same_agg = 1) as foo
+			from n3c_dashboard_ph.longcov_icd10sympcounts_csd where same_agg = 1) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

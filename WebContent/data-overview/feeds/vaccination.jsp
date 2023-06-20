@@ -3,28 +3,31 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select severity_abbrev as severity, gender_abbrev as sex, age_bin, race_abbrev as race, vaccinated, patient_display, patient_count,age_abbrev,
-	age_seq, race_abbrev, race_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq, severity_abbrev, severity_seq
+	from (select severity_abbrev as severity, sex_abbrev as sex, age, race_abbrev as race, ethnicity, vaccinated, 
+	case when (patient_count = 0) then '<20' else patient_count::text end as patient_display, patient_count, age_abbrev,
+	age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq, severity_abbrev, severity_seq
 			from (select
-					severity_type as severity,
-					race_concept_name as race,
+					severity,
+					race,
+					ethnicity,
 					case
-						when (vaccinated = '1') then 'True'
-						else vaccinated
+						when (vaccinated = 't') then 'True'
+						else 'Unknown'
 					end as vaccinated,
-					COALESCE (age_bin, 'null') as age_bin,
-					COALESCE (gender_concept_name, 'null') as gender,
-					num_patients as patient_display,
-					case
-						when (num_patients = '<20' or num_patients is null) then 0
-						else num_patients::int
-					end as patient_count
-				  from n3c_questions_new.covid_positive_with_vax_censored_adult_ped_sum
+					COALESCE (age, 'Unknown') as age,
+					sex,
+					sum(case
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
+					end) as patient_count
+				  from n3c_dashboard_ph.demo_demo_mort_vacc_sev_cov_csd
+				  group by severity, race, vaccinated, age, sex, ethnicity
 		  	) as foo
-		  	natural join n3c_dashboard.age_map6
+		  	natural join n3c_dashboard.age_map_ideal
 		  	natural join n3c_dashboard.race_map
-		  	natural join n3c_dashboard.gender_map3
-		  	natural join n3c_dashboard.severity_map
+		  	natural join n3c_dashboard.sex_map
+		  	natural join n3c_dashboard.sev_map
+		  	natural join n3c_dashboard.eth_map
 		  ) as done;
 </sql:query>
 {
@@ -33,6 +36,7 @@
         {"value":"sex", "label":"Sex"},
         {"value":"age_bin", "label":"Age"},
         {"value":"race", "label":"Race"},
+        {"value":"ethnicity", "label":"Ethnicity"},
         {"value":"vaccinated", "label":"Vaccinated"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
@@ -40,6 +44,8 @@
         {"value":"age_seq", "label":"dummy2"},
         {"value":"race_abbrev", "label":"dummy3"},
         {"value":"race_seq", "label":"dummy4"},
+         {"value":"ethnicity_abbrev", "label":"dummy5"},
+        {"value":"ethnicity_seq", "label":"dummy6"},
         {"value":"sex_abbrev", "label":"dummy7"},
         {"value":"sex_seq", "label":"dummy8"},
         {"value":"severity_abbrev", "label":"dummy9"},

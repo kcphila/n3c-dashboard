@@ -35,10 +35,10 @@
 								<button class="btn btn-light btn-sm" onclick="checkAdult();">Adult</button><br>
 								
 								<sql:query var="ages" dataSource="jdbc/N3CPublic">
-									select age_bin,age_abbrev from n3c_dashboard.age_map6 order by age_seq;
+									select age ,age_abbrev from n3c_dashboard.age_map_ideal order by age_seq;
 								</sql:query>
 								<c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
-									<label class="filter_option"><input type="checkbox" name="age_bin" value="${row.age_bin}" > ${row.age_abbrev}</label>
+									<label class="filter_option"><input type="checkbox" name="age" value="${row.age}" > ${row.age_abbrev}</label>
 								</c:forEach>
 								
 							</div>
@@ -93,7 +93,7 @@
 								<button class="btn btn-light btn-sm" onclick="selectall('ethnicity_panel');">All</button>
 								<button class="btn btn-light btn-sm" onclick="deselect('ethnicity_panel');">None</button><br>
 								<sql:query var="ethnicities" dataSource="jdbc/N3CPublic">
-									select ethnicity,ethnicity_abbrev from n3c_dashboard.ethnicity_map order by ethnicity_seq;
+									select ethnicity,ethnicity_abbrev from n3c_dashboard.eth_map order by ethnicity_seq;
 								</sql:query>
 								<c:forEach items="${ethnicities.rows}" var="row" varStatus="rowCounter">
 									<label class="filter_option"><input type="checkbox" name="ethnicity" value="${row.ethnicity}" > ${row.ethnicity_abbrev}</label>
@@ -121,7 +121,7 @@
 								<button class="btn btn-light btn-sm" onclick="selectall('sex_panel');">All</button>
 								<button class="btn btn-light btn-sm" onclick="deselect('sex_panel');">None</button><br>
 								<sql:query var="sexes" dataSource="jdbc/N3CPublic">
-									select distinct gender_abbrev as sex_abbrev,gender_seq as sex_seq from n3c_dashboard.gender_map order by sex_seq;
+									select sex_abbrev, sex_seq from n3c_dashboard.sex_map order by sex_seq;
 								</sql:query>
 								<c:forEach items="${sexes.rows}" var="row" varStatus="rowCounter">
 									<label class="filter_option"><input type="checkbox" name="sex" value="${row.sex_abbrev}" > ${row.sex_abbrev}</label>
@@ -149,7 +149,7 @@
 								<button class="btn btn-light btn-sm" onclick="selectall('severity_panel');">All</button>
 								<button class="btn btn-light btn-sm" onclick="deselect('severity_panel');">None</button><br>
 								<sql:query var="severities" dataSource="jdbc/N3CPublic">
-									select severity,severity_abbrev from n3c_dashboard.severity_map order by severity_seq;
+									select severity,severity_abbrev from n3c_dashboard.sev_map order by severity_seq;
 								</sql:query>
 								<c:forEach items="${severities.rows}" var="row" varStatus="rowCounter">
 									<label class="filter_option"><input type="checkbox" name="severity" value="${row.severity_abbrev}" > ${row.severity_abbrev}</label>

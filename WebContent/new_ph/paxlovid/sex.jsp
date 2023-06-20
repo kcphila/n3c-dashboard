@@ -39,8 +39,8 @@ function ${param.block}_sex_refresh() {
 	var properties = {
 			domName: '${param.block}_sex_viz',
 			block: '${param.block}',
-			primary: 'var',
-			secondary: 'paxlovid',
+			primary: 'sex',
+			secondary: 'pax',
 			count: 'patient_count',
 			xaxis_label: 'Count',
 			xaxis_label2: 'Percent',
@@ -48,10 +48,9 @@ function ${param.block}_sex_refresh() {
 			colorscale: paxlovid_range,
 			label1: 'Sex',
 			label2: 'Paxlovid Status',
-			offset: 70,
+			offset: 100,
 			array: 'paxlovid',
 			legendid: '${param.block}legend', 
-			category: 'sex',
 			nopercent: true
 	};
 	

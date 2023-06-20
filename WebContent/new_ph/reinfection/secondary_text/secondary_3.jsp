@@ -10,6 +10,6 @@
 		</a>
 		</span>&nbsp;in the N3C Data Enclave with more than one positive PCR or Antigen test 60 days or more apart. 
 		The graph provides a snapshot of COVID+ reinfection counts grouped by 30 day increments.
-		For additional information, <a onclick="limitlink(); return false;" href="#limitations-section">see limitations below</a>.
+		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below</a>.
 	</p>
 </div>

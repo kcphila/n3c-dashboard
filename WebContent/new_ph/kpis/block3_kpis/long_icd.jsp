@@ -6,10 +6,10 @@
  	select to_char(sum(num_patients)/1000.0, '999.99')||'k' as patient_count
  	from (select 
 			case
-				when (num_patients = '<20' or num_patients is null) then 0
-				else num_patients::int
+				when (patient_count = '<20' or patient_count is null) then 0
+				else patient_count::int
 			end as num_patients
-			from n3c_questions_new.long_covid_icd_agg_censored_long_covid_diagnosis) as foo
+			from n3c_dashboard_ph.longcov_icddemoagemin_csd) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 
@@ -20,7 +20,7 @@
 					<table>
 						<tr>
 <!-- 							<td><i class="fas fa-users"></i> Patients w/U09.9 in Record</td> -->
-							<td>Patients ICD</td>
+							<td>Long COVID (U09.9) Patients</td>
 						</tr>
 					</table>
 				</div>

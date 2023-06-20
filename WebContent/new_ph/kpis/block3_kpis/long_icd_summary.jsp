@@ -9,7 +9,7 @@
 				when (count = '<20' or count is null) then 0
 				else count::int
 			end as count
-			from n3c_questions_new.icd10_individual_symptom_summary_counts_long_covid) as foo
+			from n3c_dashboard_ph.longcov_icd10sympcounts_csd) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">
@@ -19,7 +19,7 @@
 					<table>
 						<tr>
 <!-- 							<td><i class="fas fa-users"></i> Patients w/Long COVID-Related Symptoms</td> -->
-							<td>Patient ICD Summary</td>
+							<td>Patients w/Symptom(s)</td>
 						</tr>
 					</table>
 				</div>

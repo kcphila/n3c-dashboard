@@ -3,25 +3,25 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select observation, age_bin as age, gender_abbrev as sex, race, ethnicity, patient_display, patient_count,
-				 age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, gender_abbrev as sex_abbrev, gender_seq as sex_seq,
+	from (select observation, age, sex, race, ethnicity, patient_display, patient_count,
+				 age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq,
 				 observation_seq
 			from (select
 					observation,
-					coalesce(age_bin, 'Unknown') as age_bin,
-					coalesce(gender_concept_name, 'Unknown') as gender,
-					coalesce(race_concept_name, 'Missing/Unknown') as race,
-					coalesce(ethnicity_concept_name, 'Missing/Unknown') as ethnicity,
+					coalesce(age, 'Unknown') as age,
+					sex,
+					race,
+					ethnicity,
 					count as patient_display,
 					case
 						when (count = '<20' or count is null) then 0
 						else count::int
 					end as patient_count
-				  from n3c_questions_new.icd10_symptoms_summary_counts_long_covid
+				  from n3c_dashboard_ph.longcov_icd10sympcounts_csd
 				  <c:if test ="${not empty param.not_positive}">where observation = 'Has not tested positive'</c:if>
 		  	) as foo
-		  	natural join n3c_dashboard.age_map4
-		  	natural join n3c_dashboard.gender_map2
+		  	natural join n3c_dashboard.age_map_min
+		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.ethnicity_map
 		  	natural join n3c_dashboard.observation_map

@@ -3,7 +3,6 @@
 
 function ${param.block}_refresh${param.array}(data) {
 	
-	
 	var aData = new Object;
 	var bData = new Object;
 	var cData = new Object;
@@ -73,7 +72,7 @@ function ${param.block}_refresh${param.array}(data) {
 		    ${param.block}_${param.array}.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
 		</c:otherwise>
 	</c:choose>
-    //// console.log("refreshed ${param.array}", ${param.block}_${param.array});
+    //console.log("refreshed ${param.array}", ${param.block}_${param.array});
 }
 
 </script>

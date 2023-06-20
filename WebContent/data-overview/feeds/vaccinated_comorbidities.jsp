@@ -4,53 +4,53 @@
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	SELECT jsonb_pretty(jsonb_agg(done.*)) AS jsonb_pretty
    FROM ( SELECT severity_abbrev as severity,
-            gender_map3.gender_abbrev AS sex,
-            age_map6.age_abbrev AS age_bin,
+            sex_map.sex_abbrev AS sex,
+            age_map_ideal.age_abbrev AS age,
             race_map.race_abbrev as race,
             foo.ethnicity,
             foo.comorbidities,
             foo.vaccinated,
             foo.patient_display,
             foo.patient_count,
-            age_map6.age_abbrev,
-            age_map6.age_seq,
+            age_map_ideal.age_abbrev,
+            age_map_ideal.age_seq,
             race_map.race_abbrev,
             race_map.race_seq,
-            ethnicity_map.ethnicity_abbrev,
-            ethnicity_map.ethnicity_seq,
-            gender_map3.gender_abbrev as sex_abbrev,
-            gender_map3.gender_seq as sex_seq,
-            severity_map.severity_abbrev,
-            severity_map.severity_seq
-           FROM ( SELECT covid_positive_comorbidities_demo_censored_adult_ped_sum.severity_type AS severity,
-                    covid_positive_comorbidities_demo_censored_adult_ped_sum.race_concept_name AS race,
-                    covid_positive_comorbidities_demo_censored_adult_ped_sum.ethnicity_concept_name AS ethnicity,
-                    regexp_replace(covid_positive_comorbidities_demo_censored_adult_ped_sum.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
+            eth_map.ethnicity_abbrev,
+            eth_map.ethnicity_seq,
+            sex_map.sex_abbrev,
+            sex_map.sex_seq,
+            sev_map.severity_abbrev,
+            sev_map.severity_seq
+           FROM ( SELECT n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.severity,
+                    n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.race,
+                    n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.ethnicity,
+                    regexp_replace(n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
                         CASE
-                            WHEN covid_positive_comorbidities_demo_censored_adult_ped_sum.vaccinated = '1'::text THEN 'True'::text
-                            ELSE covid_positive_comorbidities_demo_censored_adult_ped_sum.vaccinated
+                            WHEN n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.vaccinated THEN 'True'::text
+                            ELSE 'Unknown'
                         END AS vaccinated,
-                    COALESCE(covid_positive_comorbidities_demo_censored_adult_ped_sum.age_bin, 'null'::text) AS age_bin,
-                    COALESCE(covid_positive_comorbidities_demo_censored_adult_ped_sum.gender_concept_name, 'null'::text) AS gender,
-                    covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients AS patient_display,
+                    COALESCE(n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.age, 'Unknown'::text) AS age,
+                    n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.sex,
+                    n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.patient_count AS patient_display,
                         CASE
-                            WHEN covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients = '<20'::text OR covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients IS NULL THEN 0
-                            ELSE covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients::integer
+                            WHEN n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.patient_count = '<20'::text OR n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.patient_count IS NULL THEN 0
+                            ELSE n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.patient_count::integer
                         END AS patient_count
-                   FROM n3c_questions_new.covid_positive_comorbidities_demo_censored_adult_ped_sum
-                  WHERE covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients <> '<20'::text 
-                  AND covid_positive_comorbidities_demo_censored_adult_ped_sum.num_patients IS NOT NULL ) foo
-             JOIN n3c_dashboard.age_map6 USING (age_bin)
+                   FROM n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd
+                  WHERE n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.patient_count <> '<20'::text 
+                  AND n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.patient_count IS NOT NULL ) foo
+             JOIN n3c_dashboard.age_map_ideal USING (age)
              JOIN n3c_dashboard.race_map USING (race)
-             JOIN n3c_dashboard.ethnicity_map USING (ethnicity)
-             JOIN n3c_dashboard.gender_map3 USING (gender)
-             JOIN n3c_dashboard.severity_map USING (severity)) done;
+             JOIN n3c_dashboard.eth_map USING (ethnicity)
+             JOIN n3c_dashboard.sex_map USING (sex)
+             JOIN n3c_dashboard.sev_map USING (severity)) done;
 </sql:query>
 {
     "headers": [
         {"value":"severity", "label":"Severity"},
         {"value":"sex", "label":"Sex"},
-        {"value":"age_bin", "label":"Age"},
+        {"value":"age", "label":"Age"},
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
         {"value":"comorbidities", "label":"Comorbidities"},
