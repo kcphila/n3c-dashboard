@@ -94,6 +94,7 @@ WebContent/feeds/hive_data.jsp -text
 WebContent/feeds/line_dua_dta_regs.jsp -text
 WebContent/feeds/map_data.jsp -text
 WebContent/feeds/ochinLocations.jsp -text
+WebContent/feeds/organization_histogram.jsp -text
 WebContent/feeds/papers.jsp -text
 WebContent/feeds/positive_cases_by_date.jsp -text
 WebContent/feeds/project_challenge_graph.jsp -text
