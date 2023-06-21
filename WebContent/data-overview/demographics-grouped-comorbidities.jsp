@@ -439,7 +439,7 @@ $(document).ready( function () {
 					return true;
 				}
 				positions.sort();
-				var search = positions.join(", ");
+				var search = positions.join(",");
 				if (search == searchData[5]) {
 					return true;
 				}

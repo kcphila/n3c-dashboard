@@ -25,7 +25,7 @@
            FROM ( SELECT n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.severity,
                     n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.race,
                     n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.ethnicity,
-                    regexp_replace(n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
+                    n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.comorbidity_list AS comorbidities,
                         CASE
                             WHEN n3c_dashboard_ph.demo_vacc_status_gcci_cov_csd.vaccinated THEN 'True'::text
                             ELSE 'Unknown'

@@ -26,7 +26,7 @@
                     n3c_dashboard_ph.demo_grouped_cci_cov_csd.ethnicity as ethnicity,
                     COALESCE(n3c_dashboard_ph.demo_grouped_cci_cov_csd.age, 'Unknown'::text) AS age,
                     n3c_dashboard_ph.demo_grouped_cci_cov_csd.race AS race,
-                    regexp_replace(n3c_dashboard_ph.demo_grouped_cci_cov_csd.comorbidity_list, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidities,
+                    n3c_dashboard_ph.demo_grouped_cci_cov_csd.comorbidity_list AS comorbidities,
                     n3c_dashboard_ph.demo_grouped_cci_cov_csd.patient_count AS patient_display,
                         CASE
                             WHEN n3c_dashboard_ph.demo_grouped_cci_cov_csd.patient_count = '<20'::text OR n3c_dashboard_ph.demo_grouped_cci_cov_csd.patient_count IS NULL THEN 0
