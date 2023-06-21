@@ -5,11 +5,11 @@
 	select json_agg(json order by start)
 	from (select
 			test_date_diff_range as time_range,
-			count,
+			patient_count as count,
 			range_start as start, 
 			case 
-				when (count = '<20') then 0
-				else count::int
+				when (patient_count = '<20') then 0
+				else patient_count::int
 			end as actual_count
 			from n3c_dashboard_ph.rein_30days_csd
 			where test_date_diff_range not in ('0-15','15-30')

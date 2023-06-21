@@ -7,8 +7,8 @@
   	to_char(
   		sum(
 			case
-				when (count = '<20') then 0
-				else count::int
+				when (patient_count = '<20') then 0
+				else patient_count::int
 			end
 		)/1000.0, '999.99')||'k'
 	as count
