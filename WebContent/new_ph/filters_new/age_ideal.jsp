@@ -37,18 +37,30 @@
 
 <script>
 	function checkPeds() {
-		$('input[type="checkbox"][value="<18"]').prop('checked',true).trigger('change');
+		$('input[type="checkbox"][value="0-4"]').prop('checked',true).trigger('change');
+		$('input[type="checkbox"][value="5-11"]').prop('checked',true).trigger('change');
+		$('input[type="checkbox"][value="12-15"]').prop('checked',true).trigger('change');
+		$('input[type="checkbox"][value="16-<18"]').prop('checked',true).trigger('change');
 
-		$('input[type="checkbox"][value="18-64"]').prop('checked',false).trigger('change');
+		$('input[type="checkbox"][value="18-24"]').prop('checked',false).trigger('change');
+		$('input[type="checkbox"][value="25-34"]').prop('checked', false).trigger('change');
+		$('input[type="checkbox"][value="35-49"]').prop('checked', false).trigger('change');
+		$('input[type="checkbox"][value="50-64"]').prop('checked', false).trigger('change');
 		$('input[type="checkbox"][value="65+"]').prop('checked', false).trigger('change');
 		$('input[type="checkbox"][value="Unknown"]').prop('checked', false).trigger('change');
 	};
 
 	function checkAdult() {
-		$('input[type="checkbox"][value="<18"]').prop('checked',false).trigger('change');
+		$('input[type="checkbox"][value="0-4"]').prop('checked',false).trigger('change');
+		$('input[type="checkbox"][value="5-11"]').prop('checked',false).trigger('change');
+		$('input[type="checkbox"][value="12-15"]').prop('checked',false).trigger('change');
+		$('input[type="checkbox"][value="16-<18"]').prop('checked',false).trigger('change');
 		$('input[type="checkbox"][value="Unknown"]').prop('checked', false).trigger('change');
 
-		$('input[type="checkbox"][value="18-64"]').prop('checked',true).trigger('change');
+		$('input[type="checkbox"][value="18-24"]').prop('checked', true).trigger('change');
+		$('input[type="checkbox"][value="25-34"]').prop('checked', true).trigger('change');
+		$('input[type="checkbox"][value="35-49"]').prop('checked', true).trigger('change');
+		$('input[type="checkbox"][value="50-64"]').prop('checked', true).trigger('change');
 		$('input[type="checkbox"][value="65+"]').prop('checked', true).trigger('change');
 	};
 </script>

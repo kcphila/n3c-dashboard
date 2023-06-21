@@ -1453,7 +1453,7 @@ function ${param.block}limitlink(){
 			$('#${param.block}-severity-select').multiselect('clearSelection');
 			${param.block}_constrain("severity", '');
 		</c:if>
-		<c:if test="${param.age_filter_min || param.age_filter2 || param.age_filter4 || param.age_filter5 || param.age_filter6 || param.age_filter7 || param.age_filter10 || param.age_filterpeds || param.age_filterpeds2 || param.age_filterall || param.age_filterall2}">
+		<c:if test="${param.age_filter_min || param.age_filter_sec || age_filter_ideal}">
 			$('#${param.block}-age-select').multiselect('clearSelection');
 			${param.block}_constrain("age", '');
 		</c:if>
