@@ -24,7 +24,7 @@ SELECT jsonb_pretty(jsonb_agg(done.*)) AS jsonb_pretty
            FROM ( SELECT n3c_dashboard_ph.demo_ungrouped_cci_cov_csd.severity AS severity,
                     race,
                     ethnicity,
-                    regexp_replace( n3c_dashboard_ph.demo_ungrouped_cci_cov_csd.comorbidity_name, 'Charlson - '::text, ''::text, 'g'::text) AS comorbidity,
+                    n3c_dashboard_ph.demo_ungrouped_cci_cov_csd.comorbidity_name AS comorbidity,
                     COALESCE(n3c_dashboard_ph.demo_ungrouped_cci_cov_csd.age, 'Unknown'::text) AS age,
                     n3c_dashboard_ph.demo_ungrouped_cci_cov_csd.sex,
                     n3c_dashboard_ph.demo_ungrouped_cci_cov_csd.patient_count AS patient_display,
