@@ -5,7 +5,12 @@
 
 <dashboard:dashboard did="${param.did}">
 	<div class="col-12 col-md-6 col-lg-4 d-flex">
+	<c:if test="${param.type == 'spotlight'}">
 		<div class="card hover-card_noshadow mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath/>';">
+	</c:if>
+	<c:if test="${param.type == 'regular'}">
+		<div class="card hover-card mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath/>';">
+	</c:if>
 			<img src="<util:applicationRoot/>/dashboard_descriptions/displayDashboardThumbnail.jsp?did=<dashboard:dashboardDid/>" class="card-img-top" alt="...">
 			<div class="card-body card-body-links">
 				<p class="card-title">

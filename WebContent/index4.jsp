@@ -424,7 +424,7 @@
 					<div class="row featured-slick slick-test">
 						<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
 							<dashboard:binding>
-								<jsp:include page="dashboard_descriptions/displayDashboardTile.jsp?did=${tag_binding.did}" />
+								<jsp:include page="dashboard_descriptions/displayDashboardTile.jsp?did=${tag_binding.did}&type=spotlight" />
 							</dashboard:binding>
 						</dashboard:foreachBinding>
 					</div>
@@ -447,7 +447,7 @@
 						<div class="row featured-slick slick-test">
 							<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
 								<dashboard:binding>
-									<jsp:include page="dashboard_descriptions/displayDashboardTile.jsp?did=${tag_binding.did}" />
+									<jsp:include page="dashboard_descriptions/displayDashboardTile.jsp?did=${tag_binding.did}&type=regular" />
 								</dashboard:binding>
 							</dashboard:foreachBinding>
 						</div>
