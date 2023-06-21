@@ -7,13 +7,7 @@
 				severity_abbrev, severity_seq, comorbidity_abbrev, comorbidity_seq
 			from (select
 					severity,
-					case 
-						when (cci_score = 0) then '0'
-						when (cci_score = 1 or cci_score = 2) then '1-2'
-						when (cci_score = 3 or cci_score = 4) then '3-4'
-						when (cci_score >= 5 and cci_score <= 10) then '5-10'
-						else '11+'
-					end as comorbidity,
+					cci_score as comorbidity,
 					patient_count as patient_display,
 					case
 						when (patient_count = '<20' or patient_count is null) then 0
