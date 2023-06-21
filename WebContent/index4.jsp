@@ -3,6 +3,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="dashboard" uri="http://icts.uiowa.edu/N3CDashboardTagLib"%>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -108,9 +109,18 @@
 	color: white;
 }
 
-.dashboard-section{
+.allcaps{
+	text-transform: uppercase;
+}
+
+.sections{
 	margin-bottom: 100px;
 	margin-top: 100px;
+}
+
+.section_first{
+	margin-top: 0px;
+	margin-bottom: 100px;
 }
 
 /* hero carousel ****************************************************/
@@ -344,7 +354,7 @@
 				<h2>Explore Our Dashboards</h2>
 				<div class="row" id="dash_nav">
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#data-overview'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section2'">
 							<div class="card-body large-p">
 								<p class="card-title">Overview<br>
 								<i class="fas fa-database"></i></p>
@@ -352,7 +362,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#members'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section3'">
 							<div class="card-body large-p">
 								<p class="card-title">Members<br>
 								<i class="fas fa-users"></i></p>
@@ -360,7 +370,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#tracking'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section4'">
 							<div class="card-body large-p">
 								<p class="card-title">Tracking<br>
 								<i class="fas fa-chart-line"></i></p>
@@ -368,7 +378,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#cases'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section5'">
 							<div class="card-body large-p">
 								<p class="card-title">Cases<br>
 								<i class="fas fa-virus"></i></p>
@@ -376,7 +386,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#medications'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section6'">
 							<div class="card-body large-p">
 								<p class="card-title">Medications<br>
 						     	<i class="fas fa-pills"></i></p>
@@ -384,7 +394,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#diseases'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section7'">
 							<div class="card-body large-p">
 								<p class="card-title">Diseases<br>
 								<i class="fas fa-head-side-cough"></i></p>
@@ -409,8 +419,8 @@
 		</div>
 		<dashboard:foreachCategory sortCriteria="seqnum" limitCriteria="1" var="catIter">
 			<dashboard:category>
-				<div id="<dashboard:categoryLabel/>" class="dashboard-section hidden">
-					<h3 class="dashboard-heading text-center"><dashboard:categoryLabel/></h3>
+				<div id="section<dashboard:categoryCid/>" class="dashboard-section hidden">
+					<h3 class="dashboard-heading text-center allcaps"><dashboard:categoryLabel/></h3>
 					<div class="row featured-slick slick-test">
 						<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
 							<dashboard:binding>
@@ -427,8 +437,13 @@
 		<dashboard:foreachCategory sortCriteria="seqnum" var="catIter">
 			<c:if test="${!catIter.isFirst()}">
 				<dashboard:category>
-					<div id="<dashboard:categoryLabel/>" class="dashboard-section hidden">
-						<h3 class="card-section-heading"><dashboard:categoryLabel/></h3>
+					<c:if test="${tag_category.seqnum == 2}">
+						<div id="section<dashboard:categoryCid/>" class="section_first hidden">
+					</c:if>
+					<c:if test="${tag_category.seqnum != 2}">
+						<div id="section<dashboard:categoryCid/>" class="sections hidden">
+					</c:if>
+						<h3 class="card-section-heading allcaps"><dashboard:categoryLabel/></h3>
 						<div class="row featured-slick slick-test">
 							<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
 								<dashboard:binding>
