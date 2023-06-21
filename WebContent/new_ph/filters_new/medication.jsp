@@ -20,7 +20,7 @@
 					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}medication_panel');">None</button><br>
 					<select id="${param.block}-medication-select" multiple="multiple">
 						<sql:query var="cases" dataSource="jdbc/N3CPublic">
-							select distinct drug_name from n3c_dashboard.drug_map 
+							select distinct drug_name from n3c_dashboard_ph.Meds_CovDemoAgeMin_csd
 							order by 1;
 						</sql:query>
 						<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">

@@ -13,8 +13,7 @@
 						else patient_count::int
 					end) as patient_count,
 					max(total_patient_count) as total_count
-				  from n3c_dashboard_ph.Meds_CovDemoAgeMin_csd
-				  natural join n3c_dashboard.drug_map
+				  from n3c_dashboard_ph.meds_covdemoagemin_csd
 				  group by drug_name, drug_domain, age
 				  order by drug_domain, drug_name
 		  	) as foo
