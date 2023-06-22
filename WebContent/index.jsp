@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+<%@ taglib prefix="dashboard" uri="http://icts.uiowa.edu/N3CDashboardTagLib"%>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -107,9 +109,18 @@
 	color: white;
 }
 
-.dashboard-section{
+.allcaps{
+	text-transform: uppercase;
+}
+
+.sections{
 	margin-bottom: 100px;
 	margin-top: 100px;
+}
+
+.section_first{
+	margin-top: 0px;
+	margin-bottom: 100px;
 }
 
 /* hero carousel ****************************************************/
@@ -318,7 +329,7 @@
 					<br>
 					<a href="https://covid.cd2h.org/account-instructions" role="button" class="btn btn-lg btn-n3c">Get Started</a>&emsp;
 					<a href="<util:applicationRoot/>/exploration" role="button" class="btn btn-lg btn-outline-light">About</a>&emsp;
-					<a href="<util:applicationRoot/>/distribution-demographics" role="button" class="btn btn-lg btn-outline-light">Distribution & Demographics</a>
+					<a href="<util:applicationRoot/>/distribution-demographics" role="button" class="btn btn-lg btn-outline-light">Distribution &amp; Demographics</a>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -343,7 +354,7 @@
 				<h2>Explore Our Dashboards</h2>
 				<div class="row" id="dash_nav">
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#data-overview'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section2'">
 							<div class="card-body large-p">
 								<p class="card-title">Overview<br>
 								<i class="fas fa-database"></i></p>
@@ -351,7 +362,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#members'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section3'">
 							<div class="card-body large-p">
 								<p class="card-title">Members<br>
 								<i class="fas fa-users"></i></p>
@@ -359,7 +370,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#tracking'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section4'">
 							<div class="card-body large-p">
 								<p class="card-title">Tracking<br>
 								<i class="fas fa-chart-line"></i></p>
@@ -367,7 +378,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#cases'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section5'">
 							<div class="card-body large-p">
 								<p class="card-title">Cases<br>
 								<i class="fas fa-virus"></i></p>
@@ -375,7 +386,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#medications'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section6'">
 							<div class="card-body large-p">
 								<p class="card-title">Medications<br>
 						     	<i class="fas fa-pills"></i></p>
@@ -383,7 +394,7 @@
 						</div>
 					</div>
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#diseases'">
+						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section7'">
 							<div class="card-body large-p">
 								<p class="card-title">Diseases<br>
 								<i class="fas fa-head-side-cough"></i></p>
@@ -406,347 +417,47 @@
 				</div>
 			</div>
 		</div>
-		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,
-			iframe_info
-			from n3c_questions_new.roster 
-			where iframe_info in ('pprl', 'Paxlovid', 'medication-time-series', 'long-covid', 'severity-region')
-			order by seqnum
-		</sql:query>
-		<div id="card-carousel" class="hidden">
-			<h3 class="dashboard-heading text-center">IN THE SPOTLIGHT</h3>
-			<div class="row featured-slick slick-test">
-				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<c:choose>
-							<c:when test="${row.iframe_info == 'pprl'}">
-								<div class="card hover-card_noshadow mb-2" onclick="location.href='<util:applicationRoot/>/${row.iframe_info}';">
-									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-									<div class="card-body card-body-links">
-										<p class="card-title">
-											<strong>${row.question}</strong>
-										</p>
-										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
-									</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="card hover-card_noshadow mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-									<div class="card-body card-body-links">
-										<p class="card-title">
-											<strong>${row.question}</strong>
-										</p>
-										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
-									</div>
-								</div>
-							</c:otherwise>
-						</c:choose>
+		<dashboard:foreachCategory sortCriteria="seqnum" limitCriteria="1" var="catIter">
+			<dashboard:category>
+				<div id="section<dashboard:categoryCid/>" class="dashboard-section hidden">
+					<h3 class="dashboard-heading text-center allcaps"><dashboard:categoryLabel/></h3>
+					<div class="row featured-slick slick-test">
+						<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
+							<dashboard:binding>
+								<jsp:include page="dashboard_descriptions/displayDashboardTile.jsp?did=${tag_binding.did}&type=spotlight" />
+							</dashboard:binding>
+						</dashboard:foreachBinding>
 					</div>
-				</c:forEach>
-			</div>
-		</div>
+				</div>
+			</dashboard:category>
+		</dashboard:foreachCategory>
 	</div>
 
 	<div class="container content container-large">
-		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,
-			iframe_info
-			from n3c_questions_new.roster 
-			where iframe_info in ('severity-region', 'hss', 'smoking', 'delayed-mortality')
-			order by seqnum
-		</sql:query>
-		
-
-		<div class="dashboard-section hidden" id="data-overview" style="margin-top:0px;">
-			<h3 class="card-section-heading">DATA OVERVIEW</h3>
-			<div class="row overview-slick slick-test">
-				<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/data-overview';">
-		   				<img src="<util:applicationRoot/>/images/dashboards/SummaryDataAllAges.png" class="card-img-top" alt="...">
-		   				<div class="card-body card-body-links">
-	     					<p class="card-title"><strong>Demographics</strong></p>
-	     					<p class="card-text">
-								Learn more about the N3C Data and explore demographics, comorbidities, and vaccination counts.
-							</p>
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/data-overview'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-							</div>
-		   				</div>
-		 			</div>
-		 		</div>
-				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2 slick-card-overview" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-	     						<p class="card-title"><strong>${row.question}</strong></p>
-	     						<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
-		   					</div>
-		 				</div>
-		 			</div>
-				</c:forEach>
-			</div>
-		</div>
-		
-
-		<div class="dashboard-section hidden" id="members" style="margin-top:0px;">
-			<h3 class="card-section-heading">MEMBERS</h3>
-			<div class="row members-slick slick-test">
-				<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/collaboration';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration_map.png" class="card-img-top" alt="...">
-	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>Institutional Collaboration Map</strong></p>
-     						<p class="card-text">
-								Explore the collaborations between institutions who have researchers working with N3C Data.
-							</p>
-							
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/collaboration'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-							</div>
-	   					</div>
-	 				</div>
-	 			</div>
-				<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/contributing-sites';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/data-partners.png" class="card-img-top" alt="...">
-	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>Institutions Contributing Data</strong></p>
-     						<p class="card-text">
-								Explore our institutional data partners, the data-models they utilize, and the status of their transfers.
-							</p>
-							
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/contributing-sites'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-							</div>
-	   					</div>
-	 				</div>
-	 			</div>
-	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/collaboration-graph';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/collaboration-network.png" class="card-img-top" alt="...">
-	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>Collaboration Networks</strong></p>
-     						<p class="card-text">
-								Explore the collaborations between individuals and institutions working on projects within the N3C.
-							</p>
-							
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/collaboration-graph'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-							</div>
-	   					</div>
-	 				</div>
-	 			</div>
-	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/teams';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/teams.png" class="card-img-top" alt="...">
-	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>N3C Teams</strong></p>
-     						<p class="card-text">
-								Learn more about the teams working within the N3C Data Enclave.
-							</p>
-							
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/teams'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-							</div>
-	   					</div>
-	 				</div>
-	 			</div>
-	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/publications';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/publications.png" class="card-img-top" alt="...">
-	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>Publications</strong></p>
-     						<p class="card-text">
-								Explore the publications, presentations, and preprints resulting from research done within the N3C Data Enclave.
-							</p>
-							
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/publications'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-							</div>
-	   					</div>
-	 				</div>
-	 			</div>
-	 			<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-2" onclick="location.href='<util:applicationRoot/>/users';">
-	   					<img src="<util:applicationRoot/>/images/dashboards/user-metrics.png" class="card-img-top" alt="...">
-	   					<div class="card-body card-body-links">
-     						<p class="card-title"><strong>Site and User Metrics</strong></p>
-     						<p class="card-text">
-								Explore registration, usage, and other administrative metrics for the N3C.
-							</p>
-							
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/users'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-							</div>
-	   					</div>
-	 				</div>
-	 			</div>
-			</div>
-		</div>
-		
-		
-		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,
-			iframe_info
-			from n3c_questions_new.roster 
-			where iframe_info in ('pprl', 'Paxlovid', 'medication-time-series', 'timeline')
-			order by seqnum
-		</sql:query>
-		
-
-		<div class="dashboard-section hidden" id="tracking" style="margin-top:0px;">
-			<h3 class="card-section-heading">TRACKING</h3>
-			<div class="row tracking-slick slick-test" style="justify-content: center;">
-				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<c:choose>
-							<c:when test="${row.iframe_info == 'pprl'}">
-								<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/${row.iframe_info}';">
-									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-									<div class="card-body card-body-links">
-										<p class="card-title">
-											<strong>${row.question}</strong>
-										</p>
-										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
-									</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-									<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-									<div class="card-body card-body-links">
-										<p class="card-title">
-											<strong>${row.question}</strong>
-										</p>
-										<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp" />
-									</div>
-								</div>
-							</c:otherwise>
-						</c:choose>
+		<dashboard:foreachCategory sortCriteria="seqnum" var="catIter">
+			<c:if test="${!catIter.isFirst()}">
+				<dashboard:category>
+					<c:choose>
+						<c:when test="${tag_category.seqnum == 2}">
+							<c:set var="class_value" value="section_first hidden" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="class_value" value="section_ hidden" />
+						</c:otherwise>
+					</c:choose>
+					<div id="section<dashboard:categoryCid/>" class="${class_value}">
+						<h3 class="card-section-heading allcaps"><dashboard:categoryLabel/></h3>
+						<div class="row featured-slick slick-test">
+							<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
+								<dashboard:binding>
+									<jsp:include page="dashboard_descriptions/displayDashboardTile.jsp?did=${tag_binding.did}&type=regular" />
+								</dashboard:binding>
+							</dashboard:foreachBinding>
+						</div>
 					</div>
-				</c:forEach>
-				
-			</div>
-		</div>
-		
-		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,
-			iframe_info
-			from n3c_questions_new.roster 
-			where iframe_info in ('timeline', 'reinfection-time-series', 'reinfection')
-			order by seqnum
-		</sql:query>
-		
-		<div class="dashboard-section hidden" id="cases">
-			<h3 class="card-section-heading">CASES</h3>
-			<div class="row cases-slick slick-test">
-				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-		     					<p class="card-title"><strong>${row.question}</strong></p>
-		     					<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
-		   					</div>
-		 				</div>
-		 			</div>
-				</c:forEach>
-			</div>
-		</div>
-		
-		
-	
-		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,iframe_info,substring(description from 1 for 80)||'...' as description from n3c_questions_new.roster where question ~ 'Medication' and visible order by seqnum
-		</sql:query>
-		<div class="dashboard-section hidden" id="medications">
-			<h3 class="card-section-heading">MEDICATIONS</h3>
-			<div class="row medications-slick slick-test">
-				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-		     					<p class="card-title"><strong>${row.question}</strong></p>
-		     					<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
-		   					</div>
-		 				</div>
-		 			</div>
-				</c:forEach>
-			</div>
-		</div>
-
-		<sql:query var="topics" dataSource="jdbc/N3CPublic">
-			select question,
-			iframe_info
-			from n3c_questions_new.roster 
-			where iframe_info in ('hlh', 'diabetes-mellitus', 'long-covid')
-			order by seqnum
-		</sql:query>
-		
-		<div class="dashboard-section hidden" id="diseases">
-			<h3 class="card-section-heading">DISEASES</h3>
-			<div class="row diseases-slick slick-test">
-				<c:forEach items="${topics.rows}" var="row" varStatus="rowCounter">
-					<div class="col-12 col-md-6 col-lg-4 d-flex">
-						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/public-health/${row.iframe_info}';">
-		   					<img src="<util:applicationRoot/>/images/dashboards/${row.iframe_info}.png" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-		     					<p class="card-title"><strong>${row.question}</strong></p>
-		     					<jsp:include page="dashboard_descriptions/${row.iframe_info}.jsp"/>
-		   					</div>
-		 				</div>
-		 			</div>
-				</c:forEach>
-				<div class="col-12 col-md-6 col-lg-4 d-flex">
-					<div class="card hover-card flex-fill mb-2 slick-card-disease" onclick="location.href='<util:applicationRoot/>/recover';">
-		   				<img src="<util:applicationRoot/>/images/dashboards/recover.png" class="card-img-top" alt="...">
-		   				<div class="card-body card-body-links">
-	     					<p class="card-title"><strong>RECOVER Initiative (Long COVID)</strong></p>
-	     					<p class="card-text">
-								This study applies machine learning techinques to N3C data to identify features of the EHR data that are predictive of Long COVID.
-							</p>
-							<div class='row card-link'>
-								<div class="col col-6">
-									<a href='<util:applicationRoot/>/recover'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-								</div>
-								<div class="col col-6">
-									<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-html="true"
-									data-toggle="popover" data-trigger="click"
-									title="<b>Available Topics</b>"
-									data-content="
-										<a href='<util:applicationRoot/>/recover/model'>Model Features</a> 
-										<br>
-										<a href='<util:applicationRoot/>/recover/training'>Training Cohort Characteristics</a>
-										<br>
-										<a href='<util:applicationRoot/>/recover/demographics'>Demographics</a>
-									"> Topics&#8196;<i class="fas fa-bars"></i>
-									</a>
-								</div>
-							</div>
-		   				</div>
-		 			</div>
-		 		</div>
-			</div>
-		</div>
-		
-		
+				</dashboard:category>
+			</c:if>
+		</dashboard:foreachCategory>
 	</div>
 
 	<jsp:include page="footer.jsp" flush="true" />
@@ -981,12 +692,6 @@ $(document).ready(function(){
 		  ]
 	}); 
 });
-
-
-
-
-
-
 
 function adjust_card_height(slick){
 	//slick cards resize so they are the same height as largest (need to repeate for each new carousel)
