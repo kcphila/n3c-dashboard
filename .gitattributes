@@ -887,8 +887,6 @@ WebContent/new_ph/pediatrics/ungrouped_table.jsp -text
 WebContent/new_ph/pediatrics/unknown_vaccination_table.jsp -text
 WebContent/new_ph/pediatrics/vaccinated_comorbidity_table.jsp -text
 WebContent/new_ph/pediatrics/vaccinated_table.jsp -text
-WebContent/new_ph/questions.jsp -text
-WebContent/new_ph/questions_styled.jsp -text
 WebContent/new_ph/reinfection/counts.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_30day.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_by_date.jsp -text

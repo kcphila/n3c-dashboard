@@ -35,6 +35,18 @@
 	width: 100%;
 	overflow:scroll;
 }
+
+#limitations_drop a[aria-expanded = "true"] span.btn:after{
+	font-family: "Font Awesome\ 5 Free"; 
+	content: "\f056";
+  	font-weight: 900;
+}
+
+#limitations_drop a[aria-expanded = "false"] span.btn:after{
+	font-family: "Font Awesome\ 5 Free"; 
+	content: "\f055";
+	font-weight: 900;
+}
 </style>
 
 <body>
@@ -66,24 +78,29 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		<div class="mb-5">
-			<div id="dashboard" style="display: block;">
-				<c:choose>
-					<c:when test="${not empty param.secondary_tab }">
-						<script>
-								cache_browser_history("public-health", "public-health")
-						</script>
-						<jsp:include page="new_ph/questions.jsp?did=${tag_dashboard.did}&tertiary_tab=${param.tertiary_tab}" flush="true" />
-					</c:when>
-					<c:otherwise>
-						<jsp:include page="new_ph/questions.jsp?did=${tag_dashboard.did}" flush="true" />
-					</c:otherwise>
-				</c:choose>
+
+			<script>
+				cache_browser_history("public-health", "public-health")
+			</script>
+
+			<div class="mb-5">
+				<div id="dashboard" style="display: block;">
+					<div class="row">
+						<div class="col-12 viz-col mx-auto">
+							<div class="panel panel-primary top_panel">
+								<div class="panel-body">
+									<div id="question-tile">
+										<div id="d3viz">
+											<jsp:include page="new_ph/frame.jsp?did=${tag_dashboard.did}&tertiary_tab=${param.tertiary_tab}"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-		
+
 		<script>
 			var titleBread = document.getElementById("dashboard_breadcrumb");
 			titleBread.innerHTML = '<dashboard:dashboardTitle/>';
@@ -92,19 +109,12 @@
 	</dashboard:dashboard>
 		
 		
-		<script>
-		$.getJSON("<util:applicationRoot/>/feeds/embedded_fact_sheet.jsp", function(json){
-			var data = $.parseJSON(JSON.stringify(json));
-			
-			$('#rows').text(data['total_rows']);
-			$('#sites').text(data['sites_ingested']); 	
-		});
-		
-// 		Trying to get back broswer button to load, currently only saves last broswer
+	<script>
+ 		// Trying to get back broswer button to load, currently only saves last broswer
 		window.addEventListener('popstate', function (event) {
 			location.reload();
 		});
-		</script>
+	</script>
 	</div>
 
 	<jsp:include page="footer.jsp" flush="true" />
