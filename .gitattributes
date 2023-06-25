@@ -215,8 +215,6 @@ WebContent/images/spinners/settings.gif -text
 WebContent/images/spinners/sun.svg -text
 WebContent/images/spotlight_preview.png -text
 WebContent/index.jsp -text
-WebContent/index3_embedded.jsp -text
-WebContent/index_old.jsp -text
 WebContent/long_covid/data.json -text
 WebContent/long_covid/fig4.jsp -text
 WebContent/long_covid/table1.html -text
@@ -993,7 +991,6 @@ WebContent/overview/users/graph_includes.jsp -text
 WebContent/overview/users/users.jsp -text
 WebContent/positive_timeline.jsp -text
 WebContent/pprl.jsp -text
-WebContent/public-health.jsp -text
 WebContent/publications-map.jsp -text
 WebContent/publications-site.jsp -text
 WebContent/publications.jsp -text
