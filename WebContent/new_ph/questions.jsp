@@ -7,7 +7,7 @@
 		<div id="question-panel" class="panel panel-primary top_panel" style="margin-top:0px;">
 			<div class="panel-body">
 				<div id="question-select" class="">
-					<jsp:include page="questions_styled3.jsp?did=${param.did}&tertiary_tab=${param.tertiary_tab}"/>
+					<jsp:include page="questions_styled.jsp?did=${param.did}&tertiary_tab=${param.tertiary_tab}"/>
 				</div>
 			</div>
 		</div>
