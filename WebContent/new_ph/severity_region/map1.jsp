@@ -15,7 +15,7 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="region_filter" value="true" />
 	
-	<jsp:param name="did" value="60" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="severity_region/map.jsp" />
 

@@ -7,7 +7,7 @@
 
 	<jsp:param name="kpis" value="timeline/kpis.jsp" />
 
-	<jsp:param name="did" value="57" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="timeline/daily.jsp" />
 

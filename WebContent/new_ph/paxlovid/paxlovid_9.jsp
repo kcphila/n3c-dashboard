@@ -9,7 +9,7 @@
 	<jsp:param name="block_header" value="Paxlovid" />
 	<jsp:param name="topic_description" value="secondary_9" />
 	<jsp:param name="topic_title" value="COVID+ Patients" />
-	<jsp:param name="did" value="55" />
+	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="folder" value="paxlovid" />
 	<jsp:param name="kpis" value="paxlovid/kpis_new.jsp" />
 

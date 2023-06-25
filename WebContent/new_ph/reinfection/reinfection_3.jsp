@@ -7,7 +7,7 @@
 
 	<jsp:param name="kpis" value="reinfection/kpis.jsp" />
 
-	<jsp:param name="did" value="59" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="reinfection/reinfections_30day.jsp" />
 

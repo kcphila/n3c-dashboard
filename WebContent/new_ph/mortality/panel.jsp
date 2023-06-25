@@ -46,7 +46,7 @@ function frame_load(selection) {
 	var $this = $("#"+selection);
 
 	if (!frame_crumbs.includes(selection)) {
-		$this.load("<util:applicationRoot/>/new_ph/mortality/"+selection+".jsp");
+		$this.load("<util:applicationRoot/>/new_ph/mortality/"+selection+".jsp?did=${param.did}");
 		frame_crumbs.push(selection);
 	}
 	if (typeof embedded_mode == 'undefined' || !embedded_mode)

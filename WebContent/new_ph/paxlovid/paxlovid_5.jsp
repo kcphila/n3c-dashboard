@@ -7,7 +7,7 @@
 	<jsp:param name="block_header" value="Vaccinations Before COVID+" />
 	<jsp:param name="topic_description" value="secondary_5" />
 	<jsp:param name="topic_title" value="COVID+ Patients" />
-	<jsp:param name="did" value="55" />
+	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="folder" value="paxlovid" />
 	<jsp:param name="kpis" value="paxlovid/kpis_new.jsp" />
 	

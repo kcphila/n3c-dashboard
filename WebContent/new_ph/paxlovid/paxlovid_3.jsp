@@ -10,7 +10,7 @@
 	<jsp:param name="block" value="paxlovid_3" />
 	<jsp:param name="block_header" value="Paxlovid" />
 	<jsp:param name="topic_description" value="secondary_3" />
-	<jsp:param name="did" value="55" />
+	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="folder" value="paxlovid" />
 	<jsp:param name="topic_title" value="Counts of Patients Prescribed Paxlovid Who Had Subsequent Visits Within 27 Days by Visit Type and COVID Test Results" />
 	

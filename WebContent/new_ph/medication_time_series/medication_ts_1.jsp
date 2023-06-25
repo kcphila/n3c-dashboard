@@ -13,7 +13,7 @@
 
 	<jsp:param name="medications_filter" value="true" />
 
-	<jsp:param name="did" value="48" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="medication_time_series/medications.jsp" />
 

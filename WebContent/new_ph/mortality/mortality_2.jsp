@@ -9,7 +9,7 @@
 	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="topic_title" value="Counts of Mortalities By 30-Day Hospital Release Intervals" />
 	
-	<jsp:param name="did" value="61" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="kpis" value="mortality/kpis.jsp" />
 	

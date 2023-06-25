@@ -23,7 +23,7 @@ frame_load('map1');
 
 function frame_load(selection) {
 	var $this = $("#"+selection);
-	$this.load("<util:applicationRoot/>/new_ph/severity_region/"+selection+".jsp");
+	$this.load("<util:applicationRoot/>/new_ph/severity_region/"+selection+".jsp?did=${param.did}");
 	cache_browser_history("public-health", "public-health/severity-region/map1");		
 };
 

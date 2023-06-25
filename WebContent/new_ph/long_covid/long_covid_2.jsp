@@ -8,7 +8,7 @@
 	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="topic_title" value="Patients Who Have Visited a Long COVID Clinic" />
 	<jsp:param name="folder" value="long_covid" />
-	<jsp:param name="did" value="49" />
+	<jsp:param name="did" value="${param.did}" />
 
 	<jsp:param name="kpis" value="long_covid/kpis.jsp" />
 

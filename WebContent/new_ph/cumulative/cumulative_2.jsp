@@ -15,7 +15,7 @@
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 	
-	<jsp:param name="did" value="50" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="raceethncity_panel" value="cumulative/raceEthnicity.jsp" />
 	<jsp:param name="racesex_panel" value="cumulative/raceSex.jsp" />

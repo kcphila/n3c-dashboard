@@ -8,7 +8,7 @@
 	<jsp:param name="topic_title" value="Count of Patients Who Have Been Prescribed Select Medications" />
 	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="folder" value="medication_time_series" />
-	<jsp:param name="did" value="48" />
+	<jsp:param name="did" value="${param.did}" />
 
 	<jsp:param name="kpis" value="medication_time_series/kpis.jsp" />
 	

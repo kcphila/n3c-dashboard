@@ -14,7 +14,7 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="diagnosis_filter2" value="true" />
 	
-	<jsp:param name="did" value="47" />
+	<jsp:param name="did" value="${param.did}" />
 
 	<jsp:param name="simple_panel" value="medication_snapshot/severity_diagnosis.jsp" />
 

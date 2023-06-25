@@ -15,7 +15,7 @@
 	
 	<jsp:param name="reinfectionbin_filter" value="true" />
 
-	<jsp:param name="did" value="62" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="reinfection_time_series/interval.jsp" />
 

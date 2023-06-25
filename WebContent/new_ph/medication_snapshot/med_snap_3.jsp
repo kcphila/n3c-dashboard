@@ -15,7 +15,7 @@
 	<jsp:param name="beforeaftersotrovimab_filter" value="true" />
 	<jsp:param name="sotrovimabmeds_filter" value="true" />
 	
-	<jsp:param name="did" value="47" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="medication_snapshot/severity_meds.jsp" />
 	

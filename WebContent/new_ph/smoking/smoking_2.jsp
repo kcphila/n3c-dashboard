@@ -7,7 +7,7 @@
 	<jsp:param name="block_header" value="Demographics: COVID+ and Smoking Status" />
 	<jsp:param name="folder" value="smoking" />
 	<jsp:param name="topic_description" value="secondary_1" />
-	<jsp:param name="did" value="58" />
+	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="COVID+ Patients" />
 	<jsp:param name="floating_legend" value="true" />
 	

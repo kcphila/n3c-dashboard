@@ -8,7 +8,7 @@
 	<jsp:param name="topic_description" value="secondary_6" />
 	<jsp:param name="topic_title" value="When Patients Experienced Long COVID-Related Symptoms (Before or After COVID Diagnosis)" />
 	<jsp:param name="folder" value="long_covid" />
-	<jsp:param name="did" value="49" />
+	<jsp:param name="did" value="${param.did}" />
 
 	<jsp:param name="kpis" value="long_covid/kpis.jsp" />
 

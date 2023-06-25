@@ -9,7 +9,7 @@
 	<jsp:param name="topic_title" value="Counts of Patients Who Have Experienced Shortness of Breath By COVID-19/Long COVID Status" />
 	<jsp:param name="topic_title2" value="Counts of Patients Who Have Experienced Shortness of Breath Before and After COVID-19 Diagnosis" />
 	<jsp:param name="folder" value="long_covid" />
-	<jsp:param name="did" value="49" />
+	<jsp:param name="did" value="${param.did}" />
 
 	<jsp:param name="kpis" value="long_covid/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="Shortness of breath" />

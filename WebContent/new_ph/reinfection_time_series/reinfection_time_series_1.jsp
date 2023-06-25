@@ -12,7 +12,7 @@
 
 	<jsp:param name="kpis" value="reinfection_time_series/kpis.jsp" />
 
-	<jsp:param name="did" value="62" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="reinfection_time_series/reinfection.jsp" />
 

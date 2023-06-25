@@ -11,7 +11,7 @@
 
 	<jsp:param name="kpis" value="medication_time_series/kpis.jsp" />
 
-	<jsp:param name="did" value="48" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="medication_time_series/overall.jsp" />
 

@@ -13,7 +13,7 @@
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
 
-	<jsp:param name="did" value="50" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="simple_panel" value="cumulative/tables/cumulative_table.jsp" />
 	<jsp:param name="datatable_div" value="cumulative_1_cumulative_table" />

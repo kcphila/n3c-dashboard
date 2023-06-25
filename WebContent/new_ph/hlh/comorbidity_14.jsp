@@ -9,7 +9,7 @@
 	<jsp:param name="topic_disease" value="Peripheral Vascular Disease" />
 	<jsp:param name="topic_title" value="Counts of Patients Who Have Been Diagnosed with" />
 	<jsp:param name="folder" value="hlh" />
-	<jsp:param name="did" value="52" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	<jsp:param name="kpis" value="hlh/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="peripheralvascularcov_csd" />

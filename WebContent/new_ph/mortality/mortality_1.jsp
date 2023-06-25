@@ -16,7 +16,7 @@
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
 	
-	<jsp:param name="did" value="61" />
+	<jsp:param name="did" value="${param.did}" />
 	
 	
 	<jsp:param name="toggle" value="true" />
