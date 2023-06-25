@@ -5,6 +5,9 @@
 <!-- binned_diff_bw_death_and_hospital_visit (2022-03-31 05:04) -->
 <!-- icd10_mortality_demo_grouped (2022-03-31 05:02) -->
 
+<jsp:include page="../../graph_support/mortalityBarChart_local.jsp"/>
+<jsp:include page="../../graph_support/horizontalBarChart_local.jsp"/>
+
 <jsp:include page="../block2.jsp">
 	<jsp:param name="block" value="delayed_mortality_1" />
 	<jsp:param name="block_header" value="Mortality: Counts from all Sources" />

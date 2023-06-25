@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+<jsp:include page="../../graph_support/time_line_n_column_local.jsp"/>
+<jsp:include page="../../graph_support/horizontalBarChart_local_new.jsp"/>
+
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h2 class="viz_color_header">Explore Prescriptions By:</h2>
 	<select id="selectMe">

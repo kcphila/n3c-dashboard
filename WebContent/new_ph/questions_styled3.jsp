@@ -22,38 +22,12 @@
 
 <script>
 
-$.getJSON("<util:applicationRoot/>/feeds/questions.jsp", function(data){
-	
-	var json = $.parseJSON(JSON.stringify(data));
-	var data = json['rows'];
-
-	(async() => {
+$(document).ready(function() {
 		
 		$("body").css("cursor", "default");
-		
-		var index = data.findIndex(object => {
-			return object.iframe_info === '${param.secondary_tab}';
-		});
-		
-		if ($('.ph-tab .active > a').attr("href") == '#ph-summary'){
-			cache_browser_history("public-health", "public-health" + (index == -1 ? '' : "/${param.secondary_tab}"))
-		};
-		if (index < 0) {index = 0;};
-		
-	 	$('#dashboard_select').val(JSON.stringify(data[index]));
-			
-		document.getElementById("question-tile").removeAttribute("style");
-		
-		frame_render(data[index]);
-		
-
-	})();
-});
-
-
-function frame_render(question, tertiary) {	
-	
+					
 	var paramcheck = "";
+	var tertiary;
 	paramcheck += paramcheck + "${param.tertiary_tab}";
 	
 	var tertiary_check = tertiary;
@@ -66,32 +40,11 @@ function frame_render(question, tertiary) {
 		}
 	}
 	
-	var descriptionContainer = document.getElementById("question-description");
-	var titleContainer = document.getElementById("dashboard_name");
 	var divContainer = document.getElementById("question-tile");
-	var titleBread = document.getElementById("dashboard_breadcrumb");
-	
-	descriptionContainer.innerHTML = question.description;
-	titleContainer.innerHTML = question.question;
-	titleBread.innerHTML = question.question;
-	titleBread.setAttribute("href", "<util:applicationRoot/>/public-health/"+question.iframe_info);
-
-
-	var viz_id = question.seqnum;
-
-// 	cache_browser_history("public-health", "public-health/"+question.iframe_info);
-	
+	divContainer.removeAttribute("style");
 	divContainer.innerHTML = '<div id="d3viz"></div>';
 		
-	// console.log("url: " + "<util:applicationRoot/>/new_ph/frame.jsp?frame="+question.iframe_info+"&tertiary_tab="+tertiary_check)
-	$("#d3viz").load("<util:applicationRoot/>/new_ph/frame.jsp?frame="+question.iframe_info+"&tertiary_tab="+tertiary_check);
-	
-		
-// 	});
-}
-
-
-
-
+	$("#d3viz").load("<util:applicationRoot/>/new_ph/frame.jsp?did=${param.did}&tertiary_tab="+tertiary_check);
+});
 </script>
 

@@ -4,6 +4,12 @@
 
 <!-- covid_positive_mab_demo_censored (2022-03-31 05:01) -->
 
+<jsp:include page="../../graph_support/percentage_bar_local.jsp"/>
+<jsp:include page="../../graph_support/pieChart_local.jsp"/>
+<jsp:include page="../../graph_support/horizontalBarChart_local2.jsp"/>
+<jsp:include page="../../graph_support/horizontalBarChart_local.jsp"/>
+<jsp:include page="../../graph_support/horizontalStackedBarChart_local_percent.jsp"/>
+
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Dashboard to Explore:</h4>
 	<select id="selectMe">

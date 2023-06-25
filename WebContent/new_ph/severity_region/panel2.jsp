@@ -8,6 +8,8 @@
 }
 </style>
 
+<jsp:include page="../../graph_support/region_map_local.jsp"/>
+
 <div id="frame">
 	<div id="map1" class="group"></div>
 </div>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@ taglib prefix="dashboard" uri="http://icts.uiowa.edu/N3CDashboardTagLib"%>
 <!DOCTYPE html>
 
 
@@ -51,13 +52,15 @@
 		</ol>
 	</nav>
 
+	<c:set var="path">public-health/${param.secondary_tab}</c:set>
+	<dashboard:dashboard did="${dashboard:dashboardDidByPath(path)}">
 		<div class="row">
 			<div class="col-12 mx-auto">
 				<div class="row">
 					<div class="col-12">
 						<div id="ph-dash-top">
-							<h1 id="dashboard_name" class="page-title"></h1>
-							<div id="question-description" class="section-description heading-text text-max mx-auto"></div>
+							<h1 id="dashboard_name" class="page-title"><dashboard:dashboardTitle/></h1>
+							<div id="question-description" class="section-description heading-text text-max mx-auto"><dashboard:dashboardDescription/></div>
 						</div>
 					</div>
 				</div>
@@ -72,15 +75,21 @@
 						<script>
 								cache_browser_history("public-health", "public-health")
 						</script>
-						<jsp:include page="new_ph/questions.jsp?secondary_tab=${param.secondary_tab}&tertiary_tab=${param.tertiary_tab}" flush="true" />
+						<jsp:include page="new_ph/questions.jsp?did=${tag_dashboard.did}&tertiary_tab=${param.tertiary_tab}" flush="true" />
 					</c:when>
 					<c:otherwise>
-						<jsp:include page="new_ph/questions.jsp" flush="true" />
+						<jsp:include page="new_ph/questions.jsp?did=${tag_dashboard.did}" flush="true" />
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
 		
+		<script>
+			var titleBread = document.getElementById("dashboard_breadcrumb");
+			titleBread.innerHTML = '<dashboard:dashboardTitle/>';
+			titleBread.setAttribute("href", "<util:applicationRoot/>/${path}");
+		</script>
+	</dashboard:dashboard>
 		
 		
 		<script>
