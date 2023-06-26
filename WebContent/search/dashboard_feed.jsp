@@ -13,6 +13,7 @@
 			coalesce((select string_agg(type, ', ') from n3c_dashboard.type_definition natural join n3c_dashboard.dashboard_type where dashboard_type.did = dashboard.did),'') as type
 		  from n3c_dashboard.dashboard
 		  where did != 53 and did !=54
+		    and active
 		  order by did
 		  ) as done;
 </sql:query>
