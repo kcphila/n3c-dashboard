@@ -446,7 +446,7 @@
 					<div id="section<dashboard:categoryCid/>" class="${class_value}">
 						<h3 class="card-section-heading allcaps"><dashboard:categoryLabel/></h3>
 						<div class="row featured-slick slick-test">
-							<dashboard:foreachBinding sortCriteria="seqnum" var="bindIter">
+							<dashboard:foreachBinding filterCriteria="exists (select * from n3c_dashboard.dashboard where dashboard.did=binding.did and active)" sortCriteria="seqnum" var="bindIter">
 								<dashboard:binding>
 									<jsp:include page="dashboard_descriptions/displayDashboardTile.jsp?did=${tag_binding.did}&type=regular" />
 								</dashboard:binding>
