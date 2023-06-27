@@ -20,7 +20,10 @@
 					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}environmental_panel');">None</button><br>
 					<select id="${param.block}-environmental-select" multiple="multiple">
 						<sql:query var="cases" dataSource="jdbc/N3CPublic">
-							select distinct(env_factor) from n3c_dashboard_ph.env_allcnt_all_csd order by env_factor;
+							select distinct(env_factor) from n3c_dashboard_ph.env_mortcnt_cov_csd
+							where env_factor is not null 
+							and patient_count != '<20' 
+							order by env_factor;
 						</sql:query>
 						<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
 							<option value="${row.env_factor}">${row.env_factor}</option>

@@ -413,26 +413,11 @@
 							<c:if test="${param.age_filter_ideal}">
 								<jsp:include page="filters_new/age_ideal.jsp"/>
 							</c:if>
-							<c:if test="${param.age_filterpeds}">
-								<jsp:include page="filters/age_peds.jsp"/>
-							</c:if>
-							<c:if test="${param.age_filterpeds2}">
-								<jsp:include page="filters/age_peds2.jsp"/>
-							</c:if>
-							<c:if test="${param.age_filterall}">
-								<jsp:include page="filters/age_all.jsp"/>
-							</c:if>
-							<c:if test="${param.age_filterall2}">
-								<jsp:include page="filters/age_all2.jsp"/>
-							</c:if>
 							<c:if test="${param.race_filter}">
 								<jsp:include page="filters_new/race.jsp"/>
 							</c:if>
 							<c:if test="${param.sex_filter}">
 								<jsp:include page="filters_new/sex.jsp"/>
-							</c:if>
-							<c:if test="${param.sex_filter3}">
-								<jsp:include page="filters_new/sex3.jsp"/>
 							</c:if>
 							<c:if test="${param.ethnicity_filter}">
 								<jsp:include page="filters_new/ethnicity.jsp"/>
@@ -490,6 +475,9 @@
 							</c:if>
 							<c:if test="${param.environmental_filter}">
 								<jsp:include page="filters_new/environmental.jsp"/>
+							</c:if>
+							<c:if test="${param.environmental_filter2}">
+								<jsp:include page="filters_new/environmental2.jsp"/>
 							</c:if>
 							<c:if test="${param.region_filter}">
 								<jsp:include page="filters_new/region.jsp"/>
@@ -1461,7 +1449,7 @@ function ${param.block}limitlink(){
 			$('#${param.block}-race-select').multiselect('clearSelection');
 			${param.block}_constrain("race", '');
 		</c:if>
-		<c:if test="${param.sex_filter3 || param.sex_filter}">
+		<c:if test="${param.sex_filter}">
 			$('#${param.block}-sex-select').multiselect('clearSelection');
 			${param.block}_constrain("sex", '');
 		</c:if>
@@ -1537,6 +1525,10 @@ function ${param.block}limitlink(){
 			$('#${param.block}-environmental-select').multiselect('clearSelection');
 			${param.block}_constrain("environmental_factor", '');
 		</c:if>
+		<c:if test="${param.environmental_filter2}">
+			$('#${param.block}-environmental-select').multiselect('clearSelection');
+			${param.block}_constrain("environmental_factor", '');
+		</c:if>
 		<c:if test="${param.region_filter}">
 			$('#${param.block}-region-select').multiselect('clearSelection');
 			${param.block}_constrain("region", '');
@@ -1604,6 +1596,7 @@ function ${param.block}limitlink(){
 	
 
 	var ${param.block}_MedicationArray = new Array();
+	var ${param.block}_EnvMortArray = new Array();
 	var ${param.block}_MedicationAgeArray = new Array();
 	var ${param.block}_EnvironmentStatusArray = new Array();
 	var ${param.block}_ClassAgeArray = new Array();
@@ -1673,6 +1666,7 @@ function ${param.block}limitlink(){
 	    	${param.block}_refreshSymptomObservationArray(data);
 	    
 	    	${param.block}_refreshMedicationArray(data2);
+	    	${param.block}_refreshEnvMortArray(data2);
 	    	${param.block}_refreshMedicationAgeArray(data);
 	    	${param.block}_refreshEnvironmentStatusArray(data);
 	    	${param.block}_refreshClassAgeArray(data);
@@ -1719,7 +1713,7 @@ function ${param.block}limitlink(){
 	    if (${param.block}_loaded("ethnicity")) {
 	    	${param.block}_ethnicity_refresh();
 	    }
-	    if ('${param.block}' === "environment_1") {
+	    if ('${param.block}' === "environment_2"|| '${param.block}' === "environment_3") {
 	    	${param.block}_environment_refresh();
 	    }
 	    if ('${param.block}' === "medications_1") {
@@ -2120,6 +2114,16 @@ function ${param.block}limitlink(){
 	<jsp:param name="primary" value="drug_domain"/>
 	<jsp:param name="secondary" value="concept_set_name"/>
 	<jsp:param name="tertiary" value="age"/>
+</jsp:include>
+
+<jsp:include page="tripleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="EnvMortArray"/>
+	<jsp:param name="wrap" value="no"/>
+	<jsp:param name="primary" value="environmental_factor"/>
+	<jsp:param name="secondary" value="mortality"/>
+	<jsp:param name="tertiary" value="status"/>
 </jsp:include>
 
 <jsp:include page="doubleHistogram.jsp">

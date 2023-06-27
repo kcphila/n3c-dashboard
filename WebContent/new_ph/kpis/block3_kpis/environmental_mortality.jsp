@@ -13,7 +13,9 @@
 					when (patient_count = '<20' or patient_count is null) then 0
 					else patient_count::int
 				end as patient_count
-				from n3c_dashboard_ph.env_allcnt_cov_csd) as foo
+				from n3c_dashboard_ph.env_mortcnt_cov_csd
+				where env_factor is not null
+			) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">

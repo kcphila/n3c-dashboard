@@ -1,48 +1,43 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <script>
 
-
-// kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	
+	// console.log("${param.block}", filter, constraint)
 	switch (filter) {
-	case 'race':
-		table.column(0).search(constraint, true, false, true).draw();	
+	case 'environmental_factor':
+	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'ethnicity':
-		table.column(1).search(constraint, true, false, true).draw();	
-		break;
-	case 'age':
-		table.column(2).search(constraint, true, false, true).draw();	
-		break;
-	case 'sex':
-		table.column(3).search(constraint, true, false, true).draw();	
+	case 'covidstatus':
+	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
-	var kpis = '${param.target_kpis}'.split(',');
-	for (var a in kpis) {
-		${param.block}_updateKPI(table, kpis[a])
-	}
+	var kpis = '${param.target_kpis}';
+	${param.block}_updateKPI(table, kpis)
+	
 }
 
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
-	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	// console.log(sum);
+
+	sum = table.rows({search:'applied'}).data().pluck(column).sum();
+	
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
 		sum = sum / 1000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k"
 	} else {
 		sum = sum / 1000000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
-		
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
+	
 	}
-	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
+	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
 }
+
+
 
 jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 	return this.flatten().reduce( function ( a, b ) {
@@ -59,8 +54,6 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 
 var ${param.block}_datatable = null;
 
-
-// datatable setup ////////////////////////
 $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 		
 	var json = $.parseJSON(JSON.stringify(data));
@@ -91,10 +84,11 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	var data = json['rows'];
 
-	var ${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
-	    data: data,
-    	dom: 'lfr<"datatable_overflow"t>Bip',
-    	buttons: {
+	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
+    	data: data,
+       	paging: true,
+       	dom: 'lfr<"datatable_overflow"t>Bip',
+       	buttons: {
     	    dom: {
     	      button: {
     	        tag: 'button',
@@ -109,7 +103,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'hospitalization',
+    	      filename: 'environmental_factors',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -121,67 +115,46 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      text: 'Copy'
     	    }]
     	},
-       	paging: true,
        	snapshot: null,
-       	initComplete: function( settings, json ) {
+    	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
-       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
-       	},
+       	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'race', visible: true, orderable: true },
-        	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true },
-        	{ data: 'sex', visible: true, orderable: true, orderData: [7] },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
+        	{ data: 'environmental_factor', visible: true, orderable: true },
+        	{ data: 'status', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [3] },
         	{ data: 'patient_count', visible: false },
-        	{ data: 'age_abbrev', visible: false },
-        	{ data: 'age_seq', visible: false },
-        	{ data: 'race_abbrev', visible: false },
-        	{ data: 'race_seq', visible: false },
-        	{ data: 'ethnicity_abbrev', visible: false },
-        	{ data: 'ethnicity_seq', visible: false },
-        	{ data: 'sex_abbrev', visible: false },
-        	{ data: 'sex_seq', visible: false }
+        	{ data: 'status_abbrev', visible: false },
+        	{ data: 'status_seq', visible: false }
     	]
 	} );
-	
-	//table search logic that distinguishes sort/filter 
-	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
 
+	// table search logic that distinguishes sort/filter 
+	${param.block}_datatable.on( 'search.dt', function () {
 		var snapshot = ${param.block}_datatable
 	     .rows({ search: 'applied', order: 'index'})
 	     .data()
-	     .toArray().toString();
+	     .toArray()
+	     .toString();
 
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
-	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
-	  	
-	  	
-	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
-	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+
+	  	if (currentSnapshot != snapshot) {
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	   		$('#${param.block}_btn_clear').removeClass("no_clear");
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
 	  	}
-	  	
-	  	if (snapshot == snapshotAll && currentSnapshot != snapshot) {
-	  		${param.block}_datatable.settings().init().snapshot = snapshot;
-	  		${param.block}_refreshHistograms();
-			${param.block}_constrain_table();
-	   		$('#${param.block}_btn_clear').removeClass("show_clear");
-	   		$('#${param.block}_btn_clear').addClass("no_clear");
-	  	}
 	} );
-	
+
+	// this is necessary to populate the histograms for the panel's initial D3 rendering
 	${param.block}_refreshHistograms();
+
+	
 });
-
-
-
-
 
 </script>
