@@ -10,17 +10,23 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'race':
 		table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'age':
+	case 'ethnicity':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'sex':
+	case 'age':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'severity':
+	case 'sex':
 		table.column(3).search(constraint, true, false, true).draw();	
 		break;
-	case 'covidstatus':
+	case 'severity':
 		table.column(4).search(constraint, true, false, true).draw();	
+		break;
+	case 'covidstatus':
+		table.column(5).search(constraint, true, false, true).draw();	
+		break;
+	case 'longstatus':
+		table.column(6).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -35,14 +41,21 @@ function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = 0;
 	
+	
 	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
 		var data = this.data();
 		if (column == 'patient_count'){
 			sum += data['patient_count'];
 		};
 		
-		if (column == 'covid_patient_count'){
-			if (data['status'] == 'Positive'){
+		if (column == 'met_patient_count'){
+			if (data['metformin'] == 'Metformin'){
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'nomet_patient_count'){
+			if (data['metformin'] == 'No Metformin'){
 				sum += data['patient_count'];
 			};
 		};
@@ -128,7 +141,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'environmental_demographics',
+    	      filename: 'metformin_demographics',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -151,22 +164,29 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'race', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [8] },
+        	{ data: 'ethnicity', visible: true, orderable: true },
+        	{ data: 'age', visible: true, orderable: true, orderData: [11] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [6] },
+        	{ data: 'long', visible: true, orderable: true },
+        	{ data: 'metformin', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [9] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
         	{ data: 'race_abbrev', visible: false },
         	{ data: 'race_seq', visible: false },
+        	{ data: 'ethnicity_abbrev', visible: false },
+        	{ data: 'ethnicity_seq', visible: false },
         	{ data: 'sex_abbrev', visible: false },
         	{ data: 'sex_seq', visible: false },
         	{ data: 'severity_abbrev', visible: false },
         	{ data: 'severity_seq', visible: false },
         	{ data: 'status_abbrev', visible: false },
-        	{ data: 'status_seq', visible: false }
+        	{ data: 'status_seq', visible: false },
+        	{ data: 'long_abbrev', visible: false },
+        	{ data: 'long_seq', visible: false }
     	]
 	} );
 	
@@ -181,7 +201,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
 	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
 	  	
-
+	  	
+	  	if (currentSnapshot == snapshot) {
+	  	}
+	  	
 	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();

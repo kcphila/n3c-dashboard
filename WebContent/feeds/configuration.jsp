@@ -15,6 +15,8 @@ var severity_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941", "#a
 var sequential_1_5 = ["#D6BFD9", "#b88fbd", "#995fa0", "#6c4270", "#4D2F50"];
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 
+var long_range = ["#4833B2", "#a6a6a6"];
+
 
 
 var sex_range3 = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6", "#8B8B8B"];
@@ -159,7 +161,7 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </c:forEach>
 
 
-
+var long_legend = [ { "secondary": "Long COVID", "secondary_seq": 1, "secondary_name": "Long COVID" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
 
 
 

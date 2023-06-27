@@ -352,6 +352,17 @@
 	margin-top: 20px;
 }
 
+
+/* viz style */
+
+.axis {
+    font-size: 14px;
+}
+
+.axis .domain {
+    display: none;
+}
+
 </style>
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
@@ -472,6 +483,9 @@
 							</c:if>
 							<c:if test="${param.covid_filter}">
 								<jsp:include page="filters_new/covid_status.jsp"/>
+							</c:if>
+							<c:if test="${param.long_filter}">
+								<jsp:include page="filters_new/long_status.jsp"/>
 							</c:if>
 							<c:if test="${param.environmental_filter}">
 								<jsp:include page="filters_new/environmental.jsp"/>
@@ -1002,6 +1016,26 @@ function ${param.block}limitlink(){
             }
 		});
 		
+		$('#${param.block}-longstatus-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-longstatus-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+		        
+		        ${param.block}_constrain("longstatus",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
 		$('#${param.block}-environmental-select').multiselect({	
 			buttonContainer: '<div class="checkbox-list-container"></div>',
             buttonClass: '',
@@ -1521,6 +1555,10 @@ function ${param.block}limitlink(){
 			$('#${param.block}-covidstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("covidstatus", '');
 		</c:if>
+		<c:if test="${param.long_filter}">
+			$('#${param.block}-longstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("longstatus", '');
+		</c:if>
 		<c:if test="${param.environmental_filter}">
 			$('#${param.block}-environmental-select').multiselect('clearSelection');
 			${param.block}_constrain("environmental_factor", '');
@@ -1561,6 +1599,12 @@ function ${param.block}limitlink(){
 	var ${param.block}_SexArray = new Array();
 	var ${param.block}_SeverityArray = new Array();
 	var ${param.block}_DelayArray = new Array();
+	
+	var ${param.block}_SeverityMetArray = new Array();
+	var ${param.block}_SeverityNoMetArray = new Array();
+	var ${param.block}_LongMetArray = new Array();
+	var ${param.block}_LongNoMetArray = new Array();
+
 	
 	var ${param.block}_raceSeverityArray = new Array();
 	var ${param.block}_diagnosisSeverityArray = new Array();
@@ -1634,6 +1678,11 @@ function ${param.block}limitlink(){
 	    	${param.block}_refreshSexArray(data);
 	    	${param.block}_refreshSeverityArray(data);
 	    	${param.block}_refreshDelayArray(data);
+	    	
+	    	${param.block}_refreshSeverityMetArray(data);
+	    	${param.block}_refreshSeverityNoMetArray(data);
+	    	${param.block}_refreshLongMetArray(data);
+	    	${param.block}_refreshLongNoMetArray(data);
 	    
 	    	${param.block}_refreshraceSeverityArray(data);
 	    	${param.block}_refreshdiagnosisSeverityArray(data);
@@ -1715,6 +1764,12 @@ function ${param.block}limitlink(){
 	    }
 	    if ('${param.block}' === "environment_2"|| '${param.block}' === "environment_3") {
 	    	${param.block}_environment_refresh();
+	    }
+	    if ('${param.block}' === "metformin_2") {
+	    	${param.block}_severity_refresh();
+	    }
+	    if ('${param.block}' === "metformin_3") {
+	    	${param.block}_long_refresh();
 	    }
 	    if ('${param.block}' === "medications_1") {
 	    	${param.block}_medication_refresh();
@@ -1868,6 +1923,46 @@ function ${param.block}limitlink(){
 	<jsp:param name="array" value="SeverityArray"/>
 	<jsp:param name="primary" value="severity"/>
 	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityMetArray"/>
+	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityNoMetArray"/>
+	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="LongMetArray"/>
+	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="LongNoMetArray"/>
+	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
