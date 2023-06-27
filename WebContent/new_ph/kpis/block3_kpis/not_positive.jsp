@@ -7,11 +7,11 @@
 	select to_char(sum(patient_count)::int/1000000.0, '999.99')||'M'  as count
 			from (select
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as patient_count
 				  from n3c_dashboard_ph.longcov_icd10sympcounts_csd
-				  where observation = 'Has not tested positive'
+				  where covid_indicator = '0'
 		  	) as foo
 </sql:query>
 
@@ -26,7 +26,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_tested_positive_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_status_patient_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

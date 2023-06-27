@@ -14,10 +14,12 @@
 	<jsp:param name="kpis" value="long_covid/kpis.jsp" />
 	<jsp:param name="kpi_filter" value="Shortness of breath" />
 
-	<jsp:param name="age_filter4" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
+	<jsp:param name="covid_filter" value="true" />
+	<jsp:param name="long_filter" value="true" />
 	
 	<jsp:param name="symptom" value="Shortness%20of%20breath" />
 
@@ -27,6 +29,5 @@
 	<jsp:param name="datatable" value="long_covid/tables/symptom_breath_table.jsp" />
 	<jsp:param name="datatable_div" value="long_covid_symptom_breath" />
 	<jsp:param name="datatable_feed" value="long_covid/feeds/symptom_ungrouped.jsp?symptom=Shortness+of+breath" />
-	<jsp:param name="datatable_filtered_kpis" value="observation|Tested positive|tested_positive|patient_count,observation|Has U09.9 in Record|in_record|patient_count" />
-	<jsp:param name="datatable_kpis2" value="long_individual" />
+	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count,long_patient_count" />
 </jsp:include>

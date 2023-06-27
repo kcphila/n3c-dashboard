@@ -1640,11 +1640,16 @@ function ${param.block}limitlink(){
 	
 
 	var ${param.block}_MedicationArray = new Array();
+	
+	var ${param.block}_StatusAgeArray = new Array();
+	var ${param.block}_StatusSexArray = new Array();
+	var ${param.block}_StatusRaceArray = new Array();
+	var ${param.block}_StatusEthnicityArray = new Array();
+	
 	var ${param.block}_EnvMortArray = new Array();
 	var ${param.block}_MedicationAgeArray = new Array();
 	var ${param.block}_EnvironmentStatusArray = new Array();
 	var ${param.block}_ClassAgeArray = new Array();
-	var ${param.block}_DiabetesArray = new Array();
 
 	var ${param.block}_AgeSexArray = new Array();
 	var ${param.block}_SexAgeArray = new Array();
@@ -1715,11 +1720,16 @@ function ${param.block}limitlink(){
 	    	${param.block}_refreshSymptomObservationArray(data);
 	    
 	    	${param.block}_refreshMedicationArray(data2);
+	    	
+	    	${param.block}_refreshStatusAgeArray(data2);
+	    	${param.block}_refreshStatusSexArray(data2);
+	    	${param.block}_refreshStatusRaceArray(data2);
+	    	${param.block}_refreshStatusEthnicityArray(data2);
+	    	
 	    	${param.block}_refreshEnvMortArray(data2);
 	    	${param.block}_refreshMedicationAgeArray(data);
 	    	${param.block}_refreshEnvironmentStatusArray(data);
 	    	${param.block}_refreshClassAgeArray(data);
-	    	${param.block}_refreshDiabetesArray(data2);
 	    
 	    	${param.block}_refreshAgeSexArray(data2);
 	    	${param.block}_refreshSexAgeArray(data2);
@@ -2211,16 +2221,6 @@ function ${param.block}limitlink(){
 	<jsp:param name="tertiary" value="age"/>
 </jsp:include>
 
-<jsp:include page="tripleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="EnvMortArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="environmental_factor"/>
-	<jsp:param name="secondary" value="mortality"/>
-	<jsp:param name="tertiary" value="status"/>
-</jsp:include>
-
 <jsp:include page="doubleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
@@ -2251,15 +2251,6 @@ function ${param.block}limitlink(){
 <jsp:include page="tripleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="DiabetesArray"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="sex"/>
-	<jsp:param name="tertiary" value="age"/>
-</jsp:include>
-
-<jsp:include page="tripleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="AgeSexArray"/>
 	<jsp:param name="wrap" value="no"/>
 	<jsp:param name="primary" value="observation"/>
@@ -2277,14 +2268,6 @@ function ${param.block}limitlink(){
 	<jsp:param name="tertiary" value="age"/>
 </jsp:include>
 
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityStatusArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="secondary" value="smoking_status"/>
-</jsp:include>
-
 <jsp:include page="tripleHistogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
@@ -2294,6 +2277,61 @@ function ${param.block}limitlink(){
 	<jsp:param name="secondary" value="sex"/>
 	<jsp:param name="tertiary" value="age"/>
 </jsp:include>
+
+<jsp:include page="tripleHistogram2.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="StatusAgeArray"/>
+	<jsp:param name="primary" value="status"/>
+	<jsp:param name="secondary" value="long"/>
+	<jsp:param name="tertiary" value="age"/>
+</jsp:include>
+<jsp:include page="tripleHistogram2.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="StatusRaceArray"/>
+	<jsp:param name="wrap" value="no"/>
+	<jsp:param name="primary" value="status"/>
+	<jsp:param name="secondary" value="long"/>
+	<jsp:param name="tertiary" value="race"/>
+</jsp:include>
+<jsp:include page="tripleHistogram2.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="StatusEthnicityArray"/>
+	<jsp:param name="wrap" value="no"/>
+	<jsp:param name="primary" value="status"/>
+	<jsp:param name="secondary" value="long"/>
+	<jsp:param name="tertiary" value="ethnicity"/>
+</jsp:include>
+<jsp:include page="tripleHistogram2.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="StatusSexArray"/>
+	<jsp:param name="wrap" value="no"/>
+	<jsp:param name="primary" value="status"/>
+	<jsp:param name="secondary" value="long"/>
+	<jsp:param name="tertiary" value="sex"/>
+</jsp:include>
+
+<jsp:include page="tripleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="EnvMortArray"/>
+	<jsp:param name="wrap" value="no"/>
+	<jsp:param name="primary" value="environmental_factor"/>
+	<jsp:param name="secondary" value="mortality"/>
+	<jsp:param name="tertiary" value="status"/>
+</jsp:include>
+
+<jsp:include page="doubleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityStatusArray"/>
+	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="secondary" value="smoking_status"/>
+</jsp:include>
+
 
 <jsp:include page="timeline2Histogram.jsp">
 	<jsp:param name="block" value="${param.block}"/>

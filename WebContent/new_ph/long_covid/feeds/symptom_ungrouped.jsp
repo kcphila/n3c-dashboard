@@ -3,14 +3,22 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select age, sex, race, ethnicity, observation, symptom, patient_display, patient_count,
-			age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq, observation_seq, symptom_seq
+	from (select status, long, age, sex, race, ethnicity, symptom, patient_display, patient_count,
+			age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq, symptom_seq,
+			status_abbrev, status_seq, long_abbrev, long_seq
 			from (select
+					case 
+						when (covid_indicator = '1') then 'Positive'
+						else 'Unknown'
+					end as status,
+					case 
+						when (long_covid_indicator = '1') then 'Long COVID'
+						else 'Unknown'
+					end as long,
 					coalesce(age, 'Unknown') as age,
 					sex,
 					race,
 					ethnicity,
-					observation,
 					symptom,
 					patient_count as patient_display,
 					case
@@ -18,24 +26,25 @@
 						else patient_count::int
 					end as patient_count
 				  from n3c_dashboard_ph.longcov_icd10symptom_csd
-				  where observation != 'Does not have U09.9 in Record'
-				<c:if test="${not empty param.symptom}">and symptom = '${param.symptom}'</c:if>
+				<c:if test="${not empty param.symptom}">where symptom = '${param.symptom}'</c:if>
 		  	) as foo
 		  	natural left join n3c_dashboard.age_map_min
 		  	natural left join n3c_dashboard.sex_map
 		  	natural left join n3c_dashboard.race_map
 		  	natural left join n3c_dashboard.eth_map
-		  	natural left join n3c_dashboard.observation_map
 		  	natural left join n3c_dashboard.symptom_map
+		  	natural join n3c_dashboard.covidstatus_map
+		  	natural join n3c_dashboard.longstatus_map
 		  ) as done;
 </sql:query>
 {
     "headers": [
+    	{"value":"status", "label":"Covid Status"},
+        {"value":"long", "label":"Long COVID Status"},
         {"value":"age", "label":"Age"},
         {"value":"sex", "label":"Sex"},
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
-        {"value":"observation", "label":"Observation"},
         {"value":"symptom", "label":"Symptom"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
@@ -47,8 +56,11 @@
         {"value":"ethnicity_seq", "label":"dummy6"},
         {"value":"sex_abbrev", "label":"dummy7"},
         {"value":"sex_seq", "label":"dummy8"},
-        {"value":"observation_seq", "label":"dummy9"},
-        {"value":"symptom_seq", "label":"dummy10"}
+        {"value":"symptom_seq", "label":"dummy9"},
+        {"value":"status_abbrev", "label":"dummy10"},
+        {"value":"status_seq", "label":"dummy11"},
+        {"value":"long_abbrev", "label":"dummy12"},
+        {"value":"long_seq", "label":"dummy13"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

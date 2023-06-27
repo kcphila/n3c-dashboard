@@ -5,77 +5,65 @@ function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	// console.log("${param.block}", filter, constraint)
 	switch (filter) {
-	case 'age':
+	case 'covidstatus':
 		table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'sex':
+	case 'longstatus':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'race':
+	case 'age':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'ethnicity':
+	case 'sex':
 		table.column(3).search(constraint, true, false, true).draw();	
 		break;
-	case 'observation':
+	case 'race':
 		table.column(4).search(constraint, true, false, true).draw();	
 		break;
-	case 'symptom':
+	case 'ethnicity':
 		table.column(5).search(constraint, true, false, true).draw();	
+		break;
+	case 'symptom':
+		table.column(6).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
-	// console.log('${param.target_filtered_kpis}')
-	var kpis = '${param.target_filtered_kpis}'.split(',');
+	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
-		// console.log('filtered', kpis[a]);
-		var components = kpis[a].split('|');
-		// console.log('filtered', components);
-		${param.block}_updateFilteredKPI(components[0], components[1], table, components[3], components[2])
-	}
-	
-	var kpis2 = '${param.target_kpis2}'.split(',');
-	for (var a in kpis2) {
-		${param.block}_updateKPI2(table, kpis2[a])
+		${param.block}_updateKPI(table, kpis[a])
 	}
 }
 
 function ${param.block}_updateKPI(table, column) {
-	var sum_string = '';
-	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	// console.log(sum, table.rows({search:'applied'}).data().pluck(column))
-	if (sum < 1000) {
-		sumString = sum+'';
-	} else if (sum < 1000000) {
-		sum = sum / 1000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k"
-	} else {
-		sum = sum / 1000000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
+var sum = 0;
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'patient_count'){
+			sum += data['patient_count'];
+		};
 		
-	}
-	// console.log('${param.block}', column, sumString)
-	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
-}
+		if (column == 'covid_patient_count'){
+			if (data['status'] == 'Positive'){
+				sum += data['patient_count'];
+			};
+		};
+		
+		if (column == 'long_patient_count'){
+			if (data['long'] == 'Long COVID'){
+				sum += data['patient_count'];
+			};
+		};
+	});	
 
-function ${param.block}_updateKPI2(table, column) {
-	var sum_string = '';
-	var data_total = table.rows({search:'applied'}).data();
-	
-	var filtered = data_total.filter(function (el) {
-		  return el.observation == "Tested positive" ||  el.observation == "Has not tested positive" ;
-	});
-	
-	var sum = filtered.pluck('patient_count').sum();
-	
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
 		sum = sum / 1000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k"
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
 	} else {
 		sum = sum / 1000000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
 		
 	}
 	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
@@ -189,13 +177,14 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'age', visible: true, orderable: true },
+     		{ data: 'status', visible: true, orderable: true },
+        	{ data: 'long', visible: true, orderable: true },
+        	{ data: 'age', visible: true, orderable: true, orderData: [10] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'observation', visible: true, orderable: true },
         	{ data: 'symptom', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [7] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [8] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
@@ -205,8 +194,11 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'ethnicity_seq', visible: false },
         	{ data: 'sex_abbrev', visible: false },
         	{ data: 'sex_seq', visible: false },
-        	{ data: 'observation_seq', visible: false },
-        	{ data: 'symptom_seq', visible: false }
+        	{ data: 'symptom_seq', visible: false },
+        	{ data: 'status_abbrev', visible: false },
+        	{ data: 'status_seq', visible: false },
+        	{ data: 'long_abbrev', visible: false },
+        	{ data: 'long_seq', visible: false }
     	]
 	} );
 

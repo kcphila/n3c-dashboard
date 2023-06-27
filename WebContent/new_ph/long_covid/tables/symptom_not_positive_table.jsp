@@ -165,12 +165,13 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'observation', visible: false },
-        	{ data: 'age', visible: true, orderable: true },
+     		{ data: 'status', visible: true, orderable: true },
+        	{ data: 'long', visible: true, orderable: true },
+        	{ data: 'age', visible: true, orderable: true, orderData: [9] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [6] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [7] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
@@ -180,7 +181,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'ethnicity_seq', visible: false },
         	{ data: 'sex_abbrev', visible: false },
         	{ data: 'sex_seq', visible: false },
-        	{ data: 'observation_seq', visible: false }
+        	{ data: 'status_abbrev', visible: false },
+        	{ data: 'status_seq', visible: false },
+        	{ data: 'long_abbrev', visible: false },
+        	{ data: 'long_seq', visible: false }
     	]
 	} );
 

@@ -6,6 +6,7 @@
 <jsp:include page="../../graph_support/pieChart_local_new.jsp"/>
 <jsp:include page="../../graph_support/horizontalBarChart_local_new.jsp"/>
 <jsp:include page="../../graph_support/horizontalStackedBarChart_local_new.jsp"/>
+<jsp:include page="../../graph_support/grouped_stacked_bar_horizontal_local_new.jsp"/>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>

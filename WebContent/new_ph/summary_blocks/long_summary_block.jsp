@@ -118,7 +118,7 @@
 		
 		<div class="row feature_viz_section">
 			<div class="col-12 col-lg-6" id="status">
-				<h5 class="text-center mb-2 feature_sub_heading">By COVID and Long COVID Status</h5>
+				<h5 class="text-center mb-2 feature_sub_heading">By COVID Status</h5>
 				<div id="status_viz"></div>
 				<jsp:include page="long_summary_block_vizs/long_bar.jsp">
 					<jsp:param name="graph_element" value="status_viz" />
@@ -128,7 +128,7 @@
 					<jsp:param name="color_right" value="#3F50B0" />
 					<jsp:param name="min_height" value="150" />
 				</jsp:include>
-				<p class="viz_footer">Counts of Patients that Experienced Symptoms by COVID and Long COVID Status.</p>
+				<p class="viz_footer">Counts of Patients that Experienced Symptoms by COVID Status.</p>
 			</div>
 			<div class="col-12 col-lg-6" id="symptom_group">
 				<h5 class="text-center mb-2 feature_sub_heading">By Symptom Grouping</h5>

@@ -6,8 +6,8 @@
  	select to_char(sum(count)/1000000.0, '999.99')||'M' as patient_count
  	from (select 
 			case
-				when (count = '<20' or count is null) then 0
-				else count::int
+				when (patient_count = '<20' or patient_count is null) then 0
+				else patient_count::int
 			end as count
 			from n3c_dashboard_ph.longcov_icd10sympcounts_csd) as foo
 </sql:query>

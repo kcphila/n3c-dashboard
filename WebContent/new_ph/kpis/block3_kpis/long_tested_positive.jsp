@@ -6,10 +6,10 @@
  	select to_char(sum(count)/1000000.0, '999.99')||'M' as patient_count
  	from (select 
 			case
-				when (count = '<20' or count is null) then 0
-				else count::int
+				when (patient_count = '<20' or patient_count is null) then 0
+				else patient_count::int
 			end as count
-			from n3c_dashboard_ph.longcov_icd10sympcounts_csd where observation = 'Tested positive') as foo
+			from n3c_dashboard_ph.longcov_icd10sympcounts_csd where covid_indicator = '1') as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">
@@ -22,7 +22,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_tested_positive_kpi">${row.patient_count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_covid_patient_count_kpi">${row.patient_count}</span></div>
 			</div>
 		</div>
 	</div>

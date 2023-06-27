@@ -20,7 +20,6 @@
 	<jsp:param name="datatable" value="long_covid/tables/symptom_not_positive_table.jsp" />
 	<jsp:param name="datatable_div" value="long_covid_symptom_not_positive" />
 	<jsp:param name="datatable_feed" value="long_covid/feeds/symptom_summary.jsp?not_positive=true" />
-	<jsp:param name="datatable_kpis" value="patient_count" />
 </jsp:include>
 
 <script>

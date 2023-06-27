@@ -3,33 +3,44 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select observation, age, sex, race, ethnicity, patient_display, patient_count,
+	from (select status, long, age, sex, race, ethnicity, patient_display, patient_count,
 				 age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq,
-				 observation_seq
+				 status_abbrev, status_seq, long_abbrev, long_seq
 			from (select
-					observation,
+					case 
+						when (covid_indicator = '1') then 'Positive'
+						else 'Unknown'
+					end as status,
+					case 
+						when (long_covid_indicator = '1') then 'Long COVID'
+						else 'Unknown'
+					end as long,
 					coalesce(age, 'Unknown') as age,
 					sex,
 					race,
 					ethnicity,
-					count as patient_display,
+					patient_count as patient_display,
 					case
-						when (count = '<20' or count is null) then 0
-						else count::int
+						when (patient_count = '<20' or patient_count is null) then 0
+						else patient_count::int
 					end as patient_count
 				  from n3c_dashboard_ph.longcov_icd10sympcounts_csd
-				  <c:if test ="${not empty param.not_positive}">where observation = 'Has not tested positive'</c:if>
+				  where patient_count != '<20' 
+				  <c:if test ="${not empty param.not_positive}">and covid_indicator = '0'</c:if>
 		  	) as foo
 		  	natural join n3c_dashboard.age_map_min
 		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.ethnicity_map
-		  	natural join n3c_dashboard.observation_map
+		  	natural join n3c_dashboard.covidstatus_map
+		  	natural join n3c_dashboard.longstatus_map
+		  	order by long_seq, status_seq
 		  ) as done;
 </sql:query>
 {
     "headers": [
-        {"value":"observation", "label":"Observation"},
+        {"value":"status", "label":"Covid Status"},
+        {"value":"long", "label":"Long COVID Status"},
         {"value":"age", "label":"Age"},
         {"value":"sex", "label":"Sex"},
         {"value":"race", "label":"Race"},
@@ -44,7 +55,10 @@
         {"value":"ethnicity_seq", "label":"dummy6"},
         {"value":"sex_abbrev", "label":"dummy7"},
         {"value":"sex_seq", "label":"dummy8"},
-        {"value":"observation_seq", "label":"dummy9"}
+        {"value":"status_abbrev", "label":"dummy9"},
+        {"value":"status_seq", "label":"dummy10"},
+        {"value":"long_abbrev", "label":"dummy11"},
+        {"value":"long_seq", "label":"dummy12"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

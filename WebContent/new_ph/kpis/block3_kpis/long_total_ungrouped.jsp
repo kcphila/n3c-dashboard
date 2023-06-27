@@ -15,7 +15,6 @@
 				else patient_count::int
 			end as count
 			from n3c_dashboard_ph.longcov_icd10symptom_csd
-			where observation = 'Has U09.9 in Record'  or observation = 'Does not have U09.9 in Record'
 			<c:if test="${not empty param.symptom}">where symptom = '${param.symptom}'</c:if>
 		) as foo
 </sql:query>
@@ -30,7 +29,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> ${row.patient_count}</div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_patient_count_kpi">${row.patient_count}</span></div>
 			</div>
 		</div>
 	</div>

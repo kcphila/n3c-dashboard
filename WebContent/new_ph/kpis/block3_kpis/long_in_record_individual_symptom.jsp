@@ -14,7 +14,7 @@
 				when (patient_count = '<20' or patient_count is null) then 0
 				else patient_count::int
 			end as count
-			from n3c_dashboard_ph.longcov_icd10symptom_csd where observation = 'Has U09.9 in Record'
+			from n3c_dashboard_ph.longcov_icd10symptom_csd where long_covid_indicator = '1'
 			<c:if test="${not empty param.symptom}">and symptom = '${param.symptom}'</c:if>
 		) as foo
 </sql:query>
@@ -29,7 +29,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_in_record_kpi">${row.patient_count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_long_patient_count_kpi">${row.patient_count}</span></div>
 			</div>
 		</div>
 	</div>

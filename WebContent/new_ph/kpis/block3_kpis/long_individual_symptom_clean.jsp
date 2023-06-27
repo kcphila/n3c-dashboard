@@ -15,8 +15,7 @@
 				else patient_count::int
 			end as count
 			from n3c_dashboard_ph.longcov_icd10symptom_csd 
-			where (observation = 'Has not tested positive' or observation = 'Tested positive')
-			<c:if test="${not empty param.symptom}">and symptom = '${param.symptom}'</c:if>
+			<c:if test="${not empty param.symptom}">where symptom = '${param.symptom}'</c:if>
 		) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -30,7 +29,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_long_individual_kpi">${row.patient_count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_patient_count_kpi">${row.patient_count}</span></div>
 			</div>
 		</div>
 	</div>

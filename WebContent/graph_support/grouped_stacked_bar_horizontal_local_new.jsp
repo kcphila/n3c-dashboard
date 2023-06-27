@@ -102,6 +102,7 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 			return d[stack_group]; 
 		});
 		
+		
 		var keys = [... new Set(keys_all)];
 
 		var legend_map = d3.map(legend_label, function(d) { return d.secondary_name; });
@@ -170,6 +171,7 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 			cummulative += d.values[0].length;
 			category_labels.push(d.key);
 		});
+		
 		
 		var axis_color = d3.scaleOrdinal()
 			.range(["#000000", "#7f7e80"])

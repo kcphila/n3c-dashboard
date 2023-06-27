@@ -10,9 +10,9 @@ function ${param.block}_refresh${param.array}(data) {
 
 	var maxIndex = 0;
 	
-	
 	if (!"${param.wrap}"){
 		$("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().each( function ( group, i ) {
+			
 			<c:choose>
 				<c:when test="${empty param.primary_abbrev}">
 	    			var group = data[i].${param.primary};
@@ -85,6 +85,7 @@ function ${param.block}_refresh${param.array}(data) {
 	        secondary.sort((a,b) => (a.element > b.element) ? 1 : ((b.element > a.element) ? -1 : 0));
 	    	${param.block}_${param.array}.push(obj);
 	    }
+	    console.log(${param.block}_${param.array});
 	    ${param.block}_${param.array}.sort((a,b) => (a.element > b.element) ? 1 : ((b.element > a.element) ? -1 : 0));
 	    //// console.log("refreshed ${param.array}", ${param.block}_${param.array});
 	} else {

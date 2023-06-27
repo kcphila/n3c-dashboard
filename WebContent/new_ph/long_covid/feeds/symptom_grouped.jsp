@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select age, sex, race, ethnicity, observation, 
+	from (select status, long, age, sex, race, ethnicity, 
 				CASE
 						when (symptom = 'Cognitive impairment') then 'Cognitive Impairment (CI)'
 						when (symptom = 'Shortness of breath') then 'Shortness of Breath (SOB)'
@@ -13,15 +13,23 @@
 						else replace(replace(replace(symptom, 'Cognitive impairment', 'CI'), 'Shortness of breath', 'SOB'), 'Mental Health Condition', 'MHC')
 					end as symptom,
 				symptom as symptom_long,
-				patient_display, patient_count,
-				 age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq,
-				 observation_seq
+				patient_display, 
+				patient_count,
+				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq,
+				 status_abbrev, status_seq, long_abbrev, long_seq
 			from (select
+					case 
+						when (covid_indicator = '1') then 'Positive'
+						else 'Unknown'
+					end as status,
+					case 
+						when (long_covid_indicator = '1') then 'Long COVID'
+						else 'Unknown'
+					end as long,
 					coalesce(age, 'Unknown') as age,
 					sex,
 					race,
 					ethnicity,
-					observation,
 					symptom,
 					patient_count as patient_display,
 					case
@@ -35,16 +43,18 @@
 		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.eth_map
-		  	natural join n3c_dashboard.observation_map
+		  	natural join n3c_dashboard.covidstatus_map
+		  	natural join n3c_dashboard.longstatus_map
 		  ) as done;
 </sql:query>
 {
     "headers": [
+    	{"value":"status", "label":"Covid Status"},
+        {"value":"long", "label":"Long COVID Status"},
         {"value":"age", "label":"Age"},
         {"value":"sex", "label":"Sex"},
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
-        {"value":"observation", "label":"Observation"},
         {"value":"symptom", "label":"Symptom Short"},
         {"value":"symptom_long", "label":"Symptom"},
         {"value":"patient_display", "label":"Patient Count"},
@@ -57,7 +67,10 @@
         {"value":"ethnicity_seq", "label":"dummy6"},
         {"value":"sex_abbrev", "label":"dummy7"},
         {"value":"sex_seq", "label":"dummy8"},
-        {"value":"observation_seq", "label":"dummy9"}
+        {"value":"status_abbrev", "label":"dummy9"},
+        {"value":"status_seq", "label":"dummy10"},
+        {"value":"long_abbrev", "label":"dummy11"},
+        {"value":"long_seq", "label":"dummy12"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

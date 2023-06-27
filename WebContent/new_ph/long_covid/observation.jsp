@@ -185,29 +185,44 @@ if (labeltest.length != 0){
 function ${param.block}_age_refresh() {
 	var properties = {
 			domName: '${param.block}_age_viz',
-			barLabelWidth: labelWidth,
-			legend_data: age_legend_4,
-			secondary_range: age_range,
-			legend_label: 'Age',
+			primary: 'status',
+			secondary: 'long',
+			count: 'patient_count',
+			stack_group: 'age',
+			xaxis_label: 'Age',
+			legend_label: age_legend_min,
+			colorscale: age_range_min,
+			label1: 'COVID Status',
+			label2: 'Long COVID Status',
+			offset: 300,
 			legendid: '${param.block}agelegend'
+			
 		}
    	d3.select("#${param.block}_age_viz").select("svg").remove();
-	localHorizontalStackedBarChart_new(${param.block}_ObservationAgeArray, properties);	
+	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusAgeArray, properties);	
 }
+
+
 
 ${param.block}_age_refresh();
 
 function ${param.block}_race_refresh() {
 	var properties = {
 			domName: '${param.block}_race_viz',
-			barLabelWidth: labelWidth,
-			legend_data: race_legend,
-			secondary_range: race_range,
-			legend_label: 'Race',
+			primary: 'status',
+			secondary: 'long',
+			count: 'patient_count',
+			stack_group: 'race',
+			xaxis_label: 'Race',
+			legend_label: race_legend,
+			colorscale: race_range,
+			label1: 'COVID Status',
+			label2: 'Long COVID Status',
+			offset: 300,
 			legendid: '${param.block}racelegend'
 		}
    	d3.select("#${param.block}_race_viz").select("svg").remove();
-	localHorizontalStackedBarChart_new(${param.block}_ObservationRaceArray, properties);	
+	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusRaceArray, properties);
 }
 
 ${param.block}_race_refresh();
@@ -215,14 +230,20 @@ ${param.block}_race_refresh();
 function ${param.block}_sex_refresh() {
 	var properties = {
 			domName: '${param.block}_sex_viz',
-			barLabelWidth: labelWidth,
-			legend_data: sex_legend,
-			secondary_range: sex_range,
-			legend_label: 'Sex',
+			primary: 'status',
+			secondary: 'long',
+			count: 'patient_count',
+			stack_group: 'sex',
+			xaxis_label: 'Sex',
+			legend_label: sex_legend,
+			colorscale: sex_range,
+			label1: 'COVID Status',
+			label2: 'Long COVID Status',
+			offset: 300,
 			legendid: '${param.block}sexlegend'
 		}
    	d3.select("#${param.block}_sex_viz").select("svg").remove();
-	localHorizontalStackedBarChart_new(${param.block}_ObservationSexArray, properties);	
+	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusSexArray, properties);	
 }
 
 ${param.block}_sex_refresh();
@@ -230,14 +251,20 @@ ${param.block}_sex_refresh();
 function ${param.block}_ethnicity_refresh() {
 	var properties = {
 			domName: '${param.block}_ethnicity_viz',
-			barLabelWidth: labelWidth,
-			legend_data: ethnicity_legend,
-			secondary_range: ethnicity_range,
-			legend_label: 'Ethnicity',
+			primary: 'status',
+			secondary: 'long',
+			count: 'patient_count',
+			stack_group: 'ethnicity',
+			xaxis_label: 'Ethnicity',
+			legend_label: ethnicity_legend,
+			colorscale: ethnicity_range,
+			label1: 'COVID Status',
+			label2: 'Long COVID Status',
+			offset: 300,
 			legendid: '${param.block}ethnicitylegend'
 		}
    	d3.select("#${param.block}_ethnicity_viz").select("svg").remove();
-	localHorizontalStackedBarChart_new(${param.block}_ObservationEthnicityArray, properties);	
+	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusEthnicityArray, properties);
 }
 
 ${param.block}_ethnicity_refresh();

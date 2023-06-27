@@ -1005,6 +1005,7 @@ WebContent/new_ph/timeline/timeline_2.jsp -text
 WebContent/new_ph/timeline2Histogram.jsp -text
 WebContent/new_ph/timelineNHistogram.jsp -text
 WebContent/new_ph/tripleHistogram.jsp -text
+WebContent/new_ph/tripleHistogram2.jsp -text
 WebContent/new_ph/unavailable_panel.jsp -text
 WebContent/overview/block.jsp -text
 WebContent/overview/collaboration_graph/collaboration_graph.jsp -text
