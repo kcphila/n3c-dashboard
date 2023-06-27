@@ -394,7 +394,7 @@
 					<div class="col col-12 col-md-6 col-lg-4 d-flex">
 						<div class="card hover-card flex-fill mb-2 nav-card" onclick="location.href='#section7'">
 							<div class="card-body large-p">
-								<p class="card-title">Diseases<br>
+								<p class="card-title">Diseases & Risk Factors<br>
 								<i class="fas fa-head-side-cough"></i></p>
 							</div>
 						</div>
