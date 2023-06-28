@@ -16,6 +16,7 @@ var sequential_1_5 = ["#D6BFD9", "#b88fbd", "#995fa0", "#6c4270", "#4D2F50"];
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 
 var long_range = ["#4833B2", "#a6a6a6"];
+var mortality_range = ["#4833B2", "#a6a6a6"];
 
 
 

@@ -161,6 +161,118 @@
 				</div>
 			</div>			
 		
+			<div class="panel-body">
+				<div class="accordion" id="status_accordion">
+			 		<div class="card">
+			 			<div class="card-header" id="status_heading">
+							<h2 class="mb-0">
+							<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#status_body" aria-expanded="true" aria-controls="status_body">
+			  					COVID Status
+			 				</button>
+							</h2>
+						</div>
+					</div>
+					<div id="status_body" class="collapse" aria-labelledby="status_heading" data-parent="#status_accordion">
+						<div class="card-body">
+							<div id="status_panel">
+								<button class="btn btn-light btn-sm" onclick="selectall('status_panel');">All</button>
+								<button class="btn btn-light btn-sm" onclick="deselect('status_panel');">None</button><br>
+								<sql:query var="status" dataSource="jdbc/N3CPublic">
+									select status,status_abbrev from n3c_dashboard.covidstatus_map order by status_seq;
+								</sql:query>
+								<c:forEach items="${status.rows}" var="row" varStatus="rowCounter">
+									<label class="filter_option"><input type="checkbox" name="status" value="${row.status_abbrev}" > ${row.status_abbrev}</label>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		
+			<div class="panel-body">
+				<div class="accordion" id="long_accordion">
+			 		<div class="card">
+			 			<div class="card-header" id="long_heading">
+							<h2 class="mb-0">
+							<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#long_body" aria-expanded="true" aria-controls="long_body">
+			  					Long COVID Status
+			 				</button>
+							</h2>
+						</div>
+					</div>
+					<div id="long_body" class="collapse" aria-labelledby="long_heading" data-parent="#long_accordion">
+						<div class="card-body">
+							<div id="long_panel">
+								<button class="btn btn-light btn-sm" onclick="selectall('long_panel');">All</button>
+								<button class="btn btn-light btn-sm" onclick="deselect('long_panel');">None</button><br>
+								<sql:query var="longstatus" dataSource="jdbc/N3CPublic">
+									select long,long_abbrev from n3c_dashboard.longstatus_map order by long_seq;
+								</sql:query>
+								<c:forEach items="${longstatus.rows}" var="row" varStatus="rowCounter">
+									<label class="filter_option"><input type="checkbox" name="long" value="${row.long_abbrev}" > ${row.long_abbrev}</label>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		
+			<div class="panel-body">
+				<div class="accordion" id="mortality_accordion">
+			 		<div class="card">
+			 			<div class="card-header" id="mortality_heading">
+							<h2 class="mb-0">
+							<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#mortality_body" aria-expanded="true" aria-controls="mortality_body">
+			  					Mortality
+			 				</button>
+							</h2>
+						</div>
+					</div>
+					<div id="mortality_body" class="collapse" aria-labelledby="mortality_heading" data-parent="#mortality_accordion">
+						<div class="card-body">
+							<div id="mortality_panel">
+								<button class="btn btn-light btn-sm" onclick="selectall('mortality_panel');">All</button>
+								<button class="btn btn-light btn-sm" onclick="deselect('mortality_panel');">None</button><br>
+								<sql:query var="mortality" dataSource="jdbc/N3CPublic">
+									select mortality,mortality_abbrev from n3c_dashboard.mortality_map order by mortality_seq;
+								</sql:query>
+								<c:forEach items="${mortality.rows}" var="row" varStatus="rowCounter">
+									<label class="filter_option"><input type="checkbox" name="mortality" value="${row.mortality_abbrev}" > ${row.mortality_abbrev}</label>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		
+			<div class="panel-body">
+				<div class="accordion" id="vaccinated_accordion">
+			 		<div class="card">
+			 			<div class="card-header" id="vaccinated_heading">
+							<h2 class="mb-0">
+							<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#vaccinated_body" aria-expanded="true" aria-controls="vaccinated_body">
+			  					Vaccinated
+			 				</button>
+							</h2>
+						</div>
+					</div>
+					<div id="vaccinated_body" class="collapse" aria-labelledby="vaccinated_heading" data-parent="#vaccinated_accordion">
+						<div class="card-body">
+							<div id="vaccinated_panel">
+								<button class="btn btn-light btn-sm" onclick="selectall('vaccinated_panel');">All</button>
+								<button class="btn btn-light btn-sm" onclick="deselect('vaccinated_panel');">None</button><br>
+								<sql:query var="vaccinated" dataSource="jdbc/N3CPublic">
+									select vaccinated,vaccinated_abbrev from n3c_dashboard.vaccinated_map order by vaccinated_seq;
+								</sql:query>
+								<c:forEach items="${vaccinated.rows}" var="row" varStatus="rowCounter">
+									<label class="filter_option"><input type="checkbox" name="vaccinated" value="${row.vaccinated_abbrev}" > ${row.vaccinated_abbrev}</label>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		
 		</div>
 
 		<jsp:include page="../meta/relatedDashboardsByTitle.jsp">

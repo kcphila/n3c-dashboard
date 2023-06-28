@@ -246,6 +246,90 @@
 										<div id="ethnicity_histogram"></div>
 									</div>
 								</div>
+								<div class="col col-12 col-md-6 viz-section">
+									<h4 class="viz-demo">
+										COVID Status
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('covid_histogram', 'demographics-covid.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('covid_histogram', 'demographics-covid.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('covid_histogram', 'demographics-covid.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
+									<div class="panel-body">
+										<div class="loading">
+											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+										</div>
+										<div id="covid_histogram"></div>
+									</div>
+								</div>
+								<div class="col col-12 col-md-6 viz-section">
+									<h4 class="viz-demo">
+										Long COVID Status
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('long_covid_histogram', 'demographics-long-covid.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('long_covid_histogram', 'demographics-long-covid.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('long_covid_histogram', 'demographics-long-covid.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
+									<div class="panel-body">
+										<div class="loading">
+											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+										</div>
+										<div id="long_covid_histogram"></div>
+									</div>
+								</div>
+								<div class="col col-12 col-md-6 viz-section">
+									<h4 class="viz-demo">
+										Mortality
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('mortality_histogram', 'demographics-mortality.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('mortality_histogram', 'demographics-mortality.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('mortality_histogram', 'demographics-mortality.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
+									<div class="panel-body">
+										<div class="loading">
+											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+										</div>
+										<div id="mortality_histogram"></div>
+									</div>
+								</div>
+								<div class="col col-12 col-md-6 viz-section">
+									<h4 class="viz-demo">
+										Vaccinated
+										<div class="btn-group float-right">
+  											<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<i class="fas fa-download"></i>
+											</button>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" onclick="saveVisualization('vaccinated_histogram', 'demographics-vaccinated.jpg');">Save as JPG</a>
+												<a class="dropdown-item" onclick="saveVisualization('vaccinated_histogram', 'demographics-vaccinated.png');">Save as PNG</a>
+												<a class="dropdown-item" onclick="saveVisualization('vaccinated_histogram', 'demographics-vaccinated.svg');">Save as SVG</a>
+											</div>
+										</div>
+									</h4>
+									<div class="panel-body">
+										<div class="loading">
+											<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+										</div>
+										<div id="vaccinated_histogram"></div>
+									</div>
+								</div>
 							</div>
 	
 							<div class="secondary-description">
@@ -316,6 +400,10 @@ var race_range = {1:"#09405A", 2:"#AD1181", 3:"#8406D1", 4:"#ffa600", 5:"#ff7155
 var ethnicity_range = {1:"#332380", 2:"#B6AAF3", 3:"#a6a6a6"};
 var severity_range = {1:"#EBC4E0", 2:"#C24DA1", 3:"#AD1181", 4:"#820D61", 5:"#570941", 6:"#a6a6a6"};
 var sex_range = {1:"#4833B2", 2:"#ffa600", 3:"#8406D1", 4:"#a6a6a6"};
+var covid_status_range = ["#4833B2", "#a6a6a6"];
+var long_range = ["#4833B2", "#a6a6a6"];
+var mortality_range = ["#4833B2", "#a6a6a6"];
+var vaccinated_range = ["#4833B2", "#a6a6a6"];
 
 
 function updateKPI() {
@@ -367,7 +455,7 @@ $(document).ready( function () {
 		        return true;
 		      }
 		      
-		      if (positions.indexOf(searchData[0]) !== -1) {
+		      if (positions.indexOf(searchData[13]) !== -1) {
 		        return true;
 		      }
 		      
@@ -385,7 +473,7 @@ $(document).ready( function () {
 		        return true;
 		      }
 		      
-		      if (positions.indexOf(searchData[1]) !== -1) {
+		      if (positions.indexOf(searchData[3]) !== -1) {
 		        return true;
 		      }
 		      
@@ -403,7 +491,7 @@ $(document).ready( function () {
 		        return true;
 		      }
 		      
-		      if (positions.indexOf(searchData[2]) !== -1) {
+		      if (positions.indexOf(searchData[0]) !== -1) {
 		        return true;
 		      }
 		      
@@ -421,7 +509,7 @@ $(document).ready( function () {
 		        return true;
 		      }
 		      
-		      if (positions.indexOf(searchData[3]) !== -1) {
+		      if (positions.indexOf(searchData[4]) !== -1) {
 		        return true;
 		      }
 		      
@@ -439,7 +527,79 @@ $(document).ready( function () {
 		        return true;
 		      }
 		      
-		      if (positions.indexOf(searchData[4]) !== -1) {
+		      if (positions.indexOf(searchData[1]) !== -1) {
+		        return true;
+		      }
+		      
+		      return false;
+		    }
+		  );
+	
+	$.fn.dataTable.ext.search.push(
+		    function( settings, searchData, index, rowData, counter ) {
+		      var positions = $('input:checkbox[name="status"]:checked').map(function() {
+		        return this.value;
+		      }).get();
+		   
+		      if (positions.length === 0) {
+		        return true;
+		      }
+		      
+		      if (positions.indexOf(searchData[5]) !== -1) {
+		        return true;
+		      }
+		      
+		      return false;
+		    }
+		  );
+	
+	$.fn.dataTable.ext.search.push(
+		    function( settings, searchData, index, rowData, counter ) {
+		      var positions = $('input:checkbox[name="long"]:checked').map(function() {
+		        return this.value;
+		      }).get();
+		   
+		      if (positions.length === 0) {
+		        return true;
+		      }
+		      
+		      if (positions.indexOf(searchData[6]) !== -1) {
+		        return true;
+		      }
+		      
+		      return false;
+		    }
+		  );
+	
+	$.fn.dataTable.ext.search.push(
+		    function( settings, searchData, index, rowData, counter ) {
+		      var positions = $('input:checkbox[name="mortality"]:checked').map(function() {
+		        return this.value;
+		      }).get();
+		   
+		      if (positions.length === 0) {
+		        return true;
+		      }
+		      
+		      if (positions.indexOf(searchData[7]) !== -1) {
+		        return true;
+		      }
+		      
+		      return false;
+		    }
+		  );
+	
+	$.fn.dataTable.ext.search.push(
+		    function( settings, searchData, index, rowData, counter ) {
+		      var positions = $('input:checkbox[name="vaccinated"]:checked').map(function() {
+		        return this.value;
+		      }).get();
+		   
+		      if (positions.length === 0) {
+		        return true;
+		      }
+		      
+		      if (positions.indexOf(searchData[8]) !== -1) {
 		        return true;
 		      }
 		      
@@ -524,12 +684,17 @@ $(document).ready( function () {
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
 	    	order: [[0, 'asc']],
 	     	columns: [
+	        	{ data: 'age', visible: true, orderable: true },
+	        	{ data: 'severity', visible: true, orderable: true },
 	        	{ data: 'race', visible: true, orderable: true },
 	        	{ data: 'ethnicity', visible: true, orderable: true },
-	        	{ data: 'age', visible: true, orderable: true },
 	        	{ data: 'sex', visible: true, orderable: true },
-	        	{ data: 'severity', visible: true, orderable: true },
-	        	{ data: 'patient_count', visible: true, orderable: true },
+	        	{ data: 'status', visible: true, orderable: true },
+	        	{ data: 'long', visible: true, orderable: true },
+	        	{ data: 'mortality', visible: true, orderable: true },
+	        	{ data: 'vaccinated', visible: true, orderable: true },
+	        	{ data: 'patient_display', visible: true, orderable: true },
+	        	{ data: 'patient_count', visible: false, orderable: true },
 	        	{ data: 'age_abbrev', visible: false },
 	        	{ data: 'age_seq', visible: false },
 	        	{ data: 'race_abbrev', visible: false },
@@ -588,6 +753,10 @@ function refreshHistograms() {
     refreshEthnicityArray(data);
     refreshSexArray(data);
     refreshSeverityArray(data);
+    refreshCOVIDArray(data);
+    refreshLongCOVIDArray(data);
+    refreshMortalityArray(data);
+    refreshVaccinatedArray(data);
     
     var doBar = false;
     if (document.getElementById("mode-bar").classList.contains("active-display")) {
@@ -622,6 +791,30 @@ function refreshHistograms() {
 	    localBarChart(severityArray,"#severity_histogram",120, severity_range);
     else
     	localPieChart(severityArray,"#severity_histogram", severity_range);
+
+    d3.select("#covid_histogram").select("svg").remove();
+    if (doBar)
+	    localBarChart(covidArray,"#covid_histogram",120, covid_status_range);
+    else
+    	localPieChart(covidArray,"#covid_histogram", covid_status_range);
+
+    d3.select("#long_covid_histogram").select("svg").remove();
+    if (doBar)
+	    localBarChart(longCovidArray,"#long_covid_histogram",120, long_range);
+    else
+    	localPieChart(longCovidArray,"#long_covid_histogram", long_range);
+
+    d3.select("#mortality_histogram").select("svg").remove();
+    if (doBar)
+	    localBarChart(mortalityArray,"#mortality_histogram",120, mortality_range);
+    else
+    	localPieChart(mortalityArray,"#mortality_histogram", mortality_range);
+
+    d3.select("#vaccinated_histogram").select("svg").remove();
+    if (doBar)
+	    localBarChart(vaccinatedArray,"#vaccinated_histogram",120, vaccinated_range);
+    else
+    	localPieChart(vaccinatedArray,"#vaccinated_histogram", vaccinated_range);
 }
 
 function refreshAgeArray(data) {
@@ -839,6 +1032,134 @@ function refreshSeverityArray(data) {
     }
     severityArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
 //     console.log(severityArray);
+}
+
+function refreshCOVIDArray(data) {
+	var aData = new Object;
+	var bData = new Object;
+	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
+    	var group = data[i].status_abbrev;
+    	var count = data[i].patient_count;
+    	var seq = data[i].status_seq;
+        if (typeof aData[group] == 'undefined') {
+            aData[group] = count;
+            bData[group] = seq;
+         } else
+        	 aData[group] += count;
+	});
+
+	covidArray = new Array();
+    for(var i in aData) {
+    	var obj = new Object();
+    	Object.defineProperty(obj, 'element', {
+    		  value: i
+    		});
+    	Object.defineProperty(obj, 'count', {
+  		  value: aData[i]
+  		});
+    	Object.defineProperty(obj, 'seq', {
+  		  value: bData[i]
+  		});
+    	covidArray.push(obj);
+    }
+    covidArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+     console.log("covid",covidArray);
+}
+
+function refreshLongCOVIDArray(data) {
+	var aData = new Object;
+	var bData = new Object;
+	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
+    	var group = data[i].long_abbrev;
+    	var count = data[i].patient_count;
+    	var seq = data[i].long_seq;
+        if (typeof aData[group] == 'undefined') {
+            aData[group] = count;
+            bData[group] = seq;
+         } else
+        	 aData[group] += count;
+	});
+
+	longCovidArray = new Array();
+    for(var i in aData) {
+    	var obj = new Object();
+    	Object.defineProperty(obj, 'element', {
+    		  value: i
+    		});
+    	Object.defineProperty(obj, 'count', {
+  		  value: aData[i]
+  		});
+    	Object.defineProperty(obj, 'seq', {
+  		  value: bData[i]
+  		});
+    	longCovidArray.push(obj);
+    }
+    longCovidArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+     console.log("longcovid",longCovidArray);
+}
+
+function refreshMortalityArray(data) {
+	var aData = new Object;
+	var bData = new Object;
+	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
+    	var group = data[i].mortality_abbrev;
+    	var count = data[i].patient_count;
+    	var seq = data[i].mortality_seq;
+        if (typeof aData[group] == 'undefined') {
+            aData[group] = count;
+            bData[group] = seq;
+         } else
+        	 aData[group] += count;
+	});
+
+	mortalityArray = new Array();
+    for(var i in aData) {
+    	var obj = new Object();
+    	Object.defineProperty(obj, 'element', {
+    		  value: i
+    		});
+    	Object.defineProperty(obj, 'count', {
+  		  value: aData[i]
+  		});
+    	Object.defineProperty(obj, 'seq', {
+  		  value: bData[i]
+  		});
+    	mortalityArray.push(obj);
+    }
+    mortalityArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+     console.log("mortality",mortalityArray);
+}
+
+function refreshVaccinatedArray(data) {
+	var aData = new Object;
+	var bData = new Object;
+	aggregated_datatable.rows({search:'applied'}).data().each( function ( group, i ) {
+    	var group = data[i].vaccinated_abbrev;
+    	var count = data[i].patient_count;
+    	var seq = data[i].vaccinated_seq;
+        if (typeof aData[group] == 'undefined') {
+            aData[group] = count;
+            bData[group] = seq;
+         } else
+        	 aData[group] += count;
+	});
+
+	vaccinatedArray = new Array();
+    for(var i in aData) {
+    	var obj = new Object();
+    	Object.defineProperty(obj, 'element', {
+    		  value: i
+    		});
+    	Object.defineProperty(obj, 'count', {
+  		  value: aData[i]
+  		});
+    	Object.defineProperty(obj, 'seq', {
+  		  value: bData[i]
+  		});
+    	vaccinatedArray.push(obj);
+    }
+    vaccinatedArray.sort((a,b) => (a.seq > b.seq) ? 1 : ((b.seq > a.seq) ? -1 : 0));
+     console.log("vaccinated",vaccinatedArray);
 }
 
 function uncheckAll() {

@@ -3,38 +3,79 @@
 
 <sql:query var="ages" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select severity_abbrev as severity, race_abbrev as race, ethnicity, foo.age as age, sex, 
-				case when (patient_count = 0) then '<20' else patient_count::text end as patient_display, 
-				patient_count,
-				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, sex_abbrev, sex_seq, severity_abbrev, severity_seq
-			from (select
-					severity,
+	from (select
+			coalesce (age, 'Unknown') as age,
+			coalesce (severity, 'Unavailable') as severity,
+			race,
+			ethnicity,
+			sex,
+			status,
+			long,
+			mortality,
+			vaccinated,
+			patient_count as patient_display,
+			case
+				when patient_count = '<20' then 0
+				else patient_count::int
+			end as patient_count,
+			age_abbrev, age_seq,
+			race_abbrev, race_seq,
+			ethnicity_abbrev, ethnicity_seq,
+			sex_abbrev, sex_seq,
+			severity_abbrev, severity_seq,
+			status_abbrev, status_seq,
+			long_abbrev, long_seq,
+			mortality_abbrev, mortality_seq,
+			vaccinated_abbrev, vaccinated_seq
+			from (
+				select
+					coalesce (age, 'Unknown') as age,
+					coalesce (severity, 'Unavailable') as severity,
 					race,
 					ethnicity,
-					COALESCE (age, 'Unknown') as age,
 					sex,
-					sum(case
-						when (patient_count = '<20' or patient_count is null) then 0
-						else patient_count::int
-					end) as patient_count
-				  from n3c_dashboard_ph.Demo_demo_ageidl_cov_csd
-				  group by severity, race, ethnicity, age, sex
-		  	) as foo
+					case
+						when covid_indicator = 1 then 'Positive'
+						else 'Unknown'
+					end as status,
+					case
+						when long_covid_indicator = 1 then 'Long COVID'
+						else 'Unknown'
+					end as long,
+					case
+						when death_indicator = 1 then 'Mortality'
+						else 'No Mortality'
+					end  as mortality,
+					case
+						when vaccinated = 1 then 'Vaccinated'
+						else 'Unknown'
+					end as vaccinated,
+					patient_count
+				from n3c_dashboard_ph.demo_demo_mort_sev_vacc_all_covid_csd) as foo
 		  	natural join n3c_dashboard.age_map_ideal
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.eth_map
 		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.sev_map
+		  	natural join n3c_dashboard.covidstatus_map
+		  	natural join n3c_dashboard.longstatus_map
+		  	natural join n3c_dashboard.mortality_map
+		  	natural join n3c_dashboard.vaccinated_map
 		  ) as done;
 </sql:query>
 {
     "headers": [
+        {"value":"age", "label":"Age"},
+        {"value":"severity", "label":"Severity"},
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
-        {"value":"age", "label":"Age"},
         {"value":"sex", "label":"Sex"},
-        {"value":"severity", "label":"Severity"},
-        {"value":"patient_count", "label":"Patient Count"},
+        {"value":"status", "label":"COVID"},
+        {"value":"long", "label":"Long COVID"},
+        {"value":"mortality", "label":"Mortality"},
+        {"value":"vaccinated", "label":"Vaccinated"},
+        {"value":"patient_display", "label":"Patient Count"},
+        {"value":"patient_count", "label":"dummy0"},
         {"value":"age_abbrev", "label":"dummy1"},
         {"value":"age_seq", "label":"dummy2"},
         {"value":"race_abbrev", "label":"dummy3"},
