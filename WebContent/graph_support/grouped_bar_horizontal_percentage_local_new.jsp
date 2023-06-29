@@ -21,8 +21,6 @@
 
 function localHorizontalGroupedPercentageBarChart_new(data, properties) {
 	
-	console.log('reached');
-	
 	//
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
 	//
