@@ -9,9 +9,13 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
-		<option value="metformin_1">Demographics of All Metformin Patients</option>
-		<option value="metformin_2">Exploration of Severity/Mortality</option>
-		<option value="metformin_3">Metformin and Long COVID</option>
+		<optgroup label="All N3C Patients">
+			<option value="metformin_1">Demographics of Metformin Patients</option>
+		</optgroup>
+		<optgroup label="All Diabetic Patients">
+			<option value="metformin_2">Metformin vs. Non-Metformin Severity</option>
+			<option value="metformin_3">Metformin vs. Non-Metformin Long COVID</option>
+		</optgroup>
 	</select>
 </div>
 

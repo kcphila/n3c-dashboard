@@ -76,7 +76,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_sex_refresh() {
 	var properties = {
 			domName: '#${param.block}_sex_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: sex_range,

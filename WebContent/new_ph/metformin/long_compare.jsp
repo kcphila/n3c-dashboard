@@ -119,27 +119,27 @@ var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
-	var title = "Long COVID Status Percentages of ${param.topic_title} who wern't Prescribed Metformin";
+	var title = "Long COVID Status Percentages of ${param.topic_title} who were not Prescribed Metformin";
 	$("#long-title2").text(title);
 } else if (title_mode == 'bar'){
-	var title = "Counts of ${param.topic_title} who wern't Prescribed Metformin by Long COVID Status";
+	var title = "Counts of ${param.topic_title} who were not Prescribed Metformin by Long COVID Status";
 	$("#long-title2").text(title);
 } else {
-	var title = "Long COVID Status Percentages of ${param.topic_title} who wern't Prescribed Metformin";
+	var title = "Long COVID Status Percentages of ${param.topic_title} who were not Prescribed Metformin";
 	$("#long-title2").text(title);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Long COVID Status Percentages of ${param.topic_title} who wern't Prescribed Metformin";
+	var title = "Long COVID Status Percentages of ${param.topic_title} who were not Prescribed Metformin";
 	$("#long-title2").text(title);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of ${param.topic_title} who wern't Prescribed Metformin by Long COVID Status";
+	var title = "Counts of ${param.topic_title} who were not Prescribed Metformin by Long COVID Status";
 	$("#long-title2").text(title);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Long COVID Status Percentages of ${param.topic_title} who weren't Prescribed Metformin";
+	var title = "Long COVID Status Percentages of ${param.topic_title} who were not Prescribed Metformin";
 	$("#long-title2").text(title);
 });
 

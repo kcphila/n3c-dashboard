@@ -74,7 +74,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_age_refresh() {
 	var properties = {
 			domName: '#${param.block}_age_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: age_range_min,

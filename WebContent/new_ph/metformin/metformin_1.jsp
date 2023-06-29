@@ -8,7 +8,7 @@
 	<jsp:param name="folder" value="metformin" />
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Patients Prescribed Metformin " />
+	<jsp:param name="topic_title" value="Patients Prescribed Metformin" />
 
 	<jsp:param name="kpis" value="metformin/kpis.jsp" />
 	
@@ -19,13 +19,16 @@
 	<jsp:param name="covid_filter" value="true" />
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="long_filter" value="true" />
+	<jsp:param name="mortality_filter" value="true" />
+	<jsp:param name="vaccinated_filter" value="true" />
+	<jsp:param name="beforeaftermedication_filter" value="true" />
 	
 	<jsp:param name="toggle" value="true" />
 	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',
 			domName: '#metformin_1_age_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: age_range_min,
@@ -35,7 +38,7 @@
 		}], 'race' : [{
 			dimension: 'race',
 			domName: '#metformin_1_race_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: race_range,
@@ -45,7 +48,7 @@
 		}], 'sex' : [{
 			dimension: 'sex',
 			domName: '#metformin_1_sex_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: sex_range,
@@ -55,7 +58,7 @@
 		}], 'ethnicity' : [{
 			dimension: 'ethnicity',
 			domName: '#metformin_1_ethnicity_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: ethnicity_range,
@@ -65,12 +68,22 @@
 		}], 'severity' : [{
 			dimension: 'severity',
 			domName: '#metformin_1_severity_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: severity_range,
 			legend_label: 'Severity',
 			legend_data: severity_legend,
+			donutRatio: 0.5
+		}], 'medicationoccurrence' : [{
+			dimension: 'medicationoccurrence',
+			domName: '#metformin_1_medicationoccurrence_viz',
+			barLabelWidth: 110,
+			min_height: 300,
+			ordered: 0,
+			colorscale: medicationoccurrence_range,
+			legend_label: 'Medicationoccurrence',
+			legend_data: medicationoccurrence_legend,
 			donutRatio: 0.5
 		}]
 	}"/>
@@ -80,15 +93,16 @@
 	<jsp:param name="sex_panel" value="metformin/sex.jsp" />
 	<jsp:param name="ethnicity_panel" value="metformin/ethnicity.jsp" />
 	<jsp:param name="severity_panel" value="metformin/severity.jsp" />
+	<jsp:param name="medicationoccurrence_panel" value="metformin/beforeafter.jsp" />
 
 	<jsp:param name="datatable" value="metformin/tables/metdemo_table.jsp" />
 	<jsp:param name="datatable_div" value="metdemo" />
 	<jsp:param name="datatable_feed" value="metformin/feeds/metdemo.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count" />
+	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count,long_covid_patient_count,vaccinated_patient_count,mortality_patient_count" />
 
 </jsp:include>
 
 <script>
-	var panels = ["age", "race", "sex", "ethnicity", "severity"];
+	var panels = ["age", "race", "sex", "ethnicity", "severity", "medicationoccurrence"];
 	metformin_1_panel(panels);
 </script>

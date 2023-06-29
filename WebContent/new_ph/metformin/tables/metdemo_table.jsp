@@ -27,6 +27,14 @@ function ${param.block}_constrain_table(filter, constraint) {
 		break;
 	case 'longstatus':
 		table.column(6).search(constraint, true, false, true).draw();	
+	case 'vaccinated':
+		table.column(7).search(constraint, true, false, true).draw();	
+		break;
+	case 'mortality':
+		table.column(8).search(constraint, true, false, true).draw();	
+		break;
+	case 'medicationoccurrence':
+		table.column(9).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -53,9 +61,70 @@ function ${param.block}_updateKPI(table, column) {
 				sum += data['patient_count'];
 			};
 		};
+		if (column == 'long_covid_patient_count'){
+			if (data['long'] == 'Long COVID'){
+				sum += data['patient_count'];
+			};
+		};
+		if (column == 'vaccinated_patient_count'){
+			if (data['vaccinated'] == 'Vaccinated'){
+				sum += data['patient_count'];
+			};
+		};
+		if (column == 'mortality_patient_count'){
+			if (data['mortality'] == 'Mortality'){
+				sum += data['patient_count'];
+			};
+		};
 	});	
 	
+	var snapshotAll = table.settings().init().snapshotAll;
 	
+	var total = 0;
+	for (i in snapshotAll){
+		if (column == 'patient_count'){
+			total += snapshotAll[i]['patient_count'];
+		};
+
+		if (column == 'covid_patient_count'){
+			if (snapshotAll[i]['status'] == 'Positive'){
+				total += snapshotAll[i]['patient_count'];
+			};
+		};
+		if (column == 'long_covid_patient_count'){
+			if (snapshotAll[i]['long'] == 'Long COVID'){
+				total += snapshotAll[i]['patient_count'];
+			};
+		};
+		if (column == 'vaccinated_patient_count'){
+			if (snapshotAll[i]['vaccinated'] == 'Vaccinated'){
+				total += snapshotAll[i]['patient_count'];
+			};
+		};
+		if (column == 'mortality_patient_count'){
+			if (snapshotAll[i]['mortality'] == 'Mortality'){
+				total += snapshotAll[i]['patient_count'];
+			};
+		};
+		
+	}
+	
+	if (sum != 0){
+		var percent = ((sum/total)*100);
+		var width = (Math.round(percent));
+		var rount = percent;
+		rount = +rount.toFixed(2);
+		var widthtext = rount + "% in View"
+		var bar = "${param.block}_"+ column +"_kpi_progress";
+		var div = "${param.block}_"+ column +"_kpi_progressdiv";
+		document.getElementById(bar).style = "width: " + width + "% !important";
+		document.getElementById(div).setAttribute("data-original-title", widthtext);
+	} else{
+		var bar = "${param.block}_"+ column +"_kpi_progress";
+		var div = "${param.block}_"+ column +"_kpi_progressdiv";
+		document.getElementById(bar).style = "width: 0% !important";
+		document.getElementById(div).setAttribute("data-original-title", "0% in View");
+	}
 
 	if (sum < 1000) {
 		sumString = sum+'';
@@ -150,8 +219,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	paging: true,
        	snapshot: null,
        	initComplete: function( settings, json ) {
-       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
-       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
@@ -159,12 +228,15 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
      	columns: [
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [10] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [13] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
         	{ data: 'long', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [8] },
+        	{ data: 'vaccinated', visible: true, orderable: true },
+        	{ data: 'mortality', visible: true, orderable: true },
+        	{ data: 'medocc', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [11] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
@@ -179,7 +251,14 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'status_abbrev', visible: false },
         	{ data: 'status_seq', visible: false },
         	{ data: 'long_abbrev', visible: false },
-        	{ data: 'long_seq', visible: false }
+        	{ data: 'long_seq', visible: false },
+        	{ data: 'vaccinated_abbrev', visible: false },
+        	{ data: 'vaccinated_seq', visible: false },
+        	{ data: 'mortality_abbrev', visible: false },
+        	{ data: 'mortality_seq', visible: false },
+        	{ data: 'medocc_abbrev', visible: false },
+        	{ data: 'medocc_seq', visible: false }
+        	
     	]
 	} );
 	
@@ -195,17 +274,12 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
 	  	
 	  	
-	  	if (currentSnapshot == snapshot) {
-	  		console.log('same same');
-	  	}
-	  	
 	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
 	   		$('#${param.block}_btn_clear').removeClass("no_clear");
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
-	   		console.log('same same2');
 	  	}
 	  	
 	  	if (snapshot == snapshotAll && currentSnapshot != snapshot) {
@@ -214,7 +288,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 			${param.block}_constrain_table();
 	   		$('#${param.block}_btn_clear').removeClass("show_clear");
 	   		$('#${param.block}_btn_clear').addClass("no_clear");
-	   		console.log('same same3');
 	  	}
 	} );
 	

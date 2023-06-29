@@ -15,8 +15,9 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.metformin_demosevlc_cov_csd
-				  where covid_indicator = '1'
+				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
+				  where metformin_indicator = 1
+				  and covid_indicator = '1'
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -39,7 +40,7 @@
 											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
 											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
 										</ul>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">Total COVID+ Patients in View* <i class="fas fa-info-circle"></i>
+	 											<p style="margin-bottom:0px;">COVID+ Patients in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, 
 	  												a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 
 	  												(U07.1) was recorded
@@ -52,6 +53,9 @@
 					</table>
 				</div>
 				<div class="panel-heading kpi_num"><i class="fas fa-user-plus"></i> <span id="${param.block}_covid_patient_count_kpi">${row.count}</span></div>
+				<div class="progress" id="${param.block}_covid_patient_count_kpi_progressdiv" data-toggle="tooltip" data-placement="top" title="" data-original-title="100% in View" aria-hidden="true">
+  					<div id="${param.block}_covid_patient_count_kpi_progress" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100% !important"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -66,4 +70,7 @@ $(function () {
 $(document).on("click", ".popover .close" , function(){
     $(this).parents(".popover").popover('hide');
 });
+
+$('#${param.block}_covid_patient_count_kpi_progressdiv').tooltip();
+
 </script>

@@ -6,6 +6,10 @@
 
 <style>
 
+.progress{
+	height: 10px;
+}
+
 @media (max-width: 1200px){
 	.container-large {
     	max-width: 100% !important;
@@ -424,11 +428,11 @@
 							<c:if test="${param.age_filter_ideal}">
 								<jsp:include page="filters_new/age_ideal.jsp"/>
 							</c:if>
-							<c:if test="${param.race_filter}">
-								<jsp:include page="filters_new/race.jsp"/>
-							</c:if>
 							<c:if test="${param.sex_filter}">
 								<jsp:include page="filters_new/sex.jsp"/>
+							</c:if>
+							<c:if test="${param.race_filter}">
+								<jsp:include page="filters_new/race.jsp"/>
 							</c:if>
 							<c:if test="${param.ethnicity_filter}">
 								<jsp:include page="filters_new/ethnicity.jsp"/>
@@ -442,12 +446,25 @@
 							<c:if test="${param.vaccinated_filter}">
 								<jsp:include page="filters_new/vaccinated.jsp"/>
 							</c:if>
+							<c:if test="${param.covid_filter}">
+								<jsp:include page="filters_new/covid_status.jsp"/>
+							</c:if>
+							<c:if test="${param.beforeaftermedication_filter}">
+								<jsp:include page="filters_new/beforeafter_medication.jsp"/>
+							</c:if>
+							<c:if test="${param.long_filter}">
+								<jsp:include page="filters_new/long_status.jsp"/>
+							</c:if>
+							<c:if test="${param.mortality_filter}">
+								<jsp:include page="filters_new/mortality.jsp"/>
+							</c:if>
 							<c:if test="${param.comorbidities_filter}">
 								<jsp:include page="filters/comorbidities.jsp"/>
 							</c:if>
 							<c:if test="${param.beforeafter_filter}">
 								<jsp:include page="filters_new/beforeafter.jsp"/>
 							</c:if>
+							
 							<c:if test="${param.beforeaftersotrovimab_filter}">
 								<jsp:include page="filters_new/beforeafter_sotrovimab.jsp"/>
 							</c:if>
@@ -481,12 +498,7 @@
 							<c:if test="${param.smoking_filter}">
 								<jsp:include page="filters_new/smoking.jsp"/>
 							</c:if>
-							<c:if test="${param.covid_filter}">
-								<jsp:include page="filters_new/covid_status.jsp"/>
-							</c:if>
-							<c:if test="${param.long_filter}">
-								<jsp:include page="filters_new/long_status.jsp"/>
-							</c:if>
+							
 							<c:if test="${param.environmental_filter}">
 								<jsp:include page="filters_new/environmental.jsp"/>
 							</c:if>
@@ -705,6 +717,28 @@
 							</c:url>
 							<div class="col-12 col-md-6 small-viz-panel">
 								<div id="${param.block}-ethnicity" src="<c:out value='${ethnicity_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.medicationoccurrence_panel}">
+							<c:url value="${param.medicationoccurrence_panel}" var="medicationoccurrence_url">
+		  						<c:param name="panel" value="${param.medicationoccurrence_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_disease}">
+		  							<c:param name="topic_disease" value="${param.topic_disease}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title2}">
+		  							<c:param name="topic_title2" value="${param.topic_title2}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-medicationoccurrence" src="<c:out value='${medicationoccurrence_url}'/>"></div>
 							</div>
 						</c:if>
 					</div>
@@ -1036,6 +1070,26 @@ function ${param.block}limitlink(){
             }
 		});
 		
+		$('#${param.block}-mortality-select').multiselect({
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-mortality-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+		        
+		        ${param.block}_constrain("mortality",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
+		
 		$('#${param.block}-environmental-select').multiselect({	
 			buttonContainer: '<div class="checkbox-list-container"></div>',
             buttonClass: '',
@@ -1317,6 +1371,24 @@ function ${param.block}limitlink(){
 			    ${param.block}_refreshHistograms();
             }
 		});
+		$('#${param.block}-medicationoccurrence-select').multiselect({	
+			buttonContainer: '<div class="checkbox-list-container"></div>',
+            buttonClass: '',
+            templates: {
+                button: '',
+                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+            },
+			onChange: function(option, checked, select) {
+				var options = $('#${param.block}-medicationoccurrence-select');
+		        var selected = [];
+		        $(options).each(function(){
+		            selected.push($(this).val());
+		        });
+				${param.block}_constrain("medicationoccurrence",  selected[0].join('|'));
+			    ${param.block}_refreshHistograms();
+            }
+		});
 		
 		// paxlovid new
 		$('#${param.block}-paxlovidstatus-select').multiselect({
@@ -1507,6 +1579,10 @@ function ${param.block}limitlink(){
 			$('#${param.block}-symptomoccurrence-select').multiselect('clearSelection');
 			${param.block}_constrain("beforeafter", '');
 		</c:if>
+		<c:if test="${param.beforeaftermedication_filter}">
+			$('#${param.block}-medicationoccurrence-select').multiselect('clearSelection');
+			${param.block}_constrain("medicationoccurrence", '');
+		</c:if>
 		<c:if test="${param.beforeaftersotrovimab_filter}">
 			$('#${param.block}-sotrovimaboccurrence-select').multiselect('clearSelection');
 			${param.block}_constrain("sotrovimaboccurrence", '');
@@ -1559,6 +1635,10 @@ function ${param.block}limitlink(){
 			$('#${param.block}-longstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("longstatus", '');
 		</c:if>
+		<c:if test="${param.long_filter}">
+			$('#${param.block}-mortality-select').multiselect('clearSelection');
+			${param.block}_constrain("mortality", '');
+		</c:if>
 		<c:if test="${param.environmental_filter}">
 			$('#${param.block}-environmental-select').multiselect('clearSelection');
 			${param.block}_constrain("environmental_factor", '');
@@ -1599,6 +1679,7 @@ function ${param.block}limitlink(){
 	var ${param.block}_SexArray = new Array();
 	var ${param.block}_SeverityArray = new Array();
 	var ${param.block}_DelayArray = new Array();
+	var ${param.block}_MedicationoccurrenceArray = new Array();
 	
 	var ${param.block}_SeverityMetArray = new Array();
 	var ${param.block}_SeverityNoMetArray = new Array();
@@ -1683,6 +1764,7 @@ function ${param.block}limitlink(){
 	    	${param.block}_refreshSexArray(data);
 	    	${param.block}_refreshSeverityArray(data);
 	    	${param.block}_refreshDelayArray(data);
+	    	${param.block}_refreshMedicationoccurrenceArray(data);
 	    	
 	    	${param.block}_refreshSeverityMetArray(data);
 	    	${param.block}_refreshSeverityNoMetArray(data);
@@ -1771,6 +1853,9 @@ function ${param.block}limitlink(){
 	    }
 	    if (${param.block}_loaded("ethnicity")) {
 	    	${param.block}_ethnicity_refresh();
+	    }
+	    if (${param.block}_loaded("medicationoccurrence")) {
+	    	${param.block}_medicationoccurrence_refresh();
 	    }
 	    if ('${param.block}' === "environment_2"|| '${param.block}' === "environment_3") {
 	    	${param.block}_environment_refresh();
@@ -1908,6 +1993,14 @@ function ${param.block}limitlink(){
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="RaceArray"/>
 	<jsp:param name="primary" value="race"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MedicationoccurrenceArray"/>
+	<jsp:param name="primary" value="medocc"/>
 	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 

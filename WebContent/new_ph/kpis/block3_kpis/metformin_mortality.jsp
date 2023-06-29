@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+	
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
 	select 
  		case
@@ -16,9 +17,9 @@
 					end as count
 				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
 				  where metformin_indicator = 1
+				  and patient_death_indicator = '1'
 				) as foo;
 </sql:query>
-	
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">
 		<div class="panel-primary kpi">
@@ -29,13 +30,13 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients Prescribed Metformin in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Mortalities in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
-										data-content="
-										<p>Total Number of Individuals within the view who have Metformin indicated in their EHR.</p>
-										<p>Even without filters, this total may be less than the total number of patients prescribed Metformin within the Enclave due to the suppression of counts less than 20.</p>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">Total Patients in View* <i class="fas fa-info-circle"></i>
+										data-content="<p>Mortalities</p>" aria-describedby="tooltip">
+	 											<p style="margin-bottom:0px;">Mortalities in View* <i class="fas fa-info-circle"></i>
+	  											<span class="sr-only">, or patients who died.
+	  											</span>
 	 											</p> 
  									</a>
  								</span>
@@ -43,16 +44,25 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-users"></i> <span id="${param.block}_patient_count_kpi">${row.count}</span></div>
-				<div class="progress" id="${param.block}_patient_count_kpi_progressdiv" data-toggle="tooltip" data-placement="top" title="" data-original-title="100% in View" aria-hidden="true">
-  					<div id="${param.block}_patient_count_kpi_progress" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100% !important"></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-user"></i> <span id="${param.block}_mortality_patient_count_kpi">${row.count}</span></div>
+				<div class="progress" id="${param.block}_mortality_patient_count_kpi_progressdiv" data-toggle="tooltip" data-placement="top" title="" data-original-title="100% in View" aria-hidden="true">
+  					<div id="${param.block}_mortality_patient_count_kpi_progress" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100% !important"></div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </c:forEach>
 
-
 <script>
-$('#${param.block}_patient_count_kpi_progressdiv').tooltip();
+//popover stuff
+$(function () {
+	$('[data-toggle="popover"]').popover()
+});
+$(document).on("click", ".popover .close" , function(){
+    $(this).parents(".popover").popover('hide');
+});
+
+$('#${param.block}_mortality_patient_count_kpi_progressdiv').tooltip();
+
 </script>

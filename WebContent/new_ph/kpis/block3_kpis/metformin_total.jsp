@@ -36,6 +36,9 @@
 					</table>
 				</div>
 				<div class="panel-heading kpi_num"><i class="fas fa-prescription-bottle-alt"></i> ${row.count}</div>
+				<div class="progress">
+  					<div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -439,6 +439,7 @@ WebContent/new_ph/filters_new/age_ideal.jsp -text
 WebContent/new_ph/filters_new/age_min.jsp -text
 WebContent/new_ph/filters_new/age_sec.jsp -text
 WebContent/new_ph/filters_new/beforeafter.jsp -text
+WebContent/new_ph/filters_new/beforeafter_medication.jsp -text
 WebContent/new_ph/filters_new/beforeafter_sotrovimab.jsp -text
 WebContent/new_ph/filters_new/cciscore.jsp -text
 WebContent/new_ph/filters_new/covid_status.jsp -text
@@ -452,6 +453,7 @@ WebContent/new_ph/filters_new/long_status.jsp -text
 WebContent/new_ph/filters_new/medication.jsp -text
 WebContent/new_ph/filters_new/medication_class.jsp -text
 WebContent/new_ph/filters_new/medication_ts.jsp -text
+WebContent/new_ph/filters_new/mortality.jsp -text
 WebContent/new_ph/filters_new/paxlovid.jsp -text
 WebContent/new_ph/filters_new/race.jsp -text
 WebContent/new_ph/filters_new/region.jsp -text
@@ -621,7 +623,10 @@ WebContent/new_ph/kpis/block3_kpis/metdiabetes_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metdiabetesmet_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metdiabetesnomet_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metformin_covid_positive.jsp -text
+WebContent/new_ph/kpis/block3_kpis/metformin_long_covid.jsp -text
+WebContent/new_ph/kpis/block3_kpis/metformin_mortality.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metformin_total.jsp -text
+WebContent/new_ph/kpis/block3_kpis/metformin_vaccination.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metformin_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/mortality.jsp -text
 WebContent/new_ph/kpis/block3_kpis/mortality2.jsp -text
@@ -780,6 +785,7 @@ WebContent/new_ph/medications/tables/medications_table.jsp -text
 WebContent/new_ph/medications/tables/medications_table2.jsp -text
 WebContent/new_ph/medications/tables/medications_table3.jsp -text
 WebContent/new_ph/metformin/age.jsp -text
+WebContent/new_ph/metformin/beforeafter.jsp -text
 WebContent/new_ph/metformin/ethnicity.jsp -text
 WebContent/new_ph/metformin/feeds/diabetes.jsp -text
 WebContent/new_ph/metformin/feeds/metdemo.jsp -text

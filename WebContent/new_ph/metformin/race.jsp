@@ -75,7 +75,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_race_refresh() {
 	var properties = {
 			domName: '#${param.block}_race_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 110,
 			min_height: 300,
 			ordered: 0,
 			colorscale: race_range,

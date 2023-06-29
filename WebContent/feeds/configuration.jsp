@@ -17,6 +17,7 @@ var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833
 
 var long_range = ["#4833B2", "#a6a6a6"];
 var mortality_range = ["#4833B2", "#a6a6a6"];
+var medicationoccurrence_range = ["#007bff", "#09405A", "#a6a6a6"];
 
 
 
@@ -165,7 +166,15 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 var long_legend = [ { "secondary": "Long COVID", "secondary_seq": 1, "secondary_name": "Long COVID" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
 
 
-
+<sql:query var="medocc" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct medocc_abbrev as secondary, medocc_seq as secondary_seq, medocc as secondary_name
+		  from n3c_dashboard.medocc_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${medocc.rows}" var="row" varStatus="rowCounter">
+	var medicationoccurrence_legend = ${row.jsonb_pretty};
+</c:forEach>
 
 
 

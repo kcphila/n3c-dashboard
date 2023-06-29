@@ -4,21 +4,29 @@
 
 <c:choose>
 	<c:when test="${param.block == 'metformin_1' }">
-		<div class="col col-12 col-md-3 my-auto">
+		<div class="col col-12 col-md-3 my-auto kpi_border_right">
 			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
 				<jsp:param name="block" value="${param.block}"/>
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-4 my-auto kpi_border_right">
-			<jsp:include page="../kpis/block3_kpis/covid_positive_secondary.jsp" >
-				<jsp:param name="block" value="${param.block}"/>
-			</jsp:include>
-		</div>
-		<div class="col col-12 col-md-5 my-auto">
+		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/metformin_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
+		</div>	
+		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/metformin_covid_positive.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+			<jsp:include page="../kpis/block3_kpis/metformin_long_covid.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>	
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/metformin_vaccination.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+			<jsp:include page="../kpis/block3_kpis/metformin_mortality.jsp" >
 				<jsp:param name="block" value="${param.block}"/>
 			</jsp:include>
 		</div>	
