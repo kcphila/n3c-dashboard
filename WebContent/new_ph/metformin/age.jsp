@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-12 viz-header-section">
-		<h2 id="age-title" class="viz-title"></h2>
+		<h2 id="${param.block}age-title" class="viz-title"></h2>
 		<div class="btn-group float-right">
 			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-download"></i>
@@ -48,27 +48,27 @@ var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
 	var title = "Age Percentages of ${param.topic_title}";
-	$("#age-title").text(title);
+	$("#${param.block}age-title").text(title);
 } else if (title_mode == 'bar'){
 	var title = "Counts of ${param.topic_title} by Age";
-	$("#age-title").text(title);
+	$("#${param.block}age-title").text(title);
 } else {
 	var title = "Age Percentages of ${param.topic_title}";
-	$("#age-title").text(title);
+	$("#${param.block}age-title").text(title);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
 	var title = "Age Percentages of ${param.topic_title}";
-	$("#age-title").text(title);
+	$("#${param.block}age-title").text(title);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
 	var title = "Counts of ${param.topic_title} by Age";
-	$("#age-title").text(title);
+	$("#${param.block}age-title").text(title);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
 	var title = "Age Percentages of ${param.topic_title}";
-	$("#age-title").text(title);
+	$("#${param.block}age-title").text(title);
 });
 
 function ${param.block}_age_refresh() {

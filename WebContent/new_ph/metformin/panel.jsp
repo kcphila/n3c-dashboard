@@ -9,17 +9,17 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
-		<optgroup label="All N3C Patients">
-			<option value="metformin_1">Demographics of Metformin Patients</option>
-			<option value="metformin_2">Metformin vs. Non-Metformin Severity (All Patients)</option>
-			<option value="metformin_3">Metformin vs. Non-Metformin Long COVID (All Patients)</option>
-			<option value="metformin_4">Metformin vs. Non-Metformin Mortality (All Patients)</option>
+		<optgroup label="Demographics & Cohort Exploration">
+			<option value="metformin_1">Demographics of All Patients Prescribed Metformin</option>
+			<option value="metformin_5">Demographics of Diabetic Patients Prescribed Metformin</option>
 		</optgroup>
-		<optgroup label="All Diabetic Patients">
-			<option value="metformin_5">Demographics of Diabetic Metformin Patients</option>
-			<option value="metformin_6">Metformin vs. Non-Metformin Severity (Diabetic Patients)</option>
-			<option value="metformin_7">Metformin vs. Non-Metformin Long COVID (Diabetic Patients)</option>
-			<option value="metformin_8">Metformin vs. Non-Metformin Mortality (Diabetic Patients)</option>
+		<optgroup label="Comparisons Between Metformin & Non-Metformin Patients">
+			<option value="metformin_2">Severity (All Patients)</option>
+			<option value="metformin_6">Severity (Diabetic Patients)</option>
+			<option value="metformin_3">Long COVID (All Patients)</option>
+			<option value="metformin_7">Long COVID (Diabetic Patients)</option>
+			<option value="metformin_4">Mortality (All Patients)</option>
+			<option value="metformin_8">Mortality (Diabetic Patients)</option>
 		</optgroup>
 	</select>
 </div>
