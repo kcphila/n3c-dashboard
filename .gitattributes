@@ -786,14 +786,17 @@ WebContent/new_ph/medications/tables/medications_table2.jsp -text
 WebContent/new_ph/medications/tables/medications_table3.jsp -text
 WebContent/new_ph/metformin/age.jsp -text
 WebContent/new_ph/metformin/beforeafter.jsp -text
+WebContent/new_ph/metformin/covid.jsp -text
 WebContent/new_ph/metformin/ethnicity.jsp -text
 WebContent/new_ph/metformin/feeds/diabetes.jsp -text
 WebContent/new_ph/metformin/feeds/metdemo.jsp -text
 WebContent/new_ph/metformin/kpis.jsp -text
 WebContent/new_ph/metformin/long_compare.jsp -text
+WebContent/new_ph/metformin/longstatus.jsp -text
 WebContent/new_ph/metformin/metformin_1.jsp -text
 WebContent/new_ph/metformin/metformin_2.jsp -text
 WebContent/new_ph/metformin/metformin_3.jsp -text
+WebContent/new_ph/metformin/mortality.jsp -text
 WebContent/new_ph/metformin/panel.jsp -text
 WebContent/new_ph/metformin/race.jsp -text
 WebContent/new_ph/metformin/secondary_text/secondary_1.jsp -text
@@ -804,6 +807,7 @@ WebContent/new_ph/metformin/severity_compare.jsp -text
 WebContent/new_ph/metformin/sex.jsp -text
 WebContent/new_ph/metformin/tables/diabetes_table.jsp -text
 WebContent/new_ph/metformin/tables/metdemo_table.jsp -text
+WebContent/new_ph/metformin/vaccinated.jsp -text
 WebContent/new_ph/mortality/age.jsp -text
 WebContent/new_ph/mortality/delay.jsp -text
 WebContent/new_ph/mortality/delayed_table.jsp -text

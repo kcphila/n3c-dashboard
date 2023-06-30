@@ -32,15 +32,8 @@
 					</table>
 				</div>
 				<div class="panel-heading kpi_num"><i class="fas fa-user-shield"></i> <span id="${param.block}_vaccinated_patient_count_kpi">${row.count}</span></div>
-				<div class="progress" id="${param.block}_vaccinated_patient_count_kpi_progressdiv" data-toggle="tooltip" data-placement="top" title="" data-original-title="100% in View" aria-hidden="true">
-  					<div id="${param.block}_vaccinated_patient_count_kpi_progress" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100% !important"></div>
-				</div>
 			</div>
 		</div>
 	</div>
 
 </c:forEach>
-
-<script>
-$('#${param.block}_vaccinated_patient_count_kpi_progressdiv').tooltip();
-</script>

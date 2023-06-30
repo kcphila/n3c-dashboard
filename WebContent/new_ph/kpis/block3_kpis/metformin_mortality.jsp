@@ -33,7 +33,10 @@
 										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Mortalities in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
-										data-content="<p>Mortalities</p>" aria-describedby="tooltip">
+										data-content="<strong>Mortality Defined As:</strong>
+										<ul style='padding-inline-start: 15px;'>
+											<li>Any patient with a date of death in the Enclave.</li>
+										</ul><p>Note: this metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to only those suspected to be caused by COVID." aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Mortalities in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or patients who died.
 	  											</span>
@@ -45,9 +48,6 @@
 					</table>
 				</div>
 				<div class="panel-heading kpi_num"><i class="fas fa-user"></i> <span id="${param.block}_mortality_patient_count_kpi">${row.count}</span></div>
-				<div class="progress" id="${param.block}_mortality_patient_count_kpi_progressdiv" data-toggle="tooltip" data-placement="top" title="" data-original-title="100% in View" aria-hidden="true">
-  					<div id="${param.block}_mortality_patient_count_kpi_progress" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100% !important"></div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -62,7 +62,4 @@ $(function () {
 $(document).on("click", ".popover .close" , function(){
     $(this).parents(".popover").popover('hide');
 });
-
-$('#${param.block}_mortality_patient_count_kpi_progressdiv').tooltip();
-
 </script>

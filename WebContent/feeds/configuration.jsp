@@ -15,7 +15,8 @@ var severity_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941", "#a
 var sequential_1_5 = ["#D6BFD9", "#b88fbd", "#995fa0", "#6c4270", "#4D2F50"];
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 
-var long_range = ["#4833B2", "#a6a6a6"];
+var longstatus_range = ["#4833B2", "#a6a6a6"];
+var covidstatus_range = ["#4833B2", "#a6a6a6"];
 var mortality_range = ["#4833B2", "#a6a6a6"];
 var medicationoccurrence_range = ["#007bff", "#09405A", "#a6a6a6"];
 
@@ -163,7 +164,6 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </c:forEach>
 
 
-var long_legend = [ { "secondary": "Long COVID", "secondary_seq": 1, "secondary_name": "Long COVID" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
 
 
 <sql:query var="medocc" dataSource="jdbc/N3CPublic">
@@ -176,7 +176,45 @@ var long_legend = [ { "secondary": "Long COVID", "secondary_seq": 1, "secondary_
 	var medicationoccurrence_legend = ${row.jsonb_pretty};
 </c:forEach>
 
+<sql:query var="mortality" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct mortality_abbrev as secondary, mortality_seq as secondary_seq, mortality as secondary_name
+		  from n3c_dashboard.mortality_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${mortality.rows}" var="row" varStatus="rowCounter">
+	var mortality_legend = ${row.jsonb_pretty};
+</c:forEach>
 
+<sql:query var="vaccinated" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct vaccinated_abbrev as secondary, vaccinated_seq as secondary_seq, vaccinated as secondary_name
+		  from n3c_dashboard.vaccinated_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${vaccinated.rows}" var="row" varStatus="rowCounter">
+	var vaccinated_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="longstatus" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct long_abbrev as secondary, long_seq as secondary_seq, long as secondary_name
+		  from n3c_dashboard.longstatus_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${longstatus.rows}" var="row" varStatus="rowCounter">
+	var longstatus_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="covid" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct status_abbrev as secondary, status_seq as secondary_seq, status as secondary_name
+		  from n3c_dashboard.covidstatus_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${covid.rows}" var="row" varStatus="rowCounter">
+	var covidstatus_legend = ${row.jsonb_pretty};
+</c:forEach>
 
 
 

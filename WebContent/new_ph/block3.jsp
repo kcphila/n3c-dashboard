@@ -727,20 +727,79 @@
 		  						<c:if test="${not empty param.topic_description}">
 		  							<c:param name="topic_description" value="${param.topic_description}" />
 		  						</c:if>
-		  						<c:if test="${not empty param.topic_disease}">
-		  							<c:param name="topic_disease" value="${param.topic_disease}" />
-		  						</c:if>
 		  						<c:if test="${not empty param.topic_title}">
 		  							<c:param name="topic_title" value="${param.topic_title}" />
-		  						</c:if>
-		  						<c:if test="${not empty param.topic_title2}">
-		  							<c:param name="topic_title2" value="${param.topic_title2}" />
 		  						</c:if>
 							</c:url>
 							<div class="col-12 col-md-6 small-viz-panel">
 								<div id="${param.block}-medicationoccurrence" src="<c:out value='${medicationoccurrence_url}'/>"></div>
 							</div>
 						</c:if>
+						<c:if test="${not empty param.covidstatus_panel}">
+							<c:url value="${param.covidstatus_panel}" var="covidstatus_url">
+		  						<c:param name="panel" value="${param.covidstatus_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-covidstatus" src="<c:out value='${covidstatus_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.longstatus_panel}">
+							<c:url value="${param.longstatus_panel}" var="longstatus_url">
+		  						<c:param name="panel" value="${param.longstatus_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-longstatus" src="<c:out value='${longstatus_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.vaccinationstatus_panel}">
+							<c:url value="${param.vaccinationstatus_panel}" var="vaccinationstatus_url">
+		  						<c:param name="panel" value="${param.vaccinationstatus_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-vaccinationstatus" src="<c:out value='${vaccinationstatus_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.mortality_panel}">
+							<c:url value="${param.mortality_panel}" var="mortality_url">
+		  						<c:param name="panel" value="${param.mortality_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-mortality" src="<c:out value='${mortality_url}'/>"></div>
+							</div>
+						</c:if>
+
 					</div>
 					
 					
@@ -1679,7 +1738,12 @@ function ${param.block}limitlink(){
 	var ${param.block}_SexArray = new Array();
 	var ${param.block}_SeverityArray = new Array();
 	var ${param.block}_DelayArray = new Array();
+	
 	var ${param.block}_MedicationoccurrenceArray = new Array();
+	var ${param.block}_MortalityArray = new Array();
+	var ${param.block}_VaccinationstatusArray = new Array();
+	var ${param.block}_LongstatusArray = new Array();
+	var ${param.block}_CovidstatusArray = new Array();
 	
 	var ${param.block}_SeverityMetArray = new Array();
 	var ${param.block}_SeverityNoMetArray = new Array();
@@ -1764,7 +1828,12 @@ function ${param.block}limitlink(){
 	    	${param.block}_refreshSexArray(data);
 	    	${param.block}_refreshSeverityArray(data);
 	    	${param.block}_refreshDelayArray(data);
+	    	
 	    	${param.block}_refreshMedicationoccurrenceArray(data);
+	    	${param.block}_refreshMortalityArray(data);
+	    	${param.block}_refreshVaccinationstatusArray(data);
+	    	${param.block}_refreshLongstatusArray(data);
+	    	${param.block}_refreshCovidstatusArray(data);
 	    	
 	    	${param.block}_refreshSeverityMetArray(data);
 	    	${param.block}_refreshSeverityNoMetArray(data);
@@ -1856,6 +1925,18 @@ function ${param.block}limitlink(){
 	    }
 	    if (${param.block}_loaded("medicationoccurrence")) {
 	    	${param.block}_medicationoccurrence_refresh();
+	    }
+	    if (${param.block}_loaded("mortality")) {
+	    	${param.block}_mortality_refresh();
+	    }
+	    if (${param.block}_loaded("vaccinationstatus")) {
+	    	${param.block}_vaccinationstatus_refresh();
+	    }
+	    if (${param.block}_loaded("longstatus")) {
+	    	${param.block}_longstatus_refresh();
+	    }
+	    if (${param.block}_loaded("covidstatus")) {
+	    	${param.block}_covidstatus_refresh();
 	    }
 	    if ('${param.block}' === "environment_2"|| '${param.block}' === "environment_3") {
 	    	${param.block}_environment_refresh();
@@ -2001,6 +2082,38 @@ function ${param.block}limitlink(){
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="MedicationoccurrenceArray"/>
 	<jsp:param name="primary" value="medocc"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MortalityArray"/>
+	<jsp:param name="primary" value="mortality"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="VaccinationstatusArray"/>
+	<jsp:param name="primary" value="vaccinated"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="LongstatusArray"/>
+	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="CovidstatusArray"/>
+	<jsp:param name="primary" value="status"/>
 	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 

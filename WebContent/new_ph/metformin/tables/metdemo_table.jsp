@@ -85,46 +85,25 @@ function ${param.block}_updateKPI(table, column) {
 		if (column == 'patient_count'){
 			total += snapshotAll[i]['patient_count'];
 		};
-
-		if (column == 'covid_patient_count'){
-			if (snapshotAll[i]['status'] == 'Positive'){
-				total += snapshotAll[i]['patient_count'];
-			};
-		};
-		if (column == 'long_covid_patient_count'){
-			if (snapshotAll[i]['long'] == 'Long COVID'){
-				total += snapshotAll[i]['patient_count'];
-			};
-		};
-		if (column == 'vaccinated_patient_count'){
-			if (snapshotAll[i]['vaccinated'] == 'Vaccinated'){
-				total += snapshotAll[i]['patient_count'];
-			};
-		};
-		if (column == 'mortality_patient_count'){
-			if (snapshotAll[i]['mortality'] == 'Mortality'){
-				total += snapshotAll[i]['patient_count'];
-			};
-		};
-		
 	}
-	
-	if (sum != 0){
-		var percent = ((sum/total)*100);
-		var width = (Math.round(percent));
-		var rount = percent;
-		rount = +rount.toFixed(2);
-		var widthtext = rount + "% in View"
-		var bar = "${param.block}_"+ column +"_kpi_progress";
-		var div = "${param.block}_"+ column +"_kpi_progressdiv";
-		document.getElementById(bar).style = "width: " + width + "% !important";
-		document.getElementById(div).setAttribute("data-original-title", widthtext);
-	} else{
-		var bar = "${param.block}_"+ column +"_kpi_progress";
-		var div = "${param.block}_"+ column +"_kpi_progressdiv";
-		document.getElementById(bar).style = "width: 0% !important";
-		document.getElementById(div).setAttribute("data-original-title", "0% in View");
-	}
+	if (column == 'patient_count'){
+		if (sum != 0){
+			var percent = ((sum/total)*100);
+			var width = (Math.round(percent));
+			var rount = percent;
+			rount = +rount.toFixed(2);
+			var widthtext = rount + "% in View"
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: " + width + "% !important";
+			document.getElementById(div).setAttribute("data-original-title", widthtext);
+		} else{
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: 0% !important";
+			document.getElementById(div).setAttribute("data-original-title", "0% in View");
+		}
+	};
 
 	if (sum < 1000) {
 		sumString = sum+'';

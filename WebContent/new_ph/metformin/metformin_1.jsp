@@ -85,6 +85,46 @@
 			legend_label: 'Medicationoccurrence',
 			legend_data: medicationoccurrence_legend,
 			donutRatio: 0.5
+		}], 'mortality' : [{
+			dimension: 'mortality',
+			domName: '#metformin_1_mortality_viz',
+			barLabelWidth: 110,
+			min_height: 300,
+			ordered: 0,
+			colorscale: mortality_range,
+			legend_label: 'Mortality',
+			legend_data: mortality_legend,
+			donutRatio: 0.5
+		}], 'vaccinationstatus' : [{
+			dimension: 'vaccinationstatus',
+			domName: '#metformin_1_vaccinationstatus_viz',
+			barLabelWidth: 110,
+			min_height: 300,
+			ordered: 0,
+			colorscale: vaccinated_range,
+			legend_label: 'Vaccinationstatus',
+			legend_data: vaccinated_legend,
+			donutRatio: 0.5
+		}], 'longstatus' : [{
+			dimension: 'longstatus',
+			domName: '#metformin_1_longstatus_viz',
+			barLabelWidth: 110,
+			min_height: 300,
+			ordered: 0,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			legend_data: longstatus_legend,
+			donutRatio: 0.5
+		}], 'covid' : [{
+			dimension: 'covidstatus',
+			domName: '#metformin_1_covidstatus_viz',
+			barLabelWidth: 110,
+			min_height: 300,
+			ordered: 0,
+			colorscale: covidstatus_range,
+			legend_label: 'Covidstatus',
+			legend_data: covidstatus_legend,
+			donutRatio: 0.5
 		}]
 	}"/>
 	
@@ -94,6 +134,10 @@
 	<jsp:param name="ethnicity_panel" value="metformin/ethnicity.jsp" />
 	<jsp:param name="severity_panel" value="metformin/severity.jsp" />
 	<jsp:param name="medicationoccurrence_panel" value="metformin/beforeafter.jsp" />
+	<jsp:param name="vaccinationstatus_panel" value="metformin/vaccinated.jsp" />
+	<jsp:param name="mortality_panel" value="metformin/mortality.jsp" />
+	<jsp:param name="longstatus_panel" value="metformin/longstatus.jsp" />
+	<jsp:param name="covidstatus_panel" value="metformin/covid.jsp" />
 
 	<jsp:param name="datatable" value="metformin/tables/metdemo_table.jsp" />
 	<jsp:param name="datatable_div" value="metdemo" />
@@ -103,6 +147,6 @@
 </jsp:include>
 
 <script>
-	var panels = ["age", "race", "sex", "ethnicity", "severity", "medicationoccurrence"];
+	var panels = ["age", "race", "sex", "ethnicity", "severity", "medicationoccurrence", "vaccinationstatus", "mortality", "longstatus", "covidstatus"];
 	metformin_1_panel(panels);
 </script>
