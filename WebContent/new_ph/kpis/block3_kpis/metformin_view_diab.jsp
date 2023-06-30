@@ -34,7 +34,8 @@
 										data-placement="top" 
 										data-content="
 										<p>Total Number of Individuals within the view who have Metformin indicated in their EHR.</p>
-										<p>Even without filters, this total may be less than the total number of patients prescribed Metformin within the Enclave due to the suppression of counts less than 20.</p>" aria-describedby="tooltip">
+										<p>Sample: N3C Patients w/Diabetes indicated in their EHR.</p>
+										<p>Even without filters, this total may be less than the total number of Diabetic patients prescribed Metformin within the Enclave due to the suppression of counts less than 20.</p>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Patients in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>

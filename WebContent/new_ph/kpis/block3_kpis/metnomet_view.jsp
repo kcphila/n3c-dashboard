@@ -29,12 +29,13 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients w/Diabetes not taking Metformin in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients not taking Metformin in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of Diabetic Individuals within the view who do not have Metformin
-										indicated in their EHR.</p>" aria-describedby="tooltip">
+										<p>Total Number of Individuals within the view who do not have Metformin
+										indicated in their EHR.</p>
+										<p>Sample: All N3C Patients.</p>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Non-Metformin Patients in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>

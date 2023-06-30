@@ -5,5 +5,6 @@
 	specify In-patient administration. There is no guarantee that a patient was exposed to the displayed medications, 
 	only that their medical records include evidence of that medication.
 	For additional information, please <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see the limitations below</a>.</p>
+	<small>Note: Cohorts of <20 will appear in the data/charts as 0</small>
 </div>
 

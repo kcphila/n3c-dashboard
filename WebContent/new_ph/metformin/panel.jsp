@@ -11,15 +11,15 @@
 	<select id="selectMe">
 		<optgroup label="All N3C Patients">
 			<option value="metformin_1">Demographics of Metformin Patients</option>
-			<option value="metformin_2">Metformin vs. Non-Metformin Severity</option>
-			<option value="metformin_3">Metformin vs. Non-Metformin Long COVID</option>
-			<option value="metformin_4">Metformin vs. Non-Metformin Mortality</option>
+			<option value="metformin_2">Metformin vs. Non-Metformin Severity (All Patients)</option>
+			<option value="metformin_3">Metformin vs. Non-Metformin Long COVID (All Patients)</option>
+			<option value="metformin_4">Metformin vs. Non-Metformin Mortality (All Patients)</option>
 		</optgroup>
 		<optgroup label="All Diabetic Patients">
 			<option value="metformin_5">Demographics of Diabetic Metformin Patients</option>
-			<option value="metformin_6">Metformin vs. Non-Metformin Severity</option>
-			<option value="metformin_7">Metformin vs. Non-Metformin Long COVID</option>
-			<option value="metformin_8">Metformin vs. Non-Metformin Mortality</option>
+			<option value="metformin_6">Metformin vs. Non-Metformin Severity (Diabetic Patients)</option>
+			<option value="metformin_7">Metformin vs. Non-Metformin Long COVID (Diabetic Patients)</option>
+			<option value="metformin_8">Metformin vs. Non-Metformin Mortality (Diabetic Patients)</option>
 		</optgroup>
 	</select>
 </div>

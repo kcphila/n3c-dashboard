@@ -28,13 +28,13 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients w/Diabetes in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of Individuals within the view who have Diabetes 
-										indicated in their EHR.</p>
-										<p>Even without filters, this total may be less than the total number of patients w/Diabetes within the Enclave due to the suppression of counts less than 20.</p>" aria-describedby="tooltip">
+										<p>Total Number of Individuals within the view.</p>
+										<p>Sample: All N3C Patients.</p>
+										<p>Even without filters, this total may be less than the total number of patients within the Enclave due to the suppression of counts less than 20.</p>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Patients in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>
