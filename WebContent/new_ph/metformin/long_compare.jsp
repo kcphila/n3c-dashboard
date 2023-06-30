@@ -13,9 +13,9 @@
 						<i class="fas fa-download"></i>
 					</button>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="save_viz_pass_long1('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="save_viz_pass_long1('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="save_viz_pass_long1('.svg');">Save as SVG</a>
+						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.jpg');">Save as JPG</a>
+						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.png');">Save as PNG</a>
+						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.svg');">Save as SVG</a>
 					</div>
 				</div>
 			</div>
@@ -33,9 +33,9 @@
 						<i class="fas fa-download"></i>
 					</button>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="save_viz_pass_long2('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="save_viz_pass_long2('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="save_viz_pass_long2('.svg');">Save as SVG</a>
+						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.jpg');">Save as JPG</a>
+						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.png');">Save as PNG</a>
+						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.svg');">Save as SVG</a>
 					</div>
 				</div>
 			</div>
@@ -49,35 +49,35 @@
 
 <script>
 //this is to change the title of the download based on which visualization mode is selected
-function save_viz_pass_long1(extension){
+function ${param.block}save_viz_pass_long1(extension){
 	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Long COVID Percentages of ${param.topic_title}" + extension;
+		text = "Long COVID Status Percentages of ${param.topic_title} Prescribed Metformin" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of ${param.topic_title} by Long COVID" + extension;
+		text = "Counts of ${param.topic_title} Prescribed Metformin by Long COVID Status" + extension;
 	} else {
-		text = "Long COVID Percentages of ${param.topic_title}" + extension;
+		text = "Long COVID Status Percentages of ${param.topic_title} Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_long1_viz', text);
 };
 
-function save_viz_pass_long2(extension){
+function ${param.block}save_viz_pass_long2(extension){
 	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Long COVID Percentages of ${param.topic_title}" + extension;
+		text = "Long COVID Status Percentages of ${param.topic_title} Not Prescribed Metformin" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of ${param.topic_title} by Long COVID" + extension;
+		text = "Counts of ${param.topic_title} Not Prescribed Metformin by Long COVID Status" + extension;
 	} else {
-		text = "Long COVID Percentages of ${param.topic_title}" + extension;
+		text = "Long COVID Status Percentages of ${param.topic_title} Not Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_long2_viz', text);
@@ -151,9 +151,9 @@ function ${param.block}_long_refresh() {
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: long_range,
-			legend_label: 'Long',
-			legend_data: long_legend,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			legend_data: longstatus_legend,
 			donutRatio: 0.5
 		}
 	
@@ -162,9 +162,9 @@ function ${param.block}_long_refresh() {
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: long_range,
-			legend_label: 'Long',
-			legend_data: long_legend,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			legend_data: longstatus_legend,
 			donutRatio: 0.5
 		}
 

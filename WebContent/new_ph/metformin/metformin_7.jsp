@@ -3,12 +3,12 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <jsp:include page="../block3.jsp">
-	<jsp:param name="block" value="metformin_2" />
-	<jsp:param name="block_header" value="All Patients Prescribed Metformin Long COVID" />
+	<jsp:param name="block" value="metformin_7" />
+	<jsp:param name="block_header" value="All Diabetic Patients Prescribed Metformin Long COVID" />
 	<jsp:param name="folder" value="metformin" />
-	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="topic_description" value="secondary_7" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="All Patients" />
+	<jsp:param name="topic_title" value="All Diabetic Patients" />
 
 	<jsp:param name="kpis" value="metformin/kpis.jsp" />
 	
@@ -21,40 +21,40 @@
 	<jsp:param name="long_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
-	<jsp:param name="beforeaftermedication_filter" value="true" />
+	<jsp:param name="beforeaftercondition_filter" value="true" />
 	
 	<jsp:param name="toggle3" value="true" />
 	
-	<jsp:param name="viz_properties" value="{'severity1' : [{
-			dimension: 'severity',
-			domName: '#metformin_2_severity1_viz',
+	<jsp:param name="viz_properties" value="{'long1' : [{
+			dimension: 'long',
+			domName: '#metformin_7_long1_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: severity_range,
-			legend_label: 'Severity',
-			feed: 'SeverityMet',
-			legend_data: severity_legend,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongMet',
+			legend_data: longstatus_legend,
 			donutRatio: 0.5
-		}], 'severity2' : [{
-			dimension: 'severity',
-			domName: '#metformin_2_severity2_viz',
+		}], 'long2' : [{
+			dimension: 'long',
+			domName: '#metformin_7_long2_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: severity_range,
-			legend_label: 'Severity',
-			feed: 'SeverityNoMet',
-			legend_data: severity_legend,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongNoMet',
+			legend_data: longstatus_legend,
 			donutRatio: 0.5
 		}]
 	}"/>
 	
-	<jsp:param name="simple_panel" value="metformin/severity_compare.jsp" />
+	<jsp:param name="simple_panel" value="metformin/long_compare.jsp" />
 
 	<jsp:param name="datatable" value="metformin/tables/diabetes_table.jsp" />
-	<jsp:param name="datatable_div" value="severity_met" />
-	<jsp:param name="datatable_feed" value="metformin/feeds/metformin.jsp" />
+	<jsp:param name="datatable_div" value="long_covid_diab" />
+	<jsp:param name="datatable_feed" value="metformin/feeds/diabetes.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count" />
 
 </jsp:include>

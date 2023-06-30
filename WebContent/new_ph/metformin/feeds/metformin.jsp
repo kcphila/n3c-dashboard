@@ -36,8 +36,8 @@
 						else 'No Mortality'
 					end as mortality,
 					case 
-						when (diabetes_before_after_covid = 'Before') then 'Before COVID'
-						when (diabetes_before_after_covid = 'After') then 'After COVID'
+						when (metformin_before_after_covid = 'Before') then 'Before COVID'
+						when (metformin_before_after_covid = 'After') then 'After COVID'
 						else 'Unknown'
 					end as medocc,
 					patient_count as patient_display,
@@ -45,7 +45,7 @@
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
 					end as patient_count
-				  from n3c_dashboard_ph.diabetes_demosevvacmorlc_cov_csd
+				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
 		  	) as foo
 		  	natural join n3c_dashboard.age_map_min
 		  	natural join n3c_dashboard.race_map
@@ -71,7 +71,7 @@
         {"value":"long", "label":"Long COVID Status"},
         {"value":"vaccinated", "label":"Vaccination Status"},
         {"value":"mortality", "label":"Mortality"},
-        {"value":"metformin_occurrence", "label":"Diabetes Occurrence"},
+        {"value":"medocc", "label":"Medication Occurrence"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
         {"value":"age_abbrev", "label":"dummy1"},

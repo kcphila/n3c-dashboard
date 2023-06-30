@@ -3,14 +3,11 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select metformin, race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, patient_display, patient_count,
+	from (select race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, patient_display, patient_count,
 				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, 
 				sex_abbrev, sex_seq, severity_abbrev, severity_seq, status_abbrev, status_seq, long_abbrev, long_seq,
 				vaccinated_abbrev, vaccinated_seq, mortality_abbrev, mortality_seq, medocc_abbrev, medocc_seq
 			from (select
-					case when (metformin_indicator = '1') then 'Metformin'
-						else 'No Metformin'
-					end as metformin,
 					race,
 					ethnicity,
 					COALESCE (age, 'Unknown') as age,
@@ -46,6 +43,7 @@
 						else patient_count::int
 					end as patient_count
 				  from n3c_dashboard_ph.diabetes_demosevvacmorlc_cov_csd
+				  where metformin_indicator = 1
 		  	) as foo
 		  	natural join n3c_dashboard.age_map_min
 		  	natural join n3c_dashboard.race_map
@@ -61,7 +59,6 @@
 </sql:query>
 {
     "headers": [
-    	{"value":"metformin", "label":"Metformin Status"},
         {"value":"race", "label":"Race"},
         {"value":"ethnicity", "label":"Ethnicity"},
         {"value":"age", "label":"Age"},

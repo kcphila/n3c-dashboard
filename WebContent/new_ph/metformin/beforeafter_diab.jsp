@@ -32,11 +32,11 @@ function ${param.block}save_viz_pass_medicationoccurrence(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Medication Occurrence Percentages of ${param.topic_title}" + extension;
+		text = "Diabetes Occurrence Percentages of ${param.topic_title}" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of ${param.topic_title} by Medication Occurrence" + extension;
+		text = "Counts of ${param.topic_title} by Diabetes Occurrence" + extension;
 	} else {
-		text = "Medication Occurrence Percentages of ${param.topic_title}" + extension;
+		text = "Diabetes Occurrence Percentages of ${param.topic_title}" + extension;
 	};
 	
 	saveVisualization('${param.block}_medicationoccurrence_viz', text);
@@ -48,27 +48,27 @@ var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
-	var title = "Med Occurrence Percentages of ${param.topic_title}";
+	var title = "Diabetes Occurrence Percentages of ${param.topic_title}";
 	$("#medicationoccurrence-title").text(title);
 } else if (title_mode == 'bar'){
-	var title = "Counts of ${param.topic_title} by Med Occurrence";
+	var title = "Counts of ${param.topic_title} by Diabetes Occurrence";
 	$("#medicationoccurrence-title").text(title);
 } else {
-	var title = "Med Occurrence Percentages of ${param.topic_title}";
+	var title = "Diabetes Occurrence Percentages of ${param.topic_title}";
 	$("#medicationoccurrence-title").text(title);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Med Occurrence Percentages of ${param.topic_title}";
+	var title = "Diabetes Occurrence Percentages of ${param.topic_title}";
 	$("#medicationoccurrence-title").text(title);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of ${param.topic_title} by Med Occurrence";
+	var title = "Counts of ${param.topic_title} by Diabetes Occurrence";
 	$("#medicationoccurrence-title").text(title);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Med Occurrence Percentages of ${param.topic_title}";
+	var title = "Diabetes Occurrence Percentages of ${param.topic_title}";
 	$("#medicationoccurrence-title").text(title);
 });
 
@@ -79,7 +79,7 @@ function ${param.block}_medicationoccurrence_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: medicationoccurrence_range,
-			legend_label: 'Medicationoccurrence',
+			legend_label: 'Conditionoccurrence',
 			legend_data: medicationoccurrence_legend,
 			donutRatio: 0.5
 		}
@@ -91,11 +91,11 @@ function ${param.block}_medicationoccurrence_refresh() {
 	d3.select("#${param.block}_medicationoccurrence_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart_new(${param.block}_MedicationoccurrenceArray, properties);
+		localPieChart_new(${param.block}_ConditionoccurrenceArray, properties);
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_new(${param.block}_MedicationoccurrenceArray, properties);
+		localHorizontalBarChart_new(${param.block}_ConditionoccurrenceArray, properties);
 	} else {
-		localPercentageBarChart_new(${param.block}_MedicationoccurrenceArray, properties);
+		localPercentageBarChart_new(${param.block}_ConditionoccurrenceArray, properties);
 	};
 }
 

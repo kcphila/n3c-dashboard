@@ -1,5 +1,5 @@
 <div class="secondary-description">
-	<p><strong>Sample:</strong> All patients in the N3C Data Enclave. 
+	<p><strong>Sample:</strong> All Diabetic patients in the N3C Data Enclave. 
 	Medication exposure data shown here does not mean the patient actually took the displayed medication. 
 	Some medication exposure records specify that a prescription for a medication was written, while others 
 	specify In-patient administration. There is no guarantee that a patient was exposed to the displayed medications, 

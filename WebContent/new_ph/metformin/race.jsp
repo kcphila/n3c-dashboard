@@ -11,9 +11,9 @@
 				<i class="fas fa-download"></i>
 			</button>
 			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="save_viz_pass_race('.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_race('.jpg');">Save as PNG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_race('.jpg');">Save as SVG</a>
+				<a class="dropdown-item" onclick="${param.block}save_viz_pass_race('.jpg');">Save as JPG</a>
+				<a class="dropdown-item" onclick="${param.block}save_viz_pass_race('.jpg');">Save as PNG</a>
+				<a class="dropdown-item" onclick="${param.block}save_viz_pass_race('.jpg');">Save as SVG</a>
 			</div>
 		</div>
 	</div>
@@ -25,7 +25,7 @@
 
 <script>
 //this is to change the title of the download based on which visualization mode is selected
-function save_viz_pass_race(extension){
+function ${param.block}save_viz_pass_race(extension){
 	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];

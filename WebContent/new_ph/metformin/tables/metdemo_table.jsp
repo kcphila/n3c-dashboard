@@ -36,6 +36,9 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'medicationoccurrence':
 		table.column(9).search(constraint, true, false, true).draw();	
 		break;
+	case 'conditionoccurrence':
+		table.column(9).search(constraint, true, false, true).draw();	
+		break;
 	}
 	
 	

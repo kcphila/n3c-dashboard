@@ -8,25 +8,37 @@ function ${param.block}_constrain_table(filter, constraint) {
 	
 	switch (filter) {
 	case 'race':
-		table.column(0).search(constraint, true, false, true).draw();	
-		break;
-	case 'ethnicity':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'age':
+	case 'ethnicity':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'sex':
+	case 'age':
 		table.column(3).search(constraint, true, false, true).draw();	
 		break;
-	case 'severity':
+	case 'sex':
 		table.column(4).search(constraint, true, false, true).draw();	
 		break;
-	case 'covidstatus':
+	case 'severity':
 		table.column(5).search(constraint, true, false, true).draw();	
 		break;
-	case 'longstatus':
+	case 'covidstatus':
 		table.column(6).search(constraint, true, false, true).draw();	
+		break;
+	case 'longstatus':
+		table.column(7).search(constraint, true, false, true).draw();	
+		break;
+	case 'vaccinated':
+		table.column(8).search(constraint, true, false, true).draw();	
+		break;
+	case 'mortality':
+		table.column(9).search(constraint, true, false, true).draw();	
+		break;
+	case 'medicationoccurrence':
+		table.column(10).search(constraint, true, false, true).draw();	
+		break;
+	case 'conditionoccurrence':
+		table.column(10).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -163,15 +175,18 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'race', visible: true, orderable: true },
+     		{ data: 'metformin', visible: true, orderable: true },
+     		{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [11] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [14] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
         	{ data: 'long', visible: true, orderable: true },
-        	{ data: 'metformin', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [9] },
+        	{ data: 'vaccinated', visible: true, orderable: true },
+        	{ data: 'mortality', visible: true, orderable: true },
+        	{ data: 'medocc', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [12] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
@@ -186,7 +201,13 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'status_abbrev', visible: false },
         	{ data: 'status_seq', visible: false },
         	{ data: 'long_abbrev', visible: false },
-        	{ data: 'long_seq', visible: false }
+        	{ data: 'long_seq', visible: false },
+        	{ data: 'vaccinated_abbrev', visible: false },
+        	{ data: 'vaccinated_seq', visible: false },
+        	{ data: 'mortality_abbrev', visible: false },
+        	{ data: 'mortality_seq', visible: false },
+        	{ data: 'medocc_abbrev', visible: false },
+        	{ data: 'medocc_seq', visible: false }
     	]
 	} );
 	

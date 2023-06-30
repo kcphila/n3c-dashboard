@@ -3,12 +3,12 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <jsp:include page="../block3.jsp">
-	<jsp:param name="block" value="metformin_2" />
-	<jsp:param name="block_header" value="All Patients Prescribed Metformin Long COVID" />
+	<jsp:param name="block" value="metformin_8" />
+	<jsp:param name="block_header" value="All Diabetic Patients Prescribed Metformin Long COVID" />
 	<jsp:param name="folder" value="metformin" />
-	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="topic_description" value="secondary_8" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="All Patients" />
+	<jsp:param name="topic_title" value="All Diabetic Patients" />
 
 	<jsp:param name="kpis" value="metformin/kpis.jsp" />
 	
@@ -21,40 +21,40 @@
 	<jsp:param name="long_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
-	<jsp:param name="beforeaftermedication_filter" value="true" />
+	<jsp:param name="beforeaftercondition_filter" value="true" />
 	
 	<jsp:param name="toggle3" value="true" />
 	
 	<jsp:param name="viz_properties" value="{'severity1' : [{
-			dimension: 'severity',
-			domName: '#metformin_2_severity1_viz',
+			dimension: 'mortality',
+			domName: '#metformin_8_mortality1_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: severity_range,
-			legend_label: 'Severity',
-			feed: 'SeverityMet',
-			legend_data: severity_legend,
+			colorscale: mortality_range,
+			legend_label: 'Mortality',
+			feed: 'MortalityMet',
+			legend_data: mortality_legend,
 			donutRatio: 0.5
 		}], 'severity2' : [{
-			dimension: 'severity',
-			domName: '#metformin_2_severity2_viz',
+			dimension: 'mortality',
+			domName: '#metformin_8_mortality2_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: severity_range,
-			legend_label: 'Severity',
-			feed: 'SeverityNoMet',
-			legend_data: severity_legend,
+			colorscale: mortality_range,
+			legend_label: 'Mortality',
+			feed: 'MortalityNoMet',
+			legend_data: mortality_legend,
 			donutRatio: 0.5
 		}]
 	}"/>
 	
-	<jsp:param name="simple_panel" value="metformin/severity_compare.jsp" />
+	<jsp:param name="simple_panel" value="metformin/mortality_compare.jsp" />
 
 	<jsp:param name="datatable" value="metformin/tables/diabetes_table.jsp" />
-	<jsp:param name="datatable_div" value="severity_met" />
-	<jsp:param name="datatable_feed" value="metformin/feeds/metformin.jsp" />
+	<jsp:param name="datatable_div" value="mortality_diab" />
+	<jsp:param name="datatable_feed" value="metformin/feeds/diabetes.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count" />
 
 </jsp:include>

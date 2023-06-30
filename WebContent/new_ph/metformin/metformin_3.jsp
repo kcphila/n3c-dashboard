@@ -4,11 +4,11 @@
 
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="metformin_3" />
-	<jsp:param name="block_header" value="Demographics of Patients Prescribed Metformin" />
+	<jsp:param name="block_header" value="All Patients Prescribed Metformin Long COVID" />
 	<jsp:param name="folder" value="metformin" />
 	<jsp:param name="topic_description" value="secondary_3" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="All Diabetic Patients " />
+	<jsp:param name="topic_title" value="All Patients" />
 
 	<jsp:param name="kpis" value="metformin/kpis.jsp" />
 	
@@ -19,28 +19,33 @@
 	<jsp:param name="covid_filter" value="true" />
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="long_filter" value="true" />
+	<jsp:param name="mortality_filter" value="true" />
+	<jsp:param name="vaccinated_filter" value="true" />
+	<jsp:param name="beforeaftermedication_filter" value="true" />
 	
-	<jsp:param name="toggle" value="true" />
+	<jsp:param name="toggle3" value="true" />
 	
-	<jsp:param name="viz_properties" value="{'severity1' : [{
+	<jsp:param name="viz_properties" value="{'long1' : [{
 			dimension: 'long',
 			domName: '#metformin_3_long1_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: long_range,
-			legend_label: 'LongMet',
-			legend_data: long_legend,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongMet',
+			legend_data: longstatus_legend,
 			donutRatio: 0.5
-		}], 'severity2' : [{
+		}], 'long2' : [{
 			dimension: 'long',
 			domName: '#metformin_3_long2_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: long_range,
-			legend_label: 'LongNoMet',
-			legend_data: long_legend,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongNoMet',
+			legend_data: longstatus_legend,
 			donutRatio: 0.5
 		}]
 	}"/>
@@ -48,8 +53,8 @@
 	<jsp:param name="simple_panel" value="metformin/long_compare.jsp" />
 
 	<jsp:param name="datatable" value="metformin/tables/diabetes_table.jsp" />
-	<jsp:param name="datatable_div" value="long_covid" />
-	<jsp:param name="datatable_feed" value="metformin/feeds/diabetes.jsp" />
+	<jsp:param name="datatable_div" value="long_covid_met" />
+	<jsp:param name="datatable_feed" value="metformin/feeds/metformin.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count" />
 
 </jsp:include>
