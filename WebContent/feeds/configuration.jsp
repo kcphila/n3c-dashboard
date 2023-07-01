@@ -19,6 +19,9 @@ var longstatus_range = ["#4833B2", "#a6a6a6"];
 var covidstatus_range = ["#4833B2", "#a6a6a6"];
 var mortality_range = ["#4833B2", "#a6a6a6"];
 var medicationoccurrence_range = ["#007bff", "#09405A", "#a6a6a6"];
+var alcohol_range = ["#007bff", "#09405A", "#a6a6a6"];
+var opioid_range = ["#007bff", "#09405A", "#a6a6a6"];
+var smoking_range = ["#007bff", "#09405A", "#a6a6a6"];
 
 
 
@@ -75,6 +78,16 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </sql:query>
 <c:forEach items="${sexes.rows}" var="row" varStatus="rowCounter">
 	var sex_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="ages_ideal" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct age_abbrev as secondary, age_seq as secondary_seq, age as secondary_name
+		  from n3c_dashboard.age_map_ideal
+		  ) as done;
+</sql:query>
+<c:forEach items="${ages_ideal.rows}" var="row" varStatus="rowCounter">
+	var age_legend_ideal = ${row.jsonb_pretty};
 </c:forEach>
 
 <sql:query var="ages_min" dataSource="jdbc/N3CPublic">
