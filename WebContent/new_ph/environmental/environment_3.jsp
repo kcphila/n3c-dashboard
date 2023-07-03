@@ -9,17 +9,20 @@
 	<jsp:param name="topic_description" value="secondary_3" />
 	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="Number of Impacted Patients By Environmental Factor and Mortality Status" />
+	<jsp:param name="topic_title2" value="Mortality %: All vs. Environmentally Impacted" />
+	<jsp:param name="topic_title3" value="Mortality %: All vs. Environmentally Impacted (COVID+)" />
 
 	<jsp:param name="kpis" value="environmental/kpis.jsp" />
 
 	<jsp:param name="covid_filter" value="true" />
 	<jsp:param name="environmental_filter2" value="true" />
+	<jsp:param name="mortality_filter" value="true" />
 	
 	<jsp:param name="simple_panel" value="environmental/mortality.jsp" />
 	
 	<jsp:param name="datatable" value="environmental/tables/mortality_table.jsp" />
 	<jsp:param name="datatable_div" value="environmental_environment_3" />
 	<jsp:param name="datatable_feed" value="environmental/feeds/mortality.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count" />
+	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count,mortality_patient_count" />
 
 </jsp:include>

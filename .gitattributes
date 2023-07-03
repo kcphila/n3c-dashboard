@@ -388,6 +388,8 @@ WebContent/new_ph/environmental/environment_3.jsp -text
 WebContent/new_ph/environmental/feeds/demographics.jsp -text
 WebContent/new_ph/environmental/feeds/impacted.jsp -text
 WebContent/new_ph/environmental/feeds/mortality.jsp -text
+WebContent/new_ph/environmental/feeds/rate.jsp -text
+WebContent/new_ph/environmental/feeds/ratecovid.jsp -text
 WebContent/new_ph/environmental/impacted.jsp -text
 WebContent/new_ph/environmental/kpis.jsp -text
 WebContent/new_ph/environmental/mortality.jsp -text
@@ -401,6 +403,7 @@ WebContent/new_ph/environmental/sex.jsp -text
 WebContent/new_ph/environmental/tables/demo_table.jsp -text
 WebContent/new_ph/environmental/tables/impacted_table.jsp -text
 WebContent/new_ph/environmental/tables/mortality_table.jsp -text
+WebContent/new_ph/environmental/vizs/mortality_rate.jsp -text
 WebContent/new_ph/filters/age.jsp -text
 WebContent/new_ph/filters/age_10.jsp -text
 WebContent/new_ph/filters/age_2.jsp -text
@@ -598,6 +601,9 @@ WebContent/new_ph/kpis/block3_kpis/diabetes_over_18.jsp -text
 WebContent/new_ph/kpis/block3_kpis/enclave_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental_covid_positive.jsp -text
+WebContent/new_ph/kpis/block3_kpis/environmental_covid_positive2.jsp -text
+WebContent/new_ph/kpis/block3_kpis/environmental_mort_covid.jsp -text
+WebContent/new_ph/kpis/block3_kpis/environmental_mort_mort.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental_mortality.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/long_concept.jsp -text

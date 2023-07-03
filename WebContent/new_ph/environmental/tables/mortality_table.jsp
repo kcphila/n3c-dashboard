@@ -11,17 +11,66 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'covidstatus':
 	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
 		break;
+	case 'mortality':
+	    $("#${param.datatable_div}-table").DataTable().column(2).search(constraint, true, false, true).draw();	
+		break;
 	}
 	
-	var kpis = '${param.target_kpis}';
-	${param.block}_updateKPI(table, kpis)
+	var kpis = '${param.target_kpis}'.split(',');
+	for (var a in kpis) {
+		${param.block}_updateKPI(table, kpis[a])
+	}
 	
 }
 
 function ${param.block}_updateKPI(table, column) {
+	
 	var sum_string = '';
-
-	sum = table.rows({search:'applied'}).data().pluck(column).sum();
+	var sum = 0;
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'patient_count'){
+			sum += data['patient_count'];
+		};
+		if (column == 'covid_patient_count'){
+			if (data['status'] == 'Positive'){
+				sum += data['patient_count'];
+			};
+		};
+		if (column == 'mortality_patient_count'){
+			if (data['mortality'] == 'Mortality'){
+				sum += data['patient_count'];
+			};
+		};
+	});	
+	
+	var snapshotAll = table.settings().init().snapshotAll;
+	
+	var total = 0;
+	for (i in snapshotAll){
+		if (column == 'patient_count'){
+			total += snapshotAll[i]['patient_count'];
+		};
+	}
+	if (column == 'patient_count'){
+		if (sum != 0){
+			var percent = ((sum/total)*100);
+			var width = (Math.round(percent));
+			var rount = percent;
+			rount = +rount.toFixed(2);
+			var widthtext = rount + "% in View"
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: " + width + "% !important";
+			document.getElementById(div).setAttribute("data-original-title", widthtext);
+		} else{
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: 0% !important";
+			document.getElementById(div).setAttribute("data-original-title", "0% in View");
+		}
+	};
 	
 	if (sum < 1000) {
 		sumString = sum+'';
@@ -116,7 +165,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	},
        	snapshot: null,
     	initComplete: function( settings, json ) {
-       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+    		settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
@@ -134,22 +184,32 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	]
 	} );
 
-	// table search logic that distinguishes sort/filter 
-	${param.block}_datatable.on( 'search.dt', function () {
+	//table search logic that distinguishes sort/filter 
+	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
+
 		var snapshot = ${param.block}_datatable
 	     .rows({ search: 'applied', order: 'index'})
 	     .data()
-	     .toArray()
-	     .toString();
+	     .toArray().toString();
 
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
-
-	  	if (currentSnapshot != snapshot) {
+	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
+	  	
+	  	
+	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
-	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	   		$('#${param.block}_btn_clear').removeClass("no_clear");
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
+	  	}
+	  	
+	  	if (snapshot == snapshotAll && currentSnapshot != snapshot) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("show_clear");
+	   		$('#${param.block}_btn_clear').addClass("no_clear");
 	  	}
 	} );
 

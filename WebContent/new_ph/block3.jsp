@@ -585,6 +585,12 @@
 	  							<c:if test="${not empty param.topic_title}">
 	  								<c:param name="topic_title" value="${param.topic_title}" />
 	  							</c:if>
+	  							<c:if test="${not empty param.topic_title2}">
+	  								<c:param name="topic_title2" value="${param.topic_title2}" />
+	  							</c:if>
+	  							<c:if test="${not empty param.topic_title3}">
+	  								<c:param name="topic_title3" value="${param.topic_title3}" />
+	  							</c:if>
 	  							<c:if test="${not empty param.topic_disease}">
 		  							<c:param name="topic_disease" value="${param.topic_disease}" />
 		  						</c:if>
@@ -1073,12 +1079,19 @@ function ${param.block}limitlink(){
 				update(new Date('Feb 1 2022 1:00:00 CST'));
 				sliderTime.value(new Date('Feb 1 2022').valueOf());
 			};
-			if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5') {
-				console.log('reached this alert');
-				$('#${param.block}-paxlovidstatus-select').multiselect('select', 'Paxlovid', true);
-				${param.block}_refreshHistograms();
-				${param.block}_constrain_table();
-				$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Paxlovid Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all COVID+ patients for context.</small>');
+			if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5' || '${param.block}' === 'environment_3') {
+				if ('${param.block}' === 'environment_3') {
+					$('#${param.block}-mortality-select').multiselect('select', 'Mortality', true);
+					${param.block}_refreshHistograms();
+					${param.block}_constrain_table();
+					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Mortality Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all patients for context.</small>');
+					$('#${param.block}mortality_body').collapse('show')
+				} else{
+					$('#${param.block}-paxlovidstatus-select').multiselect('select', 'Paxlovid', true);
+					${param.block}_refreshHistograms();
+					${param.block}_constrain_table();
+					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Paxlovid Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all COVID+ patients for context.</small>');
+				};
 				$("#${param.block}_alert").removeClass('no_clear');
 				$("#${param.block}_alert .close" ).on('click', function() {
 					$("#${param.block}_alert").addClass('no_clear');
@@ -1086,7 +1099,7 @@ function ${param.block}limitlink(){
 				
 			} else{
 				$("#${param.block}_alert").hide();
-			} 
+			};
 	    }, 1000);
 	   
 	  
@@ -1887,7 +1900,7 @@ function ${param.block}limitlink(){
 			$('#${param.block}-longstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("longstatus", '');
 		</c:if>
-		<c:if test="${param.long_filter}">
+		<c:if test="${param.mortality_filter}">
 			$('#${param.block}-mortality-select').multiselect('clearSelection');
 			${param.block}_constrain("mortality", '');
 		</c:if>
