@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <div class="row">
-	<div class="col-6">
+	<div class="col-12 col-lg-6">
 		<div class="col-12 viz-header-section">
 			<h2 class="viz-title">${param.topic_title2}</h2>
 			<div class="btn-group float-right">
@@ -28,7 +28,7 @@
 			<br><small><i class="fas fa-filter"></i> Filters do not impact this chart.</small>
 		</div>
 	</div>
-	<div class="col-6">
+	<div class="col-12 col-lg-6">
 		<div class="col-12 viz-header-section">
 			<h2 class="viz-title">${param.topic_title3}</h2>
 			<div class="btn-group float-right">
