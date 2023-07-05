@@ -28,7 +28,7 @@
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',
 			domName: '#metformin_1_age_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: age_range_min,
@@ -38,7 +38,7 @@
 		}], 'race' : [{
 			dimension: 'race',
 			domName: '#metformin_1_race_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: race_range,
@@ -48,7 +48,7 @@
 		}], 'sex' : [{
 			dimension: 'sex',
 			domName: '#metformin_1_sex_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: sex_range,
@@ -58,7 +58,7 @@
 		}], 'ethnicity' : [{
 			dimension: 'ethnicity',
 			domName: '#metformin_1_ethnicity_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: ethnicity_range,
@@ -68,7 +68,7 @@
 		}], 'severity' : [{
 			dimension: 'severity',
 			domName: '#metformin_1_severity_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: severity_range,
@@ -78,7 +78,7 @@
 		}], 'medicationoccurrence' : [{
 			dimension: 'medicationoccurrence',
 			domName: '#metformin_1_medicationoccurrence_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: medicationoccurrence_range,
@@ -88,7 +88,7 @@
 		}], 'mortality' : [{
 			dimension: 'mortality',
 			domName: '#metformin_1_mortality_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: mortality_range,
@@ -98,7 +98,7 @@
 		}], 'vaccinationstatus' : [{
 			dimension: 'vaccinationstatus',
 			domName: '#metformin_1_vaccinationstatus_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: vaccinated_range,
@@ -108,7 +108,7 @@
 		}], 'longstatus' : [{
 			dimension: 'longstatus',
 			domName: '#metformin_1_longstatus_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: longstatus_range,
@@ -118,7 +118,7 @@
 		}], 'covid' : [{
 			dimension: 'covidstatus',
 			domName: '#metformin_1_covidstatus_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: covidstatus_range,

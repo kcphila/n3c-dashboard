@@ -75,7 +75,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_covidstatus_refresh() {
 	var properties = {
 			domName: '#${param.block}_covidstatus_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: covidstatus_range,

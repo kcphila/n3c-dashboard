@@ -4,18 +4,20 @@
 
 
 <div class="row">
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}long-title2" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}long-title2" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long2('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -24,18 +26,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}long-title1" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}long-title1" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long1('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -44,18 +48,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}long-title4" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long4('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long4('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long4('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}long-title4" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long4('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long4('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long4('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -64,18 +70,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}long-title3" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long3('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long3('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_long3('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}long-title3" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long3('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long3('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_long3('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -97,11 +105,11 @@ function ${param.block}save_viz_pass_long1(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Long COVID Status Percentages of All Metformin Patients" + extension;
+		text = "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of All Metformin Patients by Long COVID Status" + extension;
+		text = "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin" + extension;
 	} else {
-		text = "Long COVID Status Percentages of All Metformin Patients" + extension;
+		text = "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_long1_viz', text);
@@ -114,11 +122,11 @@ function ${param.block}save_viz_pass_long2(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Long COVID Status Percentages of All Non-Metformin Patients" + extension;
+		text = "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of All Non-Metformin Patients by Long COVID Status" + extension;
+		text = "Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin" + extension;
 	} else {
-		text = "Long COVID Status Percentages of All Non-Metformin Patients" + extension;
+		text = "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_long2_viz', text);
@@ -131,11 +139,11 @@ function ${param.block}save_viz_pass_long3(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Long COVID Status Percentages of Diabetic Metformin Patients" + extension;
+		text = "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of Diabetic Metformin Patients by Long COVID Status" + extension;
+		text = "Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin" + extension;
 	} else {
-		text = "Long COVID Status Percentages of Diabetic Metformin Patients" + extension;
+		text = "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_long3_viz', text);
@@ -148,136 +156,81 @@ function ${param.block}save_viz_pass_long4(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Long COVID Status Percentages of Diabetic Non-Metformin Patients" + extension;
+		text = "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of Diabetic Non-Metformin Patients by Long COVID Status" + extension;
+		text = "Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin" + extension;
 	} else {
-		text = "Long COVID Status Percentages of Diabetic Non-Metformin Patients" + extension;
+		text = "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_long4_viz', text);
 };
 
-// set inital title based on load mode
+//set inital title based on load mode
 var title_id = $("#${param.block}-mode").find('.text-primary').attr('id');
 var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
-	var title = "LC Status Percentages of All Metformin Patients";
-	$("#${param.block}long-title1").text(title);
+	var title1 = "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}long-title1").text(title1);
+	$("#${param.block}long-title2").text(title2);
+	$("#${param.block}long-title3").text(title3);
+	$("#${param.block}long-title4").text(title4);
 } else if (title_mode == 'bar'){
-	var title = "Counts of All Metformin Patients by LC Status";
-	$("#${param.block}long-title1").text(title);
+	var title1 = "Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}long-title1").text(title1);
+	$("#${param.block}long-title2").text(title2);
+	$("#${param.block}long-title3").text(title3);
+	$("#${param.block}long-title4").text(title4);
 } else {
-	var title = "LC Status Percentages of All Metformin Patients";
-	$("#${param.block}long-title1").text(title);
+	var title1 = "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}long-title1").text(title1);
+	$("#${param.block}long-title2").text(title2);
+	$("#${param.block}long-title3").text(title3);
+	$("#${param.block}long-title4").text(title4);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "LC Status Percentages of All Metformin Patients";
-	$("#${param.block}long-title1").text(title);
+	var title1 = "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}long-title1").text(title1);
+	$("#${param.block}long-title2").text(title2);
+	$("#${param.block}long-title3").text(title3);
+	$("#${param.block}long-title4").text(title4);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of All Metformin Patients by LC Status";
-	$("#${param.block}long-title1").text(title);
+	var title1 = "Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}long-title1").text(title1);
+	$("#${param.block}long-title2").text(title2);
+	$("#${param.block}long-title3").text(title3);
+	$("#${param.block}long-title4").text(title4);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "LC Status Percentages of All Metformin Patients";
-	$("#${param.block}long-title1").text(title);
+	var title1 = "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}long-title1").text(title1);
+	$("#${param.block}long-title2").text(title2);
+	$("#${param.block}long-title3").text(title3);
+	$("#${param.block}long-title4").text(title4);
 });
-
-//set inital title based on load mode
-var title_id2 = $("#${param.block}-mode").find('.text-primary').attr('id');
-var title_strings = title_id.split('-');
-var title_mode = title_strings[title_strings.length-1];
-
-if (title_mode =='pie'){		
-	var title = "LC Status Percentages of All Non-Metformin Patients";
-	$("#${param.block}long-title2").text(title);
-} else if (title_mode == 'bar'){
-	var title = "Counts of All Non-Metformin Patients by LC Status";
-	$("#${param.block}long-title2").text(title);
-} else {
-	var title = "LC Status Percentages of All Non-Metformin Patients";
-	$("#${param.block}long-title2").text(title);
-};
-
-//this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "LC Status Percentages of All Non-Metformin Patients";
-	$("#${param.block}long-title2").text(title);
-});
-$('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of All Non-Metformin Patients by LC Status";
-	$("#${param.block}long-title2").text(title);
-});
-$('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "LC Status Percentages of All Non-Metformin Patients";
-	$("#${param.block}long-title2").text(title);
-});
-
-//set inital title based on load mode
-var title_id3 = $("#${param.block}-mode").find('.text-primary').attr('id');
-var title_strings = title_id.split('-');
-var title_mode = title_strings[title_strings.length-1];
-
-if (title_mode =='pie'){		
-	var title = "LC Status Percentages of Diabetic Metformin Patients";
-	$("#${param.block}long-title3").text(title);
-} else if (title_mode == 'bar'){
-	var title = "Counts of Diabetic Metformin Patients by LC Status";
-	$("#${param.block}long-title3").text(title);
-} else {
-	var title = "LC Status Percentages of Diabetic Metformin Patients";
-	$("#${param.block}long-title3").text(title);
-};
-
-//this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "LC Status Percentages of Diabetic Metformin Patients";
-	$("#${param.block}long-title3").text(title);
-});
-$('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of Diabetic Metformin Patients by LC Status";
-	$("#${param.block}long-title3").text(title);
-});
-$('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "LC Status Percentages of Diabetic Metformin Patients";
-	$("#${param.block}long-title3").text(title);
-});
-
-//set inital title based on load mode
-var title_id4 = $("#${param.block}-mode").find('.text-primary').attr('id');
-var title_strings = title_id.split('-');
-var title_mode = title_strings[title_strings.length-1];
-
-if (title_mode =='pie'){		
-	var title = "LC Status Percentages of Diabetic Non-Metformin Patients";
-	$("#${param.block}long-title4").text(title);
-} else if (title_mode == 'bar'){
-	var title = "Counts of Diabetic Non-Metformin Patients by LC Status";
-	$("#${param.block}long-title4").text(title);
-} else {
-	var title = "LC Status Percentages of Diabetic Non-Metformin Patients";
-	$("#${param.block}long-title4").text(title);
-};
-
-//this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "LC Status Percentages of Diabetic Non-Metformin Patients";
-	$("#${param.block}long-title4").text(title);
-});
-$('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of Diabetic Non-Metformin Patients by LC Status";
-	$("#${param.block}long-title4").text(title);
-});
-$('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "LC Status Percentages of Diabetic Non-Metformin Patients";
-	$("#${param.block}long-title4").text(title);
-});
-
 
 
 function ${param.block}_long_refresh() {

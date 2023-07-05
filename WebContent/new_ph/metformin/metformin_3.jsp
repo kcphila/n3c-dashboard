@@ -15,7 +15,6 @@
 	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
-	<jsp:param name="ethnicity_filter" value="true" />
 	<jsp:param name="covid_filter" value="true" />
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="long_filter" value="true" />

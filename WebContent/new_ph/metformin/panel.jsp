@@ -10,8 +10,8 @@
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<optgroup label="Demographics & Cohort Exploration">
-			<option value="metformin_1">Demographics of All Patients Prescribed Metformin</option>
-			<option value="metformin_5">Demographics of Diabetic Patients Prescribed Metformin</option>
+			<option value="metformin_1">Overview of All Patients Prescribed Metformin</option>
+			<option value="metformin_5">Overview of Diabetic Patients Prescribed Metformin</option>
 		</optgroup>
 		<optgroup label="Comparisons Between Metformin & Non-Metformin Patients">
 			<option value="metformin_2">Severity</option>

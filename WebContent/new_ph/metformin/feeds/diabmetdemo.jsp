@@ -44,7 +44,7 @@
 					case 
 						when (metformin_before_after_covid = 'Before') then 'Before COVID'
 						when (metformin_before_after_covid = 'After') then 'After COVID'
-						else 'Unknown'
+						else 'Unknown or N/A'
 					end as medocc,
 					sum(case
 						when (patient_count = '<20' or patient_count is null) then 0

@@ -76,7 +76,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_severity_refresh() {
 	var properties = {
 			domName: '#${param.block}_severity_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: severity_range,

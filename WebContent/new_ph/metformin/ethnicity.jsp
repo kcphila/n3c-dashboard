@@ -76,7 +76,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_ethnicity_refresh() {
 	var properties = {
 			domName: '#${param.block}_ethnicity_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: ethnicity_range,

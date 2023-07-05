@@ -75,7 +75,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_longstatus_refresh() {
 	var properties = {
 			domName: '#${param.block}_longstatus_viz',
-			barLabelWidth: 110,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: longstatus_range,

@@ -6,6 +6,14 @@
 
 <style>
 
+#filter_checks.sticky-top{
+	background: white;
+}
+
+.viz-container{
+	margin-top: 15px;
+}
+
 .progress{
 	height: 10px;
 }
@@ -432,7 +440,7 @@
 							 || not empty param.beforeaftersotrovimab_filter || not empty param.comorbidities_filter || not empty param.mortality_filter
 							 || not empty param.vaccinated_filter || not empty param.opioids_filter || not empty param.alcohol_filter}">
 					<div id="filter_checks" class="panel-primary filter-section">
-						<h4>Filters</h4>
+						<h4>Filters <button type="button" class="btn btn-info" onclick="${param.block}_sticky_toggle()"><i class="fas fa-thumbtack"></i></button></h4>
 						<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
     					<div id="${param.block}-block-kpi" class="kpi_section">
 							<!-- filters are enabled by passing in a boolean parameter -->
@@ -1084,8 +1092,13 @@ function ${param.block}limitlink(){
     }, 500);
 }
 
+
+function ${param.block}_sticky_toggle(){
+	$('#filter_checks').toggleClass( "sticky-top" );
+}
+
 	$(document).ready(function() {
-	    
+	  
 	    setTimeout(function() {
 			if ('${param.block}' === 'reinfection_ts_1') {
 				update(new Date('Feb 1 2022 1:00:00 CST'));

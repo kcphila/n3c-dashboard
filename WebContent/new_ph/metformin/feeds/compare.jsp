@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select metformin, race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, diabetes,
+	from (select metformin, race, age, sex, severity, status, long, vaccinated, mortality, medocc, diabetes,
 				case
 					when (patient_count = 0) then '<20'
 					else patient_count::text
@@ -15,7 +15,6 @@
 						else 'No Metformin'
 					end as metformin,
 					race,
-					ethnicity,
 					COALESCE (age, 'Unknown') as age,
 					sex,
 					case 
@@ -41,7 +40,7 @@
 					case 
 						when (metformin_before_after_covid = 'Before') then 'Before COVID'
 						when (metformin_before_after_covid = 'After') then 'After COVID'
-						else 'Unknown'
+						else 'Unknown or N/A'
 					end as medocc,
 					case 
 						when (diabetes_indicator = '1') then 'Diabetes'
@@ -52,7 +51,7 @@
 						else patient_count::int
 					end) as patient_count
 				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
-				  group by metformin_indicator, race, ethnicity, age, sex, severity, covid_indicator, long_covid_diagnosis_post_covid_indicator, vaccinated,
+				  group by metformin_indicator, race, age, sex, severity, covid_indicator, long_covid_diagnosis_post_covid_indicator, vaccinated,
 				  patient_death_indicator,  metformin_before_after_covid, diabetes_indicator
 				  
 		  	) as foo
@@ -66,7 +65,6 @@
     "headers": [
     	{"value":"metformin", "label":"Metformin Status"},
         {"value":"race", "label":"Race"},
-        {"value":"ethnicity", "label":"Ethnicity"},
         {"value":"age", "label":"Age"},
         {"value":"sex", "label":"Sex"},
         {"value":"severity", "label":"Severity"},

@@ -10,35 +10,29 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'race':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'ethnicity':
+	case 'age':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'age':
+	case 'sex':
 		table.column(3).search(constraint, true, false, true).draw();	
 		break;
-	case 'sex':
+	case 'severity':
 		table.column(4).search(constraint, true, false, true).draw();	
 		break;
-	case 'severity':
+	case 'covidstatus':
 		table.column(5).search(constraint, true, false, true).draw();	
 		break;
-	case 'covidstatus':
+	case 'longstatus':
 		table.column(6).search(constraint, true, false, true).draw();	
 		break;
-	case 'longstatus':
+	case 'vaccinated':
 		table.column(7).search(constraint, true, false, true).draw();	
 		break;
-	case 'vaccinated':
+	case 'mortality':
 		table.column(8).search(constraint, true, false, true).draw();	
 		break;
-	case 'mortality':
-		table.column(9).search(constraint, true, false, true).draw();	
-		break;
 	case 'medicationoccurrence':
-		table.column(10).search(constraint, true, false, true).draw();	
-		break;
-	case 'conditionoccurrence':
-		table.column(10).search(constraint, true, false, true).draw();	
+		table.column(9).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -215,8 +209,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
      	columns: [
      		{ data: 'metformin', visible: true, orderable: true },
      		{ data: 'race', visible: true, orderable: true },
-        	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [14] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [13] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
@@ -225,7 +218,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'mortality', visible: true, orderable: true },
         	{ data: 'medocc', visible: true, orderable: true },
         	{ data: 'diabetes', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [13] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [12] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_seq', visible: false },
         	{ data: 'severity_abbrev', visible: false },

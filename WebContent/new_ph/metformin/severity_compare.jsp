@@ -4,18 +4,20 @@
 
 
 <div class="row">
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}severity-title2" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity2('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity2('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity2('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}severity-title2" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity2('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity2('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity2('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -24,18 +26,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}severity-title1" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity1('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity1('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity1('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}severity-title1" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity1('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity1('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity1('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -44,18 +48,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}severity-title4" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity4('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity4('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity4('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}severity-title4" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity4('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity4('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity4('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -64,18 +70,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-12 col-md-6">
+	<div class="col-12 col-md-6 viz-container">
 		<div class="row">
 			<div class="col-12 viz-header-section">
-				<h2 id="${param.block}severity-title3" class="viz-title"></h2>
-				<div class="btn-group float-right">
-					<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-download"></i>
-					</button>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity3('.jpg');">Save as JPG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity3('.png');">Save as PNG</a>
-						<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity3('.svg');">Save as SVG</a>
+				<div style="display:flex; flex-wrap: nowrap;">
+					<h2 id="${param.block}severity-title3" class="viz-title"></h2>
+					<div>
+						<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-download"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity3('.jpg');">Save as JPG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity3('.png');">Save as PNG</a>
+							<a class="dropdown-item" onclick="${param.block}save_viz_pass_severity3('.svg');">Save as SVG</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -97,11 +105,11 @@ function ${param.block}save_viz_pass_severity1(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Severity Percentages of All Metformin Patients" + extension;
+		text = "% Severity of Total Patients in the Enclave who were Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of All Metformin Patients by Severity" + extension;
+		text = "Severity of Total Patients in the Enclave who were Prescribed Metformin" + extension;
 	} else {
-		text = "Severity Percentages of All Metformin Patients" + extension;
+		text = "% Severity of Total Patients in the Enclave who were Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_severity1_viz', text);
@@ -114,11 +122,11 @@ function ${param.block}save_viz_pass_severity2(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Severity Percentages of All Non-Metformin Patients" + extension;
+		text = "% Severity of Total Patients in the Enclave who were not Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of All Non-Metformin Patients by Severity" + extension;
+		text = "Severity of Total Patients in the Enclave who were not Prescribed Metformin (pie)" + extension;
 	} else {
-		text = "Severity Percentages of All Non-Metformin Patients" + extension;
+		text = "% Severity of Total Patients in the Enclave who were not Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_severity2_viz', text);
@@ -131,11 +139,11 @@ function ${param.block}save_viz_pass_severity3(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Severity Percentages of Diabetic Metformin Patients" + extension;
+		text = "% Severity of Diabetic Patients in the Enclave who were Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of Diabetic Metformin Patients by Severity" + extension;
+		text = "Severity of Diabetic Patients in the Enclave who were Prescribed Metformin" + extension;
 	} else {
-		text = "Severity Percentages of Diabetic Metformin Patients" + extension;
+		text = "% Severity of Diabetic Patients in the Enclave who were Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_severity3_viz', text);
@@ -148,11 +156,11 @@ function ${param.block}save_viz_pass_severity4(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Severity Percentages of Diabetic Non-Metformin Patients" + extension;
+		text = "% Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin (pie)" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of Diabetic Non-Metformin Patients by Severity" + extension;
+		text = "Severity of Diabetic Patients in the Enclave who were Prescribed Metformin" + extension;
 	} else {
-		text = "Severity Percentages of Diabetic Non-Metformin Patients" + extension;
+		text = "% Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin" + extension;
 	};
 	
 	saveVisualization('${param.block}_severity4_viz', text);
@@ -164,121 +172,65 @@ var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
-	var title = "Severity Percentages of All Metformin Patients";
-	$("#${param.block}severity-title1").text(title);
+	var title1 = "% Severity of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Severity of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Severity of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}severity-title1").text(title1);
+	$("#${param.block}severity-title2").text(title2);
+	$("#${param.block}severity-title3").text(title3);
+	$("#${param.block}severity-title4").text(title4);
 } else if (title_mode == 'bar'){
-	var title = "Counts of All Metformin Patients by Severity";
-	$("#${param.block}severity-title1").text(title);
+	var title1 = "Severity of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "Severity of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "Severity of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}severity-title1").text(title1);
+	$("#${param.block}severity-title2").text(title2);
+	$("#${param.block}severity-title3").text(title3);
+	$("#${param.block}severity-title4").text(title4);
 } else {
-	var title = "Severity Percentages of All Metformin Patients";
-	$("#${param.block}severity-title1").text(title);
+	var title1 = "% Severity of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Severity of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Severity of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}severity-title1").text(title1);
+	$("#${param.block}severity-title2").text(title2);
+	$("#${param.block}severity-title3").text(title3);
+	$("#${param.block}severity-title4").text(title4);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Severity Percentages of All Metformin Patients";
-	$("#${param.block}severity-title1").text(title);
+	var title1 = "% Severity of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Severity of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Severity of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}severity-title1").text(title1);
+	$("#${param.block}severity-title2").text(title2);
+	$("#${param.block}severity-title3").text(title3);
+	$("#${param.block}severity-title4").text(title4);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of All Metformin Patients by Severity";
-	$("#${param.block}severity-title1").text(title);
+	var title1 = "Severity of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "Severity of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "Severity of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}severity-title1").text(title1);
+	$("#${param.block}severity-title2").text(title2);
+	$("#${param.block}severity-title3").text(title3);
+	$("#${param.block}severity-title4").text(title4);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Severity Percentages of All Metformin Patients";
-	$("#${param.block}severity-title1").text(title);
+	var title1 = "% Severity of Total Patients in the Enclave who were Prescribed Metformin";
+	var title2 = "% Severity of Total Patients in the Enclave who were not Prescribed Metformin";
+	var title3 = "% Severity of Diabetic Patients in the Enclave who were Prescribed Metformin";
+	var title4 = "% Severity of Diabetic Patients in the Enclave who were not Prescribed Metformin";
+	$("#${param.block}severity-title1").text(title1);
+	$("#${param.block}severity-title2").text(title2);
+	$("#${param.block}severity-title3").text(title3);
+	$("#${param.block}severity-title4").text(title4);
 });
-
-//set inital title based on load mode
-var title_id2 = $("#${param.block}-mode").find('.text-primary').attr('id');
-var title_strings = title_id.split('-');
-var title_mode = title_strings[title_strings.length-1];
-
-if (title_mode =='pie'){		
-	var title = "Severity Percentages of All Non-Metformin Patients";
-	$("#${param.block}severity-title2").text(title);
-} else if (title_mode == 'bar'){
-	var title = "Counts of All Non-Metformin Patients by Severity";
-	$("#${param.block}severity-title2").text(title);
-} else {
-	var title = "Severity Percentages of All Non-Metformin Patients";
-	$("#${param.block}severity-title2").text(title);
-};
-
-//this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Severity Percentages of All Non-Metformin Patients";
-	$("#${param.block}severity-title2").text(title);
-});
-$('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of All Non-Metformin Patients by Severity";
-	$("#${param.block}severity-title2").text(title);
-});
-$('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Severity Percentages of All Non-Metformin Patients";
-	$("#${param.block}severity-title2").text(title);
-});
-
-//set inital title based on load mode
-var title_id3 = $("#${param.block}-mode").find('.text-primary').attr('id');
-var title_strings = title_id.split('-');
-var title_mode = title_strings[title_strings.length-1];
-
-if (title_mode =='pie'){		
-	var title = "Severity Percentages of Diabetic Metformin Patients";
-	$("#${param.block}severity-title3").text(title);
-} else if (title_mode == 'bar'){
-	var title = "Counts of Diabetic Metformin Patients by Severity";
-	$("#${param.block}severity-title3").text(title);
-} else {
-	var title = "Severity Percentages of Diabetic Metformin Patients";
-	$("#${param.block}severity-title3").text(title);
-};
-
-//this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Severity Percentages of Diabetic Metformin Patients";
-	$("#${param.block}severity-title3").text(title);
-});
-$('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of Diabetic Metformin Patients by Severity";
-	$("#${param.block}severity-title3").text(title);
-});
-$('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Severity Percentages of Diabetic Metformin Patients";
-	$("#${param.block}severity-title3").text(title);
-});
-
-//set inital title based on load mode
-var title_id4 = $("#${param.block}-mode").find('.text-primary').attr('id');
-var title_strings = title_id.split('-');
-var title_mode = title_strings[title_strings.length-1];
-
-if (title_mode =='pie'){		
-	var title = "Severity Percentages of Diabetic Non-Metformin Patients";
-	$("#${param.block}severity-title4").text(title);
-} else if (title_mode == 'bar'){
-	var title = "Counts of Diabetic Non-Metformin Patients by Severity";
-	$("#${param.block}severity-title4").text(title);
-} else {
-	var title = "Severity Percentages of Non-Diabetic Metformin Patients";
-	$("#${param.block}severity-title4").text(title);
-};
-
-//this is to change the title of the graphic based on which visualization mode is selected
-$('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Severity Percentages of Diabetic Non-Metformin Patients";
-	$("#${param.block}severity-title4").text(title);
-});
-$('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of Diabetic Non-Metformin Patients by Severity";
-	$("#${param.block}severity-title4").text(title);
-});
-$('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Severity Percentages of Diabetic Non-Metformin Patients";
-	$("#${param.block}severity-title4").text(title);
-});
-
-
 
 function ${param.block}_severity_refresh() {
 	var properties1 = {
