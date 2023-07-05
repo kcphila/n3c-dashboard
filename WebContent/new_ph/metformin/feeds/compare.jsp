@@ -3,10 +3,13 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select metformin, race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, patient_display, patient_count,
-				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, 
-				sex_abbrev, sex_seq, severity_abbrev, severity_seq, status_abbrev, status_seq, long_abbrev, long_seq,
-				vaccinated_abbrev, vaccinated_seq, mortality_abbrev, mortality_seq, medocc_abbrev, medocc_seq
+	from (select metformin, race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, diabetes,
+				case
+					when (patient_count = 0) then '<20'
+					else patient_count::text
+				end as patient_display,
+		 		patient_count,
+				age_seq, severity_abbrev, severity_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq
 			from (select
 					case when (metformin_indicator = '1') then 'Metformin'
 						else 'No Metformin'
@@ -36,27 +39,27 @@
 						else 'No Mortality'
 					end as mortality,
 					case 
-						when (diabetes_before_after_covid = 'Before') then 'Before COVID'
-						when (diabetes_before_after_covid = 'After') then 'After COVID'
+						when (metformin_before_after_covid = 'Before') then 'Before COVID'
+						when (metformin_before_after_covid = 'After') then 'After COVID'
 						else 'Unknown'
 					end as medocc,
-					patient_count as patient_display,
-					case
+					case 
+						when (diabetes_indicator = '1') then 'Diabetes'
+						else 'No Diabetes'
+					end as diabetes,
+					sum(case
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
-					end as patient_count
-				  from n3c_dashboard_ph.diabetes_demosevvacmorlc_cov_csd
+					end) as patient_count
+				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
+				  group by metformin_indicator, race, ethnicity, age, sex, severity, covid_indicator, long_covid_diagnosis_post_covid_indicator, vaccinated,
+				  patient_death_indicator,  metformin_before_after_covid, diabetes_indicator
+				  
 		  	) as foo
 		  	natural join n3c_dashboard.age_map_min
-		  	natural join n3c_dashboard.race_map
-		  	natural join n3c_dashboard.eth_map
-		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.sev_map
-		  	natural join n3c_dashboard.covidstatus_map
 		  	natural join n3c_dashboard.longstatus_map
 		  	natural join n3c_dashboard.mortality_map
-		  	natural join n3c_dashboard.vaccinated_map
-		  	natural join n3c_dashboard.medocc_map
 		  ) as done;
 </sql:query>
 {
@@ -71,29 +74,17 @@
         {"value":"long", "label":"Long COVID Status"},
         {"value":"vaccinated", "label":"Vaccination Status"},
         {"value":"mortality", "label":"Mortality"},
-        {"value":"metformin_occurrence", "label":"Diabetes Occurrence"},
+        {"value":"medocc", "label":"Medication Occurrence"},
+        {"value":"diabetes", "label":"Diabetes Status"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
-        {"value":"age_abbrev", "label":"dummy1"},
-        {"value":"age_seq", "label":"dummy2"},
-        {"value":"race_abbrev", "label":"dummy3"},
-        {"value":"race_seq", "label":"dummy4"},
-        {"value":"ethnicity_abbrev", "label":"dummy5"},
-        {"value":"ethnicity_seq", "label":"dummy6"},
-        {"value":"sex_abbrev", "label":"dummy7"},
-        {"value":"sex_seq", "label":"dummy8"},
-        {"value":"severity_abbrev", "label":"dummy9"},
-        {"value":"severity_seq", "label":"dummy10"},
-        {"value":"status_abbrev", "label":"dummy11"},
-        {"value":"status_seq", "label":"dummy12"},
-        {"value":"long_abbrev", "label":"dummy13"},
-        {"value":"long_seq", "label":"dummy14"},
-        {"value":"vaccinated_abbrev", "label":"dummy14"},
-        {"value":"vaccinated_seq", "label":"dummy15"},
-        {"value":"mortality_abbrev", "label":"dummy16"},
-        {"value":"mortality_seq", "label":"dummy17"},
-        {"value":"medocc_abbrev", "label":"dummy18"},
-        {"value":"medocc_seq", "label":"dummy19"}
+        {"value":"age_seq", "label":"dummy1"},
+        {"value":"severity_abbrev", "label":"dummy2"},
+        {"value":"severity_seq", "label":"dummy3"},
+        {"value":"long_abbrev", "label":"dummy4"},
+        {"value":"long_seq", "label":"dummy5"},
+        {"value":"mortality_abbrev", "label":"dummy6"},
+        {"value":"mortality_seq", "label":"dummy7"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

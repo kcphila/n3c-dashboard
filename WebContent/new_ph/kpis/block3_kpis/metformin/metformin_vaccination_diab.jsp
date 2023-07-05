@@ -15,8 +15,8 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.diabetes_demosevvacmorlc_cov_csd
-				  where metformin_indicator = 1
+				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
+				  where diabetes_indicator = 1
 				  and vaccinated = '1'
 				) as foo;
 </sql:query>

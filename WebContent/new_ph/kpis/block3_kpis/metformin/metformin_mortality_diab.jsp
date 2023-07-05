@@ -15,9 +15,9 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.diabetes_demosevvacmorlc_cov_csd
-				  where metformin_indicator = 1
-				  and covid_indicator = '1'
+				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
+				  where diabetes_indicator = 1
+				  and patient_death_indicator = '1'
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -30,20 +30,15 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total COVID+ Patients in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Mortalities in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
-										data-content="
-										<strong>COVID+ Defined As:</strong>
+										data-content="<strong>Mortality Defined As:</strong>
 										<ul style='padding-inline-start: 15px;'>
-											<li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
-											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
-											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
-										</ul>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">COVID+ Patients in View* <i class="fas fa-info-circle"></i>
-	  											<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, 
-	  												a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 
-	  												(U07.1) was recorded
+											<li>Any patient with a date of death in the Enclave.</li>
+										</ul><p>Note: this metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to only those suspected to be caused by COVID." aria-describedby="tooltip">
+	 											<p style="margin-bottom:0px;">Mortalities in View* <i class="fas fa-info-circle"></i>
+	  											<span class="sr-only">, or patients who died.
 	  											</span>
 	 											</p> 
  									</a>
@@ -52,7 +47,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-user-plus"></i> <span id="${param.block}_covid_patient_count_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-user"></i> <span id="${param.block}_mortality_patient_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

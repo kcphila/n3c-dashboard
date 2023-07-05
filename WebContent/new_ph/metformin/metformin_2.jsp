@@ -47,15 +47,37 @@
 			feed: 'SeverityNoMet',
 			legend_data: severity_legend,
 			donutRatio: 0.5
+		}], 'severity3' : [{
+			dimension: 'severity',
+			domName: '#metformin_2_severity3_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: severity_range,
+			legend_label: 'Severity',
+			feed: 'SeverityDiabMet',
+			legend_data: severity_legend,
+			donutRatio: 0.5
+		}], 'severity4' : [{
+			dimension: 'severity',
+			domName: '#metformin_2_severity4_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: severity_range,
+			legend_label: 'Severity',
+			feed: 'SeverityDiabNoMet',
+			legend_data: severity_legend,
+			donutRatio: 0.5
 		}]
 	}"/>
 	
 	<jsp:param name="simple_panel" value="metformin/severity_compare.jsp" />
 
-	<jsp:param name="datatable" value="metformin/tables/diabetes_table.jsp" />
+	<jsp:param name="datatable" value="metformin/tables/compare_table.jsp" />
 	<jsp:param name="datatable_div" value="severity_met" />
-	<jsp:param name="datatable_feed" value="metformin/feeds/metformin.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count" />
+	<jsp:param name="datatable_feed" value="metformin/feeds/compare.jsp" />
+	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count,diab_met_patient_count,diab_nomet_patient_count" />
 
 </jsp:include>
 

@@ -8,7 +8,7 @@
 	<jsp:param name="folder" value="metformin" />
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Patients Prescribed Metformin" />
+	<jsp:param name="topic_title" value="Metformin Patients" />
 
 	<jsp:param name="kpis" value="metformin/kpis.jsp" />
 	

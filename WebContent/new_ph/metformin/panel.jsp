@@ -14,12 +14,9 @@
 			<option value="metformin_5">Demographics of Diabetic Patients Prescribed Metformin</option>
 		</optgroup>
 		<optgroup label="Comparisons Between Metformin & Non-Metformin Patients">
-			<option value="metformin_2">Severity (All Patients)</option>
-			<option value="metformin_6">Severity (Diabetic Patients)</option>
-			<option value="metformin_3">Long COVID (All Patients)</option>
-			<option value="metformin_7">Long COVID (Diabetic Patients)</option>
-			<option value="metformin_4">Mortality (All Patients)</option>
-			<option value="metformin_8">Mortality (Diabetic Patients)</option>
+			<option value="metformin_2">Severity</option>
+			<option value="metformin_3">Long COVID (LC)</option>
+			<option value="metformin_4">Mortality</option>
 		</optgroup>
 	</select>
 </div>
@@ -30,9 +27,6 @@
 	<div id="metformin_3" class="group"></div>
 	<div id="metformin_4" class="group"></div>
 	<div id="metformin_5" class="group"></div>
-	<div id="metformin_6" class="group"></div>
-	<div id="metformin_7" class="group"></div>
-	<div id="metformin_8" class="group"></div>
 </div>
 
 <script>

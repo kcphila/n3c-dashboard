@@ -47,15 +47,37 @@
 			feed: 'LongNoMet',
 			legend_data: longstatus_legend,
 			donutRatio: 0.5
+		}], 'long3' : [{
+			dimension: 'long',
+			domName: '#metformin_3_long3_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongDiabMet',
+			legend_data: longstatus_legend,
+			donutRatio: 0.5
+		}], 'long4' : [{
+			dimension: 'long',
+			domName: '#metformin_3_long4_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongDiabNoMet',
+			legend_data: longstatus_legend,
+			donutRatio: 0.5
 		}]
 	}"/>
 	
 	<jsp:param name="simple_panel" value="metformin/long_compare.jsp" />
 
-	<jsp:param name="datatable" value="metformin/tables/diabetes_table.jsp" />
+	<jsp:param name="datatable" value="metformin/tables/compare_table.jsp" />
 	<jsp:param name="datatable_div" value="long_covid_met" />
-	<jsp:param name="datatable_feed" value="metformin/feeds/metformin.jsp" />
-	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count" />
+	<jsp:param name="datatable_feed" value="metformin/feeds/compare.jsp" />
+	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count,diab_met_patient_count,diab_nomet_patient_count" />
 
 </jsp:include>
 

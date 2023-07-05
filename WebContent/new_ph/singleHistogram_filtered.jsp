@@ -7,30 +7,56 @@ function ${param.block}_refresh${param.array}(data) {
 	var bData = new Object;
 	var cData = new Object;
 	$("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().each( function ( group, i ) {
-		
-		if (data[i].${param.filter_col} == '${param.filter}'){ 
-			<c:choose>
-				<c:when test="${empty param.primary_abbrev}">
-	    			var group = data[i].${param.primary};
-				</c:when>
-				<c:otherwise>
-					var group = data[i].${param.primary_abbrev};
-				</c:otherwise>
-			</c:choose>
-		
-			if (typeof data[i].${param.primary}_abbrev !== 'undefined'){
-				cData[group] = data[i].${param.primary}_abbrev;
-			}else{
-				cData[group] = data[i].${param.primary};
+	
+		if ('${param.filter_col2}' == 'null'){
+			if (data[i].${param.filter_col} == '${param.filter}'){
+				<c:choose>
+					<c:when test="${empty param.primary_abbrev}">
+		    			var group = data[i].${param.primary};
+					</c:when>
+					<c:otherwise>
+						var group = data[i].${param.primary_abbrev};
+					</c:otherwise>
+				</c:choose>
+			
+				if (typeof data[i].${param.primary}_abbrev !== 'undefined'){
+					cData[group] = data[i].${param.primary}_abbrev;
+				}else{
+					cData[group] = data[i].${param.primary};
+				};
+		    	var seq = data[i].${param.primary}_seq;
+		    	var count = data[i].${param.count};
+		        if (typeof aData[group] == 'undefined') {
+		            aData[group] = count;
+		            bData[group] = seq;
+		         } else
+		        	 aData[group] += count;
 			};
-	    	var seq = data[i].${param.primary}_seq;
-	    	var count = data[i].${param.count};
-	        if (typeof aData[group] == 'undefined') {
-	            aData[group] = count;
-	            bData[group] = seq;
-	         } else
-	        	 aData[group] += count;
-		};
+		} else {
+			if (data[i].${param.filter_col} == '${param.filter}' && data[i].${param.filter_col2} == '${param.filter2}'){
+				<c:choose>
+					<c:when test="${empty param.primary_abbrev}">
+		    			var group = data[i].${param.primary};
+					</c:when>
+					<c:otherwise>
+						var group = data[i].${param.primary_abbrev};
+					</c:otherwise>
+				</c:choose>
+			
+				if (typeof data[i].${param.primary}_abbrev !== 'undefined'){
+					cData[group] = data[i].${param.primary}_abbrev;
+				}else{
+					cData[group] = data[i].${param.primary};
+				};
+		    	var seq = data[i].${param.primary}_seq;
+		    	var count = data[i].${param.count};
+		        if (typeof aData[group] == 'undefined') {
+		            aData[group] = count;
+		            bData[group] = seq;
+		         } else
+		        	 aData[group] += count;
+			};
+		}
 	});
 
 	${param.block}_${param.array} = new Array();

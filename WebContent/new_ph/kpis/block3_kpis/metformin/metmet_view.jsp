@@ -14,7 +14,7 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.diabetes_demosevlc_cov_csd
+				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
 				  where metformin_indicator = 1
 				) as foo;
 </sql:query>
@@ -35,8 +35,8 @@
 										data-content="
 										<p>Total Number of Individuals within the view who have Metformin
 										indicated in their EHR.</p>
-										<p>Sample: N3C Patients w/Diabetes indicated in their EHR.</p>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">Metformin Patients in View* <i class="fas fa-info-circle"></i>
+										<p>Sample: All N3C Patients.</p>" aria-describedby="tooltip">
+	 											<p style="margin-bottom:0px;">Metformin in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>
  								</span>

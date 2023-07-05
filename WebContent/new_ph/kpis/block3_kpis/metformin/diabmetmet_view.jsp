@@ -14,8 +14,9 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
+				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
 				  where metformin_indicator = 1
+				  and diabetes_indicator = 1
 				) as foo;
 </sql:query>
 	
@@ -29,14 +30,14 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients taking Metformin in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Diabetic Patients taking Metformin in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of Individuals within the view who have Metformin
+										<p>Total Number of Individuals within the view who have Diabetes and Metformin
 										indicated in their EHR.</p>
 										<p>Sample: All N3C Patients.</p>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">Metformin Patients in View* <i class="fas fa-info-circle"></i>
+	 											<p style="margin-bottom:0px;">Diabetic Metformin in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>
  								</span>
@@ -44,7 +45,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-prescription-bottle-alt"></i> <span id="${param.block}_met_patient_count_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-prescription-bottle-alt"></i> <span id="${param.block}_diab_met_patient_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

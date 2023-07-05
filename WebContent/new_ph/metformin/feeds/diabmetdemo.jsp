@@ -3,10 +3,15 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, patient_display, patient_count,
+	from (select race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, metformin,  medocc, 
+				case
+					when (patient_count = 0 or patient_count is null) then '<20'
+					else patient_count::text
+				end as patient_display,
+				patient_count,
 				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, 
 				sex_abbrev, sex_seq, severity_abbrev, severity_seq, status_abbrev, status_seq, long_abbrev, long_seq,
-				vaccinated_abbrev, vaccinated_seq, mortality_abbrev, mortality_seq, medocc_abbrev, medocc_seq
+				vaccinated_abbrev, vaccinated_seq, mortality_abbrev, mortality_seq, medocc_abbrev, medocc_seq, metformin_abbrev, metformin_seq
 			from (select
 					race,
 					ethnicity,
@@ -33,17 +38,22 @@
 						else 'No Mortality'
 					end as mortality,
 					case 
-						when (diabetes_before_after_covid = 'Before') then 'Before COVID'
-						when (diabetes_before_after_covid = 'After') then 'After COVID'
+						when (metformin_indicator = '1') then 'Metformin'
+						else 'No Metformin'
+					end as metformin,
+					case 
+						when (metformin_before_after_covid = 'Before') then 'Before COVID'
+						when (metformin_before_after_covid = 'After') then 'After COVID'
 						else 'Unknown'
 					end as medocc,
-					patient_count as patient_display,
-					case
+					sum(case
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
-					end as patient_count
-				  from n3c_dashboard_ph.diabetes_demosevvacmorlc_cov_csd
-				  where metformin_indicator = 1
+					end) as patient_count
+				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
+				  where diabetes_indicator = 1
+				  group by race, ethnicity, age, sex, severity, covid_indicator, long_covid_diagnosis_post_covid_indicator, vaccinated, patient_death_indicator, 
+				  	metformin_before_after_covid, metformin_indicator
 		  	) as foo
 		  	natural join n3c_dashboard.age_map_min
 		  	natural join n3c_dashboard.race_map
@@ -55,6 +65,7 @@
 		  	natural join n3c_dashboard.mortality_map
 		  	natural join n3c_dashboard.vaccinated_map
 		  	natural join n3c_dashboard.medocc_map
+		  	natural join n3c_dashboard.metformin_map
 		  ) as done;
 </sql:query>
 {
@@ -68,7 +79,8 @@
         {"value":"long", "label":"Long COVID Status"},
         {"value":"vaccinated", "label":"Vaccination Status"},
         {"value":"mortality", "label":"Mortality"},
-        {"value":"metformin_occurrence", "label":"Diabetes Occurrence"},
+        {"value":"metformin", "label":"Metformin Status"},
+        {"value":"medocc", "label":"Metformin Occurrence"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
         {"value":"age_abbrev", "label":"dummy1"},
@@ -90,7 +102,9 @@
         {"value":"mortality_abbrev", "label":"dummy16"},
         {"value":"mortality_seq", "label":"dummy17"},
         {"value":"medocc_abbrev", "label":"dummy18"},
-        {"value":"medocc_seq", "label":"dummy19"}
+        {"value":"medocc_seq", "label":"dummy19"},
+        {"value":"metformin_abbrev", "label":"dummy20"},
+        {"value":"metformin_seq", "label":"dummy20"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

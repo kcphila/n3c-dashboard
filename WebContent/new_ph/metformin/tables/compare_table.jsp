@@ -8,33 +8,37 @@ function ${param.block}_constrain_table(filter, constraint) {
 	
 	switch (filter) {
 	case 'race':
-		table.column(0).search(constraint, true, false, true).draw();	
-		break;
-	case 'ethnicity':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'age':
+	case 'ethnicity':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'sex':
+	case 'age':
 		table.column(3).search(constraint, true, false, true).draw();	
 		break;
-	case 'severity':
+	case 'sex':
 		table.column(4).search(constraint, true, false, true).draw();	
 		break;
-	case 'covidstatus':
+	case 'severity':
 		table.column(5).search(constraint, true, false, true).draw();	
 		break;
-	case 'longstatus':
+	case 'covidstatus':
 		table.column(6).search(constraint, true, false, true).draw();	
-	case 'vaccinated':
+		break;
+	case 'longstatus':
 		table.column(7).search(constraint, true, false, true).draw();	
 		break;
-	case 'mortality':
+	case 'vaccinated':
 		table.column(8).search(constraint, true, false, true).draw();	
 		break;
-	case 'medicationoccurrence':
+	case 'mortality':
 		table.column(9).search(constraint, true, false, true).draw();	
+		break;
+	case 'medicationoccurrence':
+		table.column(10).search(constraint, true, false, true).draw();	
+		break;
+	case 'conditionoccurrence':
+		table.column(10).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -56,54 +60,32 @@ function ${param.block}_updateKPI(table, column) {
 			sum += data['patient_count'];
 		};
 		
-		if (column == 'covid_patient_count'){
-			if (data['status'] == 'Positive'){
+		if (column == 'met_patient_count'){
+			if (data['metformin'] == 'Metformin'){
 				sum += data['patient_count'];
 			};
 		};
-		if (column == 'long_covid_patient_count'){
-			if (data['long'] == 'Long COVID'){
+		
+		if (column == 'nomet_patient_count'){
+			if (data['metformin'] == 'No Metformin'){
 				sum += data['patient_count'];
 			};
 		};
-		if (column == 'vaccinated_patient_count'){
-			if (data['vaccinated'] == 'Vaccinated'){
+		
+		if (column == 'diab_met_patient_count'){
+			if (data['metformin'] == 'Metformin' && data['diabetes'] == 'Diabetes'){
 				sum += data['patient_count'];
 			};
 		};
-		if (column == 'mortality_patient_count'){
-			if (data['mortality'] == 'Mortality'){
+		
+		if (column == 'diab_nomet_patient_count'){
+			if (data['metformin'] == 'No Metformin' && data['diabetes'] == 'Diabetes'){
 				sum += data['patient_count'];
 			};
 		};
 	});	
 	
-	var snapshotAll = table.settings().init().snapshotAll;
 	
-	var total = 0;
-	for (i in snapshotAll){
-		if (column == 'patient_count'){
-			total += snapshotAll[i]['patient_count'];
-		};
-	}
-	if (column == 'patient_count'){
-		if (sum != 0){
-			var percent = ((sum/total)*100);
-			var width = (Math.round(percent));
-			var rount = percent;
-			rount = +rount.toFixed(2);
-			var widthtext = rount + "% in View"
-			var bar = "${param.block}_"+ column +"_kpi_progress";
-			var div = "${param.block}_"+ column +"_kpi_progressdiv";
-			document.getElementById(bar).style = "width: " + width + "% !important";
-			document.getElementById(div).setAttribute("data-original-title", widthtext);
-		} else{
-			var bar = "${param.block}_"+ column +"_kpi_progress";
-			var div = "${param.block}_"+ column +"_kpi_progressdiv";
-			document.getElementById(bar).style = "width: 0% !important";
-			document.getElementById(div).setAttribute("data-original-title", "0% in View");
-		}
-	};
 
 	if (sum < 1000) {
 		sumString = sum+'';
@@ -198,16 +180,17 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	paging: true,
        	snapshot: null,
        	initComplete: function( settings, json ) {
-       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
-       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
        	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'race', visible: true, orderable: true },
+     		{ data: 'metformin', visible: true, orderable: true },
+     		{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [13] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [14] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
@@ -215,29 +198,16 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'vaccinated', visible: true, orderable: true },
         	{ data: 'mortality', visible: true, orderable: true },
         	{ data: 'medocc', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [11] },
+        	{ data: 'diabetes', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [13] },
         	{ data: 'patient_count', visible: false },
-        	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
-        	{ data: 'race_abbrev', visible: false },
-        	{ data: 'race_seq', visible: false },
-        	{ data: 'ethnicity_abbrev', visible: false },
-        	{ data: 'ethnicity_seq', visible: false },
-        	{ data: 'sex_abbrev', visible: false },
-        	{ data: 'sex_seq', visible: false },
         	{ data: 'severity_abbrev', visible: false },
         	{ data: 'severity_seq', visible: false },
-        	{ data: 'status_abbrev', visible: false },
-        	{ data: 'status_seq', visible: false },
         	{ data: 'long_abbrev', visible: false },
         	{ data: 'long_seq', visible: false },
-        	{ data: 'vaccinated_abbrev', visible: false },
-        	{ data: 'vaccinated_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
-        	{ data: 'mortality_seq', visible: false },
-        	{ data: 'medocc_abbrev', visible: false },
-        	{ data: 'medocc_seq', visible: false }
-        	
+        	{ data: 'mortality_seq', visible: false }
     	]
 	} );
 	
@@ -252,6 +222,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
 	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
 	  	
+	  	
+	  	if (currentSnapshot == snapshot) {
+	  	}
 	  	
 	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;

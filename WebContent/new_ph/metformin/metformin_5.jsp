@@ -8,7 +8,7 @@
 	<jsp:param name="folder" value="metformin" />
 	<jsp:param name="topic_description" value="secondary_5" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Diabetic Patients Prescribed Metformin" />
+	<jsp:param name="topic_title" value="Diabetic Patients" />
 
 	<jsp:param name="kpis" value="metformin/kpis.jsp" />
 	
@@ -21,7 +21,8 @@
 	<jsp:param name="long_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
-	<jsp:param name="beforeaftercondition_filter" value="true" />
+	<jsp:param name="beforeaftermedication_filter" value="true" />
+	<jsp:param name="metformin_filter" value="true" />
 	
 	<jsp:param name="toggle" value="true" />
 	
@@ -133,13 +134,13 @@
 	<jsp:param name="sex_panel" value="metformin/sex.jsp" />
 	<jsp:param name="ethnicity_panel" value="metformin/ethnicity.jsp" />
 	<jsp:param name="severity_panel" value="metformin/severity.jsp" />
-	<jsp:param name="medicationoccurrence_panel" value="metformin/beforeafter_diab.jsp" />
+	<jsp:param name="medicationoccurrence_panel" value="metformin/beforeafter.jsp" />
 	<jsp:param name="vaccinationstatus_panel" value="metformin/vaccinated.jsp" />
 	<jsp:param name="mortality_panel" value="metformin/mortality.jsp" />
 	<jsp:param name="longstatus_panel" value="metformin/longstatus.jsp" />
 	<jsp:param name="covidstatus_panel" value="metformin/covid.jsp" />
 
-	<jsp:param name="datatable" value="metformin/tables/metdemo_table.jsp" />
+	<jsp:param name="datatable" value="metformin/tables/diabdemo_table.jsp" />
 	<jsp:param name="datatable_div" value="metdemo_diab" />
 	<jsp:param name="datatable_feed" value="metformin/feeds/diabmetdemo.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count,long_covid_patient_count,vaccinated_patient_count,mortality_patient_count" />

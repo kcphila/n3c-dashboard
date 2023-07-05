@@ -426,7 +426,7 @@
 							 || not empty param.result_filter || not empty param.delay_filter || not empty param.diagnosis_filter
 							 || not empty param.medication_filter || not empty param.medication_class_filter || not empty param.medications_filter
 							 || not empty param.reinfectionbin_filter || not empty param.paxlovid_filter || not empty param.covid_filter
-							 || not empty param.beforeaftermedication_filter || not empty param.beforeaftercondition_filter || not empty param.long_filter
+							 || not empty param.beforeaftermedication_filter || not empty param.metformin_filter || not empty param.long_filter
 							 || not empty param.region_filter || not empty param.sotrovimabmeds_filter || not empty param.cciscore_filter
 							 || not empty param.smoking_filter || not empty param.environmental_filter || not empty param.environmental_filter2
 							 || not empty param.beforeaftersotrovimab_filter || not empty param.comorbidities_filter || not empty param.mortality_filter
@@ -437,9 +437,6 @@
     					<div id="${param.block}-block-kpi" class="kpi_section">
 							<!-- filters are enabled by passing in a boolean parameter -->
 							
-							<c:if test="${param.severity_filter}">
-								<jsp:include page="filters_new/severity.jsp"/>
-							</c:if>
 							<c:if test="${param.age_filter_min}">
 								<jsp:include page="filters_new/age_min.jsp"/>
 							</c:if>
@@ -449,46 +446,58 @@
 							<c:if test="${param.age_filter_ideal}">
 								<jsp:include page="filters_new/age_ideal.jsp"/>
 							</c:if>
-							<c:if test="${param.sex_filter}">
-								<jsp:include page="filters_new/sex.jsp"/>
+							<c:if test="${param.ethnicity_filter}">
+								<jsp:include page="filters_new/ethnicity.jsp"/>
 							</c:if>
 							<c:if test="${param.race_filter}">
 								<jsp:include page="filters_new/race.jsp"/>
 							</c:if>
-							<c:if test="${param.ethnicity_filter}">
-								<jsp:include page="filters_new/ethnicity.jsp"/>
+							<c:if test="${param.sex_filter}">
+								<jsp:include page="filters_new/sex.jsp"/>
 							</c:if>
+							
+
+							<c:if test="${param.covid_filter}">
+								<jsp:include page="filters_new/covid_status.jsp"/>
+							</c:if>
+							<c:if test="${param.long_filter}">
+								<jsp:include page="filters_new/long_status.jsp"/>
+							</c:if>
+							
+							<c:if test="${param.beforeaftermedication_filter}">
+								<jsp:include page="filters_new/beforeafter_medication.jsp"/>
+							</c:if>
+							<c:if test="${param.metformin_filter}">
+								<jsp:include page="filters_new/metformin.jsp"/>
+							</c:if>
+							<c:if test="${param.mortality_filter}">
+								<jsp:include page="filters_new/mortality.jsp"/>
+							</c:if>
+							
+							<c:if test="${param.severity_filter}">
+								<jsp:include page="filters_new/severity.jsp"/>
+							</c:if>
+							<c:if test="${param.vaccinated_filter}">
+								<jsp:include page="filters_new/vaccinated.jsp"/>
+							</c:if>
+							
+							
+							
 							<c:if test="${param.observation_filter}">
 								<jsp:include page="filters/observation.jsp"/>
 							</c:if>
 							<c:if test="${param.symptom_filter}">
 								<jsp:include page="filters_new/symptom.jsp"/>
 							</c:if>
-							<c:if test="${param.vaccinated_filter}">
-								<jsp:include page="filters_new/vaccinated.jsp"/>
-							</c:if>
-							<c:if test="${param.covid_filter}">
-								<jsp:include page="filters_new/covid_status.jsp"/>
-							</c:if>
-							<c:if test="${param.beforeaftermedication_filter}">
-								<jsp:include page="filters_new/beforeafter_medication.jsp"/>
-							</c:if>
-							<c:if test="${param.beforeaftercondition_filter}">
-								<jsp:include page="filters_new/beforeafter_condition.jsp"/>
-							</c:if>
-							<c:if test="${param.long_filter}">
-								<jsp:include page="filters_new/long_status.jsp"/>
-							</c:if>
-							<c:if test="${param.mortality_filter}">
-								<jsp:include page="filters_new/mortality.jsp"/>
-							</c:if>
+							
+							
+							
 							<c:if test="${param.comorbidities_filter}">
 								<jsp:include page="filters/comorbidities.jsp"/>
 							</c:if>
 							<c:if test="${param.beforeafter_filter}">
 								<jsp:include page="filters_new/beforeafter.jsp"/>
 							</c:if>
-							
 							<c:if test="${param.beforeaftersotrovimab_filter}">
 								<jsp:include page="filters_new/beforeafter_sotrovimab.jsp"/>
 							</c:if>
@@ -522,7 +531,6 @@
 							<c:if test="${param.smoking_filter}">
 								<jsp:include page="filters_new/smoking.jsp"/>
 							</c:if>
-							
 							<c:if test="${param.environmental_filter}">
 								<jsp:include page="filters_new/environmental.jsp"/>
 							</c:if>
@@ -1079,14 +1087,22 @@ function ${param.block}limitlink(){
 				update(new Date('Feb 1 2022 1:00:00 CST'));
 				sliderTime.value(new Date('Feb 1 2022').valueOf());
 			};
-			if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5' || '${param.block}' === 'environment_3') {
+			if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5' || '${param.block}' === 'environment_3' || '${param.block}' === 'metformin_5') {
 				if ('${param.block}' === 'environment_3') {
 					$('#${param.block}-mortality-select').multiselect('select', 'Mortality', true);
 					${param.block}_refreshHistograms();
 					${param.block}_constrain_table();
 					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Mortality Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all patients for context.</small>');
 					$('#${param.block}mortality_body').collapse('show')
-				} else{
+				};
+				if ('${param.block}' === 'metformin_5') {
+					$('#${param.block}-metformin-select').multiselect('select', 'Metformin', true);
+					${param.block}_refreshHistograms();
+					${param.block}_constrain_table();
+					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Metformin Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all diabetic patients for context.</small>');
+					$('#${param.block}metformin_body').collapse('show')
+				};
+				if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5') {
 					$('#${param.block}-paxlovidstatus-select').multiselect('select', 'Paxlovid', true);
 					${param.block}_refreshHistograms();
 					${param.block}_constrain_table();
@@ -1098,6 +1114,10 @@ function ${param.block}limitlink(){
 				});
 				
 			} else{
+				if ('${param.block}' === 'metformin_2'|| '${param.block}' === 'metformin_3' || '${param.block}' === 'metformin_4') {
+					document.getElementById('${param.block}-mode-barpercent').click();
+					$('#${param.block}-mode-barpercent').trigger('mouseup');
+				}
 				$("#${param.block}_alert").hide();
 			};
 	    }, 1000);
@@ -1624,7 +1644,7 @@ function ${param.block}limitlink(){
 			    ${param.block}_refreshHistograms();
             }
 		});
-		$('#${param.block}-conditionoccurrence-select').multiselect({	
+		$('#${param.block}-metformin-select').multiselect({	
 			buttonContainer: '<div class="checkbox-list-container"></div>',
             buttonClass: '',
             templates: {
@@ -1633,12 +1653,12 @@ function ${param.block}limitlink(){
                 li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
             },
 			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-conditionoccurrence-select');
+				var options = $('#${param.block}-metformin-select');
 		        var selected = [];
 		        $(options).each(function(){
 		            selected.push($(this).val());
 		        });
-				${param.block}_constrain("conditionoccurrence",  selected[0].join('|'));
+				${param.block}_constrain("metformin",  selected[0].join('|'));
 			    ${param.block}_refreshHistograms();
             }
 		});
@@ -1836,9 +1856,9 @@ function ${param.block}limitlink(){
 			$('#${param.block}-medicationoccurrence-select').multiselect('clearSelection');
 			${param.block}_constrain("medicationoccurrence", '');
 		</c:if>
-		<c:if test="${param.beforeaftercondition_filter}">
-			$('#${param.block}-conditionoccurrence-select').multiselect('clearSelection');
-			${param.block}_constrain("conditionoccurrence", '');
+		<c:if test="${param.metformin_filter}">
+			$('#${param.block}-metformin-select').multiselect('clearSelection');
+			${param.block}_constrain("metformin", '');
 		</c:if>
 		<c:if test="${param.beforeaftersotrovimab_filter}">
 			$('#${param.block}-sotrovimaboccurrence-select').multiselect('clearSelection');
@@ -1957,10 +1977,16 @@ function ${param.block}limitlink(){
 	
 	var ${param.block}_SeverityMetArray = new Array();
 	var ${param.block}_SeverityNoMetArray = new Array();
+	var ${param.block}_SeverityDiabMetArray = new Array();
+	var ${param.block}_SeverityDiabNoMetArray = new Array();
 	var ${param.block}_LongMetArray = new Array();
 	var ${param.block}_LongNoMetArray = new Array();
+	var ${param.block}_LongDiabMetArray = new Array();
+	var ${param.block}_LongDiabNoMetArray = new Array();
 	var ${param.block}_MortalityMetArray = new Array();
 	var ${param.block}_MortalityNoMetArray = new Array();
+	var ${param.block}_MortalityDiabMetArray = new Array();
+	var ${param.block}_MortalityDiabNoMetArray = new Array();
 
 	
 	var ${param.block}_raceSeverityArray = new Array();
@@ -2053,10 +2079,16 @@ function ${param.block}limitlink(){
 	    	
 	    	${param.block}_refreshSeverityMetArray(data);
 	    	${param.block}_refreshSeverityNoMetArray(data);
+	    	${param.block}_refreshSeverityDiabMetArray(data);
+	    	${param.block}_refreshSeverityDiabNoMetArray(data);
 	    	${param.block}_refreshLongMetArray(data);
 	    	${param.block}_refreshLongNoMetArray(data);
+	    	${param.block}_refreshLongDiabMetArray(data);
+	    	${param.block}_refreshLongDiabNoMetArray(data);
 	    	${param.block}_refreshMortalityMetArray(data);
 	    	${param.block}_refreshMortalityNoMetArray(data);
+	    	${param.block}_refreshMortalityDiabMetArray(data);
+	    	${param.block}_refreshMortalityDiabNoMetArray(data);
 	    
 	    	${param.block}_refreshraceSeverityArray(data);
 	    	${param.block}_refreshdiagnosisSeverityArray(data);
@@ -2411,6 +2443,7 @@ function ${param.block}limitlink(){
 	<jsp:param name="count" value="patient_count"/>
 	<jsp:param name="filter_col" value="metformin"/>
 	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="null"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram_filtered.jsp">
@@ -2421,6 +2454,31 @@ function ${param.block}limitlink(){
 	<jsp:param name="count" value="patient_count"/>
 	<jsp:param name="filter_col" value="metformin"/>
 	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="null"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityDiabMetArray"/>
+	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityDiabNoMetArray"/>
+	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="Diabetes"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram_filtered.jsp">
@@ -2431,6 +2489,7 @@ function ${param.block}limitlink(){
 	<jsp:param name="count" value="patient_count"/>
 	<jsp:param name="filter_col" value="metformin"/>
 	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="null"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram_filtered.jsp">
@@ -2441,6 +2500,31 @@ function ${param.block}limitlink(){
 	<jsp:param name="count" value="patient_count"/>
 	<jsp:param name="filter_col" value="metformin"/>
 	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="null"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MortalityDiabMetArray"/>
+	<jsp:param name="primary" value="mortality"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MortalityDiabNoMetArray"/>
+	<jsp:param name="primary" value="mortality"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="Diabetes"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram_filtered.jsp">
@@ -2451,6 +2535,7 @@ function ${param.block}limitlink(){
 	<jsp:param name="count" value="patient_count"/>
 	<jsp:param name="filter_col" value="metformin"/>
 	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="null"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram_filtered.jsp">
@@ -2461,6 +2546,31 @@ function ${param.block}limitlink(){
 	<jsp:param name="count" value="patient_count"/>
 	<jsp:param name="filter_col" value="metformin"/>
 	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="null"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="LongDiabMetArray"/>
+	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="LongDiabNoMetArray"/>
+	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="Diabetes"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">
