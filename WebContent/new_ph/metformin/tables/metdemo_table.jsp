@@ -86,6 +86,7 @@ function ${param.block}_updateKPI(table, column) {
 			total += snapshotAll[i]['patient_count'];
 		};
 	}
+
 	if (column == 'patient_count'){
 		if (sum != 0){
 			var percent = ((sum/total)*100);

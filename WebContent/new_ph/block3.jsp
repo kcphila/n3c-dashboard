@@ -460,20 +460,24 @@
 							<c:if test="${param.covid_filter}">
 								<jsp:include page="filters_new/covid_status.jsp"/>
 							</c:if>
+							<c:if test="${param.environmental_filter}">
+								<jsp:include page="filters_new/environmental.jsp"/>
+							</c:if>
+							<c:if test="${param.environmental_filter2}">
+								<jsp:include page="filters_new/environmental2.jsp"/>
+							</c:if>
 							<c:if test="${param.long_filter}">
 								<jsp:include page="filters_new/long_status.jsp"/>
-							</c:if>
-							
-							<c:if test="${param.beforeaftermedication_filter}">
-								<jsp:include page="filters_new/beforeafter_medication.jsp"/>
 							</c:if>
 							<c:if test="${param.metformin_filter}">
 								<jsp:include page="filters_new/metformin.jsp"/>
 							</c:if>
+							<c:if test="${param.beforeaftermedication_filter}">
+								<jsp:include page="filters_new/beforeafter_medication.jsp"/>
+							</c:if>
 							<c:if test="${param.mortality_filter}">
 								<jsp:include page="filters_new/mortality.jsp"/>
 							</c:if>
-							
 							<c:if test="${param.severity_filter}">
 								<jsp:include page="filters_new/severity.jsp"/>
 							</c:if>
@@ -482,16 +486,13 @@
 							</c:if>
 							
 							
-							
+<!------------------------------- Unsorted -->
 							<c:if test="${param.observation_filter}">
 								<jsp:include page="filters/observation.jsp"/>
 							</c:if>
 							<c:if test="${param.symptom_filter}">
 								<jsp:include page="filters_new/symptom.jsp"/>
 							</c:if>
-							
-							
-							
 							<c:if test="${param.comorbidities_filter}">
 								<jsp:include page="filters/comorbidities.jsp"/>
 							</c:if>
@@ -530,12 +531,6 @@
 							</c:if>
 							<c:if test="${param.smoking_filter}">
 								<jsp:include page="filters_new/smoking.jsp"/>
-							</c:if>
-							<c:if test="${param.environmental_filter}">
-								<jsp:include page="filters_new/environmental.jsp"/>
-							</c:if>
-							<c:if test="${param.environmental_filter2}">
-								<jsp:include page="filters_new/environmental2.jsp"/>
 							</c:if>
 							<c:if test="${param.region_filter}">
 								<jsp:include page="filters_new/region.jsp"/>
