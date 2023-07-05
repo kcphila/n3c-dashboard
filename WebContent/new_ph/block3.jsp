@@ -611,7 +611,16 @@
 			<!-- Composite Panels ------------------------------------------------------------------------------------------------- -->
 					<div class="row">
 						
-						
+						<c:if test="${not empty param.heatmap_all_panel}">
+							<div class="col-12 col-md-6 small-viz-panel">
+								<jsp:include page="${param.heatmap_all_panel}"/>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.heatmap_covid_panel}">
+							<div class="col-12 col-md-6 small-viz-panel">
+								<jsp:include page="${param.heatmap_covid_panel}"/>
+							</div>
+						</c:if>
 						<c:if test="${not empty param.age_panel}">
 							<c:url value="${param.age_panel}" var="age_url">
 		  						<c:param name="panel" value="${param.age_panel}" />
@@ -2049,6 +2058,11 @@ function ${param.block}limitlink(){
 	var ${param.block}_MedicationTSArray = new Array();
 	var ${param.block}_MedicationOverallArray = new Array();
 
+	var ${param.block}_AlcoholOpioidAllArray = new Array();
+	var ${param.block}_AlcoholOpioidCovidArray = new Array();
+	var ${param.block}_OpioidSmokingAllArray = new Array();
+	var ${param.block}_OpioidSmokingCovidArray = new Array();
+
 	function ${param.block}_refreshHistograms(just_viz) {
 	    if (typeof just_viz === 'undefined'){
 	    	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
@@ -2144,6 +2158,11 @@ function ${param.block}limitlink(){
 
 	    	${param.block}_refreshMedicationTSArray(data);
 	    	${param.block}_refreshMedicationOverallArray(data);
+
+	    	${param.block}_refreshAlcoholOpioidAllArray(data);
+	    	${param.block}_refreshAlcoholOpioidCovidArray(data);
+	    	${param.block}_refreshOpioidSmokingAllArray(data);
+	    	${param.block}_refreshOpioidSmokingCovidArray(data);
 	    };
     	
 	    
@@ -2280,6 +2299,14 @@ function ${param.block}limitlink(){
 	    }
 	    if ('${param.block}' === "paxlovid_9") {
 	    	${param.block}_days_refresh();
+	    }
+	    if ('${param.block}' === "substance_use_4") {
+	    	${param.block}_alcohol_opioid_all_refresh();
+	    	${param.block}_alcohol_opioid_covid_refresh();
+	    }
+	    if ('${param.block}' === "substance_use_6") {
+	    	${param.block}_opioid_smoking_all_refresh();
+	    	${param.block}_opioid_smoking_covid_refresh();
 	    }
 	  }
 	
@@ -2952,4 +2979,40 @@ function ${param.block}limitlink(){
 	<jsp:param name="array" value="MedicationOverallArray"/>
 	<jsp:param name="primary" value="medication"/>
 	<jsp:param name="count" value="count"/>
+</jsp:include>
+
+<jsp:include page="heatmapHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="AlcoholOpioidAllArray"/>
+	<jsp:param name="primary" value="condition2"/>
+	<jsp:param name="secondary" value="condition1"/>
+	<jsp:param name="count" value="all_count"/>
+</jsp:include>
+
+<jsp:include page="heatmapHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="AlcoholOpioidCovidArray"/>
+	<jsp:param name="primary" value="condition2"/>
+	<jsp:param name="secondary" value="condition1"/>
+	<jsp:param name="count" value="covid_count"/>
+</jsp:include>
+
+<jsp:include page="heatmapHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="OpioidSmokingAllArray"/>
+	<jsp:param name="primary" value="condition2"/>
+	<jsp:param name="secondary" value="condition1"/>
+	<jsp:param name="count" value="all_count"/>
+</jsp:include>
+
+<jsp:include page="heatmapHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="OpioidSmokingCovidArray"/>
+	<jsp:param name="primary" value="condition2"/>
+	<jsp:param name="secondary" value="condition1"/>
+	<jsp:param name="count" value="covid_count"/>
 </jsp:include>

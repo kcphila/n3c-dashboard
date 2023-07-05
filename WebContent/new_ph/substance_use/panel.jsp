@@ -36,6 +36,7 @@
 <jsp:include page="../../graph_support/percentage_bar_local_new.jsp"/>
 <jsp:include page="../../graph_support/pieChart_local_new.jsp"/>
 <jsp:include page="../../graph_support/horizontalBarChart_local_new.jsp"/>
+<jsp:include page="../../graph_support/heatMap_local.jsp"/>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
@@ -43,12 +44,16 @@
 		<option value="substance_use_1">Alcohol Demographics</option>
 		<option value="substance_use_2">Opioids Demographics</option>
 		<option value="substance_use_3">Smoking Demographics</option>		
+		<option value="substance_use_4">Alcohol/Opioid Heatmap</option>		
+		<option value="substance_use_6">Opioid/Smoking Heatmap</option>		
 	</select>
 </div>
 <div id="frame">
 	<div id="substance_use_1" class="group"></div>
 	<div id="substance_use_2" class="group"></div>
 	<div id="substance_use_3" class="group"></div>
+	<div id="substance_use_4" class="group"></div>
+	<div id="substance_use_6" class="group"></div>
 </div>
 
 <script>
