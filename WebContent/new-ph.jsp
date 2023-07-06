@@ -36,13 +36,13 @@
 	overflow:scroll;
 }
 
-#limitations_drop a[aria-expanded = "true"] span.btn:after{
+.limitations_drop a[aria-expanded = "true"] span.btn:after{
 	font-family: "Font Awesome\ 5 Free"; 
 	content: "\f056";
   	font-weight: 900;
 }
 
-#limitations_drop a[aria-expanded = "false"] span.btn:after{
+.limitations_drop a[aria-expanded = "false"] span.btn:after{
 	font-family: "Font Awesome\ 5 Free"; 
 	content: "\f055";
 	font-weight: 900;

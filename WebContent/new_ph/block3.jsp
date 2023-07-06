@@ -6,9 +6,34 @@
 
 <style>
 
-#filter_checks.sticky-top{
+.filter_checks.sticky-top{
 	background: white;
 }
+
+.filters-label{
+	display:flex;
+	flex-wrap:nowrap;
+}
+
+.filters-label span.btn:after{
+	font-family: "Font Awesome\ 5 Free"; 
+	content: "\f08d";
+  	font-weight: 900;
+}
+
+.filters-label span.btn.stuck:after{
+	font-family: "Font Awesome\ 5 Free"; 
+	content: "\f55a";
+	font-weight: 900;
+}
+
+@media (max-width: 992px){
+	.filters-label span.btn {
+    	display: none;
+	}
+}
+
+
 
 .viz-container{
 	margin-top: 15px;
@@ -182,21 +207,21 @@
 }
 
 /* filter stuff */
-#filter_checks .custom-select{
+.filter_checks .custom-select{
 	height: auto;
 }
 
-#filter_checks .btn-group{
+.filter_checks .btn-group{
 	width: 100%;
 }
 
-#filter_checks .multiselect{
+.filter_checks .multiselect{
 	overflow: visible;
 	white-space: normal;
 	word-wrap: break-word;
 }
 
-#filter_checks .multiselect-container.dropdown-menu.show{
+.filter_checks .multiselect-container.dropdown-menu.show{
 	width: 100%;
 }
 
@@ -255,7 +280,7 @@
 	box-shadow: none;
 }
 
-#filter_checks .filter_drop_button:after {
+.filter_checks .filter_drop_button:after {
     content: <i class="towerIcon"></i>;
     content: '\f068';
     font-family: FontAwesome;
@@ -265,7 +290,7 @@
     float: right;
 }
 
-#filter_checks .filter_drop_button.collapsed:after {
+.filter_checks .filter_drop_button.collapsed:after {
     content: <i class="towerIcon"></i>;
     content: '\f067';
     font-family: FontAwesome;
@@ -275,25 +300,25 @@
     float: right;
 }
 
-#filter_checks .card-header{
+.filter_checks .card-header{
 	padding: 2px;
 }
 
-#filter_checks .panel-body{
+.filter_checks .panel-body{
 	border: 2px solid #eeeeee;
     border-radius: 5px;
 }
 
-#filter_checks .card{
+.filter_checks .card{
 	border: 0px;
 	background-color: unset;
 }
 
-#filter_checks .card-header{
+.filter_checks .card-header{
 	background-color: unset;
 }
 
-#related_dashboards .related-img{
+.related_dashboards .related-img{
 	opacity: .7;
 }
 
@@ -327,7 +352,7 @@
 }
 
 /* Should go over the layout to try not to overflow */
-#filter_checks label.form-check-label {
+.filter_checks label.form-check-label {
     overflow-wrap: anywhere;
 }
 
@@ -439,8 +464,13 @@
 							 || not empty param.smoking_filter || not empty param.environmental_filter || not empty param.environmental_filter2
 							 || not empty param.beforeaftersotrovimab_filter || not empty param.comorbidities_filter || not empty param.mortality_filter
 							 || not empty param.vaccinated_filter || not empty param.opioids_filter || not empty param.alcohol_filter}">
-					<div id="filter_checks" class="panel-primary filter-section">
-						<h4>Filters <button type="button" class="btn btn-info" onclick="${param.block}_sticky_toggle()"><i class="fas fa-thumbtack"></i></button></h4>
+					<div id="${param.block}filter_checks" class="panel-primary filter-section filter_checks">
+						<div class="filters-label">
+							<h4 style="flex-fill:1;">Filters</h4>
+							<div>
+								<span class="btn btn-link p-0 filters-pin" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pin/Unpin Filters Section" aria-hidden="true" onclick="${param.block}_sticky_toggle()"></span>
+							</div>
+						</div>
 						<button id="${param.block}_btn_clear" class="btn button dash-filter-btn2 mt-0 no_clear" onclick="${param.block}_filter_clear()"><i class="fas fa-times-circle"></i> Clear Filters</button>
     					<div id="${param.block}-block-kpi" class="kpi_section">
 							<!-- filters are enabled by passing in a boolean parameter -->
@@ -1056,7 +1086,7 @@
 	 					</sql:query>
 						<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">
 							<div id="${param.block}limitations-section" class="col col-12">
-								<div class="accordion" id="${param.block}limitations_drop">
+								<div class="accordion limitations_drop" id="${param.block}limitations_drop">
 									<div class="card">
 										<a Title="expand/collapse limitations section" href="" class="accordion-toggle" data-toggle="collapse" data-target="#${param.block}limitcollapseOne" aria-expanded="false" aria-controls="${param.block}collapseOne">
 											<div class="card-header" id="${param.block}limitheadingOne">
@@ -1085,16 +1115,25 @@
 
 <script>
 
+// logic for the filters pin feature
+$('.filters-pin').tooltip();
+function ${param.block}_sticky_toggle(){
+	$('#${param.block}filter_checks').toggleClass( "sticky-top" );
+	$('#${param.block}filter_checks span.btn').toggleClass( "stuck" );
+}
+$(window).resize(function() {
+	if ($(window).width() < 992) {
+		$('#${param.block}filter_checks').removeClass( "sticky-top" );
+		$('#${param.block}filter_checks span.btn').removeClass( "stuck" );
+	}
+});
+
+
 function ${param.block}limitlink(){
 	$('#${param.block}limitcollapseOne').collapse('show');
 	$('html, body').animate({
         scrollTop: $("#${param.block}limitations-section").offset().top
     }, 500);
-}
-
-
-function ${param.block}_sticky_toggle(){
-	$('#filter_checks').toggleClass( "sticky-top" );
 }
 
 	$(document).ready(function() {
@@ -1116,7 +1155,7 @@ function ${param.block}_sticky_toggle(){
 					$('#${param.block}-metformin-select').multiselect('select', 'Metformin', true);
 					${param.block}_refreshHistograms();
 					${param.block}_constrain_table();
-					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Metformin Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all diabetic patients for context.</small>');
+					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Default filters are applied to only show diabetic patients prescribed Metformin. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all diabetic patients for context.</small>');
 					$('#${param.block}metformin_body').collapse('show')
 				};
 				if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5') {

@@ -35,10 +35,13 @@
 										data-placement="top" 
 										data-content="<strong>Mortality Defined As:</strong>
 										<ul style='padding-inline-start: 15px;'>
-											<li>Any patient with a date of death in the Enclave.</li>
-										</ul><p>Note: this metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to only those suspected to be caused by COVID." aria-describedby="tooltip">
+											<li>Any patient with a date of death in the Enclave</li>
+											<li>(or) Any patient associated with a site that has opted to link to the mortality dataset that exists in one 
+											of the external sources (ex., Government data with death certificates, ObituaryData.com, and obituary data from private sources)</li>
+										</ul><p>Note: this metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to only those suspected to be caused by COVID-19.</p>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Mortalities in View* <i class="fas fa-info-circle"></i>
-	  											<span class="sr-only">, or patients who died.
+	  											<span class="sr-only">, or any patient with a date of death in the Enclave, or any patient associated with a site that has opted to link to the mortality dataset that exists in one 
+													of the external sources
 	  											</span>
 	 											</p> 
  									</a>
@@ -53,13 +56,3 @@
 	</div>
 
 </c:forEach>
-
-<script>
-//popover stuff
-$(function () {
-	$('[data-toggle="popover"]').popover()
-});
-$(document).on("click", ".popover .close" , function(){
-    $(this).parents(".popover").popover('hide');
-});
-</script>
