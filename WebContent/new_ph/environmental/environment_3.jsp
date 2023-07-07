@@ -9,8 +9,8 @@
 	<jsp:param name="topic_description" value="secondary_3" />
 	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="Number of Impacted Patients By Environmental Factor and Mortality Status" />
-	<jsp:param name="topic_title2" value="Mortality %: All vs. Environmentally Impacted" />
-	<jsp:param name="topic_title3" value="Mortality %: All vs. Environmentally Impacted (COVID+)" />
+	<jsp:param name="topic_title2" value="% of Mortalities for All N3C Patients Vs. Environmentally Impacted Patients" />
+	<jsp:param name="topic_title3" value="% of Mortalities for All COVID+ N3C Patients Vs. COVID+ Environmentally Impacted Patients" />
 
 	<jsp:param name="kpis" value="environmental/kpis.jsp" />
 

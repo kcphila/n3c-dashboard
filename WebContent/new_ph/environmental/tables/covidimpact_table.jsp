@@ -1,30 +1,39 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <script>
 
+
+// kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	
 	switch (filter) {
-	case 'environmental_factor':
-	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	
+	case 'sex':
+		table.column(0).search(constraint, true, false, true).draw();	
+		break;
+	case 'severity':
+		table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'covidstatus':
-	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
+		table.column(2).search(constraint, true, false, true).draw();	
+		break;
+	case 'longstatus':
+		table.column(3).search(constraint, true, false, true).draw();	
+	case 'vaccinated':
+		table.column(4).search(constraint, true, false, true).draw();	
 		break;
 	case 'mortality':
-	    $("#${param.datatable_div}-table").DataTable().column(2).search(constraint, true, false, true).draw();	
+		table.column(5).search(constraint, true, false, true).draw();	
 		break;
 	}
+	
 	
 	var kpis = '${param.target_kpis}'.split(',');
 	for (var a in kpis) {
 		${param.block}_updateKPI(table, kpis[a])
 	}
-	
 }
 
 function ${param.block}_updateKPI(table, column) {
-	
 	var sum_string = '';
 	var sum = 0;
 	
@@ -33,8 +42,19 @@ function ${param.block}_updateKPI(table, column) {
 		if (column == 'patient_count'){
 			sum += data['patient_count'];
 		};
+		
 		if (column == 'covid_patient_count'){
 			if (data['status'] == 'Positive'){
+				sum += data['patient_count'];
+			};
+		};
+		if (column == 'long_covid_patient_count'){
+			if (data['long'] == 'Long COVID'){
+				sum += data['patient_count'];
+			};
+		};
+		if (column == 'vaccinated_patient_count'){
+			if (data['vaccinated'] == 'Vaccinated'){
 				sum += data['patient_count'];
 			};
 		};
@@ -72,20 +92,20 @@ function ${param.block}_updateKPI(table, column) {
 		}
 	};
 	
+	
+
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
 		sum = sum / 1000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k"
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
 	} else {
 		sum = sum / 1000000.0;
-		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M"
-	
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";
+		
 	}
-	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString
+	document.getElementById('${param.block}'+'_'+column+'_kpi').innerHTML = sumString;
 }
-
-
 
 jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 	return this.flatten().reduce( function ( a, b ) {
@@ -102,6 +122,8 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 
 var ${param.block}_datatable = null;
 
+
+// datatable setup ////////////////////////
 $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 		
 	var json = $.parseJSON(JSON.stringify(data));
@@ -132,11 +154,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	var data = json['rows'];
 
-	${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
-    	data: data,
-       	paging: true,
-       	dom: 'lfr<"datatable_overflow"t>Bip',
-       	buttons: {
+	var ${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
+	    data: data,
+    	dom: 'lfr<"datatable_overflow"t>Bip',
+    	buttons: {
     	    dom: {
     	      button: {
     	        tag: 'button',
@@ -151,7 +172,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'environmental_mortality',
+    	      filename: 'environmental_covid_impact',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -163,27 +184,39 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      text: 'Copy'
     	    }]
     	},
+       	paging: true,
        	snapshot: null,
-    	initComplete: function( settings, json ) {
-    		settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	initComplete: function( settings, json ) {
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
-       	  },
+       	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'environmental_factor', visible: true, orderable: true },
+        	{ data: 'sex', visible: true, orderable: true },
+        	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
+        	{ data: 'long', visible: true, orderable: true },
+        	{ data: 'vaccinated', visible: true, orderable: true },
         	{ data: 'mortality', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [7] },
         	{ data: 'patient_count', visible: false },
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false },
+        	{ data: 'severity_abbrev', visible: false },
+        	{ data: 'severity_seq', visible: false },
         	{ data: 'status_abbrev', visible: false },
         	{ data: 'status_seq', visible: false },
+        	{ data: 'long_abbrev', visible: false },
+        	{ data: 'long_seq', visible: false },
+        	{ data: 'vaccinated_abbrev', visible: false },
+        	{ data: 'vaccinated_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
         	{ data: 'mortality_seq', visible: false }
     	]
 	} );
-
+	
 	//table search logic that distinguishes sort/filter 
 	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
 
@@ -195,7 +228,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
 	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
 	  	
-	  	
+
 	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
@@ -212,11 +245,12 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	   		$('#${param.block}_btn_clear').addClass("no_clear");
 	  	}
 	} );
-
-	// this is necessary to populate the histograms for the panel's initial D3 rendering
-	${param.block}_refreshHistograms();
-
 	
+	${param.block}_refreshHistograms();
 });
+
+
+
+
 
 </script>

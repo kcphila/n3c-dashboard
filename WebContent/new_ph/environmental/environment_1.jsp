@@ -8,7 +8,7 @@
 	<jsp:param name="folder" value="environmental" />
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Patients Exposed to Environmental Factors " />
+	<jsp:param name="topic_title" value="Patients in the Enclave who were Exposed to Environmental Factors " />
 
 	<jsp:param name="kpis" value="environmental/kpis.jsp" />
 	

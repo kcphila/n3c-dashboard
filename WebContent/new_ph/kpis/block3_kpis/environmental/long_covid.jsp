@@ -15,9 +15,8 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
-				  where metformin_indicator = 1 
-				  and long_covid_diagnosis_post_covid_indicator = '1'
+				  from n3c_dashboard_ph.env_envsxmortvac_all_csd
+				  where long_covid_diagnosis_post_covid_indicator = 1
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -30,19 +29,20 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Long COVID Patients in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Environmentally Impacted Patients with Long COVID" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="<p><strong>Long COVID Defined As:</strong> any patient having the ICD-10 code for PASC (U09.9) within their EHR.</p>
-										<small class='kpi-small-note'>Note: The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this code will be 
-										limited to after this date.</small>" aria-describedby="tooltip">
+										<small class='kpi-small-note'>The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this code will be 
+										limited to after this date.</small>
+										<br><small class='kpi-small-note'>Note: Gray KPIs do not update with filters</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Long COVID in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or any patient having the ICD-10 code for PASC (U09.9) within their EHR.
 	  											</span>
 	 											</p> 
  									</a>
  								</span>
-							</td>
+ 							</td>
 						</tr>
 					</table>
 				</div>

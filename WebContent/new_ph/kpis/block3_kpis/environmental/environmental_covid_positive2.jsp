@@ -15,8 +15,8 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.env_mortcnt_cov_csd
-				  where covid_indicator = '1'
+				  from n3c_dashboard_ph.env_allcnt_cov_csd
+				  where covid_indicator = 1
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -34,12 +34,12 @@
 										data-placement="top" 
 										data-content="
 										<strong>COVID+ Defined As:</strong>
-										<ul style='padding-inline-start: 15px;'>
+										<ul class='low-padding-list'>
 											<li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
 											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
 											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
 										</ul>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">COVID+ Patients in View* <i class="fas fa-info-circle"></i>
+	 											<p style="margin-bottom:0px;">COVID+ in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, 
 	  												a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 
 	  												(U07.1) was recorded

@@ -15,9 +15,8 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
-				  where metformin_indicator = 1 
-				  and long_covid_diagnosis_post_covid_indicator = '1'
+				  from n3c_dashboard_ph.env_envsxmortvac_all_csd
+				  where vaccinated = '1'
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -30,14 +29,13 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Long COVID Patients in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Vaccinated Patients in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
-										data-content="<p><strong>Long COVID Defined As:</strong> any patient having the ICD-10 code for PASC (U09.9) within their EHR.</p>
-										<small class='kpi-small-note'>Note: The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this code will be 
-										limited to after this date.</small>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">Long COVID in View* <i class="fas fa-info-circle"></i>
-	  											<span class="sr-only">, or any patient having the ICD-10 code for PASC (U09.9) within their EHR.
+										data-content="<strong>Vaccination Defined As:</strong> any patient having at least one dose of Pfizer, Moderna, 
+										or Johnson & Johnson COVID-19 vaccines within their EHR." aria-describedby="tooltip">
+	 											<p style="margin-bottom:0px;">Vaccinated in View* <i class="fas fa-info-circle"></i>
+	  											<span class="sr-only">, or any patient having at least one dose of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines within their EHR.
 	  											</span>
 	 											</p> 
  									</a>
@@ -46,7 +44,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-user-clock"></i> <span id="${param.block}_long_covid_patient_count_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-user-shield"></i> <span id="${param.block}_vaccinated_patient_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

@@ -33,7 +33,17 @@
 	}
 }
 
+.kpi_no_update{
+	color: #535f74;
+}
 
+.kpi-small-note{
+	color: gray;
+}
+
+.low-padding-list{
+	padding-inline-start: 15px;
+}
 
 .viz-container{
 	margin-top: 15px;

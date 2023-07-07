@@ -185,7 +185,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'metformin_demographics',
+    	      filename: 'metformin_comparisons',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',

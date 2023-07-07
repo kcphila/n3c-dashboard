@@ -15,9 +15,8 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
-				  where metformin_indicator = 1
-				  and covid_indicator = '1'
+				  from n3c_dashboard_ph.env_mortcnt_cov_csd
+				  where covid_indicator = '1'
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -58,13 +57,3 @@
 	</div>
 
 </c:forEach>
-
-<script>
-//popover stuff
-$(function () {
-	$('[data-toggle="popover"]').popover()
-});
-$(document).on("click", ".popover .close" , function(){
-    $(this).parents(".popover").popover('hide');
-});
-</script>

@@ -3,17 +3,18 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <sql:query var="totals" dataSource="jdbc/N3CPublic">
-	select 
- 		to_char(sum(count::int), '999,999,999') as count
-			from (select
-					case
-						when (patient_count::text = '<20' or patient_count::text is null) then 0
-						else patient_count::int
-					end as count
-				  from n3c_dashboard_ph.env_demoagemin_cov_csd
-				) as foo;
+ 	select case
+ 			when sum(patient_count) < 1000 then sum(patient_count)::text
+ 			when sum(patient_count) < 1000000 then to_char(sum(patient_count)/1000.0, '999.99')||'k'
+ 			else to_char(sum(patient_count)/1000000.0, '999.99')||'M'
+ 		end as count
+ 			from (select 
+				case
+					when (patient_count = '<20' or patient_count is null) then 0
+					else patient_count::int
+				end as patient_count
+				from n3c_dashboard_ph.env_allcnt_cov_csd) as foo
 </sql:query>
-	
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">
 		<div class="panel-primary kpi">
@@ -30,7 +31,7 @@
 										data-content="
 										<p>Total Number of Individuals within the view who have had an environmental exposure 
 										indicated in their EHR.</p>
-										<p>Even without filters, this total may be less than the total number of environmentally exposed patients within the Enclave due to the suppression of counts less than 20.</p>" aria-describedby="tooltip">
+										<small class='kpi-small-note'>Even without filters, this total may be less than the total number of environmentally exposed patients within the Enclave due to the suppression of counts less than 20.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Patients in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>

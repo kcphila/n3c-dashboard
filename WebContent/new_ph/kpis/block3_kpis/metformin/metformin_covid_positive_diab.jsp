@@ -35,7 +35,7 @@
 										data-placement="top" 
 										data-content="
 										<strong>COVID+ Defined As:</strong>
-										<ul style='padding-inline-start: 15px;'>
+										<ul class='low-padding-list'>
 											<li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
 											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
 											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>

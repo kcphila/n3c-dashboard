@@ -34,13 +34,15 @@
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="<strong>Mortality Defined As:</strong>
-										<ul style='padding-inline-start: 15px;'>
+										<ul class='low-padding-list'>
 											<li>Any patient with a date of death in the Enclave</li>
-											<li>(or) Any patient associated with a site that has opted to link to the mortality dataset that exists in one 
+											<li>(or) Any patient from a mortality-linked PPRL site who exists in one 
 											of the external sources (ex., Government data with death certificates, ObituaryData.com, and obituary data from private sources)</li>
-										</ul><p>Note: this metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to only those suspected to be caused by COVID-19.</p>" aria-describedby="tooltip">
+										</ul>
+										<small class='kpi-small-note'>Note: this metric is distinct from the Mortality category associated with Severity, 
+										as it does not limit deaths to only those suspected to be caused by COVID-19.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Mortalities in View* <i class="fas fa-info-circle"></i>
-	  											<span class="sr-only">, or any patient with a date of death in the Enclave, or any patient associated with a site that has opted to link to the mortality dataset that exists in one 
+	  											<span class="sr-only">, or any patient with a date of death in the Enclave, or Any patient from a mortality-linked PPRL site who exists in 
 													of the external sources
 	  											</span>
 	 											</p> 

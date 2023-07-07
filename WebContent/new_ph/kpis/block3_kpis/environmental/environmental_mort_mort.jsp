@@ -12,12 +12,10 @@
  		end as count
 			from (select
 					case
-						when (patient_count::text = '<20' or patient_count::text is null) then 0
-						else patient_count::int
+						when (patient_count_died::text = '<20' or patient_count_died::text is null) then 0
+						else patient_count_died::int
 					end as count
-				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
-				  where diabetes_indicator = 1
-				  and patient_death_indicator = '1'
+				  from n3c_dashboard_ph.env_mortcnt_cov_csd
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -52,7 +50,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="panel-heading kpi_num"><i class="fas fa-user"></i> <span id="${param.block}_mortality_patient_count_kpi">${row.count}</span></div>
+				<div class="panel-heading kpi_num"><i class="fas fa-user-plus"></i> <span id="${param.block}_mortality_patient_count_kpi">${row.count}</span></div>
 			</div>
 		</div>
 	</div>

@@ -942,6 +942,7 @@ h5{
 	font-weight: 600;
 	color: #3f50b0;
 	display: inline-block;
+	flex-grow: 1;
 }
 
 /* -------------- Panel ---------------------  */

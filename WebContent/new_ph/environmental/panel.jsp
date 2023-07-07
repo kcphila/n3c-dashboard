@@ -13,6 +13,7 @@
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<option value="environment_1">Demographics of Environmentally Impacted Patients</option>
+		<option value="environment_4">COVID Factors of Environmentally Impacted Patients</option>
 		<option value="environment_2">Number of Impacted Patients By Environmental Factor</option>
 		<option value="environment_3">Exploration of Mortality</option>
 	</select>
@@ -22,6 +23,7 @@
 	<div id="environment_1" class="group"></div>
 	<div id="environment_2" class="group"></div>
 	<div id="environment_3" class="group"></div>
+	<div id="environment_4" class="group"></div>
 </div>
 
 <script>
