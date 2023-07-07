@@ -1845,6 +1845,7 @@ function ${param.block}limitlink(){
 	}
 
 	function ${param.block}_constrain(filter, selection) {
+		console.log("constrain", filter, selection);
 		var selected = selection;
 		if (selected != undefined && selected.length > 0){
 			var values = selected.split("|");
@@ -1873,132 +1874,196 @@ function ${param.block}limitlink(){
 		$("#${param.block}_alert").addClass("no_clear");  
 
 		<c:if test="${param.severity_filter}">
-			$('#${param.block}-severity-select').multiselect('clearSelection');
-			${param.block}_constrain("severity", '');
+			if ($('#${param.block}-severity-select').val().length > 0) {
+				$('#${param.block}-severity-select').multiselect('clearSelection');
+				${param.block}_constrain("severity", '');
+			}
 		</c:if>
 		<c:if test="${param.age_filter_min || param.age_filter_sec || age_filter_ideal}">
-			$('#${param.block}-age-select').multiselect('clearSelection');
-			${param.block}_constrain("age", '');
+			if ($('#${param.block}-age-select').val().length > 0) {
+				$('#${param.block}-age-select').multiselect('clearSelection');
+				${param.block}_constrain("age", '');
+			}
 		</c:if>
 		<c:if test="${param.race_filter}">
-			$('#${param.block}-race-select').multiselect('clearSelection');
-			${param.block}_constrain("race", '');
+			if ($('#${param.block}-race-select').val().length > 0) {
+				$('#${param.block}-race-select').multiselect('clearSelection');
+				${param.block}_constrain("race", '');
+			}
 		</c:if>
 		<c:if test="${param.sex_filter}">
-			$('#${param.block}-sex-select').multiselect('clearSelection');
-			${param.block}_constrain("sex", '');
+			if ($('#${param.block}-sex-select').val().length > 0) {
+				$('#${param.block}-sex-select').multiselect('clearSelection');
+				${param.block}_constrain("sex", '');
+			}
 		</c:if>
 		<c:if test="${param.ethnicity_filter}">
-			$('#${param.block}-ethnicity-select').multiselect('clearSelection');
-			${param.block}_constrain("ethnicity", '');
+			if ($('#${param.block}-ethnicity-select').val().length > 0) {
+				$('#${param.block}-ethnicity-select').multiselect('clearSelection');
+				${param.block}_constrain("ethnicity", '');
+			}
 		</c:if>
 		<c:if test="${param.symptom_filter}">
-			$('#${param.block}-symptom-select').multiselect('clearSelection');
-			${param.block}_constrain("symptom", '');
+			if ($('#${param.block}-symptom-select').val().length > 0) {
+				$('#${param.block}-symptom-select').multiselect('clearSelection');
+				${param.block}_constrain("symptom", '');
+			}
 		</c:if>
 		<c:if test="${param.vaccinated_filter}">
-			$('#${param.block}-vaccinationstatus-select').multiselect('clearSelection');
-			${param.block}_constrain("vaccinated", '');
+			if ($('#${param.block}-vaccinationstatus-select').val().length > 0) {
+				$('#${param.block}-vaccinationstatus-select').multiselect('clearSelection');
+				${param.block}_constrain("vaccinated", '');
+			}
 		</c:if>
 		<c:if test="${param.comorbidities_filter}">
-			$('#${param.block}-comorbidities-select').multiselect('clearSelection');
-			${param.block}_constrain("comorbidities", '');
+			if ($('#${param.block}-comorbidities-select').val().length > 0) {
+				$('#${param.block}-comorbidities-select').multiselect('clearSelection');
+				${param.block}_constrain("comorbidities", '');
+			}
 		</c:if>
 		<c:if test="${param.beforeafter_filter}">
-			$('#${param.block}-symptomoccurrence-select').multiselect('clearSelection');
-			${param.block}_constrain("beforeafter", '');
+			if ($('#${param.block}-symptomoccurrence-select').val().length > 0) {
+				$('#${param.block}-symptomoccurrence-select').multiselect('clearSelection');
+				${param.block}_constrain("beforeafter", '');
+			}
 		</c:if>
 		<c:if test="${param.beforeaftermedication_filter}">
-			$('#${param.block}-medicationoccurrence-select').multiselect('clearSelection');
-			${param.block}_constrain("medicationoccurrence", '');
+			if ($('#${param.block}-medicationoccurrence-select').val().length > 0) {
+				$('#${param.block}-medicationoccurrence-select').multiselect('clearSelection');
+				${param.block}_constrain("medicationoccurrence", '');
+			}
 		</c:if>
 		<c:if test="${param.metformin_filter}">
-			$('#${param.block}-metformin-select').multiselect('clearSelection');
-			${param.block}_constrain("metformin", '');
+			if ($('#${param.block}-metformin-select').val().length > 0) {
+				$('#${param.block}-metformin-select').multiselect('clearSelection');
+				${param.block}_constrain("metformin", '');
+			}
 		</c:if>
 		<c:if test="${param.beforeaftersotrovimab_filter}">
-			$('#${param.block}-sotrovimaboccurrence-select').multiselect('clearSelection');
-			${param.block}_constrain("sotrovimaboccurrence", '');
+			if ($('#${param.block}-sotrovimaboccurrence-select').val().length > 0) {
+				$('#${param.block}-sotrovimaboccurrence-select').multiselect('clearSelection');
+				${param.block}_constrain("sotrovimaboccurrence", '');
+			}
 		</c:if>
 		<c:if test="${param.result_filter}">
-			$('#${param.block}-testresult-select').multiselect('clearSelection');
-			${param.block}_constrain("result", '');
+			if ($('#${param.block}-testresult-select').val().length > 0) {
+				$('#${param.block}-testresult-select').multiselect('clearSelection');
+				${param.block}_constrain("result", '');
+			}
 		</c:if>
 		<c:if test="${param.delay_filter}">
-			$('#${param.block}-delay-select').multiselect('clearSelection');
-			${param.block}_constrain("delay", '');
+			if ($('#${param.block}-delay-select').val().length > 0) {
+				$('#${param.block}-delay-select').multiselect('clearSelection');
+				${param.block}_constrain("delay", '');
+			}
 		</c:if>
 		<c:if test="${param.diagnosis_filter}">
-			$('#${param.block}-diagnosis-select').multiselect('clearSelection');
-			${param.block}_constrain("diagnosis_type", '');
+			if ($('#${param.block}-diagnosis-select').val().length > 0) {
+				$('#${param.block}-diagnosis-select').multiselect('clearSelection');
+				${param.block}_constrain("diagnosis_type", '');
+			}
 		</c:if>
 		<c:if test="${param.diagnosis_filter2}">
-		$('#${param.block}-diagnosis-select').multiselect('clearSelection');
-		${param.block}_constrain("diagnosis_type", '');
+			if ($('#${param.block}-diagnosis-select').val().length > 0) {
+				$('#${param.block}-diagnosis-select').multiselect('clearSelection');
+				${param.block}_constrain("diagnosis_type", '');
+			}
 		</c:if>
 		<c:if test="${param.cciscore_filter}">
-			$('#${param.block}-cciscore-select').multiselect('clearSelection');
-			${param.block}_constrain("cciscore", '');
+			if ($('#${param.block}-cciscore-select').val().length > 0) {
+				$('#${param.block}-cciscore-select').multiselect('clearSelection');
+				${param.block}_constrain("cciscore", '');
+			}
 		</c:if>
 		<c:if test="${param.sotrovimabmeds_filter}">
-			$('#${param.block}-othermeds-select').multiselect('clearSelection');
-			${param.block}_constrain("medications", '');
+			if ($('#${param.block}-othermeds-select').val().length > 0) {
+				$('#${param.block}-othermeds-select').multiselect('clearSelection');
+				${param.block}_constrain("medications", '');
+			}
 		</c:if>
 		<c:if test="${param.medication_filter}">
-			$('#${param.block}-medication-select').multiselect('clearSelection');
-			${param.block}_constrain("concept_set_name", '');
+			if ($('#${param.block}-medication-select').val().length > 0) {
+				$('#${param.block}-medication-select').multiselect('clearSelection');
+				${param.block}_constrain("concept_set_name", '');
+			}
 		</c:if>
 		<c:if test="${param.medication_class_filter}">
-			$('#${param.block}-medication-class-select').multiselect('clearSelection');
-			${param.block}_constrain("drug_domain", '');
+			if ($('#${param.block}-medication-class-select').val().length > 0) {
+				$('#${param.block}-medication-class-select').multiselect('clearSelection');
+				${param.block}_constrain("drug_domain", '');
+			}
 		</c:if>
 		<c:if test="${param.medications_filter}">
-			$('#${param.block}-medications-select').multiselect('clearSelection');
-			${param.block}_constrain("medication", '');
+			if ($('#${param.block}-medications-select').val().length > 0) {
+				$('#${param.block}-medications-select').multiselect('clearSelection');
+				${param.block}_constrain("medication", '');
+			}
 		</c:if>
 		<c:if test="${param.smoking_filter}">
-			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
-			${param.block}_constrain("smokingstatus", '');
+			if ($('#${param.block}-smokingstatus-select').val().length > 0) {
+				$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
+				${param.block}_constrain("smokingstatus", '');
+			}
 		</c:if>
 		<c:if test="${param.alcohol_filter}">
-			$('#${param.block}-alcohol-select').multiselect('clearSelection');
-			${param.block}_constrain("alcohol", '');
+			if ($('#${param.block}-alcohol-select').val().length > 0) {
+				$('#${param.block}-alcohol-select').multiselect('clearSelection');
+				${param.block}_constrain("alcohol", '');
+			}
 		</c:if>
 		<c:if test="${param.opioids_filter}">
-			$('#${param.block}-opioids-select').multiselect('clearSelection');
-			${param.block}_constrain("opioids", '');
+			if ($('#${param.block}-opioids-select').val().length > 0) {
+				$('#${param.block}-opioids-select').multiselect('clearSelection');
+				${param.block}_constrain("opioids", '');
+			}
 		</c:if>
 		<c:if test="${param.covid_filter}">
-			$('#${param.block}-covidstatus-select').multiselect('clearSelection');
-			${param.block}_constrain("covidstatus", '');
+			if ($('#${param.block}-covidstatus-select').val().length > 0) {
+				$('#${param.block}-covidstatus-select').multiselect('clearSelection');
+				${param.block}_constrain("covidstatus", '');
+			}
 		</c:if>
 		<c:if test="${param.long_filter}">
-			$('#${param.block}-longstatus-select').multiselect('clearSelection');
-			${param.block}_constrain("longstatus", '');
+			if ($('#${param.block}-longstatus-select').val().length > 0) {
+				$('#${param.block}-longstatus-select').multiselect('clearSelection');
+				${param.block}_constrain("longstatus", '');
+			}
 		</c:if>
 		<c:if test="${param.mortality_filter}">
-			$('#${param.block}-mortality-select').multiselect('clearSelection');
-			${param.block}_constrain("mortality", '');
+			if ($('#${param.block}-mortality-select').val().length > 0) {
+				$('#${param.block}-mortality-select').multiselect('clearSelection');
+				${param.block}_constrain("mortality", '');
+			}
 		</c:if>
 		<c:if test="${param.environmental_filter}">
-			$('#${param.block}-environmental-select').multiselect('clearSelection');
-			${param.block}_constrain("environmental_factor", '');
+			if ($('#${param.block}-environmental-select').val().length > 0) {
+				$('#${param.block}-environmental-select').multiselect('clearSelection');
+				${param.block}_constrain("environmental_factor", '');
+			}
 		</c:if>
 		<c:if test="${param.environmental_filter2}">
-			$('#${param.block}-environmental-select').multiselect('clearSelection');
-			${param.block}_constrain("environmental_factor", '');
+			if ($('#${param.block}-environmental-select').val().length > 0) {
+				$('#${param.block}-environmental-select').multiselect('clearSelection');
+				${param.block}_constrain("environmental_factor", '');
+			}
 		</c:if>
 		<c:if test="${param.region_filter}">
-			$('#${param.block}-region-select').multiselect('clearSelection');
-			${param.block}_constrain("region", '');
+			if ($('#${param.block}-region-select').val().length > 0) {
+				$('#${param.block}-region-select').multiselect('clearSelection');
+				${param.block}_constrain("region", '');
+			}
 		</c:if>
 		<c:if test="${param.reinfectionbin_filter}">
-			$('#${param.block}-intervalbin-select').multiselect('clearSelection');
-			${param.block}_constrain("intervalbin", '');
+			if ($('#${param.block}-intervalbin-select').val().length > 0) {
+				$('#${param.block}-intervalbin-select').multiselect('clearSelection');
+				${param.block}_constrain("intervalbin", '');
+			}
 		</c:if>
 		<c:if test="${param.paxlovid_filter}">
-			$('#${param.block}-paxlovidstatus-select').multiselect('clearSelection');
-			${param.block}_constrain("paxlovid", '');
+			if ($('#${param.block}-paxlovidstatus-select').val().length > 0) {
+				$('#${param.block}-paxlovidstatus-select').multiselect('clearSelection');
+				${param.block}_constrain("paxlovid", '');
+			}
 		</c:if>
 
 		
