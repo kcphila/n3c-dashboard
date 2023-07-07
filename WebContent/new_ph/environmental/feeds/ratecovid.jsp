@@ -4,7 +4,7 @@
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (select 
-				'All Patient Mortality %' as label,
+				'All COVID+ Patient Mortality %' as label,
 				1 as label_seq,
 				total, 
 				mortality,
@@ -24,7 +24,7 @@
 			UNION
 			
 			select 
-				'Environmental Mortality %' as label,
+				'Environmental COVID+ Mortality %' as label,
 				2 as label_seq,
 				total, 
 				mortality,

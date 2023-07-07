@@ -5,7 +5,7 @@
 var valueLabelWidth = 80; // space reserved for value labels (right)
 var barHeight = 20; // height of one bar
 var barLabelPadding = 5; // padding between bar and bar labels (left)
-var barLabelWidth = 220; // padding between bar and bar labels (left)
+var barLabelWidth = 260; // padding between bar and bar labels (left)
 var gridLabelHeight = 0; // space reserved for gridline labels
 var gridChartOffset = 3; // space between start of grid and first bar
 var maxBarWidth = 280; // width of the bar with the max value
