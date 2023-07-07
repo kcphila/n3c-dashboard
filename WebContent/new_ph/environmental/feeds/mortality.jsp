@@ -40,6 +40,8 @@
 			from n3c_dashboard_ph.env_mortcnt_cov_csd
 			where env_factor is not null
 			and patient_count != '<20'
+			
+			order by mortality
 			) as foo
 		natural join n3c_dashboard.covidstatus_map
 		natural join n3c_dashboard.mortality_map
