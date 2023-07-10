@@ -617,6 +617,7 @@ WebContent/new_ph/kpis/block3_kpis/diabetes2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/diabetes_over_18.jsp -text
 WebContent/new_ph/kpis/block3_kpis/enclave_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental/environmental.jsp -text
+WebContent/new_ph/kpis/block3_kpis/environmental/environmental_all.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental/environmental_cov_covid_positive.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental/environmental_cov_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental/environmental_covid_positive.jsp -text
