@@ -440,7 +440,7 @@
 							<c:set var="class_value" value="section_first hidden" />
 						</c:when>
 						<c:otherwise>
-							<c:set var="class_value" value="section_ hidden" />
+							<c:set var="class_value" value="sections hidden" />
 						</c:otherwise>
 					</c:choose>
 					<div id="section<dashboard:categoryCid/>" class="${class_value}">
