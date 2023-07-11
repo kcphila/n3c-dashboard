@@ -27,7 +27,7 @@
 		</div>
 		<div class="mt-2">
 			<small style="color:gray;">The percentage of mortalities ((Mortalities/Total)*100) for all patients in the N3C Data Enclave compared to the percentage of mortalities for patients known to be impacted by environmental factors.</small>
-			<br><small><i class="fas fa-filter"></i> Filters do not impact this chart.</small>
+			<br><small class="dash-highlight"><i class="fas fa-filter"></i> Filters do not impact this chart.</small>
 		</div>
 	</div>
 	<div class="col-12 col-lg-6">
@@ -54,7 +54,7 @@
 		</div>
 		<div class="mt-2">
 			<small style="color:gray;">The percentage of mortalities ((Mortalities/Total)*100) for all COVID+ patients in the N3C Data Enclave compared to the percentage of mortalities for COVID+ patients known to be impacted by environmental factors.</small>
-			<br><small><i class="fas fa-filter"></i> Filters do not impact this chart.</small>
+			<br><small class="dash-highlight"><i class="fas fa-filter"></i> Filters do not impact this chart.</small>
 		</div>
 	</div>
 </div>
@@ -96,6 +96,7 @@ function ${param.block}_environment_refresh() {
 			label1: 'Environmental Factor',
 			label2: 'Mortality',
 			offset: 550,
+			sortmax: true,
 			legendid: '${param.block}legend'
 		}
 

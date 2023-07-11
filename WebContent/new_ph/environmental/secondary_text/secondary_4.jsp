@@ -4,5 +4,5 @@
 		associated with an environmental exposure was recorded. 
 		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below.</a>
 	</p>
-	<small>Note: Cohorts of <20 will appear in the charts as 0</small>
+	<small class="dash-highlight">Note: Cohorts of <20 will appear in the charts as 0</small>
 </div>

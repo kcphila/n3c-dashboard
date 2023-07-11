@@ -29,12 +29,12 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Environmentally Impacted Patients with Long COVID" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Long COVID Patients in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="<p><strong>Long COVID Defined As:</strong> any patient having the ICD-10 code for PASC (U09.9) within their EHR.</p>
 										<small class='kpi-small-note'>The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this code will be 
-										limited to after this date.</small>
+										limited to after this date. This count is out of current total patients in view.</small>
 										<br>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Long COVID in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or any patient having the ICD-10 code for PASC (U09.9) within their EHR.

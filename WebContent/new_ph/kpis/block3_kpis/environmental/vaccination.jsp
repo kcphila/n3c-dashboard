@@ -32,8 +32,9 @@
 										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Vaccinated Patients in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
-										data-content="<strong>Vaccination Defined As:</strong> any patient having at least one dose of Pfizer, Moderna, 
-										or Johnson & Johnson COVID-19 vaccines within their EHR." aria-describedby="tooltip">
+										data-content="<p><strong>Vaccination Defined As:</strong> any patient having at least one dose of Pfizer, Moderna, 
+										or Johnson & Johnson COVID-19 vaccines within their EHR.</p>
+										<small class='kpi-small-note'>This count is out of current total patients in view.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Vaccinated in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or any patient having at least one dose of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines within their EHR.
 	  											</span>

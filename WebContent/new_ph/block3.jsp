@@ -6,6 +6,10 @@
 
 <style>
 
+.dash-highlight{
+	background: #9efff7;
+}
+
 .filter_checks.sticky-top{
 	background: white;
 }
@@ -1138,7 +1142,6 @@ $(window).resize(function() {
 	}
 });
 
-
 function ${param.block}limitlink(){
 	$('#${param.block}limitcollapseOne').collapse('show');
 	$('html, body').animate({
@@ -1146,1322 +1149,1313 @@ function ${param.block}limitlink(){
     }, 500);
 }
 
-	$(document).ready(function() {
+$(document).ready(function() {
 	  
-	    setTimeout(function() {
-			if ('${param.block}' === 'reinfection_ts_1') {
-				update(new Date('Feb 1 2022 1:00:00 CST'));
-				sliderTime.value(new Date('Feb 1 2022').valueOf());
+    setTimeout(function() {
+		if ('${param.block}' === 'reinfection_ts_1') {
+			update(new Date('Feb 1 2022 1:00:00 CST'));
+			sliderTime.value(new Date('Feb 1 2022').valueOf());
+		};
+		if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5' || '${param.block}' === 'environment_3' || '${param.block}' === 'metformin_5') {
+			if ('${param.block}' === 'environment_3') {
+				$('#${param.block}-mortality-select').multiselect('select', 'Mortality', true);
+				${param.block}_refreshHistograms();
+				${param.block}_constrain_table();
+				$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Mortality Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all patients for context.</small>');
+				$('#${param.block}mortality_body').collapse('show')
 			};
-			if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5' || '${param.block}' === 'environment_3' || '${param.block}' === 'metformin_5') {
-				if ('${param.block}' === 'environment_3') {
-					$('#${param.block}-mortality-select').multiselect('select', 'Mortality', true);
-					${param.block}_refreshHistograms();
-					${param.block}_constrain_table();
-					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Mortality Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all patients for context.</small>');
-					$('#${param.block}mortality_body').collapse('show')
-				};
-				if ('${param.block}' === 'metformin_5') {
-					$('#${param.block}-metformin-select').multiselect('select', 'Metformin', true);
-					${param.block}_refreshHistograms();
-					${param.block}_constrain_table();
-					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Default filters are applied to only show diabetic patients prescribed Metformin. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all diabetic patients for context.</small>');
-					$('#${param.block}metformin_body').collapse('show')
-				};
-				if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5') {
-					$('#${param.block}-paxlovidstatus-select').multiselect('select', 'Paxlovid', true);
-					${param.block}_refreshHistograms();
-					${param.block}_constrain_table();
-					$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Paxlovid Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all COVID+ patients for context.</small>');
-				};
-				$("#${param.block}_alert").removeClass('no_clear');
-				$("#${param.block}_alert .close" ).on('click', function() {
-					$("#${param.block}_alert").addClass('no_clear');
-				});
-				
-			} else{
-				if ('${param.block}' === 'metformin_2'|| '${param.block}' === 'metformin_3' || '${param.block}' === 'metformin_4') {
-					document.getElementById('${param.block}-mode-barpercent').click();
-					$('#${param.block}-mode-barpercent').trigger('mouseup');
-				}
-				$("#${param.block}_alert").hide();
+			if ('${param.block}' === 'metformin_5') {
+				$('#${param.block}-metformin-select').multiselect('select', 'Metformin', true);
+				${param.block}_refreshHistograms();
+				${param.block}_constrain_table();
+				$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Default filters are applied to only show diabetic patients prescribed Metformin. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all diabetic patients for context.</small>');
+				$('#${param.block}metformin_body').collapse('show')
 			};
-	    }, 1000);
+			if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5') {
+				$('#${param.block}-paxlovidstatus-select').multiselect('select', 'Paxlovid', true);
+				${param.block}_refreshHistograms();
+				${param.block}_constrain_table();
+				$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Paxlovid Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all COVID+ patients for context.</small>');
+			};
+			$("#${param.block}_alert").removeClass('no_clear');
+			$("#${param.block}_alert .close" ).on('click', function() {
+				$("#${param.block}_alert").addClass('no_clear');
+			});
+			
+		} else{
+			if ('${param.block}' === 'metformin_2'|| '${param.block}' === 'metformin_3' || '${param.block}' === 'metformin_4') {
+				document.getElementById('${param.block}-mode-barpercent').click();
+				$('#${param.block}-mode-barpercent').trigger('mouseup');
+			}
+			$("#${param.block}_alert").hide();
+		};
+    }, 1000);
 	   
 	  
 	    
 	    
 // initiate the filters /////////////////////////////////////////
 	
-		$('#${param.block}-severity-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-severity-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("severity",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-age-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-age-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("age",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		
-		$('#${param.block}-race-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-race-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("race",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-sex-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-sex-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("sex",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
+	$('#${param.block}-severity-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-severity-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("severity",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	$('#${param.block}-age-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-age-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("age",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	
+	$('#${param.block}-race-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-race-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("race",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	$('#${param.block}-sex-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-sex-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("sex",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
 
-            }
-		});
-		$('#${param.block}-ethnicity-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-ethnicity-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("ethnicity",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-smokingstatus-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-smokingstatus-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-		        ${param.block}_constrain("smokingstatus",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-alcohol-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-alcohol-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-		        ${param.block}_constrain("alcohol",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-opioids-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-opioids-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-		        ${param.block}_constrain("opioids",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-covidstatus-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-covidstatus-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-		        ${param.block}_constrain("covidstatus",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-longstatus-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-longstatus-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-		        ${param.block}_constrain("longstatus",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-mortality-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-mortality-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-		        ${param.block}_constrain("mortality",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-environmental-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			maxHeight: 300,
-			numberDisplayed: 1,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-environmental-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("environmental_factor",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-medications-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-medications-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("medication",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-region-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-region-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("region",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-intervalbin-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			maxHeight: 300,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-intervalbin-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("intervalbin",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-medication-class-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			maxHeight: 300,
-			numberDisplayed: 1,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-medication-class-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("drug_domain",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-medication-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			maxHeight: 300,
-			numberDisplayed: 1,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-medication-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("concept_set_name",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-delay-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			maxHeight: 300,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-delay-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("delay",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-diagnosis-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-diagnosis-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("diagnosis_type",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-cciscore-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			maxHeight: 300,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-cciscore-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("cciscore",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-vaccinationstatus-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-vaccinationstatus-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("vaccinated", selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-sotrovimaboccurrence-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-sotrovimaboccurrence-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("sotrovimaboccurrence",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-othermeds-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			maxHeight: 300,
-			numberDisplayed: 1,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-othermeds-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("medications",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-symptom-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-symptom-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("symptom",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		$('#${param.block}-symptomoccurrence-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-symptomoccurrence-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("beforeafter",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-medicationoccurrence-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-medicationoccurrence-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("medicationoccurrence",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-metformin-select').multiselect({	
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-metformin-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("metformin",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		// paxlovid new
-		$('#${param.block}-paxlovidstatus-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-paxlovidstatus-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("paxlovid",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-		// paxlovid old
-		$('#${param.block}-testresult-select').multiselect({
-			buttonContainer: '<div class="checkbox-list-container"></div>',
-            buttonClass: '',
-            templates: {
-                button: '',
-                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
-                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
-            },
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-testresult-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("result",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
+           }
+	});
+	$('#${param.block}-ethnicity-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-ethnicity-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("ethnicity",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	$('#${param.block}-smokingstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-smokingstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("smokingstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-alcohol-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-alcohol-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("alcohol",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-opioids-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-opioids-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("opioids",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-covidstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-covidstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("covidstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-longstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-longstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("longstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-mortality-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-mortality-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("mortality",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-environmental-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		maxHeight: 300,
+		numberDisplayed: 1,
+		enableCaseInsensitiveFiltering: true,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-environmental-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("environmental_factor",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-medications-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-medications-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("medication",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-region-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-region-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("region",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-intervalbin-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		maxHeight: 300,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-intervalbin-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("intervalbin",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-medication-class-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		maxHeight: 300,
+		numberDisplayed: 1,
+		enableCaseInsensitiveFiltering: true,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-medication-class-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("drug_domain",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-medication-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		maxHeight: 300,
+		numberDisplayed: 1,
+		enableCaseInsensitiveFiltering: true,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-medication-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("concept_set_name",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-delay-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		maxHeight: 300,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-delay-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("delay",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-diagnosis-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-diagnosis-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("diagnosis_type",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-cciscore-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		maxHeight: 300,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-cciscore-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("cciscore",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-vaccinationstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-vaccinationstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("vaccinated", selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-sotrovimaboccurrence-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-sotrovimaboccurrence-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("sotrovimaboccurrence",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-othermeds-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		maxHeight: 300,
+		numberDisplayed: 1,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-othermeds-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("medications",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-symptom-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-symptom-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("symptom",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-symptomoccurrence-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-symptomoccurrence-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("beforeafter",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	$('#${param.block}-medicationoccurrence-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-medicationoccurrence-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("medicationoccurrence",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	$('#${param.block}-metformin-select').multiselect({	
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-metformin-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("metformin",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	// paxlovid new
+	$('#${param.block}-paxlovidstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-paxlovidstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("paxlovid",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	// paxlovid old
+	$('#${param.block}-testresult-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-testresult-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("result",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
 		
 // old multiselects //////////////////////////////////////////////
-		$('#${param.block}-vaccinated-select').multiselect({
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-vaccinated-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-		        
-				${param.block}_constrain("vaccinated", selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		$('#${param.block}-comorbidities-select').multiselect({	
-			maxHeight: 300,
-			enableCaseInsensitiveFiltering: true,
-			onChange: function(option, checked, select) {
-				var options = $('#${param.block}-comorbidities-select');
-		        var selected = [];
-		        $(options).each(function(){
-		            selected.push($(this).val());
-		        });
-				${param.block}_constrain("comorbidities",  selected[0].join('|'));
-			    ${param.block}_refreshHistograms();
-            }
-		});
-		
-	
-		
-		
-		
+	$('#${param.block}-vaccinated-select').multiselect({
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-vaccinated-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+			${param.block}_constrain("vaccinated", selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	$('#${param.block}-comorbidities-select').multiselect({	
+		maxHeight: 300,
+		enableCaseInsensitiveFiltering: true,
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-comorbidities-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+			${param.block}_constrain("comorbidities",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
 		
 		
 // show/hide clear filters button //////////////////////////////////////////////
-		var mut = new MutationObserver(function(mutations, mut){
-			if($('#${param.block}-block-kpi').find('.dropdown-item.active').length !== 0){
-				$('#${param.block}_btn_clear').removeClass("no_clear");
-				$('#${param.block}_btn_clear').addClass("show_clear");
-			} else if ($('#${param.datatable_div}-table').DataTable().search().length > 0){
-				// leave things alone, there's an active search
-				// console.log("active search box", $('#${param.datatable_div}-table').DataTable().search())
-			} else {
-				$('#${param.block}_btn_clear').removeClass("show_clear");
-				$('#${param.block}_btn_clear').addClass("no_clear");
-			}
-		});
-		$( "#${param.block}-block-kpi .checkbox-list button").each(function() {
-			mut.observe(this,{
-				'attributes': true,
-				attributeFilter: ['class']
-			});
-		}); 
-	
+	var mut = new MutationObserver(function(mutations, mut){
+		if($('#${param.block}-block-kpi').find('.dropdown-item.active').length !== 0){
+			$('#${param.block}_btn_clear').removeClass("no_clear");
+			$('#${param.block}_btn_clear').addClass("show_clear");
+		} else if ($('#${param.datatable_div}-table').DataTable().search().length > 0){
+			// leave things alone, there's an active search
+			// console.log("active search box", $('#${param.datatable_div}-table').DataTable().search())
+		} else {
+			$('#${param.block}_btn_clear').removeClass("show_clear");
+			$('#${param.block}_btn_clear').addClass("no_clear");
+		}
 	});
-	// end of doc ready
-	
+	$( "#${param.block}-block-kpi .checkbox-list button").each(function() {
+		mut.observe(this,{
+			'attributes': true,
+			attributeFilter: ['class']
+		});
+	}); 
+
+});
+// end of doc ready
+
 	
 	
 	
 // FILTER FUNCTIONS /////////////////////////////
-	function deselect(checkid){
-		$('#' + checkid + ' input[type="checkbox"]:checked').prop('checked',false).trigger('change');
-	};
-		
-	function selectall(checkid){
-		$('#' + checkid + ' input[type="checkbox"]').prop('checked',true).trigger('change');
-	};
+function deselect(checkid){
+	$('#' + checkid + ' input[type="checkbox"]:checked').prop('checked',false).trigger('change');
+};
+	
+function selectall(checkid){
+	$('#' + checkid + ' input[type="checkbox"]').prop('checked',true).trigger('change');
+};
 
-	
-	
-	function ${param.block}_viz_constrain(element, elementParent) {
-		var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
-        var selected = [];
-        
-        $(options).each(function(){
-            selected.push($(this).val());
-        });
-	       
-		if (selected[0].includes( element.secondary_name)){
-			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('deselect', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
-		} else {
-			$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('select', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
+function ${param.block}_viz_constrain(element, elementParent) {
+	var options = $("#${param.block}-"+elementParent.toLowerCase()+"-select");
+       var selected = [];
+       
+       $(options).each(function(){
+           selected.push($(this).val());
+       });
+       
+	if (selected[0].includes( element.secondary_name)){
+		$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('deselect', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
+	} else {
+		$("#${param.block}-"+elementParent.toLowerCase()+"-select").multiselect('select', $("#${param.block}-"+elementParent.toLowerCase()+"-select option[value='" + element.secondary_name + "']").val(), true);
+	}
+}
+
+function ${param.block}_constrain(filter, selection) {
+	console.log("constrain", filter, selection);
+	var selected = selection;
+	if (selected != undefined && selected.length > 0){
+		var values = selected.split("|");
+		var text = "";
+		for (let i = 0; i < values.length; ++i) {
+			var clean_text = values[i].replace("+", "\\+");
+
+			if (i < (values.length-1)){
+	    		search = "^" + clean_text + "$|";
+			} else {
+				search = "^" + clean_text + "$";
+			}
+	    	text = text.concat(search);
 		}
+		selected = text;
+	}else{
+		selected = '';
 	}
+	${param.block}_constrain_table(filter, selected);
+}
 
-	function ${param.block}_constrain(filter, selection) {
-		console.log("constrain", filter, selection);
-		var selected = selection;
-		if (selected != undefined && selected.length > 0){
-			var values = selected.split("|");
-			var text = "";
-			for (let i = 0; i < values.length; ++i) {
-				var clean_text = values[i].replace("+", "\\+");
+function ${param.block}_filter_clear() {
+	
+	$('#${param.block}_btn_clear').removeClass("show_clear");
+	$('#${param.block}_btn_clear').addClass("no_clear");
+	$("#${param.block}_alert").addClass("no_clear");  
 
-				if (i < (values.length-1)){
-		    		search = "^" + clean_text + "$|";
-				} else {
-					search = "^" + clean_text + "$";
-				}
-		    	text = text.concat(search);
-			}
-			selected = text;
-		}else{
-			selected = '';
+	<c:if test="${param.severity_filter}">
+		if ($('#${param.block}-severity-select').val().length > 0) {
+			$('#${param.block}-severity-select').multiselect('clearSelection');
+			${param.block}_constrain("severity", '');
 		}
-		${param.block}_constrain_table(filter, selected);
-	}
-
-	function ${param.block}_filter_clear() {
-		
-		$('#${param.block}_btn_clear').removeClass("show_clear");
-		$('#${param.block}_btn_clear').addClass("no_clear");
-		$("#${param.block}_alert").addClass("no_clear");  
-
-		<c:if test="${param.severity_filter}">
-			if ($('#${param.block}-severity-select').val().length > 0) {
-				$('#${param.block}-severity-select').multiselect('clearSelection');
-				${param.block}_constrain("severity", '');
-			}
-		</c:if>
-		<c:if test="${param.age_filter_min || param.age_filter_sec || age_filter_ideal}">
-			if ($('#${param.block}-age-select').val().length > 0) {
-				$('#${param.block}-age-select').multiselect('clearSelection');
-				${param.block}_constrain("age", '');
-			}
-		</c:if>
-		<c:if test="${param.race_filter}">
-			if ($('#${param.block}-race-select').val().length > 0) {
-				$('#${param.block}-race-select').multiselect('clearSelection');
-				${param.block}_constrain("race", '');
-			}
-		</c:if>
-		<c:if test="${param.sex_filter}">
-			if ($('#${param.block}-sex-select').val().length > 0) {
-				$('#${param.block}-sex-select').multiselect('clearSelection');
-				${param.block}_constrain("sex", '');
-			}
-		</c:if>
-		<c:if test="${param.ethnicity_filter}">
-			if ($('#${param.block}-ethnicity-select').val().length > 0) {
-				$('#${param.block}-ethnicity-select').multiselect('clearSelection');
-				${param.block}_constrain("ethnicity", '');
-			}
-		</c:if>
-		<c:if test="${param.symptom_filter}">
-			if ($('#${param.block}-symptom-select').val().length > 0) {
-				$('#${param.block}-symptom-select').multiselect('clearSelection');
-				${param.block}_constrain("symptom", '');
-			}
-		</c:if>
-		<c:if test="${param.vaccinated_filter}">
-			if ($('#${param.block}-vaccinationstatus-select').val().length > 0) {
-				$('#${param.block}-vaccinationstatus-select').multiselect('clearSelection');
-				${param.block}_constrain("vaccinated", '');
-			}
-		</c:if>
-		<c:if test="${param.comorbidities_filter}">
-			if ($('#${param.block}-comorbidities-select').val().length > 0) {
-				$('#${param.block}-comorbidities-select').multiselect('clearSelection');
-				${param.block}_constrain("comorbidities", '');
-			}
-		</c:if>
-		<c:if test="${param.beforeafter_filter}">
-			if ($('#${param.block}-symptomoccurrence-select').val().length > 0) {
-				$('#${param.block}-symptomoccurrence-select').multiselect('clearSelection');
-				${param.block}_constrain("beforeafter", '');
-			}
-		</c:if>
-		<c:if test="${param.beforeaftermedication_filter}">
-			if ($('#${param.block}-medicationoccurrence-select').val().length > 0) {
-				$('#${param.block}-medicationoccurrence-select').multiselect('clearSelection');
-				${param.block}_constrain("medicationoccurrence", '');
-			}
-		</c:if>
-		<c:if test="${param.metformin_filter}">
-			if ($('#${param.block}-metformin-select').val().length > 0) {
-				$('#${param.block}-metformin-select').multiselect('clearSelection');
-				${param.block}_constrain("metformin", '');
-			}
-		</c:if>
-		<c:if test="${param.beforeaftersotrovimab_filter}">
-			if ($('#${param.block}-sotrovimaboccurrence-select').val().length > 0) {
-				$('#${param.block}-sotrovimaboccurrence-select').multiselect('clearSelection');
-				${param.block}_constrain("sotrovimaboccurrence", '');
-			}
-		</c:if>
-		<c:if test="${param.result_filter}">
-			if ($('#${param.block}-testresult-select').val().length > 0) {
-				$('#${param.block}-testresult-select').multiselect('clearSelection');
-				${param.block}_constrain("result", '');
-			}
-		</c:if>
-		<c:if test="${param.delay_filter}">
-			if ($('#${param.block}-delay-select').val().length > 0) {
-				$('#${param.block}-delay-select').multiselect('clearSelection');
-				${param.block}_constrain("delay", '');
-			}
-		</c:if>
-		<c:if test="${param.diagnosis_filter}">
-			if ($('#${param.block}-diagnosis-select').val().length > 0) {
-				$('#${param.block}-diagnosis-select').multiselect('clearSelection');
-				${param.block}_constrain("diagnosis_type", '');
-			}
-		</c:if>
-		<c:if test="${param.diagnosis_filter2}">
-			if ($('#${param.block}-diagnosis-select').val().length > 0) {
-				$('#${param.block}-diagnosis-select').multiselect('clearSelection');
-				${param.block}_constrain("diagnosis_type", '');
-			}
-		</c:if>
-		<c:if test="${param.cciscore_filter}">
-			if ($('#${param.block}-cciscore-select').val().length > 0) {
-				$('#${param.block}-cciscore-select').multiselect('clearSelection');
-				${param.block}_constrain("cciscore", '');
-			}
-		</c:if>
-		<c:if test="${param.sotrovimabmeds_filter}">
-			if ($('#${param.block}-othermeds-select').val().length > 0) {
-				$('#${param.block}-othermeds-select').multiselect('clearSelection');
-				${param.block}_constrain("medications", '');
-			}
-		</c:if>
-		<c:if test="${param.medication_filter}">
-			if ($('#${param.block}-medication-select').val().length > 0) {
-				$('#${param.block}-medication-select').multiselect('clearSelection');
-				${param.block}_constrain("concept_set_name", '');
-			}
-		</c:if>
-		<c:if test="${param.medication_class_filter}">
-			if ($('#${param.block}-medication-class-select').val().length > 0) {
-				$('#${param.block}-medication-class-select').multiselect('clearSelection');
-				${param.block}_constrain("drug_domain", '');
-			}
-		</c:if>
-		<c:if test="${param.medications_filter}">
-			if ($('#${param.block}-medications-select').val().length > 0) {
-				$('#${param.block}-medications-select').multiselect('clearSelection');
-				${param.block}_constrain("medication", '');
-			}
-		</c:if>
-		<c:if test="${param.smoking_filter}">
-			if ($('#${param.block}-smokingstatus-select').val().length > 0) {
-				$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
-				${param.block}_constrain("smokingstatus", '');
-			}
-		</c:if>
-		<c:if test="${param.alcohol_filter}">
-			if ($('#${param.block}-alcohol-select').val().length > 0) {
-				$('#${param.block}-alcohol-select').multiselect('clearSelection');
-				${param.block}_constrain("alcohol", '');
-			}
-		</c:if>
-		<c:if test="${param.opioids_filter}">
-			if ($('#${param.block}-opioids-select').val().length > 0) {
-				$('#${param.block}-opioids-select').multiselect('clearSelection');
-				${param.block}_constrain("opioids", '');
-			}
-		</c:if>
-		<c:if test="${param.covid_filter}">
-			if ($('#${param.block}-covidstatus-select').val().length > 0) {
-				$('#${param.block}-covidstatus-select').multiselect('clearSelection');
-				${param.block}_constrain("covidstatus", '');
-			}
-		</c:if>
-		<c:if test="${param.long_filter}">
-			if ($('#${param.block}-longstatus-select').val().length > 0) {
-				$('#${param.block}-longstatus-select').multiselect('clearSelection');
-				${param.block}_constrain("longstatus", '');
-			}
-		</c:if>
-		<c:if test="${param.mortality_filter}">
-			if ($('#${param.block}-mortality-select').val().length > 0) {
-				$('#${param.block}-mortality-select').multiselect('clearSelection');
-				${param.block}_constrain("mortality", '');
-			}
-		</c:if>
-		<c:if test="${param.environmental_filter}">
-			if ($('#${param.block}-environmental-select').val().length > 0) {
-				$('#${param.block}-environmental-select').multiselect('clearSelection');
-				${param.block}_constrain("environmental_factor", '');
-			}
-		</c:if>
-		<c:if test="${param.environmental_filter2}">
-			if ($('#${param.block}-environmental-select').val().length > 0) {
-				$('#${param.block}-environmental-select').multiselect('clearSelection');
-				${param.block}_constrain("environmental_factor", '');
-			}
-		</c:if>
-		<c:if test="${param.region_filter}">
-			if ($('#${param.block}-region-select').val().length > 0) {
-				$('#${param.block}-region-select').multiselect('clearSelection');
-				${param.block}_constrain("region", '');
-			}
-		</c:if>
-		<c:if test="${param.reinfectionbin_filter}">
-			if ($('#${param.block}-intervalbin-select').val().length > 0) {
-				$('#${param.block}-intervalbin-select').multiselect('clearSelection');
-				${param.block}_constrain("intervalbin", '');
-			}
-		</c:if>
-		<c:if test="${param.paxlovid_filter}">
-			if ($('#${param.block}-paxlovidstatus-select').val().length > 0) {
-				$('#${param.block}-paxlovidstatus-select').multiselect('clearSelection');
-				${param.block}_constrain("paxlovid", '');
-			}
-		</c:if>
-
-		
-		
-		$("#${param.datatable_div}-table").DataTable().search('');
-		$("#${param.datatable_div}-table").DataTable().columns().search('').draw();
-	    ${param.block}_refreshHistograms();
-	}
+	</c:if>
+	<c:if test="${param.age_filter_min || param.age_filter_sec || age_filter_ideal}">
+		if ($('#${param.block}-age-select').val().length > 0) {
+			$('#${param.block}-age-select').multiselect('clearSelection');
+			${param.block}_constrain("age", '');
+		}
+	</c:if>
+	<c:if test="${param.race_filter}">
+		if ($('#${param.block}-race-select').val().length > 0) {
+			$('#${param.block}-race-select').multiselect('clearSelection');
+			${param.block}_constrain("race", '');
+		}
+	</c:if>
+	<c:if test="${param.sex_filter}">
+		if ($('#${param.block}-sex-select').val().length > 0) {
+			$('#${param.block}-sex-select').multiselect('clearSelection');
+			${param.block}_constrain("sex", '');
+		}
+	</c:if>
+	<c:if test="${param.ethnicity_filter}">
+		if ($('#${param.block}-ethnicity-select').val().length > 0) {
+			$('#${param.block}-ethnicity-select').multiselect('clearSelection');
+			${param.block}_constrain("ethnicity", '');
+		}
+	</c:if>
+	<c:if test="${param.symptom_filter}">
+		if ($('#${param.block}-symptom-select').val().length > 0) {
+			$('#${param.block}-symptom-select').multiselect('clearSelection');
+			${param.block}_constrain("symptom", '');
+		}
+	</c:if>
+	<c:if test="${param.vaccinated_filter}">
+		if ($('#${param.block}-vaccinationstatus-select').val().length > 0) {
+			$('#${param.block}-vaccinationstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("vaccinated", '');
+		}
+	</c:if>
+	<c:if test="${param.comorbidities_filter}">
+		if ($('#${param.block}-comorbidities-select').val().length > 0) {
+			$('#${param.block}-comorbidities-select').multiselect('clearSelection');
+			${param.block}_constrain("comorbidities", '');
+		}
+	</c:if>
+	<c:if test="${param.beforeafter_filter}">
+		if ($('#${param.block}-symptomoccurrence-select').val().length > 0) {
+			$('#${param.block}-symptomoccurrence-select').multiselect('clearSelection');
+			${param.block}_constrain("beforeafter", '');
+		}
+	</c:if>
+	<c:if test="${param.beforeaftermedication_filter}">
+		if ($('#${param.block}-medicationoccurrence-select').val().length > 0) {
+			$('#${param.block}-medicationoccurrence-select').multiselect('clearSelection');
+			${param.block}_constrain("medicationoccurrence", '');
+		}
+	</c:if>
+	<c:if test="${param.metformin_filter}">
+		if ($('#${param.block}-metformin-select').val().length > 0) {
+			$('#${param.block}-metformin-select').multiselect('clearSelection');
+			${param.block}_constrain("metformin", '');
+		}
+	</c:if>
+	<c:if test="${param.beforeaftersotrovimab_filter}">
+		if ($('#${param.block}-sotrovimaboccurrence-select').val().length > 0) {
+			$('#${param.block}-sotrovimaboccurrence-select').multiselect('clearSelection');
+			${param.block}_constrain("sotrovimaboccurrence", '');
+		}
+	</c:if>
+	<c:if test="${param.result_filter}">
+		if ($('#${param.block}-testresult-select').val().length > 0) {
+			$('#${param.block}-testresult-select').multiselect('clearSelection');
+			${param.block}_constrain("result", '');
+		}
+	</c:if>
+	<c:if test="${param.delay_filter}">
+		if ($('#${param.block}-delay-select').val().length > 0) {
+			$('#${param.block}-delay-select').multiselect('clearSelection');
+			${param.block}_constrain("delay", '');
+		}
+	</c:if>
+	<c:if test="${param.diagnosis_filter}">
+		if ($('#${param.block}-diagnosis-select').val().length > 0) {
+			$('#${param.block}-diagnosis-select').multiselect('clearSelection');
+			${param.block}_constrain("diagnosis_type", '');
+		}
+	</c:if>
+	<c:if test="${param.diagnosis_filter2}">
+		if ($('#${param.block}-diagnosis-select').val().length > 0) {
+			$('#${param.block}-diagnosis-select').multiselect('clearSelection');
+			${param.block}_constrain("diagnosis_type", '');
+		}
+	</c:if>
+	<c:if test="${param.cciscore_filter}">
+		if ($('#${param.block}-cciscore-select').val().length > 0) {
+			$('#${param.block}-cciscore-select').multiselect('clearSelection');
+			${param.block}_constrain("cciscore", '');
+		}
+	</c:if>
+	<c:if test="${param.sotrovimabmeds_filter}">
+		if ($('#${param.block}-othermeds-select').val().length > 0) {
+			$('#${param.block}-othermeds-select').multiselect('clearSelection');
+			${param.block}_constrain("medications", '');
+		}
+	</c:if>
+	<c:if test="${param.medication_filter}">
+		if ($('#${param.block}-medication-select').val().length > 0) {
+			$('#${param.block}-medication-select').multiselect('clearSelection');
+			${param.block}_constrain("concept_set_name", '');
+		}
+	</c:if>
+	<c:if test="${param.medication_class_filter}">
+		if ($('#${param.block}-medication-class-select').val().length > 0) {
+			$('#${param.block}-medication-class-select').multiselect('clearSelection');
+			${param.block}_constrain("drug_domain", '');
+		}
+	</c:if>
+	<c:if test="${param.medications_filter}">
+		if ($('#${param.block}-medications-select').val().length > 0) {
+			$('#${param.block}-medications-select').multiselect('clearSelection');
+			${param.block}_constrain("medication", '');
+		}
+	</c:if>
+	<c:if test="${param.smoking_filter}">
+		if ($('#${param.block}-smokingstatus-select').val().length > 0) {
+			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("smokingstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.alcohol_filter}">
+		if ($('#${param.block}-alcohol-select').val().length > 0) {
+			$('#${param.block}-alcohol-select').multiselect('clearSelection');
+			${param.block}_constrain("alcohol", '');
+		}
+	</c:if>
+	<c:if test="${param.opioids_filter}">
+		if ($('#${param.block}-opioids-select').val().length > 0) {
+			$('#${param.block}-opioids-select').multiselect('clearSelection');
+			${param.block}_constrain("opioids", '');
+		}
+	</c:if>
+	<c:if test="${param.covid_filter}">
+		if ($('#${param.block}-covidstatus-select').val().length > 0) {
+			$('#${param.block}-covidstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("covidstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.long_filter}">
+		if ($('#${param.block}-longstatus-select').val().length > 0) {
+			$('#${param.block}-longstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("longstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.mortality_filter}">
+		if ($('#${param.block}-mortality-select').val().length > 0) {
+			$('#${param.block}-mortality-select').multiselect('clearSelection');
+			${param.block}_constrain("mortality", '');
+		}
+	</c:if>
+	<c:if test="${param.environmental_filter}">
+		if ($('#${param.block}-environmental-select').val().length > 0) {
+			$('#${param.block}-environmental-select').multiselect('clearSelection');
+			${param.block}_constrain("environmental_factor", '');
+		}
+	</c:if>
+	<c:if test="${param.environmental_filter2}">
+		if ($('#${param.block}-environmental-select').val().length > 0) {
+			$('#${param.block}-environmental-select').multiselect('clearSelection');
+			${param.block}_constrain("environmental_factor", '');
+		}
+	</c:if>
+	<c:if test="${param.region_filter}">
+		if ($('#${param.block}-region-select').val().length > 0) {
+			$('#${param.block}-region-select').multiselect('clearSelection');
+			${param.block}_constrain("region", '');
+		}
+	</c:if>
+	<c:if test="${param.reinfectionbin_filter}">
+		if ($('#${param.block}-intervalbin-select').val().length > 0) {
+			$('#${param.block}-intervalbin-select').multiselect('clearSelection');
+			${param.block}_constrain("intervalbin", '');
+		}
+	</c:if>
+	<c:if test="${param.paxlovid_filter}">
+		if ($('#${param.block}-paxlovidstatus-select').val().length > 0) {
+			$('#${param.block}-paxlovidstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("paxlovid", '');
+		}
+	</c:if>
+	
+	$("#${param.datatable_div}-table").DataTable().search('');
+	$("#${param.datatable_div}-table").DataTable().columns().search('').draw();
+    ${param.block}_refreshHistograms();
+}
 	
 	
 	
 	
-	
-	// initialize all possible data arrays
-	var ${param.block}_DaysArray = new Array();
-	var ${param.block}_AgeArray = new Array();
-	var ${param.block}_RaceArray = new Array();
-	var ${param.block}_EthnicityArray = new Array();
-	var ${param.block}_SexArray = new Array();
-	var ${param.block}_SeverityArray = new Array();
-	var ${param.block}_AlcoholArray = new Array();
-	var ${param.block}_OpioidArray = new Array();
-	var ${param.block}_SmokingArray = new Array();
-	var ${param.block}_DelayArray = new Array();
-	
-	var ${param.block}_MedicationoccurrenceArray = new Array();
-	var ${param.block}_ConditionoccurrenceArray = new Array();
-	var ${param.block}_MortalityArray = new Array();
-	var ${param.block}_VaccinationstatusArray = new Array();
-	var ${param.block}_LongstatusArray = new Array();
-	var ${param.block}_CovidstatusArray = new Array();
-	
-	var ${param.block}_SeverityMetArray = new Array();
-	var ${param.block}_SeverityNoMetArray = new Array();
-	var ${param.block}_SeverityDiabMetArray = new Array();
-	var ${param.block}_SeverityDiabNoMetArray = new Array();
-	var ${param.block}_LongMetArray = new Array();
-	var ${param.block}_LongNoMetArray = new Array();
-	var ${param.block}_LongDiabMetArray = new Array();
-	var ${param.block}_LongDiabNoMetArray = new Array();
-	var ${param.block}_MortalityMetArray = new Array();
-	var ${param.block}_MortalityNoMetArray = new Array();
-	var ${param.block}_MortalityDiabMetArray = new Array();
-	var ${param.block}_MortalityDiabNoMetArray = new Array();
 
-	
-	var ${param.block}_raceSeverityArray = new Array();
-	var ${param.block}_diagnosisSeverityArray = new Array();
-	var ${param.block}_cciscoreSeverityArray = new Array();
-	var ${param.block}_vaccinatedSeverityArray = new Array();
-	var ${param.block}_medsSeverityArray = new Array();
-	var ${param.block}_sotrovimabMedsArray = new Array();
-	var ${param.block}_raceEthnicityArray = new Array();
-	var ${param.block}_raceSexArray = new Array();
-	
-	var ${param.block}_comorbidityArray = new Array();
-	
-	var ${param.block}_ObservationArray = new Array();
-	
-	var ${param.block}_BeforeAfterArray = new Array();
+// initialize all possible data arrays
+var ${param.block}_DaysArray = new Array();
+var ${param.block}_AgeArray = new Array();
+var ${param.block}_RaceArray = new Array();
+var ${param.block}_EthnicityArray = new Array();
+var ${param.block}_SexArray = new Array();
+var ${param.block}_SeverityArray = new Array();
+var ${param.block}_AlcoholArray = new Array();
+var ${param.block}_OpioidArray = new Array();
+var ${param.block}_SmokingArray = new Array();
+var ${param.block}_DelayArray = new Array();
 
-	var ${param.block}_SexSeverityArray = new Array();
-	var ${param.block}_SeveritySexArray = new Array();
-	
+var ${param.block}_MedicationoccurrenceArray = new Array();
+var ${param.block}_ConditionoccurrenceArray = new Array();
+var ${param.block}_MortalityArray = new Array();
+var ${param.block}_VaccinationstatusArray = new Array();
+var ${param.block}_LongstatusArray = new Array();
+var ${param.block}_CovidstatusArray = new Array();
 
-	var ${param.block}_SeverityRegionArray = new Array();
-	
-	var ${param.block}_ObservationAgeArray = new Array();
-	var ${param.block}_ObservationSexArray = new Array();
-	var ${param.block}_ObservationRaceArray = new Array();
-	var ${param.block}_IbservationEthnicityArray = new Array();
-	
-	var ${param.block}_SymptomAgeArray = new Array();
-	var ${param.block}_SymptomSexArray = new Array();
-	var ${param.block}_SymptomRaceArray = new Array();
-	var ${param.block}_SymptomEthnicityArray = new Array();
-	var ${param.block}_SymptomObservationArray = new Array();
-	
+var ${param.block}_SeverityMetArray = new Array();
+var ${param.block}_SeverityNoMetArray = new Array();
+var ${param.block}_SeverityDiabMetArray = new Array();
+var ${param.block}_SeverityDiabNoMetArray = new Array();
+var ${param.block}_LongMetArray = new Array();
+var ${param.block}_LongNoMetArray = new Array();
+var ${param.block}_LongDiabMetArray = new Array();
+var ${param.block}_LongDiabNoMetArray = new Array();
+var ${param.block}_MortalityMetArray = new Array();
+var ${param.block}_MortalityNoMetArray = new Array();
+var ${param.block}_MortalityDiabMetArray = new Array();
+var ${param.block}_MortalityDiabNoMetArray = new Array();
 
-	var ${param.block}_MedicationArray = new Array();
-	
-	var ${param.block}_StatusAgeArray = new Array();
-	var ${param.block}_StatusSexArray = new Array();
-	var ${param.block}_StatusRaceArray = new Array();
-	var ${param.block}_StatusEthnicityArray = new Array();
-	
-	var ${param.block}_EnvMortArray = new Array();
-	var ${param.block}_MedicationAgeArray = new Array();
-	var ${param.block}_EnvironmentStatusArray = new Array();
-	var ${param.block}_ClassAgeArray = new Array();
 
-	var ${param.block}_AgeSexArray = new Array();
-	var ${param.block}_SexAgeArray = new Array();
+var ${param.block}_raceSeverityArray = new Array();
+var ${param.block}_diagnosisSeverityArray = new Array();
+var ${param.block}_cciscoreSeverityArray = new Array();
+var ${param.block}_vaccinatedSeverityArray = new Array();
+var ${param.block}_medsSeverityArray = new Array();
+var ${param.block}_sotrovimabMedsArray = new Array();
+var ${param.block}_raceEthnicityArray = new Array();
+var ${param.block}_raceSexArray = new Array();
 
-	var ${param.block}_SeverityStatusArray = new Array();
-	var ${param.block}_AgeStatusArray = new Array();
-	var ${param.block}_RaceStatusArray = new Array();
-	var ${param.block}_SexStatusArray = new Array();
+var ${param.block}_comorbidityArray = new Array();
 
-	var ${param.block}_AgeResultArray = new Array();
-	var ${param.block}_SexResultArray = new Array();
-	var ${param.block}_RaceResultArray = new Array();
-	var ${param.block}_EthnicityResultArray = new Array();
-	var ${param.block}_CategoryResultArray = new Array();
+var ${param.block}_ObservationArray = new Array();
 
-	var ${param.block}_InitialCountSevenArray = new Array();
-	var ${param.block}_IntervalBinArray = new Array();
-	
-	var ${param.block}_MedicationTSArray = new Array();
-	var ${param.block}_MedicationOverallArray = new Array();
+var ${param.block}_BeforeAfterArray = new Array();
 
-	var ${param.block}_AlcoholOpioidAllArray = new Array();
-	var ${param.block}_AlcoholOpioidCovidArray = new Array();
-	var ${param.block}_OpioidSmokingAllArray = new Array();
-	var ${param.block}_OpioidSmokingCovidArray = new Array();
+var ${param.block}_SexSeverityArray = new Array();
+var ${param.block}_SeveritySexArray = new Array();
 
-	function ${param.block}_refreshHistograms(just_viz) {
-	    if (typeof just_viz === 'undefined'){
-	    	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
-	 	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
-	 	    
-	 	   ${param.block}_refreshDaysArray(data);
-	    	${param.block}_refreshAgeArray(data);
-	    	${param.block}_refreshRaceArray(data);
-	    	${param.block}_refreshEthnicityArray(data);
-	    	${param.block}_refreshSexArray(data);
-	    	${param.block}_refreshSeverityArray(data);
-	    	${param.block}_refreshAlcoholArray(data);
-	    	${param.block}_refreshOpioidArray(data);
-	    	${param.block}_refreshSmokingArray(data);
-	    	${param.block}_refreshDelayArray(data);
-	    	
-	    	${param.block}_refreshMedicationoccurrenceArray(data);
-	    	${param.block}_refreshConditionoccurrenceArray(data);
-	    	${param.block}_refreshMortalityArray(data);
-	    	${param.block}_refreshVaccinationstatusArray(data);
-	    	${param.block}_refreshLongstatusArray(data);
-	    	${param.block}_refreshCovidstatusArray(data);
-	    	
-	    	${param.block}_refreshSeverityMetArray(data);
-	    	${param.block}_refreshSeverityNoMetArray(data);
-	    	${param.block}_refreshSeverityDiabMetArray(data);
-	    	${param.block}_refreshSeverityDiabNoMetArray(data);
-	    	${param.block}_refreshLongMetArray(data);
-	    	${param.block}_refreshLongNoMetArray(data);
-	    	${param.block}_refreshLongDiabMetArray(data);
-	    	${param.block}_refreshLongDiabNoMetArray(data);
-	    	${param.block}_refreshMortalityMetArray(data);
-	    	${param.block}_refreshMortalityNoMetArray(data);
-	    	${param.block}_refreshMortalityDiabMetArray(data);
-	    	${param.block}_refreshMortalityDiabNoMetArray(data);
-	    
-	    	${param.block}_refreshraceSeverityArray(data);
-	    	${param.block}_refreshdiagnosisSeverityArray(data);
-	    	${param.block}_refreshcciscoreSeverityArray(data);
-	    	${param.block}_refreshvaccinatedSeverityArray(data);
-	    	${param.block}_refreshmedsSeverityArray(data);
-	    	${param.block}_refreshsotrovimabMedsArray(data);
-	    	${param.block}_refreshraceEthnicityArray(data);
-	    	${param.block}_refreshraceSexArray(data);
 
-	    	${param.block}_refreshcomorbidityArray(data);
-	    
-	    	${param.block}_refreshObservationArray(data);
-		    
-	    	${param.block}_refreshBeforeAfterArray(data);
-	    
-	    	${param.block}_refreshSexSeverityArray(data);
-	    	${param.block}_refreshSeveritySexArray(data);
-	    	${param.block}_refreshObservationAgeArray(data);
-	    	${param.block}_refreshObservationSexArray(data);
-	    	${param.block}_refreshObservationRaceArray(data);
-	    	${param.block}_refreshObservationEthnicityArray(data);
-	    	
-	    	${param.block}_refreshSeverityRegionArray(data);
+var ${param.block}_SeverityRegionArray = new Array();
 
-	    	${param.block}_refreshSymptomAgeArray(data);
-	    	${param.block}_refreshSymptomSexArray(data);
-	    	${param.block}_refreshSymptomRaceArray(data);
-	    	${param.block}_refreshSymptomEthnicityArray(data);
-	    	${param.block}_refreshSymptomObservationArray(data);
-	    
-	    	${param.block}_refreshMedicationArray(data2);
-	    	
-	    	${param.block}_refreshStatusAgeArray(data2);
-	    	${param.block}_refreshStatusSexArray(data2);
-	    	${param.block}_refreshStatusRaceArray(data2);
-	    	${param.block}_refreshStatusEthnicityArray(data2);
-	    	
-	    	${param.block}_refreshEnvMortArray(data2);
-	    	${param.block}_refreshMedicationAgeArray(data);
-	    	${param.block}_refreshEnvironmentStatusArray(data);
-	    	${param.block}_refreshClassAgeArray(data);
-	    
-	    	${param.block}_refreshAgeSexArray(data2);
-	    	${param.block}_refreshSexAgeArray(data2);
-	    
-	    	${param.block}_refreshSeverityStatusArray(data);
-	    	${param.block}_refreshstatusArray(data);
-	    	
-	    	${param.block}_refreshAgeResultArray(data);
-	    	${param.block}_refreshSexResultArray(data);
-	    	${param.block}_refreshRaceResultArray(data);
-	    	${param.block}_refreshEthnicityResultArray(data);
-	    	${param.block}_refreshCategoryResultArray(data);
+var ${param.block}_ObservationAgeArray = new Array();
+var ${param.block}_ObservationSexArray = new Array();
+var ${param.block}_ObservationRaceArray = new Array();
+var ${param.block}_IbservationEthnicityArray = new Array();
 
-	    	${param.block}_refreshInitialCountSevenArray(data);
-	    	${param.block}_refreshIntervalBinArray(data);
+var ${param.block}_SymptomAgeArray = new Array();
+var ${param.block}_SymptomSexArray = new Array();
+var ${param.block}_SymptomRaceArray = new Array();
+var ${param.block}_SymptomEthnicityArray = new Array();
+var ${param.block}_SymptomObservationArray = new Array();
 
-	    	${param.block}_refreshMedicationTSArray(data);
-	    	${param.block}_refreshMedicationOverallArray(data);
 
-	    	${param.block}_refreshAlcoholOpioidAllArray(data);
-	    	${param.block}_refreshAlcoholOpioidCovidArray(data);
-	    	${param.block}_refreshOpioidSmokingAllArray(data);
-	    	${param.block}_refreshOpioidSmokingCovidArray(data);
-	    };
+var ${param.block}_MedicationArray = new Array();
+
+var ${param.block}_StatusAgeArray = new Array();
+var ${param.block}_StatusSexArray = new Array();
+var ${param.block}_StatusRaceArray = new Array();
+var ${param.block}_StatusEthnicityArray = new Array();
+
+var ${param.block}_EnvMortArray = new Array();
+var ${param.block}_MedicationAgeArray = new Array();
+var ${param.block}_EnvironmentStatusArray = new Array();
+var ${param.block}_ClassAgeArray = new Array();
+
+var ${param.block}_AgeSexArray = new Array();
+var ${param.block}_SexAgeArray = new Array();
+
+var ${param.block}_SeverityStatusArray = new Array();
+var ${param.block}_AgeStatusArray = new Array();
+var ${param.block}_RaceStatusArray = new Array();
+var ${param.block}_SexStatusArray = new Array();
+
+var ${param.block}_AgeResultArray = new Array();
+var ${param.block}_SexResultArray = new Array();
+var ${param.block}_RaceResultArray = new Array();
+var ${param.block}_EthnicityResultArray = new Array();
+var ${param.block}_CategoryResultArray = new Array();
+
+var ${param.block}_InitialCountSevenArray = new Array();
+var ${param.block}_IntervalBinArray = new Array();
+
+var ${param.block}_MedicationTSArray = new Array();
+var ${param.block}_MedicationOverallArray = new Array();
+
+var ${param.block}_AlcoholOpioidAllArray = new Array();
+var ${param.block}_AlcoholOpioidCovidArray = new Array();
+var ${param.block}_OpioidSmokingAllArray = new Array();
+var ${param.block}_OpioidSmokingCovidArray = new Array();
+
+function ${param.block}_refreshHistograms(just_viz) {
+    if (typeof just_viz === 'undefined'){
+    	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
+ 	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
+ 	    
+ 	   ${param.block}_refreshDaysArray(data);
+    	${param.block}_refreshAgeArray(data);
+    	${param.block}_refreshRaceArray(data);
+    	${param.block}_refreshEthnicityArray(data);
+    	${param.block}_refreshSexArray(data);
+    	${param.block}_refreshSeverityArray(data);
+    	${param.block}_refreshAlcoholArray(data);
+    	${param.block}_refreshOpioidArray(data);
+    	${param.block}_refreshSmokingArray(data);
+    	${param.block}_refreshDelayArray(data);
     	
+    	${param.block}_refreshMedicationoccurrenceArray(data);
+    	${param.block}_refreshConditionoccurrenceArray(data);
+    	${param.block}_refreshMortalityArray(data);
+    	${param.block}_refreshVaccinationstatusArray(data);
+    	${param.block}_refreshLongstatusArray(data);
+    	${param.block}_refreshCovidstatusArray(data);
+    	
+    	${param.block}_refreshSeverityMetArray(data);
+    	${param.block}_refreshSeverityNoMetArray(data);
+    	${param.block}_refreshSeverityDiabMetArray(data);
+    	${param.block}_refreshSeverityDiabNoMetArray(data);
+    	${param.block}_refreshLongMetArray(data);
+    	${param.block}_refreshLongNoMetArray(data);
+    	${param.block}_refreshLongDiabMetArray(data);
+    	${param.block}_refreshLongDiabNoMetArray(data);
+    	${param.block}_refreshMortalityMetArray(data);
+    	${param.block}_refreshMortalityNoMetArray(data);
+    	${param.block}_refreshMortalityDiabMetArray(data);
+    	${param.block}_refreshMortalityDiabNoMetArray(data);
+    
+    	${param.block}_refreshraceSeverityArray(data);
+    	${param.block}_refreshdiagnosisSeverityArray(data);
+    	${param.block}_refreshcciscoreSeverityArray(data);
+    	${param.block}_refreshvaccinatedSeverityArray(data);
+    	${param.block}_refreshmedsSeverityArray(data);
+    	${param.block}_refreshsotrovimabMedsArray(data);
+    	${param.block}_refreshraceEthnicityArray(data);
+    	${param.block}_refreshraceSexArray(data);
+
+    	${param.block}_refreshcomorbidityArray(data);
+    
+    	${param.block}_refreshObservationArray(data);
 	    
-	    if ('${param.block}' === 'long_covid_6') {
-	    	${param.block}_before_refresh();
-	    }
-	    if (${param.block}_loaded("observation")) {
-	    	${param.block}_observation_refresh();
-	    }
-	    if (${param.block}_loaded("severity")) {
-	    	${param.block}_severity_refresh();
-	    }
-	    if (${param.block}_loaded("age")) {
-	    	${param.block}_age_refresh();
-	    }
-	    if (${param.block}_loaded("race")) {
-	    	${param.block}_race_refresh();
-	    }
-	    if (${param.block}_loaded("sex")) {
-	    	${param.block}_sex_refresh();
-	    }
-	    if (${param.block}_loaded("alcohol")) {
-	    	${param.block}_alcohol_refresh();
-	    }
-	    if (${param.block}_loaded("opioid")) {
-	    	${param.block}_opioid_refresh();
-	    }
-	    if (${param.block}_loaded("smoking")) {
-	    	${param.block}_smoking_refresh();
-	    }
-	    if (${param.block}_loaded("ethnicity")) {
-	    	${param.block}_ethnicity_refresh();
-	    }
-	    if (${param.block}_loaded("medicationoccurrence")) {
-	    	${param.block}_medicationoccurrence_refresh();
-	    }
-	    if (${param.block}_loaded("mortality")) {
-	    	${param.block}_mortality_refresh();
-	    }
-	    if (${param.block}_loaded("vaccinationstatus")) {
-	    	${param.block}_vaccinationstatus_refresh();
-	    }
-	    if (${param.block}_loaded("longstatus")) {
-	    	${param.block}_longstatus_refresh();
-	    }
-	    if (${param.block}_loaded("covidstatus")) {
-	    	${param.block}_covidstatus_refresh();
-	    }
-	    if ('${param.block}' === "environment_2"|| '${param.block}' === "environment_3") {
-	    	${param.block}_environment_refresh();
-	    }
-	    if ('${param.block}' === "metformin_2"|| '${param.block}' === "metformin_6") {
-	    	${param.block}_severity_refresh();
-	    }
-	    if ('${param.block}' === "metformin_3"|| '${param.block}' === "metformin_7") {
-	    	${param.block}_long_refresh();
-	    }
-	    if ('${param.block}' === "metformin_4"|| '${param.block}' === "metformin_8") {
-	    	${param.block}_mortality_refresh();
-	    }
-	    if ('${param.block}' === "medications_1") {
-	    	${param.block}_medication_refresh();
-	    }
-	    if ('${param.block}' === "medications_2") {
-	    	${param.block}_class_refresh();
-	    }
-	    if ('${param.block}' === "medications_3") {
-	    	${param.block}_medication_refresh();
-	    }
-	    if (${param.block}_loaded("raceseverity")) {
-	    	${param.block}_raceseverity_refresh();
-	    }
-	    if (${param.block}_loaded("comorbidity")) {
-	    	${param.block}_comorbidity_refresh();
-	    }  
-	    if (${param.block}_loaded("raceethnicity")) {
-	    	${param.block}_raceethnicity_refresh();
-	    }  
-	    if (${param.block}_loaded("racesex")) {
-	    	${param.block}_racesex_refresh();
-	    }  
-	    if (${param.block}_loaded("result")) {
-	    	${param.block}_result_refresh();
-	    }  
-	    if ('${param.block}' === 'paxlovid_3') {
-	    	${param.block}_visits_refresh();
-	    }
-	    if ('${param.block}' === 'mortality_2') {
-	    	${param.block}_delay_refresh();
-	    }
-	    if ('${param.block}' === 'med_snap_2') {
-	    	${param.block}_severitydiagnosis_refresh();
-	    }
-	    if ('${param.block}' === 'med_snap_4') {
-	    	${param.block}_severitycciscore_refresh();
-	    }
-	    if ('${param.block}' === 'med_snap_5') {
-	    	${param.block}_severityvaccinated_refresh();
-	    }
-	    if ('${param.block}' === 'med_snap_3') {
-	    	${param.block}_sotrovimab1_refresh();
-	    	${param.block}_sotrovimab2_refresh();
-	    }
-	    if ('${param.block}' === "diabetes_1" || '${param.block}' === "diabetes_2") {
-	    	${param.block}_refresh();
-	    }
-	    if ('${param.block}' === "severity_region_1") {
-	    	${param.block}_region_refresh();
-	    }
-	    if ('${param.block}'.includes('hlh')) {
-	    	${param.block}_age_refresh();
-	    	${param.block}_sex_refresh();
-	    }
-	    if ('${param.block}' === "long_covid_2" || '${param.block}' === "long_covid_13") {
-	    	${param.block}_severity_refresh();
-	    	${param.block}_sex_refresh();
-	    }
-	    if (["long_covid_3", "long_covid_4", "long_covid_5", "long_covid_7", "long_covid_8", "long_covid_9", "long_covid_10", "long_covid_11"].includes('${param.block}')) {
-	    	${param.block}_age_refresh();
-	    	${param.block}_race_refresh();
-	    	${param.block}_sex_refresh();
-	    	${param.block}_ethnicity_refresh();
-	    }
-	    if ('${param.block}' === "paxlovid_4") {
-	    	${param.block}_age_refresh();
-	    	${param.block}_race_refresh();
-	    	${param.block}_sex_refresh();
-	    }
-	    if ('${param.block}' === "paxlovid_5") {
-	    	${param.block}_vaccination_refresh();
-	    }
-	    if ('${param.block}' === "paxlovid_7") {
-	    	${param.block}_cci_refresh();
-	    }
-	    if ('${param.block}' === "paxlovid_9") {
-	    	${param.block}_days_refresh();
-	    }
-	    if ('${param.block}' === "substance_use_4") {
-	    	${param.block}_alcohol_opioid_all_refresh();
-	    	${param.block}_alcohol_opioid_covid_refresh();
-	    }
-	    if ('${param.block}' === "substance_use_6") {
-	    	${param.block}_opioid_smoking_all_refresh();
-	    	${param.block}_opioid_smoking_covid_refresh();
-	    }
-	  }
-	
-	// new load function for composite views
-	function ${param.block}_panel(selection) {
-		for (i in selection){
-			${param.block}_load(selection[i]);
-		}
-	};
+    	${param.block}_refreshBeforeAfterArray(data);
+    
+    	${param.block}_refreshSexSeverityArray(data);
+    	${param.block}_refreshSeveritySexArray(data);
+    	${param.block}_refreshObservationAgeArray(data);
+    	${param.block}_refreshObservationSexArray(data);
+    	${param.block}_refreshObservationRaceArray(data);
+    	${param.block}_refreshObservationEthnicityArray(data);
+    	
+    	${param.block}_refreshSeverityRegionArray(data);
 
+    	${param.block}_refreshSymptomAgeArray(data);
+    	${param.block}_refreshSymptomSexArray(data);
+    	${param.block}_refreshSymptomRaceArray(data);
+    	${param.block}_refreshSymptomEthnicityArray(data);
+    	${param.block}_refreshSymptomObservationArray(data);
+    
+    	${param.block}_refreshMedicationArray(data2);
+    	
+    	${param.block}_refreshStatusAgeArray(data2);
+    	${param.block}_refreshStatusSexArray(data2);
+    	${param.block}_refreshStatusRaceArray(data2);
+    	${param.block}_refreshStatusEthnicityArray(data2);
+    	
+    	${param.block}_refreshEnvMortArray(data2);
+    	${param.block}_refreshMedicationAgeArray(data);
+    	${param.block}_refreshEnvironmentStatusArray(data);
+    	${param.block}_refreshClassAgeArray(data);
+    
+    	${param.block}_refreshAgeSexArray(data2);
+    	${param.block}_refreshSexAgeArray(data2);
+    
+    	${param.block}_refreshSeverityStatusArray(data);
+    	${param.block}_refreshstatusArray(data);
+    	
+    	${param.block}_refreshAgeResultArray(data);
+    	${param.block}_refreshSexResultArray(data);
+    	${param.block}_refreshRaceResultArray(data);
+    	${param.block}_refreshEthnicityResultArray(data);
+    	${param.block}_refreshCategoryResultArray(data);
 
-	// manage incremental loading of panels on inner nav bar clicks
-	var ${param.block}_crumbs = [];
-	
-	function ${param.block}_load(selection) {
-		var $this = $("#${param.block}-"+selection);
-		var which = $this.attr('src');
+    	${param.block}_refreshInitialCountSevenArray(data);
+    	${param.block}_refreshIntervalBinArray(data);
 
-		//// console.log("in main click", "${param.block}-"+selection, "which", which)
-		if (!${param.block}_crumbs.includes(selection)) {
-			$this.load("<util:applicationRoot/>/new_ph/"+which);
-			${param.block}_crumbs.push(selection);
-		}
-	};
+    	${param.block}_refreshMedicationTSArray(data);
+    	${param.block}_refreshMedicationOverallArray(data);
+
+    	${param.block}_refreshAlcoholOpioidAllArray(data);
+    	${param.block}_refreshAlcoholOpioidCovidArray(data);
+    	${param.block}_refreshOpioidSmokingAllArray(data);
+    	${param.block}_refreshOpioidSmokingCovidArray(data);
+    };
+   	
+    
+    if ('${param.block}' === 'long_covid_6') {
+    	${param.block}_before_refresh();
+    }
+    if (${param.block}_loaded("observation")) {
+    	${param.block}_observation_refresh();
+    }
+    if (${param.block}_loaded("severity")) {
+    	${param.block}_severity_refresh();
+    }
+    if (${param.block}_loaded("age")) {
+    	${param.block}_age_refresh();
+    }
+    if (${param.block}_loaded("race")) {
+    	${param.block}_race_refresh();
+    }
+    if (${param.block}_loaded("sex")) {
+    	${param.block}_sex_refresh();
+    }
+    if (${param.block}_loaded("alcohol")) {
+    	${param.block}_alcohol_refresh();
+    }
+    if (${param.block}_loaded("opioid")) {
+    	${param.block}_opioid_refresh();
+    }
+    if (${param.block}_loaded("smoking")) {
+    	${param.block}_smoking_refresh();
+    }
+    if (${param.block}_loaded("ethnicity")) {
+    	${param.block}_ethnicity_refresh();
+    }
+    if (${param.block}_loaded("medicationoccurrence")) {
+    	${param.block}_medicationoccurrence_refresh();
+    }
+    if (${param.block}_loaded("mortality")) {
+    	${param.block}_mortality_refresh();
+    }
+    if (${param.block}_loaded("vaccinationstatus")) {
+    	${param.block}_vaccinationstatus_refresh();
+    }
+    if (${param.block}_loaded("longstatus")) {
+    	${param.block}_longstatus_refresh();
+    }
+    if (${param.block}_loaded("covidstatus")) {
+    	${param.block}_covidstatus_refresh();
+    }
+    if ('${param.block}' === "environment_2"|| '${param.block}' === "environment_3") {
+    	${param.block}_environment_refresh();
+    }
+    if ('${param.block}' === "metformin_2"|| '${param.block}' === "metformin_6") {
+    	${param.block}_severity_refresh();
+    }
+    if ('${param.block}' === "metformin_3"|| '${param.block}' === "metformin_7") {
+    	${param.block}_long_refresh();
+    }
+    if ('${param.block}' === "metformin_4"|| '${param.block}' === "metformin_8") {
+    	${param.block}_mortality_refresh();
+    }
+    if ('${param.block}' === "medications_1") {
+    	${param.block}_medication_refresh();
+    }
+    if ('${param.block}' === "medications_2") {
+    	${param.block}_class_refresh();
+    }
+    if ('${param.block}' === "medications_3") {
+    	${param.block}_medication_refresh();
+    }
+    if (${param.block}_loaded("raceseverity")) {
+    	${param.block}_raceseverity_refresh();
+    }
+    if (${param.block}_loaded("comorbidity")) {
+    	${param.block}_comorbidity_refresh();
+    }  
+    if (${param.block}_loaded("raceethnicity")) {
+    	${param.block}_raceethnicity_refresh();
+    }  
+    if (${param.block}_loaded("racesex")) {
+    	${param.block}_racesex_refresh();
+    }  
+    if (${param.block}_loaded("result")) {
+    	${param.block}_result_refresh();
+    }  
+    if ('${param.block}' === 'paxlovid_3') {
+    	${param.block}_visits_refresh();
+    }
+    if ('${param.block}' === 'mortality_2') {
+    	${param.block}_delay_refresh();
+    }
+    if ('${param.block}' === 'med_snap_2') {
+    	${param.block}_severitydiagnosis_refresh();
+    }
+    if ('${param.block}' === 'med_snap_4') {
+    	${param.block}_severitycciscore_refresh();
+    }
+    if ('${param.block}' === 'med_snap_5') {
+    	${param.block}_severityvaccinated_refresh();
+    }
+    if ('${param.block}' === 'med_snap_3') {
+    	${param.block}_sotrovimab1_refresh();
+    	${param.block}_sotrovimab2_refresh();
+    }
+    if ('${param.block}' === "diabetes_1" || '${param.block}' === "diabetes_2") {
+    	${param.block}_refresh();
+    }
+    if ('${param.block}' === "severity_region_1") {
+    	${param.block}_region_refresh();
+    }
+    if ('${param.block}'.includes('hlh')) {
+    	${param.block}_age_refresh();
+    	${param.block}_sex_refresh();
+    }
+    if ('${param.block}' === "long_covid_2" || '${param.block}' === "long_covid_13") {
+    	${param.block}_severity_refresh();
+    	${param.block}_sex_refresh();
+    }
+    if (["long_covid_3", "long_covid_4", "long_covid_5", "long_covid_7", "long_covid_8", "long_covid_9", "long_covid_10", "long_covid_11"].includes('${param.block}')) {
+    	${param.block}_age_refresh();
+    	${param.block}_race_refresh();
+    	${param.block}_sex_refresh();
+    	${param.block}_ethnicity_refresh();
+    }
+    if ('${param.block}' === "paxlovid_4") {
+    	${param.block}_age_refresh();
+    	${param.block}_race_refresh();
+    	${param.block}_sex_refresh();
+    }
+    if ('${param.block}' === "paxlovid_5") {
+    	${param.block}_vaccination_refresh();
+    }
+    if ('${param.block}' === "paxlovid_7") {
+    	${param.block}_cci_refresh();
+    }
+    if ('${param.block}' === "paxlovid_9") {
+    	${param.block}_days_refresh();
+    }
+    if ('${param.block}' === "substance_use_4") {
+    	${param.block}_alcohol_opioid_all_refresh();
+    	${param.block}_alcohol_opioid_covid_refresh();
+    }
+    if ('${param.block}' === "substance_use_6") {
+    	${param.block}_opioid_smoking_all_refresh();
+    	${param.block}_opioid_smoking_covid_refresh();
+    }
+}
 	
-	function ${param.block}_loaded(selection) {
-		return ${param.block}_crumbs.includes(selection);
+// new load function for composite views
+function ${param.block}_panel(selection) {
+	for (i in selection){
+		${param.block}_load(selection[i]);
 	}
+};
+
+
+// manage incremental loading of panels on inner nav bar clicks
+var ${param.block}_crumbs = [];
+
+function ${param.block}_load(selection) {
+	var $this = $("#${param.block}-"+selection);
+	var which = $this.attr('src');
+
+	//// console.log("in main click", "${param.block}-"+selection, "which", which)
+	if (!${param.block}_crumbs.includes(selection)) {
+		$this.load("<util:applicationRoot/>/new_ph/"+which);
+		${param.block}_crumbs.push(selection);
+	}
+};
+
+function ${param.block}_loaded(selection) {
+	return ${param.block}_crumbs.includes(selection);
+}
 </script>
 
 <jsp:include page="singleHistogram.jsp">

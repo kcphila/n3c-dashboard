@@ -38,8 +38,8 @@
 											<li>(or) Any patient from a mortality-linked PPRL site who exists in one 
 											of the external sources (ex., Government data with death certificates, ObituaryData.com, and obituary data from private sources)</li>
 										</ul>
-										<small class='kpi-small-note'>Note: this metric is distinct from the Mortality category associated with Severity, 
-										as it does not limit deaths to only those suspected to be caused by COVID-19.</small>" aria-describedby="tooltip">
+										<small class='kpi-small-note'>Note: This metric is distinct from the Mortality category associated with Severity, 
+										as it does not limit deaths to only those suspected to be caused by COVID-19. This count is out of current total patients in view.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Mortalities in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or any patient with a date of death in the Enclave, or Any patient from a mortality-linked PPRL site who exists in 
 													of the external sources

@@ -226,7 +226,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	}
 	} );
 	
-	${param.block}_refreshHistograms();
+	$(document).ready(function() {
+		${param.block}_refreshHistograms();
+	});
 });
 
 

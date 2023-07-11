@@ -38,7 +38,7 @@
 											<li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
 											<li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
 											<li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
-										</ul>" aria-describedby="tooltip">
+										</ul><small class='kpi-small-note'>This count is out of current total patients in view.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">COVID+ in View* <i class="fas fa-info-circle"></i>
 	  											<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, 
 	  												a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 

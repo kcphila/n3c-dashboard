@@ -131,8 +131,6 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 			keys = keys.sort();
 		};
 
-		z.domain(keys);
-		z.range(colorscale);
 		
 		var groupData = d3.nest()
 			.key(function(d) { return d[secondary] + d[primary]; })
@@ -164,14 +162,31 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 		var sub_labels2 = sub_labels;
 	
 		var category_labels = [];
-		var cummulative = 0;
+		var cumulative = 0;
 		groupedData.forEach(function(d, i) {
+			var total = 0;
+			for (z in d.values){
+				total += d.values[z].total;
+			};
+			d.total = total;
 			d.values = d3.stack().keys(keys)(d.values);
-			d.cummulative = cummulative;
-			cummulative += d.values[0].length;
+			d.cumulative = cumulative;
+			cumulative += d.values[0].length;
 			category_labels.push(d.key);
 		});
-		
+
+		if (properties.sortmax){
+			category_labels = [];
+			groupedData = groupedData.sort(function(x, y){
+				return y.total - x.total;
+			});
+			var cumulative = 0;
+			groupedData.forEach(function(d, i) {
+				d.cumulative = cumulative;
+				cumulative += d.values[0].length;
+				category_labels.push(d.key);
+			});
+		}
 		
 		var axis_color = d3.scaleOrdinal()
 			.range(["#000000", "#7f7e80"])
@@ -198,14 +213,12 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 			.attr("x",width/2)
 			.attr("dy", "1em")
 			.text(xaxis_label); 
-		
 		g.append("text")
 			.attr("y", 0 - (margin.top/2))
 			.attr("x", 0)
 			.attr("dy", "1em")
 			.attr("text-anchor", "end")
 			.text(label2); 
-		
 		g.append("text")
 			.attr("y", 0 - (margin.top/2))
 			.attr("x", -margin.left)
@@ -256,7 +269,7 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
     			return 'category category-' + d.key.replace(/\s+/g, '');
   			})
   			.attr("transform", function(d) {
-    			return "translate(0, " + ( d.cummulative * barHeight ) + ")";
+    			return "translate(0, " + ( d.cumulative * barHeight ) + ")";
   			});
 		
 		categories.append("rect")
@@ -322,7 +335,6 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 					for (var j in groupedData[i].values) {
 						for (var k in groupedData[i].values[j]) {
 							if (groupedData[i].values[j][k] == d) {
-								//// console.log(i,j,k,groupedData[i].values[j][k],groupedData[i].values[j][k] == d);
 								window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](legend_label[j], xaxis_label.replace(/\s/g, "")); 
 							}
 						}

@@ -6,7 +6,7 @@
 	<div class="col-12 viz-header-section">
 		<div style="display:flex; flex-wrap: nowrap;">
 			<h2 id="${param.block}age-title" class="viz-title"></h2>
-			<div class="btn-group float-right">
+			<div>
 				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-download"></i>
 				</button>
