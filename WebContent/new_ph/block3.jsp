@@ -508,6 +508,9 @@
 								<jsp:include page="filters_new/sex.jsp"/>
 							</c:if>
 							
+							<c:if test="${param.age_filter_min || param.age_filter_sec || param.age_filter_ideal || param.ethnicity_filter || param.race_filter || param.sex_filter}">
+								<p style="text-align:center; color: gray; font-size: 8px; margin-bottom: 10px;"><i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i></p>
+							</c:if>
 
 							<c:if test="${param.covid_filter}">
 								<jsp:include page="filters_new/covid_status.jsp"/>

@@ -5,15 +5,17 @@
 
 <div class="row">
 	<div class="col-12 viz-header-section">
-		<h2 id="sex-title" class="viz-title"></h2>
-		<div class="btn-group float-right">
-			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-download"></i>
-			</button>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="save_viz_pass_sex('.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_sex('.png');">Save as PNG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_sex('.svg');">Save as SVG</a>
+		<div style="display:flex; flex-wrap: nowrap;">
+			<h2 id="${param.block}sex-title" class="viz-title"></h2>
+			<div>
+				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-download"></i>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" onclick="save_viz_pass_sex('.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_sex('.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_sex('.svg');">Save as SVG</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -49,13 +51,13 @@ var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
 	var title = "Sex Percentages of ${param.topic_title}";
-	$("#sex-title").text(title);
+	$("#${param.block}sex-title").text(title);
 } else if (title_mode == 'bar'){
 	var title = "Counts of ${param.topic_title} by Sex";
-	$("#sex-title").text(title);
+	$("#${param.block}sex-title").text(title);
 } else {
 	var title = "Sex Percentages of ${param.topic_title}";
-	$("#sex-title").text(title);
+	$("#${param.block}sex-title").text(title);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
