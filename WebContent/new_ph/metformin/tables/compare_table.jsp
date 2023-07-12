@@ -34,6 +34,9 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'medicationoccurrence':
 		table.column(9).search(constraint, true, false, true).draw();	
 		break;
+	case 'cciscore':
+		table.column(11).search(constraint, true, false, true).draw();	
+		break;
 	}
 	
 	
@@ -209,7 +212,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
      	columns: [
      		{ data: 'metformin', visible: true, orderable: true },
      		{ data: 'race', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [13] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [14] },
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
@@ -218,7 +221,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'mortality', visible: true, orderable: true },
         	{ data: 'medocc', visible: true, orderable: true },
         	{ data: 'diabetes', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [12] },
+        	{ data: 'comorbidity', visible: true, orderable: true },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [13] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_seq', visible: false },
         	{ data: 'severity_abbrev', visible: false },

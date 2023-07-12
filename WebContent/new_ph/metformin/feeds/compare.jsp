@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select metformin, race, age, sex, severity, status, long, vaccinated, mortality, medocc, diabetes,
+	from (select metformin, race, age, sex, severity, status, long, vaccinated, mortality, medocc, diabetes, comorbidity,
 				case
 					when (patient_count = 0) then '<20'
 					else patient_count::text
@@ -46,13 +46,15 @@
 						when (diabetes_indicator = '1') then 'Diabetes'
 						else 'No Diabetes'
 					end as diabetes,
+					cci_score_range as comorbidity,
 					sum(case
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
 					end) as patient_count
 				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
+				  where patient_count != '<20'
 				  group by metformin_indicator, race, age, sex, severity, covid_indicator, long_covid_diagnosis_post_covid_indicator, vaccinated,
-				  patient_death_indicator,  metformin_before_after_covid, diabetes_indicator
+				  patient_death_indicator,  metformin_before_after_covid, diabetes_indicator, cci_score_range
 				  
 		  	) as foo
 		  	natural join n3c_dashboard.age_map_min
@@ -74,6 +76,7 @@
         {"value":"mortality", "label":"Mortality"},
         {"value":"medocc", "label":"Medication Occurrence"},
         {"value":"diabetes", "label":"Diabetes Status"},
+        {"value":"comorbidity", "label":"CCI Score"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
         {"value":"age_seq", "label":"dummy1"},

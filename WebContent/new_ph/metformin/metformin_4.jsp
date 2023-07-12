@@ -21,6 +21,7 @@
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
 	<jsp:param name="beforeaftermedication_filter" value="true" />
+	<jsp:param name="cciscore_filter" value="true" />
 	
 	<jsp:param name="toggle3" value="true" />
 	
@@ -66,6 +67,28 @@
 			colorscale: mortality_range,
 			legend_label: 'Mortality',
 			feed: 'MortalityDiabNoMet',
+			legend_data: mortality_legend,
+			donutRatio: 0.5
+		}], 'mortality5' : [{
+			dimension: 'mortality',
+			domName: '#metformin_4_mortality5_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: mortality_range,
+			legend_label: 'Mortality',
+			feed: 'MortalityNoDiabMet',
+			legend_data: mortality_legend,
+			donutRatio: 0.5
+		}], 'mortality6' : [{
+			dimension: 'mortality',
+			domName: '#metformin_4_mortality6_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: mortality_range,
+			legend_label: 'Mortality',
+			feed: 'MortalityNoDiabNoMet',
 			legend_data: mortality_legend,
 			donutRatio: 0.5
 		}]

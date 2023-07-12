@@ -512,6 +512,9 @@
 								<p style="text-align:center; color: gray; font-size: 8px; margin-bottom: 10px;"><i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i></p>
 							</c:if>
 
+							<c:if test="${param.cciscore_filter}">
+								<jsp:include page="filters_new/cciscore.jsp"/>
+							</c:if>
 							<c:if test="${param.covid_filter}">
 								<jsp:include page="filters_new/covid_status.jsp"/>
 							</c:if>
@@ -569,9 +572,7 @@
 							<c:if test="${param.diagnosis_filter2}">
 								<jsp:include page="filters_new/diagnosis2.jsp"/>
 							</c:if>
-							<c:if test="${param.cciscore_filter}">
-								<jsp:include page="filters_new/cciscore.jsp"/>
-							</c:if>
+							
 							<c:if test="${param.sotrovimabmeds_filter}">
 								<jsp:include page="filters_new/sotrovimab_meds.jsp"/>
 							</c:if>
@@ -1192,7 +1193,7 @@ $(document).ready(function() {
 			}
 			$("#${param.block}_alert").hide();
 		};
-    }, 1000);
+    }, 2000);
 	   
 	  
 	    
@@ -2107,14 +2108,20 @@ var ${param.block}_SeverityMetArray = new Array();
 var ${param.block}_SeverityNoMetArray = new Array();
 var ${param.block}_SeverityDiabMetArray = new Array();
 var ${param.block}_SeverityDiabNoMetArray = new Array();
+var ${param.block}_SeverityNoDiabMetArray = new Array();
+var ${param.block}_SeverityNoDiabNoMetArray = new Array();
 var ${param.block}_LongMetArray = new Array();
 var ${param.block}_LongNoMetArray = new Array();
 var ${param.block}_LongDiabMetArray = new Array();
 var ${param.block}_LongDiabNoMetArray = new Array();
+var ${param.block}_LongNoDiabMetArray = new Array();
+var ${param.block}_LongNoDiabNoMetArray = new Array();
 var ${param.block}_MortalityMetArray = new Array();
 var ${param.block}_MortalityNoMetArray = new Array();
 var ${param.block}_MortalityDiabMetArray = new Array();
 var ${param.block}_MortalityDiabNoMetArray = new Array();
+var ${param.block}_MortalityNoDiabMetArray = new Array();
+var ${param.block}_MortalityNoDiabNoMetArray = new Array();
 
 
 var ${param.block}_raceSeverityArray = new Array();
@@ -2214,14 +2221,20 @@ function ${param.block}_refreshHistograms(just_viz) {
     	${param.block}_refreshSeverityNoMetArray(data);
     	${param.block}_refreshSeverityDiabMetArray(data);
     	${param.block}_refreshSeverityDiabNoMetArray(data);
+    	${param.block}_refreshSeverityNoDiabMetArray(data);
+    	${param.block}_refreshSeverityNoDiabNoMetArray(data);
     	${param.block}_refreshLongMetArray(data);
     	${param.block}_refreshLongNoMetArray(data);
     	${param.block}_refreshLongDiabMetArray(data);
     	${param.block}_refreshLongDiabNoMetArray(data);
+    	${param.block}_refreshLongNoDiabMetArray(data);
+    	${param.block}_refreshLongNoDiabNoMetArray(data);
     	${param.block}_refreshMortalityMetArray(data);
     	${param.block}_refreshMortalityNoMetArray(data);
     	${param.block}_refreshMortalityDiabMetArray(data);
     	${param.block}_refreshMortalityDiabNoMetArray(data);
+    	${param.block}_refreshMortalityNoDiabMetArray(data);
+    	${param.block}_refreshMortalityNoDiabNoMetArray(data);
     
     	${param.block}_refreshraceSeverityArray(data);
     	${param.block}_refreshdiagnosisSeverityArray(data);
@@ -2630,6 +2643,30 @@ function ${param.block}_loaded(selection) {
 <jsp:include page="singleHistogram_filtered.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityNoDiabMetArray"/>
+	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="No Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SeverityNoDiabNoMetArray"/>
+	<jsp:param name="primary" value="severity"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="No Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="MortalityMetArray"/>
 	<jsp:param name="primary" value="mortality"/>
 	<jsp:param name="count" value="patient_count"/>
@@ -2676,6 +2713,30 @@ function ${param.block}_loaded(selection) {
 <jsp:include page="singleHistogram_filtered.jsp">
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MortalityNoDiabMetArray"/>
+	<jsp:param name="primary" value="mortality"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="No Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="MortalityNoDiabNoMetArray"/>
+	<jsp:param name="primary" value="mortality"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="No Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="LongMetArray"/>
 	<jsp:param name="primary" value="long"/>
 	<jsp:param name="count" value="patient_count"/>
@@ -2717,6 +2778,30 @@ function ${param.block}_loaded(selection) {
 	<jsp:param name="filter" value="No Metformin"/>
 	<jsp:param name="filter_col2" value="diabetes"/>
 	<jsp:param name="filter2" value="Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="LongNoDiabMetArray"/>
+	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="No Diabetes"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram_filtered.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="LongNoDiabNoMetArray"/>
+	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+	<jsp:param name="filter_col" value="metformin"/>
+	<jsp:param name="filter" value="No Metformin"/>
+	<jsp:param name="filter_col2" value="diabetes"/>
+	<jsp:param name="filter2" value="No Diabetes"/>
 </jsp:include>
 
 <jsp:include page="singleHistogram.jsp">

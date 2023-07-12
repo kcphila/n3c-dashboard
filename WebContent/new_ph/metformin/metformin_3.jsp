@@ -21,6 +21,7 @@
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
 	<jsp:param name="beforeaftermedication_filter" value="true" />
+	<jsp:param name="cciscore_filter" value="true" />
 	
 	<jsp:param name="toggle3" value="true" />
 	
@@ -66,6 +67,28 @@
 			colorscale: longstatus_range,
 			legend_label: 'Longstatus',
 			feed: 'LongDiabNoMet',
+			legend_data: longstatus_legend,
+			donutRatio: 0.5
+		}], 'long5' : [{
+			dimension: 'long',
+			domName: '#metformin_3_long5_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongNoDiabMet',
+			legend_data: longstatus_legend,
+			donutRatio: 0.5
+		}], 'long6' : [{
+			dimension: 'long',
+			domName: '#metformin_3_long6_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			feed: 'LongNoDiabNoMet',
 			legend_data: longstatus_legend,
 			donutRatio: 0.5
 		}]

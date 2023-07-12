@@ -3,7 +3,7 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, metformin,  medocc, 
+	from (select race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, metformin,  medocc,
 				case
 					when (patient_count = 0 or patient_count is null) then '<20'
 					else patient_count::text

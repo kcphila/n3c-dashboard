@@ -3,7 +3,12 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, patient_display, patient_count,
+	from (select race, ethnicity, age, sex, severity, status, long, vaccinated, mortality, medocc, 
+				case
+					when (patient_count = 0 or patient_count is null) then '<20'
+					else patient_count::text
+				end as patient_display,
+				patient_count,
 				age_abbrev, age_seq, race_abbrev, race_seq, ethnicity_abbrev, ethnicity_seq, 
 				sex_abbrev, sex_seq, severity_abbrev, severity_seq, status_abbrev, status_seq, long_abbrev, long_seq,
 				vaccinated_abbrev, vaccinated_seq, mortality_abbrev, mortality_seq, medocc_abbrev, medocc_seq
@@ -37,13 +42,14 @@
 						when (metformin_before_after_covid = 'After') then 'After COVID'
 						else 'Unknown or N/A'
 					end as medocc,
-					patient_count as patient_display,
-					case
+					sum(case
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
-					end as patient_count
+					end) as patient_count
 				  from n3c_dashboard_ph.metformin_demosevvacmorlc_cov_csd
 				  where metformin_indicator = 1
+				  group by race, ethnicity, age, sex, severity, covid_indicator, long_covid_diagnosis_post_covid_indicator, vaccinated, patient_death_indicator, 
+				  metformin_before_after_covid 
 		  	) as foo
 		  	natural join n3c_dashboard.age_map_min
 		  	natural join n3c_dashboard.race_map
