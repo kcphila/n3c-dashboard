@@ -1,6 +1,6 @@
 <script>
 
-function localHeatMap(data, properties) {
+function localClusteredHeatMap(data, properties) {
 
 	d3.json(properties.feed_url, function(error, theGraph) {
 		graph = theGraph;

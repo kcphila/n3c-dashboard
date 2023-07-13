@@ -2191,6 +2191,8 @@ var ${param.block}_MedicationOverallArray = new Array();
 
 var ${param.block}_AlcoholOpioidAllArray = new Array();
 var ${param.block}_AlcoholOpioidCovidArray = new Array();
+var ${param.block}_AlcoholSmokingAllArray = new Array();
+var ${param.block}_AlcoholSmokingCovidArray = new Array();
 var ${param.block}_OpioidSmokingAllArray = new Array();
 var ${param.block}_OpioidSmokingCovidArray = new Array();
 
@@ -2298,6 +2300,8 @@ function ${param.block}_refreshHistograms(just_viz) {
 
     	${param.block}_refreshAlcoholOpioidAllArray(data);
     	${param.block}_refreshAlcoholOpioidCovidArray(data);
+    	${param.block}_refreshAlcoholSmokingAllArray(data);
+    	${param.block}_refreshAlcoholSmokingCovidArray(data);
     	${param.block}_refreshOpioidSmokingAllArray(data);
     	${param.block}_refreshOpioidSmokingCovidArray(data);
     };
@@ -2440,6 +2444,10 @@ function ${param.block}_refreshHistograms(just_viz) {
     if ('${param.block}' === "substance_use_4") {
     	${param.block}_alcohol_opioid_all_refresh();
     	${param.block}_alcohol_opioid_covid_refresh();
+    }
+    if ('${param.block}' === "substance_use_5") {
+    	${param.block}_alcohol_smoking_all_refresh();
+    	${param.block}_alcohol_smoking_covid_refresh();
     }
     if ('${param.block}' === "substance_use_6") {
     	${param.block}_opioid_smoking_all_refresh();
@@ -3203,6 +3211,24 @@ function ${param.block}_loaded(selection) {
 	<jsp:param name="block" value="${param.block}"/>
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="AlcoholOpioidCovidArray"/>
+	<jsp:param name="primary" value="condition2"/>
+	<jsp:param name="secondary" value="condition1"/>
+	<jsp:param name="count" value="covid_count"/>
+</jsp:include>
+
+<jsp:include page="heatmapHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="AlcoholSmokingAllArray"/>
+	<jsp:param name="primary" value="condition2"/>
+	<jsp:param name="secondary" value="condition1"/>
+	<jsp:param name="count" value="all_count"/>
+</jsp:include>
+
+<jsp:include page="heatmapHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="AlcoholSmokingCovidArray"/>
 	<jsp:param name="primary" value="condition2"/>
 	<jsp:param name="secondary" value="condition1"/>
 	<jsp:param name="count" value="covid_count"/>

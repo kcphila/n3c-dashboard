@@ -35,8 +35,15 @@ function save_${param.block}_heatmap_covid_viz_pass(extension){
 
 function ${param.block}_opioid_smoking_covid_refresh() {
 	var properties = {
-		domName: "${param.block}_heatmap_covid_viz"
-	}
+			domName: "${param.block}_heatmap_covid_viz",
+			feed_url: "<util:applicationRoot/>/new_ph/substance_use/feeds/heatmap_clustered_opi_smo.jsp?covid_count=true",
+			cell_size: 15,
+			margin: { top: 80, right: 0, bottom: 10, left: 200 },
+			source_label: "opioid",
+			target_label: "smoking",
+			source_tooltip_label: "Opioid",
+			target_tooltip_label: "Smoking Status"
+		}
    	d3.select("#${param.block}_heatmap_covid_viz").select("svg").remove();
 	localHeatMap(${param.block}_OpioidSmokingCovidArray, properties);	
 }

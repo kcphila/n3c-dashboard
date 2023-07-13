@@ -7,6 +7,19 @@
 #d3viz .dataTables_filter{
     display: none;
 }
+
+.background {
+  fill: #eee;
+}
+
+line {
+  stroke: #fff;
+}
+
+text.active {
+  fill: red;
+}
+
 </style>
 
 <script>
@@ -45,6 +58,7 @@
 		<option value="substance_use_2">Opioids Demographics</option>
 		<option value="substance_use_3">Smoking Demographics</option>		
 		<option value="substance_use_4">Alcohol/Opioid Heatmap</option>		
+		<option value="substance_use_5">Alcohol/Smoking Heatmap</option>		
 		<option value="substance_use_6">Opioid/Smoking Heatmap</option>		
 	</select>
 </div>
@@ -53,6 +67,7 @@
 	<div id="substance_use_2" class="group"></div>
 	<div id="substance_use_3" class="group"></div>
 	<div id="substance_use_4" class="group"></div>
+	<div id="substance_use_5" class="group"></div>
 	<div id="substance_use_6" class="group"></div>
 </div>
 

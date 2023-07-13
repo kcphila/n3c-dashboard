@@ -72,6 +72,9 @@ WebContent/demo/bostock_counties.html -text
 WebContent/demo/data.csv -text
 WebContent/demo/farms.html -text
 WebContent/demo/heatmap.html -text
+WebContent/demo/heatmap2.html -text
+WebContent/demo/heatmap3.html -text
+WebContent/demo/heatmap4.html -text
 WebContent/demo/heatmap_data.csv -text
 WebContent/demo/le_mis.html -text
 WebContent/demo/miserables.json -text
@@ -137,6 +140,7 @@ WebContent/graph_support/grouped_stacked_bar_horizontal_alexis.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp -text
 WebContent/graph_support/grouped_stacked_bar_horizontal_local_new.jsp -text
 WebContent/graph_support/grouped_stacked_bar_vertical.jsp -text
+WebContent/graph_support/heatMap_clustered_local.jsp -text
 WebContent/graph_support/heatMap_local.jsp -text
 WebContent/graph_support/hive.jsp -text
 WebContent/graph_support/hive_local.jsp -text
@@ -160,7 +164,6 @@ WebContent/graph_support/region_map_local.jsp -text
 WebContent/graph_support/reinfection_bar.jsp -text
 WebContent/graph_support/site_map.jsp -text
 WebContent/graph_support/stacked_bar_horizontal_2.jsp -text
-WebContent/graph_support/temp.js -text
 WebContent/graph_support/time_line_2_column.jsp -text
 WebContent/graph_support/time_line_2_column_local.jsp -text
 WebContent/graph_support/time_line_2_column_local2.jsp -text
@@ -1044,8 +1047,14 @@ WebContent/new_ph/substance_use/age.jsp -text
 WebContent/new_ph/substance_use/alcohol.jsp -text
 WebContent/new_ph/substance_use/alcohol_opioid_all_heatmap.jsp -text
 WebContent/new_ph/substance_use/alcohol_opioid_covid_heatmap.jsp -text
+WebContent/new_ph/substance_use/alcohol_smoking_all_heatmap.jsp -text
+WebContent/new_ph/substance_use/alcohol_smoking_covid_heatmap.jsp -text
 WebContent/new_ph/substance_use/feeds/alcohol_demographics.jsp -text
 WebContent/new_ph/substance_use/feeds/heatmap_alc_opi.jsp -text
+WebContent/new_ph/substance_use/feeds/heatmap_alc_smo.jsp -text
+WebContent/new_ph/substance_use/feeds/heatmap_clustered_alc_opi.jsp -text
+WebContent/new_ph/substance_use/feeds/heatmap_clustered_alc_smo.jsp -text
+WebContent/new_ph/substance_use/feeds/heatmap_clustered_opi_smo.jsp -text
 WebContent/new_ph/substance_use/feeds/heatmap_opi_smo.jsp -text
 WebContent/new_ph/substance_use/feeds/opioid_demographics.jsp -text
 WebContent/new_ph/substance_use/feeds/smoking_demographics.jsp -text
@@ -1060,6 +1069,7 @@ WebContent/new_ph/substance_use/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/substance_use/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/substance_use/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/substance_use/secondary_text/secondary_4.jsp -text
+WebContent/new_ph/substance_use/secondary_text/secondary_5.jsp -text
 WebContent/new_ph/substance_use/secondary_text/secondary_6.jsp -text
 WebContent/new_ph/substance_use/severity.jsp -text
 WebContent/new_ph/substance_use/sex.jsp -text
@@ -1068,6 +1078,7 @@ WebContent/new_ph/substance_use/substance_use_1.jsp -text
 WebContent/new_ph/substance_use/substance_use_2.jsp -text
 WebContent/new_ph/substance_use/substance_use_3.jsp -text
 WebContent/new_ph/substance_use/substance_use_4.jsp -text
+WebContent/new_ph/substance_use/substance_use_5.jsp -text
 WebContent/new_ph/substance_use/substance_use_6.jsp -text
 WebContent/new_ph/substance_use/tables/demographics.jsp -text
 WebContent/new_ph/substance_use/tables/heatmap.jsp -text

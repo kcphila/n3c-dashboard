@@ -2,14 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <style>
-.tooltip {
+#tooltip {
     position: absolute;
     background-color: white;
     opacity: 0.9;
     height: auto;
     padding: 1px;
     pointer-events: none;
-    max-width: 250px;
+    max-width: 450px;
     padding-left: 10px;
 }
 </style>
