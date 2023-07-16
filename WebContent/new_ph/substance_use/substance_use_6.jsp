@@ -14,6 +14,11 @@
 }
 </style>
 
+<p>Order: <select id="opi_smo_order">
+		<option value="name">by Name</option>
+		<option value="frequency">by Frequency</option>
+	</select>
+
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="substance_use_6" />
 	<jsp:param name="block_header" value="Substance Use: Opioid/Smoking Heatmap" />

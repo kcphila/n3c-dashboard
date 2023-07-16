@@ -1,6 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 
-function localClusteredHeatMap(data, properties) {
+function ${param.namespace}_localHeatMap(data, properties) {
 
 	d3.json(properties.feed_url, function(error, theGraph) {
 		graph = theGraph;
@@ -39,16 +40,44 @@ function localClusteredHeatMap(data, properties) {
 			width = cell_size * target.length,
 			height = cell_size * source.length;
 
-		var targetKeys = d3.map(target, function(d) { return d.name; }).keys()
-		var sourceKeys = d3.map(source, function(d) { return d.name; }).keys()
+		var sourceKeys_by_name = d3.map(source, function(d) { return d.name; }).keys()
+		var targetKeys_by_name = d3.map(target, function(d) { return d.name; }).keys()
+
+		console.log("source keys by name", sourceKeys_by_name)
+		console.log("target keys by name", targetKeys_by_name)
+
+		var source_map = d3.map(source, d => d.index);
+		var target_map = d3.map(target, d => d.index);
+		// console.log("nodes", nodes);
+		console.log("source map", source_map.get(2));
+		
+ 		source.sort(function(x, y){
+			return y.score - x.score;
+		});
+		
+ 		target.sort(function(x, y){
+			return y.score - x.score;
+		});
+		
+		source.filter(function(site,i) { site.new_index = i; return true; })
+		console.log("source sorted", source);
+
+		target.filter(function(site,i) { site.new_index = i; return true; })
+		console.log("target sorted", target);
+
+		var sourceKeys_by_freq = d3.map(source, function(d) { return d.name; }).keys()
+		var targetKeys_by_freq = d3.map(target, function(d) { return d.name; }).keys()
+
+		console.log("source keys by frequency", sourceKeys_by_freq)
+		console.log("target keys by frequency", targetKeys_by_freq)
 
 		var x = d3.scaleBand()
 				.range([0, width])
-				.domain(targetKeys)
+				.domain(targetKeys_by_name)
 				.padding(0.05),
 			y = d3.scaleBand()
 				.range([0, height])
-				.domain(sourceKeys)
+				.domain(sourceKeys_by_name)
 				.padding(0.05),
 			z = d3.scaleLinear()
 				.range(["white", "blue"])
@@ -80,7 +109,8 @@ function localClusteredHeatMap(data, properties) {
 		}
 
 		links.forEach(function(link) {
-			matrix[link.source][link.target] = build_payload(link, source[link.source], target[link.target]);
+			//console.log(link, source[link.source], target[link.target]);
+			matrix[source_map.get(link.source).index][target_map.get(link.target).index] = build_payload(link, source_map.get(link.source), target_map.get(link.target));
 		});
 		console.log("matrix", matrix);
 
@@ -97,12 +127,14 @@ function localClusteredHeatMap(data, properties) {
 		svg.append("g")
 			.style("font-size", 11)
 			.call(d3.axisLeft(y).tickSize(0))
-			.attr("class", "text")
+			.attr("class", "y_axis")
+			.attr('stroke-width', 0)
 			.select(".domain").remove();
 
 		svg.append("g")
 			.style("font-size", 11)
 			.call(d3.axisTop(x).tickSize(0))
+			.attr("class", "x_axis")
 			.attr('stroke-width', 0)
 			.selectAll("text")
 			.style("text-anchor", "start")
@@ -126,13 +158,13 @@ function localClusteredHeatMap(data, properties) {
 			})
 			.enter()
 			.append("g")
-			.attr("class", "cell")
-			.attr("transform", (d, i) => {
-				return "translate(" + x(d.target.name) + ", " + y(d.source.name) + ")";
-			});
+			.attr("class", "cell");
 
 		cell
 			.append("rect")
+			.attr("class", "cell_block")
+			.attr("x", function (d) { return x(d.target.name); })
+			.attr("y", function (d) { return y(d.source.name); })
 			.attr("width", x.bandwidth() * 0.9)
 			.attr("height", y.bandwidth() * 0.9)
 			.style("stroke-width", 2)
@@ -154,7 +186,7 @@ function localClusteredHeatMap(data, properties) {
 				tooltip
 					.html(properties.source_tooltip_label + ": " + d.source.name
 						+ "<br>" + properties.target_tooltip_label + ": " + d.target.name
-						+ "<br>Count: " + d.value)
+						+ "<br>Count: " + nFormatter(d.value,2))
 					.style("left", (d3.event.pageX + 10) + 'px')
 					.style("top", (d3.event.pageY + 10) + 'px');
 			}
@@ -170,6 +202,51 @@ function localClusteredHeatMap(data, properties) {
 			}
 			);
 
+ 		d3.select("#${param.basename}_order").node().addEventListener("change", function(d) { ${param.namespace}_order(d3.select("#${param.basename}_order").node().value); });
+ 
+		function ${param.namespace}_order(value) {
+			switch (value) {
+			case "frequency":
+				//console.log("frequency", value);
+				x.domain(targetKeys_by_freq);
+				y.domain(sourceKeys_by_freq);
+				break;
+			default:
+				//console.log("name", value);
+				x.domain(targetKeys_by_name);
+				y.domain(sourceKeys_by_name);
+				break;
+			}
+			svg.transition().duration(2500)
+				.selectAll("g.y_axis")
+				.call(d3.axisLeft(y));
+			svg.transition().duration(2500)
+				.selectAll("g.x_axis")
+				.call(d3.axisTop(x));
+			cell.transition().duration(2500)
+				.selectAll(".cell_block")
+				.attr("x", function (d) { return x(d.target.name); })
+				.attr("y", function (d) { return y(d.source.name); })
+				;
+		}
+
+		function nFormatter(num, digits) {
+			  const lookup = [
+			    { value: 1, symbol: "" },
+			    { value: 1e3, symbol: "k" },
+			    { value: 1e6, symbol: "M" },
+			    { value: 1e9, symbol: "G" },
+			    { value: 1e12, symbol: "T" },
+			    { value: 1e15, symbol: "P" },
+			    { value: 1e18, symbol: "E" }
+			  ];
+			  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+			  var item = lookup.slice().reverse().find(function(item) {
+			    return num >= item.value;
+			  });
+			  return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+			}
+		
 	}
 }
 </script>

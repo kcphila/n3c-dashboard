@@ -24,6 +24,11 @@
 	</div>
 </div>
 
+<jsp:include page="../../graph_support/heatMap_local.jsp">
+	<jsp:param name="basename" value="alc_smo"/>
+	<jsp:param name="namespace" value="alc_smo_covid"/>
+</jsp:include>
+
 <script>
 
 function save_${param.block}_heatmap_covid_viz_pass(extension){
@@ -45,7 +50,7 @@ function ${param.block}_alcohol_smoking_covid_refresh() {
 			target_tooltip_label: "Smoking Status"
 		}
    	d3.select("#${param.block}_heatmap_covid_viz").select("svg").remove();
-	localHeatMap(${param.block}_AlcoholSmokingCovidArray, properties);	
+	alc_smo_covid_localHeatMap(${param.block}_AlcoholSmokingCovidArray, properties);	
 }
 
 ${param.block}_alcohol_smoking_covid_refresh();

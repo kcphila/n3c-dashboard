@@ -49,7 +49,6 @@ text.active {
 <jsp:include page="../../graph_support/percentage_bar_local_new.jsp"/>
 <jsp:include page="../../graph_support/pieChart_local_new.jsp"/>
 <jsp:include page="../../graph_support/horizontalBarChart_local_new.jsp"/>
-<jsp:include page="../../graph_support/heatMap_local.jsp"/>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
@@ -62,6 +61,7 @@ text.active {
 		<option value="substance_use_6">Opioid/Smoking Heatmap</option>		
 	</select>
 </div>
+
 <div id="frame">
 	<div id="substance_use_1" class="group"></div>
 	<div id="substance_use_2" class="group"></div>

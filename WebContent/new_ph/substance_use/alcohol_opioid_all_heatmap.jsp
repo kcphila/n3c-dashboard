@@ -19,15 +19,15 @@
 			</div>
 		</div>
 		<div class="col-12">
-			<p>Order: <select id="order">
-					<option value="name">by Name</option>
-					<option value="alc_score">by Alcohol Frequency</option>
-					<option value="group">by Cluster</option>
-				</select>
 			<div id="${param.block}_heatmap_all_viz" class="col-12 dash_viz"></div>
 		</div>
 	</div>
 </div>
+
+<jsp:include page="../../graph_support/heatMap_local.jsp">
+	<jsp:param name="basename" value="alc_opi"/>
+	<jsp:param name="namespace" value="alc_opi_all"/>
+</jsp:include>
 
 <script>
 
@@ -50,7 +50,7 @@ function ${param.block}_alcohol_opioid_all_refresh() {
 		target_tooltip_label: "Opioid"
 	}
    	d3.select("#${param.block}_heatmap_all_viz").select("svg").remove();
-	localHeatMap(${param.block}_AlcoholOpioidAllArray, properties);	
+	alc_opi_all_localHeatMap(${param.block}_AlcoholOpioidAllArray, properties);	
 }
 
 ${param.block}_alcohol_opioid_all_refresh();

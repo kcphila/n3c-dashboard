@@ -24,6 +24,11 @@
 	</div>
 </div>
 
+<jsp:include page="../../graph_support/heatMap_local.jsp">
+	<jsp:param name="basename" value="opi_smo"/>
+	<jsp:param name="namespace" value="opi_smo_all"/>
+</jsp:include>
+
 <script>
 
 function save_${param.block}_heatmap_all_viz_pass(extension){
@@ -45,7 +50,7 @@ function ${param.block}_opioid_smoking_all_refresh() {
 			target_tooltip_label: "Smoking Status"
 		}
    	d3.select("#${param.block}_heatmap_all_viz").select("svg").remove();
-	localHeatMap(${param.block}_OpioidSmokingAllArray, properties);	
+	opi_smo_all_localHeatMap(${param.block}_OpioidSmokingAllArray, properties);	
 }
 
 ${param.block}_opioid_smoking_all_refresh();
