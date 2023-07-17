@@ -43,11 +43,12 @@ function ${param.block}_alcohol_opioid_all_refresh() {
 		domName: "${param.block}_heatmap_all_viz",
 		feed_url: "<util:applicationRoot/>/new_ph/substance_use/feeds/heatmap_clustered_alc_opi.jsp",
 		cell_size: 15,
-		margin: { top: 80, right: 0, bottom: 10, left: 200 },
+		margin: { top: 100, right: 0, bottom: 10, left: 200 },
 		source_label: "alcohol",
 		target_label: "opioid",
 		source_tooltip_label: "Alcohol Condition",
-		target_tooltip_label: "Opioid"
+		target_tooltip_label: "Opioid",
+		sub20hack: 1
 	}
    	d3.select("#${param.block}_heatmap_all_viz").select("svg").remove();
 	alc_opi_all_localHeatMap(${param.block}_AlcoholOpioidAllArray, properties);	

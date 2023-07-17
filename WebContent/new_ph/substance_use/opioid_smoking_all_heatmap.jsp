@@ -43,11 +43,12 @@ function ${param.block}_opioid_smoking_all_refresh() {
 			domName: "${param.block}_heatmap_all_viz",
 			feed_url: "<util:applicationRoot/>/new_ph/substance_use/feeds/heatmap_clustered_opi_smo.jsp",
 			cell_size: 15,
-			margin: { top: 80, right: 0, bottom: 10, left: 200 },
+			margin: { top: 100, right: 0, bottom: 10, left: 200 },
 			source_label: "opioid",
 			target_label: "smoking",
 			source_tooltip_label: "Opioid",
-			target_tooltip_label: "Smoking Status"
+			target_tooltip_label: "Smoking Status",
+			sub20hack: 1
 		}
    	d3.select("#${param.block}_heatmap_all_viz").select("svg").remove();
 	opi_smo_all_localHeatMap(${param.block}_OpioidSmokingAllArray, properties);	

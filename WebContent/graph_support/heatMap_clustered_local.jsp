@@ -81,7 +81,8 @@ function ${param.namespace}_localHeatMap(data, properties) {
 				.padding(0.05),
 			z = d3.scaleLinear()
 				.range(["white", "blue"])
-				.domain([0, d3.max(links, function(d) { return d.value; })]);
+				.domain([0, d3.max(links, function(d) { return d.value; })]),
+				color = d3.scaleOrdinal(d3.schemeCategory10).domain(d3.range(20));
 
 		var svg = d3.select("#" + properties.domName)
 			.append("svg")
@@ -91,10 +92,12 @@ function ${param.namespace}_localHeatMap(data, properties) {
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 		function build_payload(link, source, target) {
+			console.log(source, source.Louvain10, "target", target.Louvain10);
 			return {
 				"x": link.target,
 				"y": link.source,
 				"value": link.value,
+				"cluster": source.Louvain10,
 				"source": source,
 				"target": target
 			};
@@ -169,7 +172,7 @@ function ${param.namespace}_localHeatMap(data, properties) {
 			.attr("height", y.bandwidth() * 0.9)
 			.style("stroke-width", 2)
 			.style("stroke", "none")
-			.style("fill", function(d) { return z(d.value) })
+			.style("fill", function(d) { return color(d.cluster) })
 			.on("mouseover", function(d) {
 				//console.log("in",d);
 				d3.selectAll(".row text").classed("active", function(e, i) { return d.source.name == e; });

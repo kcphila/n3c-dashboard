@@ -78,6 +78,7 @@ WebContent/demo/heatmap4.html -text
 WebContent/demo/heatmap_data.csv -text
 WebContent/demo/le_mis.html -text
 WebContent/demo/miserables.json -text
+WebContent/demo/plot.html -text
 WebContent/demo/scatter-3d.html -text
 WebContent/demo/style.css -text
 WebContent/demo/ternary.html -text
