@@ -647,9 +647,6 @@
 	  							<c:if test="${not empty param.topic_title2}">
 	  								<c:param name="topic_title2" value="${param.topic_title2}" />
 	  							</c:if>
-	  							<c:if test="${not empty param.topic_title3}">
-	  								<c:param name="topic_title3" value="${param.topic_title3}" />
-	  							</c:if>
 	  							<c:if test="${not empty param.topic_disease}">
 		  							<c:param name="topic_disease" value="${param.topic_disease}" />
 		  						</c:if>

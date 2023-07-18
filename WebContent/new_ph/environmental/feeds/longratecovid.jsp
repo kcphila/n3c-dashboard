@@ -6,19 +6,20 @@
 	from (select 
 				'All COVID+ Patients' as label,
 				1 as label_seq,
-				'Mortality' as variable,
+				'Long COVID' as variable,
 				total, 
 				part,
 				ROUND((part::decimal / total)*100, 2) as patient_count, 
 				ROUND((part::decimal / total)*100, 2) as patient_display 
 				from (select
-						sum(mortality) + sum(nomortality) as total,
-						sum(mortality) as part
+						sum(case when long = '<20' then 0 else long::int end) + sum(case when nolong = '<20' then 0 else nolong::int end) as total,
+						sum(case when long = '<20' then 0 else long::int end) as part
 					  from (
 					  	select 
-					  		case when covid_patient_death_indicator = 1 then patient_count end as mortality,
-					  		case when covid_patient_death_indicator = 0 then patient_count end as nomortality
-					  		from n3c_dashboard_ph.demo_mort_cov_csd
+					  		case when long_covid_indicator = 1 then patient_count end as long,
+					  		case when long_covid_indicator = 0 then patient_count end as nolong
+					  		from n3c_dashboard_ph.demo_demo_mort_sev_vacc_all_covid_csd
+					  		where covid_indicator = 1
 					  ) as fa
 			  	) as foo
 			
@@ -27,25 +28,19 @@
 			select 
 				'Envir. Impacted COVID+ Patients' as label,
 				2 as label_seq,
-				'Mortality' as variable,
+				'Long COVID' as variable,
 				total, 
 				part,
 				ROUND((part::decimal / total)*100, 2) as patient_count, 
 				ROUND((part::decimal / total)*100, 2) as patient_display 
 				from (select
-						sum(total) as total,
-						sum(mortality) as part
+						sum(case when long = '<20' then 0 else long::int end) + sum(case when nolong = '<20' then 0 else nolong::int end) as total,
+						sum(case when long = '<20' then 0 else long::int end) as part
 					  from (
 					  	select 
-					  		case
-								when (patient_count = '<20' or patient_count is null) then 0
-								else patient_count::int
-							end as total,
-							case
-								when (patient_count_died = '<20' or patient_count_died is null) then 0
-								else patient_count_died::int
-							end as mortality
-					  		from n3c_dashboard_ph.env_mortcnt_cov_csd
+					  		case when long_covid_diagnosis_post_covid_indicator = 1 then patient_count end as long,
+					  		case when long_covid_diagnosis_post_covid_indicator = 0 then patient_count end as nolong
+					  		from n3c_dashboard_ph.env_envsxmortvac_all_csd
 					  		where covid_indicator = 1
 					  ) as fa
 			  	) as foo

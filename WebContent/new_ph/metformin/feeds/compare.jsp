@@ -52,7 +52,6 @@
 						else patient_count::int
 					end) as patient_count
 				  from n3c_dashboard_ph.metformindiabetes_demosevvacmorlc_cov_csd
-				  where patient_count != '<20'
 				  group by metformin_indicator, race, age, sex, severity, covid_indicator, long_covid_diagnosis_post_covid_indicator, vaccinated,
 				  patient_death_indicator,  metformin_before_after_covid, diabetes_indicator, cci_score_range
 				  

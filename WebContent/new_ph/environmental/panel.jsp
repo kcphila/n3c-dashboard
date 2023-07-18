@@ -12,10 +12,17 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
-		<option value="environment_1">Demographics of Environmentally Impacted Patients</option>
-		<option value="environment_4">COVID Factors of Environmentally Impacted Patients</option>
-		<option value="environment_2">Number of Impacted Patients By Environmental Factor</option>
-		<option value="environment_3">Exploration of Mortality</option>
+		<optgroup label="Environmentally Impacted Patients Vs. All Patients">
+			<option value="environment_5">All Vs. Environmentally Impacted (Mortality, Long COVID, Hospitalization)</option>
+		</optgroup>
+		<optgroup label="Demographics & Cohort Exploration">
+			<option value="environment_1">Demographics of Environmentally Impacted Patients</option>
+			<option value="environment_4">COVID Factors of Environmentally Impacted Patients</option>
+		</optgroup>
+		<optgroup label="Individual Environmental Factors">
+			<option value="environment_2">Number of Impacted Patients By Environmental Factor</option>
+			<option value="environment_3">Number of Mortalities By Environmental Factor</option>
+		</optgroup>
 	</select>
 </div>
 
@@ -24,6 +31,7 @@
 	<div id="environment_2" class="group"></div>
 	<div id="environment_3" class="group"></div>
 	<div id="environment_4" class="group"></div>
+	<div id="environment_5" class="group"></div>
 </div>
 
 <script>
@@ -40,7 +48,7 @@ var frame_crumbs = [];
 
 <c:choose>
 	<c:when test="${empty param.tertiary_tab || param.tertiary_tab == 'undefined'}">
-		frame_load('environment_1');
+		frame_load('environment_5');
 	</c:when>
 	<c:otherwise>
 		$('#selectMe').val(url_unmap('${param.tertiary_tab}'));

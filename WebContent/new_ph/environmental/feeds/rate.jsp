@@ -4,15 +4,16 @@
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (select 
-				'All Patient Mortality %' as label,
+				'All Patients' as label,
 				1 as label_seq,
+				'Mortality' as variable,
 				total, 
-				mortality,
-				ROUND((mortality::decimal / total)*100, 2) as patient_count, 
-				ROUND((mortality::decimal / total)*100, 2) as patient_display 
+				part,
+				ROUND((part::decimal / total)*100, 2) as patient_count, 
+				ROUND((part::decimal / total)*100, 2) as patient_display 
 				from (select
 						sum(mortality) + sum(nomortality) as total,
-						sum(mortality) as mortality
+						sum(mortality) as part
 					  from (
 					  	select 
 					  		case when death_indicator = 1 then patient_count end as mortality,
@@ -24,15 +25,16 @@
 			UNION
 			
 			select 
-				'Environmental Mortality %' as label,
+				'Envir. Impacted Patients' as label,
 				2 as label_seq,
+				'Mortality' as variable,
 				total, 
-				mortality,
-				ROUND((mortality::decimal / total)*100, 2) as patient_count, 
-				ROUND((mortality::decimal / total)*100, 2) as patient_display 
+				part,
+				ROUND((part::decimal / total)*100, 2) as patient_count, 
+				ROUND((part::decimal / total)*100, 2) as patient_display 
 				from (select
 						sum(total) as total,
-						sum(mortality) as mortality
+						sum(mortality) as part
 					  from (
 					  	select 
 					  		case
@@ -53,6 +55,7 @@
     "headers": [
         {"value":"label", "label":"Label"},
         {"value":"label_seq", "label":"dummy1"},
+        {"value":"variable", "label":"dummy2"},
         {"value":"total", "label":"total"},
         {"value":"mortality", "label":"mortality"},
         {"value":"patient_display", "label":"display"},

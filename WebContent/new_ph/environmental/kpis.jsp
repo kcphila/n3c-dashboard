@@ -103,6 +103,28 @@
 			</jsp:include>
 		</div>	
 	</c:when>
+	<c:when test="${param.block == 'environment_5' }">
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/covid_positive_secondary.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/environmental/environmental_all.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/environmental/environmental_cov.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+	</c:when>
 </c:choose>
 
 
