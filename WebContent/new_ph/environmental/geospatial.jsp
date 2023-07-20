@@ -18,6 +18,12 @@
 								<a class="dropdown-item" onclick="saveVisualization('graph', 'environmental_map.svg');">Save as SVG</a>
 							</div>
 						</div>
+<p>Node Value: <select id="node_selector">
+		<option value="non_count">COVID- Patient Count</option>
+		<option value="covid_count">COVID+ Patient Count</option>
+		<option value="patient_count_died">Mortality Count</option>
+		<option value="patient_count_died_cause_covid">Mortality due to COVID Count</option>
+	</select>
 
 <div id="graph" style="overflow: hidden;">Note: currently only sites with 5-digit zipcodes appear.</div>
 <div id="site-roster"></div>
@@ -41,14 +47,11 @@
 	//////////////////////////////////////////////// D3 VIZ /////////////////////////////////////////////////
 	var width = null;
 	var height = null;
-	var links = null;
 	var node_map = null;
 	
 	function createD3Chart(sites_data) {
-		console.log("sites_data", sites_data);
+		//console.log("sites_data", sites_data);
 		d3.select("#graph").select("svg").remove();
-	
-//		node_map = d3.map(sites_data.sites, d => d.id);
 	
 		// Load the Cohort Data
 		d3.json("<util:applicationRoot/>/feeds/map_data.jsp", function(error, data) {
@@ -90,8 +93,24 @@
 	
 				var g = svg.append("g");
 	
+				function nodeValue(d) {
+					switch (d3.select("#node_selector").node().value) {
+					case "non_count":
+						return d.non_count;
+					case "covid_count":
+						return d.covid_count;
+					case "patient_count_died":
+						return d.patient_count_died;
+					case "patient_count_died_cause_covid":
+						return d.patient_count_died_cause_covid;
+					default:
+						console.log("node selector unknowwn value:", value);
+						return 0;
+					}
+				}
+				
 				var nodeScale = d3.scaleLinear()
-				.domain([0, d3.max(sites_data.sites, function(d) { return d.non_count; })])
+				.domain([0, d3.max(sites_data.sites, function(d) { return nodeValue(d); })])
 				.range([2, 15]);
 
 				const zoom = d3.zoom()
@@ -100,20 +119,10 @@
 						const { transform } = d3.event;
 						g.attr('transform', transform);
 						g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k));
-						g.selectAll("circle").attr('r', function(d) { return nodeScale(d.non_count) / transform.k; });
+						g.selectAll("circle").attr('r', function(d) { return nodeScale(nodeValue(d)) / transform.k; });
 					});
 	
 				svg.call(zoom);
-	
-	
-				// Color Scale For Legend and Map 
-				var color = d3.scaleOrdinal()
-					.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
-					.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
-	
-				var stroke = d3.scaleOrdinal()
-					.domain(["available", "submitted", "pending"])
-					.range(["#64286b", "#545454", "#545454"]);
 	
 				var dataArray = [];
 	
@@ -167,8 +176,8 @@
 						return true;
 					});
 	
-					var nodeScaleEnv = d3.scaleLinear()
-						.domain([0, d3.max(sites, function(d) { return d.non_count; })])
+					var nodeScale = d3.scaleLinear()
+						.domain([0, d3.max(sites, function(d) { return nodeValue(d); })])
 						.range([3, 15]);
 					
 					var other = g.selectAll("circle")
@@ -179,7 +188,7 @@
 					.attr('class', "remove")
 					.attr("cx", function(d, i) { return positions[i][0]; })
 					.attr("cy", function(d, i) { return positions[i][1]; })
-					.attr("r", function(d, i) { return nodeScaleEnv(d.non_count); })
+					.attr("r", function(d, i) { return nodeScale(nodeValue(d)); })
 					.append('title')
 					.text(function(d) { return "Site: " + d.cityname; });
 				});
@@ -188,44 +197,14 @@
 			};
 		});
 	
-		function org_label(x) {
-			return "<br>" + x;
-		}
-	
-		function status_label(x) {
-			return "<br>" + x;
-		}
-	
-	
 	}
 	
 	function clickfilter(){
 		table2.draw();
 	}
 	
-    function drawColorKey() {
-		$.getJSON("<util:applicationRoot/>/feeds/${param.legend}", function(data) {
-			var legendData = data.sites;
-        	var colorScale = d3.scaleOrdinal()
-				.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
-				.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
-
-
-        	var legend_div = d3.select("#legend").append("div").attr("class", "row").attr("id", "filters");
-    		
-    		var legend_data = legend_div.selectAll(".new_legend")
-    			.data(legendData)
-    			.enter().append("div")
-    			.attr("class", "col col-6 col-lg-4")
-    			.html(function(d,i){
-    				return  '<label class="testcheck"><input onclick="clickfilter()" class="checkbox" type="checkbox" name="type" value="' + legendData[i].org_type + '"><i class="fas fa-circle" style="color:' + colorScale(legendData[i].org_type) + ';"></i> ' +  d.org_type + " [" + d.count + "]</label>";
-    			});
-		});
-    }
-    
-	
 	function update(data) {
-		console.log("data", data);
+		//console.log("data", data);
 	
 		var svg = d3.select("#graph").select("svg");
 		var g = svg.select("g");
@@ -246,9 +225,24 @@
 			return true;
 		});
 	
-	
+		function nodeValue(d) {
+			switch (d3.select("#node_selector").node().value) {
+			case "non_count":
+				return d.non_count;
+			case "covid_count":
+				return d.covid_count;
+			case "patient_count_died":
+				return d.patient_count_died;
+			case "patient_count_died_cause_covid":
+				return d.patient_count_died_cause_covid;
+			default:
+				console.log("node selector unknowwn value:", value);
+				return 0;
+			}
+		}
+		
 		var nodeScale = d3.scaleLinear()
-			.domain([0, d3.max(sites, function(d) { return d.non_count; })])
+			.domain([0, d3.max(sites, function(d) { return nodeValue(d); })])
 			.range([2, 15]);
 	
 		const zoom = d3.zoom()
@@ -257,35 +251,8 @@
 				const { transform } = d3.event;
 				g.attr('transform', transform);
 				g.selectAll(".remove").attr('d', d3.symbol().type(d3.symbolCircle).size(10 / transform.k));
-				g.selectAll("circle").attr('r', function(d) { return nodeScale(d.non_count) / transform.k; });
+				g.selectAll("circle").attr('r', function(d) { return nodeScale(nodeValue(d)) / transform.k; });
 			});
-	
-		d3.select("#graph").select("svg").selectAll("line").remove();
-	
-		function fade(opacity, out) {
-			return function(d) {
-				//		          node.style("stroke-opacity", function(o) {
-				//		              thisOpacity = isConnected(d, o) ? 1 : opacity;
-				//		              this.setAttribute('fill-opacity', thisOpacity);
-				//		              return thisOpacity;
-				//		          });
-	
-			};
-		}
-	
-		var color = d3.scaleOrdinal()
-			.domain(["N3C", "CTSA", "GOV", "CTR", "COM", "UNAFFILIATED", "REGIONAL", "X1", "X2", "X3"])
-			.range(["#007bff", "#8406D1","#09405A", "#AD1181",  "#ffa600", "#ff7155", "#a6a6a6", "8B8B8B", "black", "yellow"]);
-	
-		var ochin_check = [];
-		for (i in data["sites"]) {
-			ochin_check.push(data["sites"][i]["site"])
-		};
-	
-		d3.select("#graph").select("svg").selectAll("path.remove").remove();
-	
-		var path = g.selectAll("path.return").data(sites);
-		path.exit().remove();
 	
 		d3.select("#graph").select("svg").selectAll("circle.remove").remove();
 	
@@ -298,7 +265,7 @@
 			.attr("fill-opacity", 1.0)
 			.attr("cx", function(d, i) { return positions[i][0]; })
 			.attr("cy", function(d, i) { return positions[i][1]; })
-			.attr("r", function(d, i) { return nodeScale(d.non_count); })
+			.attr("r", function(d, i) { return nodeScale(nodeValue(d)); })
 			.append('title')
 			.text(function(d) { return "Site: " + d.cityname; });;
 	
@@ -309,6 +276,13 @@
 	
 	}
 	
+	d3.select("#node_selector").node().addEventListener("change", function(d) { ${param.namespace}_order(d3.select("#node_selector").node().value); });
+	 
+	function ${param.namespace}_order(value) {
+		//console.log(value);
+		update(getTableData(table2));
+	}
+
 	function setTableEvents(table) {
 	
 		table.on("page", function() {
