@@ -4,7 +4,11 @@
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (
-		select statename,countyname,cityname,postal_code,
+		select statename,countyname,cityname,
+		case
+			when length(postal_code) = 3 then postal_code || 'xx'
+			else postal_code
+		end as postal_code,
 		non_count as non_count_display,
 		case
 			when non_count is null then 0
@@ -33,13 +37,21 @@
 		longitude,
 		param_list
 		from (
-			(select statename,countyname,cityname,postal_code,patient_count_of_this_city as non_count,patient_count_died,patient_count_died_cause_covid,param_list
+			(select statename,countyname,cityname,postal_code,
+					patient_count_of_this_city as non_count,
+					patient_count_died,
+					patient_count_died_cause_covid,
+					param_list
 				from n3c_dashboard_ph.env_stcntctzipprmlist_cnt_csd where covid_indicator =0) as foo
 			natural full outer join
-			(select statename,countyname,cityname,postal_code,patient_count_of_this_city as covid_count,patient_count_died,patient_count_died_cause_covid,param_list
+			(select statename,countyname,cityname,postal_code,
+					patient_count_of_this_city as covid_count,
+					patient_count_died,
+					patient_count_died_cause_covid,
+					param_list
 				from n3c_dashboard_ph.env_stcntctzipprmlist_cnt_csd where covid_indicator =1) as bar
 		) as foo2,
-		n3c_maps.zipcode
+		( select * from n3c_maps.zipcode union select * from n3c_maps.zipcode3) as bar2
 		where postal_code = zipcode
 	)as done;
 </sql:query>
