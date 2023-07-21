@@ -25,7 +25,7 @@
 		<option value="patient_count_died_cause_covid">Mortality due to COVID Count</option>
 	</select>
 
-<div id="graph" style="overflow: hidden;">Note: currently only sites with 5-digit zipcodes appear.</div>
+<div id="graph" style="overflow: hidden;"></div>
 <div id="site-roster"></div>
 
 <script>
