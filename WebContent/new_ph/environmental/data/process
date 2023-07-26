@@ -1,0 +1,29 @@
+#!/bin/csh
+
+# "standard" way of taking shp to ndjson fails on 5-digit zip input...
+
+#echo "shp2json..."
+#shp2json $1.shp -o $1.json
+
+#echo "ndjson-split..."
+#ndjson-split 'd.features' < $1.json > $1.ndjson
+
+# our previous feature pull of 3 and 5 digit zips seems to do the trick
+
+echo "extracting relevant zip3..."
+psql -q -t -c "select feature from zipcode.zip3 where (state,zipcode) not in (select state,zipcode from zipcode.suppress) and zipcode in (select postal_code from n3c_dashboard_ph.env_stcntctzipprmlist_cnt_csd);" -h neuromancer -X cd2h >$1.tmp
+
+echo "extracting relevant zip5..."
+psql -q -t -c "select feature from zipcode.zip5 where (state,zipcode) not in (select state,zipcode from zipcode.suppress) and zipcode in (select postal_code from n3c_dashboard_ph.env_stcntctzipprmlist_cnt_csd);" -h neuromancer -X cd2h >>$1.tmp
+
+echo "cleaning the file..."
+sed -e "s/^ //" -e '/^$/d' < $1.tmp > $1.ndjson
+
+echo "geo2topo..."
+geo2topo -n $1.ndjson > $1-topo.json
+
+echo "toposimplify..."
+toposimplify -p 1 -f < $1-topo.json > $1-simple.json
+
+echo "topoquantize..."
+topoquantize 1e5 < $1-simple.json > $1-quant.json

@@ -12,25 +12,25 @@
 		non_count as non_count_display,
 		case
 			when non_count is null then 0
-			when non_count = '<20' then 1
+			when non_count = '<20' then 10
 			else non_count::int
 		end as non_count,
 		covid_count as covid_count_display,
 		case
 			when covid_count is null then 0
-			when covid_count = '<20' then 1
+			when covid_count = '<20' then 10
 			else covid_count::int
 		end as covid_count,
 		patient_count_died as patient_count_died_display,
 		case
 			when patient_count_died is null then 0
-			when patient_count_died = '<20' then 1
+			when patient_count_died = '<20' then 10
 			else patient_count_died::int
 		end as patient_count_died,
 		patient_count_died_cause_covid as patient_count_died_cause_covid_display,
 		case
 			when patient_count_died_cause_covid is null then 0
-			when patient_count_died_cause_covid = '<20' then 1
+			when patient_count_died_cause_covid = '<20' then 10
 			else patient_count_died_cause_covid::int
 		end as patient_count_died_cause_covid,
 		latitude,

@@ -36,7 +36,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	var data = json['rows'];
 
 	table2 = $('#${param.target_div}-table').DataTable( {
-    	data: data,
+		searchDelay: 350,
+		data: data,
        	paging: true,
        	dom: 'lfr<"datatable_overflow"t>Bip',
        	buttons: {

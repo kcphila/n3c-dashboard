@@ -11,7 +11,7 @@
 
 	<jsp:param name="kpis" value="environmental/kpis.jsp" />
 	
-	<jsp:param name="simple_panel" value="environmental/geospatial.jsp" />
+	<jsp:param name="simple_panel" value="environmental/geospatial_poly.jsp" />
 	
 	<jsp:param name="datatable" value="environmental/tables/geospatial.jsp" />
 	<jsp:param name="datatable_div" value="environmental_environment_6" />

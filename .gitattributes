@@ -396,6 +396,7 @@ WebContent/new_ph/doubleHistogram.jsp -text
 WebContent/new_ph/environmental/age.jsp -text
 WebContent/new_ph/environmental/compare.jsp -text
 WebContent/new_ph/environmental/covid.jsp -text
+WebContent/new_ph/environmental/data/process -text
 WebContent/new_ph/environmental/environment_1.jsp -text
 WebContent/new_ph/environmental/environment_2.jsp -text
 WebContent/new_ph/environmental/environment_3.jsp -text
@@ -406,6 +407,7 @@ WebContent/new_ph/environmental/feeds/compare.jsp -text
 WebContent/new_ph/environmental/feeds/covidimpact.jsp -text
 WebContent/new_ph/environmental/feeds/demographics.jsp -text
 WebContent/new_ph/environmental/feeds/geospatial.jsp -text
+WebContent/new_ph/environmental/feeds/geospatial_zip.jsp -text
 WebContent/new_ph/environmental/feeds/hospratecovid.jsp -text
 WebContent/new_ph/environmental/feeds/impacted.jsp -text
 WebContent/new_ph/environmental/feeds/longratecovid.jsp -text
@@ -413,6 +415,7 @@ WebContent/new_ph/environmental/feeds/mortality.jsp -text
 WebContent/new_ph/environmental/feeds/rate.jsp -text
 WebContent/new_ph/environmental/feeds/ratecovid.jsp -text
 WebContent/new_ph/environmental/geospatial.jsp -text
+WebContent/new_ph/environmental/geospatial_poly.jsp -text
 WebContent/new_ph/environmental/impacted.jsp -text
 WebContent/new_ph/environmental/kpis.jsp -text
 WebContent/new_ph/environmental/longstatus.jsp -text
@@ -436,6 +439,7 @@ WebContent/new_ph/environmental/tables/impacted_table.jsp -text
 WebContent/new_ph/environmental/tables/mortality_table.jsp -text
 WebContent/new_ph/environmental/vaccinated.jsp -text
 WebContent/new_ph/environmental/vizs/mortality_rate.jsp -text
+WebContent/new_ph/environmental/zip3-simple.json -text
 WebContent/new_ph/filters/age.jsp -text
 WebContent/new_ph/filters/age_10.jsp -text
 WebContent/new_ph/filters/age_2.jsp -text
