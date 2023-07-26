@@ -32,6 +32,7 @@
 		<option value="patient_count_died">Mortality Count</option>
 		<option value="patient_count_died_cause_covid">Mortality due to COVID Count</option>
 	</select>
+	<button id="reset" > Reset Zoom </button>
 
 <div id="graph" style="overflow: hidden;"></div>
 <div id="site-roster"></div>
@@ -59,6 +60,7 @@
 	var height = null;
 	var zips = null;
 	var site_by_zip = null;
+	var zoom = null;
 	
 	function createD3Chart(sites_data) {
 		//console.log("sites_data", sites_data);
@@ -125,7 +127,7 @@
 				.domain([0, d3.max(sites_data.sites, function(d) { return Math.sqrt(nodeValue(d)); })])
 				.range([0.20, 1.0]);
 
-				const zoom = d3.zoom()
+				zoom = d3.zoom()
 					.scaleExtent([1, 50])
 					.on('zoom', function() {
 						const { transform } = d3.event;
@@ -283,14 +285,7 @@
 			});
 		svg.call(tool_tip);
 
-		const zoom = d3.zoom()
-			.scaleExtent([1, 30])
-			.on('zoom', function() {
-				const { transform } = d3.event;
-				g.attr('transform', transform);
-			});
-	
-		g.selectAll(".zip").remove();
+        g.selectAll(".zip").remove();
 		
 		// Bind the data to the SVG and create one path per GeoJSON feature
 		g.selectAll(".zip")
@@ -321,6 +316,14 @@
 		
 	}
 	
+	d3.select("#reset").node().addEventListener("click", function(d) {
+		d3.select("#graph")
+			.select("svg")
+	    	.transition()
+        	.duration(700)
+        	.call(zoom.transform, d3.zoomIdentity); // return to initial state
+	});
+	 
 	d3.select("#node_selector").node().addEventListener("change", function(d) { ${param.namespace}_order(d3.select("#node_selector").node().value); });
 	 
 	function ${param.namespace}_order(value) {
