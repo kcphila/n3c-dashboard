@@ -62,7 +62,7 @@
 	var zips = null;
 	var site_by_zip = null;
 	var zoom = null;
-	var active = d3.select(null);
+	var active = null;
 	var projection = null;
 	var path = null;
 	var svg = null;
@@ -215,7 +215,7 @@
 								return 0.0;
 						})
 						.attr("class", "zip")
-						.on("click", function(d) { console.log("zip mouse",d,path.bounds(d),d3.mouse(this)); })
+						.on("click", zip_clicked)
 						.on("mouseover", tool_tip.show)
 						.on("mouseout", tool_tip.hide);
 				});
@@ -224,12 +224,28 @@
 		});
 	
 	}
+	
+	// this triggers on a click on a zip polygon, looks up the correct state and fakes a click on that state.
+	function zip_clicked(d) {
+		//console.log("zip mouse",d,path.bounds(d),d3.mouse(this));
+		var mouse = d3.mouse(this);
+		var g = svg.select("g");
+        g.selectAll(".state")
+        .filter(function(d) {
+        	var bounds = path.bounds(d);
+        	if (bounds[0][0] <= mouse[0] && mouse[0] <= bounds[1][0]
+        		&&  bounds[0][1] <= mouse[1] && mouse[1] <= bounds[1][1]) {
+        		//console.log(d,bounds,d3.mouse(this));
+        		clicked(d);
+        	}
+        });
+	}
 
 	function clicked(d) {
-		if (active.node() === this) return reset();
+		//console.log("clicked", d, "this", this);
+		if (active === d) return reset();
 
-		active.classed("active", false);
-		active = d3.select(this).classed("active", true);
+		active = d;
 
 		var bounds = path.bounds(d),
 			dx = bounds[1][0] - bounds[0][0],
@@ -240,7 +256,7 @@
 			translate = [width / 2 - scale * x, height / 2 - scale * y];
 
 		svg.transition()
-			.duration(1050)
+			.duration(1000)
 			.call( zoom.transform, d3.zoomIdentity.translate(translate[0],translate[1]).scale(scale) );
 	}
 	
@@ -322,6 +338,7 @@
 					return 0.0;
 			})
 			.attr("class", "zip")
+			.on("click", zip_clicked)
 			.on("mouseover", tool_tip.show)
 			//.on("mouseover", function(d) { conditionalTooltip(d); })
 			.on("mouseout", tool_tip.hide);
@@ -339,8 +356,7 @@
 	});
 	
 	function reset() {
-		active.classed("active", false);
-		active = d3.select(null);
+		active = null;
 		
 		d3.select("#graph")
 		.select("svg")
