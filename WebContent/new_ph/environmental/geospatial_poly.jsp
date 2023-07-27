@@ -33,13 +33,14 @@
 		<option value="patient_count_died_cause_covid">Mortality due to COVID Count</option>
 	</select>
 	<button id="reset" > Reset Zoom </button>
-
+<p>Click on a state to zoom to that state (currently only works outside of zip regions), click on that state again to return to the default view.
 <div id="graph" style="overflow: hidden;"></div>
 <div id="site-roster"></div>
 <script src="https://unpkg.com/topojson@3"></script>
 
 <script>
 	// geojson / topojson tutorial: https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2c#.i8ojtzq2z
+	// example zoom to bounding box: https://gist.github.com/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2
 	
 	function getTableData(table) {
 		var tableData = {};
@@ -61,6 +62,10 @@
 	var zips = null;
 	var site_by_zip = null;
 	var zoom = null;
+	var active = d3.select(null);
+	var projection = null;
+	var path = null;
+	var svg = null;
 	
 	function createD3Chart(sites_data) {
 		//console.log("sites_data", sites_data);
@@ -92,15 +97,15 @@
 				d3.select("#graph").select("svg").remove();
 	
 				// D3 Projection 
-				var projection = d3.geoAlbersUsa()
+				projection = d3.geoAlbersUsa()
 					.translate([width / 2, (height / 2)]) // translate to center of screen
 					.scale([width]); // scale things down so see entire US
 	
 				// Define path generator
-				var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
+				path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
 					.projection(projection); // tell path generator to use albersUsa projection
 	
-				var svg = d3.select("#graph")
+				svg = d3.select("#graph")
 					.append("svg")
 					.attr("width", width)
 					.attr("height", height);
@@ -164,7 +169,8 @@
 						.enter()
 						.append("path")
 						.attr("d", path)
-						.attr("class", "state");
+						.attr("class", "state")
+						.on("click", clicked);
 	
 					var graph = sites_data;
 					var locationBySite = [],
@@ -209,6 +215,7 @@
 								return 0.0;
 						})
 						.attr("class", "zip")
+						.on("click", function(d) { console.log("zip mouse",d,path.bounds(d),d3.mouse(this)); })
 						.on("mouseover", tool_tip.show)
 						.on("mouseout", tool_tip.hide);
 				});
@@ -216,6 +223,25 @@
 			};
 		});
 	
+	}
+
+	function clicked(d) {
+		if (active.node() === this) return reset();
+
+		active.classed("active", false);
+		active = d3.select(this).classed("active", true);
+
+		var bounds = path.bounds(d),
+			dx = bounds[1][0] - bounds[0][0],
+			dy = bounds[1][1] - bounds[0][1],
+			x = (bounds[0][0] + bounds[1][0]) / 2,
+			y = (bounds[0][1] + bounds[1][1]) / 2,
+			scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
+			translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+		svg.transition()
+			.duration(1050)
+			.call( zoom.transform, d3.zoomIdentity.translate(translate[0],translate[1]).scale(scale) );
 	}
 	
 	function clickfilter(){
@@ -225,14 +251,10 @@
 	function update(data) {
 		//console.log("data", data);
 	
-		var svg = d3.select("#graph").select("svg");
 		var g = svg.select("g");
 	
 		node_map = d3.map(data.sites, d => d.id);
 	
-		var projection = d3.geoAlbersUsa()
-			.translate([width / 2, (height / 2)]) // translate to center of screen
-			.scale([width]); // scale things down so see entire US
 		var graph = data;
 		var locationBySite = [], positions = [];
 		var sites = graph.sites.filter(function(site) {
@@ -244,10 +266,6 @@
 			return true;
 		});
 	
-		// Define path generator
-		var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
-			.projection(projection); // tell path generator to use albersUsa projection
-
 		var site_by_zip = d3.map(data.sites, function(d) { return d.postal_code; });
 
 		function nodeValue(d) {
@@ -286,8 +304,8 @@
 		svg.call(tool_tip);
 
         g.selectAll(".zip").remove();
-		
-		// Bind the data to the SVG and create one path per GeoJSON feature
+
+        // Bind the data to the SVG and create one path per GeoJSON feature
 		g.selectAll(".zip")
 			.data(topojson.feature(zips, zips.objects.zip35).features)
 			.enter()
@@ -317,12 +335,19 @@
 	}
 	
 	d3.select("#reset").node().addEventListener("click", function(d) {
-		d3.select("#graph")
-			.select("svg")
-	    	.transition()
-        	.duration(700)
-        	.call(zoom.transform, d3.zoomIdentity); // return to initial state
+		reset();
 	});
+	
+	function reset() {
+		active.classed("active", false);
+		active = d3.select(null);
+		
+		d3.select("#graph")
+		.select("svg")
+    	.transition()
+    	.duration(1000)
+    	.call(zoom.transform, d3.zoomIdentity); // return to initial state		
+	}
 	 
 	d3.select("#node_selector").node().addEventListener("change", function(d) { ${param.namespace}_order(d3.select("#node_selector").node().value); });
 	 
