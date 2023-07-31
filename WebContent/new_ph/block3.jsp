@@ -508,7 +508,7 @@
 								<jsp:include page="filters_new/sex.jsp"/>
 							</c:if>
 							
-							<c:if test="${param.age_filter_min || param.age_filter_sec || param.age_filter_ideal || param.ethnicity_filter || param.race_filter || param.sex_filter}">
+							<c:if test="${(param.age_filter_min || param.age_filter_sec || param.age_filter_ideal || param.ethnicity_filter || param.race_filter || param.sex_filter) && !param.only_demo}">
 								<p style="text-align:center; color: gray; font-size: 8px; margin-bottom: 10px;"><i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i></p>
 							</c:if>
 
@@ -2412,10 +2412,6 @@ function ${param.block}_refreshHistograms(just_viz) {
     }
     if ('${param.block}'.includes('hlh')) {
     	${param.block}_age_refresh();
-    	${param.block}_sex_refresh();
-    }
-    if ('${param.block}' === "long_covid_2" || '${param.block}' === "long_covid_13") {
-    	${param.block}_severity_refresh();
     	${param.block}_sex_refresh();
     }
     if (["long_covid_3", "long_covid_4", "long_covid_5", "long_covid_7", "long_covid_8", "long_covid_9", "long_covid_10", "long_covid_11"].includes('${param.block}')) {

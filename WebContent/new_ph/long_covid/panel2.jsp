@@ -12,9 +12,11 @@
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<option value="long_covid_1">Long COVID Dashboard Overview</option>
-		<optgroup label="Long COVID Diagnosis">
+		<optgroup label="Demographics & Cohort Exploration">
 			<option value="long_covid_13">Demographics of Diagnosed Long COVID Patients (U09.9)</option>
+			<option value="long_covid_14">COVID Factors of Diagnosed Long COVID Patients (U09.9)</option>
 			<option value="long_covid_2">Demographics of Patients with a Long COVID Clinic Visit</option>
+			<option value="long_covid_15">COVID Factors of Patients with a Long COVID Clinic Visit</option>
 		</optgroup>
 		<optgroup label="Potential Long COVID Symptoms">
 			<option value="long_covid_3">Cumulative Symptoms Summary</option>
@@ -33,9 +35,11 @@
 	</select>
 </div>
 <div id="frame">
-	<div id="long_covid_13" class="group"></div>
 	<div id="long_covid_1" class="group"></div>
+	<div id="long_covid_13" class="group"></div>
+	<div id="long_covid_14" class="group"></div>
 	<div id="long_covid_2" class="group"></div>
+	<div id="long_covid_15" class="group"></div>
 	<div id="long_covid_3" class="group"></div>
 	<div id="long_covid_4" class="group"></div>
 	<div id="long_covid_5" class="group"></div>

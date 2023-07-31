@@ -12,15 +12,16 @@
 	
 	<jsp:param name="kpis" value="long_covid/kpis.jsp" />
 
-	<jsp:param name="severity_filter" value="true" />
+	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="age_filter_min" value="true" />
+	<jsp:param name="only_demo" value="true" />
 	
 	<jsp:param name="toggle" value="true" />
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',
 			domName: '#long_covid_13_age_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: age_range_min,
@@ -28,19 +29,19 @@
 			legend_data: age_legend_min,
 			donutRatio: 0.5
 		}], 'severity' : [{
-			dimension: 'severity',
-			domName: '#long_covid_13_severity_viz',
-			barLabelWidth: 100,
+			dimension: 'race',
+			domName: '#long_covid_13_race_viz',
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
-			colorscale: severity_range,
-			legend_label: 'Severity',
-			legend_data: severity_legend,
+			colorscale: race_range,
+			legend_label: 'Race',
+			legend_data: race_legend,
 			donutRatio: 0.5
 		}], 'sex' : [{
 			dimension: 'sex',
 			domName: '#long_covid_13_sex_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 125,
 			min_height: 300,
 			ordered: 0,
 			colorscale: sex_range,
@@ -51,7 +52,7 @@
 	}"/>
 	
 	<jsp:param name="age_panel" value="long_covid/age.jsp" />
-	<jsp:param name="severity_panel" value="long_covid/severity.jsp" />
+	<jsp:param name="race_panel" value="long_covid/race.jsp" />
 	<jsp:param name="sex_panel" value="long_covid/sex.jsp" />
 
 	<jsp:param name="datatable" value="long_covid/tables/u09_table.jsp" />
@@ -62,6 +63,6 @@
 
 
 <script>
-	var panels = ["age", "severity", "sex"];
+	var panels = ["age", "race", "sex"];
 	long_covid_13_panel(panels);
 </script>

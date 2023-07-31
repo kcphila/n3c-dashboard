@@ -10,11 +10,14 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'race':
 		table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'age':
+	case 'vaccinated':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'sex':
+	case 'mortality':
 		table.column(2).search(constraint, true, false, true).draw();	
+		break;
+	case 'severity':
+		table.column(3).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -61,6 +64,7 @@ function ${param.block}_updateKPI(table, column) {
 			document.getElementById(div).setAttribute("data-original-title", "0% in View");
 		}
 	};
+	
 	
 	if (sum < 1000) {
 		sumString = sum+'';
@@ -140,7 +144,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'long-covid_demographics',
+    	      filename: 'long-covid_covid-factors',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -163,16 +167,19 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'race', visible: true, orderable: true },
-        	{ data: 'age', visible: true,  orderable: true, orderData: [6] },
-        	{ data: 'sex', visible: true, orderable: true },
+        	{ data: 'vaccinated', visible: true,  orderable: true},
+        	{ data: 'mortality', visible: true, orderable: true },
+        	{ data: 'severity', visible: true, orderable: true },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
         	{ data: 'patient_count', visible: false },
-        	{ data: 'age_abbrev', visible: false },
-        	{ data: 'age_seq', visible: false },
         	{ data: 'race_abbrev', visible: false },
         	{ data: 'race_seq', visible: false },
-        	{ data: 'sex_abbrev', visible: false },
-        	{ data: 'sex_seq', visible: false }
+        	{ data: 'vaccinated_abbrev', visible: false },
+        	{ data: 'vaccinated_seq', visible: false },
+        	{ data: 'mortality_abbrev', visible: false },
+        	{ data: 'mortality_seq', visible: false },
+        	{ data: 'severity_abbrev', visible: false },
+        	{ data: 'severity_seq', visible: false }
     	]
 	} );
 	
