@@ -130,6 +130,9 @@ WebContent/feeds/siteRoster.jsp -text
 WebContent/feeds/us-states.json -text
 WebContent/footer.jsp -text
 WebContent/graph_support/albers-usa-pr.js -text
+WebContent/graph_support/cb_2018_us_state_20m.json -text
+WebContent/graph_support/cb_2018_us_state_500k.json -text
+WebContent/graph_support/cb_2018_us_state_5m.json -text
 WebContent/graph_support/forcePhoto.jsp -text
 WebContent/graph_support/graphic_save.jsp -text
 WebContent/graph_support/grouped_bar_horizontal_local.jsp -text
@@ -153,6 +156,9 @@ WebContent/graph_support/horizontalGroupedStackedBarChart_local.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_new.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_percent.jsp -text
+WebContent/graph_support/map_layers/collaborating_sites.js -text
+WebContent/graph_support/map_layers/contributing_sites.js -text
+WebContent/graph_support/map_layers/ochin_sites.js -text
 WebContent/graph_support/mortalityBarChart_local.jsp -text
 WebContent/graph_support/percentage_bar_local.jsp -text
 WebContent/graph_support/percentage_bar_local2.jsp -text
@@ -172,6 +178,7 @@ WebContent/graph_support/time_line_2_column_paxlovid.jsp -text
 WebContent/graph_support/time_line_n_column_local.jsp -text
 WebContent/graph_support/time_slider.jsp -text
 WebContent/graph_support/us-states.json -text
+WebContent/graph_support/us_map.jsp -text
 WebContent/graph_support/verticalBarChart_local.jsp -text
 WebContent/head.jsp -text
 WebContent/images/dash_hero3.png -text
@@ -397,12 +404,14 @@ WebContent/new_ph/environmental/age.jsp -text
 WebContent/new_ph/environmental/compare.jsp -text
 WebContent/new_ph/environmental/covid.jsp -text
 WebContent/new_ph/environmental/data/process -text
+WebContent/new_ph/environmental/demo.jsp -text
 WebContent/new_ph/environmental/environment_1.jsp -text
 WebContent/new_ph/environmental/environment_2.jsp -text
 WebContent/new_ph/environmental/environment_3.jsp -text
 WebContent/new_ph/environmental/environment_4.jsp -text
 WebContent/new_ph/environmental/environment_5.jsp -text
 WebContent/new_ph/environmental/environment_6.jsp -text
+WebContent/new_ph/environmental/environment_7.jsp -text
 WebContent/new_ph/environmental/feeds/compare.jsp -text
 WebContent/new_ph/environmental/feeds/covidimpact.jsp -text
 WebContent/new_ph/environmental/feeds/demographics.jsp -text
@@ -429,6 +438,7 @@ WebContent/new_ph/environmental/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/environmental/secondary_text/secondary_4.jsp -text
 WebContent/new_ph/environmental/secondary_text/secondary_5.jsp -text
 WebContent/new_ph/environmental/secondary_text/secondary_6.jsp -text
+WebContent/new_ph/environmental/secondary_text/secondary_7.jsp -text
 WebContent/new_ph/environmental/severity.jsp -text
 WebContent/new_ph/environmental/sex.jsp -text
 WebContent/new_ph/environmental/tables/compare_table.jsp -text
