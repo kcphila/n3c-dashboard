@@ -23,7 +23,7 @@
 .links {
 	stroke: #007bff;
     stroke-width: 0.5px;
-    pointer-events: all;
+    pointer-events: none;
     vector-effect: non-scaling-stroke; // line height won't scale
 	}
 </style>
@@ -36,7 +36,7 @@
 			as PNG</a> <a class="dropdown-item" onclick="saveVisualization('graph', 'environmental_map.svg');">Save as SVG</a>
 	</div>
 </div>
-<p>Node Value: <select id="node_selector">
+<p>Node Value: <select id="zip_node_selector">
 		<option value="non_count">COVID- Patient Count</option>
 		<option value="covid_count">COVID+ Patient Count</option>
 		<option value="patient_count_died">Mortality Count</option>
@@ -56,7 +56,8 @@
 <jsp:include page="../../graph_support/us_map.jsp">
 	<jsp:param name="layer1" value="/graph_support/map_layers/ochin_sites.js"/>
 	<jsp:param name="layer2" value="/graph_support/map_layers/zip35.js"/>
-	<jsp:param name="layer3" value="/graph_support/map_layers/collaborating_sites.js"/>
+	<jsp:param name="layer3x" value="/graph_support/map_layers/collaborating_sites.js"/>
+	<jsp:param name="layer4" value="/graph_support/map_layers/contributing_sites.js"/>
 </jsp:include>
 
 <script>
