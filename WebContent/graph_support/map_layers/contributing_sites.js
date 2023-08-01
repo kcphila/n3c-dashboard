@@ -43,10 +43,9 @@ function contributing_draw() {
 		.enter()
 		.append("svg:circle")
 		.attr('class', "remove")
-		.attr("d", function(d) { return d3.symbol().type(d3.symbolCircle).size("10")() })
 		.attr("transform", function(d, i) {return "translate("+positions[i][0]+", "+positions[i][1]+")";})
 		.attr("r", function(d) { return 7; })
-		.attr("fill-opacity", 0.5)
+		.attr("fill-opacity", 1.0)
 		.attr("fill", function(d) { return color(d.status); })
 		.append('title')
 		.html(function(d) { return ("<b>Site:</b> <a href='" + d.url + "'>" + d.site + "</a><br><b>Type:</b> " + d.type + "<br><b>Status:</b> " + d.status); });
