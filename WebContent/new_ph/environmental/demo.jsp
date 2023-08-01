@@ -43,7 +43,7 @@
 		<option value="patient_count_died_cause_covid">Mortality due to COVID Count</option>
 	</select>
 	<button id="reset" > Reset Zoom </button>
-<p>Click on a state to zoom to that state (currently only works outside of zip regions), click on that state again to return to the default view.
+<p>Click on a state to zoom to that state, click on that state again to return to the default view.
 <div id="graph" style="overflow: hidden;"></div>
 <div id="site-roster"></div>
 
@@ -67,10 +67,6 @@
 		reset_id: "reset"
 	};
 	
-	// variables shared by the internal and external blocks should be declared here
-	var zips = null;
-	var site_by_zip = null;
-
 	$(document).ready(function() {
 		createUSmap(properties);
 	});
