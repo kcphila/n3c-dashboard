@@ -156,6 +156,7 @@ WebContent/graph_support/horizontalGroupedStackedBarChart_local.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_new.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_percent.jsp -text
+WebContent/graph_support/layeredMap.jsp -text
 WebContent/graph_support/map_layers/collaborating_sites.js -text
 WebContent/graph_support/map_layers/contributing_sites.js -text
 WebContent/graph_support/map_layers/ochin_sites.js -text
@@ -180,6 +181,7 @@ WebContent/graph_support/time_slider.jsp -text
 WebContent/graph_support/us-states.json -text
 WebContent/graph_support/us_map.jsp -text
 WebContent/graph_support/verticalBarChart_local.jsp -text
+WebContent/graph_support/world-110m.geojson -text
 WebContent/head.jsp -text
 WebContent/images/dash_hero3.png -text
 WebContent/images/dashboards/MedicationsSnapshots.png -text

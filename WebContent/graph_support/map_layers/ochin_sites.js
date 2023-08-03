@@ -7,11 +7,15 @@
 //
 
 var ochin_data = null;
-d3.json(getApplicationRoot()+"/feeds/ochinLocations.jsp", function(initial) {
-	ochin_data = initial;
-	console.log("ochin", ochin_data);
+
+async function ochin_init() {
+	const response1 = await fetch(getApplicationRoot() + "/feeds/ochinLocations.jsp");
+	ochin_data = await response1.json();
+
+	console.log("ochin_data", ochin_data);
+
 	ochin_draw();
-});
+}
 
 //
 // 2 - define a draw function to be called from the base draw function
@@ -39,7 +43,7 @@ function ochin_draw() {
 		.append("svg:circle")
 		.attr('class', "remove")
 		.attr("d", function(d) { return d3.symbol().type(d3.symbolCircle).size("10")() })
-		.attr("transform", function(d, i) {return "translate("+positions[i][0]+", "+positions[i][1]+")";})
+		.attr("transform", function(d, i) { return "translate(" + positions[i][0] + ", " + positions[i][1] + ")"; })
 		.attr("r", function(d) { return 3; })
 		.attr("fill-opacity", 1)
 		.attr("fill", "#0b4865");

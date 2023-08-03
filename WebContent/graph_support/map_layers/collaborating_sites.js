@@ -7,18 +7,20 @@
 //
 
 var collab_data = null;
-d3.json(getApplicationRoot() + "/feeds/siteCollaborations.jsp", function(initial) {
-	collab_data = initial;
-	console.log("collab_data", collab_data);
-});
-
 var collab_edge_data = null;
-d3.json(getApplicationRoot() + "/feeds/siteCollaborationEdges.jsp", function(initial) {
-	collab_edge_data = initial.edges;
-	console.log("collab_edge_data", collab_edge_data);
-	collaboration_draw();
-});
 
+async function collaboration_init() {
+	const response1 = await fetch(getApplicationRoot() + "/feeds/siteCollaborations.jsp");
+	collab_data = await response1.json();
+
+	const response2 = await fetch(getApplicationRoot() + "/feeds/siteCollaborationEdges.jsp");
+	collab_edge_data = (await response2.json()).edges;
+
+	console.log("collab_data", collab_data);
+	console.log("collab_edge_data", collab_edge_data);
+
+	collaboration_draw();
+}
 
 //
 // 2 - define a draw function to be called from the base draw function
@@ -28,6 +30,7 @@ var collaboration_g = null;
 var nodeScale = null;
 
 function collaboration_draw() {
+	console.log("called", collab_data, collab_edge_data)
 	var node_map = d3.map(collab_data.sites, d => d.id);
 
 	collaboration_g = svg.append("g").attr("class", "layer"); // we need to class this for zooming by the vase code

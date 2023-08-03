@@ -53,7 +53,7 @@
 		return "<util:applicationRoot/>";
 	}
 </script>
-<jsp:include page="../../graph_support/us_map.jsp">
+<jsp:include page="../../graph_support/layeredMap.jsp">
 	<jsp:param name="layer1" value="/graph_support/map_layers/ochin_sites.js"/>
 	<jsp:param name="layer2" value="/graph_support/map_layers/zip35.js"/>
 	<jsp:param name="layer3x" value="/graph_support/map_layers/collaborating_sites.js"/>
@@ -63,12 +63,14 @@
 <script>
 	var properties = {
 		dom_element: "graph",
+		//projection: "geoNaturalEarth1",
+		//base_layer_feed: "graph_support/world-110m.geojson",
 		base_layer_feed: "graph_support/us-states.json",
 		reset_id: "reset"
 	};
 	
 	$(document).ready(function() {
-		createUSmap(properties);
+		createLayeredMap(properties);
 	});
 	
 </script>
