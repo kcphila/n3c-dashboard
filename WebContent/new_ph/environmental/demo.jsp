@@ -43,7 +43,14 @@
 		<option value="patient_count_died_cause_covid">Mortality due to COVID Count</option>
 	</select>
 	<button id="reset" > Reset Zoom </button>
-<p>Click on a state to zoom to that state, click on that state again to return to the default view.
+<p>Click on a state to zoom to that state, click on that state again to return to the default view. Drag pans the map. Scroll zooms in/out relative to the mouse position
+<p>This is implemented by a layered map D3 widget, supporting an arbitrary number of layers. For this example:
+<ul>
+<li>Layer 0 - the base map, parameterized by geographic projection and shape data. We currently have multiple resolutions for the US and the world
+<li>Layer 1 - the OCHIN sites rendered as black dots
+<li>Layer 2 - EPA data for patients by 3- or 5-digit zipcode. Intensity reflects one of the metrics from the "Node Value" dropdown above.
+<li>Layer 3 - N3C sites contributing data, color coded by type of site (this is basically the contributing site dashboard, sans the table)
+</ul>
 <div id="graph" style="overflow: hidden;"></div>
 <div id="site-roster"></div>
 
