@@ -330,17 +330,26 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 			.attr('width', function(d) { return 0;})
 			.attr("height",  (barHeight- barPadding))
 			.on("click", function(d, i){
-				d3.selectAll(".tooltip").remove(); 
-				for (var i in groupedData) {
-					for (var j in groupedData[i].values) {
-						for (var k in groupedData[i].values[j]) {
-							if (groupedData[i].values[j][k] == d) {
-								window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](legend_label[j], xaxis_label.replace(/\s/g, "")); 
-							}
-						}
-					}
-				}
-				})
+				var count2 = d[1]-d[0];
+				var label = '';
+				var index = 0;
+		     	for (var i in d.data){
+		     		if (d.data[i] == count2){
+		     			label = i;
+		     			for (j in legend_label){
+		     				if (label == legend_label[j]['secondary_name']){
+		     					index = legend_label[j]['secondary_seq'];
+		     				}
+		     			}
+		     		}
+		     	};
+
+		     	d3.selectAll(".tooltip").remove(); 
+		     	window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](legend_label[index-1], xaxis_label.replace(/\s/g, ""));
+		     	
+				
+
+			})
 			.on('mousemove', function(d,i){
 				// Tooltip
 				var count2 = d[1]-d[0];
@@ -351,7 +360,7 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 		     		if (d.data[i] == count2){
 		     			label = i;
 		     			for (j in legend_label){
-		     				if (label == legend_label[j]['secondary']){
+		     				if (label == legend_label[j]['secondary_name']){
 		     					index = legend_label[j]['secondary_seq'];
 		     				}
 		     			}
@@ -438,7 +447,7 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 			.attr("class", "filter_col col col-6 col-lg-3")
 			.on("click", function(d, i){
 				var format = {};
-				format['secondary_name'] = d.secondary;
+				format['secondary_name'] = d.secondary_name;
 				window[domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](format, xaxis_label.replace(/\s/g, ""));
 			})
 			.html(function(d,i){
