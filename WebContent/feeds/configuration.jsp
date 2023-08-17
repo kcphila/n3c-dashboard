@@ -5,6 +5,7 @@
 var ethnicity_range = ["#332380", "#B6AAF3", "#a6a6a6"];
 var sex_range = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6"];
 var age_range_min = ["#EADEF7", "#8642CE", "#33298D", "#a6a6a6"];
+var age_range_ideal = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE", "#762AC6", "#6512BD", "#4C1EA5", "#33298D", "#251a8a", "#a6a6a6"];
 var race_range = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#a6a6a6", "#8B8B8B"];
 var status_range = ["#4833B2", "#AD1181", "#a6a6a6"];
 var paxlovid_range = ["#AD1181", "#a6a6a6"];

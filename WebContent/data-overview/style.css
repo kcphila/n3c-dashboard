@@ -1,4 +1,10 @@
 <style>
+
+.datatable_overflow {
+    width: 100%;
+    overflow: scroll;
+}
+
 .section{
 	margin-bottom:100px;
 }

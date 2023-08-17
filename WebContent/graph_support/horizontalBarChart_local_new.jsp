@@ -12,6 +12,7 @@ div.bar.tooltip {
 <script>
 
 function localHorizontalBarChart_new(data, properties) {
+	
 	var valueLabelWidth = 80; // space reserved for value labels (right)
 	var barHeight = 20; // height of one bar
 	var barLabelPadding = 5; // padding between bar and bar labels (left)
@@ -102,6 +103,7 @@ function localHorizontalBarChart_new(data, properties) {
 				d3.selectAll(".tooltip").remove(); 
 				var format = {};
 				format['secondary_name'] = d.element;
+				console.log(properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain');
 				window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_').replace('#', '')+'viz_constrain'](format, properties.legend_label.replace(/\s/g, "")); 
 			})
 			.on('mousemove', function(d){
