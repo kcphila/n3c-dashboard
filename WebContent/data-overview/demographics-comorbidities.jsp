@@ -31,9 +31,9 @@
 				<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 				<select id="dimension_select">
 					<option></option>
-					<option value="demographics">All N3C Patient Demographics & Cohort Exploration</option>
+					<option value="demographics">All N3C Patient Demographics & COVID Factors</option>
 					<option value="multi-dimensional-summary">COVID+ Patient Multi-dimensional Summary</option>
-  					<option value="demographics-comorbidities">Patients w/Comorbidities Demographics & Cohort Exploration</option>
+  					<option value="demographics-comorbidities">Patients w/Comorbidities Demographics & COVID Factors</option>
 				</select>
 			</div>
 			
@@ -213,8 +213,8 @@
 <script>
 $(document).ready(function() {
     $('#dimension_select').select2({
-    	placeholder: "Patients w/Comorbidities Demographics & Cohort Exploration",
-		searchInputPlaceholder: 'Search Topics...'
+    	placeholder: "Patients w/Comorbidities Demographics & COVID Factors",
+    	minimumResultsForSearch: Infinity
     }).val('demographics-comorbidities');
 });
 

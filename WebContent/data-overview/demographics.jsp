@@ -30,9 +30,9 @@
 			<div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 				<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 				<select id="dimension_select">
-					<option value="demographics">All N3C Patient Demographics & Cohort Exploration</option>
+					<option value="demographics">All N3C Patient Demographics & COVID Factors</option>
 					<option value="multi-dimensional-summary">COVID+ Patient Multi-dimensional Summary</option>
-  					<option value="demographics-comorbidities">Patients w/Comorbidities Demographics & Cohort Exploration</option>
+  					<option value="demographics-comorbidities">Patients w/Comorbidities Demographics & COVID Factors</option>
 				</select>
 			</div>
 			
@@ -278,7 +278,7 @@
 
 $(document).ready(function() {
     $('#dimension_select').select2({
-		searchInputPlaceholder: 'Search Topics...'
+    	minimumResultsForSearch: Infinity
     });
 });
 
