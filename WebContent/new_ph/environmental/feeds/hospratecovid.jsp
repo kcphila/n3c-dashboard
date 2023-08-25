@@ -3,54 +3,37 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select 
-				'All COVID+ Patients' as label,
-				1 as label_seq,
-				'Long COVID' as variable,
-				total, 
-				part,
-				ROUND((part::decimal / total)*100, 2) as patient_count, 
-				ROUND((part::decimal / total)*100, 2) as patient_display 
-				from (select
-						sum(case when long = '<20' then 0 else long::int end) + sum(case when nolong = '<20' then 0 else nolong::int end) as total,
-						sum(case when long = '<20' then 0 else long::int end) as part
-					  from (
-					  	select 
-					  		case when long_covid_indicator = 1 then patient_count end as long,
-					  		case when long_covid_indicator = 0 then patient_count end as nolong
-					  		from n3c_dashboard_ph.demo_demo_mort_sev_vacc_all_covid_csd
-					  		where covid_indicator = 1
-					  ) as fa
-			  	) as foo
+	from (
+		select 
+			'All COVID+ Patients' as label,
+			1 as label_seq,
+			'Hospitalization' as variable,
+			total, 
+			part,
+			ROUND((part::decimal / total)*100, 2) as patient_count, 
+			ROUND((part::decimal / total)*100, 2) as patient_display 
+			from (
+				select
+					(select patient_count from n3c_dashboard_ph.env_allCnt_all_csd where metric = 'Enclave Total COVID+') as total,
+					(select patient_count from n3c_dashboard_ph.env_allCnt_all_csd where metric = 'COVID+ Hospitalizaions') as part
+			) as fa
 			
-			UNION
+		UNION
 			
-			select 
-				'Envir. Impacted COVID+ Patients' as label,
-				2 as label_seq,
-				'Long COVID' as variable,
-				total, 
-				part,
-				ROUND((part::decimal / total)*100, 2) as patient_count, 
-				ROUND((part::decimal / total)*100, 2) as patient_display 
-				from (select
-						sum(total) as total,
-						sum(mortality) as part
-					  from (
-					  	select 
-					  		case
-								when (patient_count = '<20' or patient_count is null) then 0
-								else patient_count::int
-							end as total,
-							case
-								when (patient_count_died = '<20' or patient_count_died is null) then 0
-								else patient_count_died::int
-							end as mortality
-					  		from n3c_dashboard_ph.env_mortcnt_all_csd
-					  ) as fa
-			  	) as foo
-			
-		  ) as done;
+		select 
+			'Envir. Impacted COVID+ Patients' as label,
+			2 as label_seq,
+			'Hospitalization' as variable,
+			total, 
+			part,
+			ROUND((part::decimal / total)*100, 2) as patient_count, 
+			ROUND((part::decimal / total)*100, 2) as patient_display 
+			from (
+				select
+					(select patient_count from n3c_dashboard_ph.env_allCnt_all_csd where metric = 'Environmentally Impacted COVID+') as total,
+					(select patient_count from n3c_dashboard_ph.env_allCnt_all_csd where metric = 'Environmentally Impacted COVID+ Hospitalization') as part
+			) as fa
+	) as done;
 </sql:query>
 {
     "headers": [

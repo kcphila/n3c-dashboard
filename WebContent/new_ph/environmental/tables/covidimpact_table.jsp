@@ -18,6 +18,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 		break;
 	case 'longstatus':
 		table.column(3).search(constraint, true, false, true).draw();	
+		break;
 	case 'vaccinated':
 		table.column(4).search(constraint, true, false, true).draw();	
 		break;
