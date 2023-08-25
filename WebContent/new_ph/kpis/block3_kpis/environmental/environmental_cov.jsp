@@ -10,14 +10,9 @@
  			when sum(count) < 1000000 then to_char(sum(count)/1000.0, '999.99')||'k'
  			else to_char(sum(count)/1000000.0, '999.99')||'M'
  		end as count
-			from (select
-					case
-						when (patient_count::text = '<20' or patient_count::text is null) then 0
-						else patient_count::int
-					end as count
-				  from n3c_dashboard_ph.env_allcnt_cov_csd
-				  where covid_indicator = 1
-				) as foo;
+			from (
+				select patient_count as count from n3c_dashboard_ph.env_allCnt_all_csd where metric = 'Environmentally Impacted COVID+'
+			) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 	<div class="col-12 kpi-main-col">
