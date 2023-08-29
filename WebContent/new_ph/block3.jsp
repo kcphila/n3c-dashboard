@@ -356,7 +356,7 @@
 		  						</c:if>
 							</c:url>
 							<div class="col-12 col-md-6 small-viz-panel">
-								<div id="${param.block}-race" src="<c:out value='${race_url}'/>"></div>
+								<div id="${param.block}-race" class="" src="<c:out value='${race_url}'/>"></div>
 							</div>
 						</c:if>
 						<c:if test="${not empty param.severity_panel}">
@@ -1790,7 +1790,7 @@ function ${param.block}_refreshHistograms(just_viz) {
     	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
  	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
  	    
- 	   ${param.block}_refreshDaysArray(data);
+		${param.block}_refreshDaysArray(data);
     	${param.block}_refreshAgeArray(data);
     	${param.block}_refreshRaceArray(data);
     	${param.block}_refreshEthnicityArray(data);
