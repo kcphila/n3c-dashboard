@@ -135,7 +135,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
         	}]
     	},
        	paging: false,
-    	order: [[7, 'desc']],
+    	order: [[6, 'desc']],
      	columns: [
      		{ data: 'viral_variant', visible: true, orderable: true,className: 'export',width: '130px'},
         	{ data: 'covid_unknown', visible: true, orderable: true, orderData:[2],className: 'unknowntext export', width: '130px'},
