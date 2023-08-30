@@ -99,7 +99,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 
 	for (i in col) {
 		var th = document.createElement("th");
-		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + col[i].toString() + '</span>';
+		th.innerHTML = '<span style="color:#333; font-weight:800; font-size:14px;">' + col[i].toString() + '</span>';
 		header_row.appendChild(th);
 	}
 
@@ -162,8 +162,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
        	paging: false,
     	order: [[9, 'desc']],
      	columns: [
-     		{ data: 'variable_type', visible: true, orderable: true, width: '130px',className: 'export' },
-     		{ data: 'avg_in_ehr', visible: true, orderable: true, width: '80px', className: 'ehrtext export'},
+     		{ data: 'variable_type', visible: true, orderable: true, width: '140px',className: 'export' },
+     		{ data: 'avg_in_ehr', visible: true, orderable: true, width: '100px', className: 'ehrtext export'},
      		{ data: 'avg_cms', visible: false, orderable: true, className: 'export'  },
         	{ data: 'common_cnt', visible: false, orderable: true,className: 'export'  },
      		{ data: 'additional_in_cms', visible: true, orderable: true, orderData: [5], className: 'cmstext', width: '240px', 

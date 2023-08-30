@@ -16,6 +16,10 @@
 	border: none;
 }
 
+table.dataTable.compact thead th, table.dataTable.compact thead td{
+	padding: 10px 5px;
+}
+
 .bar-chart-bar {
     display: block; 
     position:relative; 
@@ -74,7 +78,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 
 	for (i in col) {
 		var th = document.createElement("th");
-		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + col[i].toString() + '</span>';
+		th.innerHTML = '<span style="color:#333; font-weight:800; font-size:14px;">' + col[i].toString() + '</span>';
 		header_row.appendChild(th);
 	}
 
@@ -137,10 +141,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
        	paging: false,
     	order: [[6, 'desc']],
      	columns: [
-     		{ data: 'viral_variant', visible: true, orderable: true,className: 'export',width: '130px'},
-        	{ data: 'covid_unknown', visible: true, orderable: true, orderData:[2],className: 'unknowntext export', width: '130px'},
+     		{ data: 'viral_variant', visible: true, orderable: true,className: 'export',width: '140px'},
+        	{ data: 'covid_unknown', visible: true, orderable: true, orderData:[2],className: 'unknowntext export', width: '140px', render : DataTable.render.number( null, null, 0, '' )},
         	{ data: 'covid_unknown_int', visible: false},
-        	{ data: 'covid_positive', visible: true, orderable: true, orderData:[4],className: 'covidtext export', width: '130px'},
+        	{ data: 'covid_positive', visible: true, orderable: true, orderData:[4],className: 'covidtext export', width: '140px', render : DataTable.render.number( null, null, 0, '' )},
      		{ data: 'covid_positive_int', visible: false},
         	{ data: 'test', visible: true, orderable: false,
 	        	render: function(data, type, row, meta){
@@ -174,7 +178,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 					return large_div.prop("outerHTML");
 	    		}
         	},
-        	{ data: 'total', visible: true, orderable: true, orderData:[7],className: 'export bold', width: '80px'},
+        	{ data: 'total', visible: true, orderable: true, orderData:[7],className: 'export bold', width: '130px', render : DataTable.render.number( null, null, 0, '' )},
         	{ data: 'total_int', visible: false},
         	{ data: 'max_total', visible: false}
     	]

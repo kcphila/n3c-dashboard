@@ -81,7 +81,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 
 	for (i in col) {
 		var th = document.createElement("th");
-		th.innerHTML = '<span style="color:#333; font-weight:600; font-size:14px;">' + col[i].toString() + '</span>';
+		th.innerHTML = '<span style="color:#333; font-weight:800; font-size:14px;">' + col[i].toString() + '</span>';
 		header_row.appendChild(th);
 	}
 
@@ -146,11 +146,11 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
     	order: false,
     	bInfo : false,
      	columns: [
-     		{ data: 'variable_type', visible: true, orderable: false, width: '80px',className: 'export' },
+     		{ data: 'variable_type', visible: true, orderable: false, width: '130px',className: 'export' },
      		{ data: 'ehr_death_table', visible: true, orderable: false, width: '100px', className: 'ehrtext export', render : DataTable.render.number( null, null, 0, '' )},
      		{ data: 'pprl_3_source_mortality_and_death', visible: false, orderable: false, className: 'export', render : DataTable.render.number( null, null, 0, '' )  },
         	{ data: 'common_cnt', visible: false, orderable: false,className: 'export', render : DataTable.render.number( null, null, 0, '' )  },
-     		{ data: 'additional_in_pprl', visible: true, orderable: false, className: 'mortalitytext', width: '300px', 
+     		{ data: 'additional_in_pprl', visible: true, orderable: false, className: 'mortalitytext', width: '340px', 
      			render: function(data, type, row, meta){
 	 				var large_div = $("<div></div>");
 	 				var text_div = $("<div></div>", {"class": "viz_text"});

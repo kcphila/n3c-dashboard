@@ -5,6 +5,24 @@
 
 
 <style>
+
+table.dataTable.compact tbody th, table.dataTable.compact tbody td{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.table th, .table td, 
+table.dataTable thead th, table.dataTable thead td{
+	border-bottom: 2px solid #e9e9e9;
+	border-top: 0px;
+}
+
+div.dt-buttons {
+	margin-top: 25px;
+}
+
+
+
 #questions li{
 	font-size: 1.3rem;
 }
@@ -19,9 +37,10 @@
 	color: #3f3f3f;
 }
 
-.summary .viz_footer{
-	color: #616161;
-	font-size: 0.8rem;
+.summary .viz_footer {
+    color: #616161;
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 .summary_heading{
@@ -128,11 +147,11 @@
 				<h5 class="text-center mb-2 feature_sub_heading">Number of Enclave Patients Mapped into PPRL Viral Variant Data</h5>
 			</div>
 			<div class="col-12" id="viral_table">
-				<div id="viral_viz_table">
-					<jsp:include page="pprl_summary_block_vizs/viral_table.jsp">
-						<jsp:param name="target_div" value="viral_viz_table" />
-					</jsp:include>
-				</div>
+				<div id="viral_viz_table"></div>
+				<jsp:include page="pprl_summary_block_vizs/viral_table.jsp">
+					<jsp:param name="target_div" value="viral_viz_table" />
+				</jsp:include>
+				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Viral Variant data through PPRL.</p>
 			</div>
 		</div>
 			
