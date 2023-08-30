@@ -40,6 +40,9 @@
 .ehrtext span{
     color: #8B8B8B !important;
 }
+.ehrtext i{
+	color: #d3d4d5;
+}
 .medicaretext, 
 .medicaretext span{
     color: #8406D1 !important;

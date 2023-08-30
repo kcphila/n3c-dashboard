@@ -40,6 +40,10 @@
 .ehrtext span{
     color: #8B8B8B !important;
 }
+.ehrtext i{
+	color: #d3d4d5;
+}
+
 .mortalitytext, 
 .mortalitytext span{
     color: #007bff !important;

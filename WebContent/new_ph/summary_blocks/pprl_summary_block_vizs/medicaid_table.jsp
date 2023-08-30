@@ -40,6 +40,9 @@
 .ehrtext span{
     color: #8B8B8B !important;
 }
+.ehrtext i{
+	color: #d3d4d5;
+}
 .cmstext, 
 .cmstext span{
     color: #AD1181 !important;
