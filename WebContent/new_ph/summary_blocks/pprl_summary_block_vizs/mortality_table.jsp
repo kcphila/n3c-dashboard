@@ -28,7 +28,7 @@
 }
 
 .barehr {
-    background-color: #a6a6a6;
+    background-color: #d3d4d5;
     border-radius: 5px 0px 0px 5px;
 }
 .barmortality{

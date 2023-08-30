@@ -28,21 +28,21 @@
 }
 
 .barunknown {
-    background-color: #a6a6a6;
+    background-color: #7458fc;
     border-radius: 5px 0px 0px 5px;
 }
 .barcovid{
-    background-color: #09405A;
+    background-color: #4833B2;
     border-radius: 0px 5px 5px 0px;
 }
 
 .unknowntext, 
 .unknowntext span{
-    color: #8B8B8B !important;
+    color: #7458fc !important;
 }
 .covidtext, 
 .covidtext span{
-    color: #09405A !important;
+    color: #4833B2 !important;
 }
 
 </style>

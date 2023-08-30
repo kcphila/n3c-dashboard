@@ -14,13 +14,13 @@
 		'Medicare' as label, 
 		(select patient_count from n3c_dashboard_ph.cms_cnt_csd where cms_type = 'Medicare') as count,
 		'medicare' as viz_id,
-		'#4833B2' as color
+		'#8406D1' as color
 		UNION 
 		select
 		'Viral Variants' as label, 
 		(select total_viral_patient from n3c_dashboard_ph.viral_total_csd where covid_indicator = 1) as count,
 		'viral' as viz_id,
-		'#09405A' as color
+		'#4833B2' as color
 		UNION 
 		select
 		'Mortality' as label, 

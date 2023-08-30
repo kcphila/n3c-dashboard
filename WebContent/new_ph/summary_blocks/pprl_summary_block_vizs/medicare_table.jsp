@@ -28,11 +28,11 @@
 }
 
 .barehr {
-    background-color: #a6a6a6;
+    background-color: #d3d4d5;
     border-radius: 5px 0px 0px 5px;
 }
 .barmedicare{
-    background-color: #4833B2;
+    background-color: #8406D1;
     border-radius: 0px 5px 5px 0px;
 }
 
@@ -42,7 +42,7 @@
 }
 .medicaretext, 
 .medicaretext span{
-    color: #4833B2 !important;
+    color: #8406D1 !important;
 }
 .smalltext{
     font-size: 12px;
