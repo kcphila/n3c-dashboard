@@ -1021,6 +1021,8 @@ WebContent/new_ph/pediatrics/ungrouped_table.jsp -text
 WebContent/new_ph/pediatrics/unknown_vaccination_table.jsp -text
 WebContent/new_ph/pediatrics/vaccinated_comorbidity_table.jsp -text
 WebContent/new_ph/pediatrics/vaccinated_table.jsp -text
+WebContent/new_ph/pprl/panel.jsp -text
+WebContent/new_ph/pprl/pprl_1.jsp -text
 WebContent/new_ph/reinfection/counts.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_30day.jsp -text
 WebContent/new_ph/reinfection/feeds/reinfections_by_date.jsp -text
@@ -1132,6 +1134,17 @@ WebContent/new_ph/summary_blocks/long_summary_block_vizs/long_bar_feed3.jsp -tex
 WebContent/new_ph/summary_blocks/long_summary_block_vizs/long_bar_feed4.jsp -text
 WebContent/new_ph/summary_blocks/long_summary_block_vizs/long_tree.jsp -text
 WebContent/new_ph/summary_blocks/long_summary_block_vizs/long_tree_feed.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/cms_bar_feed.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/medicaid_table.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/medicaid_table_feed.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/medicare_table.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/medicare_table_feed.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/mortality_table.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/mortality_table_feed.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/pprl_bar.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/viral_feed.jsp -text
+WebContent/new_ph/summary_blocks/pprl_summary_block_vizs/viral_table.jsp -text
 WebContent/new_ph/template/kpis.jsp -text
 WebContent/new_ph/template/panel.jsp -text
 WebContent/new_ph/test_panel.jsp -text

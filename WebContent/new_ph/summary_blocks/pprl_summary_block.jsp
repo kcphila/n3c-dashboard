@@ -1,0 +1,169 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+
+
+
+<style>
+#questions li{
+	font-size: 1.3rem;
+}
+
+.feature_viz_section{
+/* 	padding-bottom: 30px;  */
+/* 	border-bottom: 6px dashed lightgray; */
+}
+
+.feature_sub_heading{
+	font-weight: 400;
+	color: #3f3f3f;
+}
+
+.summary .viz_footer{
+	color: #616161;
+	font-size: 0.8rem;
+}
+
+.summary_heading{
+/* 	border-bottom: 3px solid #C9D3E8;  */
+/* 	border-top: 3px solid #C9D3E8;  */
+	padding-bottom: 10px; 
+	padding-top: 10px; 
+	display: inline-block;
+}
+
+.color_header2{
+/* 	color: #007bff; */
+/* 	font-style: italic; */
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+
+.limitation_link{
+/* 	color: inherit; */
+    text-decoration: underline;
+}
+
+.summary_description{
+/* 	border-top: 3px solid #C9D3E8;  */
+/* 	border-bottom: 3px solid #C9D3E8;  */
+	padding: 20px;
+	background: #edf6ff;
+}
+</style>
+
+
+<div class="row stats block2 mx-auto summary">
+	<div class="col-12">
+		<div class="row mt-4">
+			<div class="col-12 col-lg-6 text-center summary_description" >
+				<h4 class="text-center mt-2 color_header2">What is PPRL?</h4>
+				<p style="text-align: left;">Privacy-Preserving Record Linkage (PPRL) enables N3C to ingest and link supplemental 
+				datasets against the OMOP-formatted EHR data in the Enclave.  PPRL currently supports linking EHR records to data 
+				from supplemental data sources including CMS (Medicare & Medicaid), mortality information from government agencies, 
+				and viral variant information from sequencing centers.</p>
+				<a class="btn btn-dash" href="https://covid.cd2h.org/PPRL" target="_blank">Learn More <i class="fas fa-external-link-alt"></i></a>
+			</div>
+			<div class="col-12 col-lg-6">
+				<h4 class="text-center mb-2 color_header2">How Much Data is Associated with PPRL?</h4>
+				<div class="row feature_viz_section">
+					<div class="col-12 mx-auto" id="pprl">
+						<h5 class="text-center mb-2 feature_sub_heading">Total Number of Patients from Each Supplemental Source</h5>
+						<div id="pprl_viz"></div>
+						<jsp:include page="pprl_summary_block_vizs/pprl_bar.jsp">
+							<jsp:param name="graph_element" value="pprl_viz" />
+							<jsp:param name="container" value="pprl" />
+							<jsp:param name="feed" value="cms_bar_feed.jsp" />
+							<jsp:param name="color_left" value="#33298D" />
+							<jsp:param name="color_right" value="#3F50B0" />
+							<jsp:param name="min_height" value="150" />
+						</jsp:include>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-12 mt-5">
+		<div class="row mb-4">
+			<div class="col-12" id="mortality">
+				<h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Mortality Added?</h4>
+				<h5 class="text-center mb-2 feature_sub_heading">Number of Mortality Records Added Through PPRL</h5>
+				<div id="mortality_viz"></div>
+				<jsp:include page="pprl_summary_block_vizs/mortality_table.jsp">
+					<jsp:param name="target_div" value="mortality_viz" />
+				</jsp:include>
+				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Mortality data through PPRL.</p>
+			</div>
+		</div>
+		
+		<div class="row mb-4">
+			<div class="col-12" id="medicare">
+				<h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Medicare Added?</h4>
+				<h5 class="text-center mb-2 feature_sub_heading">Average Number of Records Added Per Patient Linked to Medicare Through PPRL</h5>
+				<div id="medicare_viz"></div>
+				<jsp:include page="pprl_summary_block_vizs/medicare_table.jsp">
+					<jsp:param name="target_div" value="medicare_viz" />
+				</jsp:include>
+				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicare data through PPRL.</p>
+			</div>
+		</div>
+			
+		<div class="row mb-4">
+			<div class="col-12" id="medicaid">
+				<h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Medicaid Added?</h4>
+				<h5 class="text-center mb-2 feature_sub_heading">Average Number of Records Added Per Patient Linked to Medicaid Through PPRL</h5>
+				<div id="medicaid_viz"></div>
+				<jsp:include page="pprl_summary_block_vizs/medicaid_table.jsp">
+					<jsp:param name="target_div" value="medicaid_viz" />
+				</jsp:include>
+				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicaid data through PPRL.</p>
+			</div>
+		</div>
+		
+		<div class="row mb-4">
+			<div class="col-12" id="viral">
+				<h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Data Has Viral Variants Added?</h4>
+				<h5 class="text-center mb-2 feature_sub_heading">Number of Enclave Patients Mapped into PPRL Viral Variant Data</h5>
+			</div>
+			<div class="col-12" id="viral_table">
+				<div id="viral_viz_table">
+					<jsp:include page="pprl_summary_block_vizs/viral_table.jsp">
+						<jsp:param name="target_div" value="viral_viz_table" />
+					</jsp:include>
+				</div>
+			</div>
+		</div>
+			
+		
+	</div>
+</div>			
+
+<script>
+
+
+	// manage incremental loading of panels on inner nav bar clicks
+	//
+	var ${param.block}_crumbs = '';
+	
+	function ${param.block}_load(selection) {
+		var $this = $("#${param.block}-"+selection);
+		var which = $this.attr('src');
+
+		//// console.log("in main click", "${param.block}-"+selection, "which", which)
+		if (!${param.block}_crumbs.includes(selection)) {
+			$this.load("<util:applicationRoot/>/new_ph/"+which);
+			${param.block}_crumbs = ${param.block}_crumbs + selection;
+			//// console.log({
+			//	which : which
+			//});
+		}
+	};
+	
+	function ${param.block}_loaded(selection) {
+		return ${param.block}_crumbs.includes(selection);
+	}
+</script>
+
+
