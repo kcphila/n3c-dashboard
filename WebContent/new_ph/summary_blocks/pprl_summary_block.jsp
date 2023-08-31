@@ -106,18 +106,6 @@ div.dt-buttons {
 	
 	<div class="col-12 mt-5">
 		<div class="row mb-4">
-			<div class="col-12" id="mortality">
-				<h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Mortality Added?</h4>
-				<h5 class="text-center mb-2 feature_sub_heading">Number of Mortality Records Added Through PPRL</h5>
-				<div id="mortality_viz"></div>
-				<jsp:include page="pprl_summary_block_vizs/mortality_table.jsp">
-					<jsp:param name="target_div" value="mortality_viz" />
-				</jsp:include>
-				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Mortality data through PPRL.</p>
-			</div>
-		</div>
-		
-		<div class="row mb-4">
 			<div class="col-12" id="medicare">
 				<h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Medicare Added?</h4>
 				<h5 class="text-center mb-2 feature_sub_heading">Average Number of Records Added Per Patient Linked to Medicare Through PPRL</h5>
@@ -138,6 +126,18 @@ div.dt-buttons {
 					<jsp:param name="target_div" value="medicaid_viz" />
 				</jsp:include>
 				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicaid data through PPRL.</p>
+			</div>
+		</div>
+		
+		<div class="row mb-4">
+			<div class="col-12" id="mortality">
+				<h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Mortality Added?</h4>
+				<h5 class="text-center mb-2 feature_sub_heading">Number of Mortality Records Added Through PPRL</h5>
+				<div id="mortality_viz"></div>
+				<jsp:include page="pprl_summary_block_vizs/mortality_table.jsp">
+					<jsp:param name="target_div" value="mortality_viz" />
+				</jsp:include>
+				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Mortality data through PPRL.</p>
 			</div>
 		</div>
 		

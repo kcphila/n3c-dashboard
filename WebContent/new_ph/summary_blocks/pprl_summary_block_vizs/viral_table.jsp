@@ -139,9 +139,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
         	}]
     	},
        	paging: false,
-    	order: [[6, 'desc']],
+    	order: [[0, 'asc']],
      	columns: [
-     		{ data: 'viral_variant', visible: true, orderable: true,className: 'export',width: '140px'},
+     		{ data: 'viral_variant', visible: true, orderable: true,className: 'export',width: '150px'},
         	{ data: 'covid_unknown', visible: true, orderable: true, orderData:[2],className: 'unknowntext export', width: '140px', render : DataTable.render.number( null, null, 0, '' )},
         	{ data: 'covid_unknown_int', visible: false},
         	{ data: 'covid_positive', visible: true, orderable: true, orderData:[4],className: 'covidtext export', width: '140px', render : DataTable.render.number( null, null, 0, '' )},
@@ -150,7 +150,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 	        	render: function(data, type, row, meta){
 	 				var large_div = $("<div></div>", {"class": "test"});
 	 				var max = row['max_total'];
-
+					var total = row['total'];
+					
 	 				var viz_div = $("<div></div>", {"class": "bar-chart-bar count"});
 	
 	 				viz_div.append(function(){
@@ -158,18 +159,24 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 						for (const [key, value] of Object.entries(row)) {
 							
 							if (key == 'covid_unknown_int'){
+								var unknown_percent = (value/total)*100;
 								var width = 0;
 								if (value >0){
 									width = (value/max)*100;
 								};
-								bars.push($("<div></div>",{"class": "bar " + "barunknown" }).css({ "width": width + "%"}));
+								var big = $("<div></div>",{"class": "bar " + "barunknown" }).css({ "width": width + "%"});
+								big.append($("<span class='tooltiptext'>"+ value.toLocaleString() + " (" + unknown_percent.toFixed(2) +"%)</span>"));
+								bars.push(big);
 							}
 							if (key == 'covid_positive_int'){
+								var covid_percent = (value/total)*100;
 								var width = 0;
 								if (value >0){
 									width = (value/max)*100;
 								};
-								bars.push($("<div></div>",{"class": "bar " + "barcovid" }).css({ "width": width + "%"}));
+								var big = $("<div></div>",{"class": "bar " + "barcovid" }).css({ "width": width + "%"});
+								big.append($("<span class='tooltiptext'>"+ value.toLocaleString() + " (" + covid_percent.toFixed(2) +"%)</span>"));
+								bars.push(big);
 							}                            
 	                    }
 	                    return bars;

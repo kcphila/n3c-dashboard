@@ -52,9 +52,8 @@
 }
 
 /* Tooltip text */
-.cmstool .tooltiptext {
+.bar .tooltiptext {
   visibility: hidden;
-  width: 120px;
   background-color: rgba(255, 255, 255, 0.55);
   color: black;
   text-align: center;
@@ -66,7 +65,7 @@
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.cmstool:hover .tooltiptext {
+.bar:hover .tooltiptext {
   visibility: visible;
 }
 
@@ -160,9 +159,9 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
         	}]
     	},
        	paging: false,
-    	order: [[9, 'desc']],
+    	order: [[0, 'desc']],
      	columns: [
-     		{ data: 'variable_type', visible: true, orderable: true, width: '140px',className: 'export' },
+     		{ data: 'variable_type', visible: true, orderable: true, width: '200px',className: 'export' },
      		{ data: 'avg_in_ehr', visible: true, orderable: true, width: '100px', className: 'ehrtext export'},
      		{ data: 'avg_cms', visible: false, orderable: true, className: 'export'  },
         	{ data: 'common_cnt', visible: false, orderable: true,className: 'export'  },
@@ -186,6 +185,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
      			render: function(data, type, row, meta){
      				var large_div = $("<div></div>", {"class": "test"});
      				var max = row['max_total_avg'];
+     				var cms_percent = row['percentage_increase'];
+     				var ehr_percent = (100 - cms_percent).toFixed(2);
         			
      				var viz_div = $("<div></div>", {"class": "bar-chart-bar count"});
 
@@ -193,12 +194,16 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 						var bars = [];
 						for (const [key, value] of Object.entries(row)) {
 							if (key == 'avg_in_ehr'){
-								var width = (value/max)*100
-								bars.push($("<div></div>",{"class": "bar " + "barehr" }).css({ "width": width + "%"}))
+								var width = (value/max)*100;
+								var big = $("<div></div>",{"class": "bar " + "barehr" }).css({ "width": width + "%"});
+								big.append($("<span class='tooltiptext'>"+ value + " (" + ehr_percent +"%)</span>"));
+								bars.push(big);
 							}
 							if (key == 'additional_in_cms'){
-								var width = (value/max)*100
-								bars.push($("<div></div>",{"class": "bar " + "barcms" }).css({ "width": width + "%"}))
+								var width = (value/max)*100;
+								var big = $("<div></div>",{"class": "bar " + "barcms" }).css({ "width": width + "%"});
+								big.append($("<span class='tooltiptext'>"+ value + " (" + cms_percent +"%)</span>"));
+								bars.push(big);
 							}                            
                         }
                         return bars;
@@ -213,7 +218,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
         	},
         	{ data: 'total_avg', visible: true, orderable: true, width: '80px',className: 'export'  },
         	{ data: 'max_total_avg', visible: false},
-        	{ data: 'percentage_increase', visible: true, orderable: true, width: '80px',className: 'export'   }
+        	{ data: 'percentage_increase', visible: true, orderable: true, width: '80px',className: 'export'}
     	]
 	} );
 });

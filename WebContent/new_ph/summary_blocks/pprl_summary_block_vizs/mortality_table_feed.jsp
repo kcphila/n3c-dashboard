@@ -25,9 +25,9 @@
         {"value":"common_cnt", "label":"Duplicates"},
         {"value":"additional_in_pprl", "label":"<i class='fas fa-square'>&nbsp;</i> PPRL Mortality Enhancement"},
         {"value":"additional_in_pprl_download", "label":"PPRL Mortality Enhancement"},
-        {"value":"viz_total", "label":"# of Records By Data Source"},
-        {"value":"total", "label":"Total"},
-        {"value":"percentage_increase", "label":"% Increase"}
+        {"value":"viz_total", "label":"Total Data"},
+        {"value":"total", "label":"Total (#)"},
+        {"value":"percentage_increase", "label":"% Total"}
     ],
     "rows" : 
 <c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">

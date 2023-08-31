@@ -146,7 +146,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
     	order: false,
     	bInfo : false,
      	columns: [
-     		{ data: 'variable_type', visible: true, orderable: false, width: '130px',className: 'export' },
+     		{ data: 'variable_type', visible: true, orderable: false, width: '140px',className: 'export' },
      		{ data: 'ehr_death_table', visible: true, orderable: false, width: '100px', className: 'ehrtext export', render : DataTable.render.number( null, null, 0, '' )},
      		{ data: 'pprl_3_source_mortality_and_death', visible: false, orderable: false, className: 'export', render : DataTable.render.number( null, null, 0, '' )  },
         	{ data: 'common_cnt', visible: false, orderable: false,className: 'export', render : DataTable.render.number( null, null, 0, '' )  },
@@ -168,16 +168,25 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
      			render: function(data, type, row, meta){
      				var large_div = $("<div></div>", {"class": "test"});
      				var viz_div = $("<div></div>", {"class": "bar-chart-bar count"});
+     				
+     				var mortality_percent = row['percentage_increase'];
+     				var ehr_percent = (100 - mortality_percent).toFixed(2);
+     				
      				viz_div.append(function(){
 						var bars = [];
 						for (const [key, value] of Object.entries(row)) {
 							if (key == 'ehr_death_table'){
-								var width = (value/data)*100
-								bars.push($("<div></div>",{"class": "bar " + "barehr" }).css({ "width": width + "%"}))
+								var width = (value/data)*100;
+								var big = $("<div></div>",{"class": "bar " + "barehr" }).css({ "width": width + "%"});
+								big.append($("<span class='tooltiptext'>"+ value.toLocaleString() + " (" + ehr_percent +"%)</span>"));
+								bars.push(big);
+								
 							}
 							if (key == 'additional_in_pprl'){
-								var width = (value/data)*100
-								bars.push($("<div></div>",{"class": "bar " + "barmortality" }).css({ "width": width + "%"}))
+								var width = (value/data)*100;
+								var big = $("<div></div>",{"class": "bar " + "barmortality" }).css({ "width": width + "%"});
+								big.append($("<span class='tooltiptext'>"+ value.toLocaleString() + " (" + mortality_percent +"%)</span>"));
+								bars.push(big);
 							}                            
                         }
                         return bars;

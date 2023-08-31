@@ -51,8 +51,8 @@
         {"value":"covid_unknown_int", "label":"dummy1"},
         {"value":"covid_positive", "label":"<i class='fas fa-square'>&nbsp;</i> COVID Positive"},
         {"value":"covid_positive_int", "label":"dummy2"},
-        {"value":"test", "label":"Number of Patients Mapped into Variant Data By Viral Variant and Patient COVID Status"},
-        {"value":"total", "label":"Total"},
+        {"value":"test", "label":"Total Data"},
+        {"value":"total", "label":"Total (#)"},
         {"value":"total_int", "label":"dummy3"},
         {"value":"max_total", "label":"dummy4"}
     ],

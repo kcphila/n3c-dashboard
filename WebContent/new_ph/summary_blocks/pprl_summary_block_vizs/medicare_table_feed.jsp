@@ -26,10 +26,10 @@
         {"value":"common_cnt", "label":"Avg Duplicates"},
         {"value":"additional_in_cms", "label":"<i class='fas fa-square'>&nbsp;</i> Avg Medicare Enhancement"},
         {"value":"additional_in_cms_download", "label":"Avg Medicare Enhancement"},
-        {"value":"viz_total_avg", "label":"Avg # of Records Per Patient By Record Type and Data Source"},
-        {"value":"total_avg", "label":"Total"},
+        {"value":"viz_total_avg", "label":"Total Data"},
+        {"value":"total_avg", "label":"Total (#)"},
         {"value":"max_total_avg", "label":"dummy"},
-        {"value":"percentage_increase", "label":"% Increase"}
+        {"value":"percentage_increase", "label":"% Total"}
     ],
     "rows" : 
 <c:forEach items="${ages.rows}" var="row" varStatus="rowCounter">
