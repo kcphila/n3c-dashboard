@@ -10,17 +10,21 @@
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<option value="pprl_1">PPRL Data Enhancement Overview</option>
-		<optgroup label="CMS (Medicare & Medicaid)">
-			<option value="pprl_2">Demographics</option>
-			<option value="pprl_3">COVID Factors</option>
+		<optgroup label="Medicare">
+			<option value="pprl_2">Medicare Demographics</option>
+			<option value="pprl_3">Medicare COVID Factors</option>
+		</optgroup>
+		<optgroup label="Medicaid">
+			<option value="pprl_4">Medicaid Demographics</option>
+			<option value="pprl_5">Medicaid COVID Factors</option>
 		</optgroup>
 		<optgroup label="Viral Variants">
-			<option value="pprl_4">Demographics</option>
-			<option value="pprl_5">COVID Factors</option>
+			<option value="pprl_6">Viral Variants Demographics</option>
+			<option value="pprl_7">Viral Variants COVID Factors</option>
 		</optgroup>
-		<optgroup label="Mortalities">
-			<option value="pprl_6">Demographics</option>
-			<option value="pprl_7">COVID Factors</option>
+		<optgroup label="Mortality">
+			<option value="pprl_8">Mortality Demographics</option>
+			<option value="pprl_9">Mortality COVID Factors</option>
 		</optgroup>
 	</select>
 </div>
@@ -33,6 +37,8 @@
 	<div id="pprl_5" class="group"></div>
 	<div id="pprl_6" class="group"></div>
 	<div id="pprl_7" class="group"></div>
+	<div id="pprl_8" class="group"></div>
+	<div id="pprl_9" class="group"></div>
 </div>
 
 <script>
