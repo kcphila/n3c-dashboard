@@ -2,34 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-
-
 <style>
-
-table.dataTable.compact tbody th, table.dataTable.compact tbody td{
+.summary table.dataTable.compact tbody th, table.dataTable.compact tbody td{
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
 
-.table th, .table td, 
-table.dataTable thead th, table.dataTable thead td{
+.summary .table th, .table td, 
+.summary table.dataTable thead th, table.dataTable thead td{
 	border-bottom: 2px solid #e9e9e9;
 	border-top: 0px;
-}
-
-div.dt-buttons {
-	margin-top: 25px;
-}
-
-
-
-#questions li{
-	font-size: 1.3rem;
-}
-
-.feature_viz_section{
-/* 	padding-bottom: 30px;  */
-/* 	border-bottom: 6px dashed lightgray; */
 }
 
 .feature_sub_heading{
@@ -44,28 +26,21 @@ div.dt-buttons {
 }
 
 .summary_heading{
-/* 	border-bottom: 3px solid #C9D3E8;  */
-/* 	border-top: 3px solid #C9D3E8;  */
 	padding-bottom: 10px; 
 	padding-top: 10px; 
 	display: inline-block;
 }
 
 .color_header2{
-/* 	color: #007bff; */
-/* 	font-style: italic; */
 	font-weight: 600;
 	font-size: 1.2rem;
 }
 
 .limitation_link{
-/* 	color: inherit; */
     text-decoration: underline;
 }
 
 .summary_description{
-/* 	border-top: 3px solid #C9D3E8;  */
-/* 	border-bottom: 3px solid #C9D3E8;  */
 	padding: 20px;
 	background: #edf6ff;
 }
@@ -161,22 +136,16 @@ div.dt-buttons {
 
 <script>
 
-
 	// manage incremental loading of panels on inner nav bar clicks
-	//
 	var ${param.block}_crumbs = '';
 	
 	function ${param.block}_load(selection) {
 		var $this = $("#${param.block}-"+selection);
 		var which = $this.attr('src');
 
-		//// console.log("in main click", "${param.block}-"+selection, "which", which)
 		if (!${param.block}_crumbs.includes(selection)) {
 			$this.load("<util:applicationRoot/>/new_ph/"+which);
 			${param.block}_crumbs = ${param.block}_crumbs + selection;
-			//// console.log({
-			//	which : which
-			//});
 		}
 	};
 	
