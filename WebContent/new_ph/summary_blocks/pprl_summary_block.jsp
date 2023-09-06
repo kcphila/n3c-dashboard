@@ -3,7 +3,8 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <style>
-.summary table.dataTable.compact tbody th, table.dataTable.compact tbody td{
+.summary table.dataTable.compact tbody th, 
+.summary table.dataTable.compact tbody td{
 	padding-top: 0px;
 	padding-bottom: 0px;
 }

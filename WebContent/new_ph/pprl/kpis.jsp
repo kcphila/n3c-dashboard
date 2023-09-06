@@ -20,6 +20,28 @@
 			</jsp:include>
 		</div>
 	</c:when>
+	<c:when test="${param.block == 'pprl_3' }">
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicare_all.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto kpi_border_right">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicare_covid_all.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicare_covid_view.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+	</c:when>
 	<c:when test="${param.block == 'pprl_4' }">
 		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
@@ -33,6 +55,28 @@
 		</div>
 		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicaid_view.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+	</c:when>
+	<c:when test="${param.block == 'pprl_5' }">
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicaid_all.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto kpi_border_right">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicaid_covid_all.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicaid_covid_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>

@@ -116,6 +116,9 @@
 							<c:if test="${param.environmental_filter2}">
 								<jsp:include page="filters_new/environmental2.jsp"/>
 							</c:if>
+							<c:if test="${param.hosp_filter}">
+								<jsp:include page="filters_new/hosp_status.jsp"/>
+							</c:if>
 							<c:if test="${param.long_filter}">
 								<jsp:include page="filters_new/long_status.jsp"/>
 							</c:if>
@@ -553,6 +556,24 @@
 								<div id="${param.block}-longstatus" src="<c:out value='${longstatus_url}'/>"></div>
 							</div>
 						</c:if>
+						
+						<c:if test="${not empty param.hospstatus_panel}">
+							<c:url value="${param.hospstatus_panel}" var="hospstatus_url">
+		  						<c:param name="panel" value="${param.hospstatus_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-hospstatus" src="<c:out value='${hospstatus_url}'/>"></div>
+							</div>
+						</c:if>
+						
 						<c:if test="${not empty param.vaccinationstatus_panel}">
 							<c:url value="${param.vaccinationstatus_panel}" var="vaccinationstatus_url">
 		  						<c:param name="panel" value="${param.vaccinationstatus_panel}" />
@@ -983,6 +1004,26 @@ $(document).ready(function() {
 	        });
 	        
 	        ${param.block}_constrain("longstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-hospstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-hospstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("hospstatus",  selected[0].join('|'));
 		    ${param.block}_refreshHistograms();
            }
 	});
@@ -1628,6 +1669,12 @@ function ${param.block}_filter_clear() {
 			${param.block}_constrain("longstatus", '');
 		}
 	</c:if>
+	<c:if test="${param.hosp_filter}">
+	if ($('#${param.block}-hospstatus-select').val().length > 0) {
+		$('#${param.block}-hospstatus-select').multiselect('clearSelection');
+		${param.block}_constrain("hospstatus", '');
+	}
+</c:if>
 	<c:if test="${param.mortality_filter}">
 		if ($('#${param.block}-mortality-select').val().length > 0) {
 			$('#${param.block}-mortality-select').multiselect('clearSelection');
@@ -1691,6 +1738,7 @@ var ${param.block}_ConditionoccurrenceArray = new Array();
 var ${param.block}_MortalityArray = new Array();
 var ${param.block}_VaccinationstatusArray = new Array();
 var ${param.block}_LongstatusArray = new Array();
+var ${param.block}_HospstatusArray = new Array();
 var ${param.block}_CovidstatusArray = new Array();
 
 var ${param.block}_SeverityMetArray = new Array();
@@ -1806,6 +1854,7 @@ function ${param.block}_refreshHistograms(just_viz) {
     	${param.block}_refreshMortalityArray(data);
     	${param.block}_refreshVaccinationstatusArray(data);
     	${param.block}_refreshLongstatusArray(data);
+    	${param.block}_refreshHospstatusArray(data);
     	${param.block}_refreshCovidstatusArray(data);
     	
     	${param.block}_refreshSeverityMetArray(data);
@@ -1937,6 +1986,9 @@ function ${param.block}_refreshHistograms(just_viz) {
     }
     if (${param.block}_loaded("longstatus")) {
     	${param.block}_longstatus_refresh();
+    }
+    if (${param.block}_loaded("hospstatus")) {
+    	${param.block}_hospstatus_refresh();
     }
     if (${param.block}_loaded("covidstatus")) {
     	${param.block}_covidstatus_refresh();
@@ -2152,6 +2204,14 @@ function ${param.block}_loaded(selection) {
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="LongstatusArray"/>
 	<jsp:param name="primary" value="long"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="HospstatusArray"/>
+	<jsp:param name="primary" value="hosp"/>
 	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 

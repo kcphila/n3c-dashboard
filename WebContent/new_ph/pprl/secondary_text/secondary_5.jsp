@@ -5,7 +5,7 @@
   						<u style="white-space:nowrap;">COVID+ patients <i class="fa fa-info" aria-hidden="true"></i></u> 
   						<span class="sr-only">, or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</span>
 					</a>
-				</span>&nbsp;Patients in the N3C Data Enclave who have been linked to Medicare data through PPRL. 
+				</span>&nbsp;Patients in the N3C Data Enclave who have been linked to Medicaid data through PPRL. 
 		For additional information, <a onclick="${param.block}limitlink(); return false;" href="#limitations-section">see limitations below.</a>
 	</p>
 </div>

@@ -17,6 +17,7 @@ var sequential_1_5 = ["#D6BFD9", "#b88fbd", "#995fa0", "#6c4270", "#4D2F50"];
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 
 var longstatus_range = ["#4833B2", "#a6a6a6"];
+var hospstatus_range = ["#4833B2", "#a6a6a6"];
 var covidstatus_range = ["#4833B2", "#a6a6a6"];
 var mortality_range = ["#4833B2", "#a6a6a6"];
 var medicationoccurrence_range = ["#007bff", "#09405A", "#a6a6a6"];
@@ -218,6 +219,16 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </sql:query>
 <c:forEach items="${longstatus.rows}" var="row" varStatus="rowCounter">
 	var longstatus_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="hospstatus" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct hosp_abbrev as secondary, hosp_seq as secondary_seq, hosp as secondary_name
+		  from n3c_dashboard.hospstatus_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${hospstatus.rows}" var="row" varStatus="rowCounter">
+	var hospstatus_legend = ${row.jsonb_pretty};
 </c:forEach>
 
 <sql:query var="covid" dataSource="jdbc/N3CPublic">

@@ -6,7 +6,7 @@
 	<jsp:param name="block" value="pprl_2" />
 	<jsp:param name="block_header" value="Demographics of Patients Linked to Medicare" />
 	<jsp:param name="folder" value="pprl" />
-	<jsp:param name="topic_description" value="secondary_1" />
+	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="Patients in the Enclave linked to Medicare" />
 

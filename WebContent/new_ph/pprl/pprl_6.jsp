@@ -6,7 +6,7 @@
 	<jsp:param name="block" value="pprl_6" />
 	<jsp:param name="block_header" value="Demographics of Patients Linked to Viral Variant Data" />
 	<jsp:param name="folder" value="pprl" />
-	<jsp:param name="topic_description" value="secondary_3" />
+	<jsp:param name="topic_description" value="secondary_6" />
 	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="Patients in the Enclave linked to Viral Variant Data" />
 
