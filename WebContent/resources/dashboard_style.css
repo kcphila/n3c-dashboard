@@ -945,19 +945,18 @@ h5{
 	flex-grow: 1;
 }
 
-/* -------------- Panel ---------------------  */
+/* -------------- Limitations ---------------------  */
 
-/* .panel-primary{ */
-/* 	border-color: rgba(100,42,107,1); */
-/* } */
+.lim-head{
+	color: #4833B2;
+	font-size: 18px;
+}
 
+.limitations_drop .card-body{
+	max-width: 1000px;
+	margin: auto;
+}
 
-/* .panel-primary>.panel-heading{ */
-/* 	background-color: rgba(100,42,107,1); */
-/* 	font-size: 14px; */
-/*     font-weight: bold; */
-/* } */
-
-/* .panel-footer{ */
-/*     padding: 0px 15px 0px 15px; */
-/* } */
+.limitations_drop .list-p{
+	margin-bottom:0px;
+}
