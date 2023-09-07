@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <style>
 .summary table.dataTable.compact tbody th, 
@@ -54,9 +55,8 @@
 			<div class="col-12 col-lg-6 text-center summary_description" >
 				<h4 class="text-center mt-2 color_header2">What is PPRL?</h4>
 				<p style="text-align: left;">Privacy-Preserving Record Linkage (PPRL) enables N3C to ingest and link supplemental 
-				datasets against the OMOP-formatted EHR data in the Enclave.  PPRL currently supports linking EHR records to data 
-				from supplemental data sources including CMS (Medicare & Medicaid), mortality information from government agencies, 
-				and viral variant information from sequencing centers.</p>
+				datasets against the OMOP-formatted EHR data in the Enclave. PPRL currently supports linking EHR records to CMS 
+				(Medicare & Medicaid), mortality information from government agencies, and viral variant information from sequencing centers.</p>
 				<a class="btn btn-dash" href="https://covid.cd2h.org/PPRL" target="_blank">Learn More <i class="fas fa-external-link-alt"></i></a>
 			</div>
 			<div class="col-12 col-lg-6">
@@ -89,7 +89,8 @@
 				<jsp:include page="pprl_summary_block_vizs/medicare_table.jsp">
 					<jsp:param name="target_div" value="medicare_viz" />
 				</jsp:include>
-				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicare data through PPRL.</p>
+				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicare data through PPRL. <br>
+				An * indicates that these numbers have the possibility of changing based on new data generated in planned future raw data analysis.</p>
 			</div>
 		</div>
 			
@@ -101,7 +102,8 @@
 				<jsp:include page="pprl_summary_block_vizs/medicaid_table.jsp">
 					<jsp:param name="target_div" value="medicaid_viz" />
 				</jsp:include>
-				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicaid data through PPRL.</p>
+				<p class="viz_footer"><strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicaid data through PPRL. <br>
+				An * indicates that these numbers have the possibility of changing based on new data generated in planned future raw data analysis.</p>
 			</div>
 		</div>
 		
@@ -133,7 +135,35 @@
 			
 		
 	</div>
-</div>			
+</div>		
+<c:if test="${not empty param.did}">
+	<div class="row" id="question-limits">
+		<sql:query var="questions" dataSource="jdbc/N3CPublic">
+			select limitations from n3c_dashboard.dashboard where did = ?::INTEGER
+			 <sql:param>${param.did}</sql:param>
+			</sql:query>
+		<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">
+			<div id="${param.block}limitations-section" class="col col-12">
+				<div class="accordion limitations_drop" id="${param.block}limitations_drop">
+					<div class="card">
+						<a Title="expand/collapse limitations section" href="" class="accordion-toggle" data-toggle="collapse" data-target="#${param.block}limitcollapseOne" aria-expanded="false" aria-controls="${param.block}collapseOne">
+							<div class="card-header" id="${param.block}limitheadingOne">
+								<h4 class="mb-0"><span class="accordion_text">Limitations</span>
+									<span style="display:inline; float:right;" class="btn btn-link btn-block text-left collapsed icon-btn p-0 accordion-toggle"></span>
+								</h4>
+							</div>
+						</a>
+						<div id="${param.block}limitcollapseOne" class="collapse" aria-labelledby="${param.block}limitheadingOne" data-parent="#${param.block}limitations_drop">
+							<div class="card-body">
+								${row.limitations}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+</c:if>	
 
 <script>
 

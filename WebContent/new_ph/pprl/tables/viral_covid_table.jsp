@@ -156,7 +156,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'medicaid_covid_factors',
+    	      filename: 'viral_variant_covid_factors',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',

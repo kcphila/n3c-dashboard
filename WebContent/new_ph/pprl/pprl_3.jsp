@@ -14,7 +14,7 @@
 	
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="long_filter" value="true" />
-	<jsp:param name="hosp_filter" value="true" />
+	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
 	
@@ -60,22 +60,22 @@
 			legend_label: 'Longstatus',
 			legend_data: longstatus_legend,
 			donutRatio: 0.5
-		}], 'hospstatus' : [{
-			dimension: 'hospstatus',
-			domName: '#pprl_3_hospstatus_viz',
+		}], 'race' : [{
+			dimension: 'race',
+			domName: '#pprl_3_race_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: hospstatus_range,
-			legend_label: 'Hospstatus',
-			legend_data: hospstatus_legend,
+			colorscale: race_range,
+			legend_label: 'Race',
+			legend_data: race_legend,
 			donutRatio: 0.5
 		}]
 	}"/>
 	
 	<jsp:param name="vaccinationstatus_panel" value="pprl/vaccinated.jsp"/>
 	<jsp:param name="longstatus_panel" value="pprl/longstatus.jsp"/>
-	<jsp:param name="hospstatus_panel" value="pprl/hospstatus.jsp"/>
+	<jsp:param name="race_panel" value="pprl/race.jsp"/>
 	<jsp:param name="mortality_panel" value="pprl/mortality.jsp"/>
 	<jsp:param name="severity_panel" value="pprl/severity.jsp"/>
 
@@ -88,6 +88,6 @@
 </jsp:include>
 
 <script>
-	var panels = ["severity", "vaccinationstatus", "mortality", "longstatus", "hospstatus"];
+	var panels = ["severity", "vaccinationstatus", "mortality", "longstatus", "race"];
 	pprl_3_panel(panels);
 </script>

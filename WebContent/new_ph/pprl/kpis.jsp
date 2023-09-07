@@ -31,11 +31,6 @@
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-3 my-auto kpi_border_right">
-			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicare_covid_all.jsp">
-				<jsp:param name="block" value="${param.block}" />
-			</jsp:include>
-		</div>
 		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicare_covid_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
@@ -70,11 +65,6 @@
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-3 my-auto kpi_border_right">
-			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicaid_covid_all.jsp">
-				<jsp:param name="block" value="${param.block}" />
-			</jsp:include>
-		</div>
 		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/pprl_enhance/medicaid_covid_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
@@ -98,6 +88,23 @@
 			</jsp:include>
 		</div>
 	</c:when>
+	<c:when test="${param.block == 'pprl_7' }">
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/viral_all.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/viral_covid_view.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+	</c:when>
 	<c:when test="${param.block == 'pprl_8' }">
 		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
@@ -111,6 +118,23 @@
 		</div>
 		<div class="col col-12 col-md-3 my-auto">
 			<jsp:include page="../kpis/block3_kpis/pprl_enhance/mortality_view.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+	</c:when>
+	<c:when test="${param.block == 'pprl_9' }">
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/mortality_all.jsp">
+				<jsp:param name="block" value="${param.block}" />
+			</jsp:include>
+		</div>
+		<div class="col col-12 col-md-3 my-auto">
+			<jsp:include page="../kpis/block3_kpis/pprl_enhance/mortality_covid_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>

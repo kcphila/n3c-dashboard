@@ -17,11 +17,8 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'longstatus':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'mortality':
-		table.column(3).search(constraint, true, false, true).draw();	
-		break;
 	case 'vaccinated':
-		table.column(4).search(constraint, true, false, true).draw();	
+		table.column(3).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -156,7 +153,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'medicaid_covid_factors',
+    	      filename: 'viral_variant_covid_factors',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -179,11 +176,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	order: [[0, 'asc']],
      	columns: [
      		{ data: 'race', visible: true, orderable: true},
-        	{ data: 'severity', visible: true, orderable: true, orderData: [10]  },
+        	{ data: 'severity', visible: true, orderable: true, orderData: [9]  },
         	{ data: 'long', visible: true, orderable: true},
-        	{ data: 'mortality', visible: true, orderable: true },
         	{ data: 'vaccinated', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [6] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'race_abbrev', visible: false },
         	{ data: 'race_seq', visible: false },
@@ -191,8 +187,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'severity_seq', visible: false },
         	{ data: 'long_abbrev', visible: false },
         	{ data: 'long_seq', visible: false },
-        	{ data: 'mortality_abbrev', visible: false },
-        	{ data: 'mortality_seq', visible: false },
         	{ data: 'vaccinated_abbrev', visible: false },
         	{ data: 'vaccinated_seq', visible: false }
     	]

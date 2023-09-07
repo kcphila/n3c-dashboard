@@ -3,12 +3,12 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <jsp:include page="../block3.jsp">
-	<jsp:param name="block" value="pprl_5" />
-	<jsp:param name="block_header" value="COVID Factors of Patients Linked to Medicaid" />
+	<jsp:param name="block" value="pprl_7" />
+	<jsp:param name="block_header" value="COVID Factors of Patients Linked to Viral Variant Data" />
 	<jsp:param name="folder" value="pprl" />
-	<jsp:param name="topic_description" value="secondary_5" />
+	<jsp:param name="topic_description" value="secondary_7" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="COVID+ Patients in the Enclave linked to Medicaid" />
+	<jsp:param name="topic_title" value="COVID+ Patients in the Enclave linked to Viral Variant Data" />
 
 	<jsp:param name="kpis" value="pprl/kpis.jsp" />
 	
@@ -22,7 +22,7 @@
 	
 	<jsp:param name="viz_properties" value="{'severity' : [{
 			dimension: 'severity',
-			domName: '#pprl_5_severity_viz',
+			domName: '#pprl_7_severity_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -32,7 +32,7 @@
 			donutRatio: 0.5
 		}], 'mortality' : [{
 			dimension: 'mortality',
-			domName: '#pprl_5_mortality_viz',
+			domName: '#pprl_7_mortality_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -42,7 +42,7 @@
 			donutRatio: 0.5
 		}], 'vaccinationstatus' : [{
 			dimension: 'vaccinationstatus',
-			domName: '#pprl_5_vaccinationstatus_viz',
+			domName: '#pprl_7_vaccinationstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -52,7 +52,7 @@
 			donutRatio: 0.5
 		}], 'longstatus' : [{
 			dimension: 'longstatus',
-			domName: '#pprl_5_longstatus_viz',
+			domName: '#pprl_7_longstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -62,7 +62,7 @@
 			donutRatio: 0.5
 		}], 'race' : [{
 			dimension: 'race',
-			domName: '#pprl_5_race_viz',
+			domName: '#pprl_7_race_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -80,14 +80,14 @@
 	<jsp:param name="severity_panel" value="pprl/severity.jsp"/>
 
 
-	<jsp:param name="datatable" value="pprl/tables/medicaid_covid_table.jsp"/>
-	<jsp:param name="datatable_div" value="pprl_pprl_5"/>
-	<jsp:param name="datatable_feed" value="pprl/feeds/medicaid_covid.jsp"/>
+	<jsp:param name="datatable" value="pprl/tables/viral_covid_table.jsp"/>
+	<jsp:param name="datatable_div" value="pprl_pprl_7"/>
+	<jsp:param name="datatable_feed" value="pprl/feeds/viral_covid.jsp"/>
 	<jsp:param name="datatable_kpis" value="patient_count"/>
 
 </jsp:include>
 
 <script>
 	var panels = ["severity", "vaccinationstatus", "mortality", "longstatus", "race"];
-	pprl_5_panel(panels);
+	pprl_7_panel(panels);
 </script>

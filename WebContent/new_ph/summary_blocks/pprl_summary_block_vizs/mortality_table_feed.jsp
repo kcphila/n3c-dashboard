@@ -6,13 +6,13 @@
 		from (select
 			'Mortalities' as variable_type,
 			ehr_death_table,
-			pprl_3_source_mortality_and_death,
-			(pprl_3_source_mortality_and_death - additional_in_pprl) as common_cnt,
-			additional_in_pprl,
-			additional_in_pprl as additional_in_pprl_download,
-			(ehr_death_table + additional_in_pprl) as viz_total,
-			(ehr_death_table + additional_in_pprl) as total,
-			round(percentage_increase::numeric,2) as percentage_increase
+			(pprl_3_source_mortality_and_death + aditional_cms_not_in_mort_death) as pprl_3_source_mortality_and_death,
+			total_mort - (additional_in_pprl + aditional_cms_not_in_mort_death) as common_cnt,
+			(additional_in_pprl + aditional_cms_not_in_mort_death) as additional_in_pprl,
+			(additional_in_pprl + aditional_cms_not_in_mort_death) as additional_in_pprl_download,
+			total_mort as viz_total,
+			total_mort as total,
+			round((((additional_in_pprl + aditional_cms_not_in_mort_death)/total_mort::numeric)*100),2) as percentage_increase
 		  from n3c_dashboard_ph.mor_all_cnt
 		  where type = 'All Patient in EHR'
 	) as done;

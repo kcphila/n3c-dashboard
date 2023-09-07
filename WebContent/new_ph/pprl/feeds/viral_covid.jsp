@@ -8,7 +8,7 @@
 				severity_abbrev, severity_seq, 
 				long_abbrev, long_seq,
 				mortality_abbrev, mortality_seq, 
-				vaccinated_abbrev, vaccinated_seq 
+				vaccinated_abbrev, vaccinated_seq
 			from (select
 					race,
 					severity,
@@ -16,6 +16,7 @@
 						when death_indicator = 1 then 'Mortality'
 						else 'No Mortality'
 					end as mortality,
+					
 					case
 						when vaccinated = 1 then 'Vaccinated'
 						else 'Unknown'
@@ -29,13 +30,12 @@
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
 					end as patient_count
-				  from n3c_dashboard_ph.cms_rcmorvac_csd
-				  where race is not null
+				  from n3c_dashboard_ph.viral_rcvacmor_csd
+				  where race is not null 
 				  and severity is not null
 				  and death_indicator is not null
 				  and vaccinated is not null
 				  and long_covid_indicator is not null
-				  and cms_type = 'Medicaid'
 		  	) as foo
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.sev_map

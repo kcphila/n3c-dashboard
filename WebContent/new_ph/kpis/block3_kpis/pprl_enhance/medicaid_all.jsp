@@ -28,7 +28,7 @@
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of Individuals within the Enclave who have had been linked to Medicaid through PPRL.</p>" aria-describedby="tooltip">
+										<p>Total Number of Individuals within the Enclave who have been linked to Medicaid through PPRL.</p>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Medicaid Linked Patients in Enclave <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>

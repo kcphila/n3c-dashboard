@@ -14,10 +14,10 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.cms_sevhosvacmort_csd
-				  where severity is not null
+				  from n3c_dashboard_ph.cms_rcmorvac_csd
+				  where race is not null
+				  and severity is not null
 				  and death_indicator is not null
-				  and covid_associated_hospitalization_indicator is not null
 				  and vaccinated is not null
 				  and long_covid_indicator is not null
 				  and cms_type = 'Medicare'
@@ -34,11 +34,11 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total COVID+ Medicare Linked Patients in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Medicare Linked Patients in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of COVID+ Individuals within the view who have been linked to Medicare through PPRL.</p>
+										<p>Total Number of Individuals within the view who have been linked to Medicare through PPRL.</p>
 										<small class='kpi-small-note'>Even without filters, this total may be less than the total number of linked patients due to the suppression of counts less than 20.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Patients in View* <i class="fas fa-info-circle"></i>
 	 											</p> 

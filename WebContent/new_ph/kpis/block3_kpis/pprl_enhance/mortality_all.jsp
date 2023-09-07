@@ -11,6 +11,8 @@
  		end as count
 			from (
 				select pprl_3_source_mortality_and_death as count from n3c_dashboard_ph.mor_all_cnt where type = 'All Patient in EHR'
+				UNION
+				select aditional_cms_not_in_mort_death as count from n3c_dashboard_ph.mor_all_cnt where type = 'All Patient in EHR'
 			) as foo;
 </sql:query>
 	
@@ -28,7 +30,7 @@
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of Individuals within the Enclave who have had been linked to Mortality through PPRL.</p>" aria-describedby="tooltip">
+										<p>Total Number of Individuals within the Enclave who have been linked to Mortality through PPRL.</p>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Mortality Linked Patients in Enclave <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>

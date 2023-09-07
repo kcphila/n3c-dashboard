@@ -24,7 +24,7 @@
 		UNION 
 		select
 		'Mortality' as label, 
-		(select  pprl_3_source_mortality_and_death from n3c_dashboard_ph.mor_all_cnt where type = 'All Patient in EHR') as count,
+		(select  total_mort from n3c_dashboard_ph.mor_all_cnt where type = 'All Patient in EHR') as count,
 		'mortality' as viz_id,
 		'#007bff' as color
 		from n3c_dashboard_ph.mort_mort_all_csd

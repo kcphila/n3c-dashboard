@@ -8,13 +8,13 @@ function ${param.block}_constrain_table(filter, constraint) {
 
 	
 	switch (filter) {
-	case 'severity':
+	case 'race':
 		table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'longstatus':
+	case 'severity':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'hospstatus':
+	case 'longstatus':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
 	case 'mortality':
@@ -178,19 +178,19 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'severity', visible: true, orderable: true },
-        	{ data: 'long', visible: true, orderable: true, orderData: [7] },
-        	{ data: 'hosp', visible: true, orderable: true },
+     		{ data: 'race', visible: true, orderable: true},
+        	{ data: 'severity', visible: true, orderable: true, orderData: [10]  },
+        	{ data: 'long', visible: true, orderable: true},
         	{ data: 'mortality', visible: true, orderable: true },
         	{ data: 'vaccinated', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [6] },
         	{ data: 'patient_count', visible: false },
+        	{ data: 'race_abbrev', visible: false },
+        	{ data: 'race_seq', visible: false },
         	{ data: 'severity_abbrev', visible: false },
         	{ data: 'severity_seq', visible: false },
         	{ data: 'long_abbrev', visible: false },
         	{ data: 'long_seq', visible: false },
-        	{ data: 'hosp_abbrev', visible: false },
-        	{ data: 'hosp_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
         	{ data: 'mortality_seq', visible: false },
         	{ data: 'vaccinated_abbrev', visible: false },
