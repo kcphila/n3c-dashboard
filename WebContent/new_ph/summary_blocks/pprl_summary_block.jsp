@@ -3,6 +3,9 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
+<jsp:include page="../../resources/dash_style.css" flush="true" />
+
+
 <style>
 .summary table.dataTable.compact tbody th, 
 .summary table.dataTable.compact tbody td{
