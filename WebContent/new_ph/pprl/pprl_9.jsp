@@ -15,7 +15,6 @@
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="long_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
-	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
 	
 	<jsp:param name="toggle" value="true" />

@@ -18,13 +18,13 @@
 			<option value="pprl_4">Medicaid Demographics</option>
 			<option value="pprl_5">Medicaid COVID Factors</option>
 		</optgroup>
-		<optgroup label="Viral Variants">
-			<option value="pprl_6">Viral Variants Demographics</option>
-			<option value="pprl_7">Viral Variants COVID Factors</option>
-		</optgroup>
 		<optgroup label="Mortality">
 			<option value="pprl_8">Mortality Demographics</option>
 			<option value="pprl_9">Mortality COVID Factors</option>
+		</optgroup>
+		<optgroup label="Viral Variants">
+			<option value="pprl_6">Viral Variants Demographics</option>
+			<option value="pprl_7">Viral Variants COVID Factors</option>
 		</optgroup>
 	</select>
 </div>
