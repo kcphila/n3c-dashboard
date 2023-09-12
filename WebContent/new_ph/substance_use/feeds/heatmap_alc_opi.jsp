@@ -7,11 +7,11 @@
 				alcohol_condition as condition1, opioids as condition2,
 				coalesce(all_display, '0') as all_display, all_count,
 				coalesce(covid_display, '0') as covid_display, covid_count,
-				alcohol_condition_seqnum as condition1_seqnum,
-				opioids_seqnum as condition2_seqnum
+				alcohol_map.secondary_seqnum as condition1_seqnum,
+				opioid_map.secondary_seqnum as condition2_seqnum
 			from n3c_dashboard_ph.substance_alc_opi_combined
-			natural join n3c_dashboard.alcohol_map
-			natural join n3c_dashboard.opioid_map
+			join n3c_dashboard.alcohol_map on (alcohol_condition = alcohol_map.secondary)
+			join n3c_dashboard.opioid_map on (opioids = opioid_map.secondary)
 		  ) as done;
 </sql:query>
 {

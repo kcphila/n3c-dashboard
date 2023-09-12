@@ -9,8 +9,8 @@
 
 <graph:graph>
     <sql:query var="projects" dataSource="jdbc/N3CPublic" >
-    	select alcohol_condition_seqnum,alcohol_condition,sum(all_count) as all_count,sum(covid_count) as covid_count
-    	from n3c_dashboard.alcohol_map natural join n3c_dashboard_ph.substance_alc_opi_combined
+    	select secondary_seqnum as alcohol_condition_seqnum,alcohol_condition,sum(all_count) as all_count,sum(covid_count) as covid_count
+    	from n3c_dashboard.alcohol_map join n3c_dashboard_ph.substance_alc_opi_combined on (alcohol_condition = secondary)
     	group by 1,2 order by 1;
     </sql:query>
     <c:forEach items="${projects.rows}" var="row">
@@ -28,8 +28,8 @@
     </c:forEach>
 		
     <sql:query var="persons" dataSource="jdbc/N3CPublic" >
-    	select opioids_seqnum,opioids,sum(all_count) as all_count,sum(covid_count) as covid_count
-    	from n3c_dashboard.opioid_map natural join n3c_dashboard_ph.substance_alc_opi_combined
+    	select secondary_seqnum as opioids_seqnum,opioids,sum(all_count) as all_count,sum(covid_count) as covid_count
+    	from n3c_dashboard.opioid_map join n3c_dashboard_ph.substance_alc_opi_combined on (opioids = secondary)
     	group by 1,2 order by 1;
     </sql:query>
     <c:forEach items="${persons.rows}" var="row">
@@ -47,14 +47,14 @@
     </c:forEach>
 
     <sql:query var="edges" dataSource="jdbc/N3CPublic">
-         select alcohol_condition_seqnum,opioids_seqnum,
+         select alcohol_map.secondary_seqnum as alcohol_condition_seqnum,opioid_map.secondary_seqnum as opioids_seqnum,
          greatest(all_count,1) as all_weight,
          greatest(covid_count,1) as covid_weight,
          all_count,
          covid_count
          from n3c_dashboard_ph.substance_alc_opi_combined
-         natural join n3c_dashboard.alcohol_map
-         natural join n3c_dashboard.opioid_map;
+         join n3c_dashboard.alcohol_map on (alcohol_map.secondary = alcohol_condition)
+         join n3c_dashboard.opioid_map on (opioid_map.secondary = opioids);
     </sql:query>
     <c:forEach items="${edges.rows}" var="row">
     	<c:choose>

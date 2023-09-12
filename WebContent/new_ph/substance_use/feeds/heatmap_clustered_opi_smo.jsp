@@ -9,8 +9,8 @@
 
 <graph:graph>
     <sql:query var="projects" dataSource="jdbc/N3CPublic" >
-    	select opioids_seqnum,opioids,sum(all_count) as all_count,sum(covid_count) as covid_count
-    	from n3c_dashboard.opioid_map natural join n3c_dashboard_ph.substance_opi_smo_combined
+    	select secondary_seqnum as opioids_seqnum,opioids,sum(all_count) as all_count,sum(covid_count) as covid_count
+    	from n3c_dashboard.opioid_map join n3c_dashboard_ph.substance_opi_smo_combined on (opioids = secondary)
     	group by 1,2 order by 1;
     </sql:query>
     <c:forEach items="${projects.rows}" var="row">
@@ -47,14 +47,14 @@
     </c:forEach>
 
     <sql:query var="edges" dataSource="jdbc/N3CPublic">
-         select opioids_seqnum,secondary_seqnum,
+         select opioid_map.secondary_seqnum as opioids_seqnum,smoking_map.secondary_seqnum,
          greatest(all_count,1) as all_weight,
          greatest(covid_count,1) as covid_weight,
          all_count,
          covid_count
          from n3c_dashboard_ph.substance_opi_smo_combined
-         natural join n3c_dashboard.opioid_map
-         join n3c_dashboard.smoking_map on (secondary = smoking_status);
+         join n3c_dashboard.opioid_map on (opioids = opioid_map.secondary)
+         join n3c_dashboard.smoking_map on (smoking_map.secondary = smoking_status);
     </sql:query>
     <c:forEach items="${edges.rows}" var="row">
     	<c:choose>

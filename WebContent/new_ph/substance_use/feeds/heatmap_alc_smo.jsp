@@ -7,11 +7,11 @@
 				alcohol_condition as condition1, smoking_status as condition2,
 				coalesce(all_display, '0') as all_display, all_count,
 				coalesce(covid_display, '0') as covid_display, covid_count,
-				alcohol_condition_seqnum as condition1_seqnum,
-				secondary_seqnum as condition2_seqnum
+				alcohol_map.secondary_seqnum as condition1_seqnum,
+				smoking_map.secondary_seqnum as condition2_seqnum
 			from n3c_dashboard_ph.substance_alc_smo_combined
-			natural join n3c_dashboard.alcohol_map
-			join n3c_dashboard.smoking_map on (secondary = smoking_status)
+			join n3c_dashboard.alcohol_map on (alcohol_condition = alcohol_map.secondary)
+			join n3c_dashboard.smoking_map on (smoking_map.secondary = smoking_status)
 		  ) as done;
 </sql:query>
 {
