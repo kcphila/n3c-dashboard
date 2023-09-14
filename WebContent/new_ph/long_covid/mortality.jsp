@@ -101,6 +101,4 @@ function ${param.block}_mortality_refresh() {
 	};
 }
 
-${param.block}_mortality_refresh();
-
 </script>

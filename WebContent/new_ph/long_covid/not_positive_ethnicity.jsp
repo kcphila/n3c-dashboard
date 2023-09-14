@@ -38,6 +38,4 @@ function ${param.block}_ethnicity_refresh() {
 	localHorizontalBarChart_new(${param.block}_EthnicityArray, properties);
 }
 
-${param.block}_ethnicity_refresh();
-
 </script>

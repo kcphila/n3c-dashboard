@@ -42,5 +42,4 @@ function ${param.block}_before_refresh() {
 	localHorizontalStackedBarChart_new(${param.block}_BeforeAfterArray, properties);	
 }
 
-${param.block}_before_refresh();
 </script>

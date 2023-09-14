@@ -26,7 +26,7 @@
 	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',
-			domName: '#substance_7_age_viz',
+			domName: '#substance_use_7_age_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -36,7 +36,7 @@
 			donutRatio: 0.5
 		}], 'race' : [{
 			dimension: 'race',
-			domName: '#substance_6_race_viz',
+			domName: '#substance_use_7_race_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -46,7 +46,7 @@
 			donutRatio: 0.5
 		}], 'sex' : [{
 			dimension: 'sex',
-			domName: '#substance_7_sex_viz',
+			domName: '#substance_use_7_sex_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -56,7 +56,7 @@
 			donutRatio: 0.5
 		}], 'ethnicity' : [{
 			dimension: 'ethnicity',
-			domName: '#substance_7_ethnicity_viz',
+			domName: '#substance_use_7_ethnicity_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -66,53 +66,53 @@
 			donutRatio: 0.5
 		}], 'alcohol_status' : [{
 			dimension: 'alcohol',
-			domName: '#substance_7_alcohol_viz',
+			domName: '#substance_use_7_alcoholstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
 			colorscale: alcohol_status_range,
-			legend_label: 'Alcohol',
+			legend_label: 'AlcoholStatus',
 			legend_data: alcohol_status_legend,
 			donutRatio: 0.5
 		}], 'smoking_status' : [{
 			dimension: 'smoking',
-			domName: '#substance_7_smoking_viz',
+			domName: '#substance_use_7_smokingstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
 			colorscale: smoking_status_range,
-			legend_label: 'Smoking',
+			legend_label: 'SmokingStatus',
 			legend_data: smoking_status_legend,
 			donutRatio: 0.5
 		}], 'opioids_status' : [{
 			dimension: 'opioids',
-			domName: '#substance_7_opioids_viz',
+			domName: '#substance_use_7_opioidsstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
 			colorscale: opioids_status_range,
-			legend_label: 'Opioids',
-			legend_data: opioids_legend,
+			legend_label: 'OpioidsStatus',
+			legend_data: opioids_status_legend,
 			donutRatio: 0.5
 		}], 'cannabis_status' : [{
 			dimension: 'cannabis',
-			domName: '#substance_7_cannabis_viz',
+			domName: '#substance_use_7_cannabisstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
 			colorscale: cannabis_status_range,
-			legend_label: 'Cannabis',
+			legend_label: 'CannabisStatus',
 			legend_data: cannabis_status_legend,
 			donutRatio: 0.5
 		}], 'covid_status' : [{
 			dimension: 'covid',
-			domName: '#substance_7_covid_viz',
+			domName: '#substance_use_7_covidstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: covid_status_range,
-			legend_label: 'COVID',
-			legend_data: covid_status_legend,
+			colorscale: covidstatus_range,
+			legend_label: 'Covidstatus',
+			legend_data: covidstatus_legend,
 			donutRatio: 0.5
 		}]
 	}"/>

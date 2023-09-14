@@ -102,6 +102,4 @@ function ${param.block}_vaccinationstatus_refresh() {
 	};
 }
 
-${param.block}_vaccinationstatus_refresh();
-
 </script>

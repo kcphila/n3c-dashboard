@@ -170,7 +170,7 @@ function ${param.block}_age_refresh() {
 	localHorizontalStackedBarChart_new(${param.block}_SymptomAgeArray, properties);	
 }
 
-${param.block}_age_refresh();
+
 
 function ${param.block}_race_refresh() {
 	var properties = {
@@ -186,7 +186,7 @@ function ${param.block}_race_refresh() {
 	localHorizontalStackedBarChart_new(${param.block}_SymptomRaceArray, properties);	
 }
 
-${param.block}_race_refresh();
+
 
 function ${param.block}_sex_refresh() {
 	var properties = {
@@ -202,7 +202,7 @@ function ${param.block}_sex_refresh() {
 	localHorizontalStackedBarChart_new(${param.block}_SymptomSexArray, properties);	
 }
 
-${param.block}_sex_refresh();
+
 
 function ${param.block}_ethnicity_refresh() {
 	var properties = {
@@ -218,5 +218,5 @@ function ${param.block}_ethnicity_refresh() {
 	localHorizontalStackedBarChart_new(${param.block}_SymptomEthnicityArray, properties);	
 }
 
-${param.block}_ethnicity_refresh();
+
 </script>

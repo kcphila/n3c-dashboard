@@ -39,6 +39,4 @@ function ${param.block}_age_refresh() {
 	localHorizontalBarChart_new(${param.block}_AgeArray, properties);
 }
 
-${param.block}_age_refresh();
-
 </script>

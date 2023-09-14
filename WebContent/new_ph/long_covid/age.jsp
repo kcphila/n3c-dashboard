@@ -101,6 +101,4 @@ function ${param.block}_age_refresh() {
 	
 }
 
-${param.block}_age_refresh();
-
 </script>

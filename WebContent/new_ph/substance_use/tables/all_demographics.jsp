@@ -166,7 +166,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'smoking', visible: true, orderable: true },
         	{ data: 'opioids', visible: true, orderable: true },
         	{ data: 'cannabis', visible: true, orderable: true },
-        	{ data: 'covid', visible: true, orderable: true },
+        	{ data: 'status', visible: true, orderable: true },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [10] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },
@@ -176,7 +176,18 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'sex_abbrev', visible: false },
         	{ data: 'sex_seq', visible: false },
         	{ data: 'ethnicity_abbrev', visible: false },
-        	{ data: 'ethnicity_seq', visible: false }
+        	{ data: 'ethnicity_seq', visible: false },
+        	{ data: 'alcohol_abbrev', visible: false },
+        	{ data: 'alcohol_seq', visible: false },
+        	{ data: 'smoking_abbrev', visible: false },
+        	{ data: 'smoking_seq', visible: false },
+        	{ data: 'opioids_abbrev', visible: false },
+        	{ data: 'opioids_seq', visible: false },
+        	{ data: 'cannabis_abbrev', visible: false },
+        	{ data: 'cannabis_seq', visible: false },
+        	{ data: 'status_abbrev', visible: false },
+        	{ data: 'status_seq', visible: false }
+        	
     	]
 	} );
 	

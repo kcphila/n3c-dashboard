@@ -105,23 +105,20 @@
 								<p style="text-align:center; color: gray; font-size: 8px; margin-bottom: 10px;"><i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i></p>
 							</c:if>
 
+							<c:if test="${param.alcohol_filter}">
+								<jsp:include page="filters_new/alcohol.jsp"/>
+							</c:if>
+							<c:if test="${param.alcohol_status_filter}">
+								<jsp:include page="filters_new/alcohol_status.jsp"/>
+							</c:if>
+							<c:if test="${param.cannabis_status_filter}">
+								<jsp:include page="filters_new/cannabis_status.jsp"/>
+							</c:if>
 							<c:if test="${param.cciscore_filter}">
 								<jsp:include page="filters_new/cciscore.jsp"/>
 							</c:if>
 							<c:if test="${param.covid_filter}">
 								<jsp:include page="filters_new/covid_status.jsp"/>
-							</c:if>
-							<c:if test="${param.alcohol_status_filter}">
-								<jsp:include page="filters_new/alcohol_status.jsp"/>
-							</c:if>
-							<c:if test="${param.smoking_status_filter}">
-								<jsp:include page="filters_new/smoking_status.jsp"/>
-							</c:if>
-							<c:if test="${param.opioids_status_filter}">
-								<jsp:include page="filters_new/opioids_status.jsp"/>
-							</c:if>
-							<c:if test="${param.cannabis_status_filter}">
-								<jsp:include page="filters_new/cannabis_status.jsp"/>
 							</c:if>
 							<c:if test="${param.environmental_filter}">
 								<jsp:include page="filters_new/environmental.jsp"/>
@@ -144,8 +141,17 @@
 							<c:if test="${param.mortality_filter}">
 								<jsp:include page="filters_new/mortality.jsp"/>
 							</c:if>
+							<c:if test="${param.opioids_status_filter}">
+								<jsp:include page="filters_new/opioids_status.jsp"/>
+							</c:if>
+							<c:if test="${param.opioids_filter}">
+								<jsp:include page="filters_new/opioids.jsp"/>
+							</c:if>
 							<c:if test="${param.severity_filter}">
 								<jsp:include page="filters_new/severity.jsp"/>
+							</c:if>
+							<c:if test="${param.smoking_status_filter}">
+								<jsp:include page="filters_new/smoking_status.jsp"/>
 							</c:if>
 							<c:if test="${param.vaccinated_filter}">
 								<jsp:include page="filters_new/vaccinated.jsp"/>
@@ -205,12 +211,8 @@
 							<c:if test="${param.paxlovid_filter}">
 								<jsp:include page="filters_new/paxlovid.jsp"/>
 							</c:if>
-							<c:if test="${param.opioids_filter}">
-								<jsp:include page="filters_new/opioids.jsp"/>
-							</c:if>
-							<c:if test="${param.alcohol_filter}">
-								<jsp:include page="filters_new/alcohol.jsp"/>
-							</c:if>
+							
+							
 						</div>
 					</div>
 				</c:if>
@@ -2018,7 +2020,6 @@ var ${param.block}_OpioidSmokingCovidArray = new Array();
 
 var ${param.block}_AlcoholStatusArray = new Array();
 var ${param.block}_CannabisStatusArray = new Array();
-var ${param.block}_CovidStatusArray = new Array();
 var ${param.block}_OpioidsStatusArray = new Array();
 var ${param.block}_SmokingStatusArray = new Array();
 
@@ -2134,7 +2135,6 @@ function ${param.block}_refreshHistograms(just_viz) {
 
     	${param.block}_refreshAlcoholStatusArray(data);
     	${param.block}_refreshCannabisStatusArray(data);
-    	${param.block}_refreshCovidStatusArray(data);
     	${param.block}_refreshOpioidsStatusArray(data);
     	${param.block}_refreshSmokingStatusArray(data);
     };
@@ -3117,14 +3117,6 @@ function ${param.block}_loaded(selection) {
 	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 	<jsp:param name="array" value="CannabisStatusArray"/>
 	<jsp:param name="primary" value="cannabis"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="CovidStatusArray"/>
-	<jsp:param name="primary" value="covid"/>
 	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
 

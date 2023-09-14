@@ -115,6 +115,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	},
        	paging: true,
     	pageLength: 10,
+    	initComplete: function() {
+       		// this is necessary to populate the histograms for the panel's initial D3 rendering
+       		${param.block}_refreshHistograms();
+       	},
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
@@ -136,8 +140,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 		$('#${param.block}_btn_clear').addClass("show_clear");
 	} );
 
-	// this is necessary to populate the histograms for the panel's initial D3 rendering
-	${param.block}_refreshHistograms();
+	
 
 	
 });

@@ -16,16 +16,24 @@ var severity_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941", "#a
 var sequential_1_5 = ["#D6BFD9", "#b88fbd", "#995fa0", "#6c4270", "#4D2F50"];
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 
-var longstatus_range = ["#4833B2", "#a6a6a6"];
-var hospstatus_range = ["#4833B2", "#a6a6a6"];
-var covidstatus_range = ["#4833B2", "#a6a6a6"];
-var mortality_range = ["#4833B2", "#a6a6a6"];
+
 var medicationoccurrence_range = ["#007bff", "#09405A", "#a6a6a6"];
 var alcohol_range = ["#007bff", "#09405A", "#a6a6a6"];
 var opioid_range = ["#007bff", "#09405A", "#a6a6a6"];
 var smoking_range = ["#007bff", "#09405A", "#a6a6a6"];
 
+var mortality_range = ["#4833B2", "#a6a6a6"];
+var longstatus_range = ["#4833B2", "#a6a6a6"];
+var hospstatus_range = ["#4833B2", "#a6a6a6"];
+var covidstatus_range = ["#4833B2", "#a6a6a6"];
+var alcohol_status_range = ["#4833B2", "#a6a6a6"];
+var smoking_status_range = ["#4833B2", "#a6a6a6"];
+var opioids_status_range = ["#4833B2", "#a6a6a6"];
+var cannabis_status_range = ["#4833B2", "#a6a6a6"];
 
+
+var result_range = ["#4833B2", "#AD1181", "#a6a6a6"];
+var diagnosis_range = ["#09405A", "#AD1181", "#8406D1"];
 
 var sex_range3 = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6", "#8B8B8B"];
 var sex_range_no_other = ["#4833B2", "#ffa600", "#a6a6a6"];
@@ -39,18 +47,10 @@ var age_range_adult1 = ["#762AC6", "#4C1EA5", "#a6a6a6",  "#8B8B8B", "#762AC6", 
 var age_range_adult2 = ["#762AC6", "#6512BD", "#4C1EA5", "#33298D"];
 var age_range_peds1 = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE", "#a6a6a6", "#a6a6a6","#a6a6a6","#a6a6a6"];
 var age_range_peds2 = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE"];
-var alcohol_status_range = ["#4833B2", "#a6a6a6"];
-var alcohol_status_legend = [ { "secondary": "Positive", "secondary_seq": 1, "secondary_name": "Positive" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
-var smoking_status_range = ["#4833B2", "#a6a6a6"];
-var smoking_status_legend = [ { "secondary": "Positive", "secondary_seq": 1, "secondary_name": "Positive" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
-var opioids_status_range = ["#4833B2", "#a6a6a6"];
-var opioids_status_legend = [ { "secondary": "Positive", "secondary_seq": 1, "secondary_name": "Positive" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
-var cannabis_status_range = ["#4833B2", "#a6a6a6"];
-var cannabis_status_legend = [ { "secondary": "Positive", "secondary_seq": 1, "secondary_name": "Positive" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
-var covid_status_range = ["#4833B2", "#a6a6a6"];
-var covid_status_legend = [ { "secondary": "Positive", "secondary_seq": 1, "secondary_name": "Positive" }, { "secondary": "Unknown", "secondary_seq": 2, "secondary_name": "Unknown" } ];
-var result_range = ["#4833B2", "#AD1181", "#a6a6a6"];
-var diagnosis_range = ["#09405A", "#AD1181", "#8406D1"];
+
+
+
+
 
 var categorical2 = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 var categorical8 = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#007BFF", "#000000", "#a6a6a6"];
@@ -249,9 +249,45 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 	var covidstatus_legend = ${row.jsonb_pretty};
 </c:forEach>
 
+<sql:query var="alcohol" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct alcohol_abbrev as secondary, alcohol_seq as secondary_seq, alcohol as secondary_name
+		  from n3c_dashboard.alcoholstatus_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${alcohol.rows}" var="row" varStatus="rowCounter">
+	var alcohol_status_legend = ${row.jsonb_pretty};
+</c:forEach>
 
+<sql:query var="smoking" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct smoking_abbrev as secondary, smoking_seq as secondary_seq, smoking as secondary_name
+		  from n3c_dashboard.smokingstatus_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${smoking.rows}" var="row" varStatus="rowCounter">
+	var smoking_status_legend = ${row.jsonb_pretty};
+</c:forEach>
 
+<sql:query var="opioids" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct opioids_abbrev as secondary, opioids_seq as secondary_seq, opioids as secondary_name
+		  from n3c_dashboard.opioidsstatus_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${opioids.rows}" var="row" varStatus="rowCounter">
+	var opioids_status_legend = ${row.jsonb_pretty};
+</c:forEach>
 
+<sql:query var="cannabis" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct cannabis_abbrev as secondary, cannabis_seq as secondary_seq, cannabis as secondary_name
+		  from n3c_dashboard.cannabisstatus_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${cannabis.rows}" var="row" varStatus="rowCounter">
+	var cannabis_status_legend = ${row.jsonb_pretty};
+</c:forEach>
 
 
 

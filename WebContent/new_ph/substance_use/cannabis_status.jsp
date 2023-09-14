@@ -78,6 +78,8 @@ function ${param.block}_cannabisstatus_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: cannabis_status_range,
+			legend_label: 'CannabisStatus',
+			legend_data: cannabis_status_legend,
 			donutRatio: 0.5
 		}
 

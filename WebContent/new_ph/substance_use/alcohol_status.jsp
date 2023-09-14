@@ -76,12 +76,11 @@ function ${param.block}_alcoholstatus_refresh() {
 			domName: '#${param.block}_alcoholstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
-			ordered: 1,
+			ordered: 0,
 			colorscale: alcohol_status_range,
-			legend_label: 'Alcohol',
+			legend_label: 'AlcoholStatus',
 			legend_data: alcohol_status_legend,
-			donutRatio: 0.5,
-			noseq: 1
+			donutRatio: 0.5
 		}
 
 	var id = $("#${param.block}-mode").find('.text-primary').attr('id');

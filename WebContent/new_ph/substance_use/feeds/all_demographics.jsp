@@ -3,9 +3,14 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select age, race, sex, ethnicity, alcohol, smoking, opioids, cannabis, covid, patient_display, patient_count,
+	from (select age, race, sex, ethnicity, alcohol, smoking, opioids, cannabis, status, patient_display, patient_count,
 				age_abbrev, age_seq, race_abbrev, race_seq,
-				sex_abbrev, sex_seq, ethnicity_abbrev, ethnicity_seq
+				sex_abbrev, sex_seq, ethnicity_abbrev, ethnicity_seq,
+				alcohol_abbrev, alcohol_seq,
+				smoking_abbrev, smoking_seq,
+				opioids_abbrev, opioids_seq,
+				cannabis_abbrev, cannabis_seq,
+				status_abbrev, status_seq
 			from (select
 					COALESCE (age_bin, 'Unknown') as age,
 					race,
@@ -30,7 +35,7 @@
 					case
 						when covid_indicator = 1 then 'Positive'
 						else 'Unknown'
-					end as covid,
+					end as status,
 					num_patients as patient_display,
 					case
 						when (num_patients = '<20' or num_patients is null) then 0
@@ -42,6 +47,11 @@
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.ethnicity_map
+		  	natural join n3c_dashboard.alcoholstatus_map
+		  	natural join n3c_dashboard.smokingstatus_map
+		  	natural join n3c_dashboard.opioidsstatus_map
+		  	natural join n3c_dashboard.cannabisstatus_map
+		  	natural join n3c_dashboard.covidstatus_map
 		  ) as done;
 </sql:query>
 {
@@ -54,17 +64,9 @@
         {"value":"smoking", "label":"Smoking"},
         {"value":"opioids", "label":"Opioids"},
         {"value":"cannabis", "label":"Cannabis"},
-        {"value":"covid", "label":"COVID"},
+        {"value":"status", "label":"COVID"},
         {"value":"patient_display", "label":"Patient Count"},
-        {"value":"patient_count", "label":"Patient actual"},
-        {"value":"age_abbrev", "label":"dummy1"},
-        {"value":"age_seq", "label":"dummy2"},
-        {"value":"race_abbrev", "label":"dummy3"},
-        {"value":"race_seq", "label":"dummy4"},
-        {"value":"sex_abbrev", "label":"dummy5"},
-        {"value":"sex_seq", "label":"dummy6"},
-        {"value":"ethnicity_abbrev", "label":"dummy7"},
-        {"value":"ethnicity_seq", "label":"dummy8"}
+        {"value":"patient_count", "label":"Patient actual"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

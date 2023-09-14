@@ -38,6 +38,4 @@ function ${param.block}_sex_refresh() {
 	localHorizontalBarChart_new(${param.block}_SexArray, properties);
 }
 
-${param.block}_sex_refresh();
-
 </script>

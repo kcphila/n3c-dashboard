@@ -202,10 +202,6 @@ function ${param.block}_age_refresh() {
 	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusAgeArray, properties);	
 }
 
-
-
-${param.block}_age_refresh();
-
 function ${param.block}_race_refresh() {
 	var properties = {
 			domName: '${param.block}_race_viz',
@@ -224,8 +220,6 @@ function ${param.block}_race_refresh() {
    	d3.select("#${param.block}_race_viz").select("svg").remove();
 	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusRaceArray, properties);
 }
-
-${param.block}_race_refresh();
 
 function ${param.block}_sex_refresh() {
 	var properties = {
@@ -246,8 +240,6 @@ function ${param.block}_sex_refresh() {
 	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusSexArray, properties);	
 }
 
-${param.block}_sex_refresh();
-
 function ${param.block}_ethnicity_refresh() {
 	var properties = {
 			domName: '${param.block}_ethnicity_viz',
@@ -267,6 +259,6 @@ function ${param.block}_ethnicity_refresh() {
 	localHorizontalGroupedStackedBarChart_new(${param.block}_StatusEthnicityArray, properties);
 }
 
-${param.block}_ethnicity_refresh();
+
 
 </script>

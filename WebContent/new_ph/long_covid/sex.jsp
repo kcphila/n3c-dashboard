@@ -102,6 +102,4 @@ function ${param.block}_sex_refresh() {
 	}
 }
 
-${param.block}_sex_refresh();
-
 </script>

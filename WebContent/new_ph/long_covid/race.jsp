@@ -101,6 +101,6 @@ function ${param.block}_race_refresh() {
 	};
 }
 
-${param.block}_race_refresh();
+
 
 </script>

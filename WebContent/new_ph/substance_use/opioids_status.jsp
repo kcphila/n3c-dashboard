@@ -78,6 +78,8 @@ function ${param.block}_opioidsstatus_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: opioids_status_range,
+			legend_label: 'OpioidsStatus',
+			legend_data: opioids_status_legend,
 			donutRatio: 0.5
 		}
 

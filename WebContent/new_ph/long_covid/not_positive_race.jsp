@@ -38,6 +38,5 @@ function ${param.block}_race_refresh() {
 	localHorizontalBarChart_new(${param.block}_RaceArray, properties);
 }
 
-${param.block}_race_refresh();
 
 </script>

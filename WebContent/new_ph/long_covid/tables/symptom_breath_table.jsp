@@ -172,6 +172,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	snapshot: null,
        	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       		// this is necessary to populate the histograms for the panel's initial D3 rendering
+       		${param.block}_refreshHistograms();
        	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
@@ -221,8 +223,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	}
 	} );
 
-	// this is necessary to populate the histograms for the panel's initial D3 rendering
-	${param.block}_refreshHistograms();
+	
 
 	
 });

@@ -77,7 +77,9 @@ function ${param.block}_covidstatus_refresh() {
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: covid_status_range,
+			colorscale: covidstatus_range,
+			legend_label: 'Covidstatus',
+			legend_data: covidstatus_legend,
 			donutRatio: 0.5
 		}
 
@@ -88,11 +90,11 @@ function ${param.block}_covidstatus_refresh() {
 	d3.select("#${param.block}_covidstatus_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart_new(${param.block}_CovidStatusArray, properties);
+		localPieChart_new(${param.block}_CovidstatusArray, properties);
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_new(${param.block}_CovidStatusArray, properties);
+		localHorizontalBarChart_new(${param.block}_CovidstatusArray, properties);
 	} else {
-		localPercentageBarChart_new(${param.block}_CovidStatusArray, properties);
+		localPercentageBarChart_new(${param.block}_CovidstatusArray, properties);
 	};
 	
 }
