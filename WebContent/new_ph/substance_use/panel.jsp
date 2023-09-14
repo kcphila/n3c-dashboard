@@ -53,6 +53,7 @@ text.active {
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
+		<option value="substance_use_7">All Demographics</option>
 		<option value="substance_use_1">Alcohol Demographics</option>
 		<option value="substance_use_2">Opioids Demographics</option>
 		<option value="substance_use_3">Smoking Demographics</option>		
@@ -69,6 +70,7 @@ text.active {
 	<div id="substance_use_4" class="group"></div>
 	<div id="substance_use_5" class="group"></div>
 	<div id="substance_use_6" class="group"></div>
+	<div id="substance_use_7" class="group"></div>
 </div>
 
 <script>

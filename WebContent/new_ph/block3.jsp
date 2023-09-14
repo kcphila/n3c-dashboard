@@ -69,6 +69,7 @@
 							 || not empty param.region_filter || not empty param.sotrovimabmeds_filter || not empty param.cciscore_filter
 							 || not empty param.smoking_filter || not empty param.environmental_filter || not empty param.environmental_filter2
 							 || not empty param.beforeaftersotrovimab_filter || not empty param.comorbidities_filter || not empty param.mortality_filter
+							 || not empty param.alcohol_status_filter || not empty param.opioids_status_filter || not empty param.cannabis_status_filter
 							 || not empty param.vaccinated_filter || not empty param.opioids_filter || not empty param.alcohol_filter}">
 					<div id="${param.block}filter_checks" class="panel-primary filter-section filter_checks">
 						<div class="filters-label">
@@ -109,6 +110,18 @@
 							</c:if>
 							<c:if test="${param.covid_filter}">
 								<jsp:include page="filters_new/covid_status.jsp"/>
+							</c:if>
+							<c:if test="${param.alcohol_status_filter}">
+								<jsp:include page="filters_new/alcohol_status.jsp"/>
+							</c:if>
+							<c:if test="${param.smoking_status_filter}">
+								<jsp:include page="filters_new/smoking_status.jsp"/>
+							</c:if>
+							<c:if test="${param.opioids_status_filter}">
+								<jsp:include page="filters_new/opioids_status.jsp"/>
+							</c:if>
+							<c:if test="${param.cannabis_status_filter}">
+								<jsp:include page="filters_new/cannabis_status.jsp"/>
 							</c:if>
 							<c:if test="${param.environmental_filter}">
 								<jsp:include page="filters_new/environmental.jsp"/>
@@ -522,6 +535,86 @@
 							</c:url>
 							<div class="col-12 col-md-6 small-viz-panel">
 								<div id="${param.block}-medicationoccurrence" src="<c:out value='${medicationoccurrence_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.alcohol_status_panel}">
+							<c:url value="${param.alcohol_status_panel}" var="alcohol_status_url">
+		  						<c:param name="panel" value="${param.alcohol_status_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-alcohol_status" src="<c:out value='${alcohol_status_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.covid_status_panel}">
+							<c:url value="${param.covid_status_panel}" var="covid_status_url">
+		  						<c:param name="panel" value="${param.covid_status_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-covid_status" src="<c:out value='${covid_status_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.cannabis_status_panel}">
+							<c:url value="${param.cannabis_status_panel}" var="cannabis_status_url">
+		  						<c:param name="panel" value="${param.cannabis_status_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-cannabis_status" src="<c:out value='${cannabis_status_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.opioids_status_panel}">
+							<c:url value="${param.opioids_status_panel}" var="opioids_status_url">
+		  						<c:param name="panel" value="${param.opioids_status_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-opioids_status" src="<c:out value='${opioids_status_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.smoking_status_panel}">
+							<c:url value="${param.smoking_status_panel}" var="smoking_status_url">
+		  						<c:param name="panel" value="${param.smoking_status_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-smoking_status" src="<c:out value='${smoking_status_url}'/>"></div>
 							</div>
 						</c:if>
 						<c:if test="${not empty param.covidstatus_panel}">
@@ -984,6 +1077,66 @@ $(document).ready(function() {
 	        });
 	        
 	        ${param.block}_constrain("covidstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-alcoholstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-alcoholstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("alcoholstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-cannabisstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-cannabisstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("cannabisstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-opioidsstatus-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-opioidsstatus-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("opioidsstatus",  selected[0].join('|'));
 		    ${param.block}_refreshHistograms();
            }
 	});
@@ -1711,6 +1864,36 @@ function ${param.block}_filter_clear() {
 			${param.block}_constrain("paxlovid", '');
 		}
 	</c:if>
+	<c:if test="${param.alcohol_status_filter}">
+		if ($('#${param.block}-alcoholstatus-select').val().length > 0) {
+			$('#${param.block}-alcoholstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("alcoholstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.smoking_status_filter}">
+		if ($('#${param.block}-smokingstatus-select').val().length > 0) {
+			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("smokingstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.opioids_status_filter}">
+		if ($('#${param.block}-opioidsstatus-select').val().length > 0) {
+			$('#${param.block}-opioidsstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("opioidsstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.cannabis_status_filter}">
+		if ($('#${param.block}-cannabisstatus-select').val().length > 0) {
+			$('#${param.block}-cannabisstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("cannabisstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.covid_status_filter}">
+		if ($('#${param.block}-covidstatus-select').val().length > 0) {
+			$('#${param.block}-covidstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("covidstatus", '');
+		}
+	</c:if>
 	
 	$("#${param.datatable_div}-table").DataTable().search('');
 	$("#${param.datatable_div}-table").DataTable().columns().search('').draw();
@@ -1833,6 +2016,12 @@ var ${param.block}_AlcoholSmokingCovidArray = new Array();
 var ${param.block}_OpioidSmokingAllArray = new Array();
 var ${param.block}_OpioidSmokingCovidArray = new Array();
 
+var ${param.block}_AlcoholStatusArray = new Array();
+var ${param.block}_CannabisStatusArray = new Array();
+var ${param.block}_CovidStatusArray = new Array();
+var ${param.block}_OpioidsStatusArray = new Array();
+var ${param.block}_SmokingStatusArray = new Array();
+
 function ${param.block}_refreshHistograms(just_viz) {
     if (typeof just_viz === 'undefined'){
     	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
@@ -1942,6 +2131,12 @@ function ${param.block}_refreshHistograms(just_viz) {
     	${param.block}_refreshAlcoholSmokingCovidArray(data);
     	${param.block}_refreshOpioidSmokingAllArray(data);
     	${param.block}_refreshOpioidSmokingCovidArray(data);
+
+    	${param.block}_refreshAlcoholStatusArray(data);
+    	${param.block}_refreshCannabisStatusArray(data);
+    	${param.block}_refreshCovidStatusArray(data);
+    	${param.block}_refreshOpioidsStatusArray(data);
+    	${param.block}_refreshSmokingStatusArray(data);
     };
    	
     
@@ -1990,8 +2185,20 @@ function ${param.block}_refreshHistograms(just_viz) {
     if (${param.block}_loaded("hospstatus")) {
     	${param.block}_hospstatus_refresh();
     }
-    if (${param.block}_loaded("covidstatus")) {
+    if (${param.block}_loaded("alcohol_status")) {
+    	${param.block}_alcoholstatus_refresh();
+    }
+    if (${param.block}_loaded("cannabis_status")) {
+    	${param.block}_cannabisstatus_refresh();
+    }
+    if (${param.block}_loaded("covid_status")) {
     	${param.block}_covidstatus_refresh();
+    }
+    if (${param.block}_loaded("opioids_status")) {
+    	${param.block}_opioidsstatus_refresh();
+    }
+    if (${param.block}_loaded("smoking_status")) {
+    	${param.block}_smokingstatus_refresh();
     }
     if ('${param.block}' === "environment_2"|| '${param.block}' === "environment_3") {
     	${param.block}_environment_refresh();
@@ -2107,7 +2314,7 @@ function ${param.block}_load(selection) {
 	var $this = $("#${param.block}-"+selection);
 	var which = $this.attr('src');
 
-	//// console.log("in main click", "${param.block}-"+selection, "which", which)
+	// console.log("in main click", "${param.block}-"+selection, "which", which)
 	if (!${param.block}_crumbs.includes(selection)) {
 		$this.load("<util:applicationRoot/>/new_ph/"+which);
 		${param.block}_crumbs.push(selection);
@@ -2895,4 +3102,44 @@ function ${param.block}_loaded(selection) {
 	<jsp:param name="primary" value="condition2"/>
 	<jsp:param name="secondary" value="condition1"/>
 	<jsp:param name="count" value="covid_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="AlcoholStatusArray"/>
+	<jsp:param name="primary" value="alcohol"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="CannabisStatusArray"/>
+	<jsp:param name="primary" value="cannabis"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="CovidStatusArray"/>
+	<jsp:param name="primary" value="covid"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="OpioidsStatusArray"/>
+	<jsp:param name="primary" value="opioids"/>
+	<jsp:param name="count" value="patient_count"/>
+</jsp:include>
+
+<jsp:include page="singleHistogram.jsp">
+	<jsp:param name="block" value="${param.block}"/>
+	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+	<jsp:param name="array" value="SmokingStatusArray"/>
+	<jsp:param name="primary" value="smoking"/>
+	<jsp:param name="count" value="patient_count"/>
 </jsp:include>
