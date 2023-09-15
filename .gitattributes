@@ -424,12 +424,6 @@ WebContent/new_ph/hlh/kpis.jsp -text
 WebContent/new_ph/hlh/panel2.jsp -text
 WebContent/new_ph/hlh/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/hlh/sex.jsp -text
-WebContent/new_ph/kpis/block2_kpis/adult_patients.jsp -text
-WebContent/new_ph/kpis/block2_kpis/adult_ungrouped.jsp -text
-WebContent/new_ph/kpis/block2_kpis/adult_unknown_vaccinated.jsp -text
-WebContent/new_ph/kpis/block2_kpis/adult_vaccinated.jsp -text
-WebContent/new_ph/kpis/block2_kpis/adult_vaccinated_comorbidities.jsp -text
-WebContent/new_ph/kpis/block2_kpis/all_patients.jsp -text
 WebContent/new_ph/kpis/block2_kpis/all_ungrouped.jsp -text
 WebContent/new_ph/kpis/block2_kpis/all_unknown_vaccinated.jsp -text
 WebContent/new_ph/kpis/block2_kpis/all_vaccinated.jsp -text
