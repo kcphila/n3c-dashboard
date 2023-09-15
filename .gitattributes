@@ -293,11 +293,6 @@ WebContent/new_ph/adult_summary/age2.jsp -text
 WebContent/new_ph/adult_summary/aggregated_table.jsp -text
 WebContent/new_ph/adult_summary/comorbidity.jsp -text
 WebContent/new_ph/adult_summary/ethnicity.jsp -text
-WebContent/new_ph/adult_summary/feeds/severity.jsp -text
-WebContent/new_ph/adult_summary/feeds/ungrouped.jsp -text
-WebContent/new_ph/adult_summary/feeds/unknown_vaccination.jsp -text
-WebContent/new_ph/adult_summary/feeds/vaccinated.jsp -text
-WebContent/new_ph/adult_summary/feeds/vaccinated_comorbidities.jsp -text
 WebContent/new_ph/adult_summary/kpis.jsp -text
 WebContent/new_ph/adult_summary/panel.jsp -text
 WebContent/new_ph/adult_summary/race.jsp -text
