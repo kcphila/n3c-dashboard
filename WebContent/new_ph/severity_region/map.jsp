@@ -17,6 +17,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_region_viz" class="col-12 dash_viz"></div>
 	</div>
 </div>
@@ -31,7 +34,5 @@ function ${param.block}_region_refresh() {
    	d3.select("#${param.block}_region_viz").select("svg").remove();
    	regionalMap(${param.block}_SeverityRegionArray, properties)
 }
-
-${param.block}_region_refresh();
 </script>
 

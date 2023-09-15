@@ -26,6 +26,9 @@
 	<jsp:param name="datatable_kpis" value="patient_count" />
 	<jsp:param name="datatable_kpis2" value="peds_patient_count" />
 	
+	<jsp:param name="only_demo" value="true" />
+	<jsp:param name="statusArray" value="true" />
+	
 	
 </jsp:include>
 

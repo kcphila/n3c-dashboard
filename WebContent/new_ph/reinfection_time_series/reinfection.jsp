@@ -48,6 +48,4 @@ function ${param.block}_age_refresh() {
    	d3.select("#${param.block}_timeline_viz").select("svg").remove();
 	TimeLine2ColumnChart2(${param.block}_InitialCountSevenArray, properties);	
 }
-
-${param.block}_age_refresh();
 </script>

@@ -101,7 +101,4 @@ function ${param.block}_mortality_refresh() {
 		localPercentageBarChart_new(${param.block}_MortalityArray, properties);
 	};
 }
-
-${param.block}_mortality_refresh();
-
 </script>

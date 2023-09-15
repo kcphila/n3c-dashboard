@@ -23,4 +23,5 @@
 	<jsp:param name="datatable_feed" value="environmental/feeds/mortality.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count,mortality_patient_count" />
 
+	<jsp:param name="EnvMortArray" value="true" />
 </jsp:include>

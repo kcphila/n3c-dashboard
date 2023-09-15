@@ -20,6 +20,9 @@
 		<div id="${param.block}legend"></div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_class_viz" class="dash_viz clip"></div>
 	</div>
 </div>

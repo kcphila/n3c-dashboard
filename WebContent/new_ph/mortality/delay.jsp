@@ -17,6 +17,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_delay_viz" class="dash_viz"></div>
 	</div>
 </div>
@@ -31,7 +34,5 @@ function ${param.block}_delay_refresh() {
 	d3.select("#${param.block}_delay_viz").select("svg").remove();
 	mortalityVerticalBarChart(${param.block}_DelayArray, properties);
 }
-
-${param.block}_delay_refresh();
 
 </script>

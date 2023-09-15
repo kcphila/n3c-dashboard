@@ -21,6 +21,8 @@
 	<jsp:param name="datatable_div" value="environmental_environment_2" />
 	<jsp:param name="datatable_feed" value="environmental/feeds/impacted.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count" />
+	
+	<jsp:param name="EnvironmentStatusArray" value="true" />
 
 </jsp:include>
 

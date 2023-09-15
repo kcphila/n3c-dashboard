@@ -18,6 +18,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_paxlovid_viz" class="col-12 dash_viz"></div>
 	</div>
 </div>
@@ -38,6 +41,4 @@ function ${param.block}_visits_refresh() {
    	d3.select("#${param.block}_paxlovid_viz").select("svg").remove();
 	localHorizontalStackedBarChart(${param.block}_CategoryResultArray, properties);
 }
-
-${param.block}_visits_refresh();
 </script>

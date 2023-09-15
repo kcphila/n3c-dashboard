@@ -18,5 +18,4 @@
 	<jsp:param name="datatable" value="paxlovid/viz_tables/hosp_table.jsp" />
 	<jsp:param name="datatable_div" value="paxlovid_paxlovid_drvisits" />
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/pre_hosp.jsp" />
-	
 </jsp:include>

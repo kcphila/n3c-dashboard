@@ -101,7 +101,4 @@ function ${param.block}_longstatus_refresh() {
 		localPercentageBarChart_new(${param.block}_LongstatusArray, properties);
 	};
 }
-
-${param.block}_longstatus_refresh();
-
 </script>

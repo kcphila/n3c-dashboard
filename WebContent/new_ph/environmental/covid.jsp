@@ -102,6 +102,6 @@ function ${param.block}_covidstatus_refresh() {
 	};
 }
 
-${param.block}_covidstatus_refresh();
+
 
 </script>

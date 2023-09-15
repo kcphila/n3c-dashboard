@@ -84,6 +84,12 @@
 	<jsp:param name="datatable_div" value="pprl_pprl_7"/>
 	<jsp:param name="datatable_feed" value="pprl/feeds/viral_covid.jsp"/>
 	<jsp:param name="datatable_kpis" value="patient_count"/>
+	
+	<jsp:param name="SeverityArray" value="true" />
+	<jsp:param name="VaccinationstatusArray" value="true" />
+	<jsp:param name="MortalityArray" value="true" />
+	<jsp:param name="LongstatusArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
 
 </jsp:include>
 

@@ -19,4 +19,6 @@
 	<jsp:param name="datatable" value="long_covid/tables/before_after_table.jsp" />
 	<jsp:param name="datatable_div" value="long_covid_before_after" />
 	<jsp:param name="datatable_feed" value="long_covid/feeds/before_after.jsp" />
+	
+	<jsp:param name="BeforeAfterArray" value="true" />
 </jsp:include>

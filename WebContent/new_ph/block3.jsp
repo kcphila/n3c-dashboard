@@ -159,14 +159,8 @@
 							
 							
 <!------------------------------- Unsorted -->
-							<c:if test="${param.observation_filter}">
-								<jsp:include page="filters/observation.jsp"/>
-							</c:if>
 							<c:if test="${param.symptom_filter}">
 								<jsp:include page="filters_new/symptom.jsp"/>
-							</c:if>
-							<c:if test="${param.comorbidities_filter}">
-								<jsp:include page="filters/comorbidities.jsp"/>
 							</c:if>
 							<c:if test="${param.beforeafter_filter}">
 								<jsp:include page="filters_new/beforeafter.jsp"/>
@@ -837,7 +831,7 @@
 </div>			
 
 <script>
-
+	
 // logic for the filters pin feature
 $('.filters-pin').tooltip();
 function ${param.block}_sticky_toggle(){
@@ -1825,11 +1819,11 @@ function ${param.block}_filter_clear() {
 		}
 	</c:if>
 	<c:if test="${param.hosp_filter}">
-	if ($('#${param.block}-hospstatus-select').val().length > 0) {
-		$('#${param.block}-hospstatus-select').multiselect('clearSelection');
-		${param.block}_constrain("hospstatus", '');
-	}
-</c:if>
+		if ($('#${param.block}-hospstatus-select').val().length > 0) {
+			$('#${param.block}-hospstatus-select').multiselect('clearSelection');
+			${param.block}_constrain("hospstatus", '');
+		}
+	</c:if>
 	<c:if test="${param.mortality_filter}">
 		if ($('#${param.block}-mortality-select').val().length > 0) {
 			$('#${param.block}-mortality-select').multiselect('clearSelection');
@@ -1906,246 +1900,524 @@ function ${param.block}_filter_clear() {
 	
 	
 
+
 // initialize all possible data arrays
-var ${param.block}_DaysArray = new Array();
-var ${param.block}_AgeArray = new Array();
-var ${param.block}_RaceArray = new Array();
-var ${param.block}_EthnicityArray = new Array();
-var ${param.block}_SexArray = new Array();
-var ${param.block}_SeverityArray = new Array();
-var ${param.block}_AlcoholArray = new Array();
-var ${param.block}_OpioidArray = new Array();
-var ${param.block}_SmokingArray = new Array();
-var ${param.block}_DelayArray = new Array();
+<c:if test="${param.raceEthnicityArray}">
+	var ${param.block}_raceEthnicityArray = new Array();
+</c:if>
 
-var ${param.block}_MedicationoccurrenceArray = new Array();
-var ${param.block}_ConditionoccurrenceArray = new Array();
-var ${param.block}_MortalityArray = new Array();
-var ${param.block}_VaccinationstatusArray = new Array();
-var ${param.block}_LongstatusArray = new Array();
-var ${param.block}_HospstatusArray = new Array();
-var ${param.block}_CovidstatusArray = new Array();
+<c:if test="${param.statusArray}">
+	var ${param.block}_statusArray = new Array();
+</c:if>
 
-var ${param.block}_SeverityMetArray = new Array();
-var ${param.block}_SeverityNoMetArray = new Array();
-var ${param.block}_SeverityDiabMetArray = new Array();
-var ${param.block}_SeverityDiabNoMetArray = new Array();
-var ${param.block}_SeverityNoDiabMetArray = new Array();
-var ${param.block}_SeverityNoDiabNoMetArray = new Array();
-var ${param.block}_LongMetArray = new Array();
-var ${param.block}_LongNoMetArray = new Array();
-var ${param.block}_LongDiabMetArray = new Array();
-var ${param.block}_LongDiabNoMetArray = new Array();
-var ${param.block}_LongNoDiabMetArray = new Array();
-var ${param.block}_LongNoDiabNoMetArray = new Array();
-var ${param.block}_MortalityMetArray = new Array();
-var ${param.block}_MortalityNoMetArray = new Array();
-var ${param.block}_MortalityDiabMetArray = new Array();
-var ${param.block}_MortalityDiabNoMetArray = new Array();
-var ${param.block}_MortalityNoDiabMetArray = new Array();
-var ${param.block}_MortalityNoDiabNoMetArray = new Array();
+<c:if test="${param.DaysArray}">
+	var ${param.block}_DaysArray = new Array();
+</c:if>
 
-
-var ${param.block}_raceSeverityArray = new Array();
-var ${param.block}_diagnosisSeverityArray = new Array();
-var ${param.block}_cciscoreSeverityArray = new Array();
-var ${param.block}_vaccinatedSeverityArray = new Array();
-var ${param.block}_medsSeverityArray = new Array();
-var ${param.block}_sotrovimabMedsArray = new Array();
-var ${param.block}_raceEthnicityArray = new Array();
-var ${param.block}_raceSexArray = new Array();
-
-var ${param.block}_comorbidityArray = new Array();
-
-var ${param.block}_ObservationArray = new Array();
-
-var ${param.block}_BeforeAfterArray = new Array();
-
-var ${param.block}_SexSeverityArray = new Array();
-var ${param.block}_SeveritySexArray = new Array();
-
-
-var ${param.block}_SeverityRegionArray = new Array();
-
-var ${param.block}_ObservationAgeArray = new Array();
-var ${param.block}_ObservationSexArray = new Array();
-var ${param.block}_ObservationRaceArray = new Array();
-var ${param.block}_IbservationEthnicityArray = new Array();
-
-var ${param.block}_SymptomAgeArray = new Array();
-var ${param.block}_SymptomSexArray = new Array();
-var ${param.block}_SymptomRaceArray = new Array();
-var ${param.block}_SymptomEthnicityArray = new Array();
-var ${param.block}_SymptomObservationArray = new Array();
-
-
-var ${param.block}_MedicationArray = new Array();
-
-var ${param.block}_StatusAgeArray = new Array();
-var ${param.block}_StatusSexArray = new Array();
-var ${param.block}_StatusRaceArray = new Array();
-var ${param.block}_StatusEthnicityArray = new Array();
-
-var ${param.block}_EnvMortArray = new Array();
-var ${param.block}_MedicationAgeArray = new Array();
-var ${param.block}_EnvironmentStatusArray = new Array();
-var ${param.block}_ClassAgeArray = new Array();
-
-var ${param.block}_AgeSexArray = new Array();
-var ${param.block}_SexAgeArray = new Array();
-
-var ${param.block}_SeverityStatusArray = new Array();
-var ${param.block}_AgeStatusArray = new Array();
-var ${param.block}_RaceStatusArray = new Array();
-var ${param.block}_SexStatusArray = new Array();
-
-var ${param.block}_AgeResultArray = new Array();
-var ${param.block}_SexResultArray = new Array();
-var ${param.block}_RaceResultArray = new Array();
-var ${param.block}_EthnicityResultArray = new Array();
-var ${param.block}_CategoryResultArray = new Array();
-
-var ${param.block}_InitialCountSevenArray = new Array();
-var ${param.block}_IntervalBinArray = new Array();
-
-var ${param.block}_MedicationTSArray = new Array();
-var ${param.block}_MedicationOverallArray = new Array();
-
-var ${param.block}_AlcoholOpioidAllArray = new Array();
-var ${param.block}_AlcoholOpioidCovidArray = new Array();
-var ${param.block}_AlcoholSmokingAllArray = new Array();
-var ${param.block}_AlcoholSmokingCovidArray = new Array();
-var ${param.block}_OpioidSmokingAllArray = new Array();
-var ${param.block}_OpioidSmokingCovidArray = new Array();
-
-var ${param.block}_AlcoholStatusArray = new Array();
-var ${param.block}_CannabisStatusArray = new Array();
-var ${param.block}_OpioidsStatusArray = new Array();
-var ${param.block}_SmokingStatusArray = new Array();
+<c:if test="${param.AgeArray}">
+	var ${param.block}_AgeArray = new Array();
+</c:if>
+<c:if test="${param.RaceArray}">
+	var ${param.block}_RaceArray = new Array();
+</c:if>
+<c:if test="${param.EthnicityArray}">
+	var ${param.block}_EthnicityArray = new Array();
+</c:if>
+<c:if test="${param.SexArray}">
+	var ${param.block}_SexArray = new Array();
+</c:if>
+<c:if test="${param.SeverityArray}">
+	var ${param.block}_SeverityArray = new Array();
+</c:if>
+<c:if test="${param.AlcoholArray}">
+	var ${param.block}_AlcoholArray = new Array();
+</c:if>
+<c:if test="${param.OpioidArray}">
+	var ${param.block}_OpioidArray = new Array();
+</c:if>
+<c:if test="${param.SmokingArray}">
+	var ${param.block}_SmokingArray = new Array();
+</c:if>
+<c:if test="${param.DelayArray}">
+	var ${param.block}_DelayArray = new Array();
+</c:if>
+<c:if test="${param.MedicationoccurrenceArray}">
+	var ${param.block}_MedicationoccurrenceArray = new Array();
+</c:if>
+<c:if test="${param.MortalityArray}">
+	var ${param.block}_MortalityArray = new Array();
+</c:if>
+<c:if test="${param.VaccinationstatusArray}">
+	var ${param.block}_VaccinationstatusArray = new Array();
+</c:if>
+<c:if test="${param.LongstatusArray}">
+	var ${param.block}_LongstatusArray = new Array();
+</c:if>
+<c:if test="${param.HospstatusArray}">
+	var ${param.block}_HospstatusArray = new Array();
+</c:if>
+<c:if test="${param.CovidstatusArray}">
+	var ${param.block}_CovidstatusArray = new Array();
+</c:if>
+<c:if test="${param.SeverityMetArray}">
+	var ${param.block}_SeverityMetArray = new Array();
+</c:if>
+<c:if test="${param.SeverityNoMetArray}">
+	var ${param.block}_SeverityNoMetArray = new Array();
+</c:if>
+<c:if test="${param.SeverityDiabMetArray}">
+	var ${param.block}_SeverityDiabMetArray = new Array();
+</c:if>
+<c:if test="${param.SeverityDiabNoMetArray}">
+	var ${param.block}_SeverityDiabNoMetArray = new Array();
+</c:if>
+<c:if test="${param.SeverityNoDiabMetArray}">
+	var ${param.block}_SeverityNoDiabMetArray = new Array();
+</c:if>
+<c:if test="${param.SeverityNoDiabNoMetArray}">
+	var ${param.block}_SeverityNoDiabNoMetArray = new Array();
+</c:if>
+<c:if test="${param.LongMetArray}">
+	var ${param.block}_LongMetArray = new Array();
+</c:if>
+<c:if test="${param.LongNoMetArray}">
+	var ${param.block}_LongNoMetArray = new Array();
+</c:if>
+<c:if test="${param.LongDiabMetArray}">
+	var ${param.block}_LongDiabMetArray = new Array();
+</c:if>
+<c:if test="${param.LongDiabNoMetArray}">
+	var ${param.block}_LongDiabNoMetArray = new Array();
+</c:if>
+<c:if test="${param.LongNoDiabMetArray}">
+	var ${param.block}_LongNoDiabMetArray = new Array();
+</c:if>
+<c:if test="${param.LongNoDiabNoMetArray}">
+	var ${param.block}_LongNoDiabNoMetArray = new Array();
+</c:if>
+<c:if test="${param.MortalityMetArray}">
+	var ${param.block}_MortalityMetArray = new Array();
+</c:if>
+<c:if test="${param.MortalityNoMetArray}">
+	var ${param.block}_MortalityNoMetArray = new Array();
+</c:if>
+<c:if test="${param.MortalityDiabMetArray}">
+	var ${param.block}_MortalityDiabMetArray = new Array();
+</c:if>
+<c:if test="${param.MortalityDiabNoMetArray}">
+	var ${param.block}_MortalityDiabNoMetArray = new Array();
+</c:if>
+<c:if test="${param.MortalityNoDiabMetArray}">
+	var ${param.block}_MortalityNoDiabMetArray = new Array();
+</c:if>
+<c:if test="${param.MortalityNoDiabNoMetArray}">
+	var ${param.block}_MortalityNoDiabNoMetArray = new Array();
+</c:if>
+<c:if test="${param.cciscoreSeverityArray}">
+	var ${param.block}_cciscoreSeverityArray = new Array();
+</c:if>
+<c:if test="${param.vaccinatedSeverityArray}">
+	var ${param.block}_vaccinatedSeverityArray = new Array();
+</c:if>
+<c:if test="${param.raceSexArray}">
+	var ${param.block}_raceSexArray = new Array();
+</c:if>
+<c:if test="${param.ObservationArray}">
+	var ${param.block}_ObservationArray = new Array();
+</c:if>
+<c:if test="${param.BeforeAfterArray}">
+	var ${param.block}_BeforeAfterArray = new Array();
+</c:if>
+<c:if test="${param.SeverityRegionArray}">
+	var ${param.block}_SeverityRegionArray = new Array();
+</c:if>
+<c:if test="${param.SymptomAgeArray}">
+	var ${param.block}_SymptomAgeArray = new Array();
+</c:if>
+<c:if test="${param.SymptomSexArray}">
+	var ${param.block}_SymptomSexArray = new Array();
+</c:if>
+<c:if test="${param.SymptomRaceArray}">
+	var ${param.block}_SymptomRaceArray = new Array();
+</c:if>
+<c:if test="${param.SymptomEthnicityArray}">
+	var ${param.block}_SymptomEthnicityArray = new Array();
+</c:if>
+<c:if test="${param.MedicationArray}">
+	var ${param.block}_MedicationArray = new Array();
+</c:if>
+<c:if test="${param.StatusAgeArray}">	
+	var ${param.block}_StatusAgeArray = new Array();
+</c:if>
+<c:if test="${param.StatusSexArray}">	
+	var ${param.block}_StatusSexArray = new Array();
+</c:if>
+<c:if test="${param.StatusRaceArray}">
+	var ${param.block}_StatusRaceArray = new Array();
+</c:if>
+<c:if test="${param.StatusEthnicityArray}">
+	var ${param.block}_StatusEthnicityArray = new Array();
+</c:if>
+<c:if test="${param.EnvMortArray}">	
+	var ${param.block}_EnvMortArray = new Array();
+</c:if>
+<c:if test="${param.MedicationAgeArray}">
+	var ${param.block}_MedicationAgeArray = new Array();
+</c:if>
+<c:if test="${param.EnvironmentStatusArray}">
+	var ${param.block}_EnvironmentStatusArray = new Array();
+</c:if>
+<c:if test="${param.ClassAgeArray}">
+	var ${param.block}_ClassAgeArray = new Array();
+</c:if>
+<c:if test="${param.AgeSexArray}">	
+	var ${param.block}_AgeSexArray = new Array();
+</c:if>
+<c:if test="${param.SexAgeArray}">	
+	var ${param.block}_SexAgeArray = new Array();
+</c:if>
+<c:if test="${param.SeverityStatusArray}">	
+	var ${param.block}_SeverityStatusArray = new Array();
+</c:if>
+<c:if test="${param.AgeStatusArray}">
+	var ${param.block}_AgeStatusArray = new Array();
+</c:if>
+<c:if test="${param.RaceStatusArray}">
+	var ${param.block}_RaceStatusArray = new Array();
+</c:if>
+<c:if test="${param.SexStatusArray}">
+	var ${param.block}_SexStatusArray = new Array();
+</c:if>
+<c:if test="${param.CategoryResultArray}">
+	var ${param.block}_CategoryResultArray = new Array();
+</c:if>
+<c:if test="${param.InitialCountSevenArray}">
+	var ${param.block}_InitialCountSevenArray = new Array();
+</c:if>
+<c:if test="${param.IntervalBinArray}">
+	var ${param.block}_IntervalBinArray = new Array();
+</c:if>
+<c:if test="${param.MedicationTSArray}">
+	var ${param.block}_MedicationTSArray = new Array();
+</c:if>
+<c:if test="${param.MedicationOverallArray}">
+	var ${param.block}_MedicationOverallArray = new Array();
+</c:if>
+<c:if test="${param.AlcoholOpioidAllArray}">
+	var ${param.block}_AlcoholOpioidAllArray = new Array();
+</c:if>
+<c:if test="${param.AlcoholOpioidCovidArray}">
+	var ${param.block}_AlcoholOpioidCovidArray = new Array();
+</c:if>
+<c:if test="${param.AlcoholSmokingAllArray}">
+	var ${param.block}_AlcoholSmokingAllArray = new Array();
+</c:if>
+<c:if test="${param.AlcoholSmokingCovidArray}">
+	var ${param.block}_AlcoholSmokingCovidArray = new Array();
+</c:if>
+<c:if test="${param.OpioidSmokingAllArray}">
+	var ${param.block}_OpioidSmokingAllArray = new Array();
+</c:if>
+<c:if test="${param.OpioidSmokingCovidArray}">
+	var ${param.block}_OpioidSmokingCovidArray = new Array();
+</c:if>
+<c:if test="${param.AlcoholStatusArray}">
+	var ${param.block}_AlcoholStatusArray = new Array();
+</c:if>
+<c:if test="${param.CannabisStatusArray}">
+	var ${param.block}_CannabisStatusArray = new Array();
+</c:if>
+<c:if test="${param.OpioidsStatusArray}">
+	var ${param.block}_OpioidsStatusArray = new Array();
+</c:if>
+<c:if test="${param.SmokingStatusArray}">
+	var ${param.block}_SmokingStatusArray = new Array();
+</c:if>
+	
 
 function ${param.block}_refreshHistograms(just_viz) {
+	
     if (typeof just_viz === 'undefined'){
     	var data = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().toArray();
  	    var data2 = $("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data();
  	    
-		${param.block}_refreshDaysArray(data);
-    	${param.block}_refreshAgeArray(data);
-    	${param.block}_refreshRaceArray(data);
-    	${param.block}_refreshEthnicityArray(data);
-    	${param.block}_refreshSexArray(data);
-    	${param.block}_refreshSeverityArray(data);
-    	${param.block}_refreshAlcoholArray(data);
-    	${param.block}_refreshOpioidArray(data);
-    	${param.block}_refreshSmokingArray(data);
-    	${param.block}_refreshDelayArray(data);
+		
+ 	    
+		<c:if test="${param.DaysArray}">
+			${param.block}_refreshDaysArray(data);
+		</c:if>
+		
+		<c:if test="${param.AgeArray}">
+    		${param.block}_refreshAgeArray(data);
+    	</c:if>
     	
-    	${param.block}_refreshMedicationoccurrenceArray(data);
-    	${param.block}_refreshConditionoccurrenceArray(data);
-    	${param.block}_refreshMortalityArray(data);
-    	${param.block}_refreshVaccinationstatusArray(data);
-    	${param.block}_refreshLongstatusArray(data);
-    	${param.block}_refreshHospstatusArray(data);
-    	${param.block}_refreshCovidstatusArray(data);
-    	
-    	${param.block}_refreshSeverityMetArray(data);
-    	${param.block}_refreshSeverityNoMetArray(data);
-    	${param.block}_refreshSeverityDiabMetArray(data);
-    	${param.block}_refreshSeverityDiabNoMetArray(data);
-    	${param.block}_refreshSeverityNoDiabMetArray(data);
-    	${param.block}_refreshSeverityNoDiabNoMetArray(data);
-    	${param.block}_refreshLongMetArray(data);
-    	${param.block}_refreshLongNoMetArray(data);
-    	${param.block}_refreshLongDiabMetArray(data);
-    	${param.block}_refreshLongDiabNoMetArray(data);
-    	${param.block}_refreshLongNoDiabMetArray(data);
-    	${param.block}_refreshLongNoDiabNoMetArray(data);
-    	${param.block}_refreshMortalityMetArray(data);
-    	${param.block}_refreshMortalityNoMetArray(data);
-    	${param.block}_refreshMortalityDiabMetArray(data);
-    	${param.block}_refreshMortalityDiabNoMetArray(data);
-    	${param.block}_refreshMortalityNoDiabMetArray(data);
-    	${param.block}_refreshMortalityNoDiabNoMetArray(data);
-    
-    	${param.block}_refreshraceSeverityArray(data);
-    	${param.block}_refreshdiagnosisSeverityArray(data);
-    	${param.block}_refreshcciscoreSeverityArray(data);
-    	${param.block}_refreshvaccinatedSeverityArray(data);
-    	${param.block}_refreshmedsSeverityArray(data);
-    	${param.block}_refreshsotrovimabMedsArray(data);
-    	${param.block}_refreshraceEthnicityArray(data);
-    	${param.block}_refreshraceSexArray(data);
-
-    	${param.block}_refreshcomorbidityArray(data);
-    
-    	${param.block}_refreshObservationArray(data);
+    	<c:if test="${param.RaceArray}">
+	    	${param.block}_refreshRaceArray(data);
+	    </c:if>
 	    
-    	${param.block}_refreshBeforeAfterArray(data);
-    
-    	${param.block}_refreshSexSeverityArray(data);
-    	${param.block}_refreshSeveritySexArray(data);
-    	${param.block}_refreshObservationAgeArray(data);
-    	${param.block}_refreshObservationSexArray(data);
-    	${param.block}_refreshObservationRaceArray(data);
-    	${param.block}_refreshObservationEthnicityArray(data);
-    	
-    	${param.block}_refreshSeverityRegionArray(data);
+	    <c:if test="${param.EthnicityArray}">
+	    	${param.block}_refreshEthnicityArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.SexArray}">
+	    	${param.block}_refreshSexArray(data);
+	    </c:if>
+	    
+		<c:if test="${param.SeverityArray}">
+	    	${param.block}_refreshSeverityArray(data);
+		</c:if>
+		
+		<c:if test="${param.AlcoholArray}">
+	    	${param.block}_refreshAlcoholArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.OpioidArray}">
+	    	${param.block}_refreshOpioidArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.SmokingArray}">
+	    	${param.block}_refreshSmokingArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.DelayArray}">
+	    	${param.block}_refreshDelayArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.MedicationoccurrenceArray}">
+	    	${param.block}_refreshMedicationoccurrenceArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.MortalityArray}">
+	    	${param.block}_refreshMortalityArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.VaccinationstatusArray}">
+	    	${param.block}_refreshVaccinationstatusArray(data);
+		</c:if>
+		
+		<c:if test="${param.LongstatusArray}">
+	    	${param.block}_refreshLongstatusArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.HospstatusArray}">
+	    	${param.block}_refreshHospstatusArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.CovidstatusArray}">
+	    	${param.block}_refreshCovidstatusArray(data);
+	    </c:if>
+	   
+	    	
+	    <c:if test="${param.SeverityMetArray}">
+	    	${param.block}_refreshSeverityMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.SeverityNoMetArray}">
+	    	${param.block}_refreshSeverityNoMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.SeverityDiabMetArray}">
+	    	${param.block}_refreshSeverityDiabMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.SeverityDiabNoMetArray}">
+	    	${param.block}_refreshSeverityDiabNoMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.SeverityNoDiabMetArray}">
+	    	${param.block}_refreshSeverityNoDiabMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.SeverityNoDiabNoMetArray}">
+	    	${param.block}_refreshSeverityNoDiabNoMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.raceEthnicityArray}">
+			${param.block}_refreshraceEthnicityArray(data);
+		</c:if>
+		
+		<c:if test="${param.raceSexArray}">
+			${param.block}_refreshraceSexArray(data);
+		</c:if>
+	    <c:if test="${param.LongMetArray}">
+	    	${param.block}_refreshLongMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.LongNoMetArray}">
+	    	${param.block}_refreshLongNoMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.LongDiabMetArray}">
+	    	${param.block}_refreshLongDiabMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.LongDiabNoMetArray}">
+	    	${param.block}_refreshLongDiabNoMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.LongNoDiabMetArray}">
+	    	${param.block}_refreshLongNoDiabMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.LongNoDiabNoMetArray}">
+	    	${param.block}_refreshLongNoDiabNoMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.MortalityMetArray}">
+	    	${param.block}_refreshMortalityMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.MortalityNoMetArray}">
+	    	${param.block}_refreshMortalityNoMetArray(data);
+	    </c:if>
+	    
+		<c:if test="${param.MortalityDiabMetArray}">
+	    	${param.block}_refreshMortalityDiabMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.MortalityDiabNoMetArray}">
+	    	${param.block}_refreshMortalityDiabNoMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.MortalityNoDiabMetArray}">
+	    	${param.block}_refreshMortalityNoDiabMetArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.MortalityNoDiabNoMetArray}">
+	    	${param.block}_refreshMortalityNoDiabNoMetArray(data);
+	    </c:if>
+	   	
+	 	<c:if test="${param.cciscoreSeverityArray}">
+	    	${param.block}_refreshcciscoreSeverityArray(data);
+	    </c:if>
+	    
+		<c:if test="${param.vaccinatedSeverityArray}">
+	    	${param.block}_refreshvaccinatedSeverityArray(data);
+	    </c:if>
+	    <c:if test="${param.ObservationArray}">
+	    	${param.block}_refreshObservationArray(data);
+	    </c:if>
+	    
 
-    	${param.block}_refreshSymptomAgeArray(data);
-    	${param.block}_refreshSymptomSexArray(data);
-    	${param.block}_refreshSymptomRaceArray(data);
-    	${param.block}_refreshSymptomEthnicityArray(data);
-    	${param.block}_refreshSymptomObservationArray(data);
-    
-    	${param.block}_refreshMedicationArray(data2);
-    	
-    	${param.block}_refreshStatusAgeArray(data2);
-    	${param.block}_refreshStatusSexArray(data2);
-    	${param.block}_refreshStatusRaceArray(data2);
-    	${param.block}_refreshStatusEthnicityArray(data2);
-    	
-    	${param.block}_refreshEnvMortArray(data2);
-    	${param.block}_refreshMedicationAgeArray(data);
-    	${param.block}_refreshEnvironmentStatusArray(data);
-    	${param.block}_refreshClassAgeArray(data);
-    
-    	${param.block}_refreshAgeSexArray(data2);
-    	${param.block}_refreshSexAgeArray(data2);
-    
-    	${param.block}_refreshSeverityStatusArray(data);
-    	${param.block}_refreshstatusArray(data);
-    	
-    	${param.block}_refreshAgeResultArray(data);
-    	${param.block}_refreshSexResultArray(data);
-    	${param.block}_refreshRaceResultArray(data);
-    	${param.block}_refreshEthnicityResultArray(data);
-    	${param.block}_refreshCategoryResultArray(data);
-
-    	${param.block}_refreshInitialCountSevenArray(data);
-    	${param.block}_refreshIntervalBinArray(data);
-
-    	${param.block}_refreshMedicationTSArray(data);
-    	${param.block}_refreshMedicationOverallArray(data);
-
-    	${param.block}_refreshAlcoholOpioidAllArray(data);
-    	${param.block}_refreshAlcoholOpioidCovidArray(data);
-    	${param.block}_refreshAlcoholSmokingAllArray(data);
-    	${param.block}_refreshAlcoholSmokingCovidArray(data);
-    	${param.block}_refreshOpioidSmokingAllArray(data);
-    	${param.block}_refreshOpioidSmokingCovidArray(data);
-
-    	${param.block}_refreshAlcoholStatusArray(data);
-    	${param.block}_refreshCannabisStatusArray(data);
-    	${param.block}_refreshOpioidsStatusArray(data);
-    	${param.block}_refreshSmokingStatusArray(data);
+		<c:if test="${param.BeforeAfterArray}">
+	    	${param.block}_refreshBeforeAfterArray(data);
+	    </c:if>
+	    
+		<c:if test="${param.SeverityRegionArray}">
+	    	${param.block}_refreshSeverityRegionArray(data);
+	    </c:if>
+	    
+		<c:if test="${param.SymptomAgeArray}">
+	    	${param.block}_refreshSymptomAgeArray(data);
+	    </c:if>
+	    
+		<c:if test="${param.SymptomSexArray}">
+	    	${param.block}_refreshSymptomSexArray(data);
+	    </c:if>
+		<c:if test="${param.SymptomRaceArray}">
+	    	${param.block}_refreshSymptomRaceArray(data);
+	    </c:if>
+		<c:if test="${param.SymptomEthnicityArray}">
+	    	${param.block}_refreshSymptomEthnicityArray(data);
+	    </c:if>
+	 	<c:if test="${param.MedicationArray}">
+	    	${param.block}_refreshMedicationArray(data2);
+	    </c:if>
+	 	<c:if test="${param.StatusAgeArray}">
+	    	${param.block}_refreshStatusAgeArray(data2);
+	    </c:if>
+	 	<c:if test="${param.StatusSexArray}">
+	    	${param.block}_refreshStatusSexArray(data2);
+	    </c:if>
+		<c:if test="${param.StatusRaceArray}">
+	    	${param.block}_refreshStatusRaceArray(data2);
+	    </c:if>
+		<c:if test="${param.StatusEthnicityArray}">
+	    	${param.block}_refreshStatusEthnicityArray(data2);
+	    </c:if>
+	    <c:if test="${param.EnvMortArray}">
+	    	${param.block}_refreshEnvMortArray(data2);
+	    </c:if>
+		<c:if test="${param.MedicationAgeArray}">
+	    	${param.block}_refreshMedicationAgeArray(data);
+		</c:if>
+		<c:if test="${param.EnvironmentStatusArray}">
+	    	${param.block}_refreshEnvironmentStatusArray(data);
+	    </c:if>
+	    <c:if test="${param.ClassAgeArray}">
+	    	${param.block}_refreshClassAgeArray(data);
+	    </c:if>
+	    
+	    <c:if test="${param.AgeSexArray}">
+	    	${param.block}_refreshAgeSexArray(data2);
+	    </c:if>
+		<c:if test="${param.SexAgeArray}">
+	    	${param.block}_refreshSexAgeArray(data2);
+	    </c:if>
+	    
+	    <c:if test="${param.SeverityStatusArray}">
+	    	${param.block}_refreshSeverityStatusArray(data);
+	    </c:if>
+		<c:if test="${param.statusArray}">
+	    	${param.block}_refreshstatusArray(data);
+	    </c:if>
+	    <c:if test="${param.CategoryResultArray}">
+	    	${param.block}_refreshCategoryResultArray(data);
+	    </c:if>
+	    <c:if test="${param.InitialCountSevenArray}">
+	    	${param.block}_refreshInitialCountSevenArray(data);
+	    </c:if>
+	    <c:if test="${param.IntervalBinArray}">
+	    	${param.block}_refreshIntervalBinArray(data);
+	    </c:if>
+	    <c:if test="${param.MedicationTSArray}">
+	    	${param.block}_refreshMedicationTSArray(data);
+	    </c:if>
+	    <c:if test="${param.MedicationOverallArray}">
+	    	${param.block}_refreshMedicationOverallArray(data);
+	    </c:if>
+	    <c:if test="${param.AlcoholOpioidAllArray}">
+	    	${param.block}_refreshAlcoholOpioidAllArray(data);
+	    </c:if>
+	    <c:if test="${param.AlcoholOpioidCovidArray}">
+	    	${param.block}_refreshAlcoholOpioidCovidArray(data);
+	    </c:if>
+	    <c:if test="${param.AlcoholSmokingAllArray}">
+	    	${param.block}_refreshAlcoholSmokingAllArray(data);
+	    </c:if>
+	    <c:if test="${param.AlcoholSmokingCovidArray}">
+	    	${param.block}_refreshAlcoholSmokingCovidArray(data);
+	    </c:if>
+	    <c:if test="${param.OpioidSmokingAllArray}">
+	    	${param.block}_refreshOpioidSmokingAllArray(data);
+	    </c:if>
+	    <c:if test="${param.OpioidSmokingCovidArray}">
+	    	${param.block}_refreshOpioidSmokingCovidArray(data);
+	    </c:if>
+	    <c:if test="${param.AlcoholStatusArray}">
+	    	${param.block}_refreshAlcoholStatusArray(data);
+	    </c:if>
+	    <c:if test="${param.CannabisStatusArray}">
+	    	${param.block}_refreshCannabisStatusArray(data);
+	    </c:if>
+	    <c:if test="${param.OpioidsStatusArray}">
+	    	${param.block}_refreshOpioidsStatusArray(data);
+	    </c:if>
+	    <c:if test="${param.SmokingStatusArray}">
+	    	${param.block}_refreshSmokingStatusArray(data);
+	    </c:if>
     };
    	
-    
+    if (${param.block}_loaded("covidstatus")) {
+    	${param.block}_covidstatus_refresh();
+    }
     if ('${param.block}' === 'long_covid_6') {
     	${param.block}_before_refresh();
     }
     if (${param.block}_loaded("observation")) {
     	${param.block}_observation_refresh();
     }
+
     if (${param.block}_loaded("severity")) {
     	${param.block}_severity_refresh();
     }
@@ -2190,9 +2462,6 @@ function ${param.block}_refreshHistograms(just_viz) {
     }
     if (${param.block}_loaded("cannabis_status")) {
     	${param.block}_cannabisstatus_refresh();
-    }
-    if (${param.block}_loaded("covid_status")) {
-    	${param.block}_covidstatus_refresh();
     }
     if (${param.block}_loaded("opioids_status")) {
     	${param.block}_opioidsstatus_refresh();
@@ -2326,812 +2595,821 @@ function ${param.block}_loaded(selection) {
 }
 </script>
 
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="DaysArray"/>
-	<jsp:param name="primary" value="days"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AgeArray"/>
-	<jsp:param name="primary" value="age"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="RaceArray"/>
-	<jsp:param name="primary" value="race"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MedicationoccurrenceArray"/>
-	<jsp:param name="primary" value="medocc"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ConditionoccurrenceArray"/>
-	<jsp:param name="primary" value="medocc"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MortalityArray"/>
-	<jsp:param name="primary" value="mortality"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AlcoholArray"/>
-	<jsp:param name="primary" value="condition"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="OpioidArray"/>
-	<jsp:param name="primary" value="condition"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SmokingArray"/>
-	<jsp:param name="primary" value="condition"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="VaccinationstatusArray"/>
-	<jsp:param name="primary" value="vaccinated"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="LongstatusArray"/>
-	<jsp:param name="primary" value="long"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="HospstatusArray"/>
-	<jsp:param name="primary" value="hosp"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="CovidstatusArray"/>
-	<jsp:param name="primary" value="status"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SexArray"/>
-	<jsp:param name="primary" value="sex"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="EthnicityArray"/>
-	<jsp:param name="primary" value="ethnicity"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityMetArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="null"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityNoMetArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="null"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityDiabMetArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityDiabNoMetArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityNoDiabMetArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="No Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityNoDiabNoMetArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="No Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MortalityMetArray"/>
-	<jsp:param name="primary" value="mortality"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="null"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MortalityNoMetArray"/>
-	<jsp:param name="primary" value="mortality"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="null"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MortalityDiabMetArray"/>
-	<jsp:param name="primary" value="mortality"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MortalityDiabNoMetArray"/>
-	<jsp:param name="primary" value="mortality"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MortalityNoDiabMetArray"/>
-	<jsp:param name="primary" value="mortality"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="No Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MortalityNoDiabNoMetArray"/>
-	<jsp:param name="primary" value="mortality"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="No Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="LongMetArray"/>
-	<jsp:param name="primary" value="long"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="null"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="LongNoMetArray"/>
-	<jsp:param name="primary" value="long"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="null"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="LongDiabMetArray"/>
-	<jsp:param name="primary" value="long"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="LongDiabNoMetArray"/>
-	<jsp:param name="primary" value="long"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="LongNoDiabMetArray"/>
-	<jsp:param name="primary" value="long"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="No Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram_filtered.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="LongNoDiabNoMetArray"/>
-	<jsp:param name="primary" value="long"/>
-	<jsp:param name="count" value="patient_count"/>
-	<jsp:param name="filter_col" value="metformin"/>
-	<jsp:param name="filter" value="No Metformin"/>
-	<jsp:param name="filter_col2" value="diabetes"/>
-	<jsp:param name="filter2" value="No Diabetes"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="DelayArray"/>
-	<jsp:param name="primary" value="datediff_bw_death_and_hos"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="BeforeAfterArray"/>
-	<jsp:param name="primary" value="symptom"/>
-	<jsp:param name="secondary" value="condition_after_covid_positive"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="raceSeverityArray"/>
-	<jsp:param name="primary" value="race"/>
-	<jsp:param name="secondary" value="severity"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="raceEthnicityArray"/>
-	<jsp:param name="primary" value="race"/>
-	<jsp:param name="secondary" value="ethnicity"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="raceSexArray"/>
-	<jsp:param name="primary" value="race"/>
-	<jsp:param name="secondary" value="sex"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="diagnosisSeverityArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="secondary" value="diagnosis"/>
-</jsp:include>
-
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="cciscoreSeverityArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="secondary" value="comorbidity"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="medsSeverityArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="secondary" value="sotrovimaboccurrence"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="sotrovimabMedsArray"/>
-	<jsp:param name="primary" value="medications"/>
-	<jsp:param name="secondary" value="sotrovimaboccurrence"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="vaccinatedSeverityArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="secondary" value="vaccinated"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="comorbidityArray"/>
-	<jsp:param name="primary" value="comorbidity"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ObservationArray"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SexSeverityArray"/>
-	<jsp:param name="primary" value="sex"/>
-	<jsp:param name="primary_abbrev" value="sex_abbrev"/>
-	<jsp:param name="secondary" value="severity"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeveritySexArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="primary_abbrev" value="severity_abbrev"/>
-	<jsp:param name="secondary" value="sex"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityRegionArray"/>
-	<jsp:param name="primary" value="region"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ObservationAgeArray"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="age"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ObservationSexArray"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="sex"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ObservationRaceArray"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="race"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ObservationEthnicityArray"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="ethnicity"/>
-</jsp:include>
-
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SymptomAgeArray"/>
-	<jsp:param name="primary" value="symptom"/>
-	<jsp:param name="secondary" value="age"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SymptomSexArray"/>
-	<jsp:param name="primary" value="symptom"/>
-	<jsp:param name="secondary" value="sex"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SymptomRaceArray"/>
-	<jsp:param name="primary" value="symptom"/>
-	<jsp:param name="secondary" value="race"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SymptomEthnicityArray"/>
-	<jsp:param name="primary" value="symptom"/>
-	<jsp:param name="secondary" value="ethnicity"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SymptomObservationArray"/>
-	<jsp:param name="primary" value="symptom"/>
-	<jsp:param name="secondary" value="observation"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AgeResultArray"/>
-	<jsp:param name="primary" value="age"/>
-	<jsp:param name="secondary" value="result"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SexResultArray"/>
-	<jsp:param name="primary" value="sex"/>
-	<jsp:param name="secondary" value="result"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="RaceResultArray"/>
-	<jsp:param name="primary" value="race"/>
-	<jsp:param name="secondary" value="result"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="EthnicityResultArray"/>
-	<jsp:param name="primary" value="ethnicity"/>
-	<jsp:param name="secondary" value="result"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="CategoryResultArray"/>
-	<jsp:param name="primary" value="category"/>
-	<jsp:param name="secondary" value="result"/>
-</jsp:include>
-
-<jsp:include page="tripleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MedicationArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="drug_domain"/>
-	<jsp:param name="secondary" value="concept_set_name"/>
-	<jsp:param name="tertiary" value="age"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MedicationAgeArray"/>
-	<jsp:param name="primary" value="concept_set_name"/>
-	<jsp:param name="secondary" value="age"/>
-	<jsp:param name="sort_desc" value="count"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="EnvironmentStatusArray"/>
-	<jsp:param name="primary" value="environmental_factor"/>
-	<jsp:param name="secondary" value="status"/>
-	<jsp:param name="sort_desc" value="count"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="ClassAgeArray"/>
-	<jsp:param name="primary" value="drug_domain"/>
-	<jsp:param name="secondary" value="age"/>
-	<jsp:param name="sort_desc" value="count"/>
-</jsp:include>
-
-<jsp:include page="tripleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AgeSexArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="age"/>
-	<jsp:param name="tertiary" value="sex"/>
-</jsp:include>
-
-<jsp:include page="tripleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SexAgeArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="sex"/>
-	<jsp:param name="tertiary" value="age"/>
-</jsp:include>
-
-<jsp:include page="tripleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="statusArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="observation"/>
-	<jsp:param name="secondary" value="sex"/>
-	<jsp:param name="tertiary" value="age"/>
-</jsp:include>
-
-<jsp:include page="tripleHistogram2.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="StatusAgeArray"/>
-	<jsp:param name="primary" value="status"/>
-	<jsp:param name="secondary" value="long"/>
-	<jsp:param name="tertiary" value="age"/>
-</jsp:include>
-<jsp:include page="tripleHistogram2.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="StatusRaceArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="status"/>
-	<jsp:param name="secondary" value="long"/>
-	<jsp:param name="tertiary" value="race"/>
-</jsp:include>
-<jsp:include page="tripleHistogram2.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="StatusEthnicityArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="status"/>
-	<jsp:param name="secondary" value="long"/>
-	<jsp:param name="tertiary" value="ethnicity"/>
-</jsp:include>
-<jsp:include page="tripleHistogram2.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="StatusSexArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="status"/>
-	<jsp:param name="secondary" value="long"/>
-	<jsp:param name="tertiary" value="sex"/>
-</jsp:include>
-
-<jsp:include page="tripleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="EnvMortArray"/>
-	<jsp:param name="wrap" value="no"/>
-	<jsp:param name="primary" value="environmental_factor"/>
-	<jsp:param name="secondary" value="mortality"/>
-	<jsp:param name="tertiary" value="status"/>
-</jsp:include>
-
-<jsp:include page="doubleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SeverityStatusArray"/>
-	<jsp:param name="primary" value="severity"/>
-	<jsp:param name="secondary" value="smoking_status"/>
-</jsp:include>
-
-
-<jsp:include page="timeline2Histogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="InitialCountSevenArray"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="IntervalBinArray"/>
-	<jsp:param name="primary" value="interval_bin"/>
-	<jsp:param name="count" value="actual_count"/>
-</jsp:include>
-
-<jsp:include page="timelineNHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MedicationTSArray"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="MedicationOverallArray"/>
-	<jsp:param name="primary" value="medication"/>
-	<jsp:param name="count" value="count"/>
-</jsp:include>
-
-<jsp:include page="heatmapHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AlcoholOpioidAllArray"/>
-	<jsp:param name="primary" value="condition2"/>
-	<jsp:param name="secondary" value="condition1"/>
-	<jsp:param name="count" value="all_count"/>
-</jsp:include>
-
-<jsp:include page="heatmapHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AlcoholOpioidCovidArray"/>
-	<jsp:param name="primary" value="condition2"/>
-	<jsp:param name="secondary" value="condition1"/>
-	<jsp:param name="count" value="covid_count"/>
-</jsp:include>
-
-<jsp:include page="heatmapHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AlcoholSmokingAllArray"/>
-	<jsp:param name="primary" value="condition2"/>
-	<jsp:param name="secondary" value="condition1"/>
-	<jsp:param name="count" value="all_count"/>
-</jsp:include>
-
-<jsp:include page="heatmapHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AlcoholSmokingCovidArray"/>
-	<jsp:param name="primary" value="condition2"/>
-	<jsp:param name="secondary" value="condition1"/>
-	<jsp:param name="count" value="covid_count"/>
-</jsp:include>
-
-<jsp:include page="heatmapHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="OpioidSmokingAllArray"/>
-	<jsp:param name="primary" value="condition2"/>
-	<jsp:param name="secondary" value="condition1"/>
-	<jsp:param name="count" value="all_count"/>
-</jsp:include>
-
-<jsp:include page="heatmapHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="OpioidSmokingCovidArray"/>
-	<jsp:param name="primary" value="condition2"/>
-	<jsp:param name="secondary" value="condition1"/>
-	<jsp:param name="count" value="covid_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="AlcoholStatusArray"/>
-	<jsp:param name="primary" value="alcohol"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="CannabisStatusArray"/>
-	<jsp:param name="primary" value="cannabis"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="OpioidsStatusArray"/>
-	<jsp:param name="primary" value="opioids"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
-
-<jsp:include page="singleHistogram.jsp">
-	<jsp:param name="block" value="${param.block}"/>
-	<jsp:param name="datatable_div" value="${param.datatable_div}"/>
-	<jsp:param name="array" value="SmokingStatusArray"/>
-	<jsp:param name="primary" value="smoking"/>
-	<jsp:param name="count" value="patient_count"/>
-</jsp:include>
+<c:if test="${param.DaysArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="DaysArray"/>
+		<jsp:param name="primary" value="days"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.AgeArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AgeArray"/>
+		<jsp:param name="primary" value="age"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.RaceArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="RaceArray"/>
+		<jsp:param name="primary" value="race"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.SexArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SexArray"/>
+		<jsp:param name="primary" value="sex"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.EthnicityArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="EthnicityArray"/>
+		<jsp:param name="primary" value="ethnicity"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.SeverityArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+
+
+<c:if test="${param.MedicationoccurrenceArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MedicationoccurrenceArray"/>
+		<jsp:param name="primary" value="medocc"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MortalityArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MortalityArray"/>
+		<jsp:param name="primary" value="mortality"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.AlcoholArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AlcoholArray"/>
+		<jsp:param name="primary" value="condition"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.OpioidArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="OpioidArray"/>
+		<jsp:param name="primary" value="condition"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SmokingArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SmokingArray"/>
+		<jsp:param name="primary" value="condition"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.VaccinationstatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="VaccinationstatusArray"/>
+		<jsp:param name="primary" value="vaccinated"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.LongstatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="LongstatusArray"/>
+		<jsp:param name="primary" value="long"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.HospstatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="HospstatusArray"/>
+		<jsp:param name="primary" value="hosp"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.CovidstatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="CovidstatusArray"/>
+		<jsp:param name="primary" value="status"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SeverityMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityMetArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="null"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SeverityNoMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityNoMetArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="null"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SeverityDiabMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityDiabMetArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SeverityDiabNoMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityDiabNoMetArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SeverityNoDiabMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityNoDiabMetArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="No Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SeverityNoDiabNoMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityNoDiabNoMetArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="No Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MortalityMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MortalityMetArray"/>
+		<jsp:param name="primary" value="mortality"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="null"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MortalityNoMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MortalityNoMetArray"/>
+		<jsp:param name="primary" value="mortality"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="null"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MortalityDiabMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MortalityDiabMetArray"/>
+		<jsp:param name="primary" value="mortality"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MortalityDiabNoMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MortalityDiabNoMetArray"/>
+		<jsp:param name="primary" value="mortality"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MortalityNoDiabMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MortalityNoDiabMetArray"/>
+		<jsp:param name="primary" value="mortality"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="No Diabetes"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.MortalityNoDiabNoMetArray}">	
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MortalityNoDiabNoMetArray"/>
+		<jsp:param name="primary" value="mortality"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="No Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.LongMetArray}">	
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="LongMetArray"/>
+		<jsp:param name="primary" value="long"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="null"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.LongNoMetArray}">	
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="LongNoMetArray"/>
+		<jsp:param name="primary" value="long"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="null"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.LongDiabMetArray}">	
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="LongDiabMetArray"/>
+		<jsp:param name="primary" value="long"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.LongDiabNoMetArray}">	
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="LongDiabNoMetArray"/>
+		<jsp:param name="primary" value="long"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.LongNoDiabMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="LongNoDiabMetArray"/>
+		<jsp:param name="primary" value="long"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="No Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.LongNoDiabNoMetArray}">
+	<jsp:include page="singleHistogram_filtered.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="LongNoDiabNoMetArray"/>
+		<jsp:param name="primary" value="long"/>
+		<jsp:param name="count" value="patient_count"/>
+		<jsp:param name="filter_col" value="metformin"/>
+		<jsp:param name="filter" value="No Metformin"/>
+		<jsp:param name="filter_col2" value="diabetes"/>
+		<jsp:param name="filter2" value="No Diabetes"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.DelayArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="DelayArray"/>
+		<jsp:param name="primary" value="datediff_bw_death_and_hos"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.BeforeAfterArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="BeforeAfterArray"/>
+		<jsp:param name="primary" value="symptom"/>
+		<jsp:param name="secondary" value="condition_after_covid_positive"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.raceEthnicityArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="raceEthnicityArray"/>
+		<jsp:param name="primary" value="race"/>
+		<jsp:param name="secondary" value="ethnicity"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.raceSexArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="raceSexArray"/>
+		<jsp:param name="primary" value="race"/>
+		<jsp:param name="secondary" value="sex"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.cciscoreSeverityArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="cciscoreSeverityArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="secondary" value="comorbidity"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.vaccinatedSeverityArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="vaccinatedSeverityArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="secondary" value="vaccinated"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.ObservationArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="ObservationArray"/>
+		<jsp:param name="primary" value="observation"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SeverityRegionArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityRegionArray"/>
+		<jsp:param name="primary" value="region"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SymptomAgeArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SymptomAgeArray"/>
+		<jsp:param name="primary" value="symptom"/>
+		<jsp:param name="secondary" value="age"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SymptomSexArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SymptomSexArray"/>
+		<jsp:param name="primary" value="symptom"/>
+		<jsp:param name="secondary" value="sex"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SymptomRaceArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SymptomRaceArray"/>
+		<jsp:param name="primary" value="symptom"/>
+		<jsp:param name="secondary" value="race"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SymptomEthnicityArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SymptomEthnicityArray"/>
+		<jsp:param name="primary" value="symptom"/>
+		<jsp:param name="secondary" value="ethnicity"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.CategoryResultArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="CategoryResultArray"/>
+		<jsp:param name="primary" value="category"/>
+		<jsp:param name="secondary" value="result"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MedicationArray}">
+	<jsp:include page="tripleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MedicationArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="drug_domain"/>
+		<jsp:param name="secondary" value="concept_set_name"/>
+		<jsp:param name="tertiary" value="age"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MedicationAgeArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MedicationAgeArray"/>
+		<jsp:param name="primary" value="concept_set_name"/>
+		<jsp:param name="secondary" value="age"/>
+		<jsp:param name="sort_desc" value="count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.EnvironmentStatusArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="EnvironmentStatusArray"/>
+		<jsp:param name="primary" value="environmental_factor"/>
+		<jsp:param name="secondary" value="status"/>
+		<jsp:param name="sort_desc" value="count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.ClassAgeArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="ClassAgeArray"/>
+		<jsp:param name="primary" value="drug_domain"/>
+		<jsp:param name="secondary" value="age"/>
+		<jsp:param name="sort_desc" value="count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.AgeSexArray}">
+	<jsp:include page="tripleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AgeSexArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="observation"/>
+		<jsp:param name="secondary" value="age"/>
+		<jsp:param name="tertiary" value="sex"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SexAgeArray}">
+	<jsp:include page="tripleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SexAgeArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="observation"/>
+		<jsp:param name="secondary" value="sex"/>
+		<jsp:param name="tertiary" value="age"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.statusArray}">
+	<jsp:include page="tripleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="statusArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="observation"/>
+		<jsp:param name="secondary" value="sex"/>
+		<jsp:param name="tertiary" value="age"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.StatusAgeArray}">
+	<jsp:include page="tripleHistogram2.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="StatusAgeArray"/>
+		<jsp:param name="primary" value="status"/>
+		<jsp:param name="secondary" value="long"/>
+		<jsp:param name="tertiary" value="age"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.StatusRaceArray}">
+	<jsp:include page="tripleHistogram2.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="StatusRaceArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="status"/>
+		<jsp:param name="secondary" value="long"/>
+		<jsp:param name="tertiary" value="race"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.StatusEthnicityArray}">
+	<jsp:include page="tripleHistogram2.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="StatusEthnicityArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="status"/>
+		<jsp:param name="secondary" value="long"/>
+		<jsp:param name="tertiary" value="ethnicity"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.StatusSexArray}">
+	<jsp:include page="tripleHistogram2.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="StatusSexArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="status"/>
+		<jsp:param name="secondary" value="long"/>
+		<jsp:param name="tertiary" value="sex"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.EnvMortArray}">
+	<jsp:include page="tripleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="EnvMortArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="environmental_factor"/>
+		<jsp:param name="secondary" value="mortality"/>
+		<jsp:param name="tertiary" value="status"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.SeverityStatusArray}">
+	<jsp:include page="doubleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SeverityStatusArray"/>
+		<jsp:param name="primary" value="severity"/>
+		<jsp:param name="secondary" value="smoking_status"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.InitialCountSevenArray}">
+	<jsp:include page="timeline2Histogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="InitialCountSevenArray"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.IntervalBinArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="IntervalBinArray"/>
+		<jsp:param name="primary" value="interval_bin"/>
+		<jsp:param name="count" value="actual_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.MedicationTSArray}">
+	<jsp:include page="timelineNHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MedicationTSArray"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.MedicationOverallArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="MedicationOverallArray"/>
+		<jsp:param name="primary" value="medication"/>
+		<jsp:param name="count" value="count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.AlcoholOpioidAllArray}">
+	<jsp:include page="heatmapHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AlcoholOpioidAllArray"/>
+		<jsp:param name="primary" value="condition2"/>
+		<jsp:param name="secondary" value="condition1"/>
+		<jsp:param name="count" value="all_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.AlcoholOpioidCovidArray}">
+	<jsp:include page="heatmapHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AlcoholOpioidCovidArray"/>
+		<jsp:param name="primary" value="condition2"/>
+		<jsp:param name="secondary" value="condition1"/>
+		<jsp:param name="count" value="covid_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.AlcoholSmokingAllArray}">
+	<jsp:include page="heatmapHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AlcoholSmokingAllArray"/>
+		<jsp:param name="primary" value="condition2"/>
+		<jsp:param name="secondary" value="condition1"/>
+		<jsp:param name="count" value="all_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.AlcoholSmokingCovidArray}">
+	<jsp:include page="heatmapHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AlcoholSmokingCovidArray"/>
+		<jsp:param name="primary" value="condition2"/>
+		<jsp:param name="secondary" value="condition1"/>
+		<jsp:param name="count" value="covid_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.OpioidSmokingAllArray}">
+	<jsp:include page="heatmapHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="OpioidSmokingAllArray"/>
+		<jsp:param name="primary" value="condition2"/>
+		<jsp:param name="secondary" value="condition1"/>
+		<jsp:param name="count" value="all_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.OpioidSmokingCovidArray}">
+	<jsp:include page="heatmapHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="OpioidSmokingCovidArray"/>
+		<jsp:param name="primary" value="condition2"/>
+		<jsp:param name="secondary" value="condition1"/>
+		<jsp:param name="count" value="covid_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.AlcoholStatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AlcoholStatusArray"/>
+		<jsp:param name="primary" value="alcohol"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.CannabisStatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="CannabisStatusArray"/>
+		<jsp:param name="primary" value="cannabis"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.OpioidsStatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="OpioidsStatusArray"/>
+		<jsp:param name="primary" value="opioids"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.SmokingStatusArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="SmokingStatusArray"/>
+		<jsp:param name="primary" value="smoking"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>

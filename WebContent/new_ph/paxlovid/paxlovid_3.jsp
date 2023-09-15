@@ -23,6 +23,8 @@
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/visits.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
 	<jsp:param name="datatable_filtered_kpis" value="patient_count" />
+	
+	<jsp:param name="CategoryResultArray" value="true" />
 </jsp:include>
 
 <script>

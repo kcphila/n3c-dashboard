@@ -101,7 +101,4 @@ function ${param.block}_vaccinationstatus_refresh() {
 		localPercentageBarChart_new(${param.block}_VaccinationstatusArray, properties);
 	};
 }
-
-${param.block}_vaccinationstatus_refresh();
-
 </script>

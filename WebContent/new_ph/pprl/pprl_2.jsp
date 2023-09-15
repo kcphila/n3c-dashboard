@@ -73,6 +73,10 @@
 	<jsp:param name="datatable_feed" value="pprl/feeds/medicare_demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
 
+	<jsp:param name="AgeArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
+	<jsp:param name="SexArray" value="true" />
+	<jsp:param name="EthnicityArray" value="true" />
 </jsp:include>
 
 <script>

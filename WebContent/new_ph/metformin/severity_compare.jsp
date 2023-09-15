@@ -22,6 +22,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_severity2_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -44,6 +47,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_severity1_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -70,6 +76,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_severity4_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -92,6 +101,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_severity3_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -114,6 +126,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_severity6_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -136,6 +151,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_severity5_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -428,8 +446,6 @@ function ${param.block}_severity_refresh() {
 
 	
 }
-
-${param.block}_severity_refresh();
 
 
 </script>

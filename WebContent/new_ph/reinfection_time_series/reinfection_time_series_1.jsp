@@ -20,4 +20,6 @@
 	<jsp:param name="datatable_div" value="reinfections-by-date" />
 	<jsp:param name="datatable_feed" value="reinfection_time_series/feeds/timeline.jsp" />
 	<jsp:param name="datatable_kpis" value="count" />
+	
+	<jsp:param name="InitialCountSevenArray" value="true" />
 </jsp:include>

@@ -73,6 +73,10 @@
 	<jsp:param name="datatable_feed" value="environmental/feeds/demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count" />
 
+	<jsp:param name="AgeArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
+	<jsp:param name="SexArray" value="true" />
+	<jsp:param name="SeverityArray" value="true" />
 </jsp:include>
 
 <script>

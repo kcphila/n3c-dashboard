@@ -29,6 +29,8 @@
 	<jsp:param name="datatable_div" value="paxlovid_paxlovid_demographics" />
 	<jsp:param name="datatable_kpis" value="patient_count,paxlovid" />
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/demographics_new.jsp" />
+	
+	<jsp:param name="statusArray" value="true" />
 </jsp:include>
 
 <script>

@@ -20,6 +20,9 @@
 		<div id="${param.block}legend"></div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_severitycciscore_viz" class="dash_viz clip"></div>
 	</div>
 </div>
@@ -40,6 +43,4 @@ function ${param.block}_severitycciscore_refresh() {
 	d3.select("#${param.block}_severitycciscore_viz").select("svg").remove();
 	localHorizontalStackedBarChart_new(${param.block}_cciscoreSeverityArray, properties);
 }
-
-${param.block}_severitycciscore_refresh();
 </script>

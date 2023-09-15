@@ -22,4 +22,5 @@
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/cci.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,paxlovid" />
 	
+	<jsp:param name="statusArray" value="true" />
 </jsp:include>

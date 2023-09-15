@@ -22,6 +22,8 @@
 	<jsp:param name="datatable_div" value="sotrovimab_comorbidity" />
 	<jsp:param name="datatable_feed" value="medication_snapshot/feeds/sotrovimab_comor.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
+	
+	<jsp:param name="cciscoreSeverityArray" value="true" />
 </jsp:include>
 
 

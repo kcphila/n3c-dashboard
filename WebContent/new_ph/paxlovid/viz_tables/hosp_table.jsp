@@ -151,11 +151,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
 	  	}
 	} );
-
-	// this is necessary to populate the histograms for the panel's initial D3 rendering
-	${param.block}_refreshHistograms();
-
-	
 });
 
 </script>

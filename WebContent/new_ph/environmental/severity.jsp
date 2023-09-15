@@ -105,6 +105,4 @@ function ${param.block}_severity_refresh() {
 	
 }
 
-${param.block}_severity_refresh();
-
 </script>

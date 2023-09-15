@@ -22,6 +22,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_mortality2_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -44,6 +47,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_mortality1_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -70,6 +76,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_mortality4_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -92,6 +101,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_mortality3_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -114,6 +126,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_mortality6_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -136,6 +151,9 @@
 				</div>
 			</div>
 			<div class="col-12">
+				<div class="loading">
+					<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+				</div>
 				<div id="${param.block}_mortality5_viz" class="dash_viz"></div>
 			</div>
 		</div>
@@ -431,7 +449,5 @@ function ${param.block}_mortality_refresh() {
 
 	
 }
-
-${param.block}_mortality_refresh();
 
 </script>

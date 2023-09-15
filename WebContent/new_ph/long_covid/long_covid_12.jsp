@@ -20,6 +20,11 @@
 	<jsp:param name="datatable" value="long_covid/tables/symptom_not_positive_table.jsp" />
 	<jsp:param name="datatable_div" value="long_covid_symptom_not_positive" />
 	<jsp:param name="datatable_feed" value="long_covid/feeds/symptom_summary.jsp?not_positive=true" />
+	
+	<jsp:param name="AgeArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
+	<jsp:param name="SexArray" value="true" />
+	<jsp:param name="EthnicityArray" value="true" />
 </jsp:include>
 
 <script>

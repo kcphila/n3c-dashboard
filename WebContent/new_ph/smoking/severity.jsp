@@ -17,6 +17,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_severity_viz" class="dash_viz clip"></div>
 	</div>
 </div>
@@ -92,7 +95,4 @@ function ${param.block}_severity_refresh() {
 		localHorizontalGroupedPercentageBarChart_new(${param.block}_statusArray, properties);	
 	};
 };
-   	
-
-${param.block}_severity_refresh();
 </script>

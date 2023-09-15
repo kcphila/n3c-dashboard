@@ -70,6 +70,11 @@
 	<jsp:param name="datatable_div" value="long_covid_cliniccovid" />
 	<jsp:param name="datatable_feed" value="long_covid/feeds/clinicvisit_covid.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
+	
+	<jsp:param name="SeverityArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
+	<jsp:param name="VaccinationstatusArray" value="true" />
+	<jsp:param name="MortalityArray" value="true" />
 </jsp:include>
 
 

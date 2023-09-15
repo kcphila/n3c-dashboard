@@ -17,6 +17,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_timeline_viz" class="col-12 dash_viz"></div>
 	</div>
 </div>
@@ -37,8 +40,4 @@ function ${param.block}_interval_refresh() {
    	d3.select("#${param.block}_timeline_viz").select("svg").remove();
 	localVerticalBarChart(${param.block}_IntervalBinArray, properties);	
 }
-
-$(document).ready( function () {
-	${param.block}_interval_refresh();
-});
 </script>

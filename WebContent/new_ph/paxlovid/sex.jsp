@@ -17,6 +17,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_sex_viz" class="dash_viz clip">
 		</div>
 	</div>
@@ -58,7 +61,5 @@ function ${param.block}_sex_refresh() {
 	
 	localHorizontalGroupedBarChart_new(${param.block}_statusArray, properties);	
 }
-
-${param.block}_sex_refresh();
 
 </script>

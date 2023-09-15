@@ -27,8 +27,6 @@
 </div>
 <div id="frame">
 	<div id="med_snap_1" class="group"></div>
-	<div id="med_snap_2" class="group"></div>
-	<div id="med_snap_3" class="group"></div>
 	<div id="med_snap_4" class="group"></div>
 	<div id="med_snap_5" class="group"></div>
 </div>

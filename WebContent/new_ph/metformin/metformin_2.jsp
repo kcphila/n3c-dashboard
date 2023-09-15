@@ -102,6 +102,12 @@
 	<jsp:param name="datatable_feed" value="metformin/feeds/compare.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count,diab_met_patient_count,diab_nomet_patient_count" />
 
+	<jsp:param name="SeverityMetArray" value="true" />
+	<jsp:param name="SeverityNoMetArray" value="true" />
+	<jsp:param name="SeverityDiabMetArray" value="true" />
+	<jsp:param name="SeverityDiabNoMetArray" value="true" />
+	<jsp:param name="SeverityNoDiabMetArray" value="true" />
+	<jsp:param name="SeverityNoDiabNoMetArray" value="true" />
 </jsp:include>
 
 

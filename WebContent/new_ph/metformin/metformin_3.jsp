@@ -100,7 +100,13 @@
 	<jsp:param name="datatable_div" value="long_covid_met" />
 	<jsp:param name="datatable_feed" value="metformin/feeds/compare.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,met_patient_count,nomet_patient_count,diab_met_patient_count,diab_nomet_patient_count" />
-
+	
+	<jsp:param name="LongMetArray" value="true" />
+	<jsp:param name="LongNoMetArray" value="true" />
+	<jsp:param name="LongDiabMetArray" value="true" />
+	<jsp:param name="LongDiabNoMetArray" value="true" />
+	<jsp:param name="LongNoDiabMetArray" value="true" />
+	<jsp:param name="LongNoDiabNoMetArray" value="true" />
 </jsp:include>
 
 

@@ -42,6 +42,8 @@
 	<jsp:param name="datatable_div" value="smoking_severity" />
 	<jsp:param name="datatable_feed" value="smoking/feeds/severity.jsp" />
 	<jsp:param name="datatable_kpis" value="smoking,smokingnot" />
+	
+	<jsp:param name="statusArray" value="true" />
 
 </jsp:include>
 

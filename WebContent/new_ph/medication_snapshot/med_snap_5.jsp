@@ -22,6 +22,8 @@
 	<jsp:param name="datatable_div" value="sotrovimab_vax" />
 	<jsp:param name="datatable_feed" value="medication_snapshot/feeds/sotrovimab_vac.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
+	
+	<jsp:param name="vaccinatedSeverityArray" value="true" />
 </jsp:include>
 
 

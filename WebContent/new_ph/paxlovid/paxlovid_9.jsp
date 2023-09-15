@@ -19,4 +19,7 @@
 	<jsp:param name="datatable_div" value="paxlovid_paxlovid_days" />
 	<jsp:param name="datatable_feed" value="paxlovid/feeds/days.jsp" />
 	
+	
+	<jsp:param name="DaysArray" value="true" />
+	
 </jsp:include>

@@ -23,4 +23,6 @@
 	<jsp:param name="datatable_div" value="severityregion" />
 	<jsp:param name="datatable_feed" value="severity_region/feeds/regions.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,region_seq" />
+	
+	<jsp:param name="SeverityRegionArray" value="true" />
 </jsp:include>

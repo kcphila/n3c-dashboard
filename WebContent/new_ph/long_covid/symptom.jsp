@@ -31,6 +31,9 @@
 		<div id="${param.block}agelegend"></div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_age_viz" class="dash_viz clip"></div>
 	</div>
 </div>

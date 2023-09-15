@@ -15,7 +15,9 @@
 	
 	<jsp:param name="simple_panel" value="medication_time_series/overall.jsp" />
 
-	<jsp:param name="datatable" value="medication_time_series/overall_table.jsp" />
+	<jsp:param name="datatable" value="medication_time_series/tables/overall_table.jsp" />
 	<jsp:param name="datatable_div" value="medications-overall" />
 	<jsp:param name="datatable_feed" value="medication_time_series/feeds/overall.jsp" />
+	
+	<jsp:param name="MedicationOverallArray" value="true" />
 </jsp:include>

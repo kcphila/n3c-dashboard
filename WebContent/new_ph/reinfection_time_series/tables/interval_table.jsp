@@ -117,6 +117,7 @@ $(document).ready( function () {
 	    	snapshot: null,
 	       	initComplete: function( settings, json ) {
 	       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+	       	 	setTimeout(function() {jQuery('.loading').fadeOut(100); ${param.block}_refreshHistograms(); ${param.block}_interval_refresh();}, 500);
 	       	  },
 	    	pageLength: 10,
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
@@ -156,11 +157,6 @@ $(document).ready( function () {
 		   		$('#${param.block}_btn_clear').addClass("show_clear");
 		  	}
 		} );
-		
-		
-		
-		${param.block}_refreshHistograms();
-		${param.block}_interval_refresh();
 	});
 });
 </script>

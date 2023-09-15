@@ -31,20 +31,3 @@
 		</jsp:include>
 	</div>
 </c:if>
-<c:if test="${param.block == 'medication_ts_3' }">
-	<div class="col col-12 col-md-6 my-auto kpi_border_right">
-		<jsp:include page="../kpis/block3_kpis/covid_positive.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-	</div>
-	<div class="col col-12 col-md-3 my-auto">
-		<jsp:include page="../kpis/block3_kpis/medication_ts_patients.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-	</div>
-	<div class="col col-12 col-md-3 my-auto">
-		<jsp:include page="../kpis/block3_kpis/medication_ts_view.jsp">
-			<jsp:param name="block" value="${param.block}" />
-		</jsp:include>
-	</div>
-</c:if>

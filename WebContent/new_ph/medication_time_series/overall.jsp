@@ -16,6 +16,9 @@
 	</div>
 </div>
 <div id="medication_ts_2">
+	<div class="loading">
+		<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+	</div>
 	<div id="${param.block}_medication_overall" class="col-12 dash_viz"></div>	
 </div>
 

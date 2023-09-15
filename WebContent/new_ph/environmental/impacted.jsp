@@ -31,8 +31,8 @@ function ${param.block}_environment_refresh() {
 	var properties = {
 			domName: '${param.block}_environment_viz',
 			barLabelWidth: 320,
-			legend_data: covid_status_legend,
-			secondary_range: covid_status_range,
+			legend_data: covidstatus_legend,
+			secondary_range: covidstatus_range,
 			legend_label: 'COVID Status',
 			legendid: '${param.block}legend',
 			trimLength: 40

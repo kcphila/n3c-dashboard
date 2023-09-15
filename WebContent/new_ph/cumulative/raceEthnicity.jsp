@@ -40,6 +40,4 @@ function ${param.block}_raceethnicity_refresh() {
 	localHorizontalStackedBarChart_new(${param.block}_raceEthnicityArray, properties);
 }
 
-${param.block}_raceethnicity_refresh();
-
 </script>

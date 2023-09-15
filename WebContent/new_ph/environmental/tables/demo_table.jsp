@@ -172,6 +172,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	initComplete: function( settings, json ) {
        	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	 	${param.block}_refreshHistograms();
        	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
@@ -225,10 +226,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	   		$('#${param.block}_btn_clear').addClass("no_clear");
 	  	}
 	} );
-	
-	$(document).ready(function() {
-		${param.block}_refreshHistograms();
-	});
 });
 
 

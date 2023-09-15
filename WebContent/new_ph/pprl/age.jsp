@@ -19,6 +19,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_age_viz" class="dash_viz"></div>
 	</div>
 </div>
@@ -99,8 +102,6 @@ function ${param.block}_age_refresh() {
 		localPercentageBarChart_new(${param.block}_AgeArray, properties);
 	};
 	
-}
-
-${param.block}_age_refresh();
+};
 
 </script>

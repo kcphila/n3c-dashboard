@@ -20,6 +20,9 @@
 		<div id="${param.block}_age_legend"></div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_age_viz" class="dash_viz clip">
 		</div>
 	</div>
@@ -61,7 +64,5 @@ function ${param.block}_age_refresh() {
 	
 	localHorizontalGroupedBarChart_new(${param.block}_statusArray, properties);	
 }
-
-${param.block}_age_refresh();
 
 </script>

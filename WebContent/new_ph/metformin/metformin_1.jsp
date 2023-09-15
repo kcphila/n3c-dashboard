@@ -144,6 +144,17 @@
 	<jsp:param name="datatable_feed" value="metformin/feeds/metdemo.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count,long_covid_patient_count,vaccinated_patient_count,mortality_patient_count" />
 
+	<jsp:param name="AgeArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
+	<jsp:param name="SexArray" value="true" />
+	<jsp:param name="EthnicityArray" value="true" />
+	<jsp:param name="SeverityArray" value="true" />
+	<jsp:param name="MedicationoccurrenceArray" value="true" />
+	<jsp:param name="VaccinationstatusArray" value="true" />
+	<jsp:param name="MortalityArray" value="true" />
+	<jsp:param name="LongstatusArray" value="true" />
+	<jsp:param name="CovidstatusArray" value="true" />
+	
 </jsp:include>
 
 <script>

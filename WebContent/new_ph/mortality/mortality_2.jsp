@@ -17,9 +17,12 @@
 
 	<jsp:param name="simple_panel" value="mortality/delay.jsp" />
 
-	<jsp:param name="datatable" value="mortality/delayed_table.jsp" />
+	<jsp:param name="datatable" value="mortality/tables/delayed_table.jsp" />
 	<jsp:param name="datatable_div" value="delayed_mortality_delayed" />
 	<jsp:param name="datatable_feed" value="mortality/feeds/delayed.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
+	
+	<jsp:param name="DelayArray" value="true" />
+	
 </jsp:include>
 

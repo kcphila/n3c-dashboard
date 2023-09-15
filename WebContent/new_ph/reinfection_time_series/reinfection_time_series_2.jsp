@@ -23,4 +23,6 @@
 	<jsp:param name="datatable_div" value="reinfections-by-interval" />
 	<jsp:param name="datatable_feed" value="reinfection_time_series/feeds/interval.jsp" />
 	<jsp:param name="datatable_kpis" value="actual_count" />
+	
+	<jsp:param name="IntervalBinArray" value="true" />
 </jsp:include>

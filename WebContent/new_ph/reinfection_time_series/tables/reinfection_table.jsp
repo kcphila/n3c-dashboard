@@ -115,6 +115,9 @@ $(document).ready( function () {
 	    	},
 	       	paging: true,
 	    	pageLength: 10,
+	    	initComplete: function( settings, json ) {
+	    		setTimeout(function() {${param.block}_refreshHistograms();}, 500);
+	    	},
 	    	lengthMenu: [ 10, 25, 50, 75, 100 ],
 	    	order: [[0, 'asc']],
 	     	columns: [

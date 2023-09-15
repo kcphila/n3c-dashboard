@@ -3,6 +3,8 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <jsp:include page="../block3.jsp">
+	
+	
 	<jsp:param name="block" value="cumulative_2" />
 	<jsp:param name="block_header" value="Enclave Cumulative Participat Demographics" />
 	<jsp:param name="topic_title" value="Count of Patients" />
@@ -24,6 +26,11 @@
 	<jsp:param name="datatable_div" value="cumulative_demographics" />
 	<jsp:param name="datatable_feed" value="cumulative/feeds/demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />	
+	
+	<jsp:param name="raceEthnicityArray" value="true" />
+	<jsp:param name="raceSexArray" value="true" />
+	
+	
 </jsp:include>
 
 <script>

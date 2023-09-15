@@ -23,12 +23,6 @@
 			<option value="environment_2">Number of Impacted Patients By Environmental Factor</option>
 			<option value="environment_3">Number of Mortalities By Environmental Factor</option>
 		</optgroup>
-		<optgroup label="Geospatial">
-			<option value="environment_6">Geospatial</option>
-		</optgroup>
-		<optgroup label="Geospatial Demo">
-			<option value="environment_7">Geospatial Demo</option>
-		</optgroup>
 	</select>
 </div>
 

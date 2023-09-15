@@ -26,5 +26,12 @@
 	<jsp:param name="datatable_div" value="long_covid_symptom_summary" />
 	<jsp:param name="datatable_feed" value="long_covid/feeds/symptom_summary.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,covid_patient_count,long_patient_count" />
+	
+	
+	<jsp:param name="StatusAgeArray" value="true" />
+	<jsp:param name="StatusRaceArray" value="true" />
+	<jsp:param name="StatusSexArray" value="true" />
+	<jsp:param name="StatusEthnicityArray" value="true" />
+	
 </jsp:include>
 

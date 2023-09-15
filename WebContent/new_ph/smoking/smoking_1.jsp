@@ -77,10 +77,10 @@
 	<jsp:param name="datatable_div" value="smoking_demographics" />
 	<jsp:param name="datatable_feed" value="smoking/feeds/demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="smoking,smokingnot" />
+	
+	<jsp:param name="statusArray" value="true" />
 
 </jsp:include>
-
-<%-- 	<jsp:param name="toggle2" value="true" /> --%>
 
 <script>
 	var panels = ["age", "race", "sex"];
