@@ -797,6 +797,7 @@ WebContent/new_ph/mortality/race.jsp -text
 WebContent/new_ph/mortality/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/mortality/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/mortality/sex.jsp -text
+WebContent/new_ph/mortality/tables/delayed_table.jsp -text
 WebContent/new_ph/mortality/tables/hospitalization_table.jsp -text
 WebContent/new_ph/panel_qlik.jsp -text
 WebContent/new_ph/paxlovid/age.jsp -text
