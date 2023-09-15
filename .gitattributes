@@ -877,12 +877,6 @@ WebContent/new_ph/paxlovid/vizs/long_bar.jsp -text
 WebContent/new_ph/paxlovid/vizs/stacked_bar.jsp -text
 WebContent/new_ph/paxlovid/vizs/stacked_bar2.jsp -text
 WebContent/new_ph/paxlovid/vizs/stacked_bar_conditions.jsp -text
-WebContent/new_ph/pediatrics/severity.jsp -text
-WebContent/new_ph/pediatrics/sex.jsp -text
-WebContent/new_ph/pediatrics/ungrouped_table.jsp -text
-WebContent/new_ph/pediatrics/unknown_vaccination_table.jsp -text
-WebContent/new_ph/pediatrics/vaccinated_comorbidity_table.jsp -text
-WebContent/new_ph/pediatrics/vaccinated_table.jsp -text
 WebContent/new_ph/pprl/age.jsp -text
 WebContent/new_ph/pprl/ethnicity.jsp -text
 WebContent/new_ph/pprl/feeds/medicaid_covid.jsp -text
