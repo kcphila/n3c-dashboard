@@ -287,11 +287,6 @@ WebContent/new_ph/adult_summary/kpis.jsp -text
 WebContent/new_ph/adult_summary/panel.jsp -text
 WebContent/new_ph/adult_summary/race.jsp -text
 WebContent/new_ph/adult_summary/raceseverity.jsp -text
-WebContent/new_ph/adult_summary/secondary_text/secondary_1.jsp -text
-WebContent/new_ph/adult_summary/secondary_text/secondary_2.jsp -text
-WebContent/new_ph/adult_summary/secondary_text/secondary_3.jsp -text
-WebContent/new_ph/adult_summary/secondary_text/secondary_4.jsp -text
-WebContent/new_ph/adult_summary/secondary_text/secondary_5.jsp -text
 WebContent/new_ph/adult_summary/severity.jsp -text
 WebContent/new_ph/adult_summary/sex.jsp -text
 WebContent/new_ph/adult_summary/ungrouped_table.jsp -text
