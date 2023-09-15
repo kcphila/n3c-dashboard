@@ -736,6 +736,7 @@ WebContent/new_ph/medication_time_series/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/medication_time_series/secondary_text/secondary_2.jsp -text
 WebContent/new_ph/medication_time_series/sex.jsp -text
 WebContent/new_ph/medication_time_series/tables/medication_table.jsp -text
+WebContent/new_ph/medication_time_series/tables/overall_table.jsp -text
 WebContent/new_ph/medications/classes_frequency.jsp -text
 WebContent/new_ph/medications/feeds/medications.jsp -text
 WebContent/new_ph/medications/kpis.jsp -text
