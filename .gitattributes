@@ -283,16 +283,6 @@ WebContent/modules/time_line_2_column.jsp -text
 WebContent/modules/verticalBarChart_local.jsp -text
 WebContent/navbar.jsp -text
 WebContent/new-ph.jsp -text
-WebContent/new_ph/adult_summary/kpis.jsp -text
-WebContent/new_ph/adult_summary/panel.jsp -text
-WebContent/new_ph/adult_summary/race.jsp -text
-WebContent/new_ph/adult_summary/raceseverity.jsp -text
-WebContent/new_ph/adult_summary/severity.jsp -text
-WebContent/new_ph/adult_summary/sex.jsp -text
-WebContent/new_ph/adult_summary/ungrouped_table.jsp -text
-WebContent/new_ph/adult_summary/unknown_vaccination_table.jsp -text
-WebContent/new_ph/adult_summary/vaccinated_comorbidity_table.jsp -text
-WebContent/new_ph/adult_summary/vaccinated_table.jsp -text
 WebContent/new_ph/barPieToggle.jsp -text
 WebContent/new_ph/barPieToggle_new.jsp -text
 WebContent/new_ph/barPieToggle_new2.jsp -text
