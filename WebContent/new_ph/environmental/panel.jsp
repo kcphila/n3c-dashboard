@@ -12,6 +12,9 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
+		<optgroup label="Geospatial">
+			<option value="environment_6">Geospatial</option>
+		</optgroup>
 		<optgroup label="Environmentally Impacted Patients Vs. All Patients">
 			<option value="environment_5">All Vs. Environmentally Impacted (Mortality, Long COVID, Hospitalization)</option>
 		</optgroup>
@@ -33,7 +36,6 @@
 	<div id="environment_4" class="group"></div>
 	<div id="environment_5" class="group"></div>
 	<div id="environment_6" class="group"></div>
-	<div id="environment_7" class="group"></div>
 </div>
 
 <script>
@@ -50,7 +52,7 @@ var frame_crumbs = [];
 
 <c:choose>
 	<c:when test="${empty param.tertiary_tab || param.tertiary_tab == 'undefined'}">
-		frame_load('environment_5');
+		frame_load('environment_6');
 	</c:when>
 	<c:otherwise>
 		$('#selectMe').val(url_unmap('${param.tertiary_tab}'));

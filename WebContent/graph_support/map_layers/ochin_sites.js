@@ -9,12 +9,23 @@
 var ochin_data = null;
 
 async function ochin_init() {
-	const response1 = await fetch(getApplicationRoot() + "/feeds/ochinLocations.jsp");
-	ochin_data = await response1.json();
-
-	console.log("ochin_data", ochin_data);
-
-	ochin_draw();
+	//console.log("ochin_init called")
+	const fetchPromise1 = fetch(getApplicationRoot() + "/feeds/ochinLocations.jsp");
+	
+	await Promise
+		.all([fetchPromise1])
+		.then(function(response) {
+			var responsePromises = [];
+		    for (var i = 0; i < response.length; i++) {
+    		    responsePromises.push(response[i].json());
+    		}
+		    return Promise.all(responsePromises);
+		})
+		.then(function(responses) {
+			ochin_data = responses[0];
+			console.log("ochin_data", ochin_data);
+			return Promise.all([ochin_data]);
+		});
 }
 
 //
@@ -24,6 +35,9 @@ async function ochin_init() {
 var ochin_g = null;
 
 function ochin_draw() {
+	if (ochin_data == null || svg == null)
+		return;
+		
 	ochin_g = svg.append("g").attr("class", "layer"); // we need to class this for zooming by the vase code
 
 	var locationBySite = [],

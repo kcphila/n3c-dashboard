@@ -158,7 +158,10 @@ WebContent/graph_support/horizontalStackedBarChart_local_percent.jsp -text
 WebContent/graph_support/layeredMap.jsp -text
 WebContent/graph_support/map_layers/collaborating_sites.js -text
 WebContent/graph_support/map_layers/contributing_sites.js -text
+WebContent/graph_support/map_layers/counties.js -text
+WebContent/graph_support/map_layers/counties_env.js -text
 WebContent/graph_support/map_layers/ochin_sites.js -text
+WebContent/graph_support/map_layers/states.js -text
 WebContent/graph_support/mortalityBarChart_local.jsp -text
 WebContent/graph_support/percentage_bar_local.jsp -text
 WebContent/graph_support/percentage_bar_local2.jsp -text
@@ -320,6 +323,7 @@ WebContent/new_ph/environmental/feeds/compare.jsp -text
 WebContent/new_ph/environmental/feeds/covidimpact.jsp -text
 WebContent/new_ph/environmental/feeds/demographics.jsp -text
 WebContent/new_ph/environmental/feeds/geospatial.jsp -text
+WebContent/new_ph/environmental/feeds/geospatial_county.jsp -text
 WebContent/new_ph/environmental/feeds/geospatial_zip.jsp -text
 WebContent/new_ph/environmental/feeds/hospratecovid.jsp -text
 WebContent/new_ph/environmental/feeds/impacted.jsp -text
@@ -1105,6 +1109,12 @@ WebContent/resources/dashboard_style.css -text
 WebContent/resources/jquery-colorize.js -text
 WebContent/resources/jquery.hottie.js -text
 WebContent/resources/main_style.css -text
+WebContent/resources/map_data/gz_2010_us_040_00_20m.json -text
+WebContent/resources/map_data/gz_2010_us_040_00_500k.json -text
+WebContent/resources/map_data/gz_2010_us_040_00_5m.json -text
+WebContent/resources/map_data/gz_2010_us_050_00_20m.json -text
+WebContent/resources/map_data/gz_2010_us_050_00_500k.json -text
+WebContent/resources/map_data/gz_2010_us_050_00_5m.json -text
 WebContent/resources/n3c_login_style.css -text
 WebContent/resources/select2/select2.js -text
 WebContent/resources/select2/select2.min.css -text

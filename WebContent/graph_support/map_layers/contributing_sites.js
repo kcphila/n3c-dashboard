@@ -9,13 +9,25 @@
 var contrib_data = null;
 
 async function contributing_init() {
-	const response1 = await fetch(getApplicationRoot() + "/feeds/siteLocations.jsp");
-	contrib_data = await response1.json();
-
-	console.log("contrib_data", contrib_data);
-
-	contributing_draw();
+	//console.log("contributing_init called")
+	const fetchPromise1 = fetch(getApplicationRoot() + "/feeds/siteLocations.jsp");
+	
+	await Promise
+		.all([fetchPromise1])
+		.then(function(response) {
+			var responsePromises = [];
+		    for (var i = 0; i < response.length; i++) {
+	   		    responsePromises.push(response[i].json());
+    		}
+		    return Promise.all(responsePromises);
+		})
+		.then(function(responses) {
+			contrib_data = responses[0];
+			console.log("contrib_data", contrib_data);
+			return Promise.all([contrib_data]);
+		});
 }
+
 //
 // 2 - define a draw function to be called from the base draw function
 //
@@ -23,6 +35,9 @@ async function contributing_init() {
 var contrib_g = null;
 
 function contributing_draw() {
+	if (contrib_data == null || svg == null)
+		return;
+		
 	contrib_g = svg.append("g").attr("class", "layer"); // we need to class this for zooming by the vase code
 
 	var color = d3.scaleOrdinal()

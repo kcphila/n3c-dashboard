@@ -10,16 +10,26 @@ var collab_data = null;
 var collab_edge_data = null;
 
 async function collaboration_init() {
-	const response1 = await fetch(getApplicationRoot() + "/feeds/siteCollaborations.jsp");
-	collab_data = await response1.json();
-
-	const response2 = await fetch(getApplicationRoot() + "/feeds/siteCollaborationEdges.jsp");
-	collab_edge_data = (await response2.json()).edges;
-
-	console.log("collab_data", collab_data);
-	console.log("collab_edge_data", collab_edge_data);
-
-	collaboration_draw();
+	//console.log("collaboration_init called")
+	const fetchPromise1 = fetch(getApplicationRoot() + "/feeds/siteCollaborations.jsp");
+	const fetchPromise2 = fetch(getApplicationRoot() + "/feeds/siteCollaborationEdges.jsp");
+	
+	await Promise
+		.all([fetchPromise1,fetchPromise2])
+		.then(function(response) {
+			var responsePromises = [];
+		    for (var i = 0; i < response.length; i++) {
+    		    responsePromises.push(response[i].json());
+    		}
+		    return Promise.all(responsePromises);
+		})
+		.then(function(responses) {
+			collab_data = responses[0];
+			collab_edge_data = responses[1].edges;
+			console.log("collab_data", collab_data);
+			console.log("collab_edge_data",collab_edge_data);
+			return Promise.all([collab_data,collab_edge_data]);
+		});
 }
 
 //
@@ -30,7 +40,7 @@ var collaboration_g = null;
 var nodeScale = null;
 
 function collaboration_draw() {
-	console.log("called", collab_data, collab_edge_data)
+	//console.log("called", collab_data, collab_edge_data)
 	var node_map = d3.map(collab_data.sites, d => d.id);
 
 	collaboration_g = svg.append("g").attr("class", "layer"); // we need to class this for zooming by the vase code
@@ -56,7 +66,7 @@ function collaboration_draw() {
 		return true;
 	});
 
-	var edges = [];
+	var edges = [];console.log("edges",collab_edge_data)
 	collab_edge_data.filter(function(link) {
 		//console.log(link);
 		var source = node_map.get(link.source);

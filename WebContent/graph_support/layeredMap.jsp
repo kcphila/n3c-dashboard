@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
+<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+
 <script src="https://unpkg.com/topojson@3"></script>
 <script src="<util:applicationRoot/>/graph_support/albers-usa-pr.js"></script>
 
@@ -56,6 +58,7 @@
 					var newWidth = Math.floor(entry.contentRect.width);
 					// // console.log('body width '+newWidth);
 					if (newWidth > 0) {
+						//console.log("removing svg")
 						d3.select(dom_element).select("svg").remove();
 						width = newWidth;
 						height = (width / 2);
@@ -69,14 +72,22 @@
 			// the following forces all of the layers to load their data before we make the first draw call,
 			// ensuring everthing shows up on the initial rendering
 			//
-			var q = d3.queue();
+			var promises = [];
 			layers.forEach(layer => {
 				console.log("calling",layer+"_init");
-			    q = q.defer(window[layer+"_init"]);
+			    promises.push(window[layer+"_init"]());
 			});
-			q.await(draw);
-	
+			
+			Promise
+				.all(promises)
+				.then(function() {
+					// this first call to draw is out-of-band with the ResiseObserver, so we need to handle svg removal here as well
+					d3.select(dom_element).select("svg").remove();
+					draw();
+				});
+			
 			function draw() {
+				//console.log("draw called", svg); // this seems to be necessary to complete the init sequence
 
 				// D3 Projection 
 				switch(properties.projection) {
@@ -126,8 +137,9 @@
 					.attr("class", "base")
 					.on("click", clicked);
 	
+				//console.log("layers", layers);
 				layers.forEach(layer => {
-					console.log("calling",layer+"_draw");
+					//console.log("calling",layer+"_draw");
 					window[layer+"_draw"]();
 				});
 			};
