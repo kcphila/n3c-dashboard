@@ -19,6 +19,9 @@
 			</div>
 		</div>
 		<div class="col-12">
+			<div class="loading">
+				<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+			</div>
 			<div id="${param.block}_heatmap_all_viz" class="col-12 dash_viz"></div>
 		</div>
 	</div>
@@ -53,6 +56,4 @@ function ${param.block}_alcohol_smoking_all_refresh() {
    	d3.select("#${param.block}_heatmap_all_viz").select("svg").remove();
 	alc_smo_all_localHeatMap(${param.block}_AlcoholSmokingAllArray, properties);	
 }
-
-${param.block}_alcohol_smoking_all_refresh();
 </script>

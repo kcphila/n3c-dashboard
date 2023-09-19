@@ -21,6 +21,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_race_viz" class="dash_viz"></div>
 	</div>
 </div>

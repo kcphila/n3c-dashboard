@@ -33,7 +33,9 @@
 	<jsp:param name="datatable" value="substance_use/tables/heatmap.jsp" />
 	<jsp:param name="datatable_div" value="substance_opi_smo_heatmap" />
 	<jsp:param name="datatable_feed" value="substance_use/feeds/heatmap_opi_smo.jsp" />
-
+	
+	<jsp:param name="OpioidSmokingAllArray" value="true" />
+	<jsp:param name="OpioidSmokingCovidArray" value="true" />
 </jsp:include>
 
 <script>

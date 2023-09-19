@@ -17,6 +17,9 @@
 		</div>
 	</div>
 	<div class="col-12">
+		<div class="loading">
+			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
+		</div>
 		<div id="${param.block}_smokingstatus_viz" class="dash_viz"></div>
 	</div>
 </div>
@@ -98,7 +101,5 @@ function ${param.block}_smokingstatus_refresh() {
 	};
 	
 }
-
-${param.block}_smokingstatus_refresh();
 
 </script>

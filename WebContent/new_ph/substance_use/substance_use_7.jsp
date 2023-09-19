@@ -123,7 +123,7 @@
 	<jsp:param name="ethnicity_panel" value="substance_use/ethnicity.jsp" />
 	<jsp:param name="alcohol_status_panel" value="substance_use/alcohol_status.jsp" />
 	<jsp:param name="cannabis_status_panel" value="substance_use/cannabis_status.jsp" />
-	<jsp:param name="covid_status_panel" value="substance_use/covid_status.jsp" />
+	<jsp:param name="covidstatus_panel" value="substance_use/covid_status.jsp" />
 	<jsp:param name="opioids_status_panel" value="substance_use/opioids_status.jsp" />
 	<jsp:param name="smoking_status_panel" value="substance_use/smoking_status.jsp" />
 
@@ -131,10 +131,20 @@
 	<jsp:param name="datatable_div" value="substance_all_demo" />
 	<jsp:param name="datatable_feed" value="substance_use/feeds/all_demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
+	
+	<jsp:param name="AgeArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
+	<jsp:param name="SexArray" value="true" />
+	<jsp:param name="EthnicityArray" value="true" />
+	<jsp:param name="AlcoholStatusArray" value="true" />
+	<jsp:param name="CannabisStatusArray" value="true" />
+	<jsp:param name="CovidstatusArray" value="true" />
+	<jsp:param name="OpioidsStatusArray" value="true" />
+	<jsp:param name="SmokingStatusArray" value="true" />
 
 </jsp:include>
 
 <script>
-	var panels = ["age", "race", "sex", "ethnicity", "alcohol_status", "smoking_status", "opioids_status", "cannabis_status", "covid_status"];
+	var panels = ["age", "race", "sex", "ethnicity", "alcohol_status", "smoking_status", "opioids_status", "cannabis_status", "covidstatus"];
 	substance_use_7_panel(panels);
 </script>

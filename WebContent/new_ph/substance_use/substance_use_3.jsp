@@ -95,6 +95,13 @@
 	<jsp:param name="datatable_div" value="substance_smoking_demo" />
 	<jsp:param name="datatable_feed" value="substance_use/feeds/smoking_demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />
+	
+	<jsp:param name="AgeArray" value="true" />
+	<jsp:param name="RaceArray" value="true" />
+	<jsp:param name="SexArray" value="true" />
+	<jsp:param name="SeverityArray" value="true" />
+	<jsp:param name="MortalityArray" value="true" />
+	<jsp:param name="SmokingArray" value="true" />
 
 </jsp:include>
 

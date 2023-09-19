@@ -34,6 +34,8 @@
 	<jsp:param name="datatable_div" value="substance_alc_smo_heatmap" />
 	<jsp:param name="datatable_feed" value="substance_use/feeds/heatmap_alc_smo.jsp" />
 
+	<jsp:param name="AlcoholSmokingAllArray" value="true" />
+	<jsp:param name="AlcoholSmokingCovidArray" value="true" />
 </jsp:include>
 
 <script>

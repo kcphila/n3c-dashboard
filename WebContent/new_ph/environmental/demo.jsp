@@ -58,6 +58,8 @@
 	</select>
 	<button id="reset" > Reset Zoom </button>
 <p>Click on a state to zoom to that state, click on that state again to return to the default view. Drag pans the map. Scroll zooms in/out relative to the mouse position
+
+<div id="graph" style="overflow: hidden;"></div>
 <p>This is implemented by a layered map D3 widget, supporting an arbitrary number of layers. For this example:
 <ul>
 <li>Layer 0 - the base map, parameterized by geographic projection and shape data. We currently have multiple resolutions for the US and the world
@@ -66,7 +68,6 @@
 <li>Layer 3 - the OCHIN sites rendered as black dots
 <li>Layer 4 - N3C sites contributing data, color coded by type of site (this is basically the contributing site dashboard, sans the table)
 </ul>
-<div id="graph" style="overflow: hidden;"></div>
 <div id="site-roster"></div>
 
 <script>
@@ -75,6 +76,7 @@
 		return "<util:applicationRoot/>";
 	}
 </script>
+
 <jsp:include page="../../graph_support/layeredMap.jsp">
 	<jsp:param name="layer1" value="/graph_support/map_layers/counties_env.js"/>
 	<jsp:param name="layer2" value="/graph_support/map_layers/states.js"/>

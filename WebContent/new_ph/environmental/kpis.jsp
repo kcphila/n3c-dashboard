@@ -125,6 +125,13 @@
 			</jsp:include>
 		</div>
 	</c:when>
+	<c:when test="${param.block == 'environment_6' }">
+		<div class="col col-12 col-md-6 my-auto">
+			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
+				<jsp:param name="block" value="${param.block}"/>
+			</jsp:include>
+		</div>
+	</c:when>
 </c:choose>
 
 
