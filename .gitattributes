@@ -307,6 +307,16 @@ WebContent/new_ph/cumulative/tables/cumulative_table.jsp -text
 WebContent/new_ph/cumulative/tables/demographics_table.jsp -text
 WebContent/new_ph/displayDashboardThumbnail.jsp -text
 WebContent/new_ph/doubleHistogram.jsp -text
+WebContent/new_ph/enclave_health/age.jsp -text
+WebContent/new_ph/enclave_health/enclave_health_1.jsp -text
+WebContent/new_ph/enclave_health/ethnicity.jsp -text
+WebContent/new_ph/enclave_health/feeds/demographics.jsp -text
+WebContent/new_ph/enclave_health/kpis.jsp -text
+WebContent/new_ph/enclave_health/panel.jsp -text
+WebContent/new_ph/enclave_health/race.jsp -text
+WebContent/new_ph/enclave_health/secondary_text/secondary_1.jsp -text
+WebContent/new_ph/enclave_health/sex.jsp -text
+WebContent/new_ph/enclave_health/tables/demo_table.jsp -text
 WebContent/new_ph/environmental/age.jsp -text
 WebContent/new_ph/environmental/compare.jsp -text
 WebContent/new_ph/environmental/covid.jsp -text
@@ -442,6 +452,9 @@ WebContent/new_ph/kpis/block3_kpis/cumulative_total2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/cumulative_unkn.jsp -text
 WebContent/new_ph/kpis/block3_kpis/diabetes2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/diabetes_over_18.jsp -text
+WebContent/new_ph/kpis/block3_kpis/enclave_health/preg_all.jsp -text
+WebContent/new_ph/kpis/block3_kpis/enclave_health/preg_covid_positive.jsp -text
+WebContent/new_ph/kpis/block3_kpis/enclave_health/preg_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/enclave_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental/environmental.jsp -text
 WebContent/new_ph/kpis/block3_kpis/environmental/environmental_all.jsp -text
