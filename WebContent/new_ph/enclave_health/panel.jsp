@@ -11,7 +11,7 @@
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<option value="enclave_health_1">Demographics of Patients w/Pregnancy-Related Conditions</option>
-		<option value="enclave_health_2">Number of Patients by Pregnancy-Related Condition</option>
+		<option value="enclave_health_2">COVID Factors of Patients w/Pregnancy-Related Conditions</option>
 	</select>
 </div>
 
