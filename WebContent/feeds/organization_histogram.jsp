@@ -7,7 +7,7 @@
 	         ror_id,
 	         ( SELECT json_agg(row_to_json(c))
 	           FROM (
-	                select bar.org_type as name, count(*) as value
+	                select bar.org_type as name, count(distinct bar.ror_id) as value
 					from n3c_collaboration.organization_organization as foo, n3c_collaboration.organization_edge as foo1,
 					n3c_collaboration.organization_organization as bar, n3c_collaboration.organization_edge as bar1
 					where foo.ror_id=foo1.ror_id and foo1.project_uid=bar1.project_uid
