@@ -10,7 +10,7 @@
  			else to_char(sum(count)/1000000.0, '999.99')||'M'
  		end as count
 			from (
-				select max(total_patient) as count from n3c_dashboard_ph.mh_all_patient_age_min_demographics_csd
+				select max(total_patient) as count from n3c_dashboard_ph2.mh_all_patient_age_min_demographics_csd
 			) as foo;
 </sql:query>
 	
