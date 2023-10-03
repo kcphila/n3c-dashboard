@@ -4,16 +4,18 @@
 
 <div class="row">
 	<div class="col-12 viz-header-section">
-		<h2 id="${param.block}-alcohol-title" class="viz-title"></h2>
-		<div class="btn-group float-right">
-			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-download"></i>
-			</button>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="save_viz_pass_alcohol('.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_alcohol('.png');">Save as PNG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_alcohol('.svg');">Save as SVG</a>
-			</div>
+		<div style="display:flex; flex-wrap: nowrap;">
+			<h2 id="${param.block}-alcohol-title" class="viz-title"></h2>
+			<div>
+				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-download"></i>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" onclick="save_viz_pass_alcohol('.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_alcohol('.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_alcohol('.svg');">Save as SVG</a>
+				</div>
+			</div>			
 		</div>
 	</div>
 	<div class="col-12">
@@ -34,11 +36,11 @@ function save_viz_pass_alcohol(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Alcohol Percentages of ${param.topic_title}" + extension;
+		text = "Condition Percentages of ${param.topic_title}" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of ${param.topic_title} by Alcohol" + extension;
+		text = "Counts of ${param.topic_title} by Alcohol Related Condition" + extension;
 	} else {
-		text = "Alcohol Percentages of ${param.topic_title}" + extension;
+		text = "Condition Percentages of ${param.topic_title}" + extension;
 	};
 	
 	saveVisualization('${param.block}_alcohol_viz', text);
@@ -50,37 +52,39 @@ var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
-	var title = "Alcohol Percentages of ${param.topic_title}";
+	var title = "Condition Percentages of ${param.topic_title}";
 	$("#${param.block}-alcohol-title").text(title);
 } else if (title_mode == 'bar'){
-	var title = "Counts of ${param.topic_title} by Alcohol";
+	var title = "Counts of ${param.topic_title} by Condition";
 	$("#${param.block}-alcohol-title").text(title);
 } else {
-	var title = "Alcohol Percentages of ${param.topic_title}";
+	var title = "Condition Percentages of ${param.topic_title}";
 	$("#${param.block}-alcohol-title").text(title);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Alcohol Percentages of ${param.topic_title}";
+	var title = "Condition Percentages of ${param.topic_title}";
 	$("#${param.block}-alcohol-title").text(title);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of ${param.topic_title} by Alcohol";
+	var title = "Counts of ${param.topic_title} by Condition";
 	$("#${param.block}-alcohol-title").text(title);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Alcohol Percentages of ${param.topic_title}";
+	var title = "Condition Percentages of ${param.topic_title}";
 	$("#${param.block}-alcohol-title").text(title);
 });
 
 function ${param.block}_alcohol_refresh() {
 	var properties = {
 			domName: '#${param.block}_alcohol_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 320,
 			min_height: 300,
 			ordered: 0,
-			colorscale: alcohol_range,
+			colorscale: categorical2,
+			legend_label: 'Alcohol',
+			legend_data: alcohol_condition_legend,
 			donutRatio: 0.5
 		}
 

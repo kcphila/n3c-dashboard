@@ -8,7 +8,7 @@
 	<jsp:param name="folder" value="substance_use" />
 	<jsp:param name="topic_description" value="secondary_3" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Patients using Smoking" />
+	<jsp:param name="topic_title" value="Patients w/Smoking Information" />
 
 	<jsp:param name="kpis" value="substance_use/kpis.jsp" />
 	

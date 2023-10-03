@@ -4,9 +4,6 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <style>
-#d3viz .dataTables_filter{
-    display: none;
-}
 
 .background {
   fill: #eee;
@@ -54,7 +51,7 @@ text.active {
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<option value="substance_use_7">All Demographics</option>
-		<option value="substance_use_1">Alcohol Demographics</option>
+		<option value="substance_use_1">Alcohol-Related Condition Demographics</option>
 		<option value="substance_use_2">Opioids Demographics</option>
 		<option value="substance_use_3">Smoking Demographics</option>		
 		<option value="substance_use_4">Alcohol/Opioid Heatmap</option>		

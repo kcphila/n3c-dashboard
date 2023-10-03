@@ -288,7 +288,17 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 <c:forEach items="${cannabis.rows}" var="row" varStatus="rowCounter">
 	var cannabis_status_legend = ${row.jsonb_pretty};
 </c:forEach>
-
+<sql:query var="statuses" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select distinct alcohol_condition as secondary, DENSE_RANK() OVER (ORDER BY alcohol_condition) as secondary_seq, alcohol_condition as secondary_name
+		from n3c_dashboard_ph.sub_covalcdemoageideal_csd
+		where alcohol_condition is not null
+		order by alcohol_condition
+	) as done;
+</sql:query>
+<c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
+	var alcohol_condition_legend = ${row.jsonb_pretty};
+</c:forEach>
 
 
 <sql:query var="sexes3" dataSource="jdbc/N3CPublic">
@@ -474,6 +484,8 @@ var medication_legend = new Array()
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	var medication_legend2 = ${row.jsonb_pretty};
 </c:forEach>
+
+
 
 
 

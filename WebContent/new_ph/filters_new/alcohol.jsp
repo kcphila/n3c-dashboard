@@ -20,7 +20,7 @@
 					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}alcohol_panel');">None</button><br>
 					<select id="${param.block}-alcohol-select" multiple="multiple">
 						<sql:query var="cases" dataSource="jdbc/N3CPublic">
-							select distinct alcohol_condition from n3c_dashboard_ph.sub_covalcdemoageideal_csd order by alcohol_condition;
+							select distinct alcohol_condition from n3c_dashboard_ph.sub_covalcdemoageideal_csd where alcohol_condition is not null order by alcohol_condition;
 						</sql:query>
 						<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
 							<option value="${row.alcohol_condition}">${row.alcohol_condition}</option>

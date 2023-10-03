@@ -940,6 +940,7 @@ WebContent/new_ph/substance_use/substance_use_4.jsp -text
 WebContent/new_ph/substance_use/substance_use_5.jsp -text
 WebContent/new_ph/substance_use/substance_use_6.jsp -text
 WebContent/new_ph/substance_use/substance_use_7.jsp -text
+WebContent/new_ph/substance_use/tables/alcohol_demographics.jsp -text
 WebContent/new_ph/substance_use/tables/all_demographics.jsp -text
 WebContent/new_ph/substance_use/tables/demographics.jsp -text
 WebContent/new_ph/substance_use/tables/heatmap.jsp -text

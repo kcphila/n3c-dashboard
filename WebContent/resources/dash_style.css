@@ -140,6 +140,12 @@
     border-left: 0.3em solid transparent;
 }
 
+
+.multi-line-filter-name{
+	max-width:85%; 
+	display: inline-block;
+}
+
 .viz_options_dropdown{
 	text-align: left; 
 	font-size: 1.2rem;

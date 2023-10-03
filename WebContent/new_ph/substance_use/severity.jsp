@@ -5,15 +5,17 @@
 
 <div class="row">
 	<div class="col-12 viz-header-section">
-		<h2 id="${param.block}-severity-title" class="viz-title"></h2>
-		<div class="btn-group float-right">
-			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-download"></i>
-			</button>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="save_viz_pass_severity('.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_severity('.png');">Save as PNG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_severity('.svg');">Save as SVG</a>
+		<div style="display:flex; flex-wrap: nowrap;">
+			<h2 id="${param.block}-severity-title" class="viz-title"></h2>
+			<div>
+				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-download"></i>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" onclick="save_viz_pass_severity('.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_severity('.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_severity('.svg');">Save as SVG</a>
+				</div>
 			</div>
 		</div>
 	</div>

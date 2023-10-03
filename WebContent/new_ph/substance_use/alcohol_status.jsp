@@ -4,15 +4,17 @@
 
 <div class="row">
 	<div class="col-12 viz-header-section">
-		<h2 id="${param.block}-alcoholstatus-title" class="viz-title"></h2>
-		<div class="btn-group float-right">
-			<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-download"></i>
-			</button>
-			<div class="dropdown-menu dropdown-menu-right">
-				<a class="dropdown-item" onclick="save_viz_pass_alcoholstatus('.jpg');">Save as JPG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_alcoholstatus('.png');">Save as PNG</a>
-				<a class="dropdown-item" onclick="save_viz_pass_alcoholstatus('.svg');">Save as SVG</a>
+		<div style="display:flex; flex-wrap: nowrap;">
+			<h2 id="${param.block}-alcoholstatus-title" class="viz-title"></h2>
+			<div>
+				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-download"></i>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" onclick="save_viz_pass_alcoholstatus('.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_alcoholstatus('.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_alcoholstatus('.svg');">Save as SVG</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -34,11 +36,11 @@ function save_viz_pass_alcoholstatus(extension){
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Alcohol Status Percentages of ${param.topic_title}" + extension;
+		text = "Alcohol Condition Status Percentages of ${param.topic_title}" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of ${param.topic_title} by Alcohol Status" + extension;
+		text = "Counts of ${param.topic_title} by Alcohol Condition Status" + extension;
 	} else {
-		text = "Alcohol Status Percentages of ${param.topic_title}" + extension;
+		text = "Alcohol Condition Status Percentages of ${param.topic_title}" + extension;
 	};
 	
 	saveVisualization('${param.block}_alcoholstatus_viz', text);
@@ -50,27 +52,27 @@ var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
-	var title = "Alcohol Status Percentages of ${param.topic_title}";
+	var title = "Alcohol Condition Status Percentages of ${param.topic_title}";
 	$("#${param.block}-alcoholstatus-title").text(title);
 } else if (title_mode == 'bar'){
-	var title = "Counts of ${param.topic_title} by Alcohol Status";
+	var title = "Counts of ${param.topic_title} by Alcohol Condition Status";
 	$("#${param.block}-alcoholstatus-title").text(title);
 } else {
-	var title = "Alcohol Status Percentages of ${param.topic_title}";
+	var title = "Alcohol Condition Status Percentages of ${param.topic_title}";
 	$("#${param.block}-alcoholstatus-title").text(title);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Alcohol Status Percentages of ${param.topic_title}";
+	var title = "Alcohol Condition Status Percentages of ${param.topic_title}";
 	$("#${param.block}-alcoholstatus-title").text(title);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of ${param.topic_title} by Alcohol Status";
+	var title = "Counts of ${param.topic_title} by Alcohol Condition Status";
 	$("#${param.block}-alcoholstatus-title").text(title);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Alcohol Status Percentages of ${param.topic_title}";
+	var title = "Alcohol Condition Status Percentages of ${param.topic_title}";
 	$("#${param.block}-alcoholstatus-title").text(title);
 });
 

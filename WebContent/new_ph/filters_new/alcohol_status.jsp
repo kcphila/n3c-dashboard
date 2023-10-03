@@ -8,7 +8,7 @@
  			<div class="card-header" id="${param.block}alcoholstatus_heading">
 				<h2 class="mb-0">
 				<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#${param.block}alcoholstatus_body" aria-expanded="true" aria-controls="${param.block}alcoholstatus_body">
-  					Alcohol Status
+  					<span class="multi-line-filter-name">Alcohol Condition Status</span>
  				</button>
 				</h2>
 			</div>

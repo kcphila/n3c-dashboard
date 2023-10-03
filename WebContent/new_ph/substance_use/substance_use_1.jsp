@@ -8,7 +8,7 @@
 	<jsp:param name="folder" value="substance_use" />
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Patients using Alcohol" />
+	<jsp:param name="topic_title" value="Patients w/an Alcohol-Related Condition" />
 
 	<jsp:param name="kpis" value="substance_use/kpis.jsp" />
 	
@@ -23,7 +23,7 @@
 	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',
-			domName: '#substance_1_age_viz',
+			domName: '#substance_use_1_age_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -33,7 +33,7 @@
 			donutRatio: 0.5
 		}], 'race' : [{
 			dimension: 'race',
-			domName: '#substance_1_race_viz',
+			domName: '#substance_use_1_race_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -43,7 +43,7 @@
 			donutRatio: 0.5
 		}], 'sex' : [{
 			dimension: 'sex',
-			domName: '#substance_1_sex_viz',
+			domName: '#substance_use_1_sex_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -53,7 +53,7 @@
 			donutRatio: 0.5
 		}], 'severity' : [{
 			dimension: 'severity',
-			domName: '#substance_1_severity_viz',
+			domName: '#substance_use_1_severity_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -63,7 +63,7 @@
 			donutRatio: 0.5
 		}], 'mortality' : [{
 			dimension: 'mortality',
-			domName: '#substance_1_mortality_viz',
+			domName: '#substance_use_1_mortality_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -73,13 +73,13 @@
 			donutRatio: 0.5
 		}], 'alcohol' : [{
 			dimension: 'condition',
-			domName: '#substance_3_alcohol_viz',
-			barLabelWidth: 100,
+			domName: '#substance_use_1_alcohol_viz',
+			barLabelWidth: 320,
 			min_height: 300,
 			ordered: 0,
-			colorscale: alcohol_range,
+			colorscale: categorical2,
 			legend_label: 'Alcohol',
-			legend_data: alcohol_legend,
+			legend_data: alcohol_condition_legend,
 			donutRatio: 0.5
 		}]
 	}"/>
@@ -91,7 +91,7 @@
 	<jsp:param name="mortality_panel" value="substance_use/mortality.jsp" />
 	<jsp:param name="alcohol_panel" value="substance_use/alcohol.jsp" />
 
-	<jsp:param name="datatable" value="substance_use/tables/demographics.jsp" />
+	<jsp:param name="datatable" value="substance_use/tables/alcohol_demographics.jsp" />
 	<jsp:param name="datatable_div" value="substance_alcohol_demo" />
 	<jsp:param name="datatable_feed" value="substance_use/feeds/alcohol_demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />

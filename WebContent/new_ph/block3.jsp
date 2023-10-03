@@ -1020,6 +1020,7 @@ $(document).ready(function() {
 	$('#${param.block}-alcohol-select').multiselect({
 		buttonContainer: '<div class="checkbox-list-container"></div>',
            buttonClass: '',
+           enableCaseInsensitiveFiltering: true,
            templates: {
                button: '',
                popupContainer: '<div class="multiselect-container checkbox-list"></div>',
@@ -1040,6 +1041,7 @@ $(document).ready(function() {
 	$('#${param.block}-opioids-select').multiselect({
 		buttonContainer: '<div class="checkbox-list-container"></div>',
            buttonClass: '',
+           enableCaseInsensitiveFiltering: true,
            templates: {
                button: '',
                popupContainer: '<div class="multiselect-container checkbox-list"></div>',

@@ -60,7 +60,7 @@
         {"value":"race", "label":"Race"},
         {"value":"sex", "label":"Sex"},
         {"value":"ethnicity", "label":"Ethnicity"},
-        {"value":"alcohol", "label":"Alcohol"},
+        {"value":"alcohol", "label":"Alcohol Condition"},
         {"value":"smoking", "label":"Smoking"},
         {"value":"opioids", "label":"Opioids"},
         {"value":"cannabis", "label":"Cannabis"},
