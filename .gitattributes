@@ -559,6 +559,10 @@ WebContent/new_ph/kpis/block3_kpis/sotrovimab_demo.jsp -text
 WebContent/new_ph/kpis/block3_kpis/sotrovimab_diagnosis.jsp -text
 WebContent/new_ph/kpis/block3_kpis/sotrovimab_meds.jsp -text
 WebContent/new_ph/kpis/block3_kpis/sotrovimab_vac.jsp -text
+WebContent/new_ph/kpis/block3_kpis/substance_use/alcohol_view.jsp -text
+WebContent/new_ph/kpis/block3_kpis/substance_use/all_view.jsp -text
+WebContent/new_ph/kpis/block3_kpis/substance_use/substance_opioid_1.jsp -text
+WebContent/new_ph/kpis/block3_kpis/substance_use/substance_smoking_1.jsp -text
 WebContent/new_ph/long_covid/age.jsp -text
 WebContent/new_ph/long_covid/beforeAfter.jsp -text
 WebContent/new_ph/long_covid/feeds/before_after.jsp -text
