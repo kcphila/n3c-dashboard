@@ -25,6 +25,9 @@
 			</div>
 			<div id="${param.block}_heatmap_all_viz" class="col-12 dash_viz"></div>
 		</div>
+		<div class="col-12 mb-4"> 
+			<div id="${param.block}all_legend"></div>
+		</div>
 	</div>
 </div>
 
@@ -52,7 +55,9 @@ function ${param.block}_alcohol_opioid_all_refresh() {
 		target_label: "opioid",
 		source_tooltip_label: "Alcohol Condition",
 		target_tooltip_label: "Opioid",
-		sub20hack: 1
+		sub20hack: 1,
+		xaxis_label: "All Patient",
+		legendid: "${param.block}all_legend"
 	}
    	d3.select("#${param.block}_heatmap_all_viz").select("svg").remove();
 	alc_opi_all_localHeatMap(${param.block}_AlcoholOpioidAllArray, properties);	

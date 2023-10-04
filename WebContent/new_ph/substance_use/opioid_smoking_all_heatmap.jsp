@@ -26,6 +26,9 @@
 			</div>
 			<div id="${param.block}_heatmap_all_viz" class="col-12 dash_viz"></div>
 		</div>
+		<div class="col-12 mb-4"> 
+			<div id="${param.block}all_legend"></div>
+		</div>
 	</div>
 </div>
 
@@ -53,7 +56,9 @@ function ${param.block}_opioid_smoking_all_refresh() {
 			target_label: "smoking",
 			source_tooltip_label: "Opioid",
 			target_tooltip_label: "Smoking Status",
-			sub20hack: 1
+			sub20hack: 1,
+			xaxis_label: "All Patient",
+			legendid: "${param.block}all_legend"
 		}
    	d3.select("#${param.block}_heatmap_all_viz").select("svg").remove();
 	opi_smo_all_localHeatMap(${param.block}_OpioidSmokingAllArray, properties);	

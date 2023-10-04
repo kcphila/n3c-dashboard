@@ -252,6 +252,52 @@ function ${param.namespace}_localHeatMap(data, properties) {
 			return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
 		}
 		
+		// draw color key on to decoupled div
+		function drawColorKey() {
+			
+			var step0 = 0;
+			var step1 = 1;
+			var step2 = d3.max(links, function(d) { return d.value; })*0.25;
+			var step3 = d3.max(links, function(d) { return d.value; })*0.5;
+			var step4 = d3.max(links, function(d) { return d.value; })*0.75;
+			var step5 = d3.max(links, function(d) { return d.value; });
+			
+			var legend_data = [
+					{name: step0.toLocaleString(), value: step0},
+					{name: step3.toLocaleString() + " - " + (step4-1).toLocaleString(), value: step3},
+					{name: step1.toLocaleString() + " - " + (step2-1).toLocaleString(), value: step1},
+					{name: step4.toLocaleString() + " - " + (step5-1).toLocaleString(), value: step4},
+					{name: step2.toLocaleString() + " - " + (step3-1).toLocaleString(), value: step2},
+					{name: step5.toLocaleString(), value: step5},
+			];
+
+			
+			d3.select("#" + properties.legendid).html("");
+	    	var legend_div = d3.select("#" + properties.legendid).append("div").attr("class", "row").attr("id", "filters");
+			
+	    	legend_div.selectAll(".legend-title")
+	    		.data([properties.xaxis_label])
+				.enter().append("div")
+	    		.attr("class", "col col-12")
+	    		.html(function(d){
+					return  '<h5>' + d + ' Legend</h5>';
+				});
+	    	
+			var legend_data = legend_div.selectAll(".new_legend")
+				.data(legend_data)
+				.enter().append("div")
+				.attr("class", "filter_col col col-6")
+				.html(function(d,i){
+					if (i == 0){
+						return  '<i class="fas fa-square" style="border: 1px solid gray; border-radius: 3px; color:' + z(d.value) + ';"></i> ' +  d.name;
+					}else{
+						return  '<i class="fas fa-square" style="color:' + z(d.value) + ';"></i> ' +  d.name;
+					}
+				});
+	    };
+	    
+	    drawColorKey();
+		
 	}
 }
 </script>
