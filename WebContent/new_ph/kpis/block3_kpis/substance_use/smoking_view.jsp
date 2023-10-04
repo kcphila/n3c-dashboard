@@ -28,13 +28,13 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients w/Recorded Smoking Status in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total COVID+ Patients w/Recorded Smoking Status in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of Individuals within the view who have any smoking status 
+										<p>Total Number of COVID+ Individuals within the view who have any smoking status 
 										indicated in their EHR.</p>
-										<small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients with a recorded smoking status within the Enclave due to the suppression of counts less than 20.</small>" aria-describedby="tooltip">
+										<small class='kpi-small-note'>Even without filters, this total may be less than the total number of COVID+ patients with a recorded smoking status within the Enclave due to the suppression of counts less than 20.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Patients in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>
