@@ -2,8 +2,6 @@
 <script>
 
 function ${param.namespace}_localHeatMap(data, properties) {
-	
-	console.log(data);
 
 	d3.json(properties.feed_url, function(error, theGraph) {
 		graph = theGraph;
@@ -73,6 +71,13 @@ function ${param.namespace}_localHeatMap(data, properties) {
 		console.log("source keys by frequency", sourceKeys_by_freq)
 		console.log("target keys by frequency", targetKeys_by_freq)
 
+		var step0 = 0;
+		var step1 = 1;
+		var step2 = Math.round((d3.max(links, function(d) { return d.value; })*0.25));
+		var step3 = Math.round((d3.max(links, function(d) { return d.value; })*0.5));
+		var step4 = Math.round((d3.max(links, function(d) { return d.value; })*0.75));
+		var step5 = Math.round((d3.max(links, function(d) { return d.value; })));
+			
 		var x = d3.scaleBand()
 				.range([0, width])
 				.domain(targetKeys_by_name)
@@ -83,7 +88,7 @@ function ${param.namespace}_localHeatMap(data, properties) {
 				.padding(0.05),
 			z = d3.scaleLinear()
 				.range(["white", "#EDF6FF", "#B2D4F9", "#77B3F3", "#3B91EC", "#006FE6"])
-				.domain([0, 1, d3.max(links, function(d) { return d.value; })*0.25, d3.max(links, function(d) { return d.value; })*0.5, d3.max(links, function(d) { return d.value; })*0.75, d3.max(links, function(d) { return d.value; })]);
+				.domain([step0, step1, step2, step3, step4, step5]);
 
 		var svg = d3.select("#" + properties.domName)
 			.append("svg")
@@ -255,12 +260,7 @@ function ${param.namespace}_localHeatMap(data, properties) {
 		// draw color key on to decoupled div
 		function drawColorKey() {
 			
-			var step0 = 0;
-			var step1 = 1;
-			var step2 = d3.max(links, function(d) { return d.value; })*0.25;
-			var step3 = d3.max(links, function(d) { return d.value; })*0.5;
-			var step4 = d3.max(links, function(d) { return d.value; })*0.75;
-			var step5 = d3.max(links, function(d) { return d.value; });
+			
 			
 			var legend_data = [
 					{name: step0.toLocaleString(), value: step0},
