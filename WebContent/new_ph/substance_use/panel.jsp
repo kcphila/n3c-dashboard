@@ -4,44 +4,16 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <style>
-
 .background {
   fill: #eee;
 }
-
 line {
   stroke: #fff;
 }
-
 text.active {
   fill: red;
 }
-
 </style>
-
-<script>
-	<jsp:include page="../../feeds/configuration.jsp"/>
-	
-	<sql:query var="covid" dataSource="jdbc/N3CPublic">
-		select jsonb_pretty(jsonb_agg(done order by secondary_seq))
-		from (select alcohol_condition as secondary, alcohol_condition as secondary_abbrev, row_number() OVER (ORDER BY alcohol_condition) AS secondary_seq
-			  from (select distinct alcohol_condition from n3c_dashboard_ph.sub_covalcdemoageideal_csd) as foo
-			  ) as done;
-	</sql:query>
-	<c:forEach items="${covid.rows}" var="row" varStatus="rowCounter">
-		var alcohol_legend = ${row.jsonb_pretty};
-	</c:forEach>
-	
-	<sql:query var="covid" dataSource="jdbc/N3CPublic">
-		select jsonb_pretty(jsonb_agg(done order by secondary_seq))
-		from (select opioids as secondary, opioids as secondary_abbrev, row_number() OVER (ORDER BY opioids) AS secondary_seq
-			  from (select distinct opioids from n3c_dashboard_ph.sub_covopidemoageideal_csd) as foo
-			  ) as done;
-	</sql:query>
-	<c:forEach items="${covid.rows}" var="row" varStatus="rowCounter">
-		var opioid_legend = ${row.jsonb_pretty};
-	</c:forEach>
-</script>
 
 <jsp:include page="../../graph_support/percentage_bar_local_new.jsp"/>
 <jsp:include page="../../graph_support/pieChart_local_new.jsp"/>
@@ -51,7 +23,7 @@ text.active {
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
 		<optgroup label="Demographics">
-			<option value="substance_use_7">All Demographics (Alcohol/Opioids/Smoking)</option>
+			<option value="substance_use_7">All Demographics (Alcohol/Opioids/Smoking/Cannabis)</option>
 			<option value="substance_use_1">COVID+ Alcohol-Related Condition Demographics</option>
 			<option value="substance_use_2">COVID+ Opioids Demographics</option>
 			<option value="substance_use_3">COVID+ Smoking Demographics</option>

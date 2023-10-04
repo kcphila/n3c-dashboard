@@ -22,6 +22,8 @@
 	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="Opioid/Smoking Heatmap" />
 	
+	<jsp:param name="kpis" value="substance_use/kpis.jsp" />
+	
 	<jsp:param name="opi_smo_heat_order" value="true" />
 
 	<jsp:param name="heatmap_all_panel" value="substance_use/opioid_smoking_all_heatmap.jsp" />

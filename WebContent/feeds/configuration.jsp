@@ -70,6 +70,26 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 
 
 
+<sql:query var="covid" dataSource="jdbc/N3CPublic">
+		select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+		from (select alcohol_condition as secondary, alcohol_condition as secondary_abbrev, row_number() OVER (ORDER BY alcohol_condition) AS secondary_seq
+			  from (select distinct alcohol_condition from n3c_dashboard_ph.sub_covalcdemoageideal_csd) as foo
+			  ) as done;
+</sql:query>
+<c:forEach items="${covid.rows}" var="row" varStatus="rowCounter">
+	var alcohol_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="covid" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select opioids as secondary, opioids as secondary_abbrev, row_number() OVER (ORDER BY opioids) AS secondary_seq
+		  from (select distinct opioids from n3c_dashboard_ph.sub_covopidemoageideal_csd) as foo
+		  ) as done;
+</sql:query>
+<c:forEach items="${covid.rows}" var="row" varStatus="rowCounter">
+	var opioid_legend = ${row.jsonb_pretty};
+</c:forEach>
+
 <sql:query var="ethnicities" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
 	from (select distinct ethnicity_abbrev as secondary, ethnicity_seq as secondary_seq, ethnicity as secondary_name

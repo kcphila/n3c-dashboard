@@ -2,6 +2,8 @@
 <script>
 
 function ${param.namespace}_localHeatMap(data, properties) {
+	
+	console.log(data);
 
 	d3.json(properties.feed_url, function(error, theGraph) {
 		graph = theGraph;
@@ -80,8 +82,8 @@ function ${param.namespace}_localHeatMap(data, properties) {
 				.domain(sourceKeys_by_name)
 				.padding(0.05),
 			z = d3.scaleLinear()
-				.range(["white", "blue"])
-				.domain([0, d3.max(links, function(d) { return d.value; })]);
+				.range(["white", "#EDF6FF", "#B2D4F9", "#77B3F3", "#3B91EC", "#006FE6"])
+				.domain([0, 1, d3.max(links, function(d) { return d.value; })*0.25, d3.max(links, function(d) { return d.value; })*0.5, d3.max(links, function(d) { return d.value; })*0.75, d3.max(links, function(d) { return d.value; })]);
 
 		var svg = d3.select("#" + properties.domName)
 			.append("svg")
