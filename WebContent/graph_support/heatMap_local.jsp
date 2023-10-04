@@ -73,10 +73,11 @@ function ${param.namespace}_localHeatMap(data, properties) {
 
 		var step0 = 0;
 		var step1 = 1;
-		var step2 = Math.round((d3.max(links, function(d) { return d.value; })*0.25));
-		var step3 = Math.round((d3.max(links, function(d) { return d.value; })*0.5));
-		var step4 = Math.round((d3.max(links, function(d) { return d.value; })*0.75));
-		var step5 = Math.round((d3.max(links, function(d) { return d.value; })));
+		var step2 = Math.round((d3.max(links, function(d) { return d.value; })*0.2));
+		var step3 = Math.round((d3.max(links, function(d) { return d.value; })*0.4));
+		var step4 = Math.round((d3.max(links, function(d) { return d.value; })*0.6));
+		var step5 = Math.round((d3.max(links, function(d) { return d.value; })*0.8));
+		var maxstep = Math.round((d3.max(links, function(d) { return d.value; })));
 			
 		var x = d3.scaleBand()
 				.range([0, width])
@@ -86,9 +87,9 @@ function ${param.namespace}_localHeatMap(data, properties) {
 				.range([0, height])
 				.domain(sourceKeys_by_name)
 				.padding(0.05),
-			z = d3.scaleLinear()
+			z = d3.scaleThreshold()
 				.range(["white", "#EDF6FF", "#B2D4F9", "#77B3F3", "#3B91EC", "#006FE6"])
-				.domain([step0, step1, step2, step3, step4, step5]);
+				.domain([step1, step2, step3, step4, step5]);
 
 		var svg = d3.select("#" + properties.domName)
 			.append("svg")
@@ -268,7 +269,7 @@ function ${param.namespace}_localHeatMap(data, properties) {
 					{name: step1.toLocaleString() + " - " + (step2-1).toLocaleString(), value: step1},
 					{name: step4.toLocaleString() + " - " + (step5-1).toLocaleString(), value: step4},
 					{name: step2.toLocaleString() + " - " + (step3-1).toLocaleString(), value: step2},
-					{name: step5.toLocaleString(), value: step5},
+					{name: step5.toLocaleString() + " - " + maxstep.toLocaleString(), value: step5},
 			];
 
 			
