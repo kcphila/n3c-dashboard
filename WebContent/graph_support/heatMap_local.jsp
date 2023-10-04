@@ -286,7 +286,7 @@ function ${param.namespace}_localHeatMap(data, properties) {
 			var legend_data = legend_div.selectAll(".new_legend")
 				.data(legend_data)
 				.enter().append("div")
-				.attr("class", "filter_col col col-6")
+				.attr("class", "col col-6")
 				.html(function(d,i){
 					if (i == 0){
 						return  '<i class="fas fa-square" style="border: 1px solid gray; border-radius: 3px; color:' + z(d.value) + ';"></i> ' +  d.name;
