@@ -14,11 +14,6 @@
 }
 </style>
 
-<p>Order: <select id="alc_smo_order">
-		<option value="name">by Name</option>
-		<option value="frequency">by Frequency</option>
-	</select>
-
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="substance_use_5" />
 	<jsp:param name="block_header" value="Substance Use: Alcohol/Smoking Heatmap" />
@@ -26,6 +21,8 @@
 	<jsp:param name="topic_description" value="secondary_5" />
 	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="Alcohol/Smoking Heatmap" />
+	
+	<jsp:param name="al_smo_heat_order" value="true" />
 
 	<jsp:param name="heatmap_all_panel" value="substance_use/alcohol_smoking_all_heatmap.jsp" />
 	<jsp:param name="heatmap_covid_panel" value="substance_use/alcohol_smoking_covid_heatmap.jsp" />

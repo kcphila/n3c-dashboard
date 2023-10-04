@@ -33,7 +33,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 
 	var ${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
 	    data: data,
-    	dom: 'lfr<"datatable_overflow"t>Bip',
+    	dom: 'lr<"datatable_overflow"t>Bip',
     	buttons: {
     	    dom: {
     	      button: {

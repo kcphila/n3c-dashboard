@@ -246,7 +246,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	
 	//table search logic that distinguishes sort/filter 
 	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
-
+		
 		var snapshot = ${param.block}_datatable
 	     .rows({ search: 'applied', order: 'index'})
 	     .data()

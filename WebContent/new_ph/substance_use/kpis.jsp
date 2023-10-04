@@ -21,8 +21,8 @@
 				<jsp:param name="block" value="${param.block}"/>
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-3 my-auto">
-			<jsp:include page="../kpis/block3_kpis/substance_use/substance_opioid_1.jsp">
+		<div class="col col-12 col-md-4 my-auto">
+			<jsp:include page="../kpis/block3_kpis/substance_use/opioid_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>		
@@ -33,8 +33,8 @@
 				<jsp:param name="block" value="${param.block}"/>
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-3 my-auto">
-			<jsp:include page="../kpis/block3_kpis/substance_use/substance_smoking_1.jsp">
+		<div class="col col-12 col-md-4 my-auto">
+			<jsp:include page="../kpis/block3_kpis/substance_use/smoking_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>		

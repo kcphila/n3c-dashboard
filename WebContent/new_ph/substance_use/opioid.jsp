@@ -79,10 +79,12 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_opioid_refresh() {
 	var properties = {
 			domName: '#${param.block}_opioid_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 130,
 			min_height: 300,
 			ordered: 0,
-			colorscale: opioid_range,
+			colorscale: categorical2,
+			legend_label: 'Opioids',
+			legend_data: opioid_legend,
 			donutRatio: 0.5
 		}
 

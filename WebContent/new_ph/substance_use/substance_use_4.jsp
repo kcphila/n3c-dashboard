@@ -14,10 +14,7 @@
 }
 </style>
 
-<p>Order: <select id="alc_opi_order">
-		<option value="name">by Name</option>
-		<option value="frequency">by Frequency</option>
-	</select>
+
 
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="substance_use_4" />
@@ -26,6 +23,8 @@
 	<jsp:param name="topic_description" value="secondary_4" />
 	<jsp:param name="did" value="${param.did}" />
 	<jsp:param name="topic_title" value="Alcohol/Opioid Heatmap" />
+	
+	<jsp:param name="al_opi_heat_order" value="true" />
 
 	<jsp:param name="heatmap_all_panel" value="substance_use/alcohol_opioid_all_heatmap.jsp" />
 	<jsp:param name="heatmap_covid_panel" value="substance_use/alcohol_opioid_covid_heatmap.jsp" />

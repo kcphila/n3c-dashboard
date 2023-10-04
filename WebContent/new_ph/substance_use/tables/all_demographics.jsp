@@ -5,7 +5,7 @@
 // kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
-console.log(filter,constraint)
+	
 	switch (filter) {
 	case 'age':
 		table.column(0).search(constraint, true, false, true).draw();	
@@ -80,6 +80,7 @@ function ${param.block}_updateKPI(table, column) {
 			document.getElementById(div).setAttribute("data-original-title", "0% in View");
 		}
 	};
+	
 	
 	if (sum < 1000) {
 		sumString = sum+'';
@@ -171,10 +172,10 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      text: 'Copy'
     	    }]
     	},
-       	paging: true,
+    	paging: true,
        	snapshot: null,
        	initComplete: function( settings, json ) {
-       		settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	setTimeout(function() {jQuery('.loading').fadeOut(100); ${param.block}_refreshHistograms(); }, 500);
        	},
@@ -235,7 +236,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
 	  	}
 	  	
-	  	if (snapshot == snapshotAll) {
+	  	if (snapshot == snapshotAll && currentSnapshot != snapshot) {
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
@@ -243,6 +244,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	   		$('#${param.block}_btn_clear').addClass("no_clear");
 	  	}
 	} );
+	
 });
 
 

@@ -3,10 +3,10 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select condition,race, age, sex, severity, mortality, patient_display, patient_count,
+	from (select smoking_status as condition,race, age, sex, severity, mortality, patient_display, patient_count,
 				age_abbrev, age_seq, race_abbrev, race_seq,
 				sex_abbrev, sex_seq, severity_abbrev, severity_seq,
-				mortality_abbrev, mortality_seq
+				mortality_abbrev, mortality_seq, smoking_status_seq as condition_seq
 			from (select
 					smoking_status as condition,
 					race,
@@ -29,11 +29,12 @@
 		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.sev_map
 		  	natural join n3c_dashboard.mortality_map
+		  	left join n3c_dashboard.status_map on condition = smoking_status
 		  ) as done;
 </sql:query>
 {
     "headers": [
-        {"value":"condition", "label":"Condition"},
+        {"value":"condition", "label":"Smoking Status"},
         {"value":"race", "label":"Race"},
         {"value":"age", "label":"Age"},
         {"value":"sex", "label":"Sex"},
@@ -49,8 +50,9 @@
         {"value":"sex_seq", "label":"dummy8"},
         {"value":"severity_abbrev", "label":"dummy9"},
         {"value":"severity_seq", "label":"dummy10"},
-        {"value":"mortality_abbrev", "label":"dummy9"},
-        {"value":"mortality_seq", "label":"dummy10"}
+        {"value":"mortality_abbrev", "label":"dummy11"},
+        {"value":"mortality_seq", "label":"dummy12"},
+        {"value":"condition_seq", "label":"dummy13"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

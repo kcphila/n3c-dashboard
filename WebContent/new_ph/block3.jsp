@@ -57,6 +57,36 @@
 					</div>
 				</c:if>
 				
+				<c:if test="${not empty param.al_opi_heat_order}">
+					<div id="al_opi_heat_order" class="panel-heading filter-section">
+						<h4 style="flex-fill:1;">Order</h4>
+						<select id="alc_opi_order">
+							<option value="name">by Name</option>
+							<option value="frequency">by Frequency</option>
+						</select>
+					</div>
+				</c:if>
+				<c:if test="${not empty param.al_smo_heat_order}">
+					<div id="al_smo_heat_order" class="panel-heading filter-section">
+						<h4 style="flex-fill:1;">Order</h4>
+						<select id="alc_smo_order">
+							<option value="name">by Name</option>
+							<option value="frequency">by Frequency</option>
+						</select>
+					</div>
+				</c:if>
+				<c:if test="${not empty param.opi_smo_heat_order}">
+					<div id="opi_smo_heat_order" class="panel-heading filter-section">
+						<h4 style="flex-fill:1;">Order</h4>
+						<select id="opi_smo_order">
+							<option value="name">by Name</option>
+							<option value="frequency">by Frequency</option>
+						</select>
+					</div>
+				</c:if>
+				
+				
+				
 				<c:if test="${not empty param.severity_filter || not empty param.age_filter_min || not empty param.age_filter_sec
 							 || not empty param.age_filter_ideal || not empty param.age_filter5 || not empty param.age_filter6
 							 || not empty param.age_filter7 || not empty param.age_filterpeds || not empty param.age_filterpeds2
@@ -927,6 +957,7 @@ $(document).ready(function() {
                li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
            },
 		onChange: function(option, checked, select) {
+			console.log('change');
 			var options = $('#${param.block}-age-select');
 	        var selected = [];
 	        $(options).each(function(){
@@ -1670,7 +1701,7 @@ function ${param.block}_filter_clear() {
 			${param.block}_constrain("severity", '');
 		}
 	</c:if>
-	<c:if test="${param.age_filter_min || param.age_filter_sec || age_filter_ideal}">
+	<c:if test="${param.age_filter_min || param.age_filter_sec || param.age_filter_ideal}">
 		if ($('#${param.block}-age-select').val().length > 0) {
 			$('#${param.block}-age-select').multiselect('clearSelection');
 			${param.block}_constrain("age", '');

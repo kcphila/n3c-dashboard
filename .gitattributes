@@ -942,8 +942,9 @@ WebContent/new_ph/substance_use/substance_use_6.jsp -text
 WebContent/new_ph/substance_use/substance_use_7.jsp -text
 WebContent/new_ph/substance_use/tables/alcohol_demographics.jsp -text
 WebContent/new_ph/substance_use/tables/all_demographics.jsp -text
-WebContent/new_ph/substance_use/tables/demographics.jsp -text
 WebContent/new_ph/substance_use/tables/heatmap.jsp -text
+WebContent/new_ph/substance_use/tables/opioid_demographics.jsp -text
+WebContent/new_ph/substance_use/tables/smoking_demographics.jsp -text
 WebContent/new_ph/summary_blocks/long_summary_block.jsp -text
 WebContent/new_ph/summary_blocks/long_summary_block_vizs/long_bar.jsp -text
 WebContent/new_ph/summary_blocks/long_summary_block_vizs/long_bar_feed.jsp -text

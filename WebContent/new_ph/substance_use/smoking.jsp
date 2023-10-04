@@ -6,7 +6,7 @@
 	<div class="col-12 viz-header-section">
 		<div style="display:flex; flex-wrap: nowrap;">
 			<h2 id="${param.block}-smoking-title" class="viz-title"></h2>
-			<div class="btn-group float-right">
+			<div>
 				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-download"></i>
 				</button>
@@ -79,10 +79,12 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_smoking_refresh() {
 	var properties = {
 			domName: '#${param.block}_smoking_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 140,
 			min_height: 300,
 			ordered: 0,
 			colorscale: smoking_range,
+			legend_label: 'smokingstatus',
+			legend_data: status_legend,
 			donutRatio: 0.5
 		}
 

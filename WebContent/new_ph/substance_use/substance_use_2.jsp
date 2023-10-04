@@ -23,17 +23,17 @@
 	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',
-			domName: '#substance_2_age_viz',
+			domName: '#substance_use_2_age_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: age_range_min,
+			colorscale: age_range_ideal,
 			legend_label: 'Age',
-			legend_data: age_legend_min,
+			legend_data: age_legend_ideal,
 			donutRatio: 0.5
 		}], 'race' : [{
 			dimension: 'race',
-			domName: '#substance_2_race_viz',
+			domName: '#substance_use_2_race_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -43,7 +43,7 @@
 			donutRatio: 0.5
 		}], 'sex' : [{
 			dimension: 'sex',
-			domName: '#substance_2_sex_viz',
+			domName: '#substance_use_2_sex_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -53,7 +53,7 @@
 			donutRatio: 0.5
 		}], 'severity' : [{
 			dimension: 'severity',
-			domName: '#substance_2_severity_viz',
+			domName: '#substance_use_2_severity_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -63,7 +63,7 @@
 			donutRatio: 0.5
 		}], 'mortality' : [{
 			dimension: 'mortality',
-			domName: '#substance_2_mortality_viz',
+			domName: '#substance_use_2_mortality_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -73,12 +73,12 @@
 			donutRatio: 0.5
 		}], 'opiod' : [{
 			dimension: 'condition',
-			domName: '#substance_3_opioid_viz',
-			barLabelWidth: 100,
+			domName: '#substance_use_2_opioid_viz',
+			barLabelWidth: 130,
 			min_height: 300,
 			ordered: 0,
-			colorscale: opioid_range,
-			legend_label: 'Opioid',
+			colorscale: categorical2,
+			legend_label: 'Opioids',
 			legend_data: opioid_legend,
 			donutRatio: 0.5
 		}]
@@ -91,7 +91,7 @@
 	<jsp:param name="mortality_panel" value="substance_use/mortality.jsp" />
 	<jsp:param name="opioid_panel" value="substance_use/opioid.jsp" />
 
-	<jsp:param name="datatable" value="substance_use/tables/demographics.jsp" />
+	<jsp:param name="datatable" value="substance_use/tables/opioid_demographics.jsp" />
 	<jsp:param name="datatable_div" value="substance_opioid_demo" />
 	<jsp:param name="datatable_feed" value="substance_use/feeds/opioid_demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />

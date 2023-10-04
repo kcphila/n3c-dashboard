@@ -23,17 +23,17 @@
 	
 	<jsp:param name="viz_properties" value="{'age' : [{
 			dimension: 'age',
-			domName: '#substance_3_age_viz',
+			domName: '#substance_use_3_age_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: age_range_min,
+			colorscale: age_range_ideal,
 			legend_label: 'Age',
-			legend_data: age_legend_min,
+			legend_data: age_legend_ideal,
 			donutRatio: 0.5
 		}], 'race' : [{
 			dimension: 'race',
-			domName: '#substance_3_race_viz',
+			domName: '#substance_use_3_race_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -43,7 +43,7 @@
 			donutRatio: 0.5
 		}], 'sex' : [{
 			dimension: 'sex',
-			domName: '#substance_3_sex_viz',
+			domName: '#substance_use_3_sex_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -53,7 +53,7 @@
 			donutRatio: 0.5
 		}], 'severity' : [{
 			dimension: 'severity',
-			domName: '#substance_3_severity_viz',
+			domName: '#substance_use_3_severity_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -63,7 +63,7 @@
 			donutRatio: 0.5
 		}], 'mortality' : [{
 			dimension: 'mortality',
-			domName: '#substance_3_mortality_viz',
+			domName: '#substance_use_3_mortality_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
@@ -73,12 +73,12 @@
 			donutRatio: 0.5
 		}], 'smoking' : [{
 			dimension: 'condition',
-			domName: '#substance_3_smoking_viz',
-			barLabelWidth: 100,
+			domName: '#substance_use_3_smoking_viz',
+			barLabelWidth: 140,
 			min_height: 300,
 			ordered: 0,
 			colorscale: smoking_range,
-			legend_label: 'Smoking',
+			legend_label: 'smokingstatus',
 			legend_data: status_legend,
 			donutRatio: 0.5
 		}]
@@ -91,7 +91,7 @@
 	<jsp:param name="mortality_panel" value="substance_use/mortality.jsp" />
 	<jsp:param name="smoking_panel" value="substance_use/smoking.jsp" />
 
-	<jsp:param name="datatable" value="substance_use/tables/demographics.jsp" />
+	<jsp:param name="datatable" value="substance_use/tables/smoking_demographics.jsp" />
 	<jsp:param name="datatable_div" value="substance_smoking_demo" />
 	<jsp:param name="datatable_feed" value="substance_use/feeds/smoking_demographics.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count" />

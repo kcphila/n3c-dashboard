@@ -30,5 +30,7 @@
 	</div>
 </c:if>
 
-<h4>Search Dashboards</h4>
-<jsp:include page="../search/search.jsp"/>
+<div id="search" class="panel-heading filter-section">
+	<h4>Search Dashboards</h4>
+	<jsp:include page="../search/search.jsp"/>
+</div>

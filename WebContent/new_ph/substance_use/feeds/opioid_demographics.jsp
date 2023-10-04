@@ -6,7 +6,7 @@
 	from (select condition,race, age, sex, severity, mortality, patient_display, patient_count,
 				age_abbrev, age_seq, race_abbrev, race_seq,
 				sex_abbrev, sex_seq, severity_abbrev, severity_seq,
-				mortality_abbrev, mortality_seq
+				mortality_abbrev, mortality_seq, condition_seq
 			from (select
 					opioids as condition,
 					race,
@@ -29,6 +29,11 @@
 		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.sev_map
 		  	natural join n3c_dashboard.mortality_map
+		  	natural join (
+		  		select distinct(opioids) as condition, DENSE_RANK() OVER (ORDER BY opioids) as condition_seq
+				from n3c_dashboard_ph.sub_covopidemoageideal_csd
+				order by opioids
+			) as map
 		  ) as done;
 </sql:query>
 {
@@ -49,8 +54,9 @@
         {"value":"sex_seq", "label":"dummy8"},
         {"value":"severity_abbrev", "label":"dummy9"},
         {"value":"severity_seq", "label":"dummy10"},
-        {"value":"mortality_abbrev", "label":"dummy9"},
-        {"value":"mortality_seq", "label":"dummy10"}
+        {"value":"mortality_abbrev", "label":"dummy11"},
+        {"value":"mortality_seq", "label":"dummy12"},
+        {"value":"condition_seq", "label":"dummy13"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">
