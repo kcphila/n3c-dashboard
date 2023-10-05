@@ -321,14 +321,12 @@ WebContent/new_ph/environmental/age.jsp -text
 WebContent/new_ph/environmental/compare.jsp -text
 WebContent/new_ph/environmental/covid.jsp -text
 WebContent/new_ph/environmental/data/process -text
-WebContent/new_ph/environmental/demo.jsp -text
 WebContent/new_ph/environmental/environment_1.jsp -text
 WebContent/new_ph/environmental/environment_2.jsp -text
 WebContent/new_ph/environmental/environment_3.jsp -text
 WebContent/new_ph/environmental/environment_4.jsp -text
 WebContent/new_ph/environmental/environment_5.jsp -text
 WebContent/new_ph/environmental/environment_6.jsp -text
-WebContent/new_ph/environmental/environment_7.jsp -text
 WebContent/new_ph/environmental/feeds/compare.jsp -text
 WebContent/new_ph/environmental/feeds/covidimpact.jsp -text
 WebContent/new_ph/environmental/feeds/demographics.jsp -text
@@ -342,7 +340,6 @@ WebContent/new_ph/environmental/feeds/mortality.jsp -text
 WebContent/new_ph/environmental/feeds/rate.jsp -text
 WebContent/new_ph/environmental/feeds/ratecovid.jsp -text
 WebContent/new_ph/environmental/geospatial.jsp -text
-WebContent/new_ph/environmental/geospatial_poly.jsp -text
 WebContent/new_ph/environmental/impacted.jsp -text
 WebContent/new_ph/environmental/kpis.jsp -text
 WebContent/new_ph/environmental/longstatus.jsp -text
