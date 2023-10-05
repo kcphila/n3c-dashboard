@@ -71,28 +71,32 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
+        	{ data: 'code', visible: false, orderable: true },
         	{ data: 'statename', visible: true, orderable: true },
         	{ data: 'countyname', visible: true, orderable: true },
-        	{ data: 'cityname', visible: true, orderable: true },
-        	{ data: 'postal_code', visible: true, orderable: true },
-        	{ data: 'non_count_display', visible: true, orderable: true, orderData: [5], className: 'dt-body-right' },
-        	{ data: 'non_count', visible: false, orderable: true },
-        	{ data: 'covid_count_display', visible: true, orderable: true, orderData: [7], className: 'dt-body-right' },
-        	{ data: 'covid_count', visible: false, orderable: true },
-        	{ data: 'patient_count_died_display', visible: true, orderable: true, orderData: [9], className: 'dt-body-right' },
-        	{ data: 'patient_count_died', visible: false, orderable: true },
-        	{ data: 'patient_count_died_cause_covid_display', visible: true, orderable: true, orderData: [11], className: 'dt-body-right' },
-        	{ data: 'patient_count_died_cause_covid', visible: false, orderable: true },
-        	{ data: 'latitude', visible: false},
-        	{ data: 'longitude', visible: false},
-        	{ data: 'param_list', visible: false}
+        	{ data: 'param_list', visible: false, orderable: true },
+        	{ data: 'non_count', visible: true, orderable: true },
+        	{ data: 'covid_count', visible: true, orderable: true },
+        	{ data: 'patient_count_died', visible: true, orderable: true },
+        	{ data: 'patient_count_died_cause_covid', visible: true, orderable: true }
     	]
 	} );
 
 	const tableData = getTableData(table2);
-	createD3Chart(tableData);
 	setTableEvents(table2);
 	
 });
 
+function getTableData(table) {
+	var tableData = {};
+	const dataArray = [];
+
+	table.rows({ search: "applied" }).every(function() {
+		const data = this.data();
+		dataArray.push(data);
+	});
+
+	tableData["sites"] = dataArray;
+	return tableData;
+}
 </script>

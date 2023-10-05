@@ -40,6 +40,7 @@
 	var path = null;
 	var dom_element = null;
 	var svg = null;
+	var json = null;
 	
 	function createLayeredMap(properties) {
 		console.log("properties", properties);
@@ -51,8 +52,9 @@
 		}
 
 		// Load GeoJSON data and merge with cohort data
-		d3.json("<util:applicationRoot/>/"+properties.base_layer_feed, function(json) {
-
+		d3.json("<util:applicationRoot/>/"+properties.base_layer_feed, function(json_data) {
+			json = json_data;
+			
 			var myObserver = new ResizeObserver(entries => {
 				entries.forEach(entry => {
 					var newWidth = Math.floor(entry.contentRect.width);
@@ -86,63 +88,6 @@
 					draw();
 				});
 			
-			function draw() {
-				//console.log("draw called", svg); // this seems to be necessary to complete the init sequence
-
-				// D3 Projection 
-				switch(properties.projection) {
-				case 'geoNaturalEarth1':
-					projection = d3.geoNaturalEarth1()
-						.translate([width / 2, (height / 2)]) // translate to center of screen
-						.rotate([100,-20])
-						.scale(width / 2 / Math.PI); // scale things down so see entire US
-					break;
-				default:
-					projection = geoAlbersUsaTerritories.geoAlbersUsaTerritories()
-						.translate([width / 2, (height / 2)]) // translate to center of screen
-						.scale([width]); // scale things down so see entire US
-					break;
-				}
-	
-				// Define path generator
-				path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
-					.projection(projection); // tell path generator to use albersUsa projection
-	
-				svg = d3.select(dom_element)
-					.append("svg")
-					.attr("width", width)
-					.attr("height", height);
-	
-				var g = svg.append("g").attr("class", "layer"); // base counts as a layer
-	
-				zoom = d3.zoom()
-					.scaleExtent([1, 50])
-					.on('zoom', function() {
-						const { transform } = d3.event;
-						svg.selectAll(".layer").attr('transform', transform); // each layer has it's own "g"
-						layers.forEach(layer => {
-							//console.log("calling",layer+"zoom");
-							window[layer+"_zoom"](transform);
-						});
-					});
-
-				svg.call(zoom);
-
-				// Bind the data to the SVG and create one path per GeoJSON feature
-				g.selectAll(".base")
-					.data(json.features)
-					.enter()
-					.append("path")
-					.attr("d", path)
-					.attr("class", "base")
-					.on("click", clicked);
-	
-				//console.log("layers", layers);
-				layers.forEach(layer => {
-					//console.log("calling",layer+"_draw");
-					window[layer+"_draw"]();
-				});
-			};
 				
 		});
 		
@@ -167,6 +112,64 @@
 			.call( zoom.transform, d3.zoomIdentity.translate(translate[0],translate[1]).scale(scale) );
 	}
 	
+	function draw() {
+		//console.log("draw called", svg); // this seems to be necessary to complete the init sequence
+
+		// D3 Projection 
+		switch(properties.projection) {
+		case 'geoNaturalEarth1':
+			projection = d3.geoNaturalEarth1()
+				.translate([width / 2, (height / 2)]) // translate to center of screen
+				.rotate([100,-20])
+				.scale(width / 2 / Math.PI); // scale things down so see entire US
+			break;
+		default:
+			projection = geoAlbersUsaTerritories.geoAlbersUsaTerritories()
+				.translate([width / 2, (height / 2)]) // translate to center of screen
+				.scale([width]); // scale things down so see entire US
+			break;
+		}
+
+		// Define path generator
+		path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
+			.projection(projection); // tell path generator to use albersUsa projection
+
+		svg = d3.select(dom_element)
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height);
+
+		var g = svg.append("g").attr("class", "layer"); // base counts as a layer
+
+		zoom = d3.zoom()
+			.scaleExtent([1, 50])
+			.on('zoom', function() {
+				const { transform } = d3.event;
+				svg.selectAll(".layer").attr('transform', transform); // each layer has it's own "g"
+				layers.forEach(layer => {
+					//console.log("calling",layer+"zoom");
+					window[layer+"_zoom"](transform);
+				});
+			});
+
+		svg.call(zoom);
+
+		// Bind the data to the SVG and create one path per GeoJSON feature
+		g.selectAll(".base")
+			.data(json.features)
+			.enter()
+			.append("path")
+			.attr("d", path)
+			.attr("class", "base")
+			.on("click", clicked);
+
+		//console.log("layers", layers);
+		layers.forEach(layer => {
+			//console.log("calling",layer+"_draw");
+			window[layer+"_draw"]();
+		});
+	};
+
 	function reset() {
 		active = null;
 		
@@ -177,4 +180,24 @@
     		.call(zoom.transform, d3.zoomIdentity); // return to initial state		
 	}
 
+	function setTableEvents(table) {
+		
+		table.on("page", function() {
+			draw2 = true;
+		});
+	
+		// listen for updates and adjust the chart accordingly
+		table.on("draw", function() {
+			if (draw2) {
+				draw2 = false;
+				return;
+			} else {
+				const tableData = getTableData(table);
+				//console.log("table update: ",tableData);
+				site_data = tableData.sites;
+				d3.select(dom_element).select("svg").remove();
+				draw();
+			}
+		});
+	}
 </script>
