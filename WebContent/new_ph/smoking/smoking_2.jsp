@@ -31,7 +31,7 @@
 			legend_label: status_legend,
 			colorscale: status_range,
 			label1: 'Severity',
-			label2: 'Smoking Status',
+			label2: 'Smoking',
 			offset: 90,
 			array: 'status',
 			legendid: 'smoking_1legend'

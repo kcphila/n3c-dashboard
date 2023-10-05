@@ -9,7 +9,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	console.log('reached again and again');
 
 	switch (filter) {
-	case 'opioids':
+	case 'opioid':
 		table.column(0).search(constraint, true, false, true).draw();	
 		break;
 	case 'race':

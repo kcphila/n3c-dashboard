@@ -7,7 +7,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'age':
 	    table.column(0).search(constraint, true, false, true).draw();	
 		break;
-	case 'smokingstatus':
+	case 'smoking':
 	    table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'race':

@@ -48,7 +48,7 @@ function ${param.block}_race_refresh() {
 			legend_label: status_legend,
 			colorscale: status_range,
 			label1: 'Race',
-			label2: 'Smoking Status',
+			label2: 'Smoking',
 			offset: 70,
 			array: 'status',
 			legendid: '${param.block}legend'

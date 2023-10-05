@@ -50,7 +50,7 @@ function ${param.block}_age_refresh() {
 			legend_label: status_legend,
 			colorscale: status_range,
 			label1: 'Age',
-			label2: 'Smoking Status',
+			label2: 'Smoking',
 			offset: 70,
 			array: 'status',
 			legendid: '${param.block}legend'

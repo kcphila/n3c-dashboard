@@ -32,7 +32,7 @@
 			legend_label: status_legend,
 			colorscale: status_range,
 			label1: 'Age',
-			label2: 'Smoking Status',
+			label2: 'Smoking',
 			offset: 70,
 			array: 'status',
 			legendid: 'smoking_1legend'
@@ -47,7 +47,7 @@
 			legend_label: status_legend,
 			colorscale: status_range,
 			label1: 'Race',
-			label2: 'Smoking Status',
+			label2: 'Smoking',
 			offset: 70,
 			array: 'status',
 			legendid: 'smoking_1legend'
@@ -62,7 +62,7 @@
 			legend_label: status_legend,
 			colorscale: status_range,
 			label1: 'Sex',
-			label2: 'Smoking Status',
+			label2: 'Smoking',
 			offset: 70,
 			array: 'status',
 			legendid: 'smoking_1legend'

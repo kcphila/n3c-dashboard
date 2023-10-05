@@ -1048,6 +1048,26 @@ $(document).ready(function() {
            }
 	});
 	
+	$('#${param.block}-smoking-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-smoking-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("smoking",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
 	$('#${param.block}-alcohol-select').multiselect({
 		buttonContainer: '<div class="checkbox-list-container"></div>',
            buttonClass: '',
@@ -1822,9 +1842,9 @@ function ${param.block}_filter_clear() {
 		}
 	</c:if>
 	<c:if test="${param.smoking_filter}">
-		if ($('#${param.block}-smokingstatus-select').val().length > 0) {
-			$('#${param.block}-smokingstatus-select').multiselect('clearSelection');
-			${param.block}_constrain("smokingstatus", '');
+		if ($('#${param.block}-smoking-select').val().length > 0) {
+			$('#${param.block}-smoking-select').multiselect('clearSelection');
+			${param.block}_constrain("smoking", '');
 		}
 	</c:if>
 	<c:if test="${param.alcohol_filter}">

@@ -7,7 +7,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 console.log(filter,constraint)
 	switch (filter) {
-	case 'smokingstatus':
+	case 'smoking':
 		table.column(0).search(constraint, true, false, true).draw();	
 		break;
 	case 'race':

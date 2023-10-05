@@ -83,7 +83,7 @@ function ${param.block}_smoking_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: smoking_range,
-			legend_label: 'smokingstatus',
+			legend_label: 'smoking',
 			legend_data: status_legend,
 			donutRatio: 0.5
 		}

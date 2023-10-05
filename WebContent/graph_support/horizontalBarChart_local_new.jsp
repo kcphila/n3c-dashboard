@@ -13,8 +13,6 @@ div.bar.tooltip {
 
 function localHorizontalBarChart_new(data, properties) {
 	
-	console.log(data);
-	
 	var valueLabelWidth = 80; // space reserved for value labels (right)
 	var barHeight = 20; // height of one bar
 	var barLabelPadding = 5; // padding between bar and bar labels (left)
