@@ -17,7 +17,7 @@
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
-	<jsp:param name="opioids_filter" value="true" />
+	<jsp:param name="opioid_filter" value="true" />
 	
 	<jsp:param name="toggle" value="true" />
 	

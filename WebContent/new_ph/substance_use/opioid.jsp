@@ -83,7 +83,7 @@ function ${param.block}_opioid_refresh() {
 			min_height: 300,
 			ordered: 0,
 			colorscale: categorical2,
-			legend_label: 'Opioids',
+			legend_label: 'Opioid',
 			legend_data: opioid_legend,
 			donutRatio: 0.5
 		}

@@ -5,8 +5,6 @@
 // kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
-	
-	console.log('reached again and again');
 
 	switch (filter) {
 	case 'opioid':
@@ -209,7 +207,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	
 	  	
 	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
-	  		console.log('reached');
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
@@ -218,7 +215,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	  	}
 	  	
 		if (snapshot == snapshotAll && currentSnapshot != snapshot) {
-	  		console.log('reached2');
 	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();

@@ -5,7 +5,7 @@
 // kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
-console.log(filter,constraint)
+
 	switch (filter) {
 	case 'alcohol':
 		table.column(0).search(constraint, true, false, true).draw();	
