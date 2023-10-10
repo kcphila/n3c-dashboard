@@ -16,6 +16,8 @@
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
+	<jsp:param name="only_demo" value="true" />
+	
 	
 	<jsp:param name="did" value="${param.did}" />
 	
