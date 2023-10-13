@@ -3,7 +3,7 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
  <sql:query var="totals" dataSource="jdbc/N3CPublic">
- 	select 
+ 	select
  	case
  		when sum(num_patients) < 1000 then sum(num_patients)::text
  		when sum(num_patients) < 1000000 then to_char(sum(num_patients)/1000.0, '999.99')||'k'
@@ -14,7 +14,7 @@
 				when (patient_count = '<20' or patient_count is null) then 0
 				else patient_count::int
 			end as num_patients
-			from n3c_dashboard_ph.mor_alldemomor_csd) as foo
+			from n3c_dashboard_ph.Meds_CovDemoAgeMin_csd) as foo
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
 
@@ -27,13 +27,13 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Mortalities in View" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients Taking Medications of Interest in View" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total number of individuals within the view who have mortality 
-										indicated in their EHR.</p>
-										<small class='kpi-small-note'>Even without filters, this total may be less than the total number of mortalities within the Enclave due to the suppression of counts less than 20.</small>" aria-describedby="tooltip">
+										<p>Total number of individuals within the view who have a name and/or code associated with any of the medications of interest 
+										indicated in their EHR. <strong>Patients may be counted multiple times if on multiple medications.</strong></p>
+										<small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients taking the medications of interest within the Enclave due to the suppression of counts less than 20.</small>" aria-describedby="tooltip">
 	 											<p style="margin-bottom:0px;">Total Patients in View* <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>

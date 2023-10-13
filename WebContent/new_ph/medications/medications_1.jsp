@@ -14,6 +14,7 @@
 	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="medication_filter" value="true" />
 	<jsp:param name="medication_class_filter" value="true" />
+	<jsp:param name="covid_filter" value="true" />
 
 	<jsp:param name="did" value="${param.did}" />
 	

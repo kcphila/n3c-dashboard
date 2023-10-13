@@ -7,7 +7,7 @@
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="medications_2" />
 	<jsp:param name="block_header" value="COVID+ Patient Distribution by Medication" />
-	<jsp:param name="topic_description" value="secondary_2" />
+	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="topic_title" value="Counts of COVID+ Patients Prescribed Select Medications by Drug Class and Age" />
 	<jsp:param name="folder" value="medications" />
 
@@ -16,6 +16,7 @@
 	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="medication_filter" value="true" />
 	<jsp:param name="medication_class_filter" value="true" />
+	<jsp:param name="covid_filter" value="true" />
 
 	<jsp:param name="did" value="${param.did}" />
 	

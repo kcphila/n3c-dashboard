@@ -7,13 +7,16 @@ function ${param.block}_constrain_table(filter, constraint) {
 	// console.log("${param.block}", filter, constraint)
 	switch (filter) {
 	case 'drug_domain':
-	    $("#${param.datatable_div}-table").DataTable().column(0).search(constraint, true, false, true).draw();	
+		table.column(0).search(constraint, true, false, true).draw();	
 		break;
 	case 'concept_set_name':
-	    $("#${param.datatable_div}-table").DataTable().column(1).search(constraint, true, false, true).draw();	
+		table.column(1).search(constraint, true, false, true).draw();	
 		break;
 	case 'age':
-	    $("#${param.datatable_div}-table").DataTable().column(2).search(constraint, true, false, true).draw();	
+		table.column(2).search(constraint, true, false, true).draw();	
+		break;
+	case 'covidstatus':
+		table.column(3).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -27,15 +30,47 @@ function ${param.block}_constrain_table(filter, constraint) {
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
 	var sum = 0;
-	if (column == 'patient_count'){
-		sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	};
-	if (column == 'medication_count'){
-		var sum = table.column(1, { search:'applied' }).data().unique().length;
-	};
-	if (column == 'medication_class_count'){
-		var sum = table.column(0,  { search:'applied' }).data().unique().length;
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'patient_count'){
+			sum += data['patient_count'];
+		}
+		if (column == 'medication_count'){
+			sum = table.column(1, { search:'applied' }).data().unique().length;
+		}
+		if (column == 'medication_class_count'){
+			sum = table.column(0,  { search:'applied' }).data().unique().length;
+		}
+	});	
+	
+	var snapshotAll = table.settings().init().snapshotAll;
+	
+	var total = 0;
+	for (i in snapshotAll){
+		if (column == 'patient_count'){
+			total += snapshotAll[i]['patient_count'];
+		};
 	}
+	
+	if (column == 'patient_count'){
+		if (sum != 0){
+			var percent = ((sum/total)*100);
+			var width = (Math.round(percent));
+			var rount = percent;
+			rount = +rount.toFixed(2);
+			var widthtext = rount + "% in View"
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: " + width + "% !important";
+			document.getElementById(div).setAttribute("data-original-title", widthtext);
+		} else{
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: 0% !important";
+			document.getElementById(div).setAttribute("data-original-title", "0% in View");
+		}
+	};
 	
 	if (sum < 1000) {
 		sumString = sum+'';
@@ -130,45 +165,56 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	},
        	snapshot: null,
     	initComplete: function( settings, json ) {
-       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+    		settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	setTimeout(function() {jQuery('.loading').fadeOut(100); ${param.block}_refreshHistograms();}, 500);
        	  },
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'drug_domain', visible: true, orderable: true },
+     		{ data: 'drug_domain', visible: true, orderable: true },
         	{ data: 'concept_set_name', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [7] },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [8] },
+        	{ data: 'status', visible: true, orderable: true},
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'total_count', visible: false},
         	{ data: 'age_abbrev', visible: false },
-        	{ data: 'age_seq', visible: false }
+        	{ data: 'age_seq', visible: false },
+        	{ data: 'status_abbrev', visible: false },
+        	{ data: 'status_seq', visible: false }
     	]
 	} );
 
-	// table search logic that distinguishes sort/filter 
-	${param.block}_datatable.on( 'search.dt', function () {
+	//table search logic that distinguishes sort/filter 
+	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
+
 		var snapshot = ${param.block}_datatable
 	     .rows({ search: 'applied', order: 'index'})
 	     .data()
-	     .toArray()
-	     .toString();
+	     .toArray().toString();
 
 	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
-
-	  	if (currentSnapshot != snapshot) {
+	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
+	  	
+	  	
+	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	  		${param.block}_refreshHistograms();
 			${param.block}_constrain_table();
-	  		${param.block}_datatable.settings().init().snapshot = snapshot;
 	   		$('#${param.block}_btn_clear').removeClass("no_clear");
 	   		$('#${param.block}_btn_clear').addClass("show_clear");
 	  	}
+	  	
+	  	if (snapshot == snapshotAll && currentSnapshot != snapshot) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("show_clear");
+	   		$('#${param.block}_btn_clear').addClass("no_clear");
+	  	}
 	} );
-
-	// this is necessary to populate the histograms for the panel's initial D3 rendering
-	${param.block}_refreshHistograms();
 
 	
 });

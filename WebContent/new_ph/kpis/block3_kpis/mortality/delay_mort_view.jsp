@@ -3,7 +3,12 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
  <sql:query var="totals" dataSource="jdbc/N3CPublic">
- 	select to_char(sum(num_patients)/1000.0, '999.99')||'k' as patient_count
+ 	select 
+ 	case
+ 		when sum(num_patients) < 1000 then sum(num_patients)::text
+ 		when sum(num_patients) < 1000000 then to_char(sum(num_patients)/1000.0, '999.99')||'k'
+ 		else to_char(sum(num_patients)/1000000.0, '999.99')||'M'
+ 	end as patient_count
  	from (select 
 			case
 				when (patient_count = '<20' or patient_count is null) then 0

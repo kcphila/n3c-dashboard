@@ -490,12 +490,13 @@ WebContent/new_ph/kpis/block3_kpis/long_covid/long_total_grouped.jsp -text
 WebContent/new_ph/kpis/block3_kpis/long_covid/long_total_ungrouped.jsp -text
 WebContent/new_ph/kpis/block3_kpis/long_covid/not_positive.jsp -text
 WebContent/new_ph/kpis/block3_kpis/long_covid/total_w_symptoms_clean.jsp -text
-WebContent/new_ph/kpis/block3_kpis/medication_class_count.jsp -text
-WebContent/new_ph/kpis/block3_kpis/medication_count.jsp -text
-WebContent/new_ph/kpis/block3_kpis/medication_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/medication_ts_patients.jsp -text
 WebContent/new_ph/kpis/block3_kpis/medication_ts_selected.jsp -text
 WebContent/new_ph/kpis/block3_kpis/medication_ts_view.jsp -text
+WebContent/new_ph/kpis/block3_kpis/medications/medication_class_count.jsp -text
+WebContent/new_ph/kpis/block3_kpis/medications/medication_count.jsp -text
+WebContent/new_ph/kpis/block3_kpis/medications/medication_patients.jsp -text
+WebContent/new_ph/kpis/block3_kpis/medications/medications_total.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metformin/diabmetmet_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metformin/diabmetnomet_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/metformin/met_view.jsp -text
@@ -677,8 +678,6 @@ WebContent/new_ph/medications/medications_3.jsp -text
 WebContent/new_ph/medications/medications_frequency.jsp -text
 WebContent/new_ph/medications/panel.jsp -text
 WebContent/new_ph/medications/secondary_text/secondary_1.jsp -text
-WebContent/new_ph/medications/secondary_text/secondary_2.jsp -text
-WebContent/new_ph/medications/secondary_text/secondary_3.jsp -text
 WebContent/new_ph/medications/tables/medications_table.jsp -text
 WebContent/new_ph/medications/tables/medications_table2.jsp -text
 WebContent/new_ph/medications/tables/medications_table3.jsp -text
