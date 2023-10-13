@@ -2,19 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
-
 <div class="row">
 	<div class="col-12 viz-header-section">
 		<div style="display:flex; flex-wrap: nowrap;">
-			<h2 id="${param.block}sex-title" class="viz-title"></h2>
-			<div class="btn-group float-right">
+			<h2 id="${param.block}-covidstatus-title" class="viz-title"></h2>
+			<div>
 				<button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-download"></i>
 				</button>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" onclick="save_viz_pass_sex('.jpg');">Save as JPG</a>
-					<a class="dropdown-item" onclick="save_viz_pass_sex('.png');">Save as PNG</a>
-					<a class="dropdown-item" onclick="save_viz_pass_sex('.svg');">Save as SVG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_covidstatus('.jpg');">Save as JPG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_covidstatus('.png');">Save as PNG</a>
+					<a class="dropdown-item" onclick="save_viz_pass_covidstatus('.svg');">Save as SVG</a>
 				</div>
 			</div>
 		</div>
@@ -23,28 +22,28 @@
 		<div class="loading">
 			<img src="<util:applicationRoot/>/images/loader.gif" alt="load">
 		</div>
-		<div id="${param.block}_sex_viz" class="dash_viz"></div>
+		<div id="${param.block}_covidstatus_viz" class="dash_viz"></div>
 	</div>
 </div>
 
 
 <script>
 //this is to change the title of the download based on which visualization mode is selected
-function save_viz_pass_sex(extension){
+function save_viz_pass_covidstatus(extension){
 	var id = $("#${param.block}-mode").find('.text-primary').attr('id');
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
 	var text = '';
 	if (mode =='pie'){		
-		text = "Sex Percentages of ${param.topic_title}" + extension;
+		text = "COVID Status Percentages of ${param.topic_title}" + extension;
 	} else if (mode == 'bar'){
-		text = "Counts of ${param.topic_title} by Sex" + extension;
+		text = "Counts of ${param.topic_title} by COVID Status" + extension;
 	} else {
-		text = "Sex Percentages of ${param.topic_title}" + extension;
+		text = "COVID Status Percentages of ${param.topic_title}" + extension;
 	};
 	
-	saveVisualization('${param.block}_sex_viz', text);
+	saveVisualization('${param.block}_covidstatus_viz', text);
 };
 
 // set inital title based on load mode
@@ -53,40 +52,39 @@ var title_strings = title_id.split('-');
 var title_mode = title_strings[title_strings.length-1];
 
 if (title_mode =='pie'){		
-	var title = "Sex Percentages of ${param.topic_title}";
-	$("#${param.block}sex-title").text(title);
+	var title = "COVID Status Percentages of ${param.topic_title}";
+	$("#${param.block}-covidstatus-title").text(title);
 } else if (title_mode == 'bar'){
-	var title = "Counts of ${param.topic_title} by Sex";
-	$("#${param.block}sex-title").text(title);
+	var title = "Counts of ${param.topic_title} by COVID Status";
+	$("#${param.block}-covidstatus-title").text(title);
 } else {
-	var title = "Sex Percentages of ${param.topic_title}";
-	$("#${param.block}sex-title").text(title);
+	var title = "COVID Status Percentages of ${param.topic_title}";
+	$("#${param.block}-covidstatus-title").text(title);
 };
 
 //this is to change the title of the graphic based on which visualization mode is selected
 $('#${param.block}-mode-barpercent').on('mouseup', function() {
-	var title = "Sex Percentages of ${param.topic_title}";
-	$("#${param.block}sex-title").text(title);
+	var title = "COVID Status Percentages of ${param.topic_title}";
+	$("#${param.block}-covidstatus-title").text(title);
 });
 $('#${param.block}-mode-bar').on('mouseup', function() {
-	var title = "Counts of ${param.topic_title} by Sex";
-	$("#${param.block}sex-title").text(title);
+	var title = "Counts of ${param.topic_title} by COVID Status";
+	$("#${param.block}-covidstatus-title").text(title);
 });
 $('#${param.block}-mode-pie').on('mouseup', function() {
-	var title = "Sex Percentages of ${param.topic_title}";
-	$("#${param.block}sex-title").text(title);
+	var title = "COVID Status Percentages of ${param.topic_title}";
+	$("#${param.block}-covidstatus-title").text(title);
 });
 
-
-function ${param.block}_sex_refresh() {
+function ${param.block}_covidstatus_refresh() {
 	var properties = {
-			domName: '#${param.block}_sex_viz',
+			domName: '#${param.block}_covidstatus_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: sex_range,
-			legend_label: 'Sex',
-			legend_data: sex_legend,
+			colorscale: covidstatus_range,
+			legend_label: 'Covidstatus',
+			legend_data: covidstatus_legend,
 			donutRatio: 0.5
 		}
 
@@ -94,15 +92,16 @@ function ${param.block}_sex_refresh() {
 	var strings = id.split('-');
 	var mode = strings[strings.length-1];
 	
-	d3.select("#${param.block}_sex_viz").select("svg").remove();
+	d3.select("#${param.block}_covidstatus_viz").select("svg").remove();
 	
 	if (mode =='pie'){		
-		localPieChart_new(${param.block}_SexArray, properties);
+		localPieChart_new(${param.block}_CovidstatusArray, properties);
 	} else if (mode == 'bar'){
-		localHorizontalBarChart_new(${param.block}_SexArray, properties);
+		localHorizontalBarChart_new(${param.block}_CovidstatusArray, properties);
 	} else {
-		localPercentageBarChart_new(${param.block}_SexArray, properties);
-	}
+		localPercentageBarChart_new(${param.block}_CovidstatusArray, properties);
+	};
+	
 }
 
 </script>

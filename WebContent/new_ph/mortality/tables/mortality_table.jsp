@@ -1,12 +1,29 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <script>
 
+
+// kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	
 	switch (filter) {
-	case 'delay':
+	case 'race':
 		table.column(0).search(constraint, true, false, true).draw();	
+		break;
+	case 'ethnicity':
+		table.column(1).search(constraint, true, false, true).draw();	
+		break;
+	case 'age':
+		table.column(2).search(constraint, true, false, true).draw();	
+		break;
+	case 'sex':
+		table.column(3).search(constraint, true, false, true).draw();	
+		break;
+	case 'covidstatus':
+		table.column(4).search(constraint, true, false, true).draw();	
+		break;
+	case 'vaccinated':
+		table.column(5).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -84,6 +101,8 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
 
 var ${param.block}_datatable = null;
 
+
+// datatable setup ////////////////////////
 $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 		
 	var json = $.parseJSON(JSON.stringify(data));
@@ -115,8 +134,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 	var data = json['rows'];
 
 	var ${param.block}_datatable = $('#${param.target_div}-table').DataTable( {
-		data: data,
-		dom: 'lr<"datatable_overflow"t>Bip',
+	    data: data,
+    	dom: 'lfr<"datatable_overflow"t>Bip',
     	buttons: {
     	    dom: {
     	      button: {
@@ -132,7 +151,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'delayed_mortality',
+    	      filename: 'n3c_mortalities',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -144,24 +163,72 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
     	      text: 'Copy'
     	    }]
     	},
-    	snapshot: null,
-    	initComplete: function( settings, json ) {
-    		settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	paging: true,
+       	snapshot: null,
+       	initComplete: function( settings, json ) {
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	setTimeout(function() {jQuery('.loading').fadeOut(100); ${param.block}_refreshHistograms();}, 500);
-       	  },
-       	paging: true,
+       	},
     	pageLength: 10,
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
-    	order: [[3, 'asc']],
+    	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'datediff_bw_death_and_hos', visible: true, orderable: true, orderData: [3] },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [2] },
+        	{ data: 'race', visible: true, orderable: true },
+        	{ data: 'ethnicity', visible: true, orderable: true },
+        	{ data: 'age', visible: true, orderable: true, orderData: [9] },
+        	{ data: 'sex', visible: true, orderable: true},
+        	{ data: 'status', visible: true, orderable: true},
+        	{ data: 'vaccinated', visible: true,  orderable: true},
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [7] },
         	{ data: 'patient_count', visible: false },
-        	{ data: 'diff_seq', visible: false }
+        	{ data: 'age_abbrev', visible: false },
+        	{ data: 'age_seq', visible: false },
+        	{ data: 'race_abbrev', visible: false },
+        	{ data: 'race_seq', visible: false },
+        	{ data: 'ethnicity_abbrev', visible: false },
+        	{ data: 'ethnicity_seq', visible: false },
+        	{ data: 'sex_abbrev', visible: false },
+        	{ data: 'sex_seq', visible: false },
+        	{ data: 'status_abbrev', visible: false },
+        	{ data: 'status_seq', visible: false },
+        	{ data: 'vaccinated_abbrev', visible: false },
+        	{ data: 'vaccinated_seq', visible: false }
     	]
 	} );
 	
+	//table search logic that distinguishes sort/filter 
+	$('#${param.target_div}-table').DataTable().on( 'search.dt', function () {
+
+		var snapshot = ${param.block}_datatable
+	     .rows({ search: 'applied', order: 'index'})
+	     .data()
+	     .toArray().toString();
+
+	  	var currentSnapshot = ${param.block}_datatable.settings().init().snapshot;
+	  	var snapshotAll = ${param.block}_datatable.settings().init().snapshotAll;
+	  	
+	  	
+	  	if (currentSnapshot != snapshot && snapshot != snapshotAll) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("no_clear");
+	   		$('#${param.block}_btn_clear').addClass("show_clear");
+	  	}
+	  	
+	  	if (snapshot == snapshotAll && currentSnapshot != snapshot) {
+	  		${param.block}_datatable.settings().init().snapshot = snapshot;
+	  		${param.block}_refreshHistograms();
+			${param.block}_constrain_table();
+	   		$('#${param.block}_btn_clear').removeClass("show_clear");
+	   		$('#${param.block}_btn_clear').addClass("no_clear");
+	  	}
+	} );
 });
+
+
+
+
 
 </script>

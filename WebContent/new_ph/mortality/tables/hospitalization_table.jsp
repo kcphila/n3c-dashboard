@@ -29,8 +29,44 @@ function ${param.block}_constrain_table(filter, constraint) {
 
 function ${param.block}_updateKPI(table, column) {
 	var sum_string = '';
-	var sum = table.rows({search:'applied'}).data().pluck(column).sum();
-	// console.log(sum);
+	var sum = 0;
+	
+	table.rows({ search:'applied' }).every( function ( rowIdx, tableLoop, rowLoop ) {
+		var data = this.data();
+		if (column == 'patient_count'){
+			sum += data['patient_count'];
+		};
+	});	
+	
+	var snapshotAll = table.settings().init().snapshotAll;
+	
+	var total = 0;
+	for (i in snapshotAll){
+		if (column == 'patient_count'){
+			total += snapshotAll[i]['patient_count'];
+		};
+	}
+
+	if (column == 'patient_count'){
+		if (sum != 0){
+			var percent = ((sum/total)*100);
+			var width = (Math.round(percent));
+			var rount = percent;
+			rount = +rount.toFixed(2);
+			var widthtext = rount + "% in View"
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: " + width + "% !important";
+			document.getElementById(div).setAttribute("data-original-title", widthtext);
+		} else{
+			var bar = "${param.block}_"+ column +"_kpi_progress";
+			var div = "${param.block}_"+ column +"_kpi_progressdiv";
+			document.getElementById(bar).style = "width: 0% !important";
+			document.getElementById(div).setAttribute("data-original-title", "0% in View");
+		}
+	};
+	
+	
 	if (sum < 1000) {
 		sumString = sum+'';
 	} else if (sum < 1000000) {
@@ -109,7 +145,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
                   columns: ':visible'
               },
     	      text: 'CSV',
-    	      filename: 'hospitalization',
+    	      filename: 'mortality_after_hospitalization',
     	      extension: '.csv'
     	    }, {
     	      extend: 'copy',
@@ -124,8 +160,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
        	paging: true,
        	snapshot: null,
        	initComplete: function( settings, json ) {
-       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
-       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray().toString();
+       	 	settings.oInit.snapshot = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
+       	 	settings.oInit.snapshotAll = $('#${param.target_div}-table').DataTable().rows({order: 'index'}).data().toArray();
        	 	setTimeout(function() {jQuery('.loading').fadeOut(100); ${param.block}_refreshHistograms();}, 500);
        	},
     	pageLength: 10,
@@ -134,8 +170,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
      	columns: [
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'ethnicity', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true },
-        	{ data: 'sex', visible: true, orderable: true, orderData: [7] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [7]  },
+        	{ data: 'sex', visible: true, orderable: true},
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'age_abbrev', visible: false },

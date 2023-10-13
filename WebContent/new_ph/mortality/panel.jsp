@@ -10,14 +10,16 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
-		<option value="mortality_1">COVID+ and Hospitalization</option>
-		<option value="mortality_2">Delayed Mortality</option>
+		<option value="mortality_3">Demographics of All Mortalities</option>
+		<option value="mortality_1">Demographics of Mortalities after COVID Hospitalization</option>
+		<option value="mortality_2">Delayed Mortality after COVID Hospitalization Discharge</option>
 	</select>
 </div>
 
 <div id="frame">
 	<div id="mortality_1" class="group"></div>
 	<div id="mortality_2" class="group"></div>
+	<div id="mortality_3" class="group"></div>
 </div>
 
 <script>
@@ -33,7 +35,7 @@ var frame_crumbs = [];
 
 <c:choose>
 	<c:when test="${empty param.tertiary_tab || param.tertiary_tab == 'undefined'}">
-		frame_load('mortality_1');
+		frame_load('mortality_3');
 	</c:when>
 	<c:otherwise>
 		$('#selectMe').val(url_unmap('${param.tertiary_tab}'));

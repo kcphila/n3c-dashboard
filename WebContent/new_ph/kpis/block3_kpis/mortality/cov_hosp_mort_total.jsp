@@ -10,11 +10,8 @@
  			else to_char(sum(patient_count)/1000000.0, '999.99')||'M'
  		end as count
 			from (select
-					case
-						when (patient_count = '<20' or patient_count is null) then 0
-						else patient_count::int
-					end as patient_count
-				  from n3c_dashboard_ph.mor_icd10demogrouped_csd
+					max(total_patients) as patient_count
+					from n3c_dashboard_ph.mor_icd10demogrouped_csd
 				) as foo;
 </sql:query>
 <c:forEach items="${totals.rows}" var="row" varStatus="rowCounter">
@@ -24,7 +21,7 @@
 				<div class="panel-body">
 					<table>
 						<tr>
-							<td>Mortality Total*</td>
+							<td>Total Mortalities after COVID-Related Hospitalization*</td>
 						</tr>
 					</table>
 				</div>
