@@ -11,7 +11,7 @@
 			from (select
 					drug_name,
 					drug_domain,
-					age,
+					COALESCE (age, 'Unknown') as age,
 					case
 						when covid_indicator = 1 then 'Positive'
 						else 'Unknown'
