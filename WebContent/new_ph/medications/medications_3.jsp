@@ -16,6 +16,7 @@
 	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="medication_filter" value="true" />
 	<jsp:param name="medication_class_filter" value="true" />
+	<jsp:param name="covid_filter" value="true" />
 
 	<jsp:param name="did" value="${param.did}" />
 	
@@ -23,7 +24,7 @@
 
 	<jsp:param name="datatable" value="medications/tables/medications_table3.jsp" />
 	<jsp:param name="datatable_div" value="medications_medications_3" />
-	<jsp:param name="datatable_feed" value="medications/feeds/medications_class.jsp" />
+	<jsp:param name="datatable_feed" value="medications/feeds/medications.jsp" />
 	<jsp:param name="datatable_kpis" value="patient_count,medication_count,medication_class_count" />
 	
 	<jsp:param name="MedicationArray" value="true" />

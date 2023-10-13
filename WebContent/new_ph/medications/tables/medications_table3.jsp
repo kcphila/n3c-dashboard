@@ -175,12 +175,15 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
      	columns: [
      		{ data: 'drug_domain', visible: true, orderable: true },
         	{ data: 'concept_set_name', visible: true, orderable: true },
-        	{ data: 'age', visible: true, orderable: true, orderData: [7] },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [4] },
+        	{ data: 'age', visible: true, orderable: true, orderData: [8] },
+        	{ data: 'status', visible: true, orderable: true},
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [5] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'total_count', visible: false},
         	{ data: 'age_abbrev', visible: false },
         	{ data: 'age_seq', visible: false },
+        	{ data: 'status_abbrev', visible: false },
+        	{ data: 'status_seq', visible: false }
     	]
 	} );
 
@@ -217,3 +220,4 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
 });
 
 </script>
+

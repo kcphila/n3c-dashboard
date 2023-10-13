@@ -22,6 +22,8 @@
 
 function localHorizontalGroupedStackedBarChart_new(data, properties) {
 	
+	console.log(data);
+	
 	//
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
 	//
@@ -131,19 +133,25 @@ function localHorizontalGroupedStackedBarChart_new(data, properties) {
 			keys = keys.sort();
 		};
 
-		
+
 		var groupData = d3.nest()
 			.key(function(d) { return d[secondary] + d[primary]; })
-			.rollup(function(d, i){
+			.rollup(function(d){
 				var d2 = {secondary: d[0][secondary], primary: d[0][primary], total: 0};
 				d.forEach(function(d){
-					d2[d[stack_group]] = d[count];
+					if (d2[d[stack_group]]){
+						d2[d[stack_group]] = d2[d[stack_group]] + d[count];
+					}else{
+						d2[d[stack_group]] = d[count];
+					}
 					d2.total += d[count];
 				})
 				return d2;
 			})
 			.entries(data)
 			.map(function(d){ return d.value; });
+		
+
 		
 		x.domain([0, d3.max(groupData, function(d) { return d.total; })]).nice();
 
