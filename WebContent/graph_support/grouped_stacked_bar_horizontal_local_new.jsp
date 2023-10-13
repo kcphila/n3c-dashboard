@@ -11,7 +11,17 @@
 .graph_tooltip{
 	pointer-events:none;
 }
+
+div.bar.tooltip {
+	position: absolute;
+	background-color: white;
+  	opacity: 0.8;
+  	height: auto;
+	padding: 1px;
+  	pointer-events: none;
+}
 </style>
+
 
 <script>
 
