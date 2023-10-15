@@ -40,7 +40,9 @@ div.composite.tooltip {
 
 </style>
 
-<jsp:include page="head.jsp" flush="true" />
+<jsp:include page="head.jsp">
+	<jsp:param name="page" value="Institutional Collaboration Graph"/>
+</jsp:include>
 
 <body>
 	<jsp:include page="navbar.jsp" flush="true">

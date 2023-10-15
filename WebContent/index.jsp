@@ -7,7 +7,9 @@
 
 <!DOCTYPE html>
 <html>
-<jsp:include page="head.jsp" flush="true" />
+<jsp:include page="head.jsp">
+	<jsp:param name="page" value="Home"/>
+</jsp:include>
 <style>
 
 /* -------------- N3C Style Overrides ---------------------  */

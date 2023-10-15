@@ -10,7 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
 
-<jsp:include page="head.jsp" flush="true" />
+<jsp:include page="head.jsp">
+	<jsp:param name="page" value="Data Downloads"/>
+</jsp:include>
 
 <body>
 	<jsp:include page="navbar.jsp" flush="true">

@@ -43,7 +43,9 @@
 
 </style>
 
-<jsp:include page="head.jsp" flush="true" />
+<jsp:include page="head.jsp">
+	<jsp:param name="page" value="RECOVER Long COVID"/>
+</jsp:include>
 
 <body>
 	<jsp:include page="navbar.jsp" flush="true">

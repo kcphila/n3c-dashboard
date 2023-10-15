@@ -15,7 +15,6 @@
     margin: auto;
 }
 
-
 div.composite.tooltip {
     position: absolute;
     background-color: white;
@@ -26,21 +25,10 @@ div.composite.tooltip {
     max-width: 250px;
     padding-left: 10px;
 }
-
-.popover {
-    white-space: pre-wrap!important;    
-}
-
-#filters{
-	width: fit-content;
-    margin: auto;
-    margin-top: 20px;
-}
-
 </style>
 
 <jsp:include page="head.jsp">
-	<jsp:param name="page" value="Institutional Collaboration Map"/>
+	<jsp:param name="page" value="Site Collaboration Profiles"/>
 </jsp:include>
 
 <body>
@@ -49,12 +37,10 @@ div.composite.tooltip {
 	</jsp:include>
 	
 	<div class="container container-large content">
-		<jsp:include page="overview/collaboration_map/collaboration_map.jsp" flush="true" />
+		<jsp:include page="overview/collaborating_sites/collaborating_sites.jsp" flush="true" />
 	</div>
 
-
 	<jsp:include page="footer.jsp" flush="true" />
-	
 	<c:import url="modules/popover_init.jsp"/>
 	
 </body>

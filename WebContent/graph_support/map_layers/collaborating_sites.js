@@ -130,6 +130,7 @@ function collaboration_draw() {
 		.attr("fill", function(d) { return color(d.status); })
 		.on("mouseover", fade(.2, false))
 		.on("mouseout", fade(1, true))
+		.on("click", function(d) { window.open("collaborating-sites/site.jsp?ror="+d.id, "_self"); })
 		.append('title')
 		.text(function(d) { return ("Site: " + d.site + "\nType: " + d.type + "\n# Investigators: " + d.count + "\n# Collaborating Sites: " + collaborator_count(d)); });
 }

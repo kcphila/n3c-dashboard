@@ -5,9 +5,15 @@
 <%@ taglib prefix="dashboard" uri="http://icts.uiowa.edu/N3CDashboardTagLib"%>
 <!DOCTYPE html>
 
+<c:set var="path">public-health/${param.secondary_tab}</c:set>
+<c:set var="did">${dashboard:dashboardDidByPath(path)}</c:set>
 
 <html>
-<jsp:include page="head.jsp" flush="true" />
+<dashboard:dashboard did="${did}">
+	<jsp:include page="head.jsp">
+		<jsp:param name="page" value="${tag_dashboard.title}"/>
+	</jsp:include>
+</dashboard:dashboard>
 <script src="<util:applicationRoot/>/resources/auth.js"></script>
 
 <style>
@@ -64,8 +70,7 @@
 		</ol>
 	</nav>
 
-	<c:set var="path">public-health/${param.secondary_tab}</c:set>
-	<dashboard:dashboard did="${dashboard:dashboardDidByPath(path)}">
+	<dashboard:dashboard did="${did}">
 		<div class="row">
 			<div class="col-12 mx-auto">
 				<div class="row">

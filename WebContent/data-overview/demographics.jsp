@@ -6,7 +6,9 @@
 <!DOCTYPE html>
 <html>
 
-<jsp:include page="../head.jsp" flush="true" />
+<jsp:include page="../head.jsp">
+	<jsp:param name="page" value="Enclave Demographics"/>
+</jsp:include>
 <jsp:include page="../resources/dash_style.css" flush="true" />
 <jsp:include page="style.css" flush="true" />
 
