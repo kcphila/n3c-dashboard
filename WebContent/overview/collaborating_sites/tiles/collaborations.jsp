@@ -29,7 +29,10 @@
 			</c:forEach>
 		</div>
 		<div class="col-9">
-			<img alt="testing" style="width: 100%; object-fit: contain" src="/n3c-dashboard/overview/collaborating_sites/tiles/projects.png">
+			<jsp:include page="include_tile.jsp">
+				<jsp:param name="ror" value="${param.ror}"/>
+				<jsp:param name="type" value="project_sites"/>
+			</jsp:include>
 		</div>
 	</div>
 </div>

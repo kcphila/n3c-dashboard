@@ -2,6 +2,52 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
+<style>
+
+.display_N3C {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #007bff;
+}
+
+.display_CTSA {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #8406D1;
+}
+
+.display_GOV {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #09405A;
+}
+
+.display_CTR {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #AD1181;
+}
+
+.display_COM {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #ffa600;
+}
+
+.display_UNAFFILIATED {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #ff7155;
+}
+
+.display_REGIONAL {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #a6a6a6;
+}
+
+</style>
+
 <div class="col-6 card">
 	<h4 class="nav-card">Collaborating Institutions</h4>
 	<div class="row flex-wrap ">
@@ -17,11 +63,14 @@
 				<sql:param>${param.ror}</sql:param>
 			</sql:query>
 			<c:forEach items="${collabs.rows}" var="row" varStatus="rowCounter">
-				<p>${row.count} ${row.org_type}</p>
+				<p class="display_${row.org_type}">${row.count} ${row.org_type}</p>
 			</c:forEach>
 		</div>
 		<div class="col-6">
-			<img alt="testing" style="width: 100%; object-fit: contain" src="/n3c-dashboard/overview/collaborating_sites/tiles/collaborators.png">
+			<jsp:include page="include_tile.jsp">
+				<jsp:param name="ror" value="${param.ror}"/>
+				<jsp:param name="type" value="collaborator_sites"/>
+			</jsp:include>
 		</div>
 	</div>
 </div>

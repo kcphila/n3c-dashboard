@@ -70,9 +70,31 @@ $.getJSON("<util:applicationRoot/>/overview/collaborating_sites/feeds/${param.fe
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'title', visible: true, orderable: true },
-        	{ data: 'external_url', visible: true, orderable: true },
-        	{ data: 'id', visible: true, orderable: true }
+        	{ data: 'title',
+        	  visible: true,
+        	  orderable: true,
+     		  render: function ( data, type, row ) {
+				var buffer = '<a href="' + row.external_url + '">' +  row.title + '</a>';
+				if (row.journal != null) {
+					buffer = buffer + "<br>" + row.journal;
+					if (row.pub_date != null)
+						buffer = buffer + ", " + row.pub_date;
+				}
+				if (row.doi != null) {
+					if (row.journal == null)
+						buffer = buffer + "<br>doi: <a href='https://doi.org/" + row.doi + "'>" + row.doi +"</a>";
+					else
+						buffer = buffer + ", doi: <a href='https://doi.org/" + row.doi + "'>" + row.doi +"</a>";
+				}
+				return buffer;
+           	  }
+        	 },
+        	{ data: 'external_url', visible: false, orderable: true },
+        	{ data: 'id', visible: false, orderable: true },
+        	{ data: 'doi', visible: false, orderable: true },
+        	{ data: 'journal', visible: false, orderable: true },
+        	{ data: 'pub_date', visible: false, orderable: true },
+        	{ data: 'authors', visible: true, orderable: true }
     	]
 	} );
 });

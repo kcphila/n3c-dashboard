@@ -70,12 +70,18 @@ $.getJSON("<util:applicationRoot/>/overview/collaborating_sites/feeds/${param.fe
     	lengthMenu: [ 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'uid', visible: true, orderable: true },
-        	{ data: 'title', visible: true, orderable: true },
-        	{ data: 'lead_investigator', visible: true, orderable: true },
-        	{ data: 'accessing_institution', visible: true, orderable: true },
         	{ data: 'workspace_status', visible: true, orderable: true },
-        	{ data: 'dur_project_id', visible: true, orderable: true },
+        	{ data: 'uid', visible: false, orderable: true },
+        	{ data: 'title', visible: true, orderable: true },
+        	{ data: 'lead_investigator',
+        	  visible: true,
+        	  orderable: true,
+     		  render: function ( data, type, row ) {
+     			  return row.lead_investigator + " (" + row.accessing_institution + ")";
+     		  }
+        	 },
+        	{ data: 'accessing_institution', visible: false, orderable: true },
+        	{ data: 'dur_project_id', visible: false, orderable: true },
         	{ data: 'members', visible: true, orderable: true },
         	{ data: 'collaborators', visible: true, orderable: true }
     	]

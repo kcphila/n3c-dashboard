@@ -32,7 +32,7 @@
 	</div>
 
 	<jsp:include page="../../footer.jsp" flush="true" />
-	<c:import url="modules/popover_init.jsp" />
+	<c:import url="../../modules/popover_init.jsp" />
 
 </body>
 </html>
