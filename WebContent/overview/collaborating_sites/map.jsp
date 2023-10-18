@@ -52,6 +52,7 @@
 </div>
 <p><button id="reset" > Reset Zoom </button>
 <p>Click on a state to zoom to that state, click on that state again to return to the default view. Drag pans the map. Scroll zooms in/out relative to the mouse position
+<p>Click on a node to open that site's collaboration profile. Alternatively, you can click on a site in the table on the right</p>
 
 <div id="site_block" class="row flex-wrap ">
 	<div class="col-8" id="graph" style="overflow: hidden;"></div>
