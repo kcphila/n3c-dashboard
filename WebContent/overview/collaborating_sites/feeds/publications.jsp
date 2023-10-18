@@ -8,7 +8,7 @@
 			title,
 			external_url,
 			id,
-			(select doi from scholar_profile.citation natural join scholar_profile.linkage where doi != 'x' and id = foo.id) as doi,
+			(select doi from scholar_profile.citation natural join scholar_profile.linkage where doi != 'x' and id = foo.id limit 1) as doi,
 			(select value from scholar_profile.metadata where field='Journal' and id = foo.id) as journal,
 			(select substring(value from '^[0-9]+') from scholar_profile.metadata where field='Publication date' and id = foo.id) as pub_date,
 			(select '<ul><li>'||string_agg(last_name||', '||first_name,'<li>')||'<ul>'

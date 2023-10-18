@@ -53,8 +53,14 @@
 <p><button id="reset" > Reset Zoom </button>
 <p>Click on a state to zoom to that state, click on that state again to return to the default view. Drag pans the map. Scroll zooms in/out relative to the mouse position
 
-<div id="graph" style="overflow: hidden;"></div>
-<div id="site-roster"></div>
+<div id="site_block" class="row flex-wrap ">
+	<div class="col-8" id="graph" style="overflow: hidden;"></div>
+	<div class="col-4" id="site-roster"></div>
+</div>
+<jsp:include page="tables/sites.jsp">
+	<jsp:param name="target_div" value="site-roster"/>
+	<jsp:param name="block" value="site_block"/>
+</jsp:include>
 
 <script>
 	function getApplicationRoot() {

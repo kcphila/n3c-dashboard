@@ -4,11 +4,11 @@
 
 <c:choose>
 	<c:when test="${fn:startsWith(param.ror,'http')}">
-		<img alt="testing" style="width: 100%; object-fit: contain"
+		<img alt="No data" style="width: 100%; object-fit: contain"
 			src="<util:applicationRoot/>/overview/collaborating_sites/tiles/${param.type}/${util:regexMatch(param.ror,'.*/([^/]+)$')}.png">
 	</c:when>
 	<c:otherwise>
-		<img alt="testing" style="width: 100%; object-fit: contain"
+		<img alt="No data" style="width: 100%; object-fit: contain"
 			src="<util:applicationRoot/>/overview/collaborating_sites/tiles/${param.type}/${param.ror}.png">
 	</c:otherwise>
 </c:choose>

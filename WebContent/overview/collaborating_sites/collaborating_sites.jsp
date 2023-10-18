@@ -4,7 +4,7 @@
 
 <jsp:include page="../block.jsp">
 	<jsp:param name="block" value="contributing-sites" />
-	<jsp:param name="block_header" value="Inter-institutional Collaboration Map" />
+	<jsp:param name="block_header" value="Site Collaboration Profiles" />
 
 	<jsp:param name="did" value="680" />
 	

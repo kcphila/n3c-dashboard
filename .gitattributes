@@ -1010,6 +1010,7 @@ WebContent/overview/collaborating_sites/sites.jsp -text
 WebContent/overview/collaborating_sites/tables/grants.jsp -text
 WebContent/overview/collaborating_sites/tables/projects.jsp -text
 WebContent/overview/collaborating_sites/tables/publications.jsp -text
+WebContent/overview/collaborating_sites/tables/sites.jsp -text
 WebContent/overview/collaborating_sites/tables/subcontracts.jsp -text
 WebContent/overview/collaborating_sites/tiles/collaborations.jsp -text
 WebContent/overview/collaborating_sites/tiles/collaborator_sites/000e0be47.png -text
