@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
@@ -27,7 +28,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:if test="${award_count > 0}">
-				<p>${award_count} awards, ${amount} total amount</p>
+				<p>${award_count} awards, <fmt:formatNumber value="${amount}" type="currency"/> total amount</p>
 			</c:if>
 			<c:if test="${subcontract_count > 0}">
 				<p>${subcontract_count} subcontracts</p>
