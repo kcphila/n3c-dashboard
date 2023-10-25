@@ -18,6 +18,7 @@ text.active {
 <jsp:include page="../../graph_support/percentage_bar_local_new.jsp"/>
 <jsp:include page="../../graph_support/pieChart_local_new.jsp"/>
 <jsp:include page="../../graph_support/horizontalBarChart_local_new.jsp"/>
+<jsp:include page="../../graph_support/horizontalStackedBarChart_local_new.jsp"/>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
@@ -33,6 +34,7 @@ text.active {
 			<option value="substance_use_5">Alcohol & Smoking Heatmap</option>		
 			<option value="substance_use_6">Opioid & Smoking Heatmap</option>	
 		</optgroup>
+		<option value="substance_use_8">Anti-Opioid Interventions</option>	
 	</select>
 </div>
 
@@ -44,6 +46,7 @@ text.active {
 	<div id="substance_use_5" class="group"></div>
 	<div id="substance_use_6" class="group"></div>
 	<div id="substance_use_7" class="group"></div>
+	<div id="substance_use_8" class="group"></div>
 </div>
 
 <script>

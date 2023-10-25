@@ -31,7 +31,6 @@ var smoking_status_range = ["#4833B2", "#a6a6a6"];
 var opioids_status_range = ["#4833B2", "#a6a6a6"];
 var cannabis_status_range = ["#4833B2", "#a6a6a6"];
 
-
 var result_range = ["#4833B2", "#AD1181", "#a6a6a6"];
 var diagnosis_range = ["#09405A", "#AD1181", "#8406D1"];
 
@@ -517,6 +516,15 @@ var medication_legend = new Array()
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	var medication_legend2 = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="statuses" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select * from n3c_dashboard.anti_opioid_map order by secondary_seq
+	) as done;
+</sql:query>
+<c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
+	var anti_legend = ${row.jsonb_pretty};
 </c:forEach>
 
 

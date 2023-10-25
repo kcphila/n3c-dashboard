@@ -308,6 +308,7 @@ WebContent/new_ph/cumulative/tables/cumulative_table.jsp -text
 WebContent/new_ph/cumulative/tables/demographics_table.jsp -text
 WebContent/new_ph/displayDashboardThumbnail.jsp -text
 WebContent/new_ph/doubleHistogram.jsp -text
+WebContent/new_ph/doubleHistogram2.jsp -text
 WebContent/new_ph/enclave_health/age.jsp -text
 WebContent/new_ph/enclave_health/enclave_health_1.jsp -text
 WebContent/new_ph/enclave_health/ethnicity.jsp -text
@@ -566,6 +567,7 @@ WebContent/new_ph/kpis/block3_kpis/substance_use/alc_smo.jsp -text
 WebContent/new_ph/kpis/block3_kpis/substance_use/alc_smo_cov.jsp -text
 WebContent/new_ph/kpis/block3_kpis/substance_use/alcohol_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/substance_use/all_view.jsp -text
+WebContent/new_ph/kpis/block3_kpis/substance_use/anti_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/substance_use/opi_smo.jsp -text
 WebContent/new_ph/kpis/block3_kpis/substance_use/opi_smo_cov.jsp -text
 WebContent/new_ph/kpis/block3_kpis/substance_use/opioid_view.jsp -text
@@ -912,11 +914,13 @@ WebContent/new_ph/substance_use/alcohol_opioid_covid_heatmap.jsp -text
 WebContent/new_ph/substance_use/alcohol_smoking_all_heatmap.jsp -text
 WebContent/new_ph/substance_use/alcohol_smoking_covid_heatmap.jsp -text
 WebContent/new_ph/substance_use/alcohol_status.jsp -text
+WebContent/new_ph/substance_use/anti_opioids_frequency.jsp -text
 WebContent/new_ph/substance_use/cannabis_status.jsp -text
 WebContent/new_ph/substance_use/covid_status.jsp -text
 WebContent/new_ph/substance_use/ethnicity.jsp -text
 WebContent/new_ph/substance_use/feeds/alcohol_demographics.jsp -text
 WebContent/new_ph/substance_use/feeds/all_demographics.jsp -text
+WebContent/new_ph/substance_use/feeds/anti_opioids.jsp -text
 WebContent/new_ph/substance_use/feeds/heatmap_alc_opi.jsp -text
 WebContent/new_ph/substance_use/feeds/heatmap_alc_smo.jsp -text
 WebContent/new_ph/substance_use/feeds/heatmap_clustered_alc_opi.jsp -text
@@ -940,6 +944,7 @@ WebContent/new_ph/substance_use/secondary_text/secondary_4.jsp -text
 WebContent/new_ph/substance_use/secondary_text/secondary_5.jsp -text
 WebContent/new_ph/substance_use/secondary_text/secondary_6.jsp -text
 WebContent/new_ph/substance_use/secondary_text/secondary_7.jsp -text
+WebContent/new_ph/substance_use/secondary_text/secondary_8.jsp -text
 WebContent/new_ph/substance_use/severity.jsp -text
 WebContent/new_ph/substance_use/sex.jsp -text
 WebContent/new_ph/substance_use/smoking.jsp -text
@@ -951,8 +956,10 @@ WebContent/new_ph/substance_use/substance_use_4.jsp -text
 WebContent/new_ph/substance_use/substance_use_5.jsp -text
 WebContent/new_ph/substance_use/substance_use_6.jsp -text
 WebContent/new_ph/substance_use/substance_use_7.jsp -text
+WebContent/new_ph/substance_use/substance_use_8.jsp -text
 WebContent/new_ph/substance_use/tables/alcohol_demographics.jsp -text
 WebContent/new_ph/substance_use/tables/all_demographics.jsp -text
+WebContent/new_ph/substance_use/tables/anti_opioids.jsp -text
 WebContent/new_ph/substance_use/tables/heatmap.jsp -text
 WebContent/new_ph/substance_use/tables/opioid_demographics.jsp -text
 WebContent/new_ph/substance_use/tables/smoking_demographics.jsp -text

@@ -2186,6 +2186,9 @@ function ${param.block}_filter_clear() {
 <c:if test="${param.SmokingStatusArray}">
 	var ${param.block}_SmokingStatusArray = new Array();
 </c:if>
+<c:if test="${param.AntiOpioidsArray}">
+	var ${param.block}_AntiOpioidsArray = new Array();
+</c:if>
 	
 
 function ${param.block}_refreshHistograms(just_viz) {
@@ -2459,6 +2462,9 @@ function ${param.block}_refreshHistograms(just_viz) {
 	    <c:if test="${param.SmokingStatusArray}">
 	    	${param.block}_refreshSmokingStatusArray(data);
 	    </c:if>
+	    <c:if test="${param.AntiOpioidsArray}">
+    		${param.block}_refreshAntiOpioidsArray(data);
+    	</c:if>
     };
    	
     if (${param.block}_loaded("covidstatus")) {
@@ -2618,6 +2624,9 @@ function ${param.block}_refreshHistograms(just_viz) {
     if ('${param.block}' === "substance_use_6") {
     	${param.block}_opioid_smoking_all_refresh();
     	${param.block}_opioid_smoking_covid_refresh();
+    }
+    if ('${param.block}' === "substance_use_8") {
+    	${param.block}_anti_opioids_refresh();
     }
 }
 	
@@ -3466,3 +3475,15 @@ function ${param.block}_loaded(selection) {
 		<jsp:param name="count" value="patient_count"/>
 	</jsp:include>
 </c:if>
+
+<c:if test="${param.AntiOpioidsArray}">
+	<jsp:include page="doubleHistogram2.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="AntiOpioidsArray"/>
+		<jsp:param name="primary" value="opioids"/>
+		<jsp:param name="secondary" value='["naltrexone_count","methadone_count","buprenorphine_count","naloxone_count"]'/>
+		<jsp:param name="sort_desc" value="count"/>
+	</jsp:include>
+</c:if>
+	
