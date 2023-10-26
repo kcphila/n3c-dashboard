@@ -100,7 +100,7 @@
 							 || not empty param.smoking_filter || not empty param.environmental_filter || not empty param.environmental_filter2
 							 || not empty param.beforeaftersotrovimab_filter || not empty param.comorbidities_filter || not empty param.mortality_filter
 							 || not empty param.alcohol_status_filter || not empty param.opioids_status_filter || not empty param.cannabis_status_filter
-							 || not empty param.vaccinated_filter || not empty param.opioid_filter || not empty param.alcohol_filter}">
+							 || not empty param.vaccinated_filter || not empty param.opioid_filter || not empty param.alcohol_filter || not empty param.anti_opioids_filter}">
 					<div id="${param.block}filter_checks" class="panel-primary filter-section filter_checks">
 						<div class="filters-label">
 							<h4 style="flex-fill:1;">Filters</h4>
@@ -185,6 +185,9 @@
 							</c:if>
 							<c:if test="${param.vaccinated_filter}">
 								<jsp:include page="filters_new/vaccinated.jsp"/>
+							</c:if>
+							<c:if test="${param.anti_opioids_filter}">
+								<jsp:include page="filters_new/anti_opioids.jsp"/>
 							</c:if>
 							
 							
@@ -1110,6 +1113,27 @@ $(document).ready(function() {
            }
 	});
 	
+	$('#${param.block}-anti-opioid-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           enableCaseInsensitiveFiltering: true,
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-anti-opioid-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+
+	     	${param.block}_active = selected[0];
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
 	$('#${param.block}-covidstatus-select').multiselect({
 		buttonContainer: '<div class="checkbox-list-container"></div>',
            buttonClass: '',
@@ -1941,6 +1965,12 @@ function ${param.block}_filter_clear() {
 		if ($('#${param.block}-covidstatus-select').val().length > 0) {
 			$('#${param.block}-covidstatus-select').multiselect('clearSelection');
 			${param.block}_constrain("covidstatus", '');
+		}
+	</c:if>
+	<c:if test="${param.anti_opioids_filter}">
+		if ($('#${param.block}-anti-opioid-select').val().length > 0) {
+			$('#${param.block}-anti-opioid-select').multiselect('clearSelection');
+			${param.block}_active = [];
 		}
 	</c:if>
 	

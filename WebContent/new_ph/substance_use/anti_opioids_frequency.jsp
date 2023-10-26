@@ -43,6 +43,24 @@ function ${param.block}_anti_opioids_refresh() {
 	//console.log("anti_opioids graph", "${param.block}_anti_opioids_viz", ${param.block}_AntiOpioidsArray);
    	d3.select("#${param.block}_anti_opioids_viz").select("svg").remove(); 
 	localHorizontalStackedBarChart_new(${param.block}_AntiOpioidsArray, properties);
+	${param.block}_refresh_kpis();
+}
+
+function ${param.block}_refresh_kpis() {
+	var sum = ${param.block}_active_count;
+	var sumString = '';
+	
+	if (sum < 1000) {
+		sumString = sum+'';
+	} else if (sum < 1000000) {
+		sum = sum / 1000.0;
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "k";
+	} else {
+		sum = sum / 1000000.0;
+		sumString = sum.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "M";		
+	}
+
+	document.getElementById('${param.block}'+'_patient_count_kpi').innerHTML = sumString;	
 }
 
 </script>

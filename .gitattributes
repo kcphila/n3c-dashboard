@@ -372,6 +372,7 @@ WebContent/new_ph/filters_new/age_min.jsp -text
 WebContent/new_ph/filters_new/age_sec.jsp -text
 WebContent/new_ph/filters_new/alcohol.jsp -text
 WebContent/new_ph/filters_new/alcohol_status.jsp -text
+WebContent/new_ph/filters_new/anti_opioids.jsp -text
 WebContent/new_ph/filters_new/beforeafter.jsp -text
 WebContent/new_ph/filters_new/beforeafter_medication.jsp -text
 WebContent/new_ph/filters_new/beforeafter_sotrovimab.jsp -text

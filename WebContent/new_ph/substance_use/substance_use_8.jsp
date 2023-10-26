@@ -12,6 +12,8 @@
 
 	<jsp:param name="kpis" value="substance_use/kpis.jsp" />
 	
+	<jsp:param name="anti_opioids_filter" value="true" />
+
 	<jsp:param name="simple_panel" value="substance_use/anti_opioids_frequency.jsp" />
 
 	<jsp:param name="datatable" value="substance_use/tables/anti_opioids.jsp" />

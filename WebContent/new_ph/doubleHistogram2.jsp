@@ -1,13 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 
+var ${param.block}_active = ${param.secondary};
+var ${param.block}_active_count = 0;
+
+function ${param.block}_present(secondary) {
+	if (${param.block}_active.length == 0)
+		return true;
+	return ${param.block}_active.includes(secondary);
+}
+
 function ${param.block}_refresh${param.array}(data) {
+	//console.log("active secondary", ${param.block}_active);
+	${param.block}_active_count = 0;
 	
-	var aData = new Object;
-	var bData = new Object;
-	var cData = new Object;
-	var dData = new Object;
-	var maxIndex = 0;
 	${param.block}_${param.array} = new Array();
 	$("#${param.datatable_div}-table").DataTable().rows({search:'applied'}).data().each( function ( group, i ) {
     	var obj = new Object();
@@ -25,8 +31,13 @@ function ${param.block}_refresh${param.array}(data) {
     	var secondaries = new Array();
     	secondaries.push(0);
     	${param.secondary}.forEach(function(secondary,index,arr) {
-    		secondaries.push(data[i][secondary]);
-    		count += data[i][secondary];
+    		if (${param.block}_present(secondary)) {
+    			secondaries.push(data[i][secondary]);
+    			count += data[i][secondary];
+    			${param.block}_active_count += data[i][secondary];
+    		} else {
+    			secondaries.push(0);    			
+    		}
     	});
     	Object.defineProperty(obj, 'secondary', {
   		  value: secondaries
