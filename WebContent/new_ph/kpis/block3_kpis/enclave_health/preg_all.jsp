@@ -24,13 +24,13 @@
 							<td>
 								<span class="tip">
 									<a class="viz_secondary_info" 
-										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients with a Pregnancy-Related Condition in the Enclave" 
+										title="<a class='close popover_close' data-dismiss='alert'>&times;</a> Total Patients with a Maternal Health-Related Condition in the Enclave" 
 										data-html="true" data-toggle="popover" 
 										data-placement="top" 
 										data-content="
-										<p>Total Number of Individuals within the Enclave who have had a pregnancy-related condition 
+										<p>Total Number of Individuals within the Enclave who have had a maternal health-related condition 
 										indicated in their EHR.</p>" aria-describedby="tooltip">
-	 											<p style="margin-bottom:0px;">Total Patients w/Pregnancy-Related Conditions in Enclave <i class="fas fa-info-circle"></i>
+	 											<p style="margin-bottom:0px;">Total Patients w/Maternal Health-Related Conditions in Enclave <i class="fas fa-info-circle"></i>
 	 											</p> 
  									</a>
  								</span>

@@ -4,11 +4,11 @@
 
 <jsp:include page="../block3.jsp">
 	<jsp:param name="block" value="enclave_health_1" />
-	<jsp:param name="block_header" value="Demographics of Enclave Patients w/Pregnancy Related Conditions" />
+	<jsp:param name="block_header" value="Demographics of Enclave Patients w/Maternal Health-Related Conditions" />
 	<jsp:param name="folder" value="enclave_health" />
 	<jsp:param name="topic_description" value="secondary_1" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Patients in the Enclave w/Pregnancy-Related Conditions" />
+	<jsp:param name="topic_title" value="Patients in the Enclave w/Maternal Health-Related Conditions" />
 
 	<jsp:param name="kpis" value="enclave_health/kpis.jsp" />
 	
