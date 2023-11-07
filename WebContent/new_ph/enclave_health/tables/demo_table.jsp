@@ -7,6 +7,9 @@ function ${param.block}_constrain_table(filter, constraint) {
 	var table = $('#${param.target_div}-table').DataTable();
 	
 	switch (filter) {
+	case 'condition':
+		table.column(0).search(constraint, true, false, true).draw();	
+		break;
 	case 'race':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;

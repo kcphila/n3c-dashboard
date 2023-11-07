@@ -25,9 +25,9 @@
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
 					end as patient_count
-				  from n3c_dashboard_ph.mh_all_patient_age_min_demographics_csd
+				  from n3c_dashboard_ph.mh_all_patient_age_ideal_demographics_csd
 		  	) as foo
-		  	natural join n3c_dashboard.age_map_min
+		  	natural join n3c_dashboard.age_map_ideal
 		  	natural join n3c_dashboard.race_map
 		  	natural join n3c_dashboard.sex_map
 		  	natural join n3c_dashboard.eth_map

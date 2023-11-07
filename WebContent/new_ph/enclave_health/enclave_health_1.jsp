@@ -12,12 +12,13 @@
 
 	<jsp:param name="kpis" value="enclave_health/kpis.jsp" />
 	
-	<jsp:param name="age_filter_min" value="true" />
+	<jsp:param name="age_filter_ideal" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="covid_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="ethnicity_filter" value="true" />
+	<jsp:param name="condition_filter" value="true" />
 	
 	<jsp:param name="toggle" value="true" />
 	
@@ -27,9 +28,9 @@
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: age_range_min,
+			colorscale: age_range_ideal,
 			legend_label: 'Age',
-			legend_data: age_legend_min,
+			legend_data: age_legend_ideal,
 			donutRatio: 0.5
 		}], 'race' : [{
 			dimension: 'race',
