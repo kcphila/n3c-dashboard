@@ -48,6 +48,8 @@ var age_range_peds1 = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE", "#a6a6a6", "#
 var age_range_peds2 = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE"];
 
 
+var condition_range = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
+var comorbidity_range = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6", "#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 
 
 
@@ -525,6 +527,24 @@ var medication_legend = new Array()
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	var anti_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="statuses" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select * from n3c_dashboard.condition_map order by condition_seq
+	) as done;
+</sql:query>
+<c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
+	var condition_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="statuses" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select * from n3c_dashboard.comorbidity_map order by comorbidity_seq
+	) as done;
+</sql:query>
+<c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
+	var comorbidity_legend = ${row.jsonb_pretty};
 </c:forEach>
 
 

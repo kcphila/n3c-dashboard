@@ -101,7 +101,7 @@
 							 || not empty param.beforeaftersotrovimab_filter || not empty param.comorbidities_filter || not empty param.mortality_filter
 							 || not empty param.alcohol_status_filter || not empty param.opioids_status_filter || not empty param.cannabis_status_filter
 							 || not empty param.vaccinated_filter || not empty param.opioid_filter || not empty param.alcohol_filter || not empty param.anti_opioids_filter
-							 || not empty param.condition_filter}">
+							 || not empty param.condition_filter || not empty param.comorbidity_filter}">
 					<div id="${param.block}filter_checks" class="panel-primary filter-section filter_checks">
 						<div class="filters-label">
 							<h4 style="flex-fill:1;">Filters</h4>
@@ -192,6 +192,9 @@
 							</c:if>
 							<c:if test="${param.condition_filter}">
 								<jsp:include page="filters_new/condition.jsp"/>
+							</c:if>
+							<c:if test="${param.comorbidity_filter}">
+								<jsp:include page="filters_new/comorbidity.jsp"/>
 							</c:if>
 							
 							
@@ -732,6 +735,38 @@
 								<div id="${param.block}-mortality" src="<c:out value='${mortality_url}'/>"></div>
 							</div>
 						</c:if>
+						<c:if test="${not empty param.condition_panel}">
+							<c:url value="${param.condition_panel}" var="condition_url">
+		  						<c:param name="panel" value="${param.condition_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-condition" src="<c:out value='${condition_url}'/>"></div>
+							</div>
+						</c:if>
+						<c:if test="${not empty param.comorbidity_panel}">
+							<c:url value="${param.comorbidity_panel}" var="comorbidity_url">
+		  						<c:param name="panel" value="${param.comorbidity_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-comorbidity" src="<c:out value='${comorbidity_url}'/>"></div>
+							</div>
+						</c:if>
 
 					</div>
 					
@@ -1155,6 +1190,27 @@ $(document).ready(function() {
 	        });
 	        
 	        ${param.block}_constrain("condition",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-comorbidity-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           enableCaseInsensitiveFiltering: true,
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-comorbidity-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("comorbidity",  selected[0].join('|'));
 		    ${param.block}_refreshHistograms();
            }
 	});
@@ -1999,11 +2055,17 @@ function ${param.block}_filter_clear() {
 		}
 	</c:if>
 	<c:if test="${param.condition_filter}">
-	if ($('#${param.block}-condition-select').val().length > 0) {
-		$('#${param.block}-condition-select').multiselect('clearSelection');
-		${param.block}_active = [];
-	}
-</c:if>
+		if ($('#${param.block}-condition-select').val().length > 0) {
+			$('#${param.block}-condition-select').multiselect('clearSelection');
+			${param.block}_active = [];
+		}
+	</c:if>
+	<c:if test="${param.comorbidity_filter}">
+		if ($('#${param.block}-comorbidity-select').val().length > 0) {
+			$('#${param.block}-comorbidity-select').multiselect('clearSelection');
+			${param.block}_active = [];
+		}
+	</c:if>
 	
 	$("#${param.datatable_div}-table").DataTable().search('');
 	$("#${param.datatable_div}-table").DataTable().columns().search('').draw();
@@ -2249,6 +2311,12 @@ function ${param.block}_filter_clear() {
 </c:if>
 <c:if test="${param.AntiOpioidsArray}">
 	var ${param.block}_AntiOpioidsArray = new Array();
+</c:if>
+<c:if test="${param.ConditionArray}">
+	var ${param.block}_ConditionArray = new Array();
+</c:if>
+<c:if test="${param.ComorbidityArray}">
+	var ${param.block}_ComorbidityArray = new Array();
 </c:if>
 	
 
@@ -2526,6 +2594,12 @@ function ${param.block}_refreshHistograms(just_viz) {
 	    <c:if test="${param.AntiOpioidsArray}">
     		${param.block}_refreshAntiOpioidsArray(data);
     	</c:if>
+	    <c:if test="${param.ConditionArray}">
+    		${param.block}_refreshConditionArray(data);
+    	</c:if>
+	    <c:if test="${param.ComorbidityArray}">
+    		${param.block}_refreshComorbidityArray(data);
+    	</c:if>
     };
    	
     if (${param.block}_loaded("covidstatus")) {
@@ -2688,6 +2762,12 @@ function ${param.block}_refreshHistograms(just_viz) {
     }
     if ('${param.block}' === "substance_use_8") {
     	${param.block}_anti_opioids_refresh();
+    }
+    if ('${param.block}' === "enclave_health_2") {
+    	${param.block}_condition_refresh();
+    }
+    if ('${param.block}' === "enclave_health_3") {
+    	${param.block}_comorbidity_refresh();
     }
 }
 	
@@ -3545,6 +3625,26 @@ function ${param.block}_loaded(selection) {
 		<jsp:param name="primary" value="opioids"/>
 		<jsp:param name="secondary" value='["naltrexone_count","methadone_count","buprenorphine_count","naloxone_count"]'/>
 		<jsp:param name="sort_desc" value="count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.ConditionArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="ConditionArray"/>
+		<jsp:param name="primary" value="condition"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+	
+<c:if test="${param.ComorbidityArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="ComorbidityArray"/>
+		<jsp:param name="primary" value="comorbidity"/>
+		<jsp:param name="count" value="patient_count"/>
 	</jsp:include>
 </c:if>
 	

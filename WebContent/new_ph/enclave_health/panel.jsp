@@ -12,12 +12,14 @@
 	<select id="selectMe">
 		<option value="enclave_health_1">Demographics of Patients w/Maternal Health-Related Conditions</option>
 		<option value="enclave_health_2">COVID Factors of Patients w/Maternal Health-Related Conditions</option>
+		<option value="enclave_health_3">Comorbidities of Patients w/Maternal Health-Related Conditions</option>
 	</select>
 </div>
 
 <div id="frame">
 	<div id="enclave_health_1" class="group"></div>
 	<div id="enclave_health_2" class="group"></div>
+	<div id="enclave_health_3" class="group"></div>
 </div>
 
 <script>
