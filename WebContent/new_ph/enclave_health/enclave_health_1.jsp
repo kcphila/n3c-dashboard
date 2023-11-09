@@ -62,6 +62,16 @@
 			legend_label: 'Ethnicity',
 			legend_data: ethnicity_legend,
 			donutRatio: 0.5
+		}], 'condition' : [{
+			dimension: 'condition',
+			domName: '#enclave_health_1_condition_viz',
+			barLabelWidth: 370,
+			min_height: 300,
+			ordered: 0,
+			colorscale: categorical2,
+			legend_label: 'Condition',
+			legend_data: condition_legend,
+			donutRatio: 0.5
 		}]
 	}"/>
 	
@@ -69,6 +79,7 @@
 	<jsp:param name="race_panel" value="enclave_health/race.jsp" />
 	<jsp:param name="sex_panel" value="enclave_health/sex.jsp" />
 	<jsp:param name="ethnicity_panel" value="enclave_health/ethnicity.jsp" />
+	<jsp:param name="condition_panel" value="enclave_health/condition.jsp" />
 
 	<jsp:param name="datatable" value="enclave_health/tables/demo_table.jsp" />
 	<jsp:param name="datatable_div" value="enclave_health_table_1" />
@@ -79,9 +90,10 @@
 	<jsp:param name="RaceArray" value="true" />
 	<jsp:param name="SexArray" value="true" />
 	<jsp:param name="EthnicityArray" value="true" />
+	<jsp:param name="ConditionArray" value="true" />
 </jsp:include>
 
 <script>
-	var panels = ["age", "race", "sex", "ethnicity"];
+	var panels = ["age", "race", "sex", "ethnicity", "condition"];
 	enclave_health_1_panel(panels);
 </script>

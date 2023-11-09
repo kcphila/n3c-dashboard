@@ -2763,7 +2763,7 @@ function ${param.block}_refreshHistograms(just_viz) {
     if ('${param.block}' === "substance_use_8") {
     	${param.block}_anti_opioids_refresh();
     }
-    if ('${param.block}' === "enclave_health_2") {
+    if ('${param.block}' === "enclave_health_2" || '${param.block}' === "enclave_health_1") {
     	${param.block}_condition_refresh();
     }
     if ('${param.block}' === "enclave_health_3") {

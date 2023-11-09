@@ -204,7 +204,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'status_abbrev', visible: false },
         	{ data: 'status_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
-        	{ data: 'mortality_seq', visible: false }
+        	{ data: 'mortality_seq', visible: false },
+        	{ data: 'condition_seq', visible: false }
     	]
 	} );
 	
