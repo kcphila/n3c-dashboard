@@ -8,7 +8,7 @@
 	<jsp:param name="folder" value="enclave_health" />
 	<jsp:param name="topic_description" value="secondary_2" />
 	<jsp:param name="did" value="${param.did}" />
-	<jsp:param name="topic_title" value="Patients w/Maternal Health-Related Conditions" />
+	<jsp:param name="topic_title" value="Patients in the Enclave w/Maternal Health-Related Conditions" />
 
 	<jsp:param name="kpis" value="enclave_health/kpis.jsp" />
 	
