@@ -20,7 +20,11 @@
 					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}comorbidity_panel');">None</button><br>
 					<select id="${param.block}-comorbidity-select" multiple="multiple">
 						<sql:query var="cases" dataSource="jdbc/N3CPublic">
-							select distinct concept_set_name as comorbidity from n3c_dashboard_ph.mh_sexvaccmor_other_csd order by 1;
+							select distinct(case 
+								when (concept_set_name is null) then 'Unknown/None'
+								else concept_set_name
+								end
+							)as comorbidity from n3c_dashboard_ph.mh_sexvaccmor_other_csd order by 1;
 						</sql:query>
 						<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
 							<option value="${row.comorbidity}">${row.comorbidity}</option>

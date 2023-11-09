@@ -6,7 +6,10 @@
 	from (select comorbidity, sex, vaccinated, status, long as longstatus, mortality, patient_display, patient_count,
 				sex_abbrev, sex_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, comorbidity_seq
 			from (select
-					concept_set_name as comorbidity,
+					case 
+						when (concept_set_name is null) then 'Unknown/None'
+						else concept_set_name
+					end as comorbidity,
 					sex,
 					case 
 						when (vaccinated = '1') then 'Vaccinated'
@@ -37,10 +40,15 @@
 		  	natural join n3c_dashboard.longstatus_map
 		  	natural join n3c_dashboard.mortality_map
 		  	natural join (
-		  		select distinct(concept_set_name) as comorbidity, DENSE_RANK() OVER (ORDER BY concept_set_name) as comorbidity_seq
+		  		select distinct(case 
+					when (concept_set_name is null) then 'Unknown/None'
+					else concept_set_name
+					end) as comorbidity, DENSE_RANK() OVER (ORDER BY concept_set_name) as comorbidity_seq
 				from n3c_dashboard_ph.mh_sexvaccmor_other_csd
-				where concept_set_name is not null
-				order by concept_set_name
+				order by case 
+					when (concept_set_name is null) then 'Unknown/None'
+					else concept_set_name
+					end
 			) as map
 		  ) as done;
 </sql:query>

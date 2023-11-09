@@ -10,16 +10,16 @@
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 	<select id="selectMe">
+		<option value="enclave_health_3">Comorbidity & Demographics Breakdown of All Patients in the Enclave</option>
 		<option value="enclave_health_1">Demographics of Patients w/Maternal Health-Related Conditions</option>
 		<option value="enclave_health_2">COVID Factors of Patients w/Maternal Health-Related Conditions</option>
-		<option value="enclave_health_3">Comorbidities of Patients w/Maternal Health-Related Conditions</option>
 	</select>
 </div>
 
 <div id="frame">
+	<div id="enclave_health_3" class="group"></div>
 	<div id="enclave_health_1" class="group"></div>
 	<div id="enclave_health_2" class="group"></div>
-	<div id="enclave_health_3" class="group"></div>
 </div>
 
 <script>
@@ -35,7 +35,7 @@ var frame_crumbs = [];
 
 <c:choose>
 	<c:when test="${empty param.tertiary_tab || param.tertiary_tab == 'undefined'}">
-		frame_load('enclave_health_1');
+		frame_load('enclave_health_3');
 	</c:when>
 	<c:otherwise>
 		$('#selectMe').val(url_unmap('${param.tertiary_tab}'));

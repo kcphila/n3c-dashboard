@@ -468,6 +468,7 @@ WebContent/new_ph/kpis/block3_kpis/cumulative_total2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/cumulative_unkn.jsp -text
 WebContent/new_ph/kpis/block3_kpis/diabetes2.jsp -text
 WebContent/new_ph/kpis/block3_kpis/diabetes_over_18.jsp -text
+WebContent/new_ph/kpis/block3_kpis/enclave_health/comor_view.jsp -text
 WebContent/new_ph/kpis/block3_kpis/enclave_health/preg_all.jsp -text
 WebContent/new_ph/kpis/block3_kpis/enclave_health/preg_covid_positive.jsp -text
 WebContent/new_ph/kpis/block3_kpis/enclave_health/preg_view.jsp -text

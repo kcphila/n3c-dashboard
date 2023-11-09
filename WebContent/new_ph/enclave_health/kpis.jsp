@@ -43,18 +43,13 @@
 		</div>
 	</c:when>
 	<c:when test="${param.block == 'enclave_health_3' }">
-		<div class="col col-12 col-md-3 my-auto">
+		<div class="col col-12 col-md-3 my-auto kpi_border_right">
 			<jsp:include page="../kpis/block3_kpis/enclave_patients.jsp" >
 				<jsp:param name="block" value="${param.block}"/>
 			</jsp:include>
 		</div>
-		<div class="col col-12 col-md-3 my-auto kpi_border_right">
-			<jsp:include page="../kpis/block3_kpis/enclave_health/preg_all.jsp">
-				<jsp:param name="block" value="${param.block}" />
-			</jsp:include>
-		</div>
 		<div class="col col-12 col-md-3 my-auto">
-			<jsp:include page="../kpis/block3_kpis/enclave_health/preg_view.jsp">
+			<jsp:include page="../kpis/block3_kpis/enclave_health/comor_view.jsp">
 				<jsp:param name="block" value="${param.block}" />
 			</jsp:include>
 		</div>
