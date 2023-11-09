@@ -4,7 +4,7 @@
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
 	from (select comorbidity, sex, vaccinated, status, long as longstatus, mortality, patient_display, patient_count,
-				sex_abbrev, sex_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq
+				sex_abbrev, sex_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, comorbidity_seq
 			from (select
 					concept_set_name as comorbidity,
 					sex,
@@ -36,6 +36,12 @@
 		  	natural join n3c_dashboard.covidstatus_map
 		  	natural join n3c_dashboard.longstatus_map
 		  	natural join n3c_dashboard.mortality_map
+		  	natural join (
+		  		select distinct(concept_set_name) as comorbidity, DENSE_RANK() OVER (ORDER BY concept_set_name) as comorbidity_seq
+				from n3c_dashboard_ph.mh_sexvaccmor_other_csd
+				where concept_set_name is not null
+				order by concept_set_name
+			) as map
 		  ) as done;
 </sql:query>
 {
@@ -57,7 +63,8 @@
         {"value":"long_abbrev", "label":"dummy9"},
         {"value":"long_seq", "label":"dummy10"},
         {"value":"mortality_abbrev", "label":"dummy11"},
-        {"value":"mortality_seq", "label":"dummy12"}
+        {"value":"mortality_seq", "label":"dummy12"},
+        {"value":"comorbidity_seq", "label":"dummy13"}
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">

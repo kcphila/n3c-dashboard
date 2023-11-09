@@ -747,7 +747,7 @@
 		  							<c:param name="topic_title" value="${param.topic_title}" />
 		  						</c:if>
 							</c:url>
-							<div class="col-12 col-md-6 small-viz-panel">
+							<div class="col-12 small-viz-panel">
 								<div id="${param.block}-condition" src="<c:out value='${condition_url}'/>"></div>
 							</div>
 						</c:if>

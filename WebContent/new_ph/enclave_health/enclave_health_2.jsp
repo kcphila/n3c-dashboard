@@ -21,8 +21,7 @@
 	
 	<jsp:param name="toggle" value="true" />
 	
-	<jsp:param name="viz_properties" value="{'age' : [{
-		}], 'sex' : [{
+	<jsp:param name="viz_properties" value="{'sex' : [{
 			dimension: 'sex',
 			domName: '#enclave_health_2_sex_viz',
 			barLabelWidth: 100,
@@ -65,10 +64,10 @@
 		}], 'condition' : [{
 			dimension: 'condition',
 			domName: '#enclave_health_2_condition_viz',
-			barLabelWidth: 150,
+			barLabelWidth: 370,
 			min_height: 300,
 			ordered: 0,
-			colorscale: condition_range,
+			colorscale: categorical2,
 			legend_label: 'Condition',
 			legend_data: condition_legend,
 			donutRatio: 0.5

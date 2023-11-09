@@ -21,8 +21,7 @@
 	
 	<jsp:param name="toggle" value="true" />
 	
-	<jsp:param name="viz_properties" value="{'age' : [{
-		}], 'sex' : [{
+	<jsp:param name="viz_properties" value="{'sex' : [{
 			dimension: 'sex',
 			domName: '#enclave_health_3_sex_viz',
 			barLabelWidth: 100,
@@ -72,7 +71,18 @@
 			legend_label: 'Covidstatus',
 			legend_data: covidstatus_legend,
 			donutRatio: 0.5
-		}]
+		}], 'comorbidity' : [{
+			dimension: 'comorbidity',
+			domName: '#enclave_health_3_comorbidity_viz',
+			barLabelWidth: 170,
+			min_height: 300,
+			ordered: 0,
+			colorscale: categorical2,
+			legend_label: 'Comorbidity',
+			legend_data: comorbidity_legend,
+			donutRatio: 0.5
+		}] 
+		
 	}"/>
 	
 	<jsp:param name="vaccinationstatus_panel" value="enclave_health/vaccinated.jsp" />

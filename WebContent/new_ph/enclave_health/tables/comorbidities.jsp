@@ -198,7 +198,8 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'long_abbrev', visible: false },
         	{ data: 'long_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
-        	{ data: 'mortality_seq', visible: false }
+        	{ data: 'mortality_seq', visible: false },
+        	{ data: 'comorbidity_seq', visible: false }
     	]
 	} );
 	

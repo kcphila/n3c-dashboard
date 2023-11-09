@@ -79,10 +79,10 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_condition_refresh() {
 	var properties = {
 			domName: '#${param.block}_condition_viz',
-			barLabelWidth: 250,
+			barLabelWidth: 370,
 			min_height: 300,
 			ordered: 0,
-			colorscale: condition_range,
+			colorscale: categorical2,
 			legend_label: 'Condition',
 			legend_data: condition_legend,
 			donutRatio: 0.5

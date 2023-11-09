@@ -79,10 +79,10 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_comorbidity_refresh() {
 	var properties = {
 			domName: '#${param.block}_comorbidity_viz',
-			barLabelWidth: 100,
+			barLabelWidth: 170,
 			min_height: 300,
 			ordered: 0,
-			colorscale: comorbidity_range,
+			colorscale: categorical2,
 			legend_label: 'Comorbidity',
 			legend_data: comorbidity_legend,
 			donutRatio: 0.5
