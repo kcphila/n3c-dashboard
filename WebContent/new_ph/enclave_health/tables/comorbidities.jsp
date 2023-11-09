@@ -185,7 +185,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'sex', visible: true, orderable: true },
         	{ data: 'vaccinated', visible: true, orderable: true, orderData: [10] },
         	{ data: 'status', visible: true, orderable: true },
-        	{ data: 'longstatus', visible: true, orderable: true },
+        	{ data: 'long', visible: true, orderable: true },
          	{ data: 'mortality', visible: true, orderable: true },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [6] },
         	{ data: 'patient_count', visible: false },

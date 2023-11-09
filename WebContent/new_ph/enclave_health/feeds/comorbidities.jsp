@@ -3,8 +3,9 @@
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select comorbidity, sex, vaccinated, status, long as longstatus, mortality, patient_display, patient_count,
-				sex_abbrev, sex_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, comorbidity_seq
+	from (select comorbidity, sex, vaccinated, status, long, mortality, 
+	patient_display, patient_count, sex_abbrev, sex_seq, vaccinated_abbrev, vaccinated_seq, 
+	status_abbrev, status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, comorbidity_seq
 			from (select
 					case 
 						when (concept_set_name is null) then 'Unknown/None'
@@ -58,7 +59,7 @@
         {"value":"sex", "label":"Sex"},
         {"value":"vaccinated", "label":"Vaccinated"},
         {"value":"status", "label":"COVID Status"},
-        {"value":"longstatus", "label":"Long COVID Status"},
+        {"value":"long", "label":"Long COVID Status"},
         {"value":"mortality", "label":"Mortality"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},

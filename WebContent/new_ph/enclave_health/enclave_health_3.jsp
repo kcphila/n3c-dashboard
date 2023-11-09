@@ -106,6 +106,6 @@
 </jsp:include>
 
 <script>
-	var panels = ["sex", "vaccinationstatus", "mortality", "covidstatus", "longstatus", "comorbidity"];
+	var panels = ["sex", "vaccinationstatus", "mortality", "longstatus", "covidstatus", "comorbidity"];
 	enclave_health_3_panel(panels);
 </script>
