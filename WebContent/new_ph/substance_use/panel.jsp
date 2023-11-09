@@ -35,6 +35,7 @@ text.active {
 			<option value="substance_use_6">Opioid & Smoking Heatmap</option>	
 		</optgroup>
 		<option value="substance_use_8">Anti-Opioid Interventions</option>	
+		<option value="substance_use_9">Geospatial - Patient Count by County</option>	
 	</select>
 </div>
 
@@ -47,6 +48,7 @@ text.active {
 	<div id="substance_use_6" class="group"></div>
 	<div id="substance_use_7" class="group"></div>
 	<div id="substance_use_8" class="group"></div>
+	<div id="substance_use_9" class="group"></div>
 </div>
 
 <script>
