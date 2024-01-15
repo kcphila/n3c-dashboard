@@ -46,8 +46,8 @@
 		<i class="fas fa-download"></i>
 	</button>
 	<div class="dropdown-menu dropdown-menu-right">
-		<a class="dropdown-item" onclick="saveVisualization('graph', 'environmental_map.jpg');">Save as JPG</a> <a class="dropdown-item" onclick="saveVisualization('graph', 'environmental_map.png');">Save
-			as PNG</a> <a class="dropdown-item" onclick="saveVisualization('graph', 'environmental_map.svg');">Save as SVG</a>
+		<a class="dropdown-item" onclick="saveVisualization('graph', 'collaboration_map.jpg');">Save as JPG</a> <a class="dropdown-item" onclick="saveVisualization('graph', 'collaboration_map.png');">Save
+			as PNG</a> <a class="dropdown-item" onclick="saveVisualization('graph', 'collaboration_map.svg');">Save as SVG</a>
 	</div>
 </div>
 <p><button id="reset" > Reset Zoom </button>
