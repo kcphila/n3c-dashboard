@@ -1026,6 +1026,8 @@ WebContent/new_ph/tripleHistogram2.jsp -text
 WebContent/new_ph/unavailable_panel.jsp -text
 WebContent/overview/block.jsp -text
 WebContent/overview/collaborating_sites/collaborating_sites.jsp -text
+WebContent/overview/collaborating_sites/composite_map.jsp -text
+WebContent/overview/collaborating_sites/composite_sites.jsp -text
 WebContent/overview/collaborating_sites/feeds/grants.jsp -text
 WebContent/overview/collaborating_sites/feeds/projects.jsp -text
 WebContent/overview/collaborating_sites/feeds/publications.jsp -text
