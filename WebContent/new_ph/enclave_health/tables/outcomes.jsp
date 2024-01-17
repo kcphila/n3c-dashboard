@@ -1,4 +1,12 @@
-<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>  
+
+
+<sql:query var="conditions" dataSource="jdbc/N3CPublic">
+	select distinct(lower(replace(replace(UNNEST(STRING_TO_ARRAY(substr(list_of_conditions, 2, length(list_of_conditions) - 2), ', ')), ' ', '_'), '/', '_or_'))) as condition from n3c_dashboard_ph.enclave_cms_cnt_csd order by condition;
+</sql:query>
+
 <script>
 
 
@@ -8,19 +16,32 @@ function ${param.block}_constrain_table(filter, constraint) {
 	
 	switch (filter) {
 	case 'condition':
-		table.column(0).search(constraint, true, false, true).draw();	
+		var filters = constraint;
+		if (constraint != ""){
+			filters = constraint.replace(/[$^]/g, '').split("|").sort().join(", ");
+			filters = "^[" + filters + "]$";
+		};
+
+		console.log(filters);
+		table.column(0).search(filters, true, false, true).draw();	
 		break;
 	case 'sex':
 		table.column(1).search(constraint, true, false, true).draw();	
 		break;
-	case 'vaccinated':
+	case 'severity':
 		table.column(2).search(constraint, true, false, true).draw();	
 		break;
-	case 'covidstatus':
+	case 'vaccinated':
 		table.column(3).search(constraint, true, false, true).draw();	
 		break;
-	case 'mortality':
+	case 'covidstatus':
 		table.column(4).search(constraint, true, false, true).draw();	
+		break;
+	case 'longstatus':
+		table.column(5).search(constraint, true, false, true).draw();	
+		break;
+	case 'mortality':
+		table.column(6).search(constraint, true, false, true).draw();	
 		break;
 	}
 	
@@ -180,20 +201,29 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
      	columns: [
      		{ data: 'condition', visible: true, orderable: true },
         	{ data: 'sex', visible: true, orderable: true },
-        	{ data: 'vaccinated', visible: true, orderable: true, orderData: [10] },
+        	{ data: 'severity', visible: true, orderable: true },
+        	{ data: 'vaccinated', visible: true, orderable: true, orderData: [13] },
         	{ data: 'status', visible: true, orderable: true },
+        	{ data: 'long', visible: true, orderable: true },
          	{ data: 'mortality', visible: true, orderable: true },
-        	{ data: 'patient_display', visible: true, orderable: true, orderData: [6] },
+        	{ data: 'patient_display', visible: true, orderable: true, orderData: [7] },
         	{ data: 'patient_count', visible: false },
         	{ data: 'sex_abbrev', visible: false },
         	{ data: 'sex_seq', visible: false },
+        	{ data: 'severity_abbrev', visible: false },
+        	{ data: 'severity_seq', visible: false },
         	{ data: 'vaccinated_abbrev', visible: false },
         	{ data: 'vaccinated_seq', visible: false },
         	{ data: 'status_abbrev', visible: false },
         	{ data: 'status_seq', visible: false },
+        	{ data: 'long_abbrev', visible: false },
+        	{ data: 'long_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
         	{ data: 'mortality_seq', visible: false },
-        	{ data: 'condition_seq', visible: false }
+        	{ data: 'condition_seq', visible: false },
+        	<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
+				{ data: '${row.condition}', visible: false}<c:if test="${!rowCounter.last}">,</c:if>
+			</c:forEach>
     	]
 	} );
 	

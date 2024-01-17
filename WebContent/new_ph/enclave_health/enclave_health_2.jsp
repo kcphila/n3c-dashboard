@@ -13,8 +13,9 @@
 	<jsp:param name="kpis" value="enclave_health/kpis.jsp" />
 	
 	<jsp:param name="sex_filter" value="true" />
+	<jsp:param name="severity_filter" value="true" />
 	<jsp:param name="covid_filter" value="true" />
-	<jsp:param name="long_status_filter" value="true" />
+	<jsp:param name="long_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
 	<jsp:param name="vaccinated_filter" value="true" />
 	<jsp:param name="condition_filter" value="true" />
@@ -31,7 +32,17 @@
 			legend_label: 'Sex',
 			legend_data: sex_legend,
 			donutRatio: 0.5
-		}], 'mortality' : [{
+		}], 'severity' : [{
+			dimension: 'severity',
+			domName: '#enclave_health_2_severity_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: severity_range,
+			legend_label: 'Severity',
+			legend_data: severity_legend,
+			donutRatio: 0.5
+		}],'mortality' : [{
 			dimension: 'mortality',
 			domName: '#enclave_health_2_mortality_viz',
 			barLabelWidth: 100,
@@ -51,6 +62,16 @@
 			legend_label: 'Vaccinationstatus',
 			legend_data: vaccinated_legend,
 			donutRatio: 0.5
+		}], 'longstatus' : [{
+			dimension: 'longstatus',
+			domName: '#enclave_health_2_longstatus_viz',
+			barLabelWidth: 100,
+			min_height: 300,
+			ordered: 0,
+			colorscale: longstatus_range,
+			legend_label: 'Longstatus',
+			legend_data: longstatus_legend,
+			donutRatio: 0.5
 		}], 'covid' : [{
 			dimension: 'covidstatus',
 			domName: '#enclave_health_2_covidstatus_viz',
@@ -64,7 +85,7 @@
 		}], 'condition' : [{
 			dimension: 'condition',
 			domName: '#enclave_health_2_condition_viz',
-			barLabelWidth: 370,
+			barLabelWidth: 430,
 			min_height: 300,
 			ordered: 0,
 			colorscale: categorical2,
@@ -78,7 +99,9 @@
 	<jsp:param name="covidstatus_panel" value="enclave_health/covid.jsp" />
 	<jsp:param name="mortality_panel" value="enclave_health/mortality.jsp" />
 	<jsp:param name="sex_panel" value="enclave_health/sex.jsp" />
+	<jsp:param name="severity_panel" value="enclave_health/severity.jsp" />
 	<jsp:param name="condition_panel" value="enclave_health/condition.jsp" />
+	<jsp:param name="longstatus_panel" value="enclave_health/longstatus.jsp" />
 
 	<jsp:param name="datatable" value="enclave_health/tables/outcomes.jsp" />
 	<jsp:param name="datatable_div" value="enclave_health_table_2" />
@@ -89,10 +112,12 @@
 	<jsp:param name="VaccinationstatusArray" value="true" />
 	<jsp:param name="CovidstatusArray" value="true" />
 	<jsp:param name="SexArray" value="true" />
+	<jsp:param name="SeverityArray" value="true" />
 	<jsp:param name="ConditionArray" value="true" />
+	<jsp:param name="LongstatusArray" value="true" />
 </jsp:include>
 
 <script>
-	var panels = ["sex", "vaccinationstatus", "mortality", "covidstatus", "condition"];
+	var panels = ["sex", "severity", "vaccinationstatus", "mortality", "covidstatus", "longstatus", "condition"];
 	enclave_health_2_panel(panels);
 </script>

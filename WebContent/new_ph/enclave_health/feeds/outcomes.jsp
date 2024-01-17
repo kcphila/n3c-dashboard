@@ -1,13 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
+<sql:query var="conditions" dataSource="jdbc/N3CPublic">
+	select distinct(lower(replace(replace(UNNEST(STRING_TO_ARRAY(substr(list_of_conditions, 2, length(list_of_conditions) - 2), ', ')), ' ', '_'), '/', '_or_'))) as condition from n3c_dashboard_ph.enclave_cms_cnt_csd order by condition;
+</sql:query>
+
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
 	select jsonb_pretty(jsonb_agg(done))
-	from (select condition, sex, vaccinated, status, mortality, patient_display, patient_count,
-				sex_abbrev, sex_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, status_seq, mortality_abbrev, mortality_seq, condition_seq
+	from (select condition, sex, severity, vaccinated, status, long, mortality, patient_display, patient_count,
+				sex_abbrev, sex_seq, severity_abbrev, severity_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, 
+				status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, condition_seq, 
+				<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
+					${row.condition}<c:if test="${!rowCounter.last}">,</c:if>
+				</c:forEach>
 			from (select
-					concept_set_name as condition,
-					sex,
+					list_of_conditions as condition,
+					sex_altered as sex,
+					severity,
 					case 
 						when (vaccinated = '1') then 'Vaccinated'
 						else 'Unknown'
@@ -17,6 +26,10 @@
 						else 'Unknown'
 					end as status,
 					case 
+						when (long_covid_indicator = '1') then 'Long COVID'
+						else 'Unknown'
+					end as long,
+					case 
 						when (death_mortality_indicator = '1') then 'Mortality'
 						else 'No Mortality'
 					end as mortality,
@@ -24,18 +37,31 @@
 					case
 						when (patient_count = '<20' or patient_count is null) then 0
 						else patient_count::int
-					end as patient_count
-				  from n3c_dashboard_ph.mh_sexvaccmor_csd
+					end as patient_count,
+					<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
+					case 
+						when position(replace('${row.condition}', '_', ' ') in replace(lower(list_of_conditions), '/', ' or '))>0 then 
+							case
+								when (patient_count = '<20' or patient_count is null) then 0
+							else patient_count::int
+							end
+						else 0
+					end as ${row.condition}
+					<c:if test="${!rowCounter.last}">,</c:if>
+				</c:forEach>
+				  from n3c_dashboard_ph.enclave_cms_cnt_csd
 		  	) as foo
 		  	natural join n3c_dashboard.sex_map
+		  	natural join n3c_dashboard.sev_map
 		  	natural join n3c_dashboard.vaccinated_map
 		  	natural join n3c_dashboard.covidstatus_map
+		  	natural join n3c_dashboard.longstatus_map
 		  	natural join n3c_dashboard.mortality_map
 		  	natural join (
-		  		select distinct(concept_set_name) as condition, DENSE_RANK() OVER (ORDER BY concept_set_name) as condition_seq
-				from n3c_dashboard_ph.mh_sexvaccmor_csd
-				where concept_set_name is not null
-				order by concept_set_name
+		  		select distinct(list_of_conditions) as condition, DENSE_RANK() OVER (ORDER BY list_of_conditions) as condition_seq
+				from n3c_dashboard_ph.enclave_cms_cnt_csd
+				where list_of_conditions is not null
+				order by list_of_conditions
 			) as map
 		  ) as done;
 </sql:query>
@@ -43,20 +69,29 @@
     "headers": [
     	{"value":"condition", "label":"Condition"},
         {"value":"sex", "label":"Sex"},
+        {"value":"severity", "label":"Severity"},
         {"value":"vaccinated", "label":"Vaccinated"},
         {"value":"status", "label":"COVID Status"},
+        {"value":"long", "label":"Long COVID Status"},
         {"value":"mortality", "label":"Mortality"},
         {"value":"patient_display", "label":"Patient Count"},
         {"value":"patient_count", "label":"Patient actual"},
         {"value":"sex_abbrev", "label":"dummy5"},
         {"value":"sex_seq", "label":"dummy6"},
-        {"value":"vaccinated_abbrev", "label":"dummy7"},
-        {"value":"vqccinated_seq", "label":"dummy8"},
-        {"value":"status_abbrev", "label":"dummy9"},
-        {"value":"status_seq", "label":"dummy10"},
-        {"value":"mortality_abbrev", "label":"dummy11"},
-        {"value":"mortality_seq", "label":"dummy12"},
-        {"value":"condition_seq", "label":"dummy13"}
+        {"value":"severity_abbrev", "label":"dummy7"},
+        {"value":"severity_seq", "label":"dummy8"},
+        {"value":"vaccinated_abbrev", "label":"dummy9"},
+        {"value":"vqccinated_seq", "label":"dummy10"},
+        {"value":"status_abbrev", "label":"dummy11"},
+        {"value":"status_seq", "label":"dummy12"},
+        {"value":"long_abbrev", "label":"dummy13"},
+        {"value":"long_seq", "label":"dummy14"},
+        {"value":"mortality_abbrev", "label":"dummy15"},
+        {"value":"mortality_seq", "label":"dummy16"},
+        {"value":"condition_seq", "label":"dummy17"},
+        <c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
+			{"value":"${row.condition}", "label":"conditionid.${rowCounter.count}.${row.condition}"}<c:if test="${!rowCounter.last}">,</c:if>
+		</c:forEach>
     ],
     "rows" : 
 <c:forEach items="${severity.rows}" var="row" varStatus="rowCounter">
