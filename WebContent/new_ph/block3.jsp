@@ -113,6 +113,11 @@
     					<div id="${param.block}-block-kpi" class="kpi_section">
 							<!-- filters are enabled by passing in a boolean parameter -->
 							
+							<c:if test="${param.condition_filter}">
+								<jsp:include page="filters_new/condition.jsp"/>
+								<p style="text-align:center; color: gray; font-size: 8px; margin-bottom: 10px;"><i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i></p>
+							</c:if>
+							
 							<c:if test="${param.age_filter_min}">
 								<jsp:include page="filters_new/age_min.jsp"/>
 							</c:if>
@@ -189,9 +194,6 @@
 							</c:if>
 							<c:if test="${param.anti_opioids_filter}">
 								<jsp:include page="filters_new/anti_opioids.jsp"/>
-							</c:if>
-							<c:if test="${param.condition_filter}">
-								<jsp:include page="filters_new/condition.jsp"/>
 							</c:if>
 							<c:if test="${param.comorbidity_filter}">
 								<jsp:include page="filters_new/comorbidity.jsp"/>
