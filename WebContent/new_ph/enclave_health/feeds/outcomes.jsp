@@ -9,12 +9,12 @@
 	select jsonb_pretty(jsonb_agg(done))
 	from (select condition, sex, severity, vaccinated, status, long, mortality, patient_display, patient_count,
 				sex_abbrev, sex_seq, severity_abbrev, severity_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, 
-				status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, condition_seq, 
+				status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, 
 				<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
 					${row.condition}<c:if test="${!rowCounter.last}">,</c:if>
 				</c:forEach>
 			from (select
-					list_of_conditions as condition,
+					substr(list_of_conditions, 2, length(list_of_conditions) - 2) as condition,
 					sex_altered as sex,
 					severity,
 					case 
@@ -57,12 +57,6 @@
 		  	natural join n3c_dashboard.covidstatus_map
 		  	natural join n3c_dashboard.longstatus_map
 		  	natural join n3c_dashboard.mortality_map
-		  	natural join (
-		  		select distinct(list_of_conditions) as condition, DENSE_RANK() OVER (ORDER BY list_of_conditions) as condition_seq
-				from n3c_dashboard_ph.enclave_cms_cnt_csd
-				where list_of_conditions is not null
-				order by list_of_conditions
-			) as map
 		  ) as done;
 </sql:query>
 {
@@ -88,7 +82,6 @@
         {"value":"long_seq", "label":"dummy14"},
         {"value":"mortality_abbrev", "label":"dummy15"},
         {"value":"mortality_seq", "label":"dummy16"},
-        {"value":"condition_seq", "label":"dummy17"},
         <c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
 			{"value":"${row.condition}", "label":"conditionid.${rowCounter.count}.${row.condition}"}<c:if test="${!rowCounter.last}">,</c:if>
 		</c:forEach>

@@ -19,10 +19,8 @@ function ${param.block}_constrain_table(filter, constraint) {
 		var filters = constraint;
 		if (constraint != ""){
 			filters = constraint.replace(/[$^]/g, '').split("|").sort().join(", ");
-			filters = "^[" + filters + "]$";
+			filters = "^" + filters + "$";
 		};
-
-		console.log(filters);
 		table.column(0).search(filters, true, false, true).draw();	
 		break;
 	case 'sex':
@@ -220,7 +218,6 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'long_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
         	{ data: 'mortality_seq', visible: false },
-        	{ data: 'condition_seq', visible: false },
         	<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
 				{ data: '${row.condition}', visible: false}<c:if test="${!rowCounter.last}">,</c:if>
 			</c:forEach>

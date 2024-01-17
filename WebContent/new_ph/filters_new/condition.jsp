@@ -19,10 +19,10 @@
 					<button class="btn btn-light btn-sm" onclick="selectall('${param.block}condition_panel');">All</button>
 					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}condition_panel');">None</button><br>
 					<select id="${param.block}-condition-select" multiple="multiple">
-						<sql:query var="cases" dataSource="jdbc/N3CPublic">
-							select distinct concept_set_name as condition from n3c_dashboard_ph.mh_all_patient_age_ideal_demographics_csd order by 1;
+						<sql:query var="conditions" dataSource="jdbc/N3CPublic">
+							select distinct(UNNEST(STRING_TO_ARRAY(substr(list_of_conditions, 2, length(list_of_conditions) - 2), ', '))) as condition from n3c_dashboard_ph.enclave_cms_cnt_csd order by condition;
 						</sql:query>
-						<c:forEach items="${cases.rows}" var="row" varStatus="rowCounter">
+						<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
 							<option value="${row.condition}">${row.condition}</option>
 						</c:forEach>
 					</select>

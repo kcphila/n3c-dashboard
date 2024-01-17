@@ -14,7 +14,8 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.mh_sexvaccmor_csd
+				  from n3c_dashboard_ph.enclave_cms_cnt_csd
+				  where sex_altered is not null
 				) as foo;
 </sql:query>
 	

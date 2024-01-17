@@ -914,7 +914,7 @@ WebContent/new_ph/severity_region/secondary_text/secondary_1.jsp -text
 WebContent/new_ph/severity_region/states.js -text
 WebContent/new_ph/singleHistogram.jsp -text
 WebContent/new_ph/singleHistogram_filtered.jsp -text
-WebContent/new_ph/singleHistogram_longdata.jsp -text
+WebContent/new_ph/singleHistogram_widedata.jsp -text
 WebContent/new_ph/smoking/age2.jsp -text
 WebContent/new_ph/smoking/feeds/demographics.jsp -text
 WebContent/new_ph/smoking/feeds/severity.jsp -text

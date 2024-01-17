@@ -3629,7 +3629,7 @@ function ${param.block}_loaded(selection) {
 </c:if>
 	
 <c:if test="${param.ConditionArray}">
-	<jsp:include page="singleHistogram_longdata.jsp">
+	<jsp:include page="singleHistogram_widedata.jsp">
 		<jsp:param name="block" value="${param.block}"/>
 		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 		<jsp:param name="array" value="ConditionArray"/>
