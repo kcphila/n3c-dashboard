@@ -16,6 +16,7 @@
 		<div id="${param.block}condition_body" class="collapse" aria-labelledby="${param.block}condition_heading" data-parent="#${param.block}condition_accordion">
 			<div class="card-body">
 				<div id="${param.block}condition_panel">
+					<small>Note: Select a single option to see all patients with that condition. Each additional selection will only show patients with that specific combination.</small><br>
 					<button class="btn btn-light btn-sm" onclick="selectall('${param.block}condition_panel');">All</button>
 					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}condition_panel');">None</button><br>
 					<select id="${param.block}-condition-select" multiple="multiple">
