@@ -2,7 +2,12 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 <sql:query var="conditions" dataSource="jdbc/N3CPublic">
-	select distinct(lower(replace(replace(UNNEST(STRING_TO_ARRAY(substr(list_of_conditions, 2, length(list_of_conditions) - 2), ', ')), ' ', '_'), '/', '_or_'))) as condition from n3c_dashboard_ph.enclave_cms_cnt_csd order by condition;
+	select condition, lower(replace(condition_abbrev, ' ', '_')) as condition_abbrev, condition_seq from (
+		select distinct(UNNEST(STRING_TO_ARRAY(list_of_conditions, ', '))) as condition
+		from n3c_dashboard_ph.enclave_cms_cnt_csd
+	) 
+	natural join n3c_dashboard.maternal_map
+	order by condition_seq;
 </sql:query>
 
 <sql:query var="severity" dataSource="jdbc/N3CPublic">
@@ -11,10 +16,10 @@
 				sex_abbrev, sex_seq, severity_abbrev, severity_seq, vaccinated_abbrev, vaccinated_seq, status_abbrev, 
 				status_seq, long_abbrev, long_seq, mortality_abbrev, mortality_seq, 
 				<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
-					${row.condition}<c:if test="${!rowCounter.last}">,</c:if>
+					${row.condition_abbrev}<c:if test="${!rowCounter.last}">,</c:if>
 				</c:forEach>
 			from (select
-					substr(list_of_conditions, 2, length(list_of_conditions) - 2) as condition,
+					list_of_conditions as condition,
 					sex_altered as sex,
 					severity,
 					case 
@@ -40,13 +45,13 @@
 					end as patient_count,
 					<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
 					case 
-						when position(replace('${row.condition}', '_', ' ') in replace(lower(list_of_conditions), '/', ' or '))>0 then 
+						when position('${row.condition}' in list_of_conditions)>0 then 
 							case
 								when (patient_count = '<20' or patient_count is null) then 0
 							else patient_count::int
 							end
 						else 0
-					end as ${row.condition}
+					end as ${row.condition_abbrev}
 					<c:if test="${!rowCounter.last}">,</c:if>
 				</c:forEach>
 				  from n3c_dashboard_ph.enclave_cms_cnt_csd
@@ -83,7 +88,7 @@
         {"value":"mortality_abbrev", "label":"dummy15"},
         {"value":"mortality_seq", "label":"dummy16"},
         <c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
-			{"value":"${row.condition}", "label":"conditionid.${rowCounter.count}.${row.condition}"}<c:if test="${!rowCounter.last}">,</c:if>
+			{"value":"${row.condition}", "label":"conditionid.${rowCounter.count}.${row.condition}.${row.condition_abbrev}"}<c:if test="${!rowCounter.last}">,</c:if>
 		</c:forEach>
     ],
     "rows" : 

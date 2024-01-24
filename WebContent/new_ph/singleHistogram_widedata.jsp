@@ -26,23 +26,26 @@ function ${param.block}_refresh${param.array}(data) {
 		var parts = name.split(".");
 		var seq = parts[1];
 		var element = parts[2].replaceAll("_"," ");
-		element = element.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
+		var abbrev = parts[3].replaceAll("_"," ");
+		abbrev = abbrev.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');
 		var count = arraytable.column(relatedcolnames[i][1], { search: 'applied' }).data().sum();
 		
-		var obj = new Object();
-    	Object.defineProperty(obj, 'element', {
-    		  value: element
-    		});
-    	Object.defineProperty(obj, 'count', {
-  		  value: count
-  		});
-    	Object.defineProperty(obj, 'seq', {
-	  		  value: seq
+		if (count > 0){
+			var obj = new Object();
+	    	Object.defineProperty(obj, 'element', {
+	    		  value: element
+	    		});
+	    	Object.defineProperty(obj, 'count', {
+	  		  value: count
 	  		});
-    	Object.defineProperty(obj, 'abbrev', {
-    		  value: element
-    		});
-    	${param.block}_${param.array}.push(obj);
+	    	Object.defineProperty(obj, 'seq', {
+		  		  value: seq
+		  		});
+	    	Object.defineProperty(obj, 'abbrev', {
+	    		  value: abbrev
+	    		});
+	    	${param.block}_${param.array}.push(obj);
+		};
 	};
 
 

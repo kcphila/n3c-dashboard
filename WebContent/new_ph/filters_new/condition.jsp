@@ -21,10 +21,15 @@
 					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}condition_panel');">None</button><br>
 					<select id="${param.block}-condition-select" multiple="multiple">
 						<sql:query var="conditions" dataSource="jdbc/N3CPublic">
-							select distinct(UNNEST(STRING_TO_ARRAY(substr(list_of_conditions, 2, length(list_of_conditions) - 2), ', '))) as condition from n3c_dashboard_ph.enclave_cms_cnt_csd order by condition;
+							select condition, condition_abbrev, condition_seq from (
+								select distinct(UNNEST(STRING_TO_ARRAY(list_of_conditions, ', '))) as condition
+								from n3c_dashboard_ph.enclave_cms_cnt_csd
+								) 
+							natural join n3c_dashboard.maternal_map
+							order by condition_seq;
 						</sql:query>
 						<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
-							<option value="${row.condition}">${row.condition}</option>
+							<option value="${row.condition}">${row.condition_abbrev}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -32,3 +37,5 @@
 		</div>
 	</div>
 </div>
+
+

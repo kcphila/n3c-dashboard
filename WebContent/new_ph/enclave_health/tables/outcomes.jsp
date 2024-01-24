@@ -4,7 +4,12 @@
 
 
 <sql:query var="conditions" dataSource="jdbc/N3CPublic">
-	select distinct(lower(replace(replace(UNNEST(STRING_TO_ARRAY(substr(list_of_conditions, 2, length(list_of_conditions) - 2), ', ')), ' ', '_'), '/', '_or_'))) as condition from n3c_dashboard_ph.enclave_cms_cnt_csd order by condition;
+	select condition, lower(replace(condition_abbrev, ' ', '_')) as condition_abbrev, condition_seq from (
+		select distinct(UNNEST(STRING_TO_ARRAY(list_of_conditions, ', '))) as condition
+		from n3c_dashboard_ph.enclave_cms_cnt_csd
+	) 
+	natural join n3c_dashboard.maternal_map
+	order by condition_seq;
 </sql:query>
 
 <script>
@@ -18,8 +23,11 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'condition':
 		var filters = constraint;
 		if (constraint != ""){
+			number = constraint.replace(/[$^]/g, '').split("|").length;
 			filters = constraint.replace(/[$^]/g, '').split("|").sort().join(", ");
-			filters = "^" + filters + "$";
+			if (number > 1){
+				filters = "^" + filters + "$";
+			}
 		};
 		table.column(0).search(filters, true, false, true).draw();	
 		break;
@@ -219,7 +227,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'mortality_abbrev', visible: false },
         	{ data: 'mortality_seq', visible: false },
         	<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
-				{ data: '${row.condition}', visible: false}<c:if test="${!rowCounter.last}">,</c:if>
+				{ data: '${row.condition_abbrev}', visible: false}<c:if test="${!rowCounter.last}">,</c:if>
 			</c:forEach>
     	]
 	} );
