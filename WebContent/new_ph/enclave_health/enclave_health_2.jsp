@@ -85,7 +85,7 @@
 		}], 'condition' : [{
 			dimension: 'condition',
 			domName: '#enclave_health_2_condition_viz',
-			barLabelWidth: 430,
+			barLabelWidth: 230,
 			min_height: 300,
 			ordered: 0,
 			colorscale: categorical2,

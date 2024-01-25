@@ -79,7 +79,7 @@ $('#${param.block}-mode-pie').on('mouseup', function() {
 function ${param.block}_condition_refresh() {
 	var properties = {
 			domName: '#${param.block}_condition_viz',
-			barLabelWidth: 430,
+			barLabelWidth: 230,
 			min_height: 300,
 			ordered: 0,
 			colorscale: categorical2,
