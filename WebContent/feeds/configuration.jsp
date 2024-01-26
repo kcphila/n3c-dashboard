@@ -8,6 +8,7 @@ var age_range_min = ["#EADEF7", "#8642CE", "#33298D", "#a6a6a6"];
 var age_range_ideal = ["#EADEF7", "#C9A8EB", "#A772DF", "#8642CE", "#762AC6", "#6512BD", "#4C1EA5", "#33298D", "#251a8a", "#a6a6a6"];
 var race_range = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#a6a6a6", "#8B8B8B"];
 var status_range = ["#4833B2", "#AD1181", "#a6a6a6"];
+var cms_range = ["#AD1181", "#8406D1", "#a6a6a6"];
 var paxlovid_range = ["#AD1181", "#a6a6a6"];
 var cci_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941"];
 var vaccinated_range = ["#4833B2", "#a6a6a6"];
@@ -242,6 +243,16 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </sql:query>
 <c:forEach items="${longstatus.rows}" var="row" varStatus="rowCounter">
 	var longstatus_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="cms" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done order by secondary_seq))
+	from (select distinct cms_abbrev as secondary, cms_seq as secondary_seq, cms as secondary_name
+		  from n3c_dashboard.cms_map
+		  ) as done;
+</sql:query>
+<c:forEach items="${cms.rows}" var="row" varStatus="rowCounter">
+	var cms_legend = ${row.jsonb_pretty};
 </c:forEach>
 
 <sql:query var="hospstatus" dataSource="jdbc/N3CPublic">

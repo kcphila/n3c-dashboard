@@ -1,6 +1,19 @@
-<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
-<script>
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>  
 
+
+<sql:query var="conditions" dataSource="jdbc/N3CPublic">
+	select condition, lower(replace(condition_abbrev, ' ', '_')) as condition_abbrev, condition_seq from (
+		select distinct(UNNEST(STRING_TO_ARRAY(list_of_conditions, ', '))) as condition
+		from n3c_dashboard_ph.mh_conditions_more_than_one_csd
+	) 
+	natural join n3c_dashboard.maternal_map
+	order by condition_seq;
+</sql:query>
+
+
+<script>
 
 // kpi updates ///////////////////////////////
 function ${param.block}_constrain_table(filter, constraint) {
@@ -8,7 +21,15 @@ function ${param.block}_constrain_table(filter, constraint) {
 	
 	switch (filter) {
 	case 'condition':
-		table.column(0).search(constraint, true, false, true).draw();	
+		var filters = constraint;
+		if (constraint != ""){
+			number = constraint.replace(/[$^]/g, '').split("|").length;
+			filters = constraint.replace(/[$^]/g, '').split("|").sort().join(", ");
+			if (number > 1){
+				filters = "^" + filters + "$";
+			}
+		};
+		table.column(0).search(filters, true, false, true).draw();	
 		break;
 	case 'race':
 		table.column(1).search(constraint, true, false, true).draw();	
@@ -19,7 +40,7 @@ function ${param.block}_constrain_table(filter, constraint) {
 	case 'sex':
 		table.column(3).search(constraint, true, false, true).draw();	
 		break;
-	case 'ethnicity':
+	case 'cms':
 		table.column(4).search(constraint, true, false, true).draw();	
 		break;
 	case 'covidstatus':
@@ -188,7 +209,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'race', visible: true, orderable: true },
         	{ data: 'age', visible: true, orderable: true, orderData: [10] },
         	{ data: 'sex', visible: true, orderable: true },
-        	{ data: 'ethnicity', visible: true, orderable: true },
+        	{ data: 'cms', visible: true, orderable: true },
         	{ data: 'status', visible: true, orderable: true },
         	{ data: 'mortality', visible: true, orderable: true },
         	{ data: 'patient_display', visible: true, orderable: true, orderData: [8] },
@@ -199,13 +220,15 @@ $.getJSON("<util:applicationRoot/>/new_ph/${param.feed}", function(data){
         	{ data: 'race_seq', visible: false },
         	{ data: 'sex_abbrev', visible: false },
         	{ data: 'sex_seq', visible: false },
-        	{ data: 'ethnicity_abbrev', visible: false },
-        	{ data: 'ethnicity_seq', visible: false },
+        	{ data: 'cms_abbrev', visible: false },
+        	{ data: 'cms_seq', visible: false },
         	{ data: 'status_abbrev', visible: false },
         	{ data: 'status_seq', visible: false },
         	{ data: 'mortality_abbrev', visible: false },
         	{ data: 'mortality_seq', visible: false },
-        	{ data: 'condition_seq', visible: false }
+        	<c:forEach items="${conditions.rows}" var="row" varStatus="rowCounter">
+			{ data: '${row.condition_abbrev}', visible: false}<c:if test="${!rowCounter.last}">,</c:if>
+			</c:forEach>
     	]
 	} );
 	

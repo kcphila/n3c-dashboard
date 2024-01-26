@@ -15,7 +15,7 @@
 						when (patient_count::text = '<20' or patient_count::text is null) then 0
 						else patient_count::int
 					end as count
-				  from n3c_dashboard_ph.mh_all_patient_age_ideal_demographics_csd
+				  from n3c_dashboard_ph.mh_conditions_more_than_one_csd
 				  where covid_indicator = 1
 				) as foo;
 </sql:query>

@@ -311,6 +311,7 @@ WebContent/new_ph/displayDashboardThumbnail.jsp -text
 WebContent/new_ph/doubleHistogram.jsp -text
 WebContent/new_ph/doubleHistogram2.jsp -text
 WebContent/new_ph/enclave_health/age.jsp -text
+WebContent/new_ph/enclave_health/cms.jsp -text
 WebContent/new_ph/enclave_health/comorbidity.jsp -text
 WebContent/new_ph/enclave_health/condition.jsp -text
 WebContent/new_ph/enclave_health/covid.jsp -text
@@ -394,6 +395,7 @@ WebContent/new_ph/filters_new/beforeafter_medication.jsp -text
 WebContent/new_ph/filters_new/beforeafter_sotrovimab.jsp -text
 WebContent/new_ph/filters_new/cannabis_status.jsp -text
 WebContent/new_ph/filters_new/cciscore.jsp -text
+WebContent/new_ph/filters_new/cms.jsp -text
 WebContent/new_ph/filters_new/comorbidity.jsp -text
 WebContent/new_ph/filters_new/condition.jsp -text
 WebContent/new_ph/filters_new/covid_status.jsp -text

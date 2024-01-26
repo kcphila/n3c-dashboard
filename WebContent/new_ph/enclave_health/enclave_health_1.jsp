@@ -12,13 +12,13 @@
 
 	<jsp:param name="kpis" value="enclave_health/kpis.jsp" />
 	
-	<jsp:param name="age_filter_ideal" value="true" />
+	<jsp:param name="age_filter_min" value="true" />
 	<jsp:param name="race_filter" value="true" />
 	<jsp:param name="sex_filter" value="true" />
 	<jsp:param name="covid_filter" value="true" />
 	<jsp:param name="mortality_filter" value="true" />
-	<jsp:param name="ethnicity_filter" value="true" />
 	<jsp:param name="condition_filter" value="true" />
+	<jsp:param name="cms_filter" value="true" />
 	
 	<jsp:param name="toggle" value="true" />
 	
@@ -52,15 +52,15 @@
 			legend_label: 'Sex',
 			legend_data: sex_legend,
 			donutRatio: 0.5
-		}], 'ethnicity' : [{
-			dimension: 'ethnicity',
-			domName: '#enclave_health_1_ethnicity_viz',
+		}], 'cms' : [{
+			dimension: 'cms',
+			domName: '#enclave_health_1_cms_viz',
 			barLabelWidth: 100,
 			min_height: 300,
 			ordered: 0,
-			colorscale: ethnicity_range,
-			legend_label: 'Ethnicity',
-			legend_data: ethnicity_legend,
+			colorscale: cms_range,
+			legend_label: 'CMS',
+			legend_data: cms_legend,
 			donutRatio: 0.5
 		}], 'condition' : [{
 			dimension: 'condition',
@@ -78,8 +78,8 @@
 	<jsp:param name="age_panel" value="enclave_health/age.jsp" />
 	<jsp:param name="race_panel" value="enclave_health/race.jsp" />
 	<jsp:param name="sex_panel" value="enclave_health/sex.jsp" />
-	<jsp:param name="ethnicity_panel" value="enclave_health/ethnicity.jsp" />
 	<jsp:param name="condition_panel" value="enclave_health/condition.jsp" />
+	<jsp:param name="cms_panel" value="enclave_health/cms.jsp" />
 
 	<jsp:param name="datatable" value="enclave_health/tables/demo_table.jsp" />
 	<jsp:param name="datatable_div" value="enclave_health_table_1" />
@@ -89,11 +89,11 @@
 	<jsp:param name="AgeArray" value="true" />
 	<jsp:param name="RaceArray" value="true" />
 	<jsp:param name="SexArray" value="true" />
-	<jsp:param name="EthnicityArray" value="true" />
 	<jsp:param name="ConditionArray" value="true" />
+	<jsp:param name="CmsArray" value="true" />
 </jsp:include>
 
 <script>
-	var panels = ["age", "race", "sex", "ethnicity", "condition"];
+	var panels = ["age", "race", "sex", "condition", "cms"];
 	enclave_health_1_panel(panels);
 </script>

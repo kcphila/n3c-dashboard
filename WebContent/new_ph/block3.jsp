@@ -115,6 +115,11 @@
 							
 							<c:if test="${param.condition_filter}">
 								<jsp:include page="filters_new/condition.jsp"/>
+							</c:if>
+							<c:if test="${param.cms_filter}">
+								<jsp:include page="filters_new/cms.jsp"/>
+							</c:if>
+							<c:if test="${param.condition_filter|| param.cms_filter}">
 								<p style="text-align:center; color: gray; font-size: 8px; margin-bottom: 10px;"><i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i>&ensp; <i class="fas fa-circle"></i></p>
 							</c:if>
 							
@@ -737,6 +742,22 @@
 								<div id="${param.block}-mortality" src="<c:out value='${mortality_url}'/>"></div>
 							</div>
 						</c:if>
+						<c:if test="${not empty param.cms_panel}">
+							<c:url value="${param.cms_panel}" var="cms_url">
+		  						<c:param name="panel" value="${param.cms_panel}" />
+		  						<c:param name="block" value="${param.block}" />
+		  						<c:param name="datatable_div" value="${param.datatable_div}" />
+		  						<c:if test="${not empty param.topic_description}">
+		  							<c:param name="topic_description" value="${param.topic_description}" />
+		  						</c:if>
+		  						<c:if test="${not empty param.topic_title}">
+		  							<c:param name="topic_title" value="${param.topic_title}" />
+		  						</c:if>
+							</c:url>
+							<div class="col-12 col-md-6 small-viz-panel">
+								<div id="${param.block}-cms" src="<c:out value='${cms_url}'/>"></div>
+							</div>
+						</c:if>
 						<c:if test="${not empty param.condition_panel}">
 							<c:url value="${param.condition_panel}" var="condition_url">
 		  						<c:param name="panel" value="${param.condition_panel}" />
@@ -1236,6 +1257,27 @@ $(document).ready(function() {
 		    ${param.block}_refreshHistograms();
            }
 	});
+	
+	$('#${param.block}-cms-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-cms-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("cms",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
 	
 	$('#${param.block}-alcoholstatus-select').multiselect({
 		buttonContainer: '<div class="checkbox-list-container"></div>',
@@ -1972,6 +2014,12 @@ function ${param.block}_filter_clear() {
 			${param.block}_constrain("covidstatus", '');
 		}
 	</c:if>
+	<c:if test="${param.cms_filter}">
+		if ($('#${param.block}-cms-select').val().length > 0) {
+			$('#${param.block}-cms-select').multiselect('clearSelection');
+			${param.block}_constrain("cms", '');
+		}
+	</c:if>
 	<c:if test="${param.long_filter}">
 		if ($('#${param.block}-longstatus-select').val().length > 0) {
 			$('#${param.block}-longstatus-select').multiselect('clearSelection');
@@ -2136,6 +2184,9 @@ function ${param.block}_filter_clear() {
 </c:if>
 <c:if test="${param.CovidstatusArray}">
 	var ${param.block}_CovidstatusArray = new Array();
+</c:if>
+<c:if test="${param.CmsArray}">
+var ${param.block}_CmsArray = new Array();
 </c:if>
 <c:if test="${param.SeverityMetArray}">
 	var ${param.block}_SeverityMetArray = new Array();
@@ -2393,6 +2444,9 @@ function ${param.block}_refreshHistograms(just_viz) {
 	    <c:if test="${param.CovidstatusArray}">
 	    	${param.block}_refreshCovidstatusArray(data);
 	    </c:if>
+	    <c:if test="${param.CmsArray}">
+    		${param.block}_refreshCmsArray(data);
+   		</c:if>
 	   
 	    	
 	    <c:if test="${param.SeverityMetArray}">
@@ -2625,6 +2679,9 @@ function ${param.block}_refreshHistograms(just_viz) {
     }
     if (${param.block}_loaded("sex")) {
     	${param.block}_sex_refresh();
+    }
+    if (${param.block}_loaded("cms")) {
+    	${param.block}_cms_refresh();
     }
     if (${param.block}_loaded("alcohol")) {
     	${param.block}_alcohol_refresh();
@@ -2947,6 +3004,16 @@ function ${param.block}_loaded(selection) {
 		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
 		<jsp:param name="array" value="CovidstatusArray"/>
 		<jsp:param name="primary" value="status"/>
+		<jsp:param name="count" value="patient_count"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.CmsArray}">
+	<jsp:include page="singleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="CmsArray"/>
+		<jsp:param name="primary" value="cms"/>
 		<jsp:param name="count" value="patient_count"/>
 	</jsp:include>
 </c:if>

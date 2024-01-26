@@ -53,7 +53,7 @@
 						else 0
 					end as ${row.condition_abbrev}
 					<c:if test="${!rowCounter.last}">,</c:if>
-				</c:forEach>
+					</c:forEach>
 				  from n3c_dashboard_ph.enclave_cms_cnt_csd
 		  	) as foo
 		  	natural join n3c_dashboard.sex_map
