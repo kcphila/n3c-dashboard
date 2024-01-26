@@ -59,7 +59,7 @@
 			min_height: 300,
 			ordered: 0,
 			colorscale: cms_range,
-			legend_label: 'CMS',
+			legend_label: 'Cms',
 			legend_data: cms_legend,
 			donutRatio: 0.5
 		}], 'condition' : [{
