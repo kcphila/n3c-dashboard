@@ -84,7 +84,15 @@ $.getJSON("<util:applicationRoot/>/feeds/siteCollaborations.jsp", function(data)
         	{ data: 'id', visible: false, orderable: true },
         	{ data: 'url', visible: false, orderable: true },
         	{ data: 'latitude', visible: false, orderable: true },
-        	{ data: 'longitude', visible: false, orderable: true }
+        	{ data: 'longitude', visible: false, orderable: true },
+        	{ data: 'pdf',
+          	  	visible: true,
+          	  	orderable: true,
+          	  	className: 'dt-center',
+         		render: function ( data, type, row ) {
+    				return '<a href="site_reports/' + row.site.replaceAll(' ', '_') + '.pdf"><i class="fas fa-solod fa-file-pdf"></i></a>';
+                }
+  			}
     	]
 	} );
 

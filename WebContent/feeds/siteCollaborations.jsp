@@ -27,7 +27,8 @@
         {"value":"id", "label":"ID"},
         {"value":"url", "label":"URL"},
         {"value":"latitude", "label":"Latitude"},
-        {"value":"longitude", "label":"Longitude"}
+        {"value":"longitude", "label":"Longitude"},
+        {"value":"pdf", "label":"PDF"}
     ],
   "sites":
 	<c:forEach items="${sites.rows}" var="row" varStatus="rowCounter">
