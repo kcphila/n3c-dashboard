@@ -7,7 +7,7 @@
 	select condition, lower(replace(condition_abbrev, ' ', '_')) as condition_abbrev, condition_seq from (
 		select distinct(UNNEST(STRING_TO_ARRAY(list_of_conditions, ', '))) as condition
 		from n3c_dashboard_ph.mh_conditions_more_than_one_csd
-	) 
+	) as foo
 	natural join n3c_dashboard.maternal_map
 	order by condition_seq;
 </sql:query>
