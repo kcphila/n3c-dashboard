@@ -156,8 +156,7 @@ $.getJSON("<util:applicationRoot/>/new_ph/summary_blocks/pprl_summary_block_vizs
 	 				var text_div = $("<div></div>", {"class": "viz_text"});
 	
 	 				text_div.append(function(){
-	                    return $("<div><strong>" +  row['additional_in_pprl'].toLocaleString() + "</strong><span class='smalltext'> : (Mortality Total: "
-	                    + row['pprl_3_source_mortality_and_death'].toLocaleString() + " - Duplicates: "+ row['common_cnt'].toLocaleString()  +")</span></div>");
+	                    return $("<div><strong>" +  row['additional_in_pprl'].toLocaleString() + "</strong></div>");
 					});
 	 				large_div.append(text_div);
 					return large_div.prop("outerHTML");
