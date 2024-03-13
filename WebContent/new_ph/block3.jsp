@@ -101,7 +101,7 @@
 							 || not empty param.beforeaftersotrovimab_filter || not empty param.comorbidities_filter || not empty param.mortality_filter
 							 || not empty param.alcohol_status_filter || not empty param.opioids_status_filter || not empty param.cannabis_status_filter
 							 || not empty param.vaccinated_filter || not empty param.opioid_filter || not empty param.alcohol_filter || not empty param.anti_opioids_filter
-							 || not empty param.condition_filter || not empty param.comorbidity_filter}">
+							 || not empty param.condition_filter || not empty param.comorbidity_filter || not empty param.count_filter}">
 					<div id="${param.block}filter_checks" class="panel-primary filter-section filter_checks">
 						<div class="filters-label">
 							<h4 style="flex-fill:1;">Filters</h4>
@@ -158,6 +158,17 @@
 							<c:if test="${param.cciscore_filter}">
 								<jsp:include page="filters_new/cciscore.jsp"/>
 							</c:if>
+							
+							<c:if test="${param.nu_conditions_filter}">
+								<jsp:include page="filters_new/condition_count.jsp"/>
+							</c:if>
+							<c:if test="${param.count_filter}">
+								<jsp:include page="filters_new/count.jsp"/>
+							</c:if>
+							<c:if test="${param.conditions_filter}">
+								<jsp:include page="filters_new/condition_single.jsp"/>
+							</c:if>
+							
 							<c:if test="${param.covid_filter}">
 								<jsp:include page="filters_new/covid_status.jsp"/>
 							</c:if>
@@ -954,7 +965,7 @@ $(document).ready(function() {
 			update(new Date('Feb 1 2022 1:00:00 CST'));
 			sliderTime.value(new Date('Feb 1 2022').valueOf());
 		};
-		if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5' || '${param.block}' === 'environment_3' || '${param.block}' === 'metformin_5') {
+		if ('${param.block}' === 'paxlovid_4' || '${param.block}' === 'paxlovid_5' || '${param.block}' === 'environment_3' || '${param.block}' === 'metformin_5' || '${param.block}' === 'enclave_health_5') {
 			if ('${param.block}' === 'environment_3') {
 				$('#${param.block}-mortality-select').multiselect('select', 'Mortality', true);
 				${param.block}_refreshHistograms();
@@ -974,6 +985,13 @@ $(document).ready(function() {
 				${param.block}_refreshHistograms();
 				${param.block}_constrain_table();
 				$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Paxlovid Status is defaulted to True. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all COVID+ patients for context.</small>');
+			};
+			if ('${param.block}' === 'enclave_health_5') {
+				$('#${param.block}-nu_conditions-select').multiselect('select', 2, true);
+				${param.block}_refreshHistograms();
+				${param.block}_constrain_table();
+				$("#${param.block}_alert .filter_info" ).append('<small class="search_indicator"><i class="fas fa-info-circle"></i> Default filters are applied to only show counts of two comorbid conditions. <a href="#" onclick=" ${param.block}_filter_clear(); return false;">Clear filters</a> to reset and see all combinations of comorbidities, or adjust the filter to select the number of comorbidities of interest.</small>');
+				$('#${param.block}nu_conditions_body').collapse('show')
 			};
 			$("#${param.block}_alert").removeClass('no_clear');
 			$("#${param.block}_alert .close" ).on('click', function() {
@@ -1217,6 +1235,27 @@ $(document).ready(function() {
            }
 	});
 	
+	$('#${param.block}-conditions-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           enableCaseInsensitiveFiltering: true,
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-conditions-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain_free("conditions",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
 	$('#${param.block}-comorbidity-select').multiselect({
 		buttonContainer: '<div class="checkbox-list-container"></div>',
            buttonClass: '',
@@ -1254,6 +1293,47 @@ $(document).ready(function() {
 	        });
 	        
 	        ${param.block}_constrain("covidstatus",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-count-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			var options = $('#${param.block}-count-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("count",  selected[0].join('|'));
+		    ${param.block}_refreshHistograms();
+           }
+	});
+	
+	$('#${param.block}-nu_conditions-select').multiselect({
+		buttonContainer: '<div class="checkbox-list-container"></div>',
+           buttonClass: '',
+           templates: {
+               button: '',
+               popupContainer: '<div class="multiselect-container checkbox-list"></div>',
+               li: '<a class="multiselect-option text-dark text-decoration-none"></a>'
+           },
+		onChange: function(option, checked, select) {
+			
+			var options = $('#${param.block}-nu_conditions-select');
+	        var selected = [];
+	        $(options).each(function(){
+	            selected.push($(this).val());
+	        });
+	        
+	        ${param.block}_constrain("nu_conditions",  selected[0].join('|'));
 		    ${param.block}_refreshHistograms();
            }
 	});
@@ -1858,6 +1938,29 @@ function ${param.block}_constrain(filter, selection) {
 	${param.block}_constrain_table(filter, selected);
 }
 
+function ${param.block}_constrain_free(filter, selection) {
+	console.log("constrain", filter, selection);
+	var selected = selection;
+	if (selected != undefined && selected.length > 0){
+		var values = selected.split("|");
+		var text = "";
+		for (let i = 0; i < values.length; ++i) {
+			var clean_text = values[i].replace("+", "\\+");
+
+			if (i < (values.length-1)){
+	    		search = clean_text + "|";
+			} else {
+				search = clean_text;
+			}
+	    	text = text.concat(search);
+		}
+		selected = text;
+	}else{
+		selected = '';
+	}
+	${param.block}_constrain_table(filter, selected);
+}
+
 function ${param.block}_filter_clear() {
 	
 	$('#${param.block}_btn_clear').removeClass("show_clear");
@@ -2014,6 +2117,18 @@ function ${param.block}_filter_clear() {
 			${param.block}_constrain("covidstatus", '');
 		}
 	</c:if>
+	<c:if test="${param.count_filter}">
+		if ($('#${param.block}-count-select').val().length > 0) {
+			$('#${param.block}-count-select').multiselect('clearSelection');
+			${param.block}_constrain("count", '');
+		}
+	</c:if>
+	<c:if test="${param.nu_conditions_filter}">
+		if ($('#${param.block}-nu_conditions-select').val().length > 0) {
+			$('#${param.block}-nu_conditions-select').multiselect('clearSelection');
+			${param.block}_constrain_free("nu_conditions", '');
+		}
+	</c:if>
 	<c:if test="${param.cms_filter}">
 		if ($('#${param.block}-cms-select').val().length > 0) {
 			$('#${param.block}-cms-select').multiselect('clearSelection');
@@ -2110,6 +2225,12 @@ function ${param.block}_filter_clear() {
 			${param.block}_active = [];
 		}
 	</c:if>
+	<c:if test="${param.conditions_filter}">
+		if ($('#${param.block}-conditions-select').val().length > 0) {
+			$('#${param.block}-conditions-select').multiselect('clearSelection');
+			${param.block}_active = [];
+		}
+	</c:if>
 	<c:if test="${param.comorbidity_filter}">
 		if ($('#${param.block}-comorbidity-select').val().length > 0) {
 			$('#${param.block}-comorbidity-select').multiselect('clearSelection');
@@ -2134,6 +2255,10 @@ function ${param.block}_filter_clear() {
 
 <c:if test="${param.statusArray}">
 	var ${param.block}_statusArray = new Array();
+</c:if>
+
+<c:if test="${param.countArray}">
+	var ${param.block}_countArray = new Array();
 </c:if>
 
 <c:if test="${param.DaysArray}">
@@ -2602,6 +2727,12 @@ function ${param.block}_refreshHistograms(just_viz) {
 		<c:if test="${param.statusArray}">
 	    	${param.block}_refreshstatusArray(data);
 	    </c:if>
+	    
+	    <c:if test="${param.countArray}">
+    		${param.block}_refreshcountArray(data);
+   		</c:if>
+    
+    
 	    <c:if test="${param.CategoryResultArray}">
 	    	${param.block}_refreshCategoryResultArray(data);
 	    </c:if>
@@ -2670,6 +2801,9 @@ function ${param.block}_refreshHistograms(just_viz) {
 
     if (${param.block}_loaded("severity")) {
     	${param.block}_severity_refresh();
+    }
+    if (${param.block}_loaded("conditioncount")) {
+    	${param.block}_conditioncount_refresh();
     }
     if (${param.block}_loaded("age")) {
     	${param.block}_age_refresh();
@@ -3471,6 +3605,18 @@ function ${param.block}_loaded(selection) {
 		<jsp:param name="wrap" value="no"/>
 		<jsp:param name="primary" value="observation"/>
 		<jsp:param name="secondary" value="sex"/>
+		<jsp:param name="tertiary" value="age"/>
+	</jsp:include>
+</c:if>
+
+<c:if test="${param.countArray}">
+	<jsp:include page="tripleHistogram.jsp">
+		<jsp:param name="block" value="${param.block}"/>
+		<jsp:param name="datatable_div" value="${param.datatable_div}"/>
+		<jsp:param name="array" value="countArray"/>
+		<jsp:param name="wrap" value="no"/>
+		<jsp:param name="primary" value="list_of_conditions"/>
+		<jsp:param name="secondary" value="count"/>
 		<jsp:param name="tertiary" value="age"/>
 	</jsp:include>
 </c:if>

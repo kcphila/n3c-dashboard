@@ -6,6 +6,7 @@
 <jsp:include page="../../graph_support/percentage_bar_local_new.jsp"/>
 <jsp:include page="../../graph_support/pieChart_local_new.jsp"/>
 <jsp:include page="../../graph_support/horizontalBarChart_local_new.jsp"/>
+<jsp:include page="../../graph_support/grouped_bar_horizontal_local_new.jsp"/>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 	<h4 class="viz_color_header">Select a Topic to Explore:</h4>
@@ -13,6 +14,7 @@
 		<option value="enclave_health_3">Comorbidity & Demographics Breakdown of All Patients in the Enclave</option>
 		<option value="enclave_health_1">Demographics of Patients w/Maternal Health-Related Conditions</option>
 		<option value="enclave_health_2">COVID Factors of Patients w/Maternal Health-Related Conditions</option>
+		<option value="enclave_health_5">Comorbid Maternal Health-Related Conditions</option>
 	</select>
 </div>
 
@@ -20,6 +22,7 @@
 	<div id="enclave_health_3" class="group"></div>
 	<div id="enclave_health_1" class="group"></div>
 	<div id="enclave_health_2" class="group"></div>
+	<div id="enclave_health_5" class="group"></div>
 </div>
 
 <script>

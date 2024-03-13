@@ -226,6 +226,7 @@ function localHorizontalGroupedBarChart_new(data1, properties) {
   			})
   			.on('mousemove', function(d, i){
 	    		var label = d.key;
+	    		var label_abbrev = d.abbrev;
 	    		var sum = 0;
 	    		for (i in d.values){
 	    			sum += d.values[i].value.count;
@@ -236,7 +237,25 @@ function localHorizontalGroupedBarChart_new(data1, properties) {
 					.style("opacity", 0.8)
 					.style("left", (d3.event.pageX + 5) + "px")
 					.style("top", (d3.event.pageY - 28) + "px")
-					.html("<strong>" + label + "</strong> (" + sum.toLocaleString() + ")");
+					.html(function(){
+						if (typeof properties.abbrev_label == 'undefined') {
+							if (typeof properties.nosum == 'undefined') {
+								return "<strong>" + label + "</strong> (" + sum.toLocaleString() + ")"
+					    	} else{
+					    		return "<strong>" + label + "</strong>"
+					    	}
+						} else {
+							if (typeof properties.nosum == 'undefined') {
+								return "<strong>" + label_abbrev + "</strong> (" + sum.toLocaleString() + ")"
+					    	} else{
+					    		return "<strong>" + label_abbrev + "</strong>"
+					    	}
+						}
+					});
+				
+				if (typeof properties.nopercent == 'undefined') {
+		    		percentage = "<br><strong>% of " + d.key + " that are " + d.value.label + ": </strong>" + ((count2/total) * 100).toFixed(2) + "%";
+		    	};
 			})
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 

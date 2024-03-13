@@ -1,0 +1,37 @@
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
+
+<div class="panel-body">
+	<div class="accordion" id="${param.block}nu_conditions_accordion">
+ 		<div class="card">
+ 			<div class="card-header" id="${param.block}nu_conditions_heading">
+				<h2 class="mb-0">
+				<button class="filter_drop_button btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#${param.block}nu_conditions_body" aria-expanded="true" aria-controls="${param.block}nu_conditions_body">
+  					# of Conditions
+ 				</button>
+				</h2>
+			</div>
+		</div>
+		<div id="${param.block}nu_conditions_body" class="collapse" aria-labelledby="${param.block}nu_conditions_heading" data-parent="#${param.block}nu_conditions_accordion">
+			<div class="card-body">
+				<div id="${param.block}nu_conditions_panel">
+					<button class="btn btn-light btn-sm" onclick="selectall('${param.block}nu_conditions_panel');">All</button>
+					<button class="btn btn-light btn-sm" onclick="deselect('${param.block}nu_conditions_panel');">None</button><br>
+					<select id="${param.block}-nu_conditions-select" multiple="multiple">
+						<sql:query var="nu_conditions" dataSource="jdbc/N3CPublic">
+							select distinct no_of_conditions as nu_conditions 
+							from n3c_dashboard_ph.enclave_ruca_cnt_csd 
+							order by no_of_conditions;
+						</sql:query>
+						<c:forEach items="${nu_conditions.rows}" var="row" varStatus="rowCounter">
+							<option value="${row.nu_conditions}">${row.nu_conditions}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

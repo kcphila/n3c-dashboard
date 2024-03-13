@@ -14,6 +14,9 @@ var cci_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941"];
 var vaccinated_range = ["#4833B2", "#a6a6a6"];
 var severity_range = ["#EBC4E0", "#C24DA1", "#AD1181", "#820D61", "#570941", "#a6a6a6"];
 
+
+var count_range = ["#4833B2", "#AD1181"];
+
 var sequential_1_5 = ["#D6BFD9", "#b88fbd", "#995fa0", "#6c4270", "#4D2F50"];
 var categorical = ["#09405A", "#AD1181", "#8406D1", "#ffa600", "#ff7155", "#4833B2", "#a6a6a6"];
 
@@ -147,6 +150,19 @@ var divergent = ["#5C180A", "#A02A12", "#CE3617", "#ED765E", "#F5B1A3", "#EFEFEF
 </sql:query>
 <c:forEach items="${statuses.rows}" var="row" varStatus="rowCounter">
 	var status_legend = ${row.jsonb_pretty};
+</c:forEach>
+
+<sql:query var="counts" dataSource="jdbc/N3CPublic">
+	select jsonb_pretty(jsonb_agg(done))
+	from (select count_abbrev as secondary, 
+		count_abbrev as secondary_name, 
+		count_seq as secondary_seq
+		from n3c_dashboard.count_map
+		order by count_seq
+	) as done;
+</sql:query>
+<c:forEach items="${counts.rows}" var="row" varStatus="rowCounter">
+	var count_legend = ${row.jsonb_pretty};
 </c:forEach>
 
 <sql:query var="paxlovid" dataSource="jdbc/N3CPublic">
