@@ -8,5 +8,5 @@
 
 	<jsp:param name="did" value="929" />
 	
-	<jsp:param name="simple_panel" value="pasc-mortality/tables/combined_roc.jsp" />
+	<jsp:param name="simple_panel" value="pasc-mortality/tables/analysis1_hazard.jsp" />
 </jsp:include>
