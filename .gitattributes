@@ -157,6 +157,7 @@ WebContent/graph_support/horizontalStackedBarChart_local.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_new.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_percent.jsp -text
 WebContent/graph_support/layeredMap.jsp -text
+WebContent/graph_support/line_n_column_local.jsp -text
 WebContent/graph_support/map_layers/collaborating_sites.js -text
 WebContent/graph_support/map_layers/contributing_sites.js -text
 WebContent/graph_support/map_layers/counties.js -text
@@ -165,6 +166,7 @@ WebContent/graph_support/map_layers/counties_substance.js -text
 WebContent/graph_support/map_layers/ochin_sites.js -text
 WebContent/graph_support/map_layers/states.js -text
 WebContent/graph_support/mortalityBarChart_local.jsp -text
+WebContent/graph_support/oddsRatioChart_local.jsp -text
 WebContent/graph_support/percentage_bar_local.jsp -text
 WebContent/graph_support/percentage_bar_local2.jsp -text
 WebContent/graph_support/percentage_bar_local_new.jsp -text
@@ -1608,11 +1610,10 @@ WebContent/overview/teams/table_includes.jsp -text
 WebContent/overview/teams/teams.jsp -text
 WebContent/overview/users/graph_includes.jsp -text
 WebContent/overview/users/users.jsp -text
-WebContent/phastr-pasc.jsp -text
-WebContent/phastr-ucda.jsp -text
 WebContent/phastr/block.jsp -text
 WebContent/phastr/pasc-mortality/feeds/analysis1_hazard.jsp -text
 WebContent/phastr/pasc-mortality/feeds/analysis1_km.jsp -text
+WebContent/phastr/pasc-mortality/feeds/analysis1_km_d3.jsp -text
 WebContent/phastr/pasc-mortality/feeds/analysis1_or.jsp -text
 WebContent/phastr/pasc-mortality/feeds/analysis1_shap.jsp -text
 WebContent/phastr/pasc-mortality/feeds/analysis2_ors.jsp -text
@@ -1624,6 +1625,7 @@ WebContent/phastr/pasc-mortality/images/Picture3.png -text
 WebContent/phastr/pasc-mortality/images/Picture4.png -text
 WebContent/phastr/pasc-mortality/images/Picture5.png -text
 WebContent/phastr/pasc-mortality/images/Picture6.png -text
+WebContent/phastr/pasc-mortality/index.jsp -text
 WebContent/phastr/pasc-mortality/panel.jsp -text
 WebContent/phastr/pasc-mortality/pasc_1.jsp -text
 WebContent/phastr/pasc-mortality/pasc_2.jsp -text
@@ -1648,6 +1650,7 @@ WebContent/phastr/ucda/feeds/survival_inpatient.jsp -text
 WebContent/phastr/ucda/feeds/survival_inpatient_weighted.jsp -text
 WebContent/phastr/ucda/feeds/survival_liver.jsp -text
 WebContent/phastr/ucda/feeds/survival_liver_weighted.jsp -text
+WebContent/phastr/ucda/index.jsp -text
 WebContent/phastr/ucda/panel.jsp -text
 WebContent/phastr/ucda/tables/balance.jsp -text
 WebContent/phastr/ucda/tables/balance_proportion.jsp -text

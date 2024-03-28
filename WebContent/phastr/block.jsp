@@ -352,6 +352,11 @@
 	<!-- Panels ------------------------------------------------------------------------------------------------- -->		
 				<div id="${param.block}-panel" class="col-12 col-md-12 mx-auto mb-4 panel" >
 
+					<c:if test="${not empty param.viz_panel}">
+						<div id="${param.viz_panel}" class="" style="display: block;">
+						</div>
+					</c:if>
+					
 					<c:if test="${not empty param.simple_panel}">
 						<div id="${param.block}-simple" class="" style="display: block;">
 							<jsp:include page="${param.simple_panel}"/>

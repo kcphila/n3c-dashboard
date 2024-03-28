@@ -40,23 +40,29 @@ div.composite.tooltip {
 
 </style>
 
-<jsp:include page="head.jsp">
-	<jsp:param name="page" value="PHASTR UCDA"/>
+<jsp:include page="../../head.jsp">
+	<jsp:param name="page" value="PHASTR PASC Mortality"/>
 </jsp:include>
+<script>
+<jsp:include page="../../feeds/configuration.jsp"/>
+</script>
 
+
+<jsp:include page="../../graph_support/line_n_column_local.jsp"></jsp:include>
+<jsp:include page="../../graph_support/oddsRatioChart_local.jsp"></jsp:include>
 <body>
-	<jsp:include page="navbar.jsp" flush="true">
+	<jsp:include page="../../navbar.jsp" flush="true">
   		<jsp:param name="page" value="explore"/>
 	</jsp:include>
 	
 	<div class="container container-large content">
-		<jsp:include page="phastr/ucda/panel.jsp" flush="true" />
+		<jsp:include page="panel.jsp" flush="true" />
 	</div>
 
 
-	<jsp:include page="footer.jsp" flush="true" />
+	<jsp:include page="../../footer.jsp" flush="true" />
 	
-	<c:import url="modules/popover_init.jsp"/>
+	<c:import url="../../modules/popover_init.jsp"/>
 	
 </body>
 </html>

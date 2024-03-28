@@ -6,12 +6,19 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select term,estimate,p_value,conf_low,conf_high,pval_signif from phastr_pasc.analysis1_or_plot_data) as foo;
+     (select
+     	term as element,
+     	to_char(estimate, 'FM99.0000')::float as estimate,
+     	p_value,
+     	to_char(conf_low, 'FM99.0000')::float as conf_low,
+     	to_char(conf_high, 'FM99.0000')::float as conf_high,
+     	pval_signif
+     from phastr_pasc.analysis1_or_plot_data) as foo;
 </sql:query>
 
 {
     "headers": [
-    	{"value":"term", "label":"Term"},
+    	{"value":"element", "label":"Term"},
         {"value":"estimate", "label":"Estimate"},
         {"value":"p_value", "label":"p Value"},
         {"value":"conf_low", "label":"Confidence Low"},
