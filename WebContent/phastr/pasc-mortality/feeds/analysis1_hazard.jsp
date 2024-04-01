@@ -6,20 +6,30 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_pretty(jsonb_agg(foo)) as foo
 from
-     (select term,coef,exp_coef,se_coef,z,p,x____log2p,lower95_,upper95_ from phastr_pasc.analysis1_hazard_ratio_data) as foo;
+     (select
+     	term as element,
+     	to_char(coef, 'FM99.0000')::float as estimate,
+     	to_char(exp_coef, 'FM99.0000')::float as exp_coef,
+     	to_char(se_coef, 'FM99.0000')::float as se_coef,
+     	to_char(z, 'FM999.0000')::float as z,
+     	p,
+     	case when x____log2p = 'Infinity' then 'Infinity' else to_char(x____log2p::float, 'FM999.0000') end as x____log2p,
+     	to_char(lower95_, 'FM99.0000')::float as conf_low,
+     	to_char(upper95_, 'FM99.0000')::float as conf_high
+     from phastr_pasc.analysis1_hazard_ratio_data) as foo;
 </sql:query>
 
 {
     "headers": [
-    	{"value":"term", "label":"Term"},
-        {"value":"coef", "label":"Coef"},
+    	{"value":"element", "label":"Term"},
+        {"value":"estimante", "label":"Coef"},
         {"value":"exp_coef", "label":"Exp Coef"},
         {"value":"se_coef", "label":"SE Coef"},
         {"value":"z", "label":"Z"},
         {"value":"p", "label":"P"},
         {"value":"x____log2p", "label":"Log2p"},
-        {"value":"lower95_", "label":"Lower 95%"},
-        {"value":"upper95_", "label":"Upper 95%"}
+        {"value":"conf_low", "label":"Lower 95%"},
+        {"value":"conf_high", "label":"Upper 95%"}
     ],
     "rows" :
     <c:forEach items="${team.rows}" var="row" varStatus="rowCounter">

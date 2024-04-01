@@ -20,6 +20,9 @@ function analysis1_or_refresh() {
 		domName: "analysis1-or-viz",
 		xaxis_label: "Odds Ratio",
 		bandLabelWidth: 375,
+		minX: 0.8,
+		maxX: 1.5,
+		mode: "odds",
 		symbolSize: 4
 	}
    	d3.select("#analysis1-or_plot").select("svg").remove();

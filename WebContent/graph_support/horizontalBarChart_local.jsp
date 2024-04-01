@@ -1,261 +1,113 @@
+<style>
+div.bar.tooltip {
+	position: absolute;
+	background-color: white;
+  	opacity: 0.8;
+  	height: auto;
+	padding: 1px;
+  	pointer-events: none;
+}
+</style>
+
 <script>
 
 function localHorizontalBarChart(data, properties) {
-
-	var word_length = 3;
+	// set the dimensions and margins of the graph
+	var margin = { top: 0, right: 100, bottom: 100, left: 100 },
+		width = 960 - margin.left - margin.right,
+		height = 600 - margin.top - margin.bottom;
 	
-	if (data.length > 0){
-		var longest_word = data.reduce(
-			    function (a, b) {
-			        return a.element.length > b.element.length ? a : b;
-			    }
-		);
-		word_length =  longest_word.element.length;
-		
-	}
-	
-	var valueLabelWidth = 50; // space reserved for value labels (right)
-	var barHeight = 50; // height of one bar
+	var valueLabelWidth = 80; // space reserved for value labels (right)
+	var barHeight = 40; // height of one bar
 	var barLabelPadding = 5; // padding between bar and bar labels (left)
 	var gridLabelHeight = 0; // space reserved for gridline labels
 	var gridChartOffset = 3; // space between start of grid and first bar
-	var maxBarWidth = 280; // width of the bar with the max value
-	var paddingInside = 0.5
-	
-	var min_height = (properties.min_height === undefined ? 200 : properties.min_height);
-	
-	if ((properties.ordered != undefined) && (properties.ordered == 1) ){
-		data.sort(function(a, b) {
-			// console.log(a);
-		    return parseFloat(b.count) - parseFloat(a.count);
-		});
-	}
-	
-	var margin = { top: 40, right: 50, bottom: 30, left: properties.barLabelWidth },
-		width = 1200 - margin.left - margin.right,
-		height = width/3 - margin.top - margin.bottom;
+	var maxBandWidth = 400; // width of the bar with the max value
 
 	//accessor functions
 	var barLabel = function(d) { return d.element; };
-	var barValue = function(d) { return parseFloat(d.count); };
-
+	var barValue = function(d) { return parseFloat(d.value); };
+	
+	if ((properties.ordered != undefined) && (properties.ordered == 1) ){
+		data.sort(function(a, b) {
+		    return parseFloat(b.value) - parseFloat(a.value);
+		});
+	}
+	
+	var original = d3.select(properties.domName).node();
+	var newnode = original.cloneNode();
+    original.parentNode.replaceChild(newnode, original);
+	
 	var myObserver = new ResizeObserver(entries => {
 		entries.forEach(entry => {
-			var newWidth = Math.floor(entry.contentRect.width);
+			var newWidth = $(properties.domName).width();
 			if (newWidth > 0) {
 				d3.select(properties.domName).select("svg").remove();
-				width = newWidth - margin.left - margin.right;
-				height = width/3;
-				maxBarWidth = width - properties.barLabelWidth - barLabelPadding - valueLabelWidth;
-				if (height < min_height) {
-					height = min_height;
-				};
-				draw();
+				maxBarWidth = newWidth - properties.barLabelWidth - barLabelPadding - valueLabelWidth;
+				draw_bar();
 			}
 		});
 	});
-	
+
 	myObserver.observe(d3.select(properties.domName).node());
+ 	
+ 	draw_bar();
 
-	draw();
-
-	function draw() {
+	function draw_bar() {
 		
-		var y = d3.scaleBand()			
-			.range([0, height-margin.bottom])	
-			.paddingInner(paddingInside)
-			.align(0.1)
-			.domain(data.map(function(d) { return d.abbrev; }));
-		
-		var yText = function(d, i) { return y(d, i) + y.bandwidth() / 2; };
-		
+		// scales
+		var yScale = d3.scaleBand()
+						.domain(d3.range(0, data.length))
+						.range([0, data.length * barHeight]);
+		var y = function(d, i) { return yScale(i); };
+		var yText = function(d, i) { return y(d, i) + yScale.bandwidth() / 2; };
 		var x = d3.scaleLinear()
-			.domain([0, d3.max(data, function(d){ return d.count; })])
-			.range([0, width - margin.right]);
-		
-		var svg = d3.select(properties.domName).append("svg")
-			.attr("width", width + margin.left + margin.right)
-			.attr("height", Number(height) + margin.top + margin.bottom);
-		
-		var svgDefs = svg.append('defs');
+					.domain([Math.min(0, d3.min(data,function(d) {return d.value})), d3.max(data, function(d) {return d.value})])
+					.range([properties.bandLabelWidth, properties.bandLabelWidth + maxBandWidth]);
+		// svg container element
+		var chart = d3.select(properties.domName).append("svg")
+			.attr('width', $(properties.domName).width())
+			.attr('height', gridLabelHeight + gridChartOffset + data.length * barHeight + margin.top + margin.bottom);
+		chart.append("g")
+		.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
+		.call(d3.axisLeft(yScale).tickFormat(function(d, i) {return data[i].element }).tickSize(2))
 
-        var mainGradient = svgDefs.append('linearGradient')
-            .attr('id', properties.domName.replace('#', '') + 'mainGradient');
+		chart.append("g")
+		.attr("transform", "translate(0," + data.length * barHeight + ")")
+		.call(d3.axisBottom(x).ticks(5))
+		// Add X axis label:
+		chart.append("text")
+			.attr("text-anchor", "middle")
+			.attr("x", maxBandWidth / 2 + properties.bandLabelWidth)
+			.attr("y", data.length * barHeight + margin.top + 40)
+			.text(properties.xaxis_label);
 
-        // Create the stops of the main gradient.
-        mainGradient.append('stop')
-            .style('stop-color', "#33298D")
-            .attr('offset', '0');
-
-        mainGradient.append('stop')
-            .style('stop-color', "#3F50B0")
-            .attr('offset', '99%');
+		// grid line labels
+		var gridContainer = chart.append('g')
+			.attr('transform', 'translate(' + properties.barLabelWidth + ',' + gridLabelHeight + ')');
 		
-	
-		var g = svg.append("g")
-			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-		g.append("g")
-			.attr("class", "y axis")
-			.attr("transform", "translate(0,0)") 						
-			.call(d3.axisLeft(y));	
-		
-		//add y axis tooltip 
-		g.select(".y.axis")
-	    	.selectAll(".tick")
-	    	.on("mouseover", function() { tooltip3.style("display", null); })
-		    .on("mouseout", function() { tooltip3.style("display", "none"); })
-		    .on("mousemove", function(d, i) {
-		    	var label = data[i].element;
-		    	tooltip3.selectAll("tspan").remove();
-		    	tooltip3.selectAll("rect").attr("width", ((label.length * 8)+10) + 'px');
-		     	var xPosition = d3.mouse(this)[0];
-		     	var yPosition = d3.mouse(this)[1];
-		     	tooltip3.attr("transform", "translate(" + xPosition + "," + (yPosition + y(d)) + ")")
-		     	.selectAll("text")
-		     		.append("tspan")
-		     		.text(label)
-		     		.attr('x', 10)
-  					.attr('dy', 13);
-		    });
-
-		// axis labels & ticks
-		var axisContainer = g.append('g')
-			.attr("class", "axis xaxis")
-			.attr("transform", "translate(0," + (height-margin.bottom) + ")")				
-			.call(d3.axisBottom(x).ticks(Math.round(width/100), "s"))
-			.append("text")										
-			.attr("fill", "#000")
-			.attr("font-weight", "bold")
-			.attr("text-anchor", "start")
-			.text("Patient Count")
-			.attr("transform", "translate(" + ((width/2)- margin.right) + "," + 40 + ")"); 
-		
-		d3.selectAll("g.xaxis g.tick")
-	    	.append("line")
-	    	.attr("class", "gridline")
-	    	.attr("x1", 0)
-	    	.attr("y1", -height+margin.top)
-	    	.attr("x2", 0)
-	    	.attr("y2", 0);
-		
-		// bars		
-		var barsContainer = g.append('g')
-			.selectAll("rect")
-			.data(data)
-			.enter().append("rect")
-			.attr("class", "bar")
-			.attr("y", function(d) { return y(d.abbrev); })
-			.attr('height', y.bandwidth())
-			.attr('width', function(d) { return x(d.count); })
+		// bars
+		var barsContainer = chart.append('g')
+			.attr('transform', 'translate(' + properties.barLabelWidth + ',' + (gridLabelHeight + gridChartOffset) + ')');
+		barsContainer.selectAll("rect").data(data).enter().append("rect")
+			.attr('y', y)
+			.attr('x', function(d) { return x(Math.min(0, d.value)); })
+			.attr('height', yScale.bandwidth())
+			.attr('width', function(d) { return Math.abs(x(d.value) - x(0)); })
 			.attr('stroke', 'white')
-			.attr('fill', function(d, i){
-				if (properties.colorscale != undefined){
-					if (properties.colorIndexActual) {
-						return properties.colorscale[d.seq];
-					} else if (properties.noseq != 1){
-						return properties.colorscale[(d.seq-1)];
-					} else {
-						return properties.colorscale[i];
-					}
-				}else{
-					return 'url(' + properties.domName +'mainGradient)';
-				}
+			.attr('fill', function(d) { return "blue"})
+			.on('mousemove', function(d){
+				d3.selectAll(".tooltip").remove(); 
+				d3.select("body").append("div")
+				.attr("class", "bar tooltip")
+				.style("opacity", 0.8)
+				.style("left", (d3.event.pageX + 5) + "px")
+				.style("top", (d3.event.pageY - 28) + "px")
+				.html("<strong>" + d.element + "</strong><br><strong>Value:</strong> " + d.value.toLocaleString());
 			})
-			.on("mouseover", function() { 
-				tooltip.style("display", null); 
-			})
-			.on("mouseout", function() {
-				tooltip.style("display", "none");
-			})
-			.on("mousemove", function(d) {	
-				tooltip.selectAll("tspan").remove();
-				var xPosition = d3.mouse(this)[0];
-		     	var yPosition = d3.mouse(this)[1];
-		     	var count2 = d.count;
-		     	tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")")
-		     	.selectAll("text")
-		     		.append("tspan")
-		     		.text(d.element)
-		     		.attr('x', 10)
-  					.attr('dy', 13)
-		     		.append("tspan")
-		     		.text(count2.toLocaleString())
-		     		.attr('fill', 'black')
-		     		.attr('x', 10)
-  					.attr('dy', 20)
+			.on('mouseout', function(d){
+				 d3.selectAll(".tooltip").remove(); 
 			});
-		
-		
-		
-		function nFormatter(num, digits) {
-			  const lookup = [
-			    { value: 1, symbol: "" },
-			    { value: 1e3, symbol: "k" },
-			    { value: 1e6, symbol: "M" },
-			    { value: 1e9, symbol: "G" },
-			    { value: 1e12, symbol: "T" },
-			    { value: 1e15, symbol: "P" },
-			    { value: 1e18, symbol: "E" }
-			  ];
-			  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-			  var item = lookup.slice().reverse().find(function(item) {
-			    return num >= item.value;
-			  });
-			  return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
-			}
-		
-		// bar value labels
-		g.append('g').selectAll("text").data(data).enter().append("text")
-			.attr("x", function(d) { return x(barValue(d)) + 5; })
-			.attr("y", function(d,i) { return (y(d.abbrev)) + ((y.bandwidth()*paddingInside)/4) + (y.bandwidth()/2) ; })
-			.attr("class", "secondary")
-			.style("text-anchor", "start")
-			.style("font-size", "12px")
-			.style("fill", "#a5a2a2")
-			.text(function(d) { return nFormatter(barValue(d), 2); });
-		
-		// Tooltip ////// 
-		var tooltip = g.append("g")
-    		.attr("class", "graph_tooltip")
-    		.style("display", "none");
-      
-  		tooltip.append("rect")
-    		.attr("width", function(d){
-    			var cal_width = 10 + word_length * 7;
-    			var min_width = 80;
-    			if (cal_width > min_width){
-    				return cal_width;
-    			}else{
-    				return min_width;
-    			}
-    		})
-    		.attr("height", 40)
-    		.attr("fill", "white")
-    		.style("opacity", 0.7);
-
-  		tooltip.append("text")
-    		.style("text-anchor", "start")
-    		.attr("font-size", "12px")
-    		.attr("font-weight", "bold");
-  		
-  	// Y axis Tooltip ////// 
-		var tooltip3 = g.append("g")
-    		.attr("class", "graph_tooltip")
-    		.style("display", "none");
-	
-		tooltip3.append("rect")
-			.attr("width", word_length * 7)
-			.attr("height", 20)
-			.attr("fill", "white")
-			.style("opacity", 0.7);
-
-  		tooltip3.append("text")
-  			.attr("x", 10)
-			.attr("dy", "1.2em")
-			.style("text-anchor", "start")
-			.attr("font-size", "12px")
-			.attr("font-weight", "bold");
 
 	}
 }

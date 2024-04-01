@@ -8,5 +8,30 @@
 
 	<jsp:param name="did" value="929" />
 	
+	<jsp:param name="viz_panel" value="analysis1-shap-viz" />
+	
 	<jsp:param name="simple_panel" value="pasc-mortality/tables/analysis1_shap.jsp" />
 </jsp:include>
+
+<script>
+
+function analysis1_shap_refresh() {
+	var properties = {
+		domName: "#analysis1-shap-viz",
+		bandLabelWidth: 425,
+		xaxis_label: "SHAP Value",
+		min_height: 300,
+		ordered: 0,
+		colorscale: age_range_ideal,
+		legend_label: 'age',
+		legend_data: age_legend_ideal
+	}
+   	d3.select("#analysis1-shap_plot").select("svg").remove();
+	fetch('feeds/analysis1_shap.jsp')
+	  .then(response => response.json())
+	  .then(data => localHorizontalBarChart(data.rows, properties));
+}
+
+analysis1_shap_refresh();
+
+</script>

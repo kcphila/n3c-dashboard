@@ -6,13 +6,16 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select variable,shap_abs from phastr_pasc.analysis1_shap_plots) as foo;
+     (select
+     	variable as element,
+     	to_char(shap_abs, 'FM99.0000')::float as value
+	  from phastr_pasc.analysis1_shap_plots) as foo;
 </sql:query>
 
 {
     "headers": [
-    	{"value":"variable", "label":"Variable"},
-        {"value":"shap_abs", "label":"shap abs"}
+    	{"value":"element", "label":"Variable"},
+        {"value":"value", "label":"shap abs"}
     ],
     "rows" :
     <c:forEach items="${team.rows}" var="row" varStatus="rowCounter">

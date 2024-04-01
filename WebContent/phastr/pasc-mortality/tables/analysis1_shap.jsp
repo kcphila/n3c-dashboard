@@ -41,8 +41,8 @@ $.getJSON("../../phastr/pasc-mortality/feeds/analysis1_shap.jsp", function(data)
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'variable', visible: true, orderable: true },
-        	{ data: 'shap_abs', visible: true, orderable: true }
+        	{ data: 'element', visible: true, orderable: true },
+        	{ data: 'value', visible: true, orderable: true }
     	]
 	} );
 

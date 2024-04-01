@@ -41,15 +41,15 @@ $.getJSON("../../phastr/pasc-mortality/feeds/analysis1_hazard.jsp", function(dat
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'term', visible: true, orderable: true },
-        	{ data: 'coef', visible: true, orderable: true },
+        	{ data: 'element', visible: true, orderable: true },
+        	{ data: 'estimate', visible: true, orderable: true },
         	{ data: 'exp_coef', visible: true, orderable: true },
         	{ data: 'se_coef', visible: true, orderable: true },
         	{ data: 'z', visible: true, orderable: true },
         	{ data: 'p', visible: true, orderable: true },
         	{ data: 'x____log2p', visible: true, orderable: true },
-        	{ data: 'lower95_', visible: true, orderable: true },
-        	{ data: 'upper95_', visible: true, orderable: true}
+        	{ data: 'conf_low', visible: true, orderable: true },
+        	{ data: 'conf_high', visible: true, orderable: true}
     	]
 	} );
 
