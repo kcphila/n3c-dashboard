@@ -41,11 +41,11 @@ $.getJSON("../../phastr/pasc-mortality/feeds/analysis1_km.jsp", function(data){
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'timeline', visible: true, orderable: true },
+        	{ data: 'timeline', visible: true, orderable: true, className: "text-right" },
         	{ data: 'x__group', visible: true, orderable: true },
-        	{ data: 'survival', visible: true, orderable: true },
-        	{ data: 'survival_upper_0_95', visible: true, orderable: true },
-        	{ data: 'survival_lower_0_95', visible: true, orderable: true }
+        	{ data: 'survival', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'survival_upper_0_95', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'survival_lower_0_95', visible: true, orderable: true, className: "text-right" }
     	]
 	} );
 

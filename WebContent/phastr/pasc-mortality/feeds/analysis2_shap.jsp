@@ -6,7 +6,7 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select variable,shap_abs,cohort from phastr_pasc.analysis2_combined_cohort_shap_values) as foo;
+     (select variable,to_char(shap_abs::float, 'FM99.0000')::float as shap_abs,cohort from phastr_pasc.analysis2_combined_cohort_shap_values) as foo;
 </sql:query>
 
 {

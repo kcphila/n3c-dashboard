@@ -41,12 +41,12 @@ $.getJSON("../../phastr/pasc-mortality/feeds/combined_roc.jsp", function(data){
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'false_positive_rate', visible: true, orderable: true },
-        	{ data: 'true_positive_rate', visible: true, orderable: true },
-        	{ data: 'lowerlimit_trueposrate', visible: true, orderable: true },
-        	{ data: 'upperlimit_trueposrate', visible: true, orderable: true },
-        	{ data: 'auc', visible: true, orderable: true },
-        	{ data: 'auc_halfwidth', visible: true, orderable: true },
+        	{ data: 'false_positive_rate', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'true_positive_rate', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'lowerlimit_trueposrate', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'upperlimit_trueposrate', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'auc', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'auc_halfwidth', visible: true, orderable: true, className: "text-right" },
         	{ data: 'cohort', visible: true, orderable: true }
     	]
 	} );

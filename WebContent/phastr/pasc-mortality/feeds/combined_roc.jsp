@@ -6,7 +6,15 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select false_positive_rate,true_positive_rate,lowerlimit_trueposrate,upperlimit_trueposrate,auc,auc_halfwidth,cohort from phastr_pasc.combined_cohort_roc) as foo;
+     (select
+     	to_char(false_positive_rate, 'FM99.0000')::float as false_positive_rate,
+     	to_char(true_positive_rate, 'FM99.0000')::float as true_positive_rate,
+     	to_char(lowerlimit_trueposrate, 'FM99.0000')::float as lowerlimit_trueposrate,
+     	to_char(upperlimit_trueposrate, 'FM99.0000')::float as upperlimit_trueposrate,
+     	to_char(auc, 'FM99.0000')::float as auc,
+     	to_char(auc_halfwidth, 'FM99.0000')::float as auc_halfwidth,
+     	cohort
+     from phastr_pasc.combined_cohort_roc) as foo;
 </sql:query>
 
 {

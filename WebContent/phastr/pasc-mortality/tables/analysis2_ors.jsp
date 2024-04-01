@@ -42,12 +42,12 @@ $.getJSON("../../phastr/pasc-mortality/feeds/analysis2_ors.jsp", function(data){
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'term', visible: true, orderable: true },
-        	{ data: 'estimate', visible: true, orderable: true },
-        	{ data: 'std_error', visible: true, orderable: true },
-        	{ data: 'statistic', visible: true, orderable: true },
-        	{ data: 'p_value', visible: true, orderable: true },
-        	{ data: 'conf_low', visible: true, orderable: true },
-        	{ data: 'conf_high', visible: true, orderable: true },
+        	{ data: 'estimate', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'std_error', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'statistic', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'p_value', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'conf_low', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'conf_high', visible: true, orderable: true, className: "text-right" },
         	{ data: 'cohort', visible: true, orderable: true }
     	]
 	} );

@@ -42,14 +42,14 @@ $.getJSON("../../phastr/pasc-mortality/feeds/analysis1_hazard.jsp", function(dat
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'element', visible: true, orderable: true },
-        	{ data: 'estimate', visible: true, orderable: true },
-        	{ data: 'exp_coef', visible: true, orderable: true },
-        	{ data: 'se_coef', visible: true, orderable: true },
-        	{ data: 'z', visible: true, orderable: true },
-        	{ data: 'p', visible: true, orderable: true },
-        	{ data: 'x____log2p', visible: true, orderable: true },
-        	{ data: 'conf_low', visible: true, orderable: true },
-        	{ data: 'conf_high', visible: true, orderable: true}
+        	{ data: 'estimate', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'exp_coef', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'se_coef', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'z', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'p', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'x____log2p', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'conf_low', visible: true, orderable: true, className: "text-right" },
+        	{ data: 'conf_high', visible: true, orderable: true, className: "text-right"}
     	]
 	} );
 

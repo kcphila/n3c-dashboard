@@ -6,7 +6,16 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select term,estimate,std_error,statistic,p_value,conf_low,conf_high,cohort from phastr_pasc.analysis2_combined_cohorts_logreg_ors) as foo;
+     (select
+     	term,
+     	to_char(estimate, 'FM99.0000')::float as estimate,
+     	to_char(statistic, 'FM99.0000')::float as statistic,
+     	to_char(std_error, 'FM99.0000')::float as std_error,
+     	p_value,
+     	to_char(conf_low, 'FM99.0000')::float as conf_low,
+     	to_char(conf_high, 'FM99.0000')::float as conf_high,
+     	cohort
+     from phastr_pasc.analysis2_combined_cohorts_logreg_ors) as foo;
 </sql:query>
 
 {

@@ -42,7 +42,7 @@ $.getJSON("../../phastr/pasc-mortality/feeds/analysis2_shap.jsp", function(data)
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'variable', visible: true, orderable: true },
-        	{ data: 'shap_abs', visible: true, orderable: true },
+        	{ data: 'shap_abs', visible: true, orderable: true, className: "text-right" },
         	{ data: 'cohort', visible: true, orderable: true }
     	]
 	} );
