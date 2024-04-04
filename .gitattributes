@@ -166,8 +166,8 @@ WebContent/graph_support/map_layers/counties_substance.js -text
 WebContent/graph_support/map_layers/ochin_sites.js -text
 WebContent/graph_support/map_layers/states.js -text
 WebContent/graph_support/mortalityBarChart_local.jsp -text
-WebContent/graph_support/oddsRatioChart_local.js -text
 WebContent/graph_support/oddsRatioChart_local.jsp -text
+WebContent/graph_support/oddsRatioGroupedChart_local.jsp -text
 WebContent/graph_support/percentage_bar_local.jsp -text
 WebContent/graph_support/percentage_bar_local2.jsp -text
 WebContent/graph_support/percentage_bar_local_new.jsp -text

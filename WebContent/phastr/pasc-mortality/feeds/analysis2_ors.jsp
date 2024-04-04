@@ -15,7 +15,7 @@ from
      	to_char(conf_low, 'FM99.0000')::float as conf_low,
      	to_char(conf_high, 'FM99.0000')::float as conf_high,
      	cohort
-     from phastr_pasc.analysis2_combined_cohorts_logreg_ors) as foo;
+     from phastr_pasc.analysis2_combined_cohorts_logreg_ors order by term,cohort) as foo;
 </sql:query>
 
 {

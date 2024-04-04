@@ -18,15 +18,15 @@ function OddsRatioChart(data, properties) {
 	var margin = { top: 0, right: 100, bottom: 100, left: 100 },
 		width = 960 - margin.left - margin.right,
 		height = 600 - margin.top - margin.bottom;
-	
-	var minX = ( typeof properties.minX == "undefined" ? 0.0 : properties.minX);
-	var maxX = ( typeof properties.maxX == "undefined" ? 1.0 : properties.maxX);
+
+	var minX = (typeof properties.minX == "undefined" ? 0.0 : properties.minX);
+	var maxX = (typeof properties.maxX == "undefined" ? 1.0 : properties.maxX);
 
 	//	console.log(data);
 
 	var maxBandWidth = 400; // width of the bar with the max value
 
-	var ${param.block}myObserver = new ResizeObserver(entries => {
+	var myObserver = new ResizeObserver(entries => {
 		entries.forEach(entry => {
 			var newWidth = Math.floor(entry.contentRect.width);
 			if (newWidth > 0) {
@@ -42,7 +42,7 @@ function OddsRatioChart(data, properties) {
 		});
 	});
 
-	${param.block}myObserver.observe(d3.select("#" + properties.domName).node());
+	myObserver.observe(d3.select("#" + properties.domName).node());
 
 	draw_bar();
 
@@ -64,7 +64,7 @@ function OddsRatioChart(data, properties) {
 			.padding(.4);
 		chart.append("g")
 			.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
-			.call(d3.axisLeft(y).tickFormat(function(d, i) {return data[i].element }).tickSize(2))
+			.call(d3.axisLeft(y).tickFormat(function(d, i) { return data[i].element }).tickSize(2))
 
 		// Show the X scale
 		var x = d3.scaleLinear()
@@ -90,10 +90,10 @@ function OddsRatioChart(data, properties) {
 			.attr("x1", function(d) { return (properties.mode == 'hazard' ? x(0.0) : x(1.0)) })
 			.attr("x2", function(d) { return (properties.mode == 'hazard' ? x(0.0) : x(1.0)) })
 			.attr("y1", function(d) { return (0.0) })
-			.attr("y2", function(d) { return  height; })
+			.attr("y2", function(d) { return height; })
 			.style("stroke-dasharray", ("3, 3"))
 			.attr("stroke", "black")
-		.style("width", 40)
+			.style("width", 40)
 
 		// Show the main vertical line
 		chart
@@ -108,7 +108,7 @@ function OddsRatioChart(data, properties) {
 			.attr("stroke", "black")
 			.attr("stroke-width", '2.8px')
 			.style("width", 40)
-	
+
 		// Show the left whisker
 		chart
 			.selectAll("leftWhisker")
@@ -142,14 +142,14 @@ function OddsRatioChart(data, properties) {
 					.selectAll("rects")
 					.data(data)
 					.enter()
-	 			   .append("rect")
-	        		.attr("x", function(d){return x(d.estimate) - properties.symbolSize})
-	        		.attr("width", function(d){return properties.symbolSize * 2})
-	        		.attr("y", function(d,i) { return y(i) + y.bandwidth() / 2 - properties.symbolSize; })
-	        		.attr("height", properties.symbolSize * 2 )
-	        		.attr("stroke", "black")
-	        		.style("fill", "#69b3a2")
-	        		.style("opacity", 0.3)
+					.append("rect")
+					.attr("x", function(d) { return x(d.estimate) - properties.symbolSize })
+					.attr("width", function(d) { return properties.symbolSize * 2 })
+					.attr("y", function(d, i) { return y(i) + y.bandwidth() / 2 - properties.symbolSize; })
+					.attr("height", properties.symbolSize * 2)
+					.attr("stroke", "black")
+					.style("fill", "#69b3a2")
+					.style("opacity", 0.3)
 				break;
 			case "odds":
 			default:
@@ -168,4 +168,5 @@ function OddsRatioChart(data, properties) {
 		}
 	}
 }
+
 </script>
