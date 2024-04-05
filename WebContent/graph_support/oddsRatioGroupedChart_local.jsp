@@ -53,7 +53,7 @@ function OddsRatioGroupedChart(data1, properties) {
 			if (newWidth > 0) {
 				d3.select("#" + properties.domName).select("svg").remove();
 				width = newWidth - margin.left - margin.right;
-				height = barHeight * data.length + barPadding * (data.length + 1) + margin.top + margin.bottom;
+				height = whiskerHeight * data.length + whiskerGap * (data.length + 1) + margin.top + margin.bottom;
 				draw_bar();
 			}
 		});
@@ -88,9 +88,6 @@ function OddsRatioGroupedChart(data1, properties) {
 			secondary_list = secondary_list.concat(unique);
 		});
 	};
-	
-	var barPadding = 3;
-	var barHeight = 15;
 	
 	function draw_bar() {
 
@@ -195,11 +192,11 @@ function OddsRatioGroupedChart(data1, properties) {
 			.data(function(d) { return d.values; })
 			.enter()
 			.append("line")
-			.attr("x1", function(d) { return (x(d.values[0].conf_low)) })
+			.attr("x1", function(d,i) { return (x(d.values[0].conf_low)) })
 			.attr("x2", function(d) { return (x(d.values[0].conf_high)) })
 			.attr("y1", function(d) { return 0; })
 			.attr("y2", function(d) { return 0; })
-			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (barHeight + barPadding) + barPadding) + ")"; })
+			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
 			.attr("stroke", "black")
 			.attr("stroke-width", '2.8px')
 			.style("width", 40)
@@ -212,9 +209,9 @@ function OddsRatioGroupedChart(data1, properties) {
 			.append("line")
 			.attr("x1", function(d) { return (x(d.values[0].conf_low)) })
 			.attr("x2", function(d) { return (x(d.values[0].conf_low)) })
-			.attr("y1", function(d) { return -whiskerHeight; })
-			.attr("y2", function(d) { return whiskerHeight; })
-			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (whiskerHeight*2 + whiskerGap) + whiskerGap) + ")"; })
+			.attr("y1", function(d) { return -whiskerHeight/2; })
+			.attr("y2", function(d) { return whiskerHeight/2; })
+			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
 			.attr("stroke", "black")
 			.style("width", 40)
 
@@ -226,9 +223,9 @@ function OddsRatioGroupedChart(data1, properties) {
 			.append("line")
 			.attr("x1", function(d) { return (x(d.values[0].conf_high)) })
 			.attr("x2", function(d) { return (x(d.values[0].conf_high)) })
-			.attr("y1", function(d) { return -whiskerHeight; })
-			.attr("y2", function(d) { return whiskerHeight; })
-			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (barHeight + barPadding) + barPadding) + ")"; })
+			.attr("y1", function(d) { return -whiskerHeight/2; })
+			.attr("y2", function(d) { return whiskerHeight/2; })
+			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
 			.attr("stroke", "black")
 			.style("width", 40)
 
@@ -243,7 +240,7 @@ function OddsRatioGroupedChart(data1, properties) {
 	        		.attr("x", function(d){return x(d.values[0].estimate) - properties.symbolSize})
 	        		.attr("width", function(d){return properties.symbolSize * 2})
 					.attr("y", function(d) { return 0; })
-					.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (barHeight + barPadding) + barPadding) + ")"; })
+					.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
 	        		.attr("height", properties.symbolSize * 2 )
 	        		.attr("stroke", "black")
 	        		.style("fill", "#69b3a2")
@@ -259,7 +256,7 @@ function OddsRatioGroupedChart(data1, properties) {
 					.attr("cx", function(d) { return (x(d.values[0].estimate)); })
 					.attr("r", function(d) { return (properties.symbolSize); })
 					.attr("cy", function(d) { return 0; })
-					.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (barHeight + barPadding) + barPadding) + ")"; })
+					.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
 					.attr("stroke", "black")
 					.style("fill", "#69b3a2")
 					.style("opacity", 0.8)

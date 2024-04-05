@@ -28,6 +28,7 @@ function analysis2_ors_refresh() {
 			maxX: 8.5,
 			mode: "odds",
 			symbolSize: 4,
+			whiskerGap: 5,
 			legend_label: status_legend,
 			colorscale: status_range,
 			label1: 'Term',
