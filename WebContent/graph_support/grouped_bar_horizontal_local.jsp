@@ -189,7 +189,8 @@ function localHorizontalGroupedBarChart(data1, properties) {
 		categories.append("g")
 			.selectAll("rect")
 			.data(function(d) { return d.values; })
-			.enter().append("rect")
+			.enter()
+			.append("rect")
 			.attr("class", function(d) {
 				return 'secondary lab' + d.key.replace(/[^A-Z0-9]/ig, "");
 			})
