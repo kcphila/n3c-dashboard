@@ -43,7 +43,7 @@ function OddsRatioGroupedChart(data1, properties) {
 		width = 960 - margin.left - margin.right,
 		height = whiskerHeight * data.length + whiskerGap * (data.length + 1) + margin.top + margin.bottom;
 
-	//	console.log(data);
+	console.log(data);
 
 	var maxBandWidth = 400; // width of the bar with the max value
 
@@ -151,7 +151,7 @@ function OddsRatioGroupedChart(data1, properties) {
 			.attr("height", function(d) {
 				return (y.bandwidth() * 2);
 			})
-			.attr("width", maxBandWidth);
+			.attr("width", width-properties.bandLabelWidth);
 
 		chart.append("g")
 			.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
@@ -160,15 +160,16 @@ function OddsRatioGroupedChart(data1, properties) {
 		// Show the X scale
 		var x = d3.scaleLinear()
 			.domain([minX, maxX])
-			.range([properties.bandLabelWidth, properties.bandLabelWidth + maxBandWidth])
+			.range([properties.bandLabelWidth, width])
 		chart.append("g")
+			.attr("class", "test")
 			.attr("transform", "translate(0," + height + ")")
 			.call(d3.axisBottom(x).ticks(5))
 
 		// Add X axis label:
 		chart.append("text")
 			.attr("text-anchor", "middle")
-			.attr("x", maxBandWidth / 2 + properties.bandLabelWidth)
+			.attr("x", properties.bandLabelWidth + (width - properties.bandLabelWidth)/2)
 			.attr("y", height + margin.top + 40)
 			.text(properties.xaxis_label);
 
