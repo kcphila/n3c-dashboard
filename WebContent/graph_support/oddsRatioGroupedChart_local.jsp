@@ -130,13 +130,17 @@ function OddsRatioGroupedChart(data1, properties) {
 		var y = d3.scaleBand()
 			.range([0, height])
 			.domain(d3.range(0, groupedData.length))
-			.paddingInner(ypad)
-			.paddingOuter(0.1);
+			.padding(ypad);
 
 		//////// Bars ///////////////
 		var g = chart.append("g")
 			.attr("transform", "translate(" + (properties.bandLabelWidth+ypadding) + "," + 0 + ")");
 
+		
+		var step = y.step();
+		var loc = y(i);
+		var pad = step*ypad; 
+		
 		var categories = g.selectAll(".categories")
 			.data(groupedData)
 			.enter().append("g")
@@ -144,10 +148,12 @@ function OddsRatioGroupedChart(data1, properties) {
 				return 'category category-' + d.key.replace(/\s+/g, '');
 			})
 			.attr("transform", function(d, i) {
-				var step = y.bandwidth()/(1-ypad);
-				var loc = y(i);
-				var pad = step*ypad; 
-				return "translate(0, " + (loc - step/2 + pad/2) + ")";
+				if (i == 0){
+					return "translate(0, " + (pad/2) + ")";
+				}else{
+					return "translate(0, " + ((i*step)+(pad/2)) + ")";
+				};
+				
 			});
 
 		categories.append("rect")
@@ -162,13 +168,13 @@ function OddsRatioGroupedChart(data1, properties) {
 			.attr("height", function(d) {
 				var step = y.bandwidth()/(1-ypad);
 				var pad = step*ypad; 
-				return step+(pad/2);
+				return step;
 			})
 			.attr("width", width-(properties.bandLabelWidth+ypadding));
 
 		// Show the Y scale
 		chart.append("g")
-			.attr("transform", "translate(" + (properties.bandLabelWidth+ypadding) + "," + 0 + ")")
+			.attr("transform", "translate(" + (properties.bandLabelWidth+ypadding) + "," + (pad/4) + ")")
 			.call(d3.axisLeft(y).tickFormat(function(d, i) { return groupedData[i].key }).tickSize(2))
 
 		// Show the X scale
