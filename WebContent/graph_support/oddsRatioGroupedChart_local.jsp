@@ -37,15 +37,13 @@ function OddsRatioGroupedChart(data1, properties) {
 	var maxX = (typeof properties.maxX == "undefined" ? 1.0 : properties.maxX);
 	var whiskerHeight = (typeof properties.symbolSize == "undefined" ? 10 : properties.symbolSize * 2);
 	var whiskerGap = (typeof properties.whiskerGap == "undefined" ? 2 : properties.whiskerGap);
-	var ypadding = 40;
-	var ypad = 0.4;
 
 	// set the dimensions and margins of the graph
-	var margin = { top: 0, right: 0, bottom: 100, left: 0 },
+	var margin = { top: 0, right: 100, bottom: 100, left: 100 },
 		width = 960 - margin.left - margin.right,
 		height = whiskerHeight * data.length + whiskerGap * (data.length + 1) + margin.top + margin.bottom;
 
-	//console.log(data);
+	//	console.log(data);
 
 	var maxBandWidth = 400; // width of the bar with the max value
 
@@ -125,22 +123,17 @@ function OddsRatioGroupedChart(data1, properties) {
 			.attr("height", height + margin.top + margin.bottom)
 			.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-		
-		// Create the Y scale
+
+		// Show the Y scale
 		var y = d3.scaleBand()
 			.range([0, height])
 			.domain(d3.range(0, groupedData.length))
-			.padding(ypad);
+			.padding(.4);
 
 		//////// Bars ///////////////
 		var g = chart.append("g")
-			.attr("transform", "translate(" + (properties.bandLabelWidth+ypadding) + "," + 0 + ")");
+			.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")");
 
-		
-		var step = y.step();
-		var loc = y(i);
-		var pad = step*ypad; 
-		
 		var categories = g.selectAll(".categories")
 			.data(groupedData)
 			.enter().append("g")
@@ -148,55 +141,41 @@ function OddsRatioGroupedChart(data1, properties) {
 				return 'category category-' + d.key.replace(/\s+/g, '');
 			})
 			.attr("transform", function(d, i) {
-				if (i == 0){
-					return "translate(0, " + (pad/2) + ")";
-				}else{
-					return "translate(0, " + ((i*step)+(pad/2)) + ")";
-				};
-				
+				return "translate(0, " + (y(i) - y.bandwidth() / 2) + ")";
 			});
 
 		categories.append("rect")
-			.attr("transform", function(d, i) {
-				var step = y.bandwidth()/(1-ypad);
-				var pad = step*ypad; 
-				return "translate(0, " + pad/4 + ")";
-			})
 			.style("fill", function(d) {
 				return bar_color(d.key);
 			})
 			.attr("height", function(d) {
-				var step = y.bandwidth()/(1-ypad);
-				var pad = step*ypad; 
-				return step;
+				return (y.bandwidth() * 2);
 			})
-			.attr("width", width-(properties.bandLabelWidth+ypadding));
+			.attr("width", maxBandWidth);
 
-		// Show the Y scale
 		chart.append("g")
-			.attr("transform", "translate(" + (properties.bandLabelWidth+ypadding) + "," + (pad/4) + ")")
+			.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
 			.call(d3.axisLeft(y).tickFormat(function(d, i) { return groupedData[i].key }).tickSize(2))
 
 		// Show the X scale
 		var x = d3.scaleLinear()
 			.domain([minX, maxX])
-			.range([properties.bandLabelWidth+ypadding, width])
+			.range([properties.bandLabelWidth, properties.bandLabelWidth + maxBandWidth])
 		chart.append("g")
-			.attr("class", "test")
 			.attr("transform", "translate(0," + height + ")")
 			.call(d3.axisBottom(x).ticks(5))
 
 		// Add X axis label:
 		chart.append("text")
 			.attr("text-anchor", "middle")
-			.attr("x", (properties.bandLabelWidth+ypadding) + (width - (properties.bandLabelWidth+ypadding))/2)
+			.attr("x", maxBandWidth / 2 + properties.bandLabelWidth)
 			.attr("y", height + margin.top + 40)
 			.text(properties.xaxis_label);
 
 		// Show the divider line
 		chart
 			.selectAll("divider")
-			.data([0])
+			.data(data)
 			.enter()
 			.append("line")
 			.attr("x1", function(d) { return (properties.mode == 'hazard' ? x(0.0) : x(1.0)) })
@@ -215,9 +194,9 @@ function OddsRatioGroupedChart(data1, properties) {
 			.append("line")
 			.attr("x1", function(d,i) { return (x(d.values[0].conf_low)) })
 			.attr("x2", function(d) { return (x(d.values[0].conf_high)) })
-			.attr("y1", function(d) { return 0; })
-			.attr("y2", function(d) { return 0; })
-			.attr("transform", function(d, i) { return "translate(-" + (properties.bandLabelWidth+ypadding) + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
+			.attr("y1", function(d) { return whiskerHeight; })
+			.attr("y2", function(d) { return whiskerHeight; })
+			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * y.bandwidth() / 2) + ")"; })
 			.attr("stroke", "black")
 			.attr("stroke-width", '2.8px')
 			.style("width", 40)
@@ -230,9 +209,9 @@ function OddsRatioGroupedChart(data1, properties) {
 			.append("line")
 			.attr("x1", function(d) { return (x(d.values[0].conf_low)) })
 			.attr("x2", function(d) { return (x(d.values[0].conf_low)) })
-			.attr("y1", function(d) { return -whiskerHeight/2; })
-			.attr("y2", function(d) { return whiskerHeight/2; })
-			.attr("transform", function(d, i) { return "translate(-" + (properties.bandLabelWidth+ypadding) + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
+			.attr("y1", function(d) { return whiskerHeight-whiskerHeight/2; })
+			.attr("y2", function(d) { return whiskerHeight+whiskerHeight/2; })
+			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * y.bandwidth() / 2) + ")"; })
 			.attr("stroke", "black")
 			.style("width", 40)
 
@@ -244,9 +223,9 @@ function OddsRatioGroupedChart(data1, properties) {
 			.append("line")
 			.attr("x1", function(d) { return (x(d.values[0].conf_high)) })
 			.attr("x2", function(d) { return (x(d.values[0].conf_high)) })
-			.attr("y1", function(d) { return -whiskerHeight/2; })
-			.attr("y2", function(d) { return whiskerHeight/2; })
-			.attr("transform", function(d, i) { return "translate(-" + (properties.bandLabelWidth+ypadding) + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
+			.attr("y1", function(d) { return whiskerHeight-whiskerHeight/2; })
+			.attr("y2", function(d) { return whiskerHeight+whiskerHeight/2; })
+			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * y.bandwidth() / 2) + ")"; })
 			.attr("stroke", "black")
 			.style("width", 40)
 
@@ -260,8 +239,8 @@ function OddsRatioGroupedChart(data1, properties) {
 	 			   .append("rect")
 	        		.attr("x", function(d){return x(d.values[0].estimate) - properties.symbolSize})
 	        		.attr("width", function(d){return properties.symbolSize * 2})
-					.attr("y", function(d) { return 0; })
-					.attr("transform", function(d, i) { return "translate(-" + (properties.bandLabelWidth+ypadding) + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
+					.attr("y", function(d) { return whiskerHeight/2; })
+					.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * y.bandwidth() / 2) + ")"; })
 	        		.attr("height", properties.symbolSize * 2 )
 	        		.attr("stroke", "black")
 	        		.style("fill", "#69b3a2")
@@ -276,8 +255,8 @@ function OddsRatioGroupedChart(data1, properties) {
 					.append("circle")
 					.attr("cx", function(d) { return (x(d.values[0].estimate)); })
 					.attr("r", function(d) { return (properties.symbolSize); })
-					.attr("cy", function(d) { return 0; })
-					.attr("transform", function(d, i) { return "translate(-" + (properties.bandLabelWidth+ypadding) + ", " + (i * (whiskerHeight + whiskerGap) + whiskerHeight/2 + whiskerGap) + ")"; })
+					.attr("cy", function(d) { return whiskerHeight; })
+					.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * y.bandwidth() / 2) + ")"; })
 					.attr("stroke", "black")
 					.style("fill", "#69b3a2")
 					.style("opacity", 0.8)
