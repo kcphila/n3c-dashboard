@@ -70,22 +70,21 @@
 	<div class="container content">
 		<div class="row page-title">
 			<div class="col-12">
-				<h1>N3C Data Distribution and Demographics</h1>
+				<h1>N3C PHASTR</h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<p class="section-description heading-text text-max mx-auto">The N3C Data Enclave is a secure platform through which 
-				harmonized clinical data provided by our contributing members are stored. The Enclave includes demographic and clinical 
-				characteristics of patients tested for or diagnosed with COVID-19 and further information about the strategies and outcomes 
-				of treatments for those suspected or confirmed to have the virus. To learn more about the data within the Enclave, explore 
-				the dashboards below.</p>
+				<p class="section-description heading-text text-max mx-auto">The N3C PHASTR is designed to quickly address high-impact questions that 
+				can be answered with N3C data. Its goal is to provide fast, actionable analysis of high-impact public health research questions. 
+				The following dashboards present the results of completed analyses. 
+				To view open questions or learn more about the initiative, <a href="https://covid.cd2h.org/phastr">click here.</a></p>
 			</div>
 		</div>
 		<div class="section">
 			<div class="row">
 				<div class="col-12 col-md-6 d-flex">
-					<dashboard:dashboard did="60">
+					<dashboard:dashboard did="929">
 						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath />';">
 		   					<img src="<util:applicationRoot/>/dashboard_descriptions/displayDashboardThumbnail.jsp?did=<dashboard:dashboardDid/>" class="card-img-top" alt="...">
 		   					<div class="card-body card-body-links">
@@ -120,42 +119,6 @@
 		 				</div>
 	 				</dashboard:dashboard>
 	 			</div>
-	 			<div class="col-12 col-md-6 d-flex">
-					<dashboard:dashboard did="50">
-						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath />';">
-		   					<img src="<util:applicationRoot/>/dashboard_descriptions/displayDashboardThumbnail.jsp?did=<dashboard:dashboardDid/>" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-	     						<p class="card-title"><strong><dashboard:dashboardTitle /></strong></p>
-	     						<p class="card-text">
-									<dashboard:dashboardBlurb />
-								</p>
-								<div class='row card-link'>
-									<div class="col col-6">
-										<a href='<util:applicationRoot/>/<dashboard:dashboardPath />'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-									</div>
-								</div>
-		   					</div>
-		 				</div>
-	 				</dashboard:dashboard>
-	 			</div>
-	 			<div class="col-12 col-md-6 d-flex">
-					<dashboard:dashboard did="56">
-						<div class="card hover-card flex-fill mb-2" onclick="location.href='<util:applicationRoot/>/<dashboard:dashboardPath />';">
-		   					<img src="<util:applicationRoot/>/dashboard_descriptions/displayDashboardThumbnail.jsp?did=<dashboard:dashboardDid/>" class="card-img-top" alt="...">
-		   					<div class="card-body card-body-links">
-	     						<p class="card-title"><strong><dashboard:dashboardTitle /></strong></p>
-	     						<p class="card-text">
-									<dashboard:dashboardBlurb />
-								</p>
-								<div class='row card-link'>
-									<div class="col col-6">
-										<a href='<util:applicationRoot/>/<dashboard:dashboardPath />'>Explore&#8196;<i class="fas fa-angle-right"></i></a>
-									</div>
-								</div>
-		   					</div>
-		 				</div>
-	 				</dashboard:dashboard>
-		 		</div>
 			</div>
 		</div>
 	</div>

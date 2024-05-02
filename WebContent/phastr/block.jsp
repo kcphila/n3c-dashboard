@@ -322,22 +322,6 @@
 <div class="row stats block2 mx-auto">
 	<div class="col-12">
 	
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="<util:applicationRoot/>/#dashboards">Dashboards</a></li>
-				<li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">${param.block_header}</li>
-			</ol>
-		</nav>
-		<div class="row">
-			<div class="col-12">
-				<h1 class="page-title">${param.block_header}</h1>
-			</div>
-			<div id="question-description" class="section-description heading-text text-max mx-auto">
-				<dashboard:dashboard did="${param.did}">
-					<dashboard:dashboardDescription/>
-				</dashboard:dashboard>
-			</div>
-		</div>
 		
 <!-- KPIs & related dashboards ----------------------------------------------------------------------------------------------------------- -->	
 		<div class="row" style="margin-top: 30px;">
@@ -352,6 +336,13 @@
 	<!-- Panels ------------------------------------------------------------------------------------------------- -->		
 				<div id="${param.block}-panel" class="col-12 col-md-12 mx-auto mb-4 panel" >
 
+					<!-- Floating Legend -->
+					<c:if test="${not empty param.floating_legend}">
+						<div class="col-12"> 
+							<div id="${param.block}legend"></div>
+						</div>
+					</c:if>
+					
 					<c:if test="${not empty param.viz_panel}">
 						<div id="${param.viz_panel}" class="" style="display: block;">
 						</div>

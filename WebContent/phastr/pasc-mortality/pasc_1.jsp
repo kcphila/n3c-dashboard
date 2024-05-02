@@ -7,7 +7,7 @@
 	<jsp:param name="block_header" value="Analysis 1 Kaplan-Meier" />
 
 	<jsp:param name="did" value="929" />
-	
+	<jsp:param name="floating_legend" value="true" />
 	<jsp:param name="viz_panel" value="analysis1-km-viz" />
 	
 	<jsp:param name="simple_panel" value="pasc-mortality/tables/analysis1_km.jsp" />
@@ -21,7 +21,9 @@ function analysis1_km_refresh() {
 		legend_labels: ['COVID-19 Negative Control','COVID-19 Positive Control','PASC'],
 		xaxis_label: "Day",
 		yaxis_label: "Survival Probability",
-		extendXAxis: 1
+		extendXAxis: 1,
+		legendid: 'analysis1-kmlegend',
+		legendlabel: 'Cohort'
 	}
    	d3.select("#analysis1-km_plot").select("svg").remove();
 	fetch('feeds/analysis1_km_d3.jsp')

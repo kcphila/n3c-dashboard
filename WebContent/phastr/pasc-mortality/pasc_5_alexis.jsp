@@ -25,7 +25,7 @@ function analysis2_ors_refresh() {
 			xaxis_label: 'Odds Ratio',
 			bandLabelWidth: 375,
 			minX: 0.0,
-			maxX: 8.5,
+			maxX: 46.6486,
 			mode: "odds",
 			symbolSize: 4,
 			whiskerGap: 15,

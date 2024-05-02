@@ -263,39 +263,42 @@ function LineNColumnChart(data, properties) {
 				  
 				  d3.select(".axis1").selectAll('text').style("fill", "${column1_color}").style("font-size", "12px");
 				
-		        // Add the Legend
-			    var lineLegend = svg.selectAll(".lineLegend").data(properties.legend_labels)
-			    	.enter().append("g")
-			    	.attr("class","lineLegend")
-			    	.attr("transform", function (d, i) {
-			            return "translate(" + (5) + "," + ( ((i*15))+20)+")";
-			        });
-
-				lineLegend.append("text")
-					.text(function (d) {return d;})
-					.on("click", function(d, i){
-						console.log("legend click",d,i)
-						var format = {};
-						format['secondary_name'] = d;
-						window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](format, "Medications"); 
-					})
-				    .attr("transform", "translate(25, 6)"); //align texts with boxes
+				  if (typeof properties.legendid == 'undefined') {
+			        // Add the Legend
+				    var lineLegend = svg.selectAll(".lineLegend").data(properties.legend_labels)
+				    	.enter().append("g")
+				    	.attr("class","lineLegend")
+				    	.attr("transform", function (d, i) {
+				            return "translate(" + (5) + "," + ( ((i*15))+20)+")";
+				        });
 	
-				lineLegend.append("rect")
-				    .attr("width", 22)
-				    .attr("class", function(d){return d.tag;})
-				    .attr("opacity", function(d){return d.opacity;})
-				    .attr("stroke",  function(d,i){
-				    	return categorical8[i];
-				    })
-					.on("click", function(d, i){
-						console.log("legend click",d,i)
-						var format = {};
-						format['secondary_name'] = d;
-						window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](format, "Medications"); 
-					})
-				    .attr("stroke-width", '2.8px')
-				    .attr('height', 2);
+				    
+					lineLegend.append("text")
+						.text(function (d) {return d;})
+						.on("click", function(d, i){
+							console.log("legend click",d,i)
+							var format = {};
+							format['secondary_name'] = d;
+							window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](format, "Medications"); 
+						})
+					    .attr("transform", "translate(25, 6)"); //align texts with boxes
+		
+					lineLegend.append("rect")
+					    .attr("width", 22)
+					    .attr("class", function(d){return d.tag;})
+					    .attr("opacity", function(d){return d.opacity;})
+					    .attr("stroke",  function(d,i){
+					    	return categorical8[i];
+					    })
+						.on("click", function(d, i){
+							console.log("legend click",d,i)
+							var format = {};
+							format['secondary_name'] = d;
+							window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](format, "Medications"); 
+						})
+					    .attr("stroke-width", '2.8px')
+					    .attr('height', 2);
+				  };
 				    
 				//tooltip line
 				var tooltipLine = graph.append('line')
@@ -450,6 +453,34 @@ function LineNColumnChart(data, properties) {
 						}
 	
 				};
+				
+				// draw color key on to decoupled div
+				function drawColorKey() {
+					d3.select("#" + properties.legendid).html("");
+		        	var legend_div = d3.select("#" + properties.legendid).append("div").attr("class", "row").attr("id", "floating_legend");
+		    		
+		        	console.log(data);
+		        	
+		        	legend_div.selectAll(".legend-title")
+		        		.data([properties.legendlabel])
+		    			.enter().append("div")
+		        		.attr("class", "col col-12")
+		        		.html(function(d){
+		    				return  '<h5></i>   ' + d + ' Legend</h5>';
+		    			});
+		        	
+		    		var legend_data = legend_div.selectAll(".new_legend")
+		    			.data(properties.legend_labels)
+		    			.enter().append("div")
+		    			.attr("class", "col col-12 col-lg-4")
+		    			.html(function(d,i){
+		    				return  '<i class="fas fa-circle" style="color:' + categorical8[i] + ';"></i> ' +  d;
+		    			});
+			    };
+			    
+			    if (typeof properties.legendid !== 'undefined') {
+			    	drawColorKey();
+			    };
 				
 				function line_clear(){
 		        	<c:if test="${not empty param.constraintPropagator}">
