@@ -46,7 +46,7 @@
     .dua_dta_focus .tooltip{
     	opacity: 0.7;
     	stroke:none;
-    	width: 160px;
+    	width: 236px;
     }
     
     path.duas,
@@ -94,22 +94,30 @@
 <script>
 
 
-function LineNColumnChart(data, properties) {
-
+function LineNConfidence(data, properties) {
+	
+	
 	// set the dimensions and margins of the graph
 	var margin = {top: 0, right: 100, bottom: 100, left: 100},
 	    width = 960 - margin.left - margin.right,
 	    height = 600 - margin.top - margin.bottom;
 	
-	
+
 	var keys =  Object.keys(data[0].elements);
 	var maxCount = 0;
 	for (let i = 0; i < data.length; i++) {
 		for (let j = 0; j < keys.length; j++) {
-			maxCount = Math.max(maxCount, data[i].elements[keys[j]]);
+			var values = data[i].elements[keys[j]].split(',');
+			var maxvalue = 0;
+			if (Number(values[1])){
+				maxvalue = Number(values[1]);
+			}else{
+				maxvalue = Number(values[0]);
+			};
+			maxCount = Math.max(maxCount, maxvalue);
 		}
 	};
-//	console.log("maxCount", maxCount, "keys", keys)
+	
 
 	var column1_label = properties.yaxis_label;
 		var column_tip_offset = 120;
@@ -141,9 +149,9 @@ function LineNColumnChart(data, properties) {
 			// set the ranges
 			var startValue = data[0].timeline;
 			var endValue = data[data.length-1].timeline;
-
+			
 			var x = d3.scaleLinear().domain([startValue, endValue]).range([0, width]);
-			var y = d3.scaleLinear().domain([0.8,maxCount]).range([height, 10]);
+			var y = d3.scaleLinear().domain([0.88,maxCount]).range([height, 10]);
 			var line = d3.line().x(d => x(d.timeline)).y(d => y(d.timeline));
 			
 			
@@ -185,8 +193,40 @@ function LineNColumnChart(data, properties) {
 					var valueline = d3.line()
 			            .curve(d3.curveMonotoneX)
 						.x(function(d) { return x(d.timeline); })
-						.y(function(d) { return y(d.elements[keys[i]]); });
+						.y(function(d) { 
+							return y(d.elements[keys[i]].split(',')[0]); });
 					
+					graph.append("path")
+				      .data([data])
+				      .attr("opacity", 0.2)
+				      .attr("fill", function (d){
+							var color = properties.legend_labels.indexOf(keys[i]);
+							return categorical8[color];
+						})
+				      .attr("stroke", "none")
+				      .attr("class", "area_"+i)
+				      .attr("d", d3.area()
+				        .x(function(d) {return x(d.timeline) })
+				        .y0(function(d) { 
+				        	var values = d.elements[keys[i]].split(',');
+							var yvalue = 0;
+							if (Number(values[1])){
+								yvalue = Number(values[1]);
+							}else{
+								yvalue = Number(values[0]);
+							};
+				        	return y(yvalue) })
+				        .y1(function(d) { 
+				        	var values = d.elements[keys[i]].split(',');
+							var yvalue = 0;
+							if (Number(values[2])){
+								yvalue = Number(values[2]);
+							}else{
+								yvalue = Number(values[0]);
+							};
+				        	return y(yvalue) })
+				      );
+				        
 					graph.append("path")
 						.data([data])
 						.attr("opacity", column1_opacity)
@@ -197,7 +237,7 @@ function LineNColumnChart(data, properties) {
 						})
 						.attr("stroke-width", '3px')
 						.attr("d", valueline);
-				}
+				};
 			      
 				
 				
@@ -209,23 +249,6 @@ function LineNColumnChart(data, properties) {
 				    .on("mouseover", function() { dua_dta_focus.style("display", null);  tooltipLine.style("display", null);})
 		    	  	.on("mouseout", function() { dua_dta_focus.style("display", "none");  tooltipLine.style("display", "none");})
 		    	  	.on("mousemove", dua_dta_mousemove);
-			
-				// Labels & Current Totals
-				<c:if test="not empty param.lineLabels">
-					graph.append("text")
-				    	.attr("transform", "translate("+(width+3)+","+y(data[data.length-1].column1)+")")
-				    	.attr("dy", ".35em")
-				    	.attr("text-anchor", "start")
-				    	.attr("class", "duas")
-				    	.text("column1_tip");
-					graph.append("text")
-				    	.attr("transform", "translate("+(width+3)+","+y(data[data.length-1].column2)+")")
-				    	.attr("dy", ".35em")
-				    	.attr("text-anchor", "start")
-				    	.attr("class", "dtas")
-				    	.text("column2_tip");
-				</c:if>
-				
 
 			    
 			  	// Axis
@@ -250,8 +273,8 @@ function LineNColumnChart(data, properties) {
 					  .attr("font-weight", "bold");
 
 				  svg.append("g")
-			      .attr("class", "axis1")
-			      .call(d3.axisLeft(y).ticks(10));
+			      	.attr("class", "axis1")
+			      	.call(d3.axisLeft(y).ticks(10));
 
 				  // text label for the y axis
 				  svg.append("text")
@@ -264,43 +287,6 @@ function LineNColumnChart(data, properties) {
 				  	.attr("font-size", '14px');      
 				  
 				  d3.select(".axis1").selectAll('text').style("fill", "${column1_color}").style("font-size", "12px");
-				
-				  if (typeof properties.legendid == 'undefined') {
-			        // Add the Legend
-				    var lineLegend = svg.selectAll(".lineLegend").data(properties.legend_labels)
-				    	.enter().append("g")
-				    	.attr("class","lineLegend")
-				    	.attr("transform", function (d, i) {
-				            return "translate(" + (5) + "," + ( ((i*15))+20)+")";
-				        });
-	
-				    
-					lineLegend.append("text")
-						.text(function (d) {return d;})
-						.on("click", function(d, i){
-							console.log("legend click",d,i)
-							var format = {};
-							format['secondary_name'] = d;
-							window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](format, "Medications"); 
-						})
-					    .attr("transform", "translate(25, 6)"); //align texts with boxes
-		
-					lineLegend.append("rect")
-					    .attr("width", 22)
-					    .attr("class", function(d){return d.tag;})
-					    .attr("opacity", function(d){return d.opacity;})
-					    .attr("stroke",  function(d,i){
-					    	return categorical8[i];
-					    })
-						.on("click", function(d, i){
-							console.log("legend click",d,i)
-							var format = {};
-							format['secondary_name'] = d;
-							window[properties.domName.replace(/_[^_]+_[^_]+$/i,'_')+'viz_constrain'](format, "Medications"); 
-						})
-					    .attr("stroke-width", '2.8px')
-					    .attr('height', 2);
-				  };
 				    
 				//tooltip line
 				var tooltipLine = graph.append('line')
@@ -387,12 +373,18 @@ function LineNColumnChart(data, properties) {
 				    if (width/2 > d3.mouse(this)[0]){
 				    	dua_dta_focus.attr("transform", "translate(" + x(d.timeline) + "," + d3.mouse(this)[1] + ")");
 				    }else{
-				    	dua_dta_focus.attr("transform", "translate(" + ((x(d.timeline))-175) + "," + d3.mouse(this)[1] + ")");
+				    	dua_dta_focus.attr("transform", "translate(" + ((x(d.timeline))-250) + "," + d3.mouse(this)[1] + ")");
 				    };
 				   
 				    dua_dta_focus.select(".tooltip-date_dta_dua").text("Day " + d.timeline);
 					for (let i = 0; i < keys.length; i++) {
-					    dua_dta_focus.select(".tooltip-"+i).text(valueFormatter1(d.elements[keys[i]]));						
+						console.log(d.elements);
+						console.log(d.elements[keys[i]].split(',')[2]);
+						console.log(d.elements[keys[i]].split(',')[1]);
+						
+						min = Number(d.elements[keys[i]].split(',')[2]).toFixed(4);
+						max = Number(d.elements[keys[i]].split(',')[1]).toFixed(4);
+					    dua_dta_focus.select(".tooltip-"+i).text(valueFormatter1(d.elements[keys[i]].split(',')[0]) + " (" + min + "-" + max + ")");						
 					}
 
 				    tooltipLine.attr('stroke', 'black')
@@ -442,6 +434,34 @@ function LineNColumnChart(data, properties) {
     						.style("font-size", "12px")
     						.attr("transform", "rotate(-65)");
 
+				     // Update confidence band position
+						for (let i = 0; i < keys.length; i++) {
+					      	graph
+					          .select("path.area_"+i)
+					          .transition()
+					          .duration(1000)
+					          .attr("d", d3.area()
+					        	.x(function(d) {return x(d.timeline) })
+								.y0(function(d) { 
+									var values = d.elements[keys[i]].split(',');
+									var yvalue = 0;
+									if (Number(values[1])){
+										yvalue = Number(values[1]);
+									}else{
+										yvalue = Number(values[0]);
+									};
+								    return y(yvalue); })
+								 .y1(function(d) { 
+								 	var values = d.elements[keys[i]].split(',');
+									var yvalue = 0;
+									if (Number(values[2])){
+										yvalue = Number(values[2]);
+									}else{
+										yvalue = Number(values[0]);
+									};
+									return y(yvalue); }));
+						}
+				     
 				      	// Update line position
 						for (let i = 0; i < keys.length; i++) {
 					      	graph
@@ -451,8 +471,11 @@ function LineNColumnChart(data, properties) {
 					          .attr("d", d3.line()
 					            .curve(d3.curveMonotoneX)
 					            .x(function(d) { return x(d.timeline); })
-					            .y(function(d) { return y(d.elements[keys[i]]); }));
+					            .y(function(d) { return y(d.elements[keys[i]].split(',')[0]); }));
 						}
+				      	
+						
+
 	
 				};
 				
@@ -478,9 +501,7 @@ function LineNColumnChart(data, properties) {
 		    			});
 			    };
 			    
-			    if (typeof properties.legendid !== 'undefined') {
-			    	drawColorKey();
-			    };
+			    drawColorKey();
 				
 				function line_clear(){
 		        	<c:if test="${not empty param.constraintPropagator}">

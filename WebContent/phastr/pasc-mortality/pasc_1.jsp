@@ -28,7 +28,7 @@ function analysis1_km_refresh() {
    	d3.select("#analysis1-km_plot").select("svg").remove();
 	fetch('feeds/analysis1_km_d3.jsp')
 	  .then(response => response.json())
-	  .then(data => LineNColumnChart(data, properties));
+	  .then(data => LineNConfidence(data, properties));
 }
 
 analysis1_km_refresh();

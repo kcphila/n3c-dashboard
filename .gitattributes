@@ -158,6 +158,7 @@ WebContent/graph_support/horizontalStackedBarChart_local_new.jsp -text
 WebContent/graph_support/horizontalStackedBarChart_local_percent.jsp -text
 WebContent/graph_support/layeredMap.jsp -text
 WebContent/graph_support/line_n_column_local.jsp -text
+WebContent/graph_support/line_n_confidence.jsp -text
 WebContent/graph_support/map_layers/collaborating_sites.js -text
 WebContent/graph_support/map_layers/contributing_sites.js -text
 WebContent/graph_support/map_layers/counties.js -text
