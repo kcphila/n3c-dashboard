@@ -37,6 +37,7 @@ $.getJSON("../../phastr/pasc-mortality/feeds/analysis1_or.jsp", function(data){
 	$('#analysis1-or-table').DataTable( {
     	data: data,
        	paging: true,
+       	dom: 'lfr<"datatable_overflow"t>Bip',
     	pageLength: 5,
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],

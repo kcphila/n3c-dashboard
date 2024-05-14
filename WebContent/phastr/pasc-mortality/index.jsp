@@ -47,8 +47,6 @@ div.composite.tooltip {
 <jsp:include page="../../feeds/configuration.jsp"/>
 </script>
 
-
-<jsp:include page="../../graph_support/line_n_column_local.jsp"></jsp:include>
 <jsp:include page="../../graph_support/oddsRatioChart_local.jsp"></jsp:include>
 <jsp:include page="../../graph_support/oddsRatioGroupedChart_local.jsp"></jsp:include>
 <jsp:include page="../../graph_support/horizontalBarChart_local.jsp"/>

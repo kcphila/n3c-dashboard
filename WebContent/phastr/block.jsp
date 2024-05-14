@@ -4,7 +4,14 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="dashboard" uri="http://icts.uiowa.edu/N3CDashboardTagLib"%>
 
+<jsp:include page="../resources/dash_style.css" flush="true" />
+
 <style>
+
+#frame .datatable_overflow{
+	width: 100%;
+	overflow:scroll;
+}
 
 @media (max-width: 1200px){
 	.container-large {
@@ -314,7 +321,11 @@
 	text-align:center;
 }
 
+
+
 </style>
+
+<jsp:include page="../resources/dash_style.css" flush="true" />
 
 <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
 	 that supports a set of optional sub-panels -->
@@ -335,6 +346,20 @@
 	
 	<!-- Panels ------------------------------------------------------------------------------------------------- -->		
 				<div id="${param.block}-panel" class="col-12 col-md-12 mx-auto mb-4 panel" >
+
+					<!-- Long Title -->
+					<c:if test="${not empty param.long_title}">
+						<div class="col-12"> 
+							<jsp:include page="${param.long_title}"/>
+						</div>
+					</c:if>
+					
+					<!-- Short Desc -->
+					<c:if test="${not empty param.short_desc}">
+						<div class="col-12"> 
+							<jsp:include page="${param.short_desc}"/>
+						</div>
+					</c:if>
 
 					<!-- Floating Legend -->
 					<c:if test="${not empty param.floating_legend}">
@@ -360,6 +385,33 @@
 								<jsp:include page="${param.folder}/secondary_text/${param.topic_description}.jsp"/>
 							</div>
 						</c:if>
+					</div>
+					
+
+					<div class="row" id="question-limits">
+						<sql:query var="questions" dataSource="jdbc/N3CPublic">
+							select limitations from n3c_dashboard.dashboard where did = ${param.did}
+							</sql:query>
+						<c:forEach items="${questions.rows}" var="row" varStatus="rowCounter">
+							<div id="limitations-section" class="col col-12">
+								<div class="accordion limitations_drop" id="limitations_drop">
+									<div class="card">
+										<a Title="expand/collapse limitations section" href="" class="accordion-toggle" data-toggle="collapse" data-target="#limitcollapseOne" aria-expanded="false" aria-controls="collapseOne">
+											<div class="card-header" id="limitheadingOne">
+												<h4 class="mb-0"><span class="accordion_text">Details & Limitations</span>
+													<span style="display:inline; float:right;" class="btn btn-link btn-block text-left collapsed icon-btn p-0 accordion-toggle"></span>
+												</h4>
+											</div>
+										</a>
+										<div id="limitcollapseOne" class="collapse" aria-labelledby="limitheadingOne" data-parent="#limitations_drop">
+											<div class="card-body">
+												${row.limitations}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
 	
 				</div>

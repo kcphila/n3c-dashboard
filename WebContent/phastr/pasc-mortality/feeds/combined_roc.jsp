@@ -13,7 +13,12 @@ from
      	to_char(upperlimit_trueposrate, 'FM99.0000')::float as upperlimit_trueposrate,
      	to_char(auc, 'FM99.0000')::float as auc,
      	to_char(auc_halfwidth, 'FM99.0000')::float as auc_halfwidth,
-     	cohort
+     	CASE
+     		WHEN cohort = 'COHORT A' THEN 'Cohort A'
+     		WHEN cohort = 'COHORT B' THEN 'Cohort B'
+     		WHEN cohort = 'COHORT C' THEN 'Cohort C'
+     		ELSE cohort
+     	END as cohort 
      from phastr_pasc.combined_cohort_roc) as foo;
 </sql:query>
 

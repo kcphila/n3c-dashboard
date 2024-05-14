@@ -5,7 +5,10 @@
 <jsp:include page="../block.jsp">
 	<jsp:param name="block" value="analysis1-shap" />
 	<jsp:param name="block_header" value="Analysis 1 SHAP" />
-
+	
+	<jsp:param name="long_title" value="pasc-mortality/long_title/pasc_4.jsp" />
+	<jsp:param name="short_desc" value="pasc-mortality/short_desc/pasc_4.jsp" />
+	
 	<jsp:param name="did" value="929" />
 	
 	<jsp:param name="viz_panel" value="analysis1-shap-viz" />
@@ -18,9 +21,9 @@
 function analysis1_shap_refresh() {
 	var properties = {
 		domName: "#analysis1-shap-viz",
-		bandLabelWidth: 425,
+		bandLabelWidth: 405,
 		xaxis_label: "SHAP Value",
-		min_height: 300,
+		min_height: 0,
 		ordered: 0,
 		colorscale: age_range_ideal,
 		legend_label: 'age',

@@ -7,17 +7,21 @@ div.bar.tooltip {
 	padding: 1px;
   	pointer-events: none;
 }
+
+.axis .domain {
+	display:block!important;
+}
 </style>
 
 <script>
 
 function localHorizontalBarChart(data, properties) {
 	// set the dimensions and margins of the graph
-	var margin = { top: 0, right: 100, bottom: 100, left: 100 },
+	var margin = { top: 0, right: 10, bottom: 100, left: 0 },
 		width = 960 - margin.left - margin.right,
 		height = 600 - margin.top - margin.bottom;
 	
-	var valueLabelWidth = 80; // space reserved for value labels (right)
+	var valueLabelWidth = 0; // space reserved for value labels (right)
 	var barHeight = 40; // height of one bar
 	var barLabelPadding = 5; // padding between bar and bar labels (left)
 	var gridLabelHeight = 0; // space reserved for gridline labels
@@ -43,7 +47,7 @@ function localHorizontalBarChart(data, properties) {
 			var newWidth = $(properties.domName).width();
 			if (newWidth > 0) {
 				d3.select(properties.domName).select("svg").remove();
-				maxBarWidth = newWidth - properties.barLabelWidth - barLabelPadding - valueLabelWidth;
+				maxBandWidth = newWidth - properties.bandLabelWidth - barLabelPadding - valueLabelWidth;
 				draw_bar();
 			}
 		});
@@ -57,24 +61,30 @@ function localHorizontalBarChart(data, properties) {
 		
 		// scales
 		var yScale = d3.scaleBand()
-						.domain(d3.range(0, data.length))
-						.range([0, data.length * barHeight]);
+			.domain(d3.range(0, data.length))
+			.range([0, data.length * barHeight]);
+		
 		var y = function(d, i) { return yScale(i); };
 		var yText = function(d, i) { return y(d, i) + yScale.bandwidth() / 2; };
 		var x = d3.scaleLinear()
-					.domain([Math.min(0, d3.min(data,function(d) {return d.value})), d3.max(data, function(d) {return d.value})])
-					.range([properties.bandLabelWidth, properties.bandLabelWidth + maxBandWidth]);
+			.domain([Math.min(0, d3.min(data,function(d) {return d.value})), d3.max(data, function(d) {return d.value})])
+			.range([properties.bandLabelWidth, properties.bandLabelWidth + maxBandWidth]);
+		
 		// svg container element
 		var chart = d3.select(properties.domName).append("svg")
 			.attr('width', $(properties.domName).width())
 			.attr('height', gridLabelHeight + gridChartOffset + data.length * barHeight + margin.top + margin.bottom);
+		
 		chart.append("g")
-		.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
-		.call(d3.axisLeft(yScale).tickFormat(function(d, i) {return data[i].element }).tickSize(2))
+			.attr("class", "y axis")
+			.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
+			.call(d3.axisLeft(yScale).tickFormat(function(d, i) {return data[i].element }).tickSize(2))
 
 		chart.append("g")
-		.attr("transform", "translate(0," + data.length * barHeight + ")")
-		.call(d3.axisBottom(x).ticks(5))
+			.attr("class", "axis xaxis")
+			.attr("transform", "translate(0," + data.length * barHeight + ")")
+			.call(d3.axisBottom(x).ticks(5))
+		
 		// Add X axis label:
 		chart.append("text")
 			.attr("text-anchor", "middle")
@@ -91,11 +101,12 @@ function localHorizontalBarChart(data, properties) {
 			.attr('transform', 'translate(' + properties.barLabelWidth + ',' + (gridLabelHeight + gridChartOffset) + ')');
 		barsContainer.selectAll("rect").data(data).enter().append("rect")
 			.attr('y', y)
-			.attr('x', function(d) { return x(Math.min(0, d.value)); })
+			.attr('x', function(d) { return x(0); })
+			.attr('rx', 2)
 			.attr('height', yScale.bandwidth())
-			.attr('width', function(d) { return Math.abs(x(d.value) - x(0)); })
-			.attr('stroke', 'white')
-			.attr('fill', function(d) { return "blue"})
+			.attr('width', function(d) { return 0; })
+			.attr('stroke', 'none')
+			.attr('fill', function(d) { return "#007bff"})
 			.on('mousemove', function(d){
 				d3.selectAll(".tooltip").remove(); 
 				d3.select("body").append("div")
@@ -108,6 +119,11 @@ function localHorizontalBarChart(data, properties) {
 			.on('mouseout', function(d){
 				 d3.selectAll(".tooltip").remove(); 
 			});
+		
+		barsContainer.selectAll('rect')
+			.transition().duration(1000)
+			.attr('x', function(d) { return x(Math.min(0, d.value)); })
+			.attr('width', function(d) { return Math.abs(x(d.value) - x(0)); });
 
 	}
 }

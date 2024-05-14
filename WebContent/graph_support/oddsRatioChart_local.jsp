@@ -1,5 +1,5 @@
 <style>
-div.bar.tooltip {
+div.point.tooltip {
 	position: absolute;
 	background-color: white;
   	opacity: 0.8;
@@ -7,24 +7,33 @@ div.bar.tooltip {
 	padding: 1px;
   	pointer-events: none;
 }
-        svg text {  
-            font: 15px sans-serif;  
-        }  </style>
+
+.axis .domain {
+	display:block!important;
+}
+
+</style>
 
 <script>
 
 function OddsRatioChart(data, properties) {
+	
+	var barHeight = 80;
+	var calc_height = data.length * barHeight;
+	var labels = properties.bandLabelWidth;
+	
 	// set the dimensions and margins of the graph
-	var margin = { top: 0, right: 100, bottom: 100, left: 100 },
+	var margin = { top: 0, right: 10, bottom: 100, left: 0 },
 		width = 960 - margin.left - margin.right,
-		height = 600 - margin.top - margin.bottom;
+		height = calc_height - margin.top - margin.bottom;
+	
+	
 
 	var minX = (typeof properties.minX == "undefined" ? 0.0 : properties.minX);
 	var maxX = (typeof properties.maxX == "undefined" ? 1.0 : properties.maxX);
 
-	//	console.log(data);
 
-	var maxBandWidth = 400; // width of the bar with the max value
+	var maxBandWidth = 400;
 
 	var myObserver = new ResizeObserver(entries => {
 		entries.forEach(entry => {
@@ -32,11 +41,8 @@ function OddsRatioChart(data, properties) {
 			if (newWidth > 0) {
 				d3.select("#" + properties.domName).select("svg").remove();
 				width = newWidth - margin.left - margin.right;
-				if ((width / 1.75 - margin.top - margin.bottom) > 200) {
-					height = width / 1.75 - margin.top - margin.bottom;
-				} else {
-					height = 200;
-				}
+				height = calc_height - margin.top - margin.bottom;
+				maxBandWidth = width - labels;
 				draw_bar();
 			}
 		});
@@ -63,6 +69,7 @@ function OddsRatioChart(data, properties) {
 			.domain(d3.range(0, data.length))
 			.padding(.4);
 		chart.append("g")
+			.attr("class", "y axis")
 			.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
 			.call(d3.axisLeft(y).tickFormat(function(d, i) { return data[i].element }).tickSize(2))
 
@@ -71,6 +78,7 @@ function OddsRatioChart(data, properties) {
 			.domain([minX, maxX])
 			.range([properties.bandLabelWidth, properties.bandLabelWidth + maxBandWidth])
 		chart.append("g")
+			.attr("class", "axis xaxis")
 			.attr("transform", "translate(0," + height + ")")
 			.call(d3.axisBottom(x).ticks(5))
 
@@ -92,7 +100,7 @@ function OddsRatioChart(data, properties) {
 			.attr("y1", function(d) { return (0.0) })
 			.attr("y2", function(d) { return height; })
 			.style("stroke-dasharray", ("3, 3"))
-			.attr("stroke", "black")
+			.attr("stroke", "#a6a6a6")
 			.style("width", 40)
 
 		// Show the main vertical line
@@ -101,13 +109,40 @@ function OddsRatioChart(data, properties) {
 			.data(data)
 			.enter()
 			.append("line")
+			.attr("class", "bartransition")
 			.attr("x1", function(d) { return (x(d.conf_low)) })
 			.attr("x2", function(d) { return (x(d.conf_high)) })
 			.attr("y1", function(d, i) { return (y(i) + y.bandwidth() / 2) })
 			.attr("y2", function(d, i) { return (y(i) + y.bandwidth() / 2) })
-			.attr("stroke", "black")
+			.attr("stroke", "#007bff")
 			.attr("stroke-width", '2.8px')
 			.style("width", 40)
+			.on('mousemove', function(d){
+				if (properties.mode == "hazard"){
+					d3.selectAll(".tooltip").remove(); 
+					d3.select("body").append("div")
+					.attr("class", "point tooltip")
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html("<strong>" + d.element 
+						+ "</strong><br><strong>HR:</strong> " + d.estimate.toLocaleString()+ 
+						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+						"</strong><br><strong>P-Value:</strong> " + d.p.toLocaleString());
+				}else{
+					d3.selectAll(".tooltip").remove(); 
+					d3.select("body").append("div")
+					.attr("class", "point tooltip")
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html("<strong>" + d.element 
+						+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+						"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString());
+				}
+			})
+			 .on('mouseout', function(d){
+				d3.selectAll(".tooltip").remove(); 
+			 });
 
 		// Show the left whisker
 		chart
@@ -115,25 +150,83 @@ function OddsRatioChart(data, properties) {
 			.data(data)
 			.enter()
 			.append("line")
+			.attr("class", "opacitytransition")
+			.style('opacity', 0)
 			.attr("x1", function(d) { return (x(d.conf_low)) })
 			.attr("x2", function(d) { return (x(d.conf_low)) })
-			.attr("y1", function(d, i) { return (y(i) + y.bandwidth() / 2) - properties.symbolSize * 2 })
-			.attr("y2", function(d, i) { return (y(i) + y.bandwidth() / 2) + properties.symbolSize * 2 })
-			.attr("stroke", "black")
+			.attr("y1", function(d, i) { return (y(i) + y.bandwidth() / 2) - properties.symbolSize * 1.25 })
+			.attr("y2", function(d, i) { return (y(i) + y.bandwidth() / 2) + properties.symbolSize * 1.25 })
+			.attr("stroke", "#007bff")
 			.style("width", 40)
+			.on('mousemove', function(d){
+				if (properties.mode == "hazard"){
+					d3.selectAll(".tooltip").remove(); 
+					d3.select("body").append("div")
+					.attr("class", "point tooltip")
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html("<strong>" + d.element 
+						+ "</strong><br><strong>HR:</strong> " + d.estimate.toLocaleString()+ 
+						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+						"</strong><br><strong>P-Value:</strong> " + d.p.toLocaleString());
+				}else{
+					d3.selectAll(".tooltip").remove(); 
+					d3.select("body").append("div")
+					.attr("class", "point tooltip")
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html("<strong>" + d.element 
+						+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+						"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString());
+				}
+			})
+			 .on('mouseout', function(d){
+				d3.selectAll(".tooltip").remove(); 
+			 });
 
-		// Show the left whisker
+		// Show the right whisker
 		chart
 			.selectAll("rightWhisker")
 			.data(data)
 			.enter()
 			.append("line")
+			.attr("class", "opacitytransition")
+			.style('opacity', 0)
 			.attr("x1", function(d) { return (x(d.conf_high)) })
 			.attr("x2", function(d) { return (x(d.conf_high)) })
-			.attr("y1", function(d, i) { return (y(i) + y.bandwidth() / 2) - properties.symbolSize * 2 })
-			.attr("y2", function(d, i) { return (y(i) + y.bandwidth() / 2) + properties.symbolSize * 2 })
-			.attr("stroke", "black")
+			.attr("y1", function(d, i) { return (y(i) + y.bandwidth() / 2) - properties.symbolSize *1.25 })
+			.attr("y2", function(d, i) { return (y(i) + y.bandwidth() / 2) + properties.symbolSize *1.25 })
+			.attr("stroke", "#007bff")
 			.style("width", 40)
+			.on('mousemove', function(d){
+				if (properties.mode == "hazard"){
+					d3.selectAll(".tooltip").remove(); 
+					d3.select("body").append("div")
+					.attr("class", "point tooltip")
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html("<strong>" + d.element 
+						+ "</strong><br><strong>HR:</strong> " + d.estimate.toLocaleString()+ 
+						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+						"</strong><br><strong>P-Value:</strong> " + d.p.toLocaleString());
+				}else{
+					d3.selectAll(".tooltip").remove(); 
+					d3.select("body").append("div")
+					.attr("class", "point tooltip")
+					.style("left", (d3.event.pageX + 5) + "px")
+					.style("top", (d3.event.pageY - 28) + "px")
+					.html("<strong>" + d.element 
+						+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+						"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString());
+				}
+				
+			})
+			 .on('mouseout', function(d){
+				d3.selectAll(".tooltip").remove(); 
+			 });
+		
 
 		// glyph for the main symbol
 		switch (properties.mode) {
@@ -143,13 +236,28 @@ function OddsRatioChart(data, properties) {
 					.data(data)
 					.enter()
 					.append("rect")
+					.attr("class", "opacitytransition")
+					.style('opacity', 0)
 					.attr("x", function(d) { return x(d.estimate) - properties.symbolSize })
 					.attr("width", function(d) { return properties.symbolSize * 2 })
 					.attr("y", function(d, i) { return y(i) + y.bandwidth() / 2 - properties.symbolSize; })
 					.attr("height", properties.symbolSize * 2)
-					.attr("stroke", "black")
-					.style("fill", "#69b3a2")
-					.style("opacity", 0.3)
+					.attr("stroke", "white")
+					.style("fill", "#007bff")
+					.on('mousemove', function(d){
+						d3.selectAll(".tooltip").remove(); 
+						d3.select("body").append("div")
+						.attr("class", "point tooltip")
+						.style("left", (d3.event.pageX + 5) + "px")
+						.style("top", (d3.event.pageY - 28) + "px")
+						.html("<strong>" + d.element 
+							+ "</strong><br><strong>HR:</strong> " + d.estimate.toLocaleString()+ 
+							"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+							"</strong><br><strong>P-Value:</strong> " + d.p.toLocaleString());
+					})
+					.on('mouseout', function(d){
+				 		d3.selectAll(".tooltip").remove(); 
+					});
 				break;
 			case "odds":
 			default:
@@ -158,14 +266,46 @@ function OddsRatioChart(data, properties) {
 					.data(data)
 					.enter()
 					.append("circle")
+					.attr("class", "opacitytransition")
+					.style('opacity', 0)
 					.attr("cx", function(d) { return (x(d.estimate)); })
 					.attr("r", function(d) { return (properties.symbolSize); })
 					.attr("cy", function(d, i) { return y(i) + y.bandwidth() / 2; })
-					.attr("stroke", "black")
-					.style("fill", "#69b3a2")
-					.style("opacity", 0.8)
+					.attr("stroke", "white")
+					.style("fill", "#007bff")
+					.on('mousemove', function(d){
+						d3.selectAll(".tooltip").remove(); 
+						d3.select("body").append("div")
+						.attr("class", "point tooltip")
+						.style("left", (d3.event.pageX + 5) + "px")
+						.style("top", (d3.event.pageY - 28) + "px")
+						.html("<strong>" + d.element 
+								+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+								"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
+								"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString()
+						);
+					})
+					.on('mouseout', function(d){
+				 		d3.selectAll(".tooltip").remove(); 
+					});
 				break;
+				
 		}
+		
+		chart.selectAll('.opacitytransition')
+			.transition().duration(1000)
+			.style('opacity', 1);
+		
+		chart.selectAll(".bartransition").each(function(d){
+		      var totalLength = this.getTotalLength();
+		        d3.select(this)
+		      .attr("stroke-dasharray", totalLength + " " + totalLength)
+		      .attr("stroke-dashoffset", totalLength)
+		      .transition()
+		        .duration(1500)
+		      .attr("stroke-dashoffset", 0);
+		      
+		    });
 	}
 }
 

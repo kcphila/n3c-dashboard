@@ -146,12 +146,15 @@ function LineNConfidence(data, properties) {
 		
 		
 		function draw() {
+			
+			
+			
 			// set the ranges
 			var startValue = data[0].timeline;
 			var endValue = data[data.length-1].timeline;
 			
 			var x = d3.scaleLinear().domain([startValue, endValue]).range([0, width]);
-			var y = d3.scaleLinear().domain([0.88,maxCount]).range([height, 10]);
+			var y = d3.scaleLinear().domain([properties.starty,maxCount]).range([height, 10]);
 			var line = d3.line().x(d => x(d.timeline)).y(d => y(d.timeline));
 			
 			
@@ -168,7 +171,7 @@ function LineNConfidence(data, properties) {
 			
 			// Add a clipPath: everything out of this area won't be drawn.
 			 var clip = svg.append("defs").append("svg:clipPath")
-			     .attr("id", "clip")
+			     .attr("id", "clip"+properties.domName)
 			     .append("svg:rect")
 			     .attr("width",width)
 			     .attr("height", height)
@@ -178,7 +181,7 @@ function LineNConfidence(data, properties) {
 			
 			    // Create the scatter variable: where both the circles and the brush take place
 			  var graph = svg.append('g')
-    			  .attr("clip-path", "url(#clip)")
+    			  .attr("clip-path", "url(#clip"+properties.domName+")")
     			  .attr("class", "overlay");
 			 
 			  
@@ -230,15 +233,28 @@ function LineNConfidence(data, properties) {
 					graph.append("path")
 						.data([data])
 						.attr("opacity", column1_opacity)
-						.attr("class", "line_"+i)
+						.attr("class", "drawline line_"+i)
 						.attr("stroke", function (d){
 							var color = properties.legend_labels.indexOf(keys[i]);
 							return categorical8[color];
 						})
 						.attr("stroke-width", '3px')
 						.attr("d", valueline);
+					
 				};
-			      
+				
+				
+				graph.selectAll(".drawline").each(function(d){
+				      var totalLength = this.getTotalLength();
+				      d3.select(this)
+				      	.attr("stroke-dasharray", totalLength + " " + totalLength)
+				      	.attr("stroke-dashoffset", totalLength)
+				      	.transition()
+				        	.duration(1500)
+				      	.attr("stroke-dashoffset", 0);
+				      
+				 });  
+				
 				
 				
 				// Add the brushing
@@ -264,13 +280,11 @@ function LineNConfidence(data, properties) {
     					.attr("dy", "1.5em");
 
 				// text label for the x axis
-				  svg.append("text")             
+				  svg.append("text")    
 				      .attr("transform",
 				            "translate(" + (width/2) + " ," + (height + 60) + ")")
 				      .style("text-anchor", "middle")
-				      .text(properties.xaxis_label)
-				      .attr("font-size", '14px')
-					  .attr("font-weight", "bold");
+				      .text(properties.xaxis_label);
 
 				  svg.append("g")
 			      	.attr("class", "axis1")
@@ -283,8 +297,7 @@ function LineNConfidence(data, properties) {
 				  	.attr("x",0 - (height / 2))
 				  	.attr("dy", "1em")
 				  	.style("text-anchor", "middle")
-				  	.text(column1_label)
-				  	.attr("font-size", '14px');      
+				  	.text(column1_label);
 				  
 				  d3.select(".axis1").selectAll('text').style("fill", "${column1_color}").style("font-size", "12px");
 				    
@@ -376,11 +389,8 @@ function LineNConfidence(data, properties) {
 				    	dua_dta_focus.attr("transform", "translate(" + ((x(d.timeline))-250) + "," + d3.mouse(this)[1] + ")");
 				    };
 				   
-				    dua_dta_focus.select(".tooltip-date_dta_dua").text("Day " + d.timeline);
+				    dua_dta_focus.select(".tooltip-date_dta_dua").text(properties.xtool + " " + d.timeline.toLocaleString());
 					for (let i = 0; i < keys.length; i++) {
-						console.log(d.elements);
-						console.log(d.elements[keys[i]].split(',')[2]);
-						console.log(d.elements[keys[i]].split(',')[1]);
 						
 						min = Number(d.elements[keys[i]].split(',')[2]).toFixed(4);
 						max = Number(d.elements[keys[i]].split(',')[1]).toFixed(4);
@@ -401,9 +411,13 @@ function LineNConfidence(data, properties) {
 				
 				// A function that update the chart for given boundaries
 				   function updateChart() {
+					
 
 						// What are the selected boundaries?
 						var extent = d3.event.selection;
+						
+						console.log(extent);
+						console.log(x.domain());
 
 				      	// If no selection, back to initial coordinate. Otherwise, update X axis domain
 				     	if(!extent){
@@ -464,19 +478,21 @@ function LineNConfidence(data, properties) {
 				     
 				      	// Update line position
 						for (let i = 0; i < keys.length; i++) {
+							
 					      	graph
 					          .select("path.line_"+i)
+					          .attr("class", "line_"+i)
+					          .attr("stroke-dasharray", 5000)
 					          .transition()
 					          .duration(1000)
 					          .attr("d", d3.line()
 					            .curve(d3.curveMonotoneX)
 					            .x(function(d) { return x(d.timeline); })
-					            .y(function(d) { return y(d.elements[keys[i]].split(',')[0]); }));
+					            .y(function(d) { return y(d.elements[keys[i]].split(',')[0]); }))
+					      	
 						}
-				      	
 						
-
-	
+				      	
 				};
 				
 				// draw color key on to decoupled div
@@ -492,13 +508,26 @@ function LineNConfidence(data, properties) {
 		    				return  '<h5></i>   ' + d + ' Legend</h5>';
 		    			});
 		        	
-		    		var legend_data = legend_div.selectAll(".new_legend")
-		    			.data(properties.legend_labels)
-		    			.enter().append("div")
-		    			.attr("class", "col col-12 col-lg-4")
-		    			.html(function(d,i){
-		    				return  '<i class="fas fa-circle" style="color:' + categorical8[i] + ';"></i> ' +  d;
-		    			});
+		        	if (properties.legend_labels2 != undefined) {
+		        		var legend_data = legend_div.selectAll(".new_legend")
+		    				.data(properties.legend_labels2)
+		    				.enter().append("div")
+		    				.attr("class", "col col-12 col-lg-4")
+		    				.html(function(d,i){
+		    					return  '<i class="fas fa-circle" style="color:' + categorical8[i] + ';"></i> ' +  d;
+		    				});
+		        	}else{
+		        		var legend_data = legend_div.selectAll(".new_legend")
+		    				.data(properties.legend_labels)
+		    				.enter().append("div")
+		    				.attr("class", "col col-12 col-lg-4")
+		    				.html(function(d,i){
+		    					return  '<i class="fas fa-circle" style="color:' + categorical8[i] + ';"></i> ' +  d;
+		    				});
+		        	};
+
+		        	
+		    		
 			    };
 			    
 			    drawColorKey();

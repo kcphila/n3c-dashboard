@@ -3,7 +3,6 @@
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
 
 <jsp:include page="../../graph_support/grouped_stacked_bar_horizontal_alexis_local.jsp"/>
-<jsp:include page="../../graph_support/grouped_bar_horizontal_local.jsp"/>
 <jsp:include page="../../graph_support/grouped_bar_horizontal_local_new.jsp"/>
 
 <div class="topic_dropdown" style="text-align:center; font-size: 1.5rem;">

@@ -25,6 +25,7 @@ div.bar.tooltip {
 <script>
 
 function localHorizontalGroupedBarChart(data1, properties) {
+	
 	console.log(properties, data1)
 	var data = data1;
 	if (typeof properties.category !== 'undefined') {
@@ -39,13 +40,9 @@ function localHorizontalGroupedBarChart(data1, properties) {
 	var barPadding = (typeof properties.barPadding == "undefined" ? 2 : properties.barPadding);
 
 	// set the dimensions and margins of the graph
-	var margin = { top: 0, right: 100, bottom: 100, left: 100 },
+	var margin = { top: 0, right: 0, bottom: 100, left: 0 },
 		width = 960 - margin.left - margin.right,
 		height = barHeight * data.length + barPadding * (data.length + 1) + margin.top + margin.bottom;
-
-	//	console.log(data);
-
-	var maxBandWidth = 400; // width of the bar with the max value
 
 	var ${param.block}myObserver = new ResizeObserver(entries => {
 		entries.forEach(entry => {
@@ -151,24 +148,26 @@ function localHorizontalGroupedBarChart(data1, properties) {
 			.attr("height", function(d) {
 				return (y.bandwidth() * 2);
 			})
-			.attr("width", maxBandWidth);
+			.attr("width", width-(properties.bandLabelWidth));
 
 		chart.append("g")
+			.attr("class", "y axis")
 			.attr("transform", "translate(" + properties.bandLabelWidth + "," + 0 + ")")
 			.call(d3.axisLeft(y).tickFormat(function(d, i) { return groupedData[i].key }).tickSize(2))
 
 		// Show the X scale
 		var x = d3.scaleLinear()
 			.domain([minX, maxX])
-			.range([properties.bandLabelWidth, properties.bandLabelWidth + maxBandWidth])
+			.range([properties.bandLabelWidth, width])
 		chart.append("g")
+			.attr("class", "axis xaxis")
 			.attr("transform", "translate(0," + height + ")")
 			.call(d3.axisBottom(x).ticks(5))
 
 		// Add X axis label:
 		chart.append("text")
 			.attr("text-anchor", "middle")
-			.attr("x", maxBandWidth / 2 + properties.bandLabelWidth)
+			.attr("x", (properties.bandLabelWidth) + (width - (properties.bandLabelWidth))/2)
 			.attr("y", height + margin.top + 40)
 			.text(properties.xaxis_label);
 
@@ -186,7 +185,7 @@ function localHorizontalGroupedBarChart(data1, properties) {
 			.attr("stroke", "black")
 			.style("width", 40)
 
-		categories.append("g")
+		var barsContainer = categories.append("g")
 			.selectAll("rect")
 			.data(function(d) { return d.values; })
 			.enter()
@@ -194,58 +193,53 @@ function localHorizontalGroupedBarChart(data1, properties) {
 			.attr("class", function(d) {
 				return 'secondary lab' + d.key.replace(/[^A-Z0-9]/ig, "");
 			})
-			.attr('x', function(d) { return x(Math.min(0, d.values[0].shap_abs)); })
-			.attr('width', function(d) { return Math.max(1, Math.abs(x(d.values[0].shap_abs) - x(0))); })
+			.attr('x', function(d) { return x(0); })
+			.attr('rx', 2)
+			.attr('width', function(d) { return 0; })
 			.attr("height", barHeight)
 			.attr("fill", function(d, i) { return colorscale[i]; })
-			.attr("transform", function(d, i) { return "translate(-375, " + (i * (barHeight + barPadding) + barPadding) + ")"; })
+			.attr("transform", function(d, i) { return "translate(-" + properties.bandLabelWidth + ", " + (i * (barHeight + barPadding) + barPadding) + ")"; })
 			.on('mousemove', function(d) {
-				var value = d.values[0].shap_abs;
-				var fill = colorscale[0];
-
-				var percentage = "";
-
-				d3.selectAll(".tooltip").remove();
+				d3.selectAll(".tooltip").remove(); 
 				d3.select("body").append("div")
-					.attr("class", "bar tooltip")
-					.style("opacity", 0.8)
-					.style("left", (d3.event.pageX + 5) + "px")
-					.style("top", (d3.event.pageY - 28) + "px")
-					.html("<strong style='color:  " + fill + ";'>" + d.key + "</strong><br><strong>Count: </strong>" + value + percentage);
+				.attr("class", "point tooltip")
+				.style("left", (d3.event.pageX + 5) + "px")
+				.style("top", (d3.event.pageY - 28) + "px")
+				.html("<strong>" + d.values[0].cohort.toLocaleString() + " - " + d.values[0].variable.toLocaleString() +
+					"</strong><br><strong>SHAP:</strong> " + d.values[0].shap_abs.toLocaleString() +
+					"</strong>");
 			})
 			.on('mouseout', function(d) {
 				d3.selectAll(".tooltip").remove();
-			});
+			})
+			.transition().duration(1000)
+			.attr('x', function(d) { return x(Math.min(0, d.values[0].shap_abs)); })
+			.attr('width', function(d) { return Math.max(1, Math.abs(x(d.values[0].shap_abs) - x(0))); });
 
 
 		// draw color key on to decoupled div
 		function drawColorKey() {
 			d3.select("#" + properties.legendid).html("");
-			var legend_div = d3.select("#" + properties.legendid).append("div").attr("class", "row").attr("id", "filters");
-
-			legend_div.selectAll(".legend-title")
-				.data([label2])
-				.enter().append("div")
-				.attr("class", "col col-12")
-				.html(function(d) {
-					return '<h5><i class="fas fa-filter"></i>   ' + d + ' Legend</h5>';
-				});
-
-			var legend_data = legend_div.selectAll(".new_legend")
-				.data(legend_label)
-				.enter().append("div")
-				.attr("class", "filter_col col col-6 col-lg-3")
-				.on("click", function(d, i) {
-					var format = {};
-					format['secondary_name'] = d.secondary;
-					window[properties.domName.replace(/_[^_]+_[^_]+$/i, '_').replace('#', '') + 'viz_constrain'](format, label2.replace(/\s/g, ""));
-				})
-				.html(function(d, i) {
-					return '<i class="fas fa-circle" style="color:' + colorscale[d.secondary_seq - 1] + ';"></i> ' + d.secondary;
-				});
-		};
-
-		drawColorKey();
+        	var legend_div = d3.select("#" + properties.legendid).append("div").attr("class", "row").attr("id", "floating_legend");
+        	
+        	legend_div.selectAll(".legend-title")
+        		.data([properties.legendlabel])
+    			.enter().append("div")
+        		.attr("class", "col col-12")
+        		.html(function(d){
+    				return  '<h5></i>   ' + d + ' Legend</h5>';
+    			});
+        	
+    		var legend_data = legend_div.selectAll(".new_legend")
+    			.data(properties.legend_labels)
+    			.enter().append("div")
+    			.attr("class", "col col-12 col-lg-4")
+    			.html(function(d,i){
+    				return  '<i class="fas fa-circle" style="color:' + categorical8[i] + ';"></i> ' +  d;
+    			});
+	    };
+	    
+	    drawColorKey();
 
 		// overdraw width and put legend outside of clip path (to only show on download)
 

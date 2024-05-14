@@ -34,13 +34,17 @@
 		<div class="topic_dropdown" style="text-align:center; font-size: 1.3rem;">
 			<h4 class="viz_color_header">Select a Topic to Explore:</h4>
 			<select id="selectMe">
-				<option value="pasc_1">Mortality Risk - Kaplan-Meier</option>
-				<option value="pasc_2">Mortality Risk - Odds Ratio</option>
-				<option value="pasc_3">Mortality Risk - Hazard Ratio</option>
-				<option value="pasc_4">Mortality Risk - SHAP</option>
-				<option value="pasc_5">Logistic Regression</option>
-				<option value="pasc_6">Logistic Regression - SHAP</option>
-				<option value="pasc_7">Combined ROC</option>
+				<optgroup label="Mortality Analysis of PASC Patients and Matched Controls">
+					<option value="pasc_1">Mortality Over Time (Kaplan-Meier)</option>
+					<option value="pasc_2">Mortality Odds Ratios</option>
+					<option value="pasc_3">Mortality Hazard Ratios</option>
+					<option value="pasc_4">Mortality Risk (SHAP)</option>
+				</optgroup>
+				<optgroup label="Mortality Risk Factor Analysis within the Cohort of PASC Patients">
+					<option value="pasc_5">Mortality Odds Ratios</option>
+					<option value="pasc_6">Mortality Risk (SHAP)</option>
+					<option value="pasc_7">Logistic Regression ROC</option>
+				</optgroup>
 			</select>
 		</div>
 	</div>
