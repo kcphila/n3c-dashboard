@@ -38,14 +38,15 @@ $.getJSON("../../phastr/ucda/feeds/survival_inpatient.jsp", function(data){
     	data: data,
        	paging: true,
     	pageLength: 5,
+    	dom: 'lfr<"datatable_overflow"t>Bip',
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'timeline', visible: true, orderable: true },
-        	{ data: 'survival_proportion', visible: true, orderable: true },
-        	{ data: 'ul', visible: true, orderable: true },
-        	{ data: 'll', visible: true, orderable: true },
-        	{ data: 'x__group', visible: true, orderable: true }
+        	{ data: 'x__group', visible: true, orderable: true },
+        	{ data: 'survival', visible: true, orderable: true },
+        	{ data: 'survival_upper_0_95', visible: true, orderable: true },
+        	{ data: 'survival_lower_0_95', visible: true, orderable: true }
     	]
 	} );
 

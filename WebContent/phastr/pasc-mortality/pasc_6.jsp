@@ -38,10 +38,12 @@ function analysis2_shap_refresh() {
 			label1: 'Term',
 			label2: 'Cohort',
 			offset: 70,
+			dash: 0.0,
 			array: 'status',
 			legendid: 'analysis2-shaplegend',
 			legendlabel: 'Cohort',
-			legend_labels: ['Cohort A','Cohort B','Cohort C']
+			legend_labels: ['Cohort A','Cohort B','Cohort C'],
+			xtoollabel: 'SHAP'
 	};
    	d3.select("#analysis2-shap_plot").select("svg").remove();
 	fetch('feeds/analysis2_shap.jsp')

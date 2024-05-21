@@ -8,7 +8,6 @@
 	
 	<jsp:param name="long_title" value="pasc-mortality/long_title/pasc_1.jsp" />
 	<jsp:param name="short_desc" value="pasc-mortality/short_desc/pasc_1.jsp" />
-	<jsp:param name="long_desc" value="pasc-mortality/long_desc/pasc_1.jsp" />
 
 	<jsp:param name="did" value="929" />
 	<jsp:param name="floating_legend" value="true" />

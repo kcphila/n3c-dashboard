@@ -6,16 +6,22 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select timeline,survival_proportion,ul,ll,x__group from phastr_ucda.survival_plot_inpatient_km_data) as foo;
+	(select timeline,
+		x__group,
+		ROUND(survival_proportion::numeric, 4) as survival,
+		Round(ul::numeric, 4) as survival_upper_0_95,
+		Round(ll::numeric, 4) as survival_lower_0_95
+     from phastr_ucda.survival_plot_inpatient_km_data) as foo;
 </sql:query>
 
 {
     "headers": [
     	{"value":"timeline", "label":"Timeline"},
-        {"value":"survival_proportion", "label":"Survival Proportion"},
-        {"value":"ul", "label":"UL"},
-        {"value":"ll", "label":"LL"},
-        {"value":"x__group", "label":"Group"}
+    	{"value":"x__group", "label":"Group"},
+        {"value":"survival", "label":"Survival"},
+        {"value":"survival_upper_0_95", "label":"Survival Upper 0.95"},
+        {"value":"survival_lower_0_95", "label":"Survival Lower 0.95"}
+        
     ],
     "rows" :
     <c:forEach items="${team.rows}" var="row" varStatus="rowCounter">

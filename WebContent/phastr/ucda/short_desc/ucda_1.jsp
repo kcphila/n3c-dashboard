@@ -1,0 +1,1 @@
+<p>The Odds Ratios (Unadjusted and Adjusted) and the Adjusted Hazard Ratios from the main outcome analysis examining the difference in mortality risk between UDCA-treated and UDCA-untreated patients in the full inpatient cohort</p>

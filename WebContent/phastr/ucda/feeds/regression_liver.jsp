@@ -6,20 +6,28 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select term,estimate,se,statistic,p_value,exp_estimate,ll,ul,outcome from phastr_ucda.regression_ipw_liverdisease) as foo;
+     (select 
+     	outcome as element,
+     	ROUND(estimate::numeric, 4) as reg_estimate, 
+     	ROUND(se::numeric, 4) as se, 
+     	ROUND(statistic::numeric, 4) as statistic,
+     	ROUND(p_value::numeric, 9) as p_value,
+     	ROUND(exp_estimate::numeric, 4) as estimate,
+     	ROUND(ll::numeric, 4) as conf_low,
+     	ROUND(ul::numeric, 4) as conf_high
+     	from phastr_ucda.regression_ipw_liverdisease) as foo;
 </sql:query>
 
 {
     "headers": [
-    	{"value":"term", "label":"Term"},
-        {"value":"estimate", "label":"Estimate"},
+    	{"value":"element", "label":"Term"},
+        {"value":"reg_estimate", "label":"Estimate"},
         {"value":"se", "label":"SE"},
         {"value":"statistic", "label":"Statistic"},
         {"value":"p_value", "label":"p Value"}, 
-        {"value":"exp_estimate", "label":"Exp Estimate"}, 
-        {"value":"ll", "label":"LL"}, 
-        {"value":"ul", "label":"UL"}, 
-        {"value":"outcome", "label":"Outcome"}
+        {"value":"estimate", "label":"Exp Estimate"}, 
+        {"value":"conf_low", "label":"Lower 95%"}, 
+        {"value":"conf_high", "label":"Upper 95%"}
     ],
     "rows" :
     <c:forEach items="${team.rows}" var="row" varStatus="rowCounter">

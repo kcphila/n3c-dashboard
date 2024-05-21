@@ -1,0 +1,1 @@
+<p>The Odds Ratios (Unadjusted and Adjusted) and the Adjusted Hazard Ratios from the main outcome analysis examining the difference in mortality risk between UDCA treated and untreated patients in the subcohort of patients with moderate-to-severe liver disease</p>

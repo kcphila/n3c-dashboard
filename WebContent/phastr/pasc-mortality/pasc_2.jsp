@@ -27,7 +27,8 @@ function analysis1_or_refresh() {
 		maxX: 1.5,
 		mode: "odds",
 		symbolSize: 6,
-		height: 300
+		height: 300,
+		estimate_label: "OR"
 	}
    	d3.select("#analysis1-or_plot").select("svg").remove();
 	fetch('feeds/analysis1_or.jsp')

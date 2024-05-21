@@ -26,7 +26,8 @@ div.bar.tooltip {
 
 function localHorizontalGroupedBarChart(data1, properties) {
 	
-	console.log(properties, data1)
+	//console.log(properties, data1)
+	
 	var data = data1;
 	if (typeof properties.category !== 'undefined') {
 		var data = data1.filter(function(el) {
@@ -172,18 +173,17 @@ function localHorizontalGroupedBarChart(data1, properties) {
 			.text(properties.xaxis_label);
 
 		// Show the divider line
-		chart
+		chart.append("g")
 			.selectAll("divider")
-			.data(data)
+			.data([0])
 			.enter()
 			.append("line")
-			.attr("x1", function(d) { return (properties.mode == 'hazard' ? x(0.0) : x(1.0)) })
-			.attr("x2", function(d) { return (properties.mode == 'hazard' ? x(0.0) : x(1.0)) })
+			.attr("x1", function(d) { return (x(properties.dash)) })
+			.attr("x2", function(d) { return (x(properties.dash)) })
 			.attr("y1", function(d) { return (0.0) })
 			.attr("y2", function(d) { return height; })
-			.style("stroke-dasharray", ("3, 3"))
-			.attr("stroke", "black")
-			.style("width", 40)
+			.style("stroke-dasharray", ("5, 3"))
+			.attr("stroke", "lightgray");
 
 		var barsContainer = categories.append("g")
 			.selectAll("rect")
@@ -205,16 +205,20 @@ function localHorizontalGroupedBarChart(data1, properties) {
 				.attr("class", "point tooltip")
 				.style("left", (d3.event.pageX + 5) + "px")
 				.style("top", (d3.event.pageY - 28) + "px")
-				.html("<strong>" + d.values[0].cohort.toLocaleString() + " - " + d.values[0].variable.toLocaleString() +
-					"</strong><br><strong>SHAP:</strong> " + d.values[0].shap_abs.toLocaleString() +
+				.html("<strong>" + d.values[0][properties.secondary].toLocaleString() + " - " + d.values[0].variable.toLocaleString() +
+					"</strong><br><strong>"+ properties.xtoollabel + ":</strong> " + d.values[0][properties.estimate].toLocaleString() +
 					"</strong>");
 			})
 			.on('mouseout', function(d) {
 				d3.selectAll(".tooltip").remove();
 			})
 			.transition().duration(1000)
-			.attr('x', function(d) { return x(Math.min(0, d.values[0].shap_abs)); })
-			.attr('width', function(d) { return Math.max(1, Math.abs(x(d.values[0].shap_abs) - x(0))); });
+			.attr('x', function(d) { 
+				var value = properties.estimate;
+				return x(Math.min(0, d.values[0][value])); })
+			.attr('width', function(d) { 
+				var value = properties.estimate;
+				return Math.max(1, Math.abs(x(d.values[0][value]) - x(0))); });
 
 
 		// draw color key on to decoupled div
@@ -235,7 +239,7 @@ function localHorizontalGroupedBarChart(data1, properties) {
     			.enter().append("div")
     			.attr("class", "col col-12 col-lg-4")
     			.html(function(d,i){
-    				return  '<i class="fas fa-circle" style="color:' + categorical8[i] + ';"></i> ' +  d;
+    				return  '<i class="fas fa-circle" style="color:' + properties.colorscale[i] + ';"></i> ' +  d;
     			});
 	    };
 	    

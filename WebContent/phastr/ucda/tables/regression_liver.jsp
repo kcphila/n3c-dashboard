@@ -38,18 +38,18 @@ $.getJSON("../../phastr/ucda/feeds/regression_liver.jsp", function(data){
     	data: data,
        	paging: true,
     	pageLength: 5,
+    	dom: 'lfr<"datatable_overflow"t>Bip',
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
-        	{ data: 'term', visible: true, orderable: true },
-        	{ data: 'estimate', visible: true, orderable: true },
+        	{ data: 'element', visible: true, orderable: true },
+        	{ data: 'reg_estimate', visible: true, orderable: true },
         	{ data: 'se', visible: true, orderable: true },
         	{ data: 'statistic', visible: true, orderable: true },
         	{ data: 'p_value', visible: true, orderable: true },
-        	{ data: 'exp_estimate', visible: true, orderable: true },
-        	{ data: 'll', visible: true, orderable: true },
-        	{ data: 'ul', visible: true, orderable: true },
-        	{ data: 'outcome', visible: true, orderable: true }
+        	{ data: 'estimate', visible: true, orderable: true },
+        	{ data: 'conf_low', visible: true, orderable: true },
+        	{ data: 'conf_high', visible: true, orderable: true }
     	]
 	} );
 

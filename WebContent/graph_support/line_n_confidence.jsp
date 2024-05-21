@@ -96,7 +96,6 @@
 
 function LineNConfidence(data, properties) {
 	
-	
 	// set the dimensions and margins of the graph
 	var margin = {top: 0, right: 100, bottom: 100, left: 100},
 	    width = 960 - margin.left - margin.right,
@@ -104,6 +103,7 @@ function LineNConfidence(data, properties) {
 	
 
 	var keys =  Object.keys(data[0].elements);
+	
 	var maxCount = 0;
 	for (let i = 0; i < data.length; i++) {
 		for (let j = 0; j < keys.length; j++) {
@@ -415,9 +415,6 @@ function LineNConfidence(data, properties) {
 
 						// What are the selected boundaries?
 						var extent = d3.event.selection;
-						
-						console.log(extent);
-						console.log(x.domain());
 
 				      	// If no selection, back to initial coordinate. Otherwise, update X axis domain
 				     	if(!extent){

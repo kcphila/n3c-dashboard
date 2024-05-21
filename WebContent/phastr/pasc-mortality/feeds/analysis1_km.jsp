@@ -21,7 +21,7 @@ from
         {"value":"x__group", "label":"Group"},
         {"value":"survival", "label":"Survival"},
         {"value":"survival_upper_0_95", "label":"Survival Upper 0.95"},
-        {"value":"survival_lower_0_95", "label":"survival Lower 0.95"}
+        {"value":"survival_lower_0_95", "label":"Survival Lower 0.95"}
     ],
     "rows" :
     <c:forEach items="${team.rows}" var="row" varStatus="rowCounter">

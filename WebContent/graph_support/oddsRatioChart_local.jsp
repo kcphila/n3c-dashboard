@@ -135,7 +135,7 @@ function OddsRatioChart(data, properties) {
 					.style("left", (d3.event.pageX + 5) + "px")
 					.style("top", (d3.event.pageY - 28) + "px")
 					.html("<strong>" + d.element 
-						+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+							+ "</strong><br><strong>" + properties.estimate_label +":</strong> " + d.estimate.toLocaleString()+ 
 						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
 						"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString());
 				}
@@ -176,7 +176,7 @@ function OddsRatioChart(data, properties) {
 					.style("left", (d3.event.pageX + 5) + "px")
 					.style("top", (d3.event.pageY - 28) + "px")
 					.html("<strong>" + d.element 
-						+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+							+ "</strong><br><strong>" + properties.estimate_label +":</strong> " + d.estimate.toLocaleString()+ 
 						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
 						"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString());
 				}
@@ -217,7 +217,7 @@ function OddsRatioChart(data, properties) {
 					.style("left", (d3.event.pageX + 5) + "px")
 					.style("top", (d3.event.pageY - 28) + "px")
 					.html("<strong>" + d.element 
-						+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+						+ "</strong><br><strong>" + properties.estimate_label +":</strong> " +  d.estimate.toLocaleString()+ 
 						"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
 						"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString());
 				}
@@ -280,7 +280,7 @@ function OddsRatioChart(data, properties) {
 						.style("left", (d3.event.pageX + 5) + "px")
 						.style("top", (d3.event.pageY - 28) + "px")
 						.html("<strong>" + d.element 
-								+ "</strong><br><strong>OR:</strong> " + d.estimate.toLocaleString()+ 
+								+ "</strong><br><strong>" + properties.estimate_label +":</strong> " + d.estimate.toLocaleString()+ 
 								"</strong><br><strong>95% CI:</strong> " + d.conf_low.toLocaleString() + "-" + d.conf_high.toLocaleString()+
 								"</strong><br><strong>P-Value:</strong> " + d.p_value.toLocaleString()
 						);

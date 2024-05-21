@@ -38,12 +38,13 @@ $.getJSON("../../phastr/ucda/feeds/balance.jsp", function(data){
     	data: data,
        	paging: true,
     	pageLength: 5,
+    	dom: 'lfr<"datatable_overflow"t>Bip',
     	lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
     	order: [[0, 'asc']],
      	columns: [
         	{ data: 'variable', visible: true, orderable: true },
-        	{ data: 'sample', visible: true, orderable: true },
-        	{ data: 'smd', visible: true, orderable: true }
+        	{ data: 'smd', visible: true, orderable: true },
+        	{ data: 'sample', visible: true, orderable: true }
     	]
 	} );
 

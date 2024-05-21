@@ -43,6 +43,13 @@ div.composite.tooltip {
 <jsp:include page="../../head.jsp">
 	<jsp:param name="page" value="PHASTR UCDA"/>
 </jsp:include>
+<script>
+<jsp:include page="../../feeds/configuration.jsp"/>
+</script>
+
+<jsp:include page="../../graph_support/oddsRatioChart_local.jsp"></jsp:include>
+<jsp:include page="../../graph_support/line_n_confidence.jsp"/>
+<jsp:include page="../../graph_support/grouped_bar_horizontal_local.jsp"/>
 
 <body>
 	<jsp:include page="../../navbar.jsp" flush="true">

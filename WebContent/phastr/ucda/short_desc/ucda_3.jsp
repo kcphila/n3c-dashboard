@@ -1,0 +1,1 @@
+<p>The proportion of patients who are alive as a function of time across 30 days within each treatment group (UDCA vs. no-UDCA)</p>

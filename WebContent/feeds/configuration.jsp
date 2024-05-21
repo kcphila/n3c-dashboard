@@ -2,6 +2,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 
+var two_range = ['#4833B2', '#007bff'];
 var ethnicity_range = ["#332380", "#B6AAF3", "#a6a6a6"];
 var sex_range = ["#4833B2", "#ffa600", "#8406D1", "#a6a6a6"];
 var age_range_min = ["#EADEF7", "#8642CE", "#33298D", "#a6a6a6"];

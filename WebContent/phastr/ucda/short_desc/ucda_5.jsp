@@ -1,0 +1,1 @@
+<p>The standardized mean differences for each variable used in the propensity model built using the full inpatient cohort before and after inverse probability of treatment weighting (IPTW)</p>
