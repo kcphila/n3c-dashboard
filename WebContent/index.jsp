@@ -339,7 +339,8 @@
 					<hr style="border-top: 1px solid white;">
 					<h2 class="hidden">Fast Actionable Analysis on High-Impact COVID-19 Public Health Questions</h2>
 					<br>
-					<a href="https://covid.cd2h.org/phastr" role="button" class="btn btn-lg btn-n3c">Learn More</a>
+					<a href="https://covid.cd2h.org/phastr" role="button" class="btn btn-lg btn-n3c">Learn More</a>&emsp;
+					<a href="<util:applicationRoot/>/phastr" role="button" class="btn btn-lg btn-outline-light">Dashboards</a>
 				</div>
 			</div>
 		</div>

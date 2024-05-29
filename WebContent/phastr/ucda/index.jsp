@@ -50,6 +50,7 @@ div.composite.tooltip {
 <jsp:include page="../../graph_support/oddsRatioChart_local.jsp"></jsp:include>
 <jsp:include page="../../graph_support/line_n_confidence.jsp"/>
 <jsp:include page="../../graph_support/grouped_bar_horizontal_local.jsp"/>
+<jsp:include page="../../graph_support/grouped_stacked_bar_horizontal.jsp"/>
 
 <body>
 	<jsp:include page="../../navbar.jsp" flush="true">

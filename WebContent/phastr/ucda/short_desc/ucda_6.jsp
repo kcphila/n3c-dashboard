@@ -1,0 +1,1 @@
+<p>The proportion of patients in each treatment group with each condition/covariate before and after inverse probability of treatment weighting (IPTW). Ideally, the difference in proportions between treatment groups should shrink after weighting.</p>

@@ -6,13 +6,15 @@
 <sql:query var="team" dataSource="jdbc/N3CPublic">
 select jsonb_agg(foo) as foo
 from
-     (select variable, treatment, before_after_weighting, proportion from phastr_ucda.balance_proportion_plot) as foo;
+     (select variable, treatment, 
+     case when before_after_weighting = 'Before Weighting' Then 'Before'
+     Else 'After' End as before_after_weighting, proportion from phastr_ucda.balance_proportion_plot order by 3 desc) as foo;
 	</sql:query>
 
 {
     "headers": [
     	{"value":"variable", "label":"Variable"},
-        {"value":"treatment", "label":"Treadment"},
+        {"value":"treatment", "label":"Treatment"},
         {"value":"before_after_weighting", "label":"Before/After Weighting"},
         {"value":"proportion", "label":"Proportion"}
     ],

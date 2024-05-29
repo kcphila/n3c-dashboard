@@ -32,8 +32,6 @@ div.bar.tooltip {
 
 function localHorizontalGroupedStackedBarChart_new(data, properties) {
 	
-	console.log(data);
-	
 	//
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
 	//

@@ -44,8 +44,13 @@ function localHorizontalGroupedBarChart(data1, properties) {
 	var margin = { top: 0, right: 0, bottom: 100, left: 0 },
 		width = 960 - margin.left - margin.right,
 		height = barHeight * data.length + barPadding * (data.length + 1) + margin.top + margin.bottom;
+	
+	
+	var original = d3.select("#"+properties.domName).node();
+	var newnode = original.cloneNode();
+    original.parentNode.replaceChild(newnode, original);
 
-	var ${param.block}myObserver = new ResizeObserver(entries => {
+	var myObserver = new ResizeObserver(entries => {
 		entries.forEach(entry => {
 			var newWidth = Math.floor(entry.contentRect.width);
 			if (newWidth > 0) {
@@ -57,7 +62,7 @@ function localHorizontalGroupedBarChart(data1, properties) {
 		});
 	});
 
-	${param.block}myObserver.observe(d3.select("#" + properties.domName).node());
+	myObserver.observe(d3.select("#" + properties.domName).node());
 
 	//
 	// some of the logic for this one is syntactically messy, so we'll just stage things here...
@@ -224,7 +229,7 @@ function localHorizontalGroupedBarChart(data1, properties) {
 		// draw color key on to decoupled div
 		function drawColorKey() {
 			d3.select("#" + properties.legendid).html("");
-        	var legend_div = d3.select("#" + properties.legendid).append("div").attr("class", "row").attr("id", "floating_legend");
+        	var legend_div = d3.select("#" + properties.legendid).append("div").attr("class", "row").attr("id", properties.domName+"floating_legend");
         	
         	legend_div.selectAll(".legend-title")
         		.data([properties.legendlabel])
@@ -245,44 +250,6 @@ function localHorizontalGroupedBarChart(data1, properties) {
 	    
 	    drawColorKey();
 
-		// overdraw width and put legend outside of clip path (to only show on download)
-
-
-		var legend_text = chart.append("g")
-			.attr("transform", "translate(" + (width + margin.left + margin.right) + " ," + 0 + " )")
-			.attr("font-family", "sans-serif")
-			.attr("font-size", '14px')
-			.attr("font-weight", "bold")
-			.attr("text-anchor", "start")
-			.append("text")
-			.attr("y", 9.5)
-			.attr("dy", "0.32em")
-			.text(label2);
-
-		var legend = chart.append("g")
-			.attr("transform", "translate(" + (width + margin.left + margin.right) + " ," + 0 + " )")
-			.attr("font-family", "sans-serif")
-			.attr("font-size", ".8rem")
-			.selectAll("g")
-			.data(legend_label)
-			.enter().append("g")
-			.attr("transform", function(d, i) {
-				return "translate(0," + ((i * 20) + 20) + ")";
-			});
-
-		legend.append("rect")
-			.attr("x", 0)
-			.attr("width", 19)
-			.attr("height", 19)
-			.attr("fill", function(d, i) { return colorscale[i]; });
-
-		legend.append("text")
-			.attr("x", 27)
-			.attr("y", 9.5)
-			.attr("dy", "0.32em")
-			.text(function(d) {
-				return d.secondary;
-			});
 	}
 };
 

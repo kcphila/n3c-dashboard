@@ -1678,6 +1678,7 @@ WebContent/phastr/ucda/long_title/ucda_2.jsp -text
 WebContent/phastr/ucda/long_title/ucda_3.jsp -text
 WebContent/phastr/ucda/long_title/ucda_4.jsp -text
 WebContent/phastr/ucda/long_title/ucda_5.jsp -text
+WebContent/phastr/ucda/long_title/ucda_6.jsp -text
 WebContent/phastr/ucda/long_title/ucda_7.jsp -text
 WebContent/phastr/ucda/long_title/ucda_8.jsp -text
 WebContent/phastr/ucda/panel.jsp -text
@@ -1686,6 +1687,7 @@ WebContent/phastr/ucda/short_desc/ucda_2.jsp -text
 WebContent/phastr/ucda/short_desc/ucda_3.jsp -text
 WebContent/phastr/ucda/short_desc/ucda_4.jsp -text
 WebContent/phastr/ucda/short_desc/ucda_5.jsp -text
+WebContent/phastr/ucda/short_desc/ucda_6.jsp -text
 WebContent/phastr/ucda/short_desc/ucda_7.jsp -text
 WebContent/phastr/ucda/short_desc/ucda_8.jsp -text
 WebContent/phastr/ucda/tables/balance.jsp -text
