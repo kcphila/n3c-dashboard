@@ -2,9 +2,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>n3c-dashboard</groupId>
 	<artifactId>n3c-dashboard</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<dependencies>
+
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.7.4</version>
+            </dependency>
+
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
@@ -74,6 +81,16 @@
 				<version>3.2.3</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>strapi-reference</directory>
+                            <targetPath>WEB-INF/classes</targetPath>
+                        </resource>
+                         <resource>
+                            <directory>meta-reference</directory>
+                            <targetPath>META-INF</targetPath>
+                        </resource>
+                    </webResources>
 				</configuration>
 			</plugin>
 			<plugin>
